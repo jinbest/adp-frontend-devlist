@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { CardMobile } from '../../components'
 import { Grid, Box, Typography } from '@material-ui/core'
 import { Search } from '../../components';
@@ -10,6 +10,33 @@ type Props = {
 
 const Section1 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [searchBarVisible, setSearchBarVisible] = useState(true);
+
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scrollPosition > 460) {
+      setSearchBarVisible(false);
+    } else {
+      setSearchBarVisible(true);
+    }
+  }, [scrollPosition])
+
+  useEffect(() => {
+    const headerSearch = document.getElementById('header-search') as HTMLElement;
+    searchBarVisible ? headerSearch.style.visibility = 'hidden' : headerSearch.style.visibility = 'visible';
+  }, [searchBarVisible])
 
   return (
     <section className='Container'>
