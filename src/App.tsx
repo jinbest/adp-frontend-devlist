@@ -1,26 +1,24 @@
-import React from "react"
-import logo from "./logo.svg"
-import "./App.css"
+import React from 'react'
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Footer, Header } from './components'
+import { Home } from './pages/home/'
+
+/* eslint-disable */
+const subDomain:string = 'DeviceList'
 
 function App(): JSX.Element {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    )
+  require(`./assets/${subDomain}/styles/index.css`);
+
+  return (
+    <div>
+      <Header subDomain={subDomain} />
+      <Router>
+        <Route path='/' exact component={() => <Home subDomain={subDomain} />} />
+        <Route path='/home' render={() => (<Redirect to="/" />)} />
+      </Router>
+      <Footer subDomain={subDomain} />
+    </div>
+  )
 }
 
-export default App
+export default App;
