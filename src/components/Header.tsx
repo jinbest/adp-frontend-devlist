@@ -66,9 +66,6 @@ const Header = ({subDomain}: PropsHeader) => {
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            {/* {brandItemLink.right.map((item:any, index:number) => {
-              return <BrandItemLink item={item} key={index} />
-            })} */}
             <BrandItemLink item='204.221.5898' />
             <SelectComponent subDomain={subDomain} />
             <BrandItemLink item='LOG IN' />
@@ -78,7 +75,7 @@ const Header = ({subDomain}: PropsHeader) => {
       <div className='container-header'>
         <Logo subDomain={subDomain} type='header' />
         
-        <div className='search-div'>
+        <div className='search-div' id='header-search'>
           <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
         </div>
         <div className='nav-div'>
