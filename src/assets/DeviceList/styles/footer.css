@@ -3,21 +3,10 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.footer::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -1px;
-  height: 210px;
-  background-image: url('../img/shape.png');
+  background-image: url('../img/footer/footer-shape-desktop.png');
   background-size: cover;
-  background-position: top;
+  background-position: bottom;
   background-repeat: no-repeat;
-  z-index: -1;
 }
 
 .footer-container {
@@ -86,6 +75,7 @@
 .device-list-grid {
   display: block;
   margin-top: 25px;
+  padding-right: 25px;
 }
 
 .device-list-grid > div {

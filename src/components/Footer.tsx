@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box, Typography } from '@material-ui/core';
 import {Logo} from '../components'
 
 /* eslint-disable */
@@ -9,25 +9,22 @@ type Props = {
 
 const Footer = ({subDomain}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
-  const footerLink = data.footerLink
+  const footerLink = data.homeTextData.footer.footerLink
   return (
     <footer className='footer'>
+      <Typography className='footer-title' style={{color: data.homeTextData.footer.title.color}}>
+        {data.homeTextData.footer.title.text}
+      </Typography>
       <Box className='footer-container'>
         <Grid item container xs={12}>
           <Grid item xs={12} md={5}>
             <Logo subDomain={subDomain} type='footer' />
             <div className='device-list-grid'>
-              <div>
-                Canada's mibile device marketplace 
-                (204) 221-5898 | sales@devicelist.co 
-                2020 Corydon Ave, Unit F Winnipe, MB
-              </div>
-              <div>
-                @ 2020 DeviceList 1.0.2. All Rigths Reserved. <br />
-                All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a 
-                "DeviceList" does not own or make claim to those trademarks used on this website in 
-                which it is not the holder.
-              </div>
+              {data.homeTextData.footer.content.map((item:any, index:number) => {
+                return (
+                  <div key={index}>{item}</div>
+                )
+              })}
             </div>
           </Grid>
           <Grid item xs={12} md={7}>

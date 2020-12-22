@@ -35,6 +35,7 @@ type Props = {
 
 const CustomizedMenus = ({subDomain}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
+  const themeColor = data.colorPalle.themeColor;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -49,7 +50,7 @@ const CustomizedMenus = ({subDomain}: Props) => {
     <div>
       <Button 
         title='Find a Store' 
-        bgcolor='#054DFA' 
+        bgcolor={themeColor} 
         borderR='20px'
         aria-controls="customized-menu"
         aria-haspopup="true"
@@ -73,12 +74,12 @@ const CustomizedMenus = ({subDomain}: Props) => {
               <p className='block-content'>71 Greenford Avenue Winninpeg, MB RiR 1R1 (204) 555-5555</p>
             </div>
             <div className='content-block'>
-              <a className='link'>View Store Details</a>
-              <a className='link'>Get Directions</a>
+              <a className='link' style={{color: themeColor}}>View Store Details</a>
+              <a className='link' style={{color: themeColor}}>Get Directions</a>
             </div>
             <Button 
               title='Book Repair' 
-              bgcolor='#054DFA' 
+              bgcolor={themeColor} 
               borderR='20px' 
               width='40px'
               height='30px'
@@ -116,7 +117,7 @@ const CustomizedMenus = ({subDomain}: Props) => {
           </div>
           <Button 
             title='Search' 
-            bgcolor='#054DFA' 
+            bgcolor={themeColor} 
             borderR='20px'
             width='100px'
             height='40px'

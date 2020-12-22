@@ -114,42 +114,10 @@ const devicelistData = [
     { img: proudly, title: "Proudly Canadian", content: "Canadian owned and Canadian based." },
 ]
 
-const bounceData = {
-    img: bounce,
-    title: "Protect Your Device with Bounce",
-    content:
-        "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
-    subtitle: "As low as $39/year!",
-    subcontent: "24 Hour Refunds",
-    subcontentData: ["No Deductible", "Covers New and Used Phones"],
-    btnTitle: "Insure My Device",
-}
-
-const whyCustomersData = [
-    {
-        score: 5,
-        days: "3 days ago",
-        content:
-            "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-        reviewer: "Philip Sizemore",
-    },
-    {
-        score: 4,
-        days: "6 days ago",
-        content: "Super easy to use and quick too!",
-        reviewer: "Anonymous",
-    },
-    {
-        score: 5,
-        days: "3 days ago",
-        content:
-            "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-        reviewer: "Philip Sizemore",
-    },
-]
-
 const colorPalle = {
-    orange: "#F36B26",
+    orange: '#F36B26',
+    themeColor: '#054DFA',
+    priceCol: '#054DFA'
 }
 
 const navItemsData = [
@@ -161,47 +129,8 @@ const navItemsData = [
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
-    right: ["204.221.5898", "ENGLISH", "LOG IN"],
+    right: {ip: "204.221.5898", en: "ENGLISH", log: "LOG IN"},
 }
-
-const footerLink = [
-    {
-        name: "Resources",
-        lists: [
-            { href: "#", text: "Contact Us" },
-            { href: "#", text: "Warranty & Returns" },
-            { href: "#", text: "Shipping" },
-            { href: "#", text: "FAQs" },
-        ],
-    },
-    {
-        name: "About",
-        lists: [
-            { href: "#", text: "Who We Are" },
-            { href: "#", text: "Finance ing" },
-            { href: "#", text: "Blog" },
-            { href: "#", text: "Terms of Service" },
-        ],
-    },
-    {
-        name: "Business",
-        lists: [
-            { href: "#", text: "Authorized Dealer Program" },
-            { href: "#", text: "Sell With Us" },
-            { href: "#", text: "Find a Location" },
-            { href: "#", text: "Business Solutions" },
-        ],
-    },
-    {
-        name: "Quality",
-        lists: [
-            { href: "#", text: "Device Grading" },
-            { href: "#", text: "Quality Control" },
-            { href: "#", text: "60 Point Quality Check" },
-            { href: "#", text: "What is PhoneCheck?" },
-        ],
-    },
-]
 
 const hoursData = [
     { day: "Monday", time: "9:00 a.m. - 5:00 p.m." },
@@ -257,8 +186,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: cornerShape,
-    mockupShape: mockupShape
+    cornerShape: {img: cornerShape, width: ''},
+    mockupShape: {img: mockupShape, width: ''}
 }
 
 const footerImageData = {
@@ -269,6 +198,105 @@ const footerImageData = {
     ]
 }
 
+const homeTextData = {
+    section1: {
+        title: ['Trade, repair, buy or sell', 'your mobile device'],
+        subtitle: 'Winnipeg\'s mobile device specialists'
+    },
+    section2: {
+        title: 'What can we fix for you today?'
+    },
+    section3: {
+        title: 'Popular Devices',
+        subtitle: ['Buy now. Pay later.', 'Whatever works for you.'],
+        content: 'We’ve partnered with Flexiti to offer 0% financing on repairs, devices, and accessories.',
+        color: 'white'
+    },
+    section4: {
+        title: 'Welcome to DeviceList, Canada’s mobile device marketplace'
+    },
+    section5: {
+        img: bounce,
+        title: "Protect Your Device with Bounce",
+        content:
+            "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
+        subtitle: "As low as $39/year!",
+        subcontent: "24 Hour Refunds",
+        subcontentData: ["No Deductible", "Covers New and Used Phones"],
+        btnTitle: "Insure My Device",
+    },
+    section6: {
+        title: 'See Why Customers Love DeviceList',
+        review: [
+            {
+                score: 5,
+                days: "3 days ago",
+                content:
+                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
+                reviewer: "Philip Sizemore",
+            },
+            {
+                score: 4,
+                days: "6 days ago",
+                content: "Super easy to use and quick too!",
+                reviewer: "Anonymous",
+            },
+            {
+                score: 5,
+                days: "3 days ago",
+                content:
+                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
+                reviewer: "Philip Sizemore",
+            },
+        ]
+    },
+    footer: {
+        title: { text: '', color: '' },
+        content: [
+            'Canada’s mobile device marketplace (204) 221-5898 | sales@devicelist.ca 2020 Corydon Ave, Unit F Winnipeg, MB',
+            '© 2020 DeviceList 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "DeviceList" does not own or make claim to those trademarks used on this website in which it is not the holder.'
+        ],
+        footerLink: [
+            {
+                name: "Resources",
+                lists: [
+                    { href: "#", text: "Contact Us" },
+                    { href: "#", text: "Warranty & Returns" },
+                    { href: "#", text: "Shipping" },
+                    { href: "#", text: "FAQs" },
+                ],
+            },
+            {
+                name: "About",
+                lists: [
+                    { href: "#", text: "Who We Are" },
+                    { href: "#", text: "Finance ing" },
+                    { href: "#", text: "Blog" },
+                    { href: "#", text: "Terms of Service" },
+                ],
+            },
+            {
+                name: "Business",
+                lists: [
+                    { href: "#", text: "Authorized Dealer Program" },
+                    { href: "#", text: "Sell With Us" },
+                    { href: "#", text: "Find a Location" },
+                    { href: "#", text: "Business Solutions" },
+                ],
+            },
+            {
+                name: "Quality",
+                lists: [
+                    { href: "#", text: "Device Grading" },
+                    { href: "#", text: "Quality Control" },
+                    { href: "#", text: "60 Point Quality Check" },
+                    { href: "#", text: "What is PhoneCheck?" },
+                ],
+            },
+        ]
+    }
+}
+
 export {
     cardMobileData,
     colorPalle,
@@ -276,16 +304,14 @@ export {
     contentFixData,
     popularCardData,
     devicelistData,
-    bounceData,
-    whyCustomersData,
     navItemsData,
     brandItemsData,
     hoursData,
-    footerLink,
     avatarData,
     mobileNavItemData,
     userNavItemData,
     arrowData,
     shapeData,
-    footerImageData
+    footerImageData,
+    homeTextData
 }

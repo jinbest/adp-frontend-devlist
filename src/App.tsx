@@ -4,7 +4,8 @@ import { Footer, Header } from './components'
 import { Home } from './pages/home/'
 
 /* eslint-disable */
-const subDomain:string = 'DeviceList'
+const domainList:any[] = ['DeviceList', 'NorthTech'];
+const subDomain:string = domainList[1]
 
 function App(): JSX.Element {
   require(`./assets/${subDomain}/styles/index.css`);

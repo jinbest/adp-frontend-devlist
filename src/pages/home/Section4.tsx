@@ -17,10 +17,14 @@ const Section4 = ({subDomain}: Props) => {
         <Grid container item xs={12}>
           <Grid item xs={12} sm={12} md={6}>
             <Typography className='f40 bold section4-title'>
-              Welcome to DeviceList, Canada’s mobile device marketplace
+              {data.homeTextData.section4.title}
             </Typography>
             <Box className='section4-button mobile'>
-              <Button title='Our quality charter' bgcolor='#054DFA' borderR='20px'/>
+              <Button 
+                title='Our quality charter' 
+                bgcolor={data.colorPalle.themeColor} 
+                borderR='20px'
+              />
             </Box>
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
@@ -38,7 +42,7 @@ const Section4 = ({subDomain}: Props) => {
           </Grid>
           <Grid item xs={12}>
             <Box className='section4-button desktop'>
-              <Button title='Our quality charter' bgcolor='#054DFA' borderR='20px'/>
+              <Button title='Our quality charter' bgcolor={data.colorPalle.themeColor} borderR='20px'/>
             </Box>
           </Grid>
         </Grid>

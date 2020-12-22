@@ -26,4 +26,9 @@ const Logo = ({subDomain, type}: Props) => {
   )
 }
 
+Logo.defaultProps = {
+  subDomain: 'DeviceList',
+  type: 'header'
+}
+
 export default Logo;
