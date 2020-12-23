@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 /* eslint-disable*/
 type Props = {
@@ -13,16 +13,12 @@ const Logo = ({subDomain, type}: Props) => {
 
   return (
     type === 'header' ? 
-    <Router>
-      <Link to='/'>
-        <img className='logo' src={logoHeaderImg.default} alt='logo'/>
-      </Link>
-    </Router> : 
-    <Router>
-      <Link to='/'>
-        <img className='logo' src={logoFooterImg.default} alt='logo'/>
-      </Link>
-    </Router>
+    <Link to='/home'>
+      <img className='logo' src={logoHeaderImg.default} alt='logo'/>
+    </Link> : 
+    <Link to='/'>
+      <img className='logo' src={logoFooterImg.default} alt='logo'/>
+    </Link>
   )
 }
 

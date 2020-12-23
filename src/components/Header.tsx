@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Search, CustomizedMenus, Logo, SelectComponent} from '../components'
+import { Link } from 'react-router-dom'
 
 /*eslint-disable*/
 type PropsNavItemLink = {
@@ -9,9 +10,9 @@ type PropsNavItemLink = {
 const NavItemLink = ({ item: { href, text } }: PropsNavItemLink) => {
   return (
     <li className='nav-item'>
-      <a className='nav-link' href={href}>
+      <Link className='nav-link' to={href}>
         {text}
-      </a>
+      </Link>
     </li>
   )
 }

@@ -49,6 +49,20 @@ import interactive from './img/footer/interactive.png'
 import paypal from './img/footer/paypal.png'
 import deviceListImg from './img/footer/device-list.png'
 
+// repair images
+import repairPhone from './img/repair/repair-phone.png'
+
+// repair section2 - images
+import selectRepair from './img/repair/section2/select-repair.png'
+import sendDevice from './img/repair/section2/send-device.png'
+import receiveDevice from './img/repair/section2/receive-device.png'
+
+// repair section3 - images
+import newImg from './img/repair/section3/new.png'
+import mintImg from './img/repair/section3/mint.png'
+import goodImg from './img/repair/section3/good.png'
+import fairImg from './img/repair/section3/fair.png'
+
 const cardMobileData = [
     { img: trade, title: "TRADE", btnTitle: "Trade my Device" },
     { img: repair, title: "REPAIR", btnTitle: "Repair my Device" },
@@ -122,7 +136,7 @@ const colorPalle = {
 
 const navItemsData = [
     { href: "#", text: "Trade", isActive: false },
-    { href: "#", text: "Repair", isActive: false },
+    { href: "/repair", text: "Repair", isActive: false },
     { href: "#", text: "Buy", isActive: false },
     { href: "#", text: "Protect", isActive: false },
 ]
@@ -297,6 +311,62 @@ const homeTextData = {
     }
 }
 
+const repairData = {
+    section1: {
+        title: 'Fix Your Device Fast!',
+        content: 'Answer a few questions about your damaged device and we’ll help repair it.',
+        btnTitle: 'Get Quote',
+        img: repairPhone,
+        themeCol: 'black'
+    },
+    section2: {
+        title: 'How does repair work?',
+        content: [
+            {
+                img: selectRepair, 
+                subtitle: 'Select a repair category', 
+                content: 'Make an account with us and indicate what needs to be repaired.',
+            },
+            {
+                img: sendDevice,
+                subtitle: 'Send us your device',
+                content: 'Make an account with us and indicate what needs to be repaired.',
+            },
+            {
+                img: receiveDevice,
+                subtitle: 'Receive your device',
+                content: 'DeviceList repairs your device and notifies you of pick up or delivery date.',
+            }
+        ]
+    },
+    section3: {
+        title: 'From New to Reconditioned',
+        content: 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!',
+        children: [
+            {
+                subtitle: 'NEW',
+                subcontent: 'A brand new device with no signs of wear',
+                img: newImg
+            },
+            {
+                subtitle: 'MINT',
+                subcontent: 'No scratches or dents',
+                img: mintImg
+            },
+            {
+                subtitle: 'GOOD',
+                subcontent: 'Minor scratches or dents',
+                img: goodImg
+            },
+            {
+                subtitle: 'FAIR',
+                subcontent: 'Visible scratchs and dents',
+                img: fairImg
+            }
+        ]
+    }
+}
+
 export {
     cardMobileData,
     colorPalle,
@@ -313,5 +383,6 @@ export {
     arrowData,
     shapeData,
     footerImageData,
-    homeTextData
+    homeTextData,
+    repairData
 }
