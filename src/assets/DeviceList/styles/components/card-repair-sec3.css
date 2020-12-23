@@ -1,9 +1,8 @@
 .card-repair-sec3-container {
     padding: 30px 20px;
     border-radius: 13px;
-    box-shadow: 13.3204px 13.3204px 39.9611px rgba(174, 174, 192, 0.4);
+    box-shadow: -13.3204px -13.3204px 39.9611px #FFFFFF, 13.3204px 13.3204px 39.9611px rgba(174, 174, 192, 0.4);
     background-color: white;
-    /* height: 400px; */
     flex: none;
     order: 0;
     flex-grow: 0;
