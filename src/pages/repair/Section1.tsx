@@ -21,7 +21,12 @@ const Section1 = ({subDomain}: Props) => {
             {repair.content}
           </Typography>
           <Box className='repair-section-button'>
-            <Button title={repair.btnTitle} bgcolor={data.colorPalle.themeColor} borderR='20px'/>
+            <Button 
+              title={repair.btnTitle} 
+              bgcolor={data.colorPalle.themeColor} 
+              borderR='20px'
+              onClick={()=>{console.log("get quote")}}
+            />
           </Box>
         </Grid>
         <Grid item xs={12} sm={5}>
