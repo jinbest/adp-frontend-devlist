@@ -1,6 +1,6 @@
 import React from 'react'
-import { Grid, Typography } from '@material-ui/core'
-import {CardRepairSec2} from '../../components'
+import { Grid, Typography, Paper } from '@material-ui/core'
+import {CardRepairSec3} from '../../components'
 
 /* eslint-disable */
 type Props = {
@@ -19,12 +19,12 @@ const Section3 = ({subDomain}: Props) => {
         <Typography className="repair-section-content" style={{color: repair.themeCol}}>
           {repair.content}
         </Typography>
-        <Grid container>
+        <Grid container item xs={12} spacing={2}>
           {repair.children.map((item:any, index:number) => {
             return (
-              <Grid item xs={12} sm={3} className='repair-sec-content-div' key={index}>
-                <CardRepairSec2 img={item.img} subtitle={item.subtitle} content={item.subcontent} />
-              </Grid>              
+              <Grid item xs={6} sm={6} md={3} key={index}>
+                <CardRepairSec3 img={item.img} subtitle={item.subtitle} content={item.subcontent} />
+              </Grid>
             )
           })}
         </Grid>

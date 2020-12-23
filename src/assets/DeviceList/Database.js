@@ -168,7 +168,7 @@ const avatarData = {
 const mobileNavItemData = {
     left: [
         {text: 'Trade', href: '#'},
-        {text: 'Repair', href: '#'},
+        {text: 'Repair', href: '/repair'},
         {text: 'Buy', href: '#'},
         {text: 'Protect', href: '#'},
         {text: 'Business', href: '#'},
@@ -188,7 +188,7 @@ const mobileNavItemData = {
 
 const userNavItemData = [
     {text: 'My Account', href: '#'},
-    {text: 'Track Repair', href: '#'},
+    {text: 'Track Repair', href: '/repair'},
     {text: 'File a Claim', href: '#'},
     {text: 'Orders', href: '#'},
     {text: 'Trade-In', href: '#'},
