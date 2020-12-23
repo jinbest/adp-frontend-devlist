@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography, Paper } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import {CardRepairSec3} from '../../components'
 
 /* eslint-disable */
@@ -27,7 +27,7 @@ const Section3 = ({subDomain}: Props) => {
               </Grid>
             )
           })}
-        </Grid>
+        </Grid>        
       </div>
     </section>
   )

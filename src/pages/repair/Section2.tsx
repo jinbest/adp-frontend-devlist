@@ -16,12 +16,12 @@ const Section2 = ({subDomain}: Props) => {
         <Typography className="repair-section-title-1" style={{color: repair.themeCol}}>
           {repair.title}
         </Typography>
-        <Grid container>
+        <Grid container item xs={12} spacing={2} className='repair-sec-content-div'>
           {repair.content.map((item:any, index:number) => {
             return (
-              <Grid item xs={12} sm={4} className='repair-sec-content-div' key={index}>
+              <Grid item xs={12} md={4} key={index}>
                 <CardRepairSec2 img={item.img} subtitle={item.subtitle} content={item.content} />
-              </Grid>              
+              </Grid>
             )
           })}
         </Grid>

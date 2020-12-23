@@ -6,7 +6,7 @@
 
 .repair-section-title-2 {
   font-weight: 800 !important;
-  font-size: 50px !important;
+  font-size: 45px !important;
 }
 
 .repair-section-content {
@@ -28,6 +28,7 @@
 .repair-section2 {
   height: 550px;
   margin-top: -200px;
+  margin-bottom: -50px;
   padding-top: 500px;
   position: relative;
   z-index: 1;

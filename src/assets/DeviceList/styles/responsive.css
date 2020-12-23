@@ -17,6 +17,33 @@
   .footer-device-response {
     display: block
   }
+  .repair-section-title-1 {
+    font-size: 45px !important;
+  }
+  .repair-section-content {
+    font-size: 25px !important;
+  }
+  .repair-section2-text-field {
+    text-align: center;
+  }
+  .card-repair-sec2 {
+    text-align: left;
+  }
+  .card-repair-sec2-img {
+    width: 100px !important;
+  }
+  .card-repair-sec2-subtitle {
+    font-size: 20px;
+  }
+  .card-repair-sec2-content {
+    font-size: 15px;
+  }
+  .repair-sec-content-div {
+    margin-top: 50px !important;
+  }
+  .repair-section2 {
+    margin-bottom: -140px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -24,7 +51,7 @@
   .header-brand, 
   .mockup-shape, 
   .sec1-search_input,
-  .card-customized-container-desktop {
+  .card-customized-container-desktop, .repair-section1 img {
     display: none;
   }
   .section1-top {
@@ -53,6 +80,16 @@
   }
   .footer {
     background-image: url('../img/footer/footer-shape-mobile.png');
+  }
+  .repair-section1 .MuiGrid-grid-sm-7 {
+    flex-grow: 0;
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+  }
+  .repair-section1 {
+    text-align: center !important;
+    align-items: center;
+    margin: auto;
   }
 }
 
