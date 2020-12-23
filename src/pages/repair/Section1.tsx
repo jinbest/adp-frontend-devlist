@@ -13,7 +13,7 @@ const Section1 = ({subDomain}: Props) => {
   return (
     <section className='Container'>
       <Grid container className='repair-section1'>
-        <Grid item xs={12} sm={7} spacing={2}>
+        <Grid item xs={12} sm={7}>
           <Typography className="repair-section-title-1" style={{color: repair.themeCol}}>
             {repair.title}
           </Typography>
