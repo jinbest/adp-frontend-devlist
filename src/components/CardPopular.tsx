@@ -6,9 +6,10 @@ type Props = {
   title: string;
   subtitle: string;
   price: string;
+  priceCol?: string;
 }
 
-const CardPopular = ({title, img, price, subtitle}: Props) => {
+const CardPopular = ({title, img, price, subtitle, priceCol}: Props) => {
   
   return (
     <div className='card-popular'>
@@ -16,7 +17,7 @@ const CardPopular = ({title, img, price, subtitle}: Props) => {
       <p className='title'>{title}</p>
       <div className='price-div'>
         <p className='subtitle'>{subtitle}</p>
-        <p className='price'>{price}</p>
+        <p className='price' style={{color: priceCol}}>{price}</p>
       </div>
     </div>
   )

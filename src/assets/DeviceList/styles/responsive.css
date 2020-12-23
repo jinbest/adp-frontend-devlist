@@ -33,11 +33,7 @@
   .container-header {
     margin-top: 0;
   }
-  .avatar-div {
-    display: flex;
-  }
-  .mobile-search-div,
-  .card-customized-container-mobile {
+  .avatar-div, .mobile-search-div, .card-customized-container-mobile {
     display: flex;
   }
   .card-customized-item {
@@ -55,12 +51,16 @@
   .corner-shape {
     width: 60vw;
   }
+  .footer {
+    background-image: url('../img/footer/footer-shape-mobile.png');
+  }
 }
 
 @media (max-width: 600px) {
   .device-list-grid {
     display: block;
     text-align: center;
+    padding-right: 0;
   }
   .device-list-grid > div {
     margin-right: 20px 0;
@@ -89,5 +89,43 @@
   }
   .container-header > img {
     height: 35px;
+  }
+}
+
+@media (max-width: 425px) {
+  .section1-title, .section-title, .f40 {
+    font-size: 20px !important;
+  }
+  .section1-subtitle, .card-mobile > p, .card-fix p, .card-why-customer > p, .score-div > p, 
+  .device-list-grid, .footer_link > li {
+    font-size: 12px !important; 
+  }
+  .button {
+    height: 25px !important;
+  }
+  .content-fix .title, .protect-content {
+    font-size: 16px !important;
+  }
+  .card-why-customer {
+    height: 165px;
+  }
+  .section1-top {
+    margin-bottom: 25px !important;
+    margin-top: 220px !important;
+  }
+  .section-title {
+    margin: 1rem 0 !important;
+  }
+  .pd-t-5 {
+    padding: 1.5rem 0 !important;
+  }
+  .mg-t-7 {
+    margin: 4rem auto !important;
+  }
+  .sec6-container {
+    padding-top: 1rem;
+  }
+  .footer {
+    margin-top: -100px;
   }
 }

@@ -4,14 +4,15 @@ import React from 'react'
 type Props = {
   title: string;
   content: string;
+  themeCol?: string;
 }
 
-const ContentFix = ({title, content}: Props) => {
+const ContentFix = ({title, content, themeCol}: Props) => {
   
   return (
     <div className='content-fix'>
       <p className='title'>{title}</p>
-      <hr className='horzon-line' />
+      <hr className='horzon-line' style={{borderColor: themeCol}} />
       <p className='content'>{content}</p>
     </div>
   )
