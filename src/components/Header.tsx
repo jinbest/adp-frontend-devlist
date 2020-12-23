@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Search, CustomizedMenus, Logo, SelectComponent} from '../components'
+import { Link } from 'react-router-dom'
 
 /*eslint-disable*/
 type PropsNavItemLink = {
@@ -9,9 +10,9 @@ type PropsNavItemLink = {
 const NavItemLink = ({ item: { href, text } }: PropsNavItemLink) => {
   return (
     <li className='nav-item'>
-      <a className='nav-link' href={href}>
+      <Link className='nav-link' to={href}>
         {text}
-      </a>
+      </Link>
     </li>
   )
 }
@@ -58,7 +59,7 @@ const Header = ({subDomain}: PropsHeader) => {
 
   return (
     <header className='header'>
-      <div className='header-brand'>
+      <div className='header-brand' style={{backgroundColor: data.colorPalle.themeColor}}>
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
@@ -66,7 +67,7 @@ const Header = ({subDomain}: PropsHeader) => {
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            <BrandItemLink item='204.221.5898' />
+            <BrandItemLink item={brandItemLink.right.ip} />
             <SelectComponent subDomain={subDomain} />
             <BrandItemLink item='LOG IN' />
           </ul>          
@@ -143,7 +144,7 @@ const Header = ({subDomain}: PropsHeader) => {
                     <a key={index} className='mobile-item' href={item.href}>{item.text}</a>
                   )
                 })}
-                <a href='#' style={{color: 'blue'}}>Sign Out</a>
+                <a href='#' style={{color: data.colorPalle.themeColor}}>Sign Out</a>
               </div>
             }
           </div>

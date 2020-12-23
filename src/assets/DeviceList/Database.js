@@ -49,6 +49,20 @@ import interactive from './img/footer/interactive.png'
 import paypal from './img/footer/paypal.png'
 import deviceListImg from './img/footer/device-list.png'
 
+// repair images
+import repairPhone from './img/repair/repair-phone.png'
+
+// repair section2 - images
+import selectRepair from './img/repair/section2/select-repair.png'
+import sendDevice from './img/repair/section2/send-device.png'
+import receiveDevice from './img/repair/section2/receive-device.png'
+
+// repair section3 - images
+import newImg from './img/repair/section3/new.png'
+import mintImg from './img/repair/section3/mint.png'
+import goodImg from './img/repair/section3/good.png'
+import fairImg from './img/repair/section3/fair.png'
+
 const cardMobileData = [
     { img: trade, title: "TRADE", btnTitle: "Trade my Device" },
     { img: repair, title: "REPAIR", btnTitle: "Repair my Device" },
@@ -114,94 +128,23 @@ const devicelistData = [
     { img: proudly, title: "Proudly Canadian", content: "Canadian owned and Canadian based." },
 ]
 
-const bounceData = {
-    img: bounce,
-    title: "Protect Your Device with Bounce",
-    content:
-        "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
-    subtitle: "As low as $39/year!",
-    subcontent: "24 Hour Refunds",
-    subcontentData: ["No Deductible", "Covers New and Used Phones"],
-    btnTitle: "Insure My Device",
-}
-
-const whyCustomersData = [
-    {
-        score: 5,
-        days: "3 days ago",
-        content:
-            "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-        reviewer: "Philip Sizemore",
-    },
-    {
-        score: 4,
-        days: "6 days ago",
-        content: "Super easy to use and quick too!",
-        reviewer: "Anonymous",
-    },
-    {
-        score: 5,
-        days: "3 days ago",
-        content:
-            "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-        reviewer: "Philip Sizemore",
-    },
-]
-
 const colorPalle = {
-    orange: "#F36B26",
+    orange: '#F36B26',
+    themeColor: '#054DFA',
+    priceCol: '#054DFA'
 }
 
 const navItemsData = [
     { href: "#", text: "Trade", isActive: false },
-    { href: "#", text: "Repair", isActive: false },
+    { href: "/repair", text: "Repair", isActive: false },
     { href: "#", text: "Buy", isActive: false },
     { href: "#", text: "Protect", isActive: false },
 ]
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
-    right: ["204.221.5898", "ENGLISH", "LOG IN"],
+    right: {ip: "204.221.5898", en: "ENGLISH", log: "LOG IN"},
 }
-
-const footerLink = [
-    {
-        name: "Resources",
-        lists: [
-            { href: "#", text: "Contact Us" },
-            { href: "#", text: "Warranty & Returns" },
-            { href: "#", text: "Shipping" },
-            { href: "#", text: "FAQs" },
-        ],
-    },
-    {
-        name: "About",
-        lists: [
-            { href: "#", text: "Who We Are" },
-            { href: "#", text: "Finance ing" },
-            { href: "#", text: "Blog" },
-            { href: "#", text: "Terms of Service" },
-        ],
-    },
-    {
-        name: "Business",
-        lists: [
-            { href: "#", text: "Authorized Dealer Program" },
-            { href: "#", text: "Sell With Us" },
-            { href: "#", text: "Find a Location" },
-            { href: "#", text: "Business Solutions" },
-        ],
-    },
-    {
-        name: "Quality",
-        lists: [
-            { href: "#", text: "Device Grading" },
-            { href: "#", text: "Quality Control" },
-            { href: "#", text: "60 Point Quality Check" },
-            { href: "#", text: "What is PhoneCheck?" },
-        ],
-    },
-]
 
 const hoursData = [
     { day: "Monday", time: "9:00 a.m. - 5:00 p.m." },
@@ -225,7 +168,7 @@ const avatarData = {
 const mobileNavItemData = {
     left: [
         {text: 'Trade', href: '#'},
-        {text: 'Repair', href: '#'},
+        {text: 'Repair', href: '/repair'},
         {text: 'Buy', href: '#'},
         {text: 'Protect', href: '#'},
         {text: 'Business', href: '#'},
@@ -245,7 +188,7 @@ const mobileNavItemData = {
 
 const userNavItemData = [
     {text: 'My Account', href: '#'},
-    {text: 'Track Repair', href: '#'},
+    {text: 'Track Repair', href: '/repair'},
     {text: 'File a Claim', href: '#'},
     {text: 'Orders', href: '#'},
     {text: 'Trade-In', href: '#'},
@@ -257,8 +200,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: cornerShape,
-    mockupShape: mockupShape
+    cornerShape: {img: cornerShape, width: ''},
+    mockupShape: {img: mockupShape, width: ''}
 }
 
 const footerImageData = {
@@ -269,6 +212,161 @@ const footerImageData = {
     ]
 }
 
+const homeTextData = {
+    section1: {
+        title: ['Trade, repair, buy or sell', 'your mobile device'],
+        subtitle: 'Winnipeg\'s mobile device specialists'
+    },
+    section2: {
+        title: 'What can we fix for you today?'
+    },
+    section3: {
+        title: 'Popular Devices',
+        subtitle: ['Buy now. Pay later.', 'Whatever works for you.'],
+        content: 'We’ve partnered with Flexiti to offer 0% financing on repairs, devices, and accessories.',
+        color: 'white'
+    },
+    section4: {
+        title: 'Welcome to DeviceList, Canada’s mobile device marketplace'
+    },
+    section5: {
+        img: bounce,
+        title: "Protect Your Device with Bounce",
+        content:
+            "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
+        subtitle: "As low as $39/year!",
+        subcontent: "24 Hour Refunds",
+        subcontentData: ["No Deductible", "Covers New and Used Phones"],
+        btnTitle: "Insure My Device",
+    },
+    section6: {
+        title: 'See Why Customers Love DeviceList',
+        review: [
+            {
+                score: 5,
+                days: "3 days ago",
+                content:
+                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
+                reviewer: "Philip Sizemore",
+            },
+            {
+                score: 4,
+                days: "6 days ago",
+                content: "Super easy to use and quick too!",
+                reviewer: "Anonymous",
+            },
+            {
+                score: 5,
+                days: "3 days ago",
+                content:
+                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
+                reviewer: "Philip Sizemore",
+            },
+        ]
+    },
+    footer: {
+        title: { text: '', color: '' },
+        content: [
+            'Canada’s mobile device marketplace (204) 221-5898 | sales@devicelist.ca 2020 Corydon Ave, Unit F Winnipeg, MB',
+            '© 2020 DeviceList 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "DeviceList" does not own or make claim to those trademarks used on this website in which it is not the holder.'
+        ],
+        footerLink: [
+            {
+                name: "Resources",
+                lists: [
+                    { href: "#", text: "Contact Us" },
+                    { href: "#", text: "Warranty & Returns" },
+                    { href: "#", text: "Shipping" },
+                    { href: "#", text: "FAQs" },
+                ],
+            },
+            {
+                name: "About",
+                lists: [
+                    { href: "#", text: "Who We Are" },
+                    { href: "#", text: "Finance ing" },
+                    { href: "#", text: "Blog" },
+                    { href: "#", text: "Terms of Service" },
+                ],
+            },
+            {
+                name: "Business",
+                lists: [
+                    { href: "#", text: "Authorized Dealer Program" },
+                    { href: "#", text: "Sell With Us" },
+                    { href: "#", text: "Find a Location" },
+                    { href: "#", text: "Business Solutions" },
+                ],
+            },
+            {
+                name: "Quality",
+                lists: [
+                    { href: "#", text: "Device Grading" },
+                    { href: "#", text: "Quality Control" },
+                    { href: "#", text: "60 Point Quality Check" },
+                    { href: "#", text: "What is PhoneCheck?" },
+                ],
+            },
+        ]
+    }
+}
+
+const repairData = {
+    section1: {
+        title: 'Fix Your Device Fast!',
+        content: 'Answer a few questions about your damaged device and we’ll help repair it.',
+        btnTitle: 'Get Quote',
+        img: repairPhone,
+        themeCol: 'black'
+    },
+    section2: {
+        title: 'How does repair work?',
+        content: [
+            {
+                img: selectRepair, 
+                subtitle: 'Select a repair category', 
+                content: 'Make an account with us and indicate what needs to be repaired.',
+            },
+            {
+                img: sendDevice,
+                subtitle: 'Send us your device',
+                content: 'Make an account with us and indicate what needs to be repaired.',
+            },
+            {
+                img: receiveDevice,
+                subtitle: 'Receive your device',
+                content: 'DeviceList repairs your device and notifies you of pick up or delivery date.',
+            }
+        ]
+    },
+    section3: {
+        title: 'From New to Reconditioned',
+        content: 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!',
+        children: [
+            {
+                subtitle: 'NEW',
+                subcontent: 'A brand new device with no signs of wear',
+                img: newImg
+            },
+            {
+                subtitle: 'MINT',
+                subcontent: 'No scratches or dents',
+                img: mintImg
+            },
+            {
+                subtitle: 'GOOD',
+                subcontent: 'Minor scratches or dents',
+                img: goodImg
+            },
+            {
+                subtitle: 'FAIR',
+                subcontent: 'Visible scratchs and dents',
+                img: fairImg
+            }
+        ]
+    }
+}
+
 export {
     cardMobileData,
     colorPalle,
@@ -276,16 +374,15 @@ export {
     contentFixData,
     popularCardData,
     devicelistData,
-    bounceData,
-    whyCustomersData,
     navItemsData,
     brandItemsData,
     hoursData,
-    footerLink,
     avatarData,
     mobileNavItemData,
     userNavItemData,
     arrowData,
     shapeData,
-    footerImageData
+    footerImageData,
+    homeTextData,
+    repairData
 }

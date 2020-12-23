@@ -12,8 +12,8 @@ const Section2 = ({subDomain}: Props) => {
 
   return (
     <section className='Container'>
-      <Typography className='section1-title'>
-          What can we fix for you today
+      <Typography className='section-title'>
+        {data.homeTextData.section2.title}
       </Typography>
       <div className='card-customized-container-desktop'>
         {
@@ -54,7 +54,7 @@ const Section2 = ({subDomain}: Props) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box className='cart-contentfix-container'>
-                  <ContentFix title={item.title} content={item.content} key={index} />
+                  <ContentFix title={item.title} content={item.content} themeCol={data.colorPalle.themeColor} key={index} />
                 </Box>
               </Grid>
             )
