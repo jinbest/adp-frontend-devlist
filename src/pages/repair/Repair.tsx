@@ -7,11 +7,14 @@ type Props = {
 }
 
 const Repair = ({subDomain}: Props) => {
+  const SectionItemComponents = [Section1, Section2, Section3]
   return (
     <div>
-      <Section1 subDomain={subDomain} />
-      <Section2 subDomain={subDomain} />
-      <Section3 subDomain={subDomain} />
+      {SectionItemComponents.map((SectionItem, index:number) => {
+        return (
+          <SectionItem subDomain={subDomain} key={index}/>
+        )
+      })}
     </div>
   )
 }
