@@ -5,12 +5,22 @@ import { Link } from 'react-router-dom'
 /*eslint-disable*/
 type PropsNavItemLink = {
   item: any;
+  handleStatus: (status:boolean) => void;
 }
 
-const NavItemLink = ({ item: { href, text } }: PropsNavItemLink) => {
+const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) => {
+
+  const handle = () => {
+    if (href === '/repair-widget') {
+      handleStatus(false)
+    } else {
+      handleStatus(true)
+    }
+  }
+
   return (
     <li className='nav-item'>
-      <Link className='nav-link' to={href}>
+      <Link className='nav-link' to={href} onClick={handle}>
         {text}
       </Link>
     </li>
@@ -33,9 +43,10 @@ const BrandItemLink = ({ item }: PropsBrand) => {
 
 type PropsHeader = {
   subDomain?: string;
+  handleStatus: (status:boolean) => void;
 }
 
-const Header = ({subDomain}: PropsHeader) => {
+const Header = ({subDomain, handleStatus}: PropsHeader) => {
   const data = require(`../assets/${subDomain}/Database`);
   const navItemsLink = data.navItemsData, brandItemLink = data.brandItemsData;
 
@@ -74,7 +85,7 @@ const Header = ({subDomain}: PropsHeader) => {
         </div>
       </div>
       <div className='container-header'>
-        <Logo subDomain={subDomain} type='header' />
+        <Logo subDomain={subDomain} type='header' handleStatus={handleStatus} />
         
         <div className='search-div' id='header-search'>
           <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
@@ -82,7 +93,7 @@ const Header = ({subDomain}: PropsHeader) => {
         <div className='nav-div'>
           <ul className='navlink-parent'>
             {navItemsLink.map((item:any, index:number) => {
-              return <NavItemLink item={item} key={index} />
+              return <NavItemLink item={item} key={index} handleStatus={handleStatus}/>
             })}
           </ul>
           <CustomizedMenus subDomain={subDomain} />

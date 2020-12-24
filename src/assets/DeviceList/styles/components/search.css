@@ -17,6 +17,6 @@
 }
 
 .search-input {
-    width: 100%;
+    width: 100% !important;
     margin-left: 5px;
 }

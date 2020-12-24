@@ -44,6 +44,13 @@
   .repair-section2 {
     margin-bottom: -140px;
   }
+  .device-brand-subtitle {
+    font-size: 2vw;
+    margin-top: 1vw;
+  }
+  .customized-card-height {
+    height: 400px;
+  }
 }
 
 @media (max-width: 768px) {

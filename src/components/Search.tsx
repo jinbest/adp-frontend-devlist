@@ -9,16 +9,17 @@ type Props = {
   bgcolor?: string;
   border?: string;
   height?: string;
+  placeholder?: string;
 }
 
-const Search = ({color, bgcolor, border, height}: Props) => {
+const Search = ({color, bgcolor, border, height, placeholder}: Props) => {
 
   return (
       <Box className="search-container" style={{background: bgcolor, border: `1px solid ${border}`, height: height}}>
         <InputBase 
           className="search-input" 
           style={{color: color}} 
-          placeholder="Find your device"
+          placeholder={placeholder || "Find your device"}
         />
         <SearchIcon className="search-icon" style={{color: color}}/>
       </Box>

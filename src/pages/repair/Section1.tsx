@@ -1,13 +1,15 @@
 import React from 'react'
 import { Grid, Box, Typography } from '@material-ui/core'
-import { Button } from '../../components';
+import { Button } from '../../components'
+import { Link } from 'react-router-dom'
 
 /* eslint-disable */
 type Props = {
   subDomain?: string;
+  handleStatus: (status:boolean) => void;
 }
 
-const Section1 = ({subDomain}: Props) => {
+const Section1 = ({subDomain, handleStatus}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
   const repair = data.repairData.section1
   return (
@@ -21,12 +23,13 @@ const Section1 = ({subDomain}: Props) => {
             {repair.content}
           </Typography>
           <Box className='repair-section-button'>
-            <Button 
-              title={repair.btnTitle} 
-              bgcolor={data.colorPalle.themeColor} 
-              borderR='20px'
-              onClick={()=>{console.log("get quote")}}
-            />
+            <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={()=>handleStatus(false)}>
+              <Button 
+                title={repair.btnTitle} 
+                bgcolor={data.colorPalle.themeColor} 
+                borderR='20px'
+              />
+            </Link>            
           </Box>
         </Grid>
         <Grid item xs={12} sm={5}>
