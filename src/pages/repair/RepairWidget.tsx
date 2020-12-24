@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { ChooseDevice, BackSVG } from './widget-component'
+import { ChooseDevice, BackSVG, ContactDetails } from './widget-component'
 // import { Grid, Typography } from '@material-ui/core'
 
 const stepList:string[] = [
@@ -24,12 +24,8 @@ type Props = {
 const RepairWidget = ({subDomain, handleStatus}: Props) => {
   const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`)
 
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(5)
   const [data, setData] = useState(mockData.repairWidget[stepList[step]])
-
-  useEffect(() => {
-    setData(mockData.repairWidget[stepList[step]]);
-  }, [step])
 
   useEffect(() => {
     handleStatus(false)
@@ -37,11 +33,12 @@ const RepairWidget = ({subDomain, handleStatus}: Props) => {
 
   const handleStep = (i:number) => {
     setStep(i)
+    if (i <= 5) setData(mockData.repairWidget[stepList[i]])
   }
 
   const handleBackStep = () => {
     setStep(step-1)
-    setData(mockData.repairWidget[stepList[step-1]])
+    if (step <= 6) setData(mockData.repairWidget[stepList[step-1]])
   }
 
   return (
@@ -53,6 +50,9 @@ const RepairWidget = ({subDomain, handleStatus}: Props) => {
       }
       {(step <= 5) && 
         <ChooseDevice data={data} handleStep={handleStep} stepName={stepList[step]} step={step} subDomain={subDomain} />
+      }
+      { step === 6 && 
+        <ContactDetails subDomain={subDomain} step={step} handleStep={handleStep} />
       }
     </div>
   )

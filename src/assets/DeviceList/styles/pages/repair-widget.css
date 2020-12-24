@@ -145,3 +145,15 @@
   width: 300px;
   margin: auto;
 }
+
+.repair-summary-title {
+  font-weight: bold !important;
+  font-size: 17px !important;
+  margin-bottom: 15px !important;
+}
+
+.repair-summary-service {
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  margin-bottom: 5px !important;
+}

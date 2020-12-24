@@ -191,6 +191,35 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
               })}
             </div>}
 
+            {step === 3 && 
+              <div className='repair-choose-device-container'>
+                <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+                <Typography className='topic-content'>{data.mainTopic.content}</Typography>
+              </div>
+            }
+
+            {(stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
+              <div className='repair-choose-device-container'>
+                <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+                {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+                  return (
+                    <div key={index} style={{border: '1px solid rgba(0,0,0,0.1)', borderRadius: '10px', padding: '10px', marginBottom: '10px', display: 'flex'}}>
+                      <div style={{marginRight: '10px'}}><img src={item.img} /></div>
+                      <div>
+                        <Typography className='repair-summary-title'>{item.subtitle}</Typography>
+                        <Typography className='repair-summary-service'>{item.service}</Typography>
+                        {item.details.map((i:any, k:number) => {
+                          return (
+                            <p key={k}>{i}</p>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            }
+
           </Card>
         </Grid>
       </Grid>      
