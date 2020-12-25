@@ -124,6 +124,41 @@ const repairWidget = {
       { name: 'Text', bg: 'white', col: 'black' },
       { name: 'Phone Call', bg: 'white', col: 'black' },
     ],
+  },
+  contactDetails: {
+    title: 'Please Enter Your Contact Details',
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
+    placeholder: {
+      firstName: 'First Name*',
+      lastName: 'Last Name*',
+      emailAdd: 'E-mail Address*',
+      phoneNum: 'Phone Number*'
+    }
+  },
+  bookTime: {
+    title: 'Book Your Time',
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
+    select: {
+      location: {
+        title: 'Select Preferred Location',
+        option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
+      },
+      time: {
+        title: 'Select Curbside Drop-Off Time',
+      }
+    }
   }
 }
 

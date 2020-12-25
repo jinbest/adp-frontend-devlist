@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Search, CustomizedMenus, Logo, SelectComponent} from '../components'
+import {Search, CustomizedMenus, Logo, SelectLang} from '../components'
 import { Link } from 'react-router-dom'
 
 /*eslint-disable*/
@@ -79,7 +79,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
             <BrandItemLink item={brandItemLink.right.ip} />
-            <SelectComponent subDomain={subDomain} />
+            <SelectLang subDomain={subDomain} />
             <BrandItemLink item='LOG IN' />
           </ul>          
         </div>

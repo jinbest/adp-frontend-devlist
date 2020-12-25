@@ -67,7 +67,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
   return (
     <div>
       <Grid container className='' spacing={3}>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={12}>
           <Typography className="repair-widget-title">
             {data.title}
           </Typography>

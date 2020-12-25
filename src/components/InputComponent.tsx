@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, InputBase } from '@material-ui/core';
+import { InputBase } from '@material-ui/core';
 
 /* eslint-disable */
 
