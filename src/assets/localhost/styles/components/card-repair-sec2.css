@@ -1,0 +1,18 @@
+.card-repair-sec2 {
+  display: flex;
+}
+
+.card-repair-sec2-img {
+  width: 150px !important;
+}
+
+.card-repair-sec2-subtitle {
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.card-repair-sec2-content {
+  font-weight: normal;
+  font-size: 20px;
+}
