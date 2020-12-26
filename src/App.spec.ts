@@ -1,5 +1,5 @@
-describe("stub", () => {
-    it("", () => {
+describe("App", () => {
+    it("stub", () => {
         expect(true).toBeTruthy()
     })
 })
