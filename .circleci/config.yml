@@ -10,16 +10,16 @@ jobs:
       - node/install-packages
       - run:
           command: npm run lint
-  build:
-    resource_class: large
-    executor: 
-      name: node/default
-      tag: "14.15.1"
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-          command: npm run build
+#   build:
+#     resource_class: large
+#     executor: 
+#       name: node/default
+#       tag: "14.15.1"
+#     steps:
+#       - checkout
+#       - node/install-packages
+#       - run:
+#           command: npm run build
   test:
     executor: 
       name: node/default
