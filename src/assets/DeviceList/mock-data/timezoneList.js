@@ -350,13 +350,19 @@ const aryIannaTimeZones = [
 ];
 
 let timezoneOptions = [
-  {title: 'CST - Central Standard Time (UTC +1:00)', timezone: 'Europe/Vienna'},
-  {title: 'PST – Pacific Standard Time (UTC -8:00)', timezone: 'America/Vancouver'},
-  {title: 'EST – Eastern Standard Time (UTC -5:00)', timezone: 'America/Toronto'},
-  {title: 'China Standard Time (GMT +8:00)', timezone: 'Asia/Shanghai'},
+  {title: 'CST - Central Standard Time (UTC +1:00)', timezone: 'Europe/Vienna', offset: 1},
+  {title: 'PST – Pacific Standard Time (UTC -8:00)', timezone: 'America/Vancouver', offset: -8},
+  {title: 'EST – Eastern Standard Time (UTC -5:00)', timezone: 'America/Toronto', offset: -5},
+  {title: 'China Standard Time (GMT +8:00)', timezone: 'Asia/Shanghai', offset: 8},
 ]
+
+let defaultTimezone = {
+  tz: 'Europe/Vienna',
+  offset: 1
+}
 
 export {
   aryIannaTimeZones,
-  timezoneOptions
+  timezoneOptions,
+  defaultTimezone
 }

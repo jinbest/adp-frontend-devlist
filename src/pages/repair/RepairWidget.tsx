@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { ChooseDevice, BackSVG, ContactDetails, BookTime } from './widget-component'
+import { ChooseDevice, BackSVG, ContactDetails, BookTime, UsefulInfo, ThankyouMobile } from './widget-component'
 // import { Grid, Typography } from '@material-ui/core'
 
 const stepList:string[] = [
@@ -33,12 +33,12 @@ const RepairWidget = ({subDomain, handleStatus}: Props) => {
 
   const handleStep = (i:number) => {
     setStep(i)
-    if (i <= 7) setData(mockData.repairWidget[stepList[i]])
+    if (i <= 8) setData(mockData.repairWidget[stepList[i]])
   }
 
   const handleBackStep = () => {
     setStep(step-1)
-    if (step <= 8) setData(mockData.repairWidget[stepList[step-1]])
+    if (step <= 9) setData(mockData.repairWidget[stepList[step-1]])
   }
 
   return (
@@ -56,6 +56,12 @@ const RepairWidget = ({subDomain, handleStatus}: Props) => {
       }
       { step === 7 && 
         <BookTime data={data} subDomain={subDomain} step={step} handleStep={handleStep} />
+      }
+      { step === 8 && 
+        <UsefulInfo data={data} subDomain={subDomain} step={step} handleStep={handleStep} />
+      }
+      { step === 9 &&
+        <ThankyouMobile />
       }
     </div>
   )

@@ -13,22 +13,21 @@ type Props = {
 
 const BookTime = ({data, subDomain, step, handleStep}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const mockData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
-  const timeZoneList = mockData.timezoneOptions;
+  const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
+  const timeZoneList = timezoneData.timezoneOptions;
   const themeCol = mainData.colorPalle.themeColor;
   const DAYS_OF_THE_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const MONTHS = ['January', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octorber', 'November', 'December'];
 
-  const [timezone, setTimezone] = useState(timeZoneList[0].timezone)
+  const [tzIndex, setTZIndex] = useState(0);
+  const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
   const [today, setToday] = useState(changeTimezone(new Date(), timezone));
   const [date, setDate] = useState(today);
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
   const [week, setWeek] = useState(date.getDay());
-  const [time, setTime] = useState(date.toLocaleTimeString())
-
-  console.log(today)
+  const [time, setTime] = useState(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }));
 
   useEffect(() => {
     setDay(date.getDate());
@@ -36,13 +35,16 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
     setYear(date.getFullYear());
     setWeek(date.getDay());
     setWeek(date.getDay());
-    setTime(date.toLocaleTimeString());
   }, [date]);
 
   useEffect(() => {
     setToday(changeTimezone(new Date(), timezone))
     setDate(changeTimezone(new Date(), timezone))
   }, [timezone])
+
+  useEffect(() => {
+    setTimezone(timeZoneList[tzIndex].timezone);
+  }, [tzIndex])
 
   function changeTimezone(date:Date, ianatz:string) {
     let invdate = new Date(date.toLocaleString('en-US', {
@@ -67,7 +69,7 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
       </Grid>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={7}>
-          <Card>
+          <Card className='booking-card'>
             <div className='repair-choose-device-container'>
               <Typography className='repair-summary-title'>{data.select.location.title}</Typography>
               <CustomSelect subDomain={subDomain} options={data.select.location.option} />
@@ -79,12 +81,16 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
                 <Grid item xs={12} sm={6}>
                   <CustomBookTime 
                     themeCol={themeCol} 
-                    week={week} 
                     title={DAYS_OF_THE_WEEK[week] + ', ' + MONTHS[month] + ' ' + day}
                     subDomain={subDomain}
-                    timezone={timezone}
+                    timezoneIndex={tzIndex}
                     timeZoneList={timeZoneList}
-                    changeTimezone={setTimezone}
+                    defaultTimezone={timezoneData.defaultTimezone}
+                    changeTimezone={setTZIndex}
+                    changeBooktime={setTime}
+                    selectYear={year}
+                    selectMonth={month}
+                    selectDay={day}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -109,7 +115,7 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
           </Card>          
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card>
+          <Card className='repair-summary-card'>
             <div className='repair-choose-device-container'>
               <Typography className='topic-title'>{data.mainTopic.title}</Typography>
               {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {

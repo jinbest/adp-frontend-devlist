@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { Card } from './'
-import { InputComponent, Button, PhoneInput } from '../../../components'
+import { Button } from '../../../components'
 
 type Props = {
   data: any;
@@ -10,7 +10,7 @@ type Props = {
   handleStep: (step:number) => void;
 }
 
-const ContactDetails = ({data, subDomain, step, handleStep}: Props) => {
+const UsefulInfo = ({data, subDomain, step, handleStep}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const themeCol = mainData.colorPalle.themeColor
 
@@ -31,20 +31,9 @@ const ContactDetails = ({data, subDomain, step, handleStep}: Props) => {
         <Grid item xs={12} md={7}>
           <Card>
             <div className='repair-choose-device-container'>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <InputComponent placeholder={data.placeholder.firstName} />
-                </Grid>
-                <Grid item xs={6}>
-                  <InputComponent placeholder={data.placeholder.lastName} />
-                </Grid>
-                <Grid item xs={12}>
-                  <InputComponent placeholder={data.placeholder.emailAdd} />
-                </Grid>
-                <Grid item xs={12}>
-                  <PhoneInput placeholder={data.placeholder.phoneNum} />
-                </Grid>
-              </Grid>
+              <div style={{ border: '1px solid rgba(0,0,0,0.1)', borderRadius: '20px', width: '100%', height: '300px', overflow: 'hidden' }}>
+                <textarea placeholder={data.placeholder} style={{border: 'none', margin: '20px', fontSize: '15px', width: '90%', outline: 'none', height: '250px'}} />
+              </div>
             </div>
             <div className='repair-card-button'>
               <Button 
@@ -88,4 +77,4 @@ const ContactDetails = ({data, subDomain, step, handleStep}: Props) => {
   )
 }
 
-export default ContactDetails
+export default UsefulInfo

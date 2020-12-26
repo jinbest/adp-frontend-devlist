@@ -8,7 +8,7 @@ const Frame = styled.div`
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 15px;
   height: 300px;
-  min-width: 340px;
+  // min-width: 340px;
 `;
 
 const InputDate = styled.div`
@@ -33,6 +33,13 @@ const Body = styled.div`
   margin-bottom: 20px;
 `;
 
+const Weekdiv = styled.div`
+  background-color: #BDBFC3;
+  width: 100%;
+  display: flex;
+  height: 35px;
+`;
+
 interface DayProps {
   isToday?: boolean;
   isSelected?: boolean;
@@ -44,7 +51,7 @@ interface DayProps {
 }
 
 const Day = styled.div<DayProps>`
-  width: 14.2%;
+  width: 14.1%;
   height: 35px;
   display: flex;
   align-items: center;
@@ -91,14 +98,13 @@ type CanlendarProps = {
 const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps) => {
   const mainData = require(`../assets/${subDomain}/Database.js`)
   const themeCol = mainData.colorPalle.themeColor
-  const tz = timezone || 'Europe/Vienna'
 
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_OF_THE_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
   const MONTHS = ['January', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octorber', 'November', 'December'];
 
-  const [today, setToday] = useState(changeTimezone(new Date(), tz));
+  const [today, setToday] = useState(changeTimezone(new Date(), timezone));
   const [date, setDate] = useState(today);
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
@@ -115,7 +121,11 @@ const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps)
 
   useEffect(()=> {
     setToday(changeTimezone(new Date(), timezone))
-    setDate(changeTimezone(new Date(), timezone))
+    if (new Date(year, month, day) > today) {
+      setDate(changeTimezone(new Date(year, month, day), timezone))
+    } else {
+      setDate(changeTimezone(new Date(), timezone))
+    }    
   }, [timezone])
 
   function changeTimezone(date:Date, ianatz:string) {
@@ -185,11 +195,13 @@ const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps)
         <CustomNumeric content={year.toString()} handlePrevState={handlePrevYear} handleNextState={handleNextYear} />
       </Numeric>
       <Body>
-        {DAYS_OF_THE_WEEK.map(d => (
-          <Day key={d} color='white' bg='#BDBFC3' margin='0 0 10px'>
-            <strong>{d}</strong>
-          </Day>
-        ))}
+        <Weekdiv>
+          {DAYS_OF_THE_WEEK.map(d => (
+            <Day key={d} color='white' bg='#BDBFC3' margin='0 0 10px'>
+              <strong>{d}</strong>
+            </Day>
+          ))}
+        </Weekdiv>
         {Array(days[month] + (startDay - 1))
           .fill(null)
           .map((_, index) => {

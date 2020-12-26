@@ -159,6 +159,17 @@ const repairWidget = {
         title: 'Select Curbside Drop-Off Time',
       }
     }
+  },
+  usefulInfo: {
+    title: 'Enter a Message or Any Useful Information About This Repair',
+    placeholder: 'Type your message here (optional)',
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
   }
 }
 
