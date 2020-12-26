@@ -86,14 +86,14 @@ workflows:
     jobs:
       - lint:
           context: dc
-      - build:
-          context: dc
-          requires:
-            - lint
+    #   - build:
+    #       context: dc
+    #       requires:
+    #         - lint
       - test:
           context: dc
           requires:
-            - build
+            - lint
       - push-dev-image:
           context: dc
           filters:
