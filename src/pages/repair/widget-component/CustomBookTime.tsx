@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 
 function availableTimeRange(min:number, max:number, intv:number, mut:number) {
-  let timeRange:any[] = [], cntMin = min;
+  const timeRange:any[] = [];
+  let cntMin = min;
   while (1) {
     timeRange.push(cntMin * mut);
     cntMin = cntMin + intv;
@@ -13,15 +14,15 @@ function availableTimeRange(min:number, max:number, intv:number, mut:number) {
 }
 
 function isWeek(selyear:number, selmonth:number, selday:number, seloff:number, defaultoff:number) {
-  let timeoffset = -new Date().getTimezoneOffset() / 60;
-  let selectedTimeStamp = new Date(selyear, selmonth, selday, (timeoffset-seloff + defaultoff)).getTime();
+  const timeoffset = -new Date().getTimezoneOffset() / 60;
+  const selectedTimeStamp = new Date(selyear, selmonth, selday, (timeoffset-seloff + defaultoff)).getTime();
   return new Date(selectedTimeStamp).getDay();
 }
 
 function isPast(selyear:number, selmonth:number, selday:number, seloff:number, hrs:number, mins: number) {
-  let timeoffset = -new Date().getTimezoneOffset() / 60;
-  let selectedTiemStamp = new Date(selyear, selmonth, selday, hrs + (timeoffset-seloff), mins).getTime();
-  let standTimeStamp = new Date().getTime();
+  const timeoffset = -new Date().getTimezoneOffset() / 60;
+  const selectedTiemStamp = new Date(selyear, selmonth, selday, hrs + (timeoffset-seloff), mins).getTime();
+  const standTimeStamp = new Date().getTime();
   return selectedTiemStamp < standTimeStamp;
 }
 
@@ -54,13 +55,13 @@ const CustomBookTime = ({
   const [bookArray, setBookArray] = useState<ArrayProps[]>([]);
 
   useEffect(() => {
-    let availRange:any[] = [],
-        cntTimeStamp = new Date(selectYear, selectMonth, selectDay).getTime(), 
+    let availRange:any[] = [];
+    const cntTimeStamp = new Date(selectYear, selectMonth, selectDay).getTime(), 
         booklist:any[] = [],
         cntTimeStampOffset = timeZoneList[val].offset,
         defaultOffset = defaultTimezone.offset;
 
-    let week = isWeek(selectYear, selectMonth, selectDay, timeZoneList[val].offset, defaultOffset)
+    const week = isWeek(selectYear, selectMonth, selectDay, timeZoneList[val].offset, defaultOffset)
 
     if (week > 0 && week < 6) {
       availRange = availableTimeRange(timeRange.workday[0], timeRange.workday[1], interval, multi);
@@ -69,9 +70,9 @@ const CustomBookTime = ({
     }
     
     for (let i = 0; i < availRange.length; i++) {
-      let cntbookStamp = cntTimeStamp + availRange[i] + (cntTimeStampOffset-defaultOffset) * 3600 * 1000;
-      let cntbook = new Date(cntbookStamp);
-      let mark = cntbook.getHours() >= 12 ? 'PM' : 'AM', 
+      const cntbookStamp = cntTimeStamp + availRange[i] + (cntTimeStampOffset-defaultOffset) * 3600 * 1000;
+      const cntbook = new Date(cntbookStamp);
+      const mark = cntbook.getHours() >= 12 ? 'PM' : 'AM', 
           markMin = cntbook.getMinutes() === 0 ? '00' : cntbook.getMinutes(),
           markHour = cntbook.getHours() % 12 === 0 ? 12 : cntbook.getHours() % 12;
 
@@ -94,13 +95,13 @@ const CustomBookTime = ({
   }, [selectYear, selectMonth, selectDay, val])
 
   const handleChangeOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    let cntVal = e.target.value;
+    const cntVal = e.target.value;
     setVal(parseInt(cntVal));
     changeTimezone(parseInt(cntVal));
   }
 
   const handleBook = (n:number) => {
-    let cntBookArray:any[] = bookArray;
+    const cntBookArray:any[] = bookArray;
     if (cntBookArray[n].isPast) return;
     for (let i = 0; i < cntBookArray.length; i++) {
       if (i === n) {
@@ -108,7 +109,7 @@ const CustomBookTime = ({
         cntBookArray[i].bgColor = themeCol;
       } else {
         cntBookArray[i].color = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : themeCol;
-        cntBookArray[i].bgColor = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : 'white';
+        cntBookArray[i].bgColor = 'white';
       }
     }
     changeBooktime(cntBookArray[n].book);

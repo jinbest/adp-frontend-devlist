@@ -129,10 +129,10 @@ const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps)
   }, [timezone])
 
   function changeTimezone(date:Date, ianatz:string) {
-    let invdate = new Date(date.toLocaleString('en-US', {
+    const invdate = new Date(date.toLocaleString('en-US', {
       timeZone: ianatz
     }));
-    let diff = date.getTime() - invdate.getTime();
+    const diff = date.getTime() - invdate.getTime();
     return new Date(date.getTime() - diff);
   }
 
