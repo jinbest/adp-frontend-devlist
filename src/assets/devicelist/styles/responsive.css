@@ -44,6 +44,26 @@
   .repair-section2 {
     margin-bottom: -140px;
   }
+  .device-brand-subtitle {
+    font-size: 2vw;
+    margin-top: 1vw;
+  }
+  .customized-card-height {
+    height: 400px;
+  }
+  .device-repair-item > p {
+    font-size: 2.3vw;
+  }
+  .repair-card-button p {
+    display: none;
+  }
+  .repair-summary-content-div {
+    display: flex;
+  }
+  .repair-summary-div {
+    width: 50%;
+    margin-right: 2%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -106,6 +126,22 @@
   .card-repair-sec2-content {
     font-size: 2.5vw;
   }
+  .topic-content {
+    font-size: 15px !important;
+  }
+  .topic-title {
+    font-size: 18px !important;
+  }
+  .repair-widget-title {
+    font-size: 4.5vw !important;
+  }
+  .repair-summary-content-div {
+    display: block;
+  }
+  .repair-summary-div {
+    width: 95%;
+    margin-right: 2%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -135,7 +171,6 @@
 
 @media (max-width: 500px) {
   .button {
-    min-width: 120px;
     font-size: 12px !important;
     height: 30px;
   }
@@ -151,6 +186,48 @@
   }
   .card-repair-sec3-container .subtitle {
     font-size: 5vw;
+  }
+  .topic-content {
+    font-size: 12px !important;
+    margin-bottom: 8px !important;
+  }
+  .topic-title {
+    font-size: 15px !important;
+    margin-bottom: 8px !important;
+  }
+  .repair-choose-device-container {
+    padding: 20px;
+  }
+  .device-item-container {
+    width: 30%;
+  }
+  .device-brand-subtitle {
+    font-size: 3vw;
+  }
+  .device-repair-item > p {
+    font-size: 3.5vw;
+  }
+  .repair-another-device {
+    display: block;
+  }
+  .repair-another-device > button {
+    margin-bottom: 10px;
+  }
+  .estimate-title, .estimate-content {
+    font-size: 13px;
+  }
+  .estimate-times-div {
+    margin-bottom: 10px;
+  }
+  .repair-summary-img {
+    width: 60px;
+  }
+  .repair-summary-title {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+  }
+  .repair-summary-service, .repair-summary-service-child {
+    font-size: 13px !important;
   }
 }
 
@@ -192,5 +269,30 @@
   }
   .footer {
     margin-top: -100px;
+  }
+  .footer-buynow {
+    height: 26px;
+  }
+  .footer-others, .footer-others > img {
+    height: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container-header > a > img {
+    height: 30px;
+  }
+  .avatar-div > img {
+    height: 20px;
+    margin: 0 6px;
+  }
+  .card-fix {
+    min-width: 90px;
+  }
+  .card-popular .title {
+    font-size: 3vw;
+  }
+  .button {
+    min-width: 80px;
   }
 }

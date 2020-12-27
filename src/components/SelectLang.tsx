@@ -25,7 +25,7 @@ type Props = {
   subDomain?: string;
 }
 
-const SelectComponent = ({subDomain}: Props) => {
+const SelectLang = ({subDomain}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const classes = useStyles();
 
@@ -54,4 +54,4 @@ const SelectComponent = ({subDomain}: Props) => {
   );
 }
 
-export default SelectComponent;
+export default SelectLang;

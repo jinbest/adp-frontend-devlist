@@ -4,17 +4,15 @@ import {Section1, Section2, Section3} from './'
 /* eslint-disable */
 type Props = {
   subDomain: string;
+  handleStatus: (status:boolean) => void;
 }
 
-const Repair = ({subDomain}: Props) => {
-  const SectionItemComponents = [Section1, Section2, Section3]
+const Repair = ({subDomain, handleStatus}: Props) => {
   return (
     <div>
-      {SectionItemComponents.map((SectionItem, index:number) => {
-        return (
-          <SectionItem subDomain={subDomain} key={index}/>
-        )
-      })}
+      <Section1 subDomain={subDomain} handleStatus={handleStatus} />
+      <Section2 subDomain={subDomain} />
+      <Section3 subDomain={subDomain} />
     </div>
   )
 }

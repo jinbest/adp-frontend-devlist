@@ -18,7 +18,7 @@ const Footer = ({subDomain}: Props) => {
       <Box className='footer-container'>
         <Grid item container xs={12}>
           <Grid item xs={12} md={5}>
-            <Logo subDomain={subDomain} type='footer' />
+            <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
             <div className='device-list-grid'>
               {data.homeTextData.footer.content.map((item:any, index:number) => {
                 return (
