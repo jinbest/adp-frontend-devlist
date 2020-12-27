@@ -53,22 +53,24 @@ const UsefulInfo = ({data, subDomain, step, handleStep}: Props) => {
           <Card className='repair-summary-card'>
             <div className='repair-choose-device-container'>
               <Typography className='topic-title'>{data.mainTopic.title}</Typography>
-              {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
-                return (
-                  <div key={index} style={{border: '1px solid rgba(0,0,0,0.1)', borderRadius: '10px', padding: '10px', marginBottom: '10px', display: 'flex'}}>
-                    <div style={{marginRight: '10px'}}><img src={item.img} /></div>
-                    <div>
-                      <Typography className='repair-summary-title'>{item.subtitle}</Typography>
-                      <Typography className='repair-summary-service'>{item.service}</Typography>
-                      {item.details.map((i:any, k:number) => {
-                        return (
-                          <p key={k}>{i}</p>
-                        )
-                      })}
+              <div className='repair-summary-content-div'>
+                {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+                  return (
+                    <div key={index} className='repair-summary-div'>
+                      <div className='repair-summary-img'><img src={item.img} /></div>
+                      <div>
+                        <Typography className='repair-summary-title'>{item.subtitle}</Typography>
+                        <Typography className='repair-summary-service'>{item.service}</Typography>
+                        {item.details.map((i:any, k:number) => {
+                          return (
+                            <p key={k} className='repair-summary-service-child'>{i}</p>
+                          )
+                        })}
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
             </div>
           </Card>
         </Grid>

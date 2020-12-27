@@ -7,7 +7,7 @@ type Props = {
 const PlusSVG = ({color}: Props) => {
   return (
       <div>
-        <svg width="71" height="70" viewBox="0 0 71 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="50" height="50" viewBox="0 0 71 70" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd" 
             clipRule="evenodd" 
