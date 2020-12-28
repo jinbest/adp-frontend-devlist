@@ -42,6 +42,10 @@ commands:
                       $SUDO chown "$USER:$USER" "$HOME/.config" -R
                     fi
                 name: gcloud auth configure-docker
+executors:
+    default:
+        description: A debian-based machine executor
+        machine: true
 
 jobs: 
   lint:
@@ -73,7 +77,7 @@ jobs:
       - run:
           command: npm run test
   push-dev-image:
-    executor: gcp-cli/default
+    executor: default
     steps:
       - checkout
       - gcr-auth:
@@ -94,7 +98,7 @@ jobs:
 
                   ./templater.sh -s linux -p development -c "skaffold build -p development"
   deploy-dev-image:
-    executor: gcp-cli/default
+    executor: default
     steps:
       - checkout
       - gcr-auth:
