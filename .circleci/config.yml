@@ -47,7 +47,7 @@ jobs:
                   
                   gcloud components install gsutil &&
 
-                  sudo apt install python3.9-pip
+                  sudo apt install python3
 
                   gsutil cp gs://adp-dev/config/config.js ./public/ &&
 
