@@ -33,7 +33,7 @@ jobs:
     executor: gcp-gcr/default
     steps:
       - checkout
-      - gcp-gcr/gcr-auth:
+      - gcp-cli/install_and_initialize_cli:
           gcloud-service-key: DEV_GCLOUD_SERVICE_KEY
           google-compute-zone: DEV_COMPUTE_ZONE
           google-project-id: DEV_PROJECT_ID
@@ -45,10 +45,6 @@ jobs:
 
                   curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin &&
 
-                  sudo apt install python3
-                  
-                  gcloud --quiet components update gsutil
-
                   gsutil cp gs://adp-dev/config/config.js ./public/ &&
 
                   chmod u+x ./templater.sh &&
@@ -58,7 +54,7 @@ jobs:
     executor: gcp-gcr/default
     steps:
       - checkout
-      - gcp-gcr/gcr-auth:
+      - gcp-cli/install_and_initialize_cli:
           gcloud-service-key: DEV_GCLOUD_SERVICE_KEY
           google-compute-zone: DEV_COMPUTE_ZONE
           google-project-id: DEV_PROJECT_ID
@@ -86,8 +82,7 @@ jobs:
 
 orbs:
   node: circleci/node@4.1.0
-  gcp-gke: circleci/gcp-gke@1.1.0
-  gcp-gcr: circleci/gcp-gcr@0.11.0
+  gcp-cli: circleci/gcp-cli@1.8.3
   kubernetes: circleci/kubernetes@0.11.2
 
 workflows:
