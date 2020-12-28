@@ -1,5 +1,48 @@
 version: 2.1
 
+commands:
+      gcr-auth:
+        description: |
+            Configure Docker to use gcloud as a credential helper. Using this command requires the use of a 'machine' executor.
+        parameters:
+            gcloud-service-key:
+                default: GCLOUD_SERVICE_KEY
+                description: The gcloud service key
+                type: env_var_name
+            google-compute-zone:
+                default: GOOGLE_COMPUTE_ZONE
+                description: |
+                    The Google compute zone to connect with via the gcloud CLI
+                type: env_var_name
+            google-project-id:
+                default: GOOGLE_PROJECT_ID
+                description: |
+                    Environment variable name for the Google project ID to connect with via the gcloud CLI
+                type: env_var_name
+        steps:
+            - gcp-cli/install
+            - gcp-cli/initialize:
+                gcloud-service-key: <<parameters.gcloud-service-key>>
+                google-compute-zone: <<parameters.google-compute-zone>>
+                google-project-id: <<parameters.google-project-id>>
+            - run:
+                command: |
+                    # Set sudo to work whether logged in as root user or non-root user
+                    if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+                    # configure Docker to use gcloud as a credential helper
+                    mkdir -p "$HOME/.docker"
+                    gcloud auth configure-docker --quiet --project $<<parameters.google-project-id>>
+
+                    # if applicable, provide user access to the docker config file
+                    if [[ -d "$HOME/.docker" ]]; then
+                      $SUDO chown "$USER:$USER" "$HOME/.docker" -R
+                    fi
+                    if [[ -d "$HOME/.config" ]]; then
+                      $SUDO chown "$USER:$USER" "$HOME/.config" -R
+                    fi
+                name: gcloud auth configure-docker
+
 jobs: 
   lint:
     executor:
@@ -33,8 +76,7 @@ jobs:
     executor: gcp-cli/default
     steps:
       - checkout
-      - gcp-cli/install
-      - gcp-cli/initialize:
+      - gcr-auth:
           gcloud-service-key: DEV_GCLOUD_SERVICE_KEY
           google-compute-zone: DEV_COMPUTE_ZONE
           google-project-id: DEV_PROJECT_ID
@@ -55,8 +97,7 @@ jobs:
     executor: gcp-cli/default
     steps:
       - checkout
-      - gcp-cli/install
-      - gcp-cli/initialize:
+      - gcr-auth:
           gcloud-service-key: DEV_GCLOUD_SERVICE_KEY
           google-compute-zone: DEV_COMPUTE_ZONE
           google-project-id: DEV_PROJECT_ID
