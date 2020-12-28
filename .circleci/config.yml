@@ -45,11 +45,11 @@ jobs:
 
                   curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin &&
                   
-                  gcloud components install gsutil
+                  gcloud components install gsutil &&
 
-                  gsutil cp gs://adp-dev/config/config.js ./public/config.js
+                  gsutil cp gs://adp-dev/config/config.js ./public/config.js &&
 
-                  chmod u+x ./templater.sh&&
+                  chmod u+x ./templater.sh &&
 
                   ./templater.sh -s linux -p development -c "skaffold build -p development"
   deploy-dev-image:
