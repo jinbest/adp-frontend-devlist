@@ -30,7 +30,7 @@ jobs:
       - run:
           command: npm run test
   push-dev-image:
-    executor: gcp-gcr/default
+    executor: gcp-cli/default
     steps:
       - checkout
       - gcp-cli/install_and_initialize_cli:
@@ -51,7 +51,7 @@ jobs:
 
                   ./templater.sh -s linux -p development -c "skaffold build -p development"
   deploy-dev-image:
-    executor: gcp-gcr/default
+    executor: gcp-cli/default
     steps:
       - checkout
       - gcp-cli/install_and_initialize_cli:
