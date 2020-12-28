@@ -41,9 +41,14 @@ jobs:
       - run:
           name: Push Image to GCR
           command: |
-                  gcloud --quiet container clusters get-credentials $DEV_CLUSTER_NAME --region $DEV_REGION
-                  curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
-                  chmod u+x ./templater.sh
+                  gcloud --quiet container clusters get-credentials $DEV_CLUSTER_NAME --region $DEV_REGION &&
+
+                  curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin &&
+                  
+                  gsutil cp gs://adp-dev/config/config.js ./public/config.js
+
+                  chmod u+x ./templater.sh&&
+
                   ./templater.sh -s linux -p development -c "skaffold build -p development"
   deploy-dev-image:
     executor: gcp-gcr/default
