@@ -47,7 +47,9 @@ jobs:
                   
                   gcloud components install gsutil &&
 
-                  gsutil cp gs://adp-dev/config/config.js ./public/config.js &&
+                  rm ./public/config.js
+
+                  gsutil cp gs://adp-dev/config/config.js ./public/ &&
 
                   chmod u+x ./templater.sh &&
 
