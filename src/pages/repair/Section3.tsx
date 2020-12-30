@@ -27,7 +27,7 @@ const Section3 = ({subDomain}: Props) => {
               </Grid>
             )
           })}
-        </Grid>        
+        </Grid>
       </div>
     </section>
   )

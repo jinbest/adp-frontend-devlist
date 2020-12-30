@@ -17,6 +17,19 @@
 }
 
 .search-input {
-    width: 100%;
+    width: 100% !important;
     margin-left: 5px;
+}
+
+.input-component {
+    border-radius: 80px;
+    position: relative;
+    height: 40px;
+    padding: 20px 30px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+    border: 1px solid rgba(0,0,0,0.1);
+    outline: none;
+    background-color: white;
 }
