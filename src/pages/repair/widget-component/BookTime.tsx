@@ -95,7 +95,7 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
                 </Grid>
                 <Grid item xs={12}>
                   <div style={{border: '1px solid rgba(0,0,0,0.1)', borderRadius: '20px', width: '100%', height: '30px', fontSize: '14px', display: 'flex', alignItems: 'center'}}>
-                    <p style={{marginLeft: '20px'}}>You've selected {time} on {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
+                    <p style={{textAlign: 'center', margin: '0 10px'}}>You've selected {time} on {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
                   </div>
                 </Grid>
               </Grid>
