@@ -24,32 +24,69 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
   const [plusVisible, setPlusVisible] = useState(true)
   const [itemTypes, setItemTypes] = useState<ArrayProps[]>([])
   const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([])
+  const [selected, setSelected] = useState(999);
 
   const handlePlus = () => {
     setSliceNum(data.images.length)
     setPlusVisible(false)
   }
 
-  const ChooseNextStep = () => {
-    handleStep(step+1)
+  const ChooseNextStep = (i:number) => {
+    if (i === 999 ){
+      handleStep(step+1)
+      return;
+    }
+    setSelected(i)
+    const timer = setTimeout(() => {
+      setSelected(999)
+      handleStep(step+1)
+    }, 500);
+    return () => clearTimeout(timer);
   }
 
   useEffect(() => {
-    if (stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') {
+    if (stepName === 'deviceRepairs') {
       setItemTypes(data.types)
+    }
+    if (stepName === 'dropOffDevicce' || stepName === 'receiveQuote') {
+      let cntTypes:any[] = data.types, cntSelected = 0;
+      for (let i = 0; i < cntTypes.length; i++) {
+        if (cntSelected === i) {
+          cntTypes[i].bg = themeCol
+          cntTypes[i].col = 'white'
+        } else {
+          cntTypes[i].bg = 'white'
+          cntTypes[i].col = 'black'
+        }
+      }
+      setItemTypes([...cntTypes])
     }
   }, [step, data, stepName])
 
-  const toggleItemTypes = (i:number) => {
-    let cntTypes:any[] = itemTypes
-    if (cntTypes[i].bg === 'white') {
-      cntTypes[i].bg = themeCol
-      cntTypes[i].col = 'white'
+  const toggleItemTypes = (i:number, stepN:string) => {
+    if(stepN === 'deviceRepairs') {
+      let cntTypes:any[] = itemTypes
+      if (cntTypes[i].bg === 'white') {
+        cntTypes[i].bg = themeCol
+        cntTypes[i].col = 'white'
+      } else {
+        cntTypes[i].bg = 'white'
+        cntTypes[i].col = 'black'
+      }
+      setItemTypes([...cntTypes])
     } else {
-      cntTypes[i].bg = 'white'
-      cntTypes[i].col = 'black'
+      let cntItemTypes:any[] = itemTypes
+      for (let u = 0; u < cntItemTypes.length; u++) {
+        if (u === i) {
+          cntItemTypes[u].bg = themeCol
+          cntItemTypes[u].col = 'white'
+        } else {
+          cntItemTypes[u].bg = 'white'
+          cntItemTypes[u].col = 'black'
+        }
+      }
+      setItemTypes([...cntItemTypes])
     }
-    setItemTypes([...cntTypes])
   }
 
   useEffect(() => {
@@ -90,7 +127,12 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
                 {(stepName === 'deviceBrand') && <>
                   {data.images.slice(0,sliceNum).map((item:any, index:number) => {
                     return (
-                      <div className='device-item-container' key={index} onClick={ChooseNextStep}>
+                      <div 
+                        className='device-item-container' 
+                        style={{background: selected === index ? 'rgba(0,0,0,0.1)' : 'white'}} 
+                        key={index} 
+                        onClick={() => ChooseNextStep(index)}
+                      >
                         <img src={item.img} style={{maxWidth: '80%'}} />
                       </div>
                     )
@@ -103,7 +145,12 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
                 {(stepName === 'deviceModel') && <>
                   {data.images && data.images.map((item:any, index:number) => {
                     return (
-                      <div className='device-item-container' key={index} onClick={ChooseNextStep}>
+                      <div 
+                        className='device-item-container' 
+                        key={index} 
+                        onClick={() => ChooseNextStep(index)}
+                        style={{background: selected === index ? 'rgba(0,0,0,0.1)' : 'white'}} 
+                      >
                         <div className='device-model-item'>
                           <p className='device-brand-subtitle'>{item.name}</p>
                           <img src={item.img} />
@@ -118,8 +165,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
 
                 {(stepName === 'repairAnotherDevice') && 
                   <div className='repair-another-device'>
-                    <Button title='Yes' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={ChooseNextStep} />
-                    <Button title='No' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={ChooseNextStep} />
+                    <Button title='Yes' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={()=>{handleStep(0)}} />
+                    <Button title='No' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={() => ChooseNextStep(999)} />
                   </div>
                 }
 
@@ -131,7 +178,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
                           className='device-item-container' 
                           key={index} 
                           style={{backgroundColor: item.bg}} 
-                          onClick={() => toggleItemTypes(index)}
+                          onClick={() => toggleItemTypes(index, stepName)}
                         >
                           <div className='device-repair-item'>
                             <p style={{ color: item.col }}>{item.name}</p>
@@ -154,7 +201,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
                   width='120px' 
                   height='30px' 
                   fontSize='17px' 
-                  onClick={ChooseNextStep}
+                  onClick={() => ChooseNextStep(999)}
                 />
                 <p>or press ENTER</p>
               </div>

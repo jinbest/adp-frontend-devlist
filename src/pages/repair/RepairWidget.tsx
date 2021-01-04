@@ -23,6 +23,8 @@ type Props = {
 
 const RepairWidget = ({subDomain, handleStatus}: Props) => {
   const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`)
+  const mainData = require(`../../assets/${subDomain}/Database.js`)
+  const themeCol = mainData.colorPalle.themeColor
 
   const [step, setStep] = useState(0)
   const [data, setData] = useState(mockData.repairWidget[stepList[step]])
@@ -61,7 +63,7 @@ const RepairWidget = ({subDomain, handleStatus}: Props) => {
         <UsefulInfo data={data} subDomain={subDomain} step={step} handleStep={handleStep} />
       }
       { step === 9 &&
-        <ThankyouMobile />
+        <ThankyouMobile params={{method:'email', at:'devicelist@outlook.com', pref:'an', themeCol: themeCol}} />
       }
     </div>
   )

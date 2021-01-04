@@ -31,8 +31,8 @@ const UsefulInfo = ({data, subDomain, step, handleStep}: Props) => {
         <Grid item xs={12} md={7}>
           <Card>
             <div className='repair-choose-device-container'>
-              <div style={{ border: '1px solid rgba(0,0,0,0.1)', borderRadius: '20px', width: '100%', height: '300px', overflow: 'hidden' }}>
-                <textarea placeholder={data.placeholder} style={{border: 'none', margin: '20px', fontSize: '15px', width: '90%', outline: 'none', height: '250px'}} />
+              <div className='useful-textarea-div'>
+                <textarea placeholder={data.placeholder} className='useful-textarea' />
               </div>
             </div>
             <div className='repair-card-button'>

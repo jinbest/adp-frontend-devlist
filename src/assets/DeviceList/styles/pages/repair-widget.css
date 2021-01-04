@@ -124,6 +124,7 @@
 .device-repair-item > p {
   font-weight: bold;
   padding: 0 10px;
+  font-size: 1.3vw;
 }
 
 .estimate-times-div {
@@ -230,6 +231,86 @@
   font-size: 12px;
 }
 
+.useful-textarea-div {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 20px;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.useful-textarea {
+  border: none;
+  margin: 20px;
+  font-size: 1.5vw;
+  width: 87%;
+  outline: none;
+  height: 250px;
+}
+
+.thankyou-mobile-card {
+  height: auto !important;
+}
+
+.thankyou-mobile-title {
+  text-align: center;
+  font-size: 25px !important;
+  font-weight: bold !important;
+  margin-bottom: 5px !important;
+}
+
+.thankyou-mobile-content {
+  text-align: center;
+  font-size: 15px !important;
+  font-weight: normal !important;
+}
+
+.thankyou-mobile-detail-container {
+  width: 100% !important;
+  margin: 20px 0 !important;
+}
+
+.thankyou-mobile-detail-container .every-container .topic {
+  font-weight: 900 !important;
+  margin-bottom: 15px !important;
+  font-size: 17px !important;
+}
+
+.thankyou-mobile-detail-container .every-container .details {
+  font-weight: lighter !important;
+  margin-bottom: 5px;
+  font-size: 17px !important;
+}
+
+.thankyou-mobile-detail-container .every-container .bolder {
+  font-weight: 600 !important;
+}
+
+.thankyou-flex-container {
+  display: flex;
+  padding: 0 10px;
+}
+
+.thankyou-mobile-detail-container .bordered {
+  border-bottom: 1px solid #BDBFC3;
+  border-top: 1px solid #BDBFC3;
+  margin-bottom: 15px;
+}
+
+.thankyou-flex-container .topic {
+  padding: 3px 0;
+  font-weight: bold;
+  font-size: 17px;
+  width: 50%;
+}
+
+.thankyou-flex-container .details {
+  padding: 3px 0;
+  font-weight: normal;
+  font-size: 17px;
+  width: 50%;
+}
+
 @media (max-width: 1100px) {
   .booking-select-timezone {
     font-size: 10px;
@@ -240,13 +321,49 @@
   .booking-select-timezone {
     font-size: 11px;
   }
+  .booking-card {
+    height: 600px !important;
+  }
+  .repair-summary-card {
+    height: auto !important;
+  }
+  .useful-textarea-div {
+    height: 40vw;
+  }
+  .useful-textarea {
+    font-size: 2vw;
+    height: 35vw;
+  }
 }
 
 @media (max-width: 600px) {
   .booking-card {
-    height: 900px;
+    height: auto !important;
   }
-  .repair-summary-card {
-    height: 370px;
+  .useful-textarea-div {
+    height: 300px;
+  }
+  .useful-textarea {
+    font-size: 3vw;
+    height: 250px;
+  }
+  .thankyou-mobile-detail-container .every-container .topic,
+  .thankyou-mobile-detail-container .every-container .details {
+    text-align: center;
+    font-size: 3.5vw !important;
+  }
+  .thankyou-mobile-title {
+    font-size: 4.3vw !important;
+    margin-bottom: 15px !important;
+  }
+  .thankyou-mobile-content {
+    font-size: 3.3vw !important;
+  }
+  .thankyou-flex-container .topic,
+  .thankyou-flex-container .details {
+    font-size: 3.5vw;
+  }
+  .booking-select-timezone {
+    font-size: 9.5px;
   }
 }
