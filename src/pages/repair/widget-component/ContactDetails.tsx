@@ -32,10 +32,10 @@ const ContactDetails = ({data, subDomain, step, handleStep}: Props) => {
           <Card>
             <div className='repair-choose-device-container'>
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                   <InputComponent placeholder={data.placeholder.firstName} />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                   <InputComponent placeholder={data.placeholder.lastName} />
                 </Grid>
                 <Grid item xs={12}>

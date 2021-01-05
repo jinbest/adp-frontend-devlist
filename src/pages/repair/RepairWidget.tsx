@@ -57,7 +57,7 @@ const RepairWidget = ({subDomain, handleStatus}: Props) => {
         <ContactDetails data={data} subDomain={subDomain} step={step} handleStep={handleStep} />
       }
       { step === 7 && 
-        <BookTime data={data} subDomain={subDomain} step={step} handleStep={handleStep} />
+        <BookTime data={data} subDomain={subDomain} step={step} caseKey={2} handleStep={handleStep} />
       }
       { step === 8 && 
         <UsefulInfo data={data} subDomain={subDomain} step={step} handleStep={handleStep} />

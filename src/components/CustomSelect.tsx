@@ -7,8 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: '100%',
-      marginBottom: '20px'
+      width: '100%'
     },
   }),
 );
@@ -34,10 +33,11 @@ const CustomSelect = ({options}: Props) => {
         <Select
           value={option}
           onChange={handleChange}
+          className='custom-select'
         >
           {options.map((item:any, index:number) => {
             return (
-              <MenuItem value={item} key={index}>{item}</MenuItem>
+              <MenuItem className='custom-select' value={item} key={index}>{item}</MenuItem>
             )
           })}
         </Select>

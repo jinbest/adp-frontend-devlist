@@ -139,9 +139,6 @@
   .topic-title {
     font-size: 18px !important;
   }
-  .repair-widget-title {
-    font-size: 4.5vw !important;
-  }
   .repair-summary-content-div {
     display: block;
   }
@@ -245,10 +242,6 @@
   .repair-summary-img {
     width: 60px;
   }
-  .repair-summary-title {
-    font-size: 15px !important;
-    margin-bottom: 10px !important;
-  }
   .repair-summary-service, .repair-summary-service-child {
     font-size: 13px !important;
   }  
@@ -321,5 +314,8 @@
   }
   .button {
     min-width: 80px;
+  }
+  .custom-select {
+    font-size: 3.5vw !important;
   }
 }

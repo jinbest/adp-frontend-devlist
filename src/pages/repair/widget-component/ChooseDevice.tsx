@@ -34,9 +34,11 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
   const ChooseNextStep = (i:number) => {
     if (i === 999 ){
       handleStep(step+1)
+      console.log('data.images[i]', step, stepName)
       return;
     }
     setSelected(i)
+    console.log('data.images[i]', data.images[i], step, stepName)
     const timer = setTimeout(() => {
       setSelected(999)
       handleStep(step+1)

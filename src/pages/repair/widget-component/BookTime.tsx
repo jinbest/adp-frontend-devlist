@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { Card } from './'
-import { Button, CustomSelect, CustomCalendar } from '../../../components'
+import { Button, CustomSelect, CustomCalendar, InputComponent } from '../../../components'
 import CustomBookTime from './CustomBookTime'
 
 type Props = {
@@ -9,9 +9,10 @@ type Props = {
   subDomain?: string;
   step: number;
   handleStep: (step:number) => void;
+  caseKey: number;
 }
 
-const BookTime = ({data, subDomain, step, handleStep}: Props) => {
+const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
   const timeZoneList = timezoneData.timezoneOptions;
@@ -63,7 +64,7 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className="repair-widget-title">
-            {data.title}
+            {data.title[caseKey]}
           </Typography>
         </Grid>
       </Grid>
@@ -71,10 +72,28 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
         <Grid item xs={12} md={7}>
           <Card className='booking-card'>
             <div className='repair-choose-device-container'>
-              <Typography className='repair-summary-title'>{data.select.location.title}</Typography>
-              <CustomSelect subDomain={subDomain} options={data.select.location.option} />
-              <Typography className='repair-summary-title'>{data.select.time.title}</Typography>
-              <Grid container spacing={2}>
+              <Typography className='repair-summary-title'>{data.select.location.title[caseKey]}</Typography>
+              <div style={{marginBottom: '20px'}}>
+                {caseKey === 0 && <CustomSelect subDomain={subDomain} options={data.select.location.option} />}
+                {caseKey === 1 && <InputComponent />}
+                {caseKey === 2 && <div>
+                  {data.select.location.mailInOption.map((item:any, index:number) => {
+                    return (
+                      <div key={index}>
+                        <input type='radio' id={'radio'+index} name='region' value={item}></input>
+                        <label htmlFor={'radio'+index}>{item}</label>
+                      </div>
+                    )
+                  })}
+                  <u><p>Hours</p></u>
+                  <p>Monday - Friday   9:00 a.m.-5:00 p.m.</p>
+                  <p>Saturday   11:00 a.m.-4:00 p.m.</p>
+                  <p>Sunday    Closed</p>
+                </div>}
+              </div>
+              <Typography className='repair-summary-title'>{data.select.time.title[caseKey]}</Typography>
+              {caseKey === 2 && <InputComponent placeholder='Enter your delivery address (optional)' />}
+              {caseKey < 2 && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
                 </Grid>
@@ -98,7 +117,7 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
                     <p style={{textAlign: 'center', margin: '0 10px'}}>You've selected {time} on {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
                   </div>
                 </Grid>
-              </Grid>
+              </Grid>}
             </div>
             <div className='repair-card-button'>
               <Button 

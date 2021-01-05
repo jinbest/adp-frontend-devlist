@@ -91,7 +91,7 @@
   margin-top: 0.8vw;
   font-weight: bold;
   padding: 0 10px;
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 .widget-main-container {
@@ -124,7 +124,7 @@
 .device-repair-item > p {
   font-weight: bold;
   padding: 0 10px;
-  font-size: 1.3vw;
+  font-size: 13.5px;
 }
 
 .estimate-times-div {
@@ -242,7 +242,8 @@
 .useful-textarea {
   border: none;
   margin: 20px;
-  font-size: 1.5vw;
+  font-size: 15px;
+  font-family: 'POPPINS';
   width: 87%;
   outline: none;
   height: 250px;
@@ -365,5 +366,14 @@
   }
   .booking-select-timezone {
     font-size: 9.5px;
+  }
+  .repair-widget-title {
+    text-align: center !important;
+    font-size: 5.5vw !important;
+  }
+  .repair-summary-title {
+    text-align: center !important;
+    font-size: 3.5vw !important;
+    margin-bottom: 10px !important;
   }
 }

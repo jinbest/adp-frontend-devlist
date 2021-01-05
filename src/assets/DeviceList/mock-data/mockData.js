@@ -142,7 +142,7 @@ const repairWidget = {
     }
   },
   bookTime: {
-    title: 'Book Your Time',
+    title: ['Book Your Time', 'Schedule a Pick-Up', 'Select Mail-In Address'],
     mainTopic: {
       title: 'Repair summary',
       content: [
@@ -152,11 +152,12 @@ const repairWidget = {
     },
     select: {
       location: {
-        title: 'Select Preferred Location',
+        title: ['Select Preferred Location', 'Please Enter Your Address', 'Please Select Preferred Service Location'],
         option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
+        mailInOption: ['4160 Mailing Street, lqaluit NU', '111 Mailing Street, lqaluit NU']
       },
       time: {
-        title: 'Select Curbside Drop-Off Time',
+        title: ['Select Curbside Drop-Off Time', 'Select a Pick-Up Time', 'Please Enter Your Address for Return Shipment'],
       }
     }
   },
