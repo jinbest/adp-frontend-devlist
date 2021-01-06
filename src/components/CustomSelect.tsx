@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -15,16 +15,23 @@ const useStyles = makeStyles(() =>
 type Props = {
   subDomain?: string;
   options: any[];
+  value: string;
+  handleSetValue: (val:string) => void;
 }
 
-const CustomSelect = ({options}: Props) => {
+const CustomSelect = ({options, value, handleSetValue}: Props) => {
   // const data = require(`../assets/${subDomain}/Database`);
 
   const classes = useStyles();
-  const [option, setOption] = React.useState(options[0]);
+  const [option, setOption] = useState(options[0]);
+
+  useEffect(() => {
+    setOption(value)
+  }, [value])
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setOption(event.target.value as string);
+    handleSetValue(event.target.value as string)
   };
 
   return (

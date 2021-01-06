@@ -10,11 +10,14 @@ type Props = {
   step: number;
   handleStep: (step:number) => void;
   caseKey: number;
+  handleChangeChooseData: (step:number, chooseData:any) => void;
+  repairWidgetData: any;
 }
 
-const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
+const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
+  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
   const timeZoneList = timezoneData.timezoneOptions;
   const themeCol = mainData.colorPalle.themeColor;
   const DAYS_OF_THE_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -29,15 +32,17 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
   const [year, setYear] = useState(date.getFullYear());
   const [week, setWeek] = useState(date.getDay());
   const [time, setTime] = useState(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }));
+  const [selectVal, setSelectVal] = useState('');
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     setWeek(date.getDay());
-    setWeek(date.getDay());
+    setTime(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }))
   }, [date]);
-
+  
   useEffect(() => {
     setToday(changeTimezone(new Date(), timezone))
     setDate(changeTimezone(new Date(), timezone))
@@ -45,7 +50,24 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
 
   useEffect(() => {
     setTimezone(timeZoneList[tzIndex].timezone);
-  }, [tzIndex])
+  }, [tzIndex]);
+
+  useEffect(() => {
+    if (caseKey === 2) {
+      setAddress(repairWidgetData.bookData[caseKey].preferredLocation);
+    }
+    if (caseKey === 3) {
+      if (repairWidgetData.bookData[caseKey].preferredLocation) {
+        setSelectVal(repairWidgetData.bookData[caseKey].preferredLocation);
+      } else {
+        setSelectVal(data.select.location.option[0]);
+      }      
+    }
+  }, [data, repairWidgetData, step]);
+
+  const handleChangeAddress = (val:string) => {
+    setAddress(val);
+  }
 
   function changeTimezone(date:Date, ianatz:string) {
     const invdate = new Date(date.toLocaleString('en-US', {
@@ -55,7 +77,24 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
     return new Date(date.getTime() - diff);
   }
 
-  const ChooseNextStep = () => {
+  const ChooseNextStep = () => {    
+    // handleChangeChooseData(7, {caseKey: 0, data: { sendTo: '', returnTo: '' }})
+    // handleChangeChooseData(7, {caseKey: 1, data: { sendTo: '', returnTo: '' }})
+    // handleChangeChooseData(7, {caseKey: 2, data: { preferredLocation: '', time: '', day: '', month: '', year: '', week: '' }})
+    if (caseKey > 1) {
+      console.log('caseKey', caseKey, time, day, MONTHS[month], year, DAYS_OF_THE_WEEK[week]);
+      handleChangeChooseData(7, {
+        caseKey: caseKey, 
+        data: { 
+          preferredLocation: caseKey === 3 ? selectVal : address, 
+          time: time, 
+          day: day, 
+          month: MONTHS[month], 
+          year: year, 
+          week: DAYS_OF_THE_WEEK[week] 
+        }
+      });
+    }    
     handleStep(step+1)
   }
 
@@ -74,26 +113,33 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
             <div className='repair-choose-device-container'>
               <Typography className='repair-summary-title'>{data.select.location.title[caseKey]}</Typography>
               <div style={{marginBottom: '20px'}}>
-                {caseKey === 0 && <CustomSelect subDomain={subDomain} options={data.select.location.option} />}
-                {caseKey === 1 && <InputComponent />}
-                {caseKey === 2 && <div>
+                {caseKey === 3 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
+                {caseKey === 2 && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} />}
+                {caseKey < 2 && <div>
                   {data.select.location.mailInOption.map((item:any, index:number) => {
                     return (
-                      <div key={index}>
+                      <div key={index} className='select-mail-in-radio'>
                         <input type='radio' id={'radio'+index} name='region' value={item}></input>
                         <label htmlFor={'radio'+index}>{item}</label>
                       </div>
                     )
                   })}
-                  <u><p>Hours</p></u>
-                  <p>Monday - Friday   9:00 a.m.-5:00 p.m.</p>
-                  <p>Saturday   11:00 a.m.-4:00 p.m.</p>
-                  <p>Sunday    Closed</p>
+                  <div className='select-mail-in-container'>
+                    <div><u><p className='select-mail-in-text'>Hours</p></u></div>
+                  </div>
+                  {data.select.time.workingHours.map((item:any, index:number) => {
+                    return (
+                      <div key={index} className='select-mail-in-container'>
+                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{item[0]}</p></div>
+                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{item[1]}</p></div>
+                      </div>
+                    )
+                  })}
                 </div>}
               </div>
               <Typography className='repair-summary-title'>{data.select.time.title[caseKey]}</Typography>
-              {caseKey === 2 && <InputComponent placeholder='Enter your delivery address (optional)' />}
-              {caseKey < 2 && <Grid container spacing={2}>
+              {caseKey < 2 && <InputComponent handleChange={()=>{}} placeholder='Enter your delivery address (optional)' />}
+              {caseKey > 1 && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
                 </Grid>
@@ -136,20 +182,16 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep}: Props) => {
         <Grid item xs={12} md={5}>
           <Card className='repair-summary-card'>
             <div className='repair-choose-device-container'>
-              <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+              <Typography className='topic-title'>Repair summary</Typography>
               <div className='repair-summary-content-div'>
-                {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+                {repairWidgetData.chooseRepair && repairWidgetData.chooseRepair.map((item:any, index:number) => {
                   return (
                     <div key={index} className='repair-summary-div'>
-                      <div className='repair-summary-img'><img src={item.img} /></div>
+                      <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
                       <div>
-                        <Typography className='repair-summary-title'>{item.subtitle}</Typography>
-                        <Typography className='repair-summary-service'>{item.service}</Typography>
-                        {item.details.map((i:any, k:number) => {
-                          return (
-                            <p key={k} className='repair-summary-service-child'>{i}</p>
-                          )
-                        })}
+                        <Typography className='repair-summary-title'>{repairWidgetData.deviceModel.name}</Typography>
+                        <Typography className='repair-summary-service'>Repair Service:</Typography>
+                        <p className='repair-summary-service-child'>{item.name}</p>
                       </div>
                     </div>
                   )

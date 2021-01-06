@@ -10,14 +10,17 @@ type Props = {
   step: number;
   subDomain?: string;
   handleStep: (step:number) => void;
+  handleChangeChooseData: (step:number, chooseData:any) => void;
+  repairWidgetData: any;
 }
 
 type ArrayProps = {
   array: any[];
 }
 
-const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
+const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
+  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
   const themeCol = mainData.colorPalle.themeColor
 
   const [sliceNum, setSliceNum] = useState(5)
@@ -34,36 +37,88 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
   const ChooseNextStep = (i:number) => {
     if (i === 999 ){
       handleStep(step+1)
-      console.log('data.images[i]', step, stepName)
       return;
     }
     setSelected(i)
-    console.log('data.images[i]', data.images[i], step, stepName)
+    handleChangeChooseData(step, data.images[i])
     const timer = setTimeout(() => {
       setSelected(999)
       handleStep(step+1)
-    }, 500);
+    }, 200);
     return () => clearTimeout(timer);
   }
 
+  const GotoNextStep = () => {
+    ChooseNextStep(999)
+  }
+
+  const GobackFirst = () => {
+    setSelected(999);
+    handleChangeChooseData(0, {});
+    handleChangeChooseData(1, {});
+    handleChangeChooseData(2, []);
+    handleStep(0);
+  }
+
   useEffect(() => {
-    if (stepName === 'deviceRepairs') {
-      setItemTypes(data.types)
-    }
-    if (stepName === 'dropOffDevicce' || stepName === 'receiveQuote') {
-      let cntTypes:any[] = data.types, cntSelected = 0;
+    // console.log('repairWidgetData', repairWidgetData)
+    if (step === 0) {
+      for (let i = 0; i < data.images.length; i++) {
+        if (data.images[i].name === repairWidgetData.deviceBrand.name) {
+          setSelected(i);
+          break;
+        }
+      }
+    } else if (step === 1) {
+      for (let i = 0; i < data.images.length; i++) {
+        if (data.images[i].name === repairWidgetData.deviceModel.name) {
+          setSelected(i);
+          break;
+        }
+      }
+    } else if (step === 2) {
+      let cntTypes:any[] = data.types;
       for (let i = 0; i < cntTypes.length; i++) {
-        if (cntSelected === i) {
-          cntTypes[i].bg = themeCol
-          cntTypes[i].col = 'white'
-        } else {
-          cntTypes[i].bg = 'white'
-          cntTypes[i].col = 'black'
+        cntTypes[i].bg = 'white';
+        cntTypes[i].col = 'black';
+        cntTypes[i].selected = false;
+        for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
+          if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
+            cntTypes[i].bg = themeCol;
+            cntTypes[i].col = 'white';
+            cntTypes[i].selected = true;
+          }
+        }
+      }
+      setItemTypes([...cntTypes])
+    } else if (step === 4) {
+      let cntTypes:any[] = data.types;
+      for (let i = 0; i < cntTypes.length; i++) {
+        cntTypes[i].bg = 'white';
+        cntTypes[i].col = 'black';
+        cntTypes[i].selected = false;
+        if (cntTypes[i].name === repairWidgetData.deliveryMethod.method) {
+          cntTypes[i].bg = themeCol;
+          cntTypes[i].col = 'white';
+          cntTypes[i].selected = true;
+        }
+      }
+      setItemTypes([...cntTypes])
+    } else if (step === 5) {
+      let cntTypes:any[] = data.types;
+      for (let i = 0; i < cntTypes.length; i++) {
+        cntTypes[i].bg = 'white';
+        cntTypes[i].col = 'black';
+        cntTypes[i].selected = false;
+        if (cntTypes[i].name === repairWidgetData.receiveQuote.method) {
+          cntTypes[i].bg = themeCol;
+          cntTypes[i].col = 'white';
+          cntTypes[i].selected = true;
         }
       }
       setItemTypes([...cntTypes])
     }
-  }, [step, data, stepName])
+  }, [step, repairWidgetData])
 
   const toggleItemTypes = (i:number, stepN:string) => {
     if(stepN === 'deviceRepairs') {
@@ -71,20 +126,32 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
       if (cntTypes[i].bg === 'white') {
         cntTypes[i].bg = themeCol
         cntTypes[i].col = 'white'
+        cntTypes[i].selected = true
       } else {
         cntTypes[i].bg = 'white'
         cntTypes[i].col = 'black'
+        cntTypes[i].selected = false
       }
       setItemTypes([...cntTypes])
+      let preChooseRepairs:any[] = [];
+      for (let i = 0; i < cntTypes.length; i++) {
+        if (cntTypes[i].selected) {
+          preChooseRepairs.push({name: cntTypes[i].name})
+        }
+      }
+      handleChangeChooseData(step, preChooseRepairs)
     } else {
       let cntItemTypes:any[] = itemTypes
       for (let u = 0; u < cntItemTypes.length; u++) {
         if (u === i) {
           cntItemTypes[u].bg = themeCol
           cntItemTypes[u].col = 'white'
+          cntItemTypes[u].selected = true
+          handleChangeChooseData(step, {method: cntItemTypes[u].name, caseKey: u})
         } else {
           cntItemTypes[u].bg = 'white'
           cntItemTypes[u].col = 'black'
+          cntItemTypes[u].selected = false
         }
       }
       setItemTypes([...cntItemTypes])
@@ -167,8 +234,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
 
                 {(stepName === 'repairAnotherDevice') && 
                   <div className='repair-another-device'>
-                    <Button title='Yes' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={()=>{handleStep(0)}} />
-                    <Button title='No' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={() => ChooseNextStep(999)} />
+                    <Button title='Yes' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} />
+                    <Button title='No' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} />
                   </div>
                 }
 
@@ -249,20 +316,16 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
 
             {(stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className='repair-choose-device-container'>
-                <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+                <Typography className='topic-title'>Repair summary</Typography>
                 <div className='repair-summary-content-div'>
-                  {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+                  {repairWidgetData.chooseRepair && repairWidgetData.chooseRepair.map((item:any, index:number) => {
                     return (
                       <div key={index} className='repair-summary-div'>
-                        <div className='repair-summary-img'><img src={item.img} /></div>
+                        <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
                         <div>
-                          <Typography className='repair-summary-title'>{item.subtitle}</Typography>
-                          <Typography className='repair-summary-service'>{item.service}</Typography>
-                          {item.details.map((i:any, k:number) => {
-                            return (
-                              <p key={k} className='repair-summary-service-child'>{i}</p>
-                            )
-                          })}
+                          <Typography className='repair-summary-title'>{repairWidgetData.deviceModel.name}</Typography>
+                          <Typography className='repair-summary-service'>Repair Service:</Typography>
+                          <p className='repair-summary-service-child'>{item.name}</p>
                         </div>
                       </div>
                     )

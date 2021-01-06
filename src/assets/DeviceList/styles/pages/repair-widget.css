@@ -312,6 +312,23 @@
   width: 50%;
 }
 
+.select-mail-in-radio {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.select-mail-in-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 350px;
+  margin: 10px 0 0;
+}
+
+.select-mail-in-text {
+  font-size: 16px;
+  /* margin: 5px 0; */
+}
+
 @media (max-width: 1100px) {
   .booking-select-timezone {
     font-size: 10px;
@@ -375,5 +392,17 @@
     text-align: center !important;
     font-size: 3.5vw !important;
     margin-bottom: 10px !important;
+  }
+  .select-mail-in-container {
+    width: 85%;
+    margin: 10px auto 0;
+  }
+  .select-mail-in-text {
+    font-size: 3vw;
+    margin: 5px 0;
+  }
+  .select-mail-in-radio {
+    margin-top: 5px;
+    font-size: 3vw;
   }
 }
