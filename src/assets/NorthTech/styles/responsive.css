@@ -84,9 +84,12 @@
 
 @media (max-width: 500px) {
   .button {
-    min-width: 120px;
     font-size: 12px !important;
     height: 30px;
+  }
+  .repair-section-button .button {
+    height: 40px;
+    font-size: 4vw !important;
   }
   .container-header > img {
     height: 35px;
@@ -103,6 +106,9 @@
   }
   .button {
     height: 25px !important;
+  }
+  .repair-section-button .button {
+    height: 35px !important;
   }
   .content-fix .title, .protect-content {
     font-size: 16px !important;
@@ -128,5 +134,33 @@
   }
   .footer {
     margin-top: -100px;
+  }
+  .footer-buynow {
+    height: 26px;
+  }
+  .footer-others, .footer-others > img {
+    height: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container-header > a > img {
+    height: 30px;
+  }
+  .avatar-div > img {
+    height: 20px;
+    margin: 0 6px;
+  }
+  .card-fix {
+    min-width: 90px;
+  }
+  .card-popular .title {
+    font-size: 3vw;
+  }
+  .button {
+    min-width: 80px;
+  }
+  .custom-select {
+    font-size: 3.5vw !important;
   }
 }

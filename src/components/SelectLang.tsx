@@ -10,7 +10,7 @@ const useStyles = makeStyles(() =>
       marginTop: '-3px',
     },
     selectEmpty: {
-      color: 'white'
+      color: 'white',
     },
     selectOption: {
       color: 'black',
@@ -27,6 +27,7 @@ type Props = {
 
 const SelectLang = ({subDomain}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
+  const themeCol = data.colorPalle.themeColor;
   const classes = useStyles();
 
   const [state, setState] = useState<{ lang: string; }>({
@@ -46,8 +47,8 @@ const SelectLang = ({subDomain}: Props) => {
           onChange={handleChange}
           className={classes.selectEmpty}
         >
-          <option value={'en-us'} className={classes.selectOption}>ENGLISH</option>
-          <option value={'en-ca'} className={classes.selectOption}>CANADIAN</option>
+          <option value={'en-us'} className={classes.selectOption} style={{color: themeCol}}>ENGLISH</option>
+          <option value={'en-ca'} className={classes.selectOption} style={{color: themeCol}}>CANADA</option>
         </NativeSelect>
       </FormControl>      
     </div>
