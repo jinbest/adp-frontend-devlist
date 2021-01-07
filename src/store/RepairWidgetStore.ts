@@ -93,7 +93,7 @@ export class RepairWidgetStore {
 
   @action
   changeBookData = (bookData: any) => {
-    let caseKey = bookData.caseKey, cntBookData = this.bookData
+    const caseKey = bookData.caseKey, cntBookData = this.bookData
     cntBookData[caseKey] = bookData.data
     this.bookData = cntBookData
     this.save()

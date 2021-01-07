@@ -50,10 +50,10 @@ import paypal from './img/footer/paypal.png'
 import deviceListImg from './img/footer/device-list.png'
 
 const cardMobileData = [
-    { img: trade, title: "TRADE", btnTitle: "Trade my Device" },
-    { img: repair, title: "REPAIR", btnTitle: "Repair my Device" },
-    { img: buy, title: "BUY", btnTitle: "Buy a Device" },
-    { img: protect, title: "PROTECT", btnTitle: "Protect my Device" },
+    { img: trade, title: "TRADE", btnTitle: "Trade-in" },
+    { img: repair, title: "REPAIR", btnTitle: "Repair" },
+    { img: buy, title: "BUY", btnTitle: "Buy" },
+    { img: protect, title: "PROTECT", btnTitle: "Protect" },
 ]
 
 const cardFixData = [

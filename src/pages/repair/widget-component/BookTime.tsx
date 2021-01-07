@@ -56,7 +56,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
 
   useEffect(() => {
     if (caseKey === 0) {
-      let cntMailinOption:any[] = data.select.location.mailInOption;
+      const cntMailinOption:any[] = data.select.location.mailInOption;
       setSendToAddress(cntMailinOption[mailInChecked].name);
       for (let i = 0; i < cntMailinOption.length; i++) {
         if (cntMailinOption[i].name === repairWidgetData.bookData[caseKey].sendTo) {
