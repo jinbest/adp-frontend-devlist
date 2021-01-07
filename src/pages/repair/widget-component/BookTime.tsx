@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { Card } from './'
 import { Button, CustomSelect, CustomCalendar, InputComponent } from '../../../components'
@@ -34,6 +34,8 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   const [time, setTime] = useState(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }));
   const [selectVal, setSelectVal] = useState('');
   const [address, setAddress] = useState('');
+  const [sendToAddress, setSendToAddress] = useState('');
+  const [mailInChecked, setMailinChecked] = useState(0);
 
   useEffect(() => {
     setDay(date.getDate());
@@ -53,20 +55,35 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   }, [tzIndex]);
 
   useEffect(() => {
-    if (caseKey === 2) {
-      setAddress(repairWidgetData.bookData[caseKey].preferredLocation);
-    }
-    if (caseKey === 3) {
-      if (repairWidgetData.bookData[caseKey].preferredLocation) {
-        setSelectVal(repairWidgetData.bookData[caseKey].preferredLocation);
+    if (caseKey === 0) {
+      let cntMailinOption:any[] = data.select.location.mailInOption;
+      setSendToAddress(cntMailinOption[mailInChecked].name);
+      for (let i = 0; i < cntMailinOption.length; i++) {
+        if (cntMailinOption[i].name === repairWidgetData.bookData[caseKey].sendTo) {
+          setMailinChecked(i);
+          setSendToAddress(repairWidgetData.bookData[caseKey].sendTo);
+        }
+      }
+    } 
+    else if (caseKey === 1 || caseKey === 3) {
+      setAddress(repairWidgetData.bookData[caseKey].address);
+    } 
+    else {
+      if (repairWidgetData.bookData[caseKey].address) {
+        setSelectVal(repairWidgetData.bookData[caseKey].address);
       } else {
         setSelectVal(data.select.location.option[0]);
       }      
     }
-  }, [data, repairWidgetData, step]);
+  }, [repairWidgetData, step, caseKey, data]);
 
   const handleChangeAddress = (val:string) => {
     setAddress(val);
+  }
+
+  const handleChangeMailinAddress = (val:string, i:number) => {
+    setMailinChecked(i);
+    setSendToAddress(val);
   }
 
   function changeTimezone(date:Date, ianatz:string) {
@@ -77,16 +94,14 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
     return new Date(date.getTime() - diff);
   }
 
-  const ChooseNextStep = () => {    
-    // handleChangeChooseData(7, {caseKey: 0, data: { sendTo: '', returnTo: '' }})
-    // handleChangeChooseData(7, {caseKey: 1, data: { sendTo: '', returnTo: '' }})
-    // handleChangeChooseData(7, {caseKey: 2, data: { preferredLocation: '', time: '', day: '', month: '', year: '', week: '' }})
-    if (caseKey > 1) {
-      console.log('caseKey', caseKey, time, day, MONTHS[month], year, DAYS_OF_THE_WEEK[week]);
+  const ChooseNextStep = () => {
+    if (caseKey === 0) {
+      handleChangeChooseData(7, { caseKey: caseKey, data: { sendTo: sendToAddress } });
+    } else {
       handleChangeChooseData(7, {
         caseKey: caseKey, 
         data: { 
-          preferredLocation: caseKey === 3 ? selectVal : address, 
+          address: caseKey === 2 ? selectVal : address, 
           time: time, 
           day: day, 
           month: MONTHS[month], 
@@ -97,6 +112,21 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
     }    
     handleStep(step+1)
   }
+
+  const onKeyPress = useCallback((event) => {
+    if(event.key === 'Enter') {
+      if (step === 7) {
+        ChooseNextStep()
+      }
+    }
+  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyPress, false);
+    return () => {
+      document.removeEventListener("keydown", onKeyPress, false);
+    };
+  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week])
 
   return (
     <div>
@@ -113,14 +143,21 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
             <div className='repair-choose-device-container'>
               <Typography className='repair-summary-title'>{data.select.location.title[caseKey]}</Typography>
               <div style={{marginBottom: '20px'}}>
-                {caseKey === 3 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
-                {caseKey === 2 && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} />}
-                {caseKey < 2 && <div>
+                {caseKey === 2 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
+                {(caseKey === 1 || caseKey === 3) && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} />}
+                {caseKey === 0 && <div>
                   {data.select.location.mailInOption.map((item:any, index:number) => {
                     return (
                       <div key={index} className='select-mail-in-radio'>
-                        <input type='radio' id={'radio'+index} name='region' value={item}></input>
-                        <label htmlFor={'radio'+index}>{item}</label>
+                        <input 
+                          type='radio' 
+                          id={'radio'+index} 
+                          name='region' 
+                          value={item.name} 
+                          onChange={()=>{handleChangeMailinAddress(item.name, index)}} 
+                          checked={index===mailInChecked} 
+                        />
+                        <label htmlFor={'radio'+index}>{item.name}</label>
                       </div>
                     )
                   })}
@@ -137,9 +174,8 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                   })}
                 </div>}
               </div>
-              <Typography className='repair-summary-title'>{data.select.time.title[caseKey]}</Typography>
-              {caseKey < 2 && <InputComponent handleChange={()=>{}} placeholder='Enter your delivery address (optional)' />}
-              {caseKey > 1 && <Grid container spacing={2}>
+              {caseKey > 0 && <Typography className='repair-summary-title'>{data.select.time.title[caseKey]}</Typography>}
+              {caseKey > 0 && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
                 </Grid>

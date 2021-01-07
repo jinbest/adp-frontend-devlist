@@ -9,24 +9,14 @@ type Props = {
   borderR?: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   width?: string;
+  maxWidth?: string;
   height?: string;
   margin?: string;
   fontSize?: string;
   icon?: boolean;
 }
 
-const Button  = ({
-  title, 
-  bgcolor, 
-  txcolor, 
-  borderR, 
-  onClick, 
-  width, 
-  height, 
-  margin, 
-  fontSize,
-  icon
-}: Props) => {
+const Button  = ({title,bgcolor,txcolor,borderR,onClick,width,maxWidth,height,margin,fontSize,icon}: Props) => {
   return (
     <button 
       onClick={onClick}  
@@ -38,7 +28,8 @@ const Button  = ({
         width: width,
         height: height,
         margin: margin,
-        fontSize: fontSize
+        fontSize: fontSize,
+        maxWidth: maxWidth
       }}
     >
       {icon && <RoomOutlinedIcon />}

@@ -60,9 +60,12 @@
   }
   .repair-summary-content-div {
     display: flex;
+    flex-wrap: wrap;
+    overflow: hidden !important;
+    height: auto;
   }
   .repair-summary-div {
-    width: 50%;
+    width: 43%;
     margin-right: 2%;
   }
   .repair-widget-card {
@@ -143,8 +146,11 @@
     display: block;
   }
   .repair-summary-div {
-    width: 95%;
+    width: 90%;
     margin-right: 2%;
+  }
+  .repair-widget-card {
+    height: 80vw;
   }
 }
 
@@ -240,7 +246,7 @@
     margin-bottom: 10px;
   }
   .repair-summary-img {
-    width: 60px;
+    width: 11vw;
   }
   .repair-summary-service, .repair-summary-service-child {
     font-size: 13px !important;

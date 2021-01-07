@@ -20,7 +20,7 @@ const InputComponent = ({color, bgcolor, border, height, placeholder, value, han
         className="input-component" 
         style={{color: color, background: bgcolor, border: `1px solid ${border}`, height: height}} 
         placeholder={placeholder || ''}
-        value={value}
+        value={value ?? ''}
         onChange={handleChange}
       />
   )

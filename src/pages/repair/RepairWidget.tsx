@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChooseDevice, BackSVG, ContactDetails, BookTime, UsefulInfo, ThankyouMobile } from './widget-component'
+import { ChooseDevice, BackSVG, ContactDetails, BookTime, UsefulInfo, RepairServiceSummary, QuoteComponent } from './widget-component'
 import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../store/RepairWidgetStore'
 import { computed } from 'mobx'
@@ -14,7 +14,8 @@ const stepList:string[] = [
   'contactDetails',
   'bookTime',
   'usefulInfo',
-  'thankyouMobile'
+  'repairServiceSummary',
+  'quoteData'
 ]
 
 /* eslint-disable */
@@ -69,8 +70,18 @@ class RepairWidget extends React.Component<Props, MyState> {
   handleBackStep() {
     const { repairWidgetStore } = this.props,
       cntStep:number = this.state.step;
-    repairWidgetStore.changeCntStep(cntStep-1);
-    this.setState({step: cntStep-1});
+    if (cntStep === 11) {
+      if (repairWidgetStore.deliveryMethod.caseKey === 0) {
+        repairWidgetStore.changeCntStep(9);
+        this.setState({step: 9});
+      } else {
+        repairWidgetStore.changeCntStep(6);
+        this.setState({step: 6});
+      }  
+    } else {
+      repairWidgetStore.changeCntStep(cntStep-1);
+      this.setState({step: cntStep-1});
+    }  
   }
 
   handleStep(i:number) {
@@ -81,7 +92,6 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   handleChangeChooseData(i:number, chooseData:any) {
     const { repairWidgetStore } = this.props;
-    // console.log('handleChangeChooseData', i, chooseData, repairWidgetStore);
     if (i === 0) {
       repairWidgetStore.changeDeviceBrand(chooseData)
     } else if (i === 1) {
@@ -96,6 +106,8 @@ class RepairWidget extends React.Component<Props, MyState> {
       repairWidgetStore.changeContactDetails(chooseData)
     } else if (i === 7) {
       repairWidgetStore.changeBookData(chooseData)
+    } else if (i === 8) {
+      repairWidgetStore.changeMessage(chooseData)
     }
   }
 
@@ -131,6 +143,7 @@ class RepairWidget extends React.Component<Props, MyState> {
             handleStep={this.handleStep.bind(this)} 
             handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
             repairWidgetData={this.computedRepairWidgetData}
+            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
           />
         }
         { this.state.step === 7 && 
@@ -145,10 +158,38 @@ class RepairWidget extends React.Component<Props, MyState> {
           />
         }
         { this.state.step === 8 && 
-          <UsefulInfo data={mockData.repairWidget[stepList[this.state.step]]} subDomain={subDomain} step={this.state.step} handleStep={this.handleStep.bind(this)} />
+          <UsefulInfo 
+            data={mockData.repairWidget[stepList[this.state.step]]} 
+            subDomain={subDomain} 
+            step={this.state.step} 
+            handleStep={this.handleStep.bind(this)} 
+            handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
+            repairWidgetData={this.computedRepairWidgetData}
+            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
+          />
         }
         { this.state.step === 9 &&
-          <ThankyouMobile params={{method:'email', at:'devicelist@outlook.com', pref:'an', themeCol: themeCol}} />
+          <RepairServiceSummary 
+            themeCol={themeCol}
+            repairWidgetData={this.computedRepairWidgetData}
+            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
+            step={this.state.step} 
+            handleStep={this.handleStep.bind(this)}
+          />
+        }
+        { this.state.step === 10 &&
+          <QuoteComponent
+            data={mockData.repairWidget[stepList[this.state.step]]}
+            repairWidgetData={this.computedRepairWidgetData}
+            quoteKey={1}
+          />
+        }
+        { this.state.step === 11 &&
+          <QuoteComponent
+            data={mockData.repairWidget[stepList[10]]}
+            repairWidgetData={this.computedRepairWidgetData}
+            quoteKey={0}
+          />
         }
       </div>
     )

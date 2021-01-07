@@ -13,7 +13,11 @@ import xiaomi from './repair-widget/device-brand/xiaomi.png'
 
 // repair-device-model
 import iPhoneHalf from './repair-widget/device-model/iPhone-half.png'
-import iPhoneWhole from './repair-widget/device-model/iPhone-whole.png'
+// import iPhoneWhole from './repair-widget/device-model/iPhone-whole.png'
+
+// repair-quote-data
+import requestQuote from './repair-widget/quote/requestQuote.png'
+import thankQuote from './repair-widget/quote/thankQuote.png'
 
 const repairWidget = {
   deviceBrand: {
@@ -96,11 +100,11 @@ const repairWidget = {
   },
   dropOffDevicce: {
     title: 'How Would You Like to Drop-Off Your Device(s)?',
-    types: [
-      { name: 'Walk-In', bg: 'white', col: 'black', selected: false },
+    types: [      
       { name: 'Mail-In', bg: 'white', col: 'black', selected: false },
       { name: 'Pick-Up/ Drop-Off Service', bg: 'white', col: 'black', selected: false },
       { name: 'Curbside Drop-Off', bg: 'white', col: 'black', selected: false },
+      { name: 'Outside Repair', bg: 'white', col: 'black', selected: false },
     ],
   },
   receiveQuote: {
@@ -113,30 +117,39 @@ const repairWidget = {
   },
   contactDetails: {
     title: 'Please Enter Your Contact Details',
-    // mainTopic: {
-    //   title: 'Repair summary',
-    //   content: [
-    //     { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
-    //     { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
-    //   ]
-    // },
     placeholder: {
       firstName: 'First Name*',
       lastName: 'Last Name*',
       emailAdd: 'E-mail Address*',
-      phoneNum: 'Phone Number*'
+      phoneNum: 'Phone Number*',
+      address1: 'Street Address*',
+      address2: 'Address2*',
+      country: 'Country*',
+      city: 'City*',
+      province: 'Province*',
+      postalCode: 'Postal Code*'
     }
   },
   bookTime: {
-    title: ['Select Walk-In Address', 'Select Mail-In Address', 'Schedule a Pick-Up', 'Book Your Time' ],
+    title: ['Select Mail-In Address', 'Schedule a Pick-Up', 'Book Your Time', 'Book Your Time' ],
     select: {
       location: {
-        title: ['Please Select Preferred Service Location', 'Please Select Preferred Service Location', 'Please Enter Your Address', 'Select Preferred Location'],
+        title: [
+          'Please Select Preferred Service Location', 
+          'Please Enter Your Address', 
+          'Select Preferred Location', 
+          'Enter Your Residential Address'
+        ],
         option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
-        mailInOption: ['4160 Mailing Street, lqaluit NU', '111 Mailing Street, lqaluit NU']     
+        mailInOption: [{name: '4160 Mailing Street, lqaluit NU', checked: true}, {name: '111 Mailing Street, lqaluit NU', checked: false}]     
       },
       time: {
-        title: ['Please Enter Your Address for Return Shipment', 'Please Enter Your Address for Return Shipment', 'Select a Pick-Up Time', 'Select Curbside Drop-Off Time'],
+        title: [
+          'Please Enter Your Address for Return Shipment', 
+          'Select a Pick-Up Time', 
+          'Select Curbside Drop-Off Time', 
+          'Select Visit Time'
+        ],
         workingHours: [
           ['Monday - Friday', '9:00 a.m.-5:00 p.m.'],
           ['Saturday', '11:00 a.m.-4:00 p.m.'],
@@ -148,14 +161,19 @@ const repairWidget = {
   usefulInfo: {
     title: 'Enter a Message or Any Useful Information About This Repair',
     placeholder: 'Type your message here (optional)',
-    mainTopic: {
-      title: 'Repair summary',
-      content: [
-        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
-        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
-      ]
+  },
+  quoteData: [
+    {
+      img: requestQuote,
+      title: 'Thank you for choosing DeviceList for your repair!',
+      text: 'with a detailed service quote.'
     },
-  }
+    {
+      img: thankQuote,
+      title: 'Thank you for choosing DeviceList for your repair!',
+      text: 'with a detailed service quote and appointment information.'
+    }
+  ]
 }
 
 export {

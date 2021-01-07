@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Footer, Header } from './components'
 import { Home } from './pages/home/'
@@ -8,7 +8,7 @@ import store from './store/RepairWidgetStore'
 
 /* eslint-disable */
 const domainList:any[] = ['devicelist', 'northtech'];
-const subDomain:string = domainList[0]
+const subDomain:string = domainList[0];
 
 function App(): JSX.Element {
   require(`./assets/${subDomain}/styles/index.css`);

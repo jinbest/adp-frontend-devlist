@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback, KeyboardEvent} from 'react'
 import { Card, PlusSVG } from './'
 import { Grid, Typography } from '@material-ui/core'
 import { Search, Button } from '../../../components'
@@ -48,6 +48,21 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     return () => clearTimeout(timer);
   }
 
+  const onKeyPress = useCallback((event) => {
+    if(event.key === 'Enter') {
+      if (step === 2 || step === 4 || step === 5) {
+        handleStep(step+1);
+      }
+    }
+  }, [step]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyPress, false);
+    return () => {
+      document.removeEventListener("keydown", onKeyPress, false);
+    };
+  }, [step])
+
   const GotoNextStep = () => {
     ChooseNextStep(999)
   }
@@ -57,6 +72,14 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     handleChangeChooseData(0, {});
     handleChangeChooseData(1, {});
     handleChangeChooseData(2, []);
+    handleChangeChooseData(4, {});
+    handleChangeChooseData(5, {});
+    handleChangeChooseData(6, {});
+    handleChangeChooseData(7, { caseKey: 0, data: {} });
+    handleChangeChooseData(7, { caseKey: 1, data: {} });
+    handleChangeChooseData(7, { caseKey: 2, data: {} });
+    handleChangeChooseData(7, { caseKey: 3, data: {} });
+    handleChangeChooseData(8, '');
     handleStep(0);
   }
 

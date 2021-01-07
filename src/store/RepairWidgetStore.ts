@@ -9,13 +9,24 @@ export class RepairWidgetStore {
   @observable chooseRepair: any[] = []
   @observable deliveryMethod: any = { method: '', caseKey: 0 }
   @observable receiveQuote: any = { method: '', caseKey: 0 }
-  @observable contactDetails: any = { firstName: '', lastName: '', email: '', phone: '' }
-  @observable bookData: any[] = [      
-      { sendTo: '', returnTo: '' },
-      { sendTo: '', returnTo: '' },
-      { preferredLocation: '', time: '', day: '', month: '', year: '', week: '' },
-      { preferredLocation: '', time: '', day: '', month: '', year: '', week: '' }
-    ]
+  @observable contactDetails: any = { 
+    firstName: '', 
+    lastName: '', 
+    email: '', 
+    phone: '',
+    address1: '',
+    address2: '',
+    country: '',
+    city: '',
+    province: '',
+    postalCode: ''
+  }
+  @observable bookData: any[] = [
+    { sendTo: '' },
+    { address: '', time: '', day: '', month: '', year: '', week: '' },
+    { address: '', time: '', day: '', month: '', year: '', week: '' },
+    { address: '', time: '', day: '', month: '', year: '', week: '' },
+  ]
   @observable message: string = ''
   @observable cntStep: number = 0
 
@@ -85,6 +96,12 @@ export class RepairWidgetStore {
     let caseKey = bookData.caseKey, cntBookData = this.bookData
     cntBookData[caseKey] = bookData.data
     this.bookData = cntBookData
+    this.save()
+  }
+
+  @action
+  changeMessage = (message: any) => {
+    this.message = message
     this.save()
   }
 
