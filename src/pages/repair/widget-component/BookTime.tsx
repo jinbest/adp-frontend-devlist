@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { Card } from './'
-import { Button, CustomSelect, CustomCalendar } from '../../../components'
+import { Button, CustomSelect, CustomCalendar, InputComponent } from '../../../components'
 import CustomBookTime from './CustomBookTime'
 
 type Props = {
@@ -9,11 +9,15 @@ type Props = {
   subDomain?: string;
   step: number;
   handleStep: (step:number) => void;
+  caseKey: number;
+  handleChangeChooseData: (step:number, chooseData:any) => void;
+  repairWidgetData: any;
 }
 
-const BookTime = ({data, subDomain, step, handleStep}: Props) => {
+const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
+  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
   const timeZoneList = timezoneData.timezoneOptions;
   const themeCol = mainData.colorPalle.themeColor;
   const DAYS_OF_THE_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -28,15 +32,19 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
   const [year, setYear] = useState(date.getFullYear());
   const [week, setWeek] = useState(date.getDay());
   const [time, setTime] = useState(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }));
+  const [selectVal, setSelectVal] = useState('');
+  const [address, setAddress] = useState('');
+  const [sendToAddress, setSendToAddress] = useState('');
+  const [mailInChecked, setMailinChecked] = useState(0);
 
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     setWeek(date.getDay());
-    setWeek(date.getDay());
+    setTime(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }))
   }, [date]);
-
+  
   useEffect(() => {
     setToday(changeTimezone(new Date(), timezone))
     setDate(changeTimezone(new Date(), timezone))
@@ -44,7 +52,39 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
 
   useEffect(() => {
     setTimezone(timeZoneList[tzIndex].timezone);
-  }, [tzIndex])
+  }, [tzIndex]);
+
+  useEffect(() => {
+    if (caseKey === 0) {
+      let cntMailinOption:any[] = data.select.location.mailInOption;
+      setSendToAddress(cntMailinOption[mailInChecked].name);
+      for (let i = 0; i < cntMailinOption.length; i++) {
+        if (cntMailinOption[i].name === repairWidgetData.bookData[caseKey].sendTo) {
+          setMailinChecked(i);
+          setSendToAddress(repairWidgetData.bookData[caseKey].sendTo);
+        }
+      }
+    } 
+    else if (caseKey === 1 || caseKey === 3) {
+      setAddress(repairWidgetData.bookData[caseKey].address);
+    } 
+    else {
+      if (repairWidgetData.bookData[caseKey].address) {
+        setSelectVal(repairWidgetData.bookData[caseKey].address);
+      } else {
+        setSelectVal(data.select.location.option[0]);
+      }      
+    }
+  }, [repairWidgetData, step, caseKey, data]);
+
+  const handleChangeAddress = (val:string) => {
+    setAddress(val);
+  }
+
+  const handleChangeMailinAddress = (val:string, i:number) => {
+    setMailinChecked(i);
+    setSendToAddress(val);
+  }
 
   function changeTimezone(date:Date, ianatz:string) {
     const invdate = new Date(date.toLocaleString('en-US', {
@@ -55,15 +95,45 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
   }
 
   const ChooseNextStep = () => {
+    if (caseKey === 0) {
+      handleChangeChooseData(7, { caseKey: caseKey, data: { sendTo: sendToAddress } });
+    } else {
+      handleChangeChooseData(7, {
+        caseKey: caseKey, 
+        data: { 
+          address: caseKey === 2 ? selectVal : address, 
+          time: time, 
+          day: day, 
+          month: MONTHS[month], 
+          year: year, 
+          week: DAYS_OF_THE_WEEK[week] 
+        }
+      });
+    }    
     handleStep(step+1)
   }
+
+  const onKeyPress = useCallback((event) => {
+    if(event.key === 'Enter') {
+      if (step === 7) {
+        ChooseNextStep()
+      }
+    }
+  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyPress, false);
+    return () => {
+      document.removeEventListener("keydown", onKeyPress, false);
+    };
+  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week])
 
   return (
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className="repair-widget-title">
-            {data.title}
+            {data.title[caseKey]}
           </Typography>
         </Grid>
       </Grid>
@@ -71,10 +141,41 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
         <Grid item xs={12} md={7}>
           <Card className='booking-card'>
             <div className='repair-choose-device-container'>
-              <Typography className='repair-summary-title'>{data.select.location.title}</Typography>
-              <CustomSelect subDomain={subDomain} options={data.select.location.option} />
-              <Typography className='repair-summary-title'>{data.select.time.title}</Typography>
-              <Grid container spacing={2}>
+              <Typography className='repair-summary-title'>{data.select.location.title[caseKey]}</Typography>
+              <div style={{marginBottom: '20px'}}>
+                {caseKey === 2 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
+                {(caseKey === 1 || caseKey === 3) && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} />}
+                {caseKey === 0 && <div>
+                  {data.select.location.mailInOption.map((item:any, index:number) => {
+                    return (
+                      <div key={index} className='select-mail-in-radio'>
+                        <input 
+                          type='radio' 
+                          id={'radio'+index} 
+                          name='region' 
+                          value={item.name} 
+                          onChange={()=>{handleChangeMailinAddress(item.name, index)}} 
+                          checked={index===mailInChecked} 
+                        />
+                        <label htmlFor={'radio'+index}>{item.name}</label>
+                      </div>
+                    )
+                  })}
+                  <div className='select-mail-in-container'>
+                    <div><u><p className='select-mail-in-text'>Hours</p></u></div>
+                  </div>
+                  {data.select.time.workingHours.map((item:any, index:number) => {
+                    return (
+                      <div key={index} className='select-mail-in-container'>
+                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{item[0]}</p></div>
+                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{item[1]}</p></div>
+                      </div>
+                    )
+                  })}
+                </div>}
+              </div>
+              {caseKey > 0 && <Typography className='repair-summary-title'>{data.select.time.title[caseKey]}</Typography>}
+              {caseKey > 0 && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
                 </Grid>
@@ -95,10 +196,10 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
                 </Grid>
                 <Grid item xs={12}>
                   <div style={{border: '1px solid rgba(0,0,0,0.1)', borderRadius: '20px', width: '100%', height: '30px', fontSize: '14px', display: 'flex', alignItems: 'center'}}>
-                    <p style={{marginLeft: '20px'}}>You've selected {time} on {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
+                    <p style={{textAlign: 'center', margin: '0 10px'}}>You've selected {time} on {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
                   </div>
                 </Grid>
-              </Grid>
+              </Grid>}
             </div>
             <div className='repair-card-button'>
               <Button 
@@ -117,20 +218,16 @@ const BookTime = ({data, subDomain, step, handleStep}: Props) => {
         <Grid item xs={12} md={5}>
           <Card className='repair-summary-card'>
             <div className='repair-choose-device-container'>
-              <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+              <Typography className='topic-title'>Repair summary</Typography>
               <div className='repair-summary-content-div'>
-                {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+                {repairWidgetData.chooseRepair && repairWidgetData.chooseRepair.map((item:any, index:number) => {
                   return (
                     <div key={index} className='repair-summary-div'>
-                      <div className='repair-summary-img'><img src={item.img} /></div>
+                      <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
                       <div>
-                        <Typography className='repair-summary-title'>{item.subtitle}</Typography>
-                        <Typography className='repair-summary-service'>{item.service}</Typography>
-                        {item.details.map((i:any, k:number) => {
-                          return (
-                            <p key={k} className='repair-summary-service-child'>{i}</p>
-                          )
-                        })}
+                        <Typography className='repair-summary-title'>{repairWidgetData.deviceModel.name}</Typography>
+                        <Typography className='repair-summary-service'>Repair Service:</Typography>
+                        <p className='repair-summary-service-child'>{item.name}</p>
                       </div>
                     </div>
                   )

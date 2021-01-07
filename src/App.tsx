@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Footer, Header } from "./components"
 import { Home } from "./pages/home/"
 import { Repair, RepairWidget } from "./pages/repair/"
+import { Provider } from "mobx-react"
+import store from "./store/RepairWidgetStore"
 
 /* eslint-disable */
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
@@ -33,7 +35,9 @@ function App(): JSX.Element {
                     path="/repair-widget"
                     exact
                     component={() => (
-                        <RepairWidget subDomain={subDomain} handleStatus={handleFooterStatus} />
+                        <Provider repairWidgetStore={store}>
+                            <RepairWidget subDomain={subDomain} handleStatus={handleFooterStatus} />
+                        </Provider>
                     )}
                 />
             </>

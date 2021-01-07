@@ -1,16 +1,23 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ReactPhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css'
 
 type Props = {
   placeholder?: string;
+  handleSetPhone: (val:string) => void;
+  val: string;
 }
 
-const PhoneInput = ({placeholder}: Props) => {
-  const [phone, setPhone] = useState('')
+const PhoneInput = ({placeholder, handleSetPhone, val}: Props) => {
+  const [phone, setPhone] = useState('');
+
+  useEffect(() => {
+    setPhone(val)
+  }, [val])
 
   const handleOnChange = (value:string) => {
     setPhone(value);
+    handleSetPhone(value);
   }
 
   return (
