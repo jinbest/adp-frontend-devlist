@@ -36,6 +36,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   const [address, setAddress] = useState('');
   const [sendToAddress, setSendToAddress] = useState('');
   const [mailInChecked, setMailinChecked] = useState(0);
+  const [disableStatus, setDisableStatus] = useState(true);
 
   useEffect(() => {
     setDay(date.getDate());
@@ -114,19 +115,27 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   }
 
   const onKeyPress = useCallback((event) => {
-    if(event.key === 'Enter') {
-      if (step === 7) {
-        ChooseNextStep()
-      }
+    if(event.key === 'Enter' && !disableStatus && step === 7) {
+      ChooseNextStep();
     }
-  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week]);
+  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus]);
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress, false);
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week])
+  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus])
+
+  useEffect(() => {
+    setDisableStatus(true);
+    if (caseKey === 0 && sendToAddress) {
+      setDisableStatus(false);
+    }
+    if (caseKey > 0 && (address || selectVal) && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
+      setDisableStatus(false);
+    }
+  }, [caseKey, sendToAddress, address, selectVal, time, day, month, year, week])
 
   return (
     <div>
@@ -203,13 +212,8 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
             </div>
             <div className='repair-card-button'>
               <Button 
-                title='Next' 
-                bgcolor={themeCol} 
-                borderR='20px' 
-                width='120px' 
-                height='30px' 
-                fontSize='17px' 
-                onClick={ChooseNextStep}
+                title='Next' bgcolor={themeCol} borderR='20px' width='120px' 
+                height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
               />
               <p>or press ENTER</p>
             </div>

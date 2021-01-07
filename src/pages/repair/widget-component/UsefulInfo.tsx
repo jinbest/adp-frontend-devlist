@@ -30,10 +30,8 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
   }, [repairWidgetData])
 
   const onKeyPress = useCallback((event) => {
-    if(event.key === 'Enter') {
-      if (step === 8) {
-        ChooseNextStep()
-      }
+    if(event.key === 'Enter' && step === 8) {
+      ChooseNextStep();
     }
   }, [step, message]);
 

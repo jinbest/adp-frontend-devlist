@@ -28,6 +28,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
   const [city, setCity] = useState('')
   const [province, setProvince] = useState('')
   const [postalCode, setPostalCode] = useState('')
+  const [disableStatus, setDisableStatus] = useState(true);
 
   useEffect(() => {
     setFirstName(repairWidgetData.contactDetails.firstName);
@@ -59,19 +60,24 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
   }
 
   const onKeyPress = useCallback((event) => {
-    if(event.key === 'Enter') {
-      if (step === 6) {
-        ChooseNextStep()
-      }
+    if(event.key === 'Enter' && !disableStatus && step === 6) {
+      ChooseNextStep()
     }
-  }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode]);
+  }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode, disableStatus]);
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress, false);
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode])
+  }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode, disableStatus])
+
+  useEffect(() => {
+    setDisableStatus(true);
+    if ( firstName && lastName && email && phone && ((caseKey===0 && address1) || (caseKey>0)) ) {
+      setDisableStatus(false)
+    }
+  }, [firstName, lastName, email, phone, address1, caseKey])
 
   const handleChangeFirstName = (val:string) => {
     setFirstName(val)
@@ -140,11 +146,11 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             {caseKey > 0 && <div className='repair-choose-device-container'>
               <Button 
                 title='Book an Appointment' bgcolor={themeCol} borderR='20px' maxWidth='300px' 
-                height='30px' fontSize='17px' margin='0 auto 10px' onClick={ChooseNextStep}
+                height='30px' fontSize='17px' margin='0 auto 10px' onClick={ChooseNextStep} disable={disableStatus}
               />
               <Button 
                 title='Request a Quote' bgcolor={themeCol} borderR='20px' maxWidth='300px' 
-                height='30px' fontSize='17px' margin='0 auto' onClick={()=>{handleStep(11)}}
+                height='30px' fontSize='17px' margin='0 auto' onClick={()=>{handleStep(11)}} disable={disableStatus}
               />
             </div>}
             {caseKey === 0 && <div className='repair-choose-device-container'>
@@ -172,7 +178,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             {caseKey === 0 && <div className='repair-card-button'>
               <Button 
                 title='Next' bgcolor={themeCol} borderR='20px' width='120px' 
-                height='30px' fontSize='17px' onClick={ChooseNextStep}
+                height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
               />
               <p>or press ENTER</p>
             </div>}
