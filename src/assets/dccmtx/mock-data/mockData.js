@@ -13,11 +13,7 @@ import xiaomi from './repair-widget/device-brand/xiaomi.png'
 
 // repair-device-model
 import iPhoneHalf from './repair-widget/device-model/iPhone-half.png'
-// import iPhoneWhole from './repair-widget/device-model/iPhone-whole.png'
-
-// repair-quote-data
-import requestQuote from './repair-widget/quote/requestQuote.png'
-import thankQuote from './repair-widget/quote/thankQuote.png'
+import iPhoneWhole from './repair-widget/device-model/iPhone-whole.png'
 
 const repairWidget = {
   deviceBrand: {
@@ -35,17 +31,17 @@ const repairWidget = {
       content: 'The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device.'
     },
     images: [
-      { name: 'Apple', img: apple },
-      { name: 'Samsung', img: samsung },
-      { name: 'Google', img: google },
-      { name: 'Lg', img: lg },
-      { name: 'Motorola', img: motorola },
-      { name: 'Asus', img: asus },
-      { name: 'Sony', img: sony },
-      { name: 'Oneplus', img: oneplus },
-      { name: 'Blackberry', img: blackberry },
-      { name: 'Xiaomi', img: xiaomi },
-      { name: 'Other', img: other },
+      { name: 'apple', img: apple },
+      { name: 'samsung', img: samsung },
+      { name: 'google', img: google },
+      { name: 'lg', img: lg },
+      { name: 'motorola', img: motorola },
+      { name: 'asus', img: asus },
+      { name: 'sony', img: sony },
+      { name: 'oneplus', img: oneplus },
+      { name: 'blackberry', img: blackberry },
+      { name: 'xiaomi', img: xiaomi },
+      { name: 'other', img: other },
     ],
   },
   deviceModel: {
@@ -83,12 +79,12 @@ const repairWidget = {
       content: []
     },
     types: [
-      { name: 'Back Glass', bg: 'white', col: 'black', estimate: '35 minutes', selected: false },
-      { name: 'Battery', bg: 'white', col: 'black', estimate: '60 minutes', selected: false },
-      { name: 'Camera (Front)', bg: 'white', col: 'black', estimate: '135 minutes', selected: false },
-      { name: 'Camera (Back)', bg: 'white', col: 'black', estimate: '155 minutes', selected: false },
-      { name: 'Charging Port', bg: 'white', col: 'black', estimate: '275 minutes', selected: false },
-      { name: 'Screen', bg: 'white', col: 'black', estimate: '55 minutes', selected: false },
+      { name: 'Back Glass', bg: 'white', col: 'black', estimate: '35 minutes' },
+      { name: 'Battery', bg: 'white', col: 'black', estimate: '60 minutes' },
+      { name: 'Camera (Front)', bg: 'white', col: 'black', estimate: '135 minutes' },
+      { name: 'Camera (Back)', bg: 'white', col: 'black', estimate: '155 minutes' },
+      { name: 'Charging Port', bg: 'white', col: 'black', estimate: '275 minutes' },
+      { name: 'Screen', bg: 'white', col: 'black', estimate: '55 minutes' },
     ],
   },
   repairAnotherDevice: {
@@ -100,80 +96,81 @@ const repairWidget = {
   },
   dropOffDevicce: {
     title: 'How Would You Like to Drop-Off Your Device(s)?',
-    types: [      
-      { name: 'Mail-In', bg: 'white', col: 'black', selected: false },
-      { name: 'Pick-Up/ Drop-Off Service', bg: 'white', col: 'black', selected: false },
-      { name: 'Curbside Drop-Off', bg: 'white', col: 'black', selected: false },
-      { name: 'Outside Repair', bg: 'white', col: 'black', selected: false },
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
+    types: [
+      { name: 'Walk-In', bg: 'white', col: 'black' },
+      { name: 'Mail-In', bg: 'white', col: 'black' },
+      { name: 'Pick-Up/ Drop-Off Service', bg: 'white', col: 'black' },
+      { name: 'Curbside Drop-Off', bg: 'white', col: 'black' },
     ],
   },
   receiveQuote: {
     title: 'How Would You Like to Receive Your Quote?',
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
     types: [
-      { name: 'Email', bg: 'white', col: 'black', selected: false },
-      { name: 'Text', bg: 'white', col: 'black', selected: false },
-      { name: 'Phone Call', bg: 'white', col: 'black', selected: false },
+      { name: 'Email', bg: 'white', col: 'black' },
+      { name: 'Text', bg: 'white', col: 'black' },
+      { name: 'Phone Call', bg: 'white', col: 'black' },
     ],
   },
   contactDetails: {
     title: 'Please Enter Your Contact Details',
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
     placeholder: {
       firstName: 'First Name*',
       lastName: 'Last Name*',
       emailAdd: 'E-mail Address*',
-      phoneNum: 'Phone Number*',
-      address1: 'Street Address*',
-      address2: 'Address2*',
-      country: 'Country*',
-      city: 'City*',
-      province: 'Province*',
-      postalCode: 'Postal Code*'
+      phoneNum: 'Phone Number*'
     }
   },
   bookTime: {
-    title: ['Select Mail-In Address', 'Schedule a Pick-Up', 'Book Your Time', 'Book Your Time' ],
+    title: 'Book Your Time',
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
+    },
     select: {
       location: {
-        title: [
-          'Please Select Preferred Service Location', 
-          'Please Enter Your Address', 
-          'Select Preferred Location', 
-          'Enter Your Residential Address'
-        ],
+        title: 'Select Preferred Location',
         option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
-        mailInOption: [{name: '4160 Mailing Street, lqaluit NU', checked: true}, {name: '111 Mailing Street, lqaluit NU', checked: false}]     
       },
       time: {
-        title: [
-          'Please Enter Your Address for Return Shipment', 
-          'Select a Pick-Up Time', 
-          'Select Curbside Drop-Off Time', 
-          'Select Visit Time'
-        ],
-        workingHours: [
-          ['Monday - Friday', '9:00 a.m.-5:00 p.m.'],
-          ['Saturday', '11:00 a.m.-4:00 p.m.'],
-          ['Sunday', 'Closed'],
-        ]
+        title: 'Select Curbside Drop-Off Time',
       }
     }
   },
   usefulInfo: {
     title: 'Enter a Message or Any Useful Information About This Repair',
     placeholder: 'Type your message here (optional)',
-  },
-  quoteData: [
-    {
-      img: requestQuote,
-      title: 'Thank you for choosing DeviceList for your repair!',
-      text: 'with a detailed service quote.'
+    mainTopic: {
+      title: 'Repair summary',
+      content: [
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Camera (Back)', 'Charging Port'] },
+        { img: iPhoneWhole, subtitle: 'iPhone 11', service: 'Repair Service:', details: ['Screen', 'Charging Port'] },
+      ]
     },
-    {
-      img: thankQuote,
-      title: 'Thank you for choosing DeviceList for your repair!',
-      text: 'with a detailed service quote and appointment information.'
-    }
-  ]
+  }
 }
 
 export {
