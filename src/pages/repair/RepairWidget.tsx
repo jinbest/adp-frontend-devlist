@@ -70,6 +70,49 @@ class RepairWidget extends React.Component<Props, MyState> {
   handleBackStep() {
     const { repairWidgetStore } = this.props,
       cntStep:number = this.state.step;
+    
+    switch(cntStep) {
+      case 1:
+        repairWidgetStore.changeDeviceBrand({});
+        repairWidgetStore.changeDeviceModel({});
+        break;
+      case 2:
+        repairWidgetStore.changeDeviceModel({});
+        repairWidgetStore.changeChooseRepair([]);
+        break;
+      case 3:
+        repairWidgetStore.changeChooseRepair([]);
+        repairWidgetStore.changeDeliveryMethod({});
+        break;
+      case 4:
+        repairWidgetStore.changeDeliveryMethod({});
+        break;
+      case 5:
+        repairWidgetStore.changeDeliveryMethod({});
+        repairWidgetStore.changeReceiveQuote({});
+        break;
+      case 6:
+        repairWidgetStore.changeReceiveQuote({});
+        repairWidgetStore.changeContactDetails({});
+        break;
+      case 7:
+        repairWidgetStore.changeContactDetails({});
+        for (let i = 0; i < 4; i++) {
+          repairWidgetStore.changeBookData({ caseKey: i, data: {} });
+        }
+        break;
+      case 8:
+        for (let i = 0; i < 4; i++) {
+          repairWidgetStore.changeBookData({ caseKey: i, data: {} });
+        }
+        repairWidgetStore.changeMessage('');
+        break;
+      case 9:
+        repairWidgetStore.changeMessage('');
+        break;
+      default:
+        break;
+    }
     if (cntStep === 11) {
       if (repairWidgetStore.deliveryMethod.caseKey === 0) {
         repairWidgetStore.changeCntStep(9);
@@ -92,30 +135,41 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   handleChangeChooseData(i:number, chooseData:any) {
     const { repairWidgetStore } = this.props;
-    if (i === 0) {
-      repairWidgetStore.changeDeviceBrand(chooseData)
-    } else if (i === 1) {
-      repairWidgetStore.changeDeviceModel(chooseData)
-    } else if (i === 2) {
-      repairWidgetStore.changeChooseRepair(chooseData)
-    } else if (i === 4) {
-      repairWidgetStore.changeDeliveryMethod(chooseData)
-    } else if (i === 5) {
-      repairWidgetStore.changeReceiveQuote(chooseData)
-    } else if (i === 6) {
-      repairWidgetStore.changeContactDetails(chooseData)
-    } else if (i === 7) {
-      repairWidgetStore.changeBookData(chooseData)
-    } else if (i === 8) {
-      repairWidgetStore.changeMessage(chooseData)
+    switch(i) {
+      case 0:
+        repairWidgetStore.changeDeviceBrand(chooseData);
+        break;
+      case 1:
+        repairWidgetStore.changeDeviceModel(chooseData);
+        break;
+      case 2:
+        repairWidgetStore.changeChooseRepair(chooseData);
+        break;
+      case 4:
+        repairWidgetStore.changeDeliveryMethod(chooseData);
+        break;
+      case 5:
+        repairWidgetStore.changeReceiveQuote(chooseData);
+        break;
+      case 6:
+        repairWidgetStore.changeContactDetails(chooseData);
+        break;
+      case 7:
+        repairWidgetStore.changeBookData(chooseData);
+        break;
+      case 8:
+        repairWidgetStore.changeMessage(chooseData);
+        break;
+      default:
+        break;
     }
   }
 
   render() {
     const { subDomain } = this.props;
-    const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`)
-    const mainData = require(`../../assets/${subDomain}/Database.js`)
-    const themeCol = mainData.colorPalle.themeColor
+    const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`);
+    const mainData = require(`../../assets/${subDomain}/Database.js`);
+    const themeCol = mainData.colorPalle.themeColor;
 
     return (
       <div className='repair-widget Container'>

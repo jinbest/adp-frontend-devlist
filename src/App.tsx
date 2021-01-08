@@ -26,14 +26,14 @@ function App(): JSX.Element {
                 <Route path="/home" render={() => <Redirect to="/" />} />
                 <Route
                     path="/repair"
-                    exact
                     component={() => (
-                        <Repair subDomain={subDomain} handleStatus={handleFooterStatus} />
+                        <Provider repairWidgetStore={store}>
+                            <Repair subDomain={subDomain} handleStatus={handleFooterStatus} />
+                        </Provider>
                     )}
                 />
                 <Route
                     path="/repair-widget"
-                    exact
                     component={() => (
                         <Provider repairWidgetStore={store}>
                             <RepairWidget subDomain={subDomain} handleStatus={handleFooterStatus} />

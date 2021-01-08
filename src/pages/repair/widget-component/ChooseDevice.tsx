@@ -19,52 +19,51 @@ type ArrayProps = {
 }
 
 const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
-  const themeCol = mainData.colorPalle.themeColor
+  const mainData = require(`../../../assets/${subDomain}/Database.js`);
+  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
+  const themeCol = mainData.colorPalle.themeColor;
 
-  const [sliceNum, setSliceNum] = useState(5)
-  const [plusVisible, setPlusVisible] = useState(true)
-  const [itemTypes, setItemTypes] = useState<ArrayProps[]>([])
-  const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([])
+  const [sliceNum, setSliceNum] = useState(5);
+  const [plusVisible, setPlusVisible] = useState(true);
+  const [itemTypes, setItemTypes] = useState<ArrayProps[]>([]);
+  const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([]);
   const [selected, setSelected] = useState(999);
+  const [disableStatus, setDisableStatus] = useState(true);
 
   const handlePlus = () => {
-    setSliceNum(data.images.length)
-    setPlusVisible(false)
+    setSliceNum(data.images.length);
+    setPlusVisible(false);
   }
 
   const ChooseNextStep = (i:number) => {
     if (i === 999 ){
-      handleStep(step+1)
+      handleStep(step+1);
       return;
     }
-    setSelected(i)
-    handleChangeChooseData(step, data.images[i])
+    setSelected(i);
+    handleChangeChooseData(step, data.images[i]);
     const timer = setTimeout(() => {
-      setSelected(999)
-      handleStep(step+1)
+      setSelected(999);
+      handleStep(step+1);
     }, 200);
     return () => clearTimeout(timer);
   }
 
   const onKeyPress = useCallback((event) => {
-    if(event.key === 'Enter') {
-      if (step === 2 || step === 4 || step === 5) {
-        handleStep(step+1);
-      }
+    if(event.key === 'Enter' && !disableStatus && (step === 2 || step === 4 || step === 5)) {
+      handleStep(step+1);
     }
-  }, [step]);
+  }, [step, disableStatus]);
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress, false);
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step])
+  }, [step, disableStatus]);
 
   const GotoNextStep = () => {
-    ChooseNextStep(999)
+    ChooseNextStep(999);
   }
 
   const GobackFirst = () => {
@@ -75,16 +74,14 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     handleChangeChooseData(4, {});
     handleChangeChooseData(5, {});
     handleChangeChooseData(6, {});
-    handleChangeChooseData(7, { caseKey: 0, data: {} });
-    handleChangeChooseData(7, { caseKey: 1, data: {} });
-    handleChangeChooseData(7, { caseKey: 2, data: {} });
-    handleChangeChooseData(7, { caseKey: 3, data: {} });
+    for (let i = 0; i < 4; i++) {
+      handleChangeChooseData(7, { caseKey: i, data: {} });  
+    }
     handleChangeChooseData(8, '');
     handleStep(0);
   }
 
   useEffect(() => {
-    // console.log('repairWidgetData', repairWidgetData)
     if (step === 0) {
       for (let i = 0; i < data.images.length; i++) {
         if (data.images[i].name === repairWidgetData.deviceBrand.name) {
@@ -141,7 +138,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     }
-  }, [step, repairWidgetData])
+  }, [step, repairWidgetData]);
 
   const toggleItemTypes = (i:number, stepN:string) => {
     if(stepN === 'deviceRepairs') {
@@ -191,7 +188,23 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setEstimatedTimes([...cntArray])
     }
-  }, [itemTypes])
+  }, [itemTypes]);
+
+  useEffect(() => {
+    setDisableStatus(true);
+    if (step === 2 && estimatedTimes.length > 0) {
+      setDisableStatus(false);
+    }
+    if (step === 4 || step === 5) {
+      const cntTypes:any[] = itemTypes;
+      for (let i = 0; i < cntTypes.length; i++) {
+        if (cntTypes[i].selected) {
+          setDisableStatus(false);
+          break;
+        }
+      }
+    }
+  }, [step, estimatedTimes, itemTypes]);
 
   return (
     <div>
@@ -294,6 +307,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   height='30px' 
                   fontSize='17px' 
                   onClick={() => ChooseNextStep(999)}
+                  disable={disableStatus}
                 />
                 <p>or press ENTER</p>
               </div>

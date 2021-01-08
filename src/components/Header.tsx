@@ -12,9 +12,9 @@ const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) =
 
   const handle = () => {
     if (href === '/repair-widget') {
-      handleStatus(false)
+      handleStatus(false);
     } else {
-      handleStatus(true)
+      handleStatus(true);
     }
   }
 

@@ -31,8 +31,8 @@ export class RepairWidgetStore {
   @observable cntStep: number = 0
 
   constructor() {
-    this.load()
-    autorun(this.save)
+    this.load();
+    autorun(this.save);
   }
 
   private save = () =>
@@ -100,7 +100,7 @@ export class RepairWidgetStore {
   }
 
   @action
-  changeMessage = (message: any) => {
+  changeMessage = (message: string) => {
     this.message = message
     this.save()
   }
