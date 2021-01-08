@@ -1,36 +1,26 @@
 {
-  "compilerOptions": {
-    "target": "ES2016",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "noImplicitAny": true,
-    "useDefineForClassFields": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".circleci",
-    "build"
-  ]
+    "compilerOptions": {
+        "target": "ES2016",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "noImplicitAny": true,
+        "useDefineForClassFields": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": true,
+        "experimentalDecorators": true
+    },
+    "include": ["./src/"],
+    "exclude": ["node_modules", "dist", ".circleci", "build", "*.spec.ts"]
 }

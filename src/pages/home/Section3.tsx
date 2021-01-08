@@ -39,11 +39,11 @@ const Section3 = ({subDomain}: Props) => {
             <Grid container item xs={12} spacing={2}>
               <Grid item sm={12} md={7}>
                 <Typography className='section-title white' style={{color: data.homeTextData.section3.color}}>
-                  {data.homeTextData.section3.subtitle.map((item:string) => {
+                  {data.homeTextData.section3.subtitle.map((item:string, index:number) => {
                     return (
-                      <>
+                      <React.Fragment key={index}>
                         {item} <br />
-                      </>
+                      </React.Fragment>
                     )
                   })}
                 </Typography>

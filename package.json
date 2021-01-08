@@ -14,13 +14,15 @@
         "@testing-library/user-event": "^12.2.2",
         "@types/date-fns": "^2.6.0",
         "@types/styled-components": "^5.1.7",
-        "axios": "^0.21.0",
+        "axios": "^0.21.1",
         "date-fns": "^2.16.1",
         "eslint": "^7.14.0",
         "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-react": "^7.21.5",
         "mobx": "^6.0.4",
+        "mobx-react": "^7.0.5",
+        "mobx-react-lite": "^3.1.6",
         "moment": "^2.29.1",
         "node-sass": "^5.0.0",
         "prettier": "^2.2.0",
@@ -40,7 +42,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "eslint . --ext .ts --ext .tsx"
+        "lint": "eslint . --ext .ts --ext .tsx",
+        "app": "./templater.sh -s unix -p base -c 'skaffold dev --no-prune=false --cache-artifacts=false'"
     },
     "eslintConfig": {
         "extends": [
@@ -71,6 +74,7 @@
         ]
     },
     "devDependencies": {
+        "@types/axios": "^0.14.0",
         "@types/node": "^12.19.9",
         "@types/react": "^17.0.0",
         "@types/react-dom": "^17.0.0",

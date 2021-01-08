@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -7,8 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      width: '100%',
-      marginBottom: '20px'
+      width: '100%'
     },
   }),
 );
@@ -16,16 +15,23 @@ const useStyles = makeStyles(() =>
 type Props = {
   subDomain?: string;
   options: any[];
+  value: string;
+  handleSetValue: (val:string) => void;
 }
 
-const CustomSelect = ({options}: Props) => {
+const CustomSelect = ({options, value, handleSetValue}: Props) => {
   // const data = require(`../assets/${subDomain}/Database`);
 
   const classes = useStyles();
-  const [option, setOption] = React.useState(options[0]);
+  const [option, setOption] = useState(options[0]);
+
+  useEffect(() => {
+    setOption(value)
+  }, [value])
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setOption(event.target.value as string);
+    handleSetValue(event.target.value as string)
   };
 
   return (
@@ -34,10 +40,11 @@ const CustomSelect = ({options}: Props) => {
         <Select
           value={option}
           onChange={handleChange}
+          className='custom-select'
         >
           {options.map((item:any, index:number) => {
             return (
-              <MenuItem value={item} key={index}>{item}</MenuItem>
+              <MenuItem className='custom-select' value={item} key={index}>{item}</MenuItem>
             )
           })}
         </Select>

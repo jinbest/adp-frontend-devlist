@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { Card, PlusSVG } from './'
 import { Grid, Typography } from '@material-ui/core'
 import { Search, Button } from '../../../components'
@@ -10,58 +10,125 @@ type Props = {
   step: number;
   subDomain?: string;
   handleStep: (step:number) => void;
+  handleChangeChooseData: (step:number, chooseData:any) => void;
+  repairWidgetData: any;
 }
 
 type ArrayProps = {
   array: any[];
 }
 
-const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const themeCol = mainData.colorPalle.themeColor
+const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
+  const mainData = require(`../../../assets/${subDomain}/Database.js`);
+  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
+  const themeCol = mainData.colorPalle.themeColor;
 
-  const [sliceNum, setSliceNum] = useState(5)
-  const [plusVisible, setPlusVisible] = useState(true)
-  const [itemTypes, setItemTypes] = useState<ArrayProps[]>([])
-  const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([])
+  const [sliceNum, setSliceNum] = useState(5);
+  const [plusVisible, setPlusVisible] = useState(true);
+  const [itemTypes, setItemTypes] = useState<ArrayProps[]>([]);
+  const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([]);
   const [selected, setSelected] = useState(999);
+  const [disableStatus, setDisableStatus] = useState(true);
 
   const handlePlus = () => {
-    setSliceNum(data.images.length)
-    setPlusVisible(false)
+    setSliceNum(data.images.length);
+    setPlusVisible(false);
   }
 
   const ChooseNextStep = (i:number) => {
     if (i === 999 ){
-      handleStep(step+1)
+      handleStep(step+1);
       return;
     }
-    setSelected(i)
+    setSelected(i);
+    handleChangeChooseData(step, data.images[i]);
     const timer = setTimeout(() => {
-      setSelected(999)
-      handleStep(step+1)
-    }, 500);
+      setSelected(999);
+      handleStep(step+1);
+    }, 200);
     return () => clearTimeout(timer);
   }
 
-  useEffect(() => {
-    if (stepName === 'deviceRepairs') {
-      setItemTypes(data.types)
+  const onKeyPress = useCallback((event) => {
+    if(event.key === 'Enter' && !disableStatus && (step === 2 || step === 4 || step === 5)) {
+      handleStep(step+1);
     }
-    if (stepName === 'dropOffDevicce' || stepName === 'receiveQuote') {
-      let cntTypes:any[] = data.types, cntSelected = 0;
+  }, [step, disableStatus]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeyPress, false);
+    return () => {
+      document.removeEventListener("keydown", onKeyPress, false);
+    };
+  }, [step, disableStatus]);
+
+  const GotoNextStep = () => {
+    ChooseNextStep(999);
+  }
+
+  const GobackFirst = () => {
+    setSelected(999);
+    handleStep(0);
+  }
+
+  useEffect(() => {
+    if (step === 0) {
+      for (let i = 0; i < data.images.length; i++) {
+        if (data.images[i].name === repairWidgetData.deviceBrand.name) {
+          setSelected(i);
+          break;
+        }
+      }
+    } else if (step === 1) {
+      for (let i = 0; i < data.images.length; i++) {
+        if (data.images[i].name === repairWidgetData.deviceModel.name) {
+          setSelected(i);
+          break;
+        }
+      }
+    } else if (step === 2) {
+      let cntTypes:any[] = data.types;
       for (let i = 0; i < cntTypes.length; i++) {
-        if (cntSelected === i) {
-          cntTypes[i].bg = themeCol
-          cntTypes[i].col = 'white'
-        } else {
-          cntTypes[i].bg = 'white'
-          cntTypes[i].col = 'black'
+        cntTypes[i].bg = 'white';
+        cntTypes[i].col = 'black';
+        cntTypes[i].selected = false;
+        for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
+          if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
+            cntTypes[i].bg = themeCol;
+            cntTypes[i].col = 'white';
+            cntTypes[i].selected = true;
+          }
+        }
+      }
+      setItemTypes([...cntTypes])
+    } else if (step === 4) {
+      let cntTypes:any[] = data.types;
+      for (let i = 0; i < cntTypes.length; i++) {
+        cntTypes[i].bg = 'white';
+        cntTypes[i].col = 'black';
+        cntTypes[i].selected = false;
+        if (cntTypes[i].name === repairWidgetData.deliveryMethod.method) {
+          cntTypes[i].bg = themeCol;
+          cntTypes[i].col = 'white';
+          cntTypes[i].selected = true;
+        }
+      }
+      setItemTypes([...cntTypes])
+    } else if (step === 5) {
+      let cntTypes:any[] = data.types;
+      for (let i = 0; i < cntTypes.length; i++) {
+        cntTypes[i].bg = 'white';
+        cntTypes[i].col = 'black';
+        cntTypes[i].selected = false;
+        if (cntTypes[i].name === repairWidgetData.receiveQuote.method) {
+          cntTypes[i].bg = themeCol;
+          cntTypes[i].col = 'white';
+          cntTypes[i].selected = true;
         }
       }
       setItemTypes([...cntTypes])
     }
-  }, [step, data, stepName])
+  }, [step, repairWidgetData]);
 
   const toggleItemTypes = (i:number, stepN:string) => {
     if(stepN === 'deviceRepairs') {
@@ -69,20 +136,32 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
       if (cntTypes[i].bg === 'white') {
         cntTypes[i].bg = themeCol
         cntTypes[i].col = 'white'
+        cntTypes[i].selected = true
       } else {
         cntTypes[i].bg = 'white'
         cntTypes[i].col = 'black'
+        cntTypes[i].selected = false
       }
       setItemTypes([...cntTypes])
+      let preChooseRepairs:any[] = [];
+      for (let i = 0; i < cntTypes.length; i++) {
+        if (cntTypes[i].selected) {
+          preChooseRepairs.push({name: cntTypes[i].name})
+        }
+      }
+      handleChangeChooseData(step, {data: preChooseRepairs, counter: repairWidgetData.deviceCounter})
     } else {
       let cntItemTypes:any[] = itemTypes
       for (let u = 0; u < cntItemTypes.length; u++) {
         if (u === i) {
           cntItemTypes[u].bg = themeCol
           cntItemTypes[u].col = 'white'
+          cntItemTypes[u].selected = true
+          handleChangeChooseData(step, {method: cntItemTypes[u].name, caseKey: u})
         } else {
           cntItemTypes[u].bg = 'white'
           cntItemTypes[u].col = 'black'
+          cntItemTypes[u].selected = false
         }
       }
       setItemTypes([...cntItemTypes])
@@ -99,7 +178,23 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
       }
       setEstimatedTimes([...cntArray])
     }
-  }, [itemTypes])
+  }, [itemTypes]);
+
+  useEffect(() => {
+    setDisableStatus(true);
+    if (step === 2 && estimatedTimes.length > 0) {
+      setDisableStatus(false);
+    }
+    if (step === 4 || step === 5) {
+      const cntTypes:any[] = itemTypes;
+      for (let i = 0; i < cntTypes.length; i++) {
+        if (cntTypes[i].selected) {
+          setDisableStatus(false);
+          break;
+        }
+      }
+    }
+  }, [step, estimatedTimes, itemTypes]);
 
   return (
     <div>
@@ -165,8 +260,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
 
                 {(stepName === 'repairAnotherDevice') && 
                   <div className='repair-another-device'>
-                    <Button title='Yes' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={()=>{handleStep(0)}} />
-                    <Button title='No' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={() => ChooseNextStep(999)} />
+                    <Button title='Yes' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} />
+                    <Button title='No' bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} />
                   </div>
                 }
 
@@ -195,13 +290,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className='repair-card-button'>
                 <Button 
-                  title='Next' 
-                  bgcolor={themeCol} 
-                  borderR='20px' 
-                  width='120px' 
-                  height='30px' 
-                  fontSize='17px' 
-                  onClick={() => ChooseNextStep(999)}
+                  title='Next' bgcolor={themeCol} borderR='20px' width='120px' 
+                  height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus}
                 />
                 <p>or press ENTER</p>
               </div>
@@ -247,22 +337,24 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep}: Props) => {
 
             {(stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className='repair-choose-device-container'>
-                <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+                <Typography className='topic-title'>Repair summary</Typography>
                 <div className='repair-summary-content-div'>
-                  {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+                  {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
                     return (
-                      <div key={index} className='repair-summary-div'>
-                        <div className='repair-summary-img'><img src={item.img} /></div>
-                        <div>
-                          <Typography className='repair-summary-title'>{item.subtitle}</Typography>
-                          <Typography className='repair-summary-service'>{item.service}</Typography>
-                          {item.details.map((i:any, k:number) => {
-                            return (
-                              <p key={k} className='repair-summary-service-child'>{i}</p>
-                            )
-                          })}
-                        </div>
-                      </div>
+                      <React.Fragment key={index}>
+                        {repairWidgetData.chooseRepair[index].map((chooseItem:any, chooseIndex:number) => (
+                          <div key={chooseIndex} className='repair-summary-div'>
+                            <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
+                            <div>
+                              <Typography className='repair-summary-title'>
+                                {item.name + ' ' + repairWidgetData.deviceModel[index].name}
+                              </Typography>
+                              <Typography className='repair-summary-service'>Repair Service:</Typography>
+                              <p className='repair-summary-service-child'>{chooseItem.name}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </React.Fragment>
                     )
                   })}
                 </div>
