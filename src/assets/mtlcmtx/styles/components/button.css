@@ -1,11 +1,11 @@
 .button {
   height: 40px;
   outline: none;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: none;
   font-size: 18px;
   width: 80%;
   cursor: pointer;
-  min-width: 115px;
+  min-width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -49,30 +49,20 @@
     margin-top: 1vw;
   }
   .customized-card-height {
-    height: auto !important;
-    min-height: 200px !important;
+    height: 400px;
   }
   .device-repair-item > p {
-    font-size: 2.1vw;
+    font-size: 2.3vw;
   }
   .repair-card-button p {
     display: none;
   }
   .repair-summary-content-div {
     display: flex;
-    flex-wrap: wrap;
-    overflow: hidden !important;
-    height: auto;
   }
   .repair-summary-div {
-    width: 43%;
+    width: 50%;
     margin-right: 2%;
-  }
-  .repair-widget-card {
-    height: 65vw;
-  }
-  .input-component {
-    font-size: 2vw !important;
   }
 }
 
@@ -142,15 +132,15 @@
   .topic-title {
     font-size: 18px !important;
   }
+  .repair-widget-title {
+    font-size: 4.5vw !important;
+  }
   .repair-summary-content-div {
     display: block;
   }
   .repair-summary-div {
-    width: 90%;
+    width: 95%;
     margin-right: 2%;
-  }
-  .repair-widget-card {
-    height: 80vw;
   }
 }
 
@@ -176,21 +166,6 @@
   }
   .device-list-component {
     margin: 20px 0;
-  }
-  .repair-widget-card {
-    height: auto;
-    min-height: 200px;
-  }
-  .repair-card-button {
-    position: inherit;
-    padding: 50px 0 0;
-  }
-  .button {
-    margin: inherit;
-  }
-  .input-component {
-    font-size: 3vw !important;
-    padding: 20px 15px;
   }
 }
 
@@ -221,7 +196,6 @@
     margin-bottom: 8px !important;
   }
   .repair-choose-device-container {
-    /* padding: 20px 20px 100px; */
     padding: 20px;
   }
   .device-item-container {
@@ -231,7 +205,7 @@
     font-size: 3vw;
   }
   .device-repair-item > p {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
   .repair-another-device {
     display: block;
@@ -246,11 +220,15 @@
     margin-bottom: 10px;
   }
   .repair-summary-img {
-    width: 11vw;
+    width: 60px;
+  }
+  .repair-summary-title {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
   }
   .repair-summary-service, .repair-summary-service-child {
     font-size: 13px !important;
-  }  
+  }
 }
 
 @media (max-width: 425px) {
@@ -271,7 +249,7 @@
     font-size: 16px !important;
   }
   .card-why-customer {
-    height: 175px;
+    height: 165px;
   }
   .section1-top {
     margin-bottom: 25px !important;
@@ -298,10 +276,6 @@
   .footer-others, .footer-others > img {
     height: 22px;
   }
-  .input-component {
-    font-size: 3.5vw !important;
-    padding: 20px 15px;
-  }
 }
 
 @media (max-width: 380px) {
@@ -320,8 +294,5 @@
   }
   .button {
     min-width: 80px;
-  }
-  .custom-select {
-    font-size: 3.5vw !important;
   }
 }
