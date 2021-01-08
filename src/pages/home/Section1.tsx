@@ -42,11 +42,11 @@ const Section1 = ({subDomain}: Props) => {
     <section className='Container'>
       <Grid item xs={12} sm={12} className="section1-top">
         <div className="section1-title">
-          {data.homeTextData.section1.title.map((item:string) => {
+          {data.homeTextData.section1.title.map((item:string, index:number) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 {item} <br />
-              </>
+              </React.Fragment>
             )
           })}
         </div>

@@ -19,13 +19,11 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
   }
 
   const onKeyPress = useCallback((event) => {
-    if(event.key === 'Enter') {
-      if (step === 9) { 
-        if (caseKey === 0) {
-          handleStep(11)
-        } else {
-          ChooseNextStep()
-        }
+    if(event.key === 'Enter' && step === 9) {
+      if (caseKey === 0) {
+        handleStep(11)
+      } else {
+        ChooseNextStep()
       }
     }
   }, [step, caseKey]);
@@ -88,14 +86,20 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
               <Typography className='topic'>Device</Typography>
               <Typography className='topic'>Repair Service</Typography>
             </div>
-            {repairWidgetData.chooseRepair.map((item:any, index:number) => {
+            {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
               return (
-                <div className='repair-service-summary-flex-container' key={index}>
-                  <Typography className='details'>
-                    {repairWidgetData.deviceBrand.name + ' ' + repairWidgetData.deviceModel.name}
-                  </Typography>
-                  <Typography className='details'>{item.name}</Typography>
-                </div>
+                <React.Fragment key={index}>
+                  {repairWidgetData.chooseRepair[index].map((chooseItem:any, chooseIndex:number) => {
+                    return (
+                      <div className='repair-service-summary-flex-container' key={chooseIndex}>
+                        <Typography className='details'>
+                          {item.name + ' ' + repairWidgetData.deviceModel[index].name}
+                        </Typography>
+                        <Typography className='details'>{chooseItem.name}</Typography>
+                      </div>
+                    )
+                  })}
+                </React.Fragment>
               )
             })}
           </div>

@@ -43,6 +43,7 @@ class RepairWidget extends React.Component<Props, MyState> {
       deviceBrand: cntRepairWidgetData.deviceBrand,
       deviceModel: cntRepairWidgetData.deviceModel,
       chooseRepair: cntRepairWidgetData.chooseRepair,
+      deviceCounter: cntRepairWidgetData.deviceCounter,
       deliveryMethod: cntRepairWidgetData.deliveryMethod,
       receiveQuote: cntRepairWidgetData.receiveQuote,
       contactDetails: cntRepairWidgetData.contactDetails,
@@ -70,19 +71,28 @@ class RepairWidget extends React.Component<Props, MyState> {
   handleBackStep() {
     const { repairWidgetStore } = this.props,
       cntStep:number = this.state.step;
+    let cntDeviceBrand = repairWidgetStore.deviceBrand, 
+      cntDeviceModel = repairWidgetStore.deviceModel,
+      cntChooseRepair = repairWidgetStore.chooseRepair;
+    const cntDeviceCounter = repairWidgetStore.deviceCounter;
     
     switch(cntStep) {
       case 1:
-        repairWidgetStore.changeDeviceBrand({});
-        repairWidgetStore.changeDeviceModel({});
+        if (cntDeviceBrand.length === cntDeviceCounter && cntDeviceCounter > 0) cntDeviceBrand.pop();
+        if (cntDeviceModel.length === cntDeviceCounter && cntDeviceCounter > 0) cntDeviceModel.pop();
+        repairWidgetStore.changeDeviceBrand(cntDeviceBrand);
+        repairWidgetStore.changeDeviceModel(cntDeviceModel);
+        repairWidgetStore.changeDeviceCounter(cntDeviceCounter-1);
         break;
       case 2:
-        repairWidgetStore.changeDeviceModel({});
-        repairWidgetStore.changeChooseRepair([]);
+        if (cntDeviceModel.length === cntDeviceCounter && cntDeviceCounter > 0) cntDeviceModel.pop();
+        if (cntChooseRepair.length === cntDeviceCounter && cntDeviceCounter > 0) cntChooseRepair.pop();
+        repairWidgetStore.changeDeviceModel(cntDeviceModel);
+        repairWidgetStore.changeChooseRepair(cntChooseRepair);
         break;
       case 3:
-        repairWidgetStore.changeChooseRepair([]);
-        repairWidgetStore.changeDeliveryMethod({});
+        if (cntChooseRepair.length === cntDeviceCounter && cntDeviceCounter > 0) cntChooseRepair.pop();
+        repairWidgetStore.changeChooseRepair(cntChooseRepair);
         break;
       case 4:
         repairWidgetStore.changeDeliveryMethod({});
@@ -137,13 +147,25 @@ class RepairWidget extends React.Component<Props, MyState> {
     const { repairWidgetStore } = this.props;
     switch(i) {
       case 0:
-        repairWidgetStore.changeDeviceBrand(chooseData);
+        let cntDeviceBrand = repairWidgetStore.deviceBrand, cntDeviceCounter = repairWidgetStore.deviceCounter;
+        cntDeviceBrand.push(chooseData);
+        repairWidgetStore.changeDeviceBrand(cntDeviceBrand);
+        repairWidgetStore.changeDeviceCounter(cntDeviceCounter + 1);
         break;
       case 1:
-        repairWidgetStore.changeDeviceModel(chooseData);
+        let cntDeviceModel = repairWidgetStore.deviceModel;
+        cntDeviceModel.push(chooseData);
+        repairWidgetStore.changeDeviceModel(cntDeviceModel);
         break;
       case 2:
-        repairWidgetStore.changeChooseRepair(chooseData);
+        let cntChooseRepair = repairWidgetStore.chooseRepair;
+        const counter = chooseData.counter;
+        if (cntChooseRepair.length === counter) {
+          cntChooseRepair[counter-1] = chooseData.data;
+        } else {
+          cntChooseRepair.push(chooseData.data);
+        }
+        repairWidgetStore.changeChooseRepair(cntChooseRepair);
         break;
       case 4:
         repairWidgetStore.changeDeliveryMethod(chooseData);

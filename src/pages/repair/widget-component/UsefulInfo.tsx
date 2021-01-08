@@ -73,16 +73,22 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
             <div className='repair-choose-device-container'>
               <Typography className='topic-title'>Repair summary</Typography>
               <div className='repair-summary-content-div'>
-                {repairWidgetData.chooseRepair && repairWidgetData.chooseRepair.map((item:any, index:number) => {
+                {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
                   return (
-                    <div key={index} className='repair-summary-div'>
-                      <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
-                      <div>
-                        <Typography className='repair-summary-title'>{repairWidgetData.deviceModel.name}</Typography>
-                        <Typography className='repair-summary-service'>Repair Service:</Typography>
-                        <p className='repair-summary-service-child'>{item.name}</p>
-                      </div>
-                    </div>
+                    <React.Fragment key={index}>
+                      {repairWidgetData.chooseRepair[index].map((chooseItem:any, chooseIndex:number) => (
+                        <div key={chooseIndex} className='repair-summary-div'>
+                          <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
+                          <div>
+                            <Typography className='repair-summary-title'>
+                              {item.name + ' ' + repairWidgetData.deviceModel[index].name}
+                            </Typography>
+                            <Typography className='repair-summary-service'>Repair Service:</Typography>
+                            <p className='repair-summary-service-child'>{chooseItem.name}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </React.Fragment>
                   )
                 })}
                 <div className='repair-summary-div'>

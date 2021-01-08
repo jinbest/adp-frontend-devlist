@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, KeyboardEvent} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { Card, PlusSVG } from './'
 import { Grid, Typography } from '@material-ui/core'
 import { Search, Button } from '../../../components'
@@ -68,16 +68,6 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
   const GobackFirst = () => {
     setSelected(999);
-    handleChangeChooseData(0, {});
-    handleChangeChooseData(1, {});
-    handleChangeChooseData(2, []);
-    handleChangeChooseData(4, {});
-    handleChangeChooseData(5, {});
-    handleChangeChooseData(6, {});
-    for (let i = 0; i < 4; i++) {
-      handleChangeChooseData(7, { caseKey: i, data: {} });  
-    }
-    handleChangeChooseData(8, '');
     handleStep(0);
   }
 
@@ -159,7 +149,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           preChooseRepairs.push({name: cntTypes[i].name})
         }
       }
-      handleChangeChooseData(step, preChooseRepairs)
+      handleChangeChooseData(step, {data: preChooseRepairs, counter: repairWidgetData.deviceCounter})
     } else {
       let cntItemTypes:any[] = itemTypes
       for (let u = 0; u < cntItemTypes.length; u++) {
@@ -300,14 +290,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className='repair-card-button'>
                 <Button 
-                  title='Next' 
-                  bgcolor={themeCol} 
-                  borderR='20px' 
-                  width='120px' 
-                  height='30px' 
-                  fontSize='17px' 
-                  onClick={() => ChooseNextStep(999)}
-                  disable={disableStatus}
+                  title='Next' bgcolor={themeCol} borderR='20px' width='120px' 
+                  height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus}
                 />
                 <p>or press ENTER</p>
               </div>
@@ -355,16 +339,22 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               <div className='repair-choose-device-container'>
                 <Typography className='topic-title'>Repair summary</Typography>
                 <div className='repair-summary-content-div'>
-                  {repairWidgetData.chooseRepair && repairWidgetData.chooseRepair.map((item:any, index:number) => {
+                  {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
                     return (
-                      <div key={index} className='repair-summary-div'>
-                        <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
-                        <div>
-                          <Typography className='repair-summary-title'>{repairWidgetData.deviceModel.name}</Typography>
-                          <Typography className='repair-summary-service'>Repair Service:</Typography>
-                          <p className='repair-summary-service-child'>{item.name}</p>
-                        </div>
-                      </div>
+                      <React.Fragment key={index}>
+                        {repairWidgetData.chooseRepair[index].map((chooseItem:any, chooseIndex:number) => (
+                          <div key={chooseIndex} className='repair-summary-div'>
+                            <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
+                            <div>
+                              <Typography className='repair-summary-title'>
+                                {item.name + ' ' + repairWidgetData.deviceModel[index].name}
+                              </Typography>
+                              <Typography className='repair-summary-service'>Repair Service:</Typography>
+                              <p className='repair-summary-service-child'>{chooseItem.name}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </React.Fragment>
                     )
                   })}
                 </div>

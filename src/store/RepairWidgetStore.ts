@@ -4,9 +4,10 @@ configure({ enforceActions: 'always' })
 
 export class RepairWidgetStore {
 
-  @observable deviceBrand: any = { name: '', img: '' }
-  @observable deviceModel: any = { name: '', img: '' }
+  @observable deviceBrand: any[] = []
+  @observable deviceModel: any[] = []
   @observable chooseRepair: any[] = []
+  @observable deviceCounter: number = 0
   @observable deliveryMethod: any = { method: '', caseKey: 0 }
   @observable receiveQuote: any = { method: '', caseKey: 0 }
   @observable contactDetails: any = { 
@@ -42,6 +43,7 @@ export class RepairWidgetStore {
         deviceBrand: this.deviceBrand,
         deviceModel: this.deviceModel,
         chooseRepair: this.chooseRepair,
+        deviceCounter: this.deviceCounter,
         deliveryMethod: this.deliveryMethod,
         receiveQuote: this.receiveQuote,
         contactDetails: this.contactDetails,
@@ -56,20 +58,26 @@ export class RepairWidgetStore {
     Object.assign(this, JSON.parse(window.localStorage.getItem(RepairWidgetStore.name) || '{}'))
 
   @action
-  changeDeviceBrand = (deviceBrand: any) => {
+  changeDeviceBrand = (deviceBrand: any[]) => {
     this.deviceBrand = deviceBrand
     this.save()
   }
 
   @action
-  changeDeviceModel = (deviceModel: any) => {
+  changeDeviceModel = (deviceModel: any[]) => {
     this.deviceModel = deviceModel
     this.save()
   }
 
   @action
-  changeChooseRepair = (chooseRepair: any) => {
+  changeChooseRepair = (chooseRepair: any[]) => {
     this.chooseRepair = chooseRepair
+    this.save()
+  }
+
+  @action
+  changeDeviceCounter = (deviceCounter: number) => {
+    this.deviceCounter = deviceCounter
     this.save()
   }
 

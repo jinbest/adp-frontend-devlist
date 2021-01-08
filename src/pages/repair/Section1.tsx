@@ -25,9 +25,10 @@ class Section1 extends React.Component<Props> {
 
   handleRepairWidget() {
     const { handleStatus, repairWidgetStore } = this.props;
-    repairWidgetStore.changeDeviceBrand({});
-    repairWidgetStore.changeDeviceModel({});
+    repairWidgetStore.changeDeviceBrand([]);
+    repairWidgetStore.changeDeviceModel([]);
     repairWidgetStore.changeChooseRepair([]);
+    repairWidgetStore.changeDeviceCounter(0);
     repairWidgetStore.changeDeliveryMethod({});
     repairWidgetStore.changeReceiveQuote({});
     repairWidgetStore.changeContactDetails({});
