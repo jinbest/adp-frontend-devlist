@@ -21,7 +21,6 @@ type ArrayProps = {
 
 const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
-  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
   const themeCol = mainData.colorPalle.themeColor;
 
   const [sliceNum, setSliceNum] = useState(5);

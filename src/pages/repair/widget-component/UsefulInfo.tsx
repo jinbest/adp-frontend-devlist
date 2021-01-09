@@ -16,7 +16,6 @@ type Props = {
 
 const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, caseKey}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
   const themeCol = mainData.colorPalle.themeColor
 
   const [message, setMessage] = useState('')

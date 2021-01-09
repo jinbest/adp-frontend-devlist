@@ -1,5 +1,5 @@
-import React from 'react'
-import { Grid, Typography } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { Typography } from '@material-ui/core'
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 
 /* eslint-disable */
@@ -16,6 +16,19 @@ type Props = {
 const RepairSummary = ({repairWidgetData, handleChangeChooseData, step, themeCol, subDomain, caseKey, showInfo}: Props) => {  
   const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
 
+  const [deviceBrand, setDeviceBrand] = useState([]);
+  const [deviceModel, setDeviceModel] = useState([]);
+  const [chooseRepair, setChooseRepair] = useState([[]]);
+
+  useEffect(() => {
+    const cntDeviceBrand = repairWidgetData.deviceBrand,
+      cntDeviceModel = repairWidgetData.deviceModel,
+      cntChooseRepair = repairWidgetData.chooseRepair;
+    setDeviceBrand(cntDeviceBrand);
+    setDeviceModel(cntDeviceModel);
+    setChooseRepair([...cntChooseRepair]);
+  }, [repairWidgetData])
+
   const handleTrashSummary = (countNum:number, serviceNum:number) => {
     console.log(repairWidgetData.deviceBrand[countNum].name);
     console.log(repairWidgetData.deviceModel[countNum].name);
@@ -26,17 +39,17 @@ const RepairSummary = ({repairWidgetData, handleChangeChooseData, step, themeCol
       cntChooseRepair = repairWidgetData.chooseRepair[countNum];
     cntChooseRepair.splice(serviceNum, 1);
     console.log(cntChooseRepair);
-    handleChangeChooseData(step, {data: [...cntChooseRepair], counter: countNum+1})
+    handleChangeChooseData(step, {data: [...cntChooseRepair], counter: countNum+1});
   }
 
   return (
     <div className='repair-choose-device-container'>
       <Typography className='topic-title'>Repair summary</Typography>
       <div className='repair-summary-content-div'>
-        {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
+        {deviceBrand && deviceBrand.map((item:any, index:number) => {
           return (
             <React.Fragment key={index}>
-              {repairWidgetData.chooseRepair[index].map((chooseItem:any, chooseIndex:number) => (
+              {chooseRepair[index].map((chooseItem:any, chooseIndex:number) => (
                 <div key={chooseIndex} className='repair-summary-div'>
                   <DeleteOutlineOutlinedIcon 
                     className='repair-trash-icon' 
@@ -46,7 +59,7 @@ const RepairSummary = ({repairWidgetData, handleChangeChooseData, step, themeCol
                   <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
                   <div>
                     <Typography className='repair-summary-title'>
-                      {item.name + ' ' + repairWidgetData.deviceModel[index].name}
+                      {item.name + ' ' + deviceModel[index]['name']}
                     </Typography>
                     <Typography className='repair-summary-service'>Repair Service:</Typography>
                     <p className='repair-summary-service-child'>{chooseItem.name}</p>
