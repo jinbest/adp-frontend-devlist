@@ -18,7 +18,6 @@ type Props = {
 const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
-  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
   const timeZoneList = timezoneData.timezoneOptions;
   const themeCol = mainData.colorPalle.themeColor;
   const DAYS_OF_THE_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -223,12 +222,9 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
         <Grid item xs={12} md={5}>
           <Card className='repair-summary-card'>
             <RepairSummary 
-              repairWidgetData={repairWidgetData} 
               step={step} 
-              handleChangeChooseData={handleChangeChooseData} 
               subDomain={subDomain} 
               themeCol={themeCol} 
-              caseKey={caseKey}
             />
           </Card>
         </Grid>

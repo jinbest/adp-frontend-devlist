@@ -14,9 +14,8 @@ type Props = {
   caseKey: number;
 }
 
-const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, caseKey}: Props) => {
+const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`)
   const themeCol = mainData.colorPalle.themeColor
 
   const [message, setMessage] = useState('')
@@ -72,13 +71,10 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
         <Grid item xs={12} md={5}>
           <Card className='repair-summary-card'>            
             <RepairSummary 
-              repairWidgetData={repairWidgetData} 
               step={step} 
-              handleChangeChooseData={handleChangeChooseData} 
               subDomain={subDomain} 
               themeCol={themeCol} 
               showInfo={true}
-              caseKey={caseKey}
             />
           </Card>
         </Grid>

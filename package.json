@@ -43,7 +43,8 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "lint": "eslint . --ext .ts --ext .tsx",
-        "app": "./templater.sh -s unix -p base -c 'skaffold dev --no-prune=false --cache-artifacts=false'"
+        "app": "./templater.sh -s unix -p base -c 'skaffold dev --no-prune=false --cache-artifacts=false'",
+        "app:w": "sh templater.sh -s linux -p base -c 'skaffold dev --no-prune=false --cache-artifacts=false'"
     },
     "eslintConfig": {
         "extends": [
