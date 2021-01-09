@@ -187,12 +187,9 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
         <Grid item xs={12} md={5}>
           <Card className='repair-summary-card'>
             <RepairSummary 
-              repairWidgetData={repairWidgetData} 
               step={step} 
-              handleChangeChooseData={handleChangeChooseData} 
               subDomain={subDomain} 
               themeCol={themeCol} 
-              caseKey={caseKey}
             />
           </Card>
         </Grid>

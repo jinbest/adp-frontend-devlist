@@ -14,7 +14,7 @@ type Props = {
   caseKey: number;
 }
 
-const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, caseKey}: Props) => {
+const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const themeCol = mainData.colorPalle.themeColor
 
@@ -71,13 +71,10 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
         <Grid item xs={12} md={5}>
           <Card className='repair-summary-card'>            
             <RepairSummary 
-              repairWidgetData={repairWidgetData} 
               step={step} 
-              handleChangeChooseData={handleChangeChooseData} 
               subDomain={subDomain} 
               themeCol={themeCol} 
               showInfo={true}
-              caseKey={caseKey}
             />
           </Card>
         </Grid>

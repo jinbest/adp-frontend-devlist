@@ -337,12 +337,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
             {(stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <RepairSummary 
-                repairWidgetData={repairWidgetData} 
                 step={step} 
-                handleChangeChooseData={handleChangeChooseData} 
                 subDomain={subDomain} 
                 themeCol={themeCol} 
-                caseKey={0}
               />
             }
 

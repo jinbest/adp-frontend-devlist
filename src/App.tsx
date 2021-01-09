@@ -10,7 +10,7 @@ import store from "./store/RepairWidgetStore"
 // const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
 // const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 const devicelist = ['dccmtx', 'devicelist', 'geebo', 'mtlcmtx', 'northtech']
-const subDomain = devicelist[1]
+const subDomain = devicelist[4]
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`)

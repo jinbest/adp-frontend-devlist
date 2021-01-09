@@ -1,99 +1,158 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Typography } from '@material-ui/core'
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
+import { inject, IWrappedComponent, observer } from 'mobx-react'
+import { RepairWidgetStore } from '../../../store/RepairWidgetStore'
+import { computed } from 'mobx'
 
 /* eslint-disable */
-type Props = {
-  repairWidgetData: any;
-  handleChangeChooseData: (step:number, chooseData:any) => void;
+type StoreProps = {  
+  repairWidgetStore: RepairWidgetStore;
+}
+interface Props extends StoreProps {
   step: number;
   themeCol: string;
   subDomain?: string;
-  caseKey: number;
-  showInfo?: boolean
+  showInfo?: boolean;
 }
 
-const RepairSummary = ({repairWidgetData, handleChangeChooseData, step, themeCol, subDomain, caseKey, showInfo}: Props) => {  
-  const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
-
-  const [deviceBrand, setDeviceBrand] = useState([]);
-  const [deviceModel, setDeviceModel] = useState([]);
-  const [chooseRepair, setChooseRepair] = useState([[]]);
-
-  useEffect(() => {
-    const cntDeviceBrand = repairWidgetData.deviceBrand,
-      cntDeviceModel = repairWidgetData.deviceModel,
-      cntChooseRepair = repairWidgetData.chooseRepair;
-    setDeviceBrand(cntDeviceBrand);
-    setDeviceModel(cntDeviceModel);
-    setChooseRepair([...cntChooseRepair]);
-  }, [repairWidgetData])
-
-  const handleTrashSummary = (countNum:number, serviceNum:number) => {
-    console.log(repairWidgetData.deviceBrand[countNum].name);
-    console.log(repairWidgetData.deviceModel[countNum].name);
-    console.log(repairWidgetData.chooseRepair[countNum][serviceNum].name);
-    let cntDeviceCounter = repairWidgetData.deviceCounter,
-      cntDeviceBrand = repairWidgetData.deviceBrand,
-      cntDeviceModel = repairWidgetData.deviceModel,
-      cntChooseRepair = repairWidgetData.chooseRepair[countNum];
-    cntChooseRepair.splice(serviceNum, 1);
-    console.log(cntChooseRepair);
-    handleChangeChooseData(step, {data: [...cntChooseRepair], counter: countNum+1});
+type MyState = {
+  brand: any[];
+  model: any[];
+  choose: any[];
+  counter: number;
+}
+@inject('repairWidgetStore')
+@observer 
+class RepairSummary extends React.Component<Props, MyState> {
+  static defaultProps = {} as StoreProps;
+  
+  @computed
+  get computedRepairWidgetData() {
+    const cntRepairWidgetData = this.props.repairWidgetStore;
+    return {
+      deviceBrand: cntRepairWidgetData.deviceBrand,
+      deviceModel: cntRepairWidgetData.deviceModel,
+      chooseRepair: cntRepairWidgetData.chooseRepair,
+      deviceCounter: cntRepairWidgetData.deviceCounter,
+      deliveryMethod: cntRepairWidgetData.deliveryMethod,
+      receiveQuote: cntRepairWidgetData.receiveQuote,
+      contactDetails: cntRepairWidgetData.contactDetails,
+      bookData: cntRepairWidgetData.bookData,
+      message: cntRepairWidgetData.message,
+      cntStep: cntRepairWidgetData.cntStep
+    };
   }
 
-  return (
-    <div className='repair-choose-device-container'>
-      <Typography className='topic-title'>Repair summary</Typography>
-      <div className='repair-summary-content-div'>
-        {deviceBrand && deviceBrand.map((item:any, index:number) => {
-          return (
-            <React.Fragment key={index}>
-              {chooseRepair[index].map((chooseItem:any, chooseIndex:number) => (
-                <div key={chooseIndex} className='repair-summary-div'>
-                  <DeleteOutlineOutlinedIcon 
-                    className='repair-trash-icon' 
-                    style={{color: themeCol}}
-                    onClick={()=>{handleTrashSummary(index, chooseIndex)}}
-                  />
-                  <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
-                  <div>
-                    <Typography className='repair-summary-title'>
-                      {item.name + ' ' + deviceModel[index]['name']}
-                    </Typography>
-                    <Typography className='repair-summary-service'>Repair Service:</Typography>
-                    <p className='repair-summary-service-child'>{chooseItem.name}</p>
+  constructor(props:Props) {
+    super(props);
+    this.state = {
+      brand: [],
+      model: [],
+      choose: [],
+      counter: 0
+    }
+    this.handleTrashSummary = this.handleTrashSummary.bind(this);
+  }
+
+  componentDidMount() {
+    const { repairWidgetStore } = this.props;
+    this.setState({
+      brand: repairWidgetStore.deviceBrand,
+      model: repairWidgetStore.deviceModel,
+      choose: repairWidgetStore.chooseRepair,
+      counter: repairWidgetStore.deviceCounter
+    });
+  }
+
+  handleTrashSummary(countNum:number, serviceNum:number) {
+    const { repairWidgetStore } = this.props;
+    let cntDeviceBrand = repairWidgetStore.deviceBrand,
+      cntDeviceModel = repairWidgetStore.deviceModel,
+      cntChooseRepair = repairWidgetStore.chooseRepair,
+      cntDeviceCounter= repairWidgetStore.deviceCounter;
+    cntChooseRepair[countNum].splice(serviceNum, 1);
+    if (cntChooseRepair[countNum].length === 0) {
+      cntChooseRepair.splice(countNum, 1);
+      cntDeviceBrand.splice(countNum, 1);
+      cntDeviceModel.splice(countNum, 1);
+      cntDeviceCounter = cntDeviceCounter - 1;
+      repairWidgetStore.changeDeviceBrand(cntDeviceBrand);
+      repairWidgetStore.changeDeviceModel(cntDeviceModel);
+      repairWidgetStore.changeChooseRepair(cntChooseRepair);
+      repairWidgetStore.changeDeviceCounter(cntDeviceCounter);
+      this.setState({
+        brand: cntDeviceBrand,
+        model: cntDeviceModel,
+        choose: cntChooseRepair,
+        counter: cntDeviceCounter
+      })
+    } else {
+      repairWidgetStore.changeChooseRepair(cntChooseRepair);
+      this.setState({
+        choose: cntChooseRepair
+      });
+    }
+  }
+
+  render() {
+    const { themeCol, subDomain, showInfo, repairWidgetStore } = this.props;
+    const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
+    const caseKey = repairWidgetStore.deliveryMethod.caseKey;
+
+    return (
+      <div className='repair-choose-device-container'>
+        <Typography className='topic-title'>Repair summary</Typography>
+        <div className='repair-summary-content-div'>
+          {this.state.brand && this.state.brand.map((item:any, index:number) => {
+            return (
+              <React.Fragment key={index}>
+                {this.state.choose[index] && this.state.choose[index].map((chooseItem:any, chooseIndex:number) => (
+                  <div key={chooseIndex} className='repair-summary-div'>
+                    <DeleteOutlineOutlinedIcon 
+                      className='repair-trash-icon' 
+                      style={{color: themeCol}}
+                      onClick={()=>{this.handleTrashSummary(index, chooseIndex)}}
+                    />
+                    <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
+                    <div>
+                      <Typography className='repair-summary-title'>
+                        {item.name + ' ' + this.state.model[index]['name']}
+                      </Typography>
+                      <Typography className='repair-summary-service'>Repair Service:</Typography>
+                      <p className='repair-summary-service-child'>{chooseItem.name}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </React.Fragment>
-          )
-        })}
-        {showInfo && <div className='repair-summary-div'>
-          <div>
-            <Typography className='repair-summary-title'>{repairWidgetData.deliveryMethod.method}</Typography>
-            {caseKey === 1 && <Typography className='repair-summary-service'>Pick Up From</Typography>}
-            {caseKey === 0 && <Typography className='repair-summary-service'>Send To</Typography>}
-            {caseKey > 0 && <p className='repair-summary-service-child'>{repairWidgetData.bookData[caseKey].address}</p>}
-            {caseKey === 0 && <p className='repair-summary-service-child' style={{marginBottom: '15px'}}>{repairWidgetData.bookData[caseKey].sendTo}</p>}
-            {caseKey === 0 && <Typography className='repair-summary-service'>Return To</Typography>}
-            {caseKey === 0 && <p className='repair-summary-service-child'>
-              {repairWidgetData.contactDetails.address1}
-            </p>}
-            {caseKey > 0 && <p className='repair-summary-service-child'>
-              {
-                repairWidgetData.bookData[caseKey].week + ', ' + 
-                repairWidgetData.bookData[caseKey].month + ' ' + 
-                repairWidgetData.bookData[caseKey].day + ', ' + 
-                repairWidgetData.bookData[caseKey].year + ' at ' + 
-                repairWidgetData.bookData[caseKey].time
-              }
-            </p>}
-          </div>
-        </div>}
+                ))}
+              </React.Fragment>
+            )
+          })}
+          {showInfo && <div className='repair-summary-div'>
+            <div>
+              <Typography className='repair-summary-title'>{repairWidgetStore.deliveryMethod.method}</Typography>
+              {caseKey === 1 && <Typography className='repair-summary-service'>Pick Up From</Typography>}
+              {caseKey === 0 && <Typography className='repair-summary-service'>Send To</Typography>}
+              {caseKey > 0 && <p className='repair-summary-service-child'>{repairWidgetStore.bookData[caseKey].address}</p>}
+              {caseKey === 0 && <p className='repair-summary-service-child' style={{marginBottom: '15px'}}>{repairWidgetStore.bookData[caseKey].sendTo}</p>}
+              {caseKey === 0 && <Typography className='repair-summary-service'>Return To</Typography>}
+              {caseKey === 0 && <p className='repair-summary-service-child'>
+                {repairWidgetStore.contactDetails.address1}
+              </p>}
+              {caseKey > 0 && <p className='repair-summary-service-child'>
+                {
+                  repairWidgetStore.bookData[caseKey].week + ', ' + 
+                  repairWidgetStore.bookData[caseKey].month + ' ' + 
+                  repairWidgetStore.bookData[caseKey].day + ', ' + 
+                  repairWidgetStore.bookData[caseKey].year + ' at ' + 
+                  repairWidgetStore.bookData[caseKey].time
+                }
+              </p>}
+            </div>
+          </div>}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default RepairSummary;
+export default RepairSummary as typeof RepairSummary & IWrappedComponent<Props>;
