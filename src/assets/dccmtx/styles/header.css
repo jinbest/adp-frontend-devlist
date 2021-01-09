@@ -23,7 +23,7 @@
   margin: 0 auto;
   left: 0px;
   top: 0px;
-  background-color: #2B388F;
+  background-color: #054DFA;
 }
 
 .container-header {
@@ -41,7 +41,7 @@
 }
 
 .container-header > a > img {
-  height: 50px;
+  height: 40px;
 }
 
 .container-header .text-1 {
@@ -175,14 +175,4 @@
 
 .container-mobile {
   display: none;
-}
-
-.MuiInput-underline:before,
-.MuiInput-underline:after {
-  border-bottom: none !important;
-}
-
-.MuiNativeSelect-select.MuiNativeSelect-select {
-  padding-left: 10px !important;
-  padding-right: 20px !important;
 }

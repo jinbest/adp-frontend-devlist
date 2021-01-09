@@ -27,12 +27,14 @@ fi
 # Set sudo to work whether logged in as root user or non-root user
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
-# Install envsubst
-if [[ $SYSTEM == "unix" ]]; then
-brew install gettext
-brew link --force gettext
-else
-$SUDO apt-get install gettext-base
+if [[ $(command -v gettext) == "" ]]; then
+    # Install envsubst
+    if [[ $SYSTEM == "unix" ]]; then
+    brew install gettext
+    brew link --force gettext
+    else
+    $SUDO apt-get install gettext-base
+    fi
 fi
 
 # Make temp dir

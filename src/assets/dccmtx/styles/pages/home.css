@@ -79,8 +79,8 @@
 }
 
 .section1-top {
-  margin-top: 300px !important;
-  margin-bottom: 200px !important;
+  margin-top: 250px !important;
+  margin-bottom: 140px !important;
 }
 .section1-title {
   font-style: normal;
@@ -166,7 +166,6 @@
 .section4-button {
   max-width: 316px;
   width: 100%;
-  margin-top: 2rem;
 }
 
 .section4-title {
