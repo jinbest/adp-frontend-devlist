@@ -29,12 +29,13 @@ const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) =
 
 type PropsBrand = {
   item: string;
+  color: string;
 }
 
-const BrandItemLink = ({ item }: PropsBrand) => {
+const BrandItemLink = ({ item, color }: PropsBrand) => {
   return (    
     <li style={{listStyle: 'none'}}>
-      <a style={{color: 'white', padding: '0 5px', fontWeight: 100, fontSize: '15px'}}>
+      <a style={{color: color, padding: '0 5px', fontWeight: 100, fontSize: '15px'}}>
         {item}
       </a>
     </li>
@@ -74,13 +75,13 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
-              return <BrandItemLink item={item} key={index} />
+              return <BrandItemLink item={item} key={index} color={brandItemLink.brandCol} />
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            <BrandItemLink item={brandItemLink.right.ip} />
-            <SelectLang subDomain={subDomain} />
-            <BrandItemLink item='LOG IN' />
+            <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} />
+            <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} />
+            <BrandItemLink item='LOG IN' color={brandItemLink.brandCol} />
           </ul>          
         </div>
       </div>

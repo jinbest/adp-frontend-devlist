@@ -81,6 +81,9 @@
     background-image: url('../img/footer/footer-shape-mobile.png');
     padding: 190px 20px 30px;
   }
+  .back-to-top {
+    left: 10px !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -192,7 +195,7 @@
     position: inherit;
     padding: 50px 0 0;
   }
-  .button {
+  .repair-card-button .button {
     margin: inherit;
   }
   .input-component {

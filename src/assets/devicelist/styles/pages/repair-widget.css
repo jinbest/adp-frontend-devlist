@@ -90,10 +90,10 @@
 }
 
 .device-brand-subtitle {
-  margin-top: 0.8vw;
+  margin-top: 7px;
   font-weight: bold;
   padding: 0 10px;
-  font-size: 1vw;
+  font-size: 20px;
 }
 
 .widget-main-container {
@@ -381,6 +381,13 @@
 
 .repair-trash-icon:hover {
   transform: scale(1.2);
+}
+
+@media (max-width: 1600px) {
+  .device-brand-subtitle {
+    margin-top: 0.8vw;
+    font-size: 1vw;
+  }
 }
 
 @media (max-width: 1100px) {

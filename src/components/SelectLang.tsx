@@ -9,9 +9,6 @@ const useStyles = makeStyles(() =>
       margin: '0 5px',
       marginTop: '-3px',
     },
-    selectEmpty: {
-      color: 'white',
-    },
     selectOption: {
       color: 'black',
       padding: '10px',
@@ -23,9 +20,10 @@ const useStyles = makeStyles(() =>
  /*eslint-disable*/
 type Props = {
   subDomain?: string;
+  color: string;
 }
 
-const SelectLang = ({subDomain}: Props) => {
+const SelectLang = ({subDomain, color}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeCol = data.colorPalle.themeColor;
   const classes = useStyles();
@@ -45,7 +43,7 @@ const SelectLang = ({subDomain}: Props) => {
         <NativeSelect
           value={state.lang}
           onChange={handleChange}
-          className={classes.selectEmpty}
+          style={{color: color}}
         >
           <option value={'en-us'} className={classes.selectOption} style={{color: themeCol}}>ENGLISH</option>
           <option value={'en-ca'} className={classes.selectOption} style={{color: themeCol}}>CANADA</option>
