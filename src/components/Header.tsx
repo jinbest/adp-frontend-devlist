@@ -80,7 +80,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
             <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} />
-            <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} />
+            <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
             <BrandItemLink item='LOG IN' color={brandItemLink.brandCol} />
           </ul>          
         </div>
