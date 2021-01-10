@@ -9,9 +9,6 @@ const useStyles = makeStyles(() =>
       margin: '0 5px',
       marginTop: '-3px',
     },
-    selectEmpty: {
-      color: 'white',
-    },
     selectOption: {
       color: 'black',
       padding: '10px',
@@ -23,32 +20,35 @@ const useStyles = makeStyles(() =>
  /*eslint-disable*/
 type Props = {
   subDomain?: string;
+  color: string;
+  options: any[];
 }
 
-const SelectLang = ({subDomain}: Props) => {
+const SelectLang = ({subDomain, color, options}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeCol = data.colorPalle.themeColor;
   const classes = useStyles();
 
-  const [state, setState] = useState<{ lang: string; }>({
-    lang: 'en-us'
-  });
+  const [state, setState] = useState(options[0])
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     const la = event.target.value as keyof typeof state;
-    setState({ lang: la });
+    setState(la);
   };
 
   return (
     <div>      
       <FormControl className={classes.formControl}>
         <NativeSelect
-          value={state.lang}
+          value={state}
           onChange={handleChange}
-          className={classes.selectEmpty}
+          style={{color: color}}
         >
-          <option value={'en-us'} className={classes.selectOption} style={{color: themeCol}}>ENGLISH</option>
-          <option value={'en-ca'} className={classes.selectOption} style={{color: themeCol}}>CANADA</option>
+          {options.map((item:any, index:number) => {
+            return (
+              <option value={item} className={classes.selectOption} style={{color: themeCol}} key={index}>{item}</option>
+            )
+          })}
         </NativeSelect>
       </FormControl>      
     </div>

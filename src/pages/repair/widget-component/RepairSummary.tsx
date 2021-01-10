@@ -3,7 +3,6 @@ import { Typography } from '@material-ui/core'
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../../store/RepairWidgetStore'
-import { computed } from 'mobx'
 
 /* eslint-disable */
 type StoreProps = {  
@@ -26,23 +25,6 @@ type MyState = {
 @observer 
 class RepairSummary extends React.Component<Props, MyState> {
   static defaultProps = {} as StoreProps;
-  
-  @computed
-  get computedRepairWidgetData() {
-    const cntRepairWidgetData = this.props.repairWidgetStore;
-    return {
-      deviceBrand: cntRepairWidgetData.deviceBrand,
-      deviceModel: cntRepairWidgetData.deviceModel,
-      chooseRepair: cntRepairWidgetData.chooseRepair,
-      deviceCounter: cntRepairWidgetData.deviceCounter,
-      deliveryMethod: cntRepairWidgetData.deliveryMethod,
-      receiveQuote: cntRepairWidgetData.receiveQuote,
-      contactDetails: cntRepairWidgetData.contactDetails,
-      bookData: cntRepairWidgetData.bookData,
-      message: cntRepairWidgetData.message,
-      cntStep: cntRepairWidgetData.cntStep
-    };
-  }
 
   constructor(props:Props) {
     super(props);

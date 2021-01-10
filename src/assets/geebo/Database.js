@@ -144,6 +144,8 @@ const navItemsData = [
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
     right: {ip: "902.270.4349", en: "ENGLISH", log: "LOG IN"},
+    brandCol: 'white',
+    selectOption: ['ENGLISH', 'CANADA']
 }
 
 const hoursData = [
