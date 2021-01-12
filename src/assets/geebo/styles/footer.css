@@ -90,3 +90,7 @@
   top: 350px;
   right: 200px;
 }
+
+.footer-container-special {
+  display: none;
+}

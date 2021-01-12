@@ -9,10 +9,14 @@ type Props = {
   themeCol: string;
   step: number;
   handleStep: (step:number) => void;
+  subDomain?: string;
 }
 
 
-const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handleStep}: Props) => {
+const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handleStep, subDomain}: Props) => {
+
+  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
+  const publicText = mockData.repairWidget.publicText;
 
   const ChooseNextStep = () => {
     handleStep(step+1)
@@ -40,11 +44,11 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
       <Card className='repair-service-summary-card'>
         <div className='repair-choose-device-container'>
           <Typography className='repair-service-summary-title'>
-            Repair Service Summary
+            {publicText.repairServiceSummary}
           </Typography>
           <Grid container className='repair-service-summary-detail-container' spacing={3}>
             <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>Your Information</Typography>
+              <Typography className='topic'>{publicText.yourInfo}</Typography>
               <Typography className='details'>
                 {repairWidgetData.contactDetails.firstName + ' ' + repairWidgetData.contactDetails.lastName}
               </Typography>
@@ -52,13 +56,13 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
               <Typography className='details'>{repairWidgetData.contactDetails.phone}</Typography>
             </Grid>
             <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>Preferred Contact Method</Typography>
+              <Typography className='topic'>{publicText.preferredContactMethod}</Typography>
               <Typography className='details'>{repairWidgetData.receiveQuote.method}</Typography>
             </Grid>
           </Grid>
           <Grid container className='repair-service-summary-detail-container' spacing={3}>
             <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>Delivery Method</Typography>
+              <Typography className='topic'>{publicText.deliveryMethod}</Typography>
               <Typography className='details' style={{color: themeCol}}>{repairWidgetData.deliveryMethod.method}</Typography>
               {caseKey === 1 && <Typography className='details bolder'>Pick-Up From</Typography>}
               {caseKey === 0 && <Typography className='details bolder'>Send To</Typography>}
@@ -77,14 +81,14 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
               </Typography>}
             </Grid>
             {repairWidgetData.message && <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>Message</Typography>
+              <Typography className='topic'>{publicText.message}</Typography>
               <Typography className='details'>{repairWidgetData.message}</Typography>
             </Grid>}
           </Grid>
           <div className='repair-service-summary-detail-container'>
             <div className='repair-service-summary-flex-container bordered'>
-              <Typography className='topic'>Device</Typography>
-              <Typography className='topic'>Repair Service</Typography>
+              <Typography className='topic'>{publicText.device}</Typography>
+              <Typography className='topic'>{publicText.repairService}</Typography>
             </div>
             {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
               return (
@@ -105,11 +109,11 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
           </div>
           <div className='repair-choose-device-container'>            
             {caseKey > 0 && <Button 
-              title='Schedule Appointment' bgcolor={themeCol} borderR='20px' maxWidth='400px' 
+              title={publicText.scheduleAppointment} bgcolor={themeCol} borderR='20px' maxWidth='400px' 
               height='30px' fontSize='17px' margin='0 auto' onClick={ChooseNextStep}
             />}
             {caseKey === 0 && <Button 
-              title='Request Quote' bgcolor={themeCol} borderR='20px' maxWidth='400px' 
+              title={publicText.requestQuote} bgcolor={themeCol} borderR='20px' maxWidth='400px' 
               height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleStep(11)}
             />}
           </div>

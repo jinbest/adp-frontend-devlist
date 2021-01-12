@@ -37,8 +37,8 @@ import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/corner-shape.png'
-import mockupShape from './img/mockup-shape.png'
+import cornerShape from './img/shape-home.png'
+
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -81,24 +81,24 @@ const cardFixData = [
 const contentFixData = [
     {
         title: "FREE DIAGNOSTICS",
-        content:
-            "We believe in a transparent repqir process. If you're not sure what's wrong with your device, we'll diagnose it for free.",
+        content: 
+            "We believe in a transparent repair process. If you’re not sure what’s wrong with your device, we’ll diagnose it for free.",
     },
     {
         title: "LOW PRICE GUARANTEE",
         content:
-            "We want you to be confident that you're getting the best price. We'll match any local competitor's published price for the same repair and beat it by $5.",
+            "We want you to be confident that you’re getting the best price. We’ll match any local competitor’s published price for the same repair and beat it by $5.",
     },
     {
         title: "QUICK TURNAROUND",
         content:
-            "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours.",
+            "We know you don’t have all day so we’ll return your device as quickly as possible. Most of our repairs can be performed in under two hours.",
     },
     {
-        title: "LIFETIME WARRANTY",
+        title: "90 DAY WARRANTY",
         content:
-            "All of our repairs are backed with our lifetime, hassle-free warranty. This warranty is valid at all of our locations worldwide.",
-    },
+            "All of our repairs are backed with our 90-day, hassle-free warranty. This warranty is valid at all of our locations worldwide.",
+    }
 ]
 
 const popularCardData = [
@@ -116,7 +116,7 @@ const devicelistData = [
     },
     {
         img: warranty,
-        title: "90 Day Warranty",
+        title: "1 Year Warranty",
         content: "Our partner merchants are continously monitored.",
     },
     { img: amazing, title: "Amazing Service", content: "Secure shopping experience." },
@@ -129,22 +129,23 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-    orange: '#FCA425',
-    themeColor: '#FCA425',
-    priceCol: '#FCA425'
+    orange: '#585758',
+    themeColor: '#6EB24F',
+    priceCol: '#6EB24F'
 }
 
 const navItemsData = [
     { href: "#", text: "Trade", isActive: false },
     { href: "/repair", text: "Repair", isActive: false },
-    { href: "#", text: "Buy", isActive: false },
+    { href: "#", text: "Buy", isActive: false },    
     { href: "#", text: "Protect", isActive: false },
 ]
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
-    right: {ip: "403.477.6203", en: "ENGLISH", log: "LOG IN"},
-    brandCol: 'black',
+    right: {ip: "902.270.4349", en: "ENGLISH", log: "LOG IN"},
+    brandCol: 'white',
+    brandThemeCol: '#6EB24F',
     selectOption: ['ENGLISH', 'CANADA']
 }
 
@@ -190,11 +191,11 @@ const mobileNavItemData = {
 
 const userNavItemData = [
     {text: 'My Account', href: '#'},
-    {text: 'Track Repair', href: '/repair'},
-    {text: 'File a Claim', href: '#'},
+    {text: 'Tracking', href: '#'},
     {text: 'Orders', href: '#'},
     {text: 'Trade-In', href: '#'},
 ]
+
 
 const arrowData = {
     arrowLeft: arrowLeft,
@@ -202,8 +203,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: {img: cornerShape, width: ''},
-    mockupShape: {img: mockupShape, width: ''}
+    cornerShape: {img: cornerShape, width: '100vw'},
+    mockupShape: ''
 }
 
 const footerImageData = {
@@ -215,9 +216,14 @@ const footerImageData = {
 }
 
 const homeTextData = {
+    header: {
+        buttonTitle: 'Find a Store',
+        width: '150px'
+    },
     section1: {
-        title: ['Trade, repair, buy or sell', 'your mobile device'],
-        subtitle: 'Okotoks mobile device specialists'
+        title: ['Trade, repair, buy or sell your ', 'mobile device'],
+        subtitle: 'Nova Scotia\'s mobile device specialists',
+        searchPlaceholder: 'Find your device'
     },
     section2: {
         title: 'What can we fix for you today?'
@@ -229,7 +235,8 @@ const homeTextData = {
         color: 'white'
     },
     section4: {
-        title: 'Welcome to PhonePhix, Okotoks mobile device marketplace'
+        title: 'Welcome to Geebo Device Repair, Nova Scotia\'s mobile device marketplace',
+        btnTitle: 'Our quality charter'
     },
     section5: {
         img: bounce,
@@ -242,7 +249,8 @@ const homeTextData = {
         btnTitle: "Insure My Device",
     },
     section6: {
-        title: 'See Why Customers Love PhonePhix',
+        title: 'See Why Customers Love Geebo Device Repair',
+        subtitle: 'View more',
         review: [
             {
                 score: 5,
@@ -269,8 +277,8 @@ const homeTextData = {
     footer: {
         title: { text: '', color: '' },
         content: [
-            '(403) 477-6203 | sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB',
-            '© 2020 PhonePhix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "PhonePhix" does not own or make claim to those trademarks used on this website in which it is not the holder.'
+            '(902) 270-4349 | 306 Charlotte St., Halifax, NS',
+            '© 2020 Geebo Device Repair 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Geebo Device Repair" does not own or make claim to those trademarks used on this website in which it is not the holder.'
         ],
         footerLink: [
             {
@@ -337,13 +345,13 @@ const repairData = {
             {
                 img: receiveDevice,
                 subtitle: 'Receive your device',
-                content: 'PhonePhix repairs your device and notifies you of pick up or delivery date.',
+                content: 'Geebo Device Repair repairs your device and notifies you of pick up or delivery date.',
             }
         ]
     },
     section3: {
         title: 'From New to Reconditioned',
-        content: 'Choose your new phone among our 4 grades, with PhonePhix it’s easy to choose for any budget!',
+        content: 'Choose your new phone among our 4 grades, with Geebo Device Repair it\'s easy to choose for any budget!',
         children: [
             {
                 subtitle: 'NEW',

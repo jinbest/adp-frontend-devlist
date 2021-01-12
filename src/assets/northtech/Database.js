@@ -145,6 +145,7 @@ const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
     right: {ip: "819.700.2221", en: "ENGLISH", log: "LOG IN"},
     brandCol: 'white',
+    brandThemeCol: '#2B388F',
     selectOption: ['ENGLISH', 'CANADA']
 }
 
@@ -215,9 +216,14 @@ const footerImageData = {
 }
 
 const homeTextData = {
+    header: {
+        buttonTitle: 'Find a Store',
+        width: '150px'
+    },
     section1: {
         title: ['Trade, repair, buy or sell your ', 'mobile device'],
-        subtitle: 'Your affordable solutions for technology in the North'
+        subtitle: 'Your affordable solutions for technology in the North',
+        searchPlaceholder: 'Find your device'
     },
     section2: {
         title: 'What can we fix for you today?'
@@ -229,7 +235,8 @@ const homeTextData = {
         color: 'black'
     },
     section4: {
-        title: 'Welcome to NorthTech Solutions, your affordable solutions for technology in the North'
+        title: 'Welcome to NorthTech Solutions, your affordable solutions for technology in the North',
+        btnTitle: 'Our quality charter'
     },
     section5: {
         img: bounce,
@@ -243,6 +250,7 @@ const homeTextData = {
     },
     section6: {
         title: 'See Why Customers Love NorthTech Solutions',
+        subtitle: 'View more',
         review: [
             {
                 score: 5,

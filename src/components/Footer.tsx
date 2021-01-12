@@ -17,7 +17,7 @@ const Footer = ({subDomain}: Props) => {
       </Typography>
       <Box className='footer-container'>
         <Grid item container xs={12}>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={4}>
             <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
             <div className='device-list-grid'>
               {data.homeTextData.footer.content.map((item:any, index:number) => {
@@ -27,7 +27,7 @@ const Footer = ({subDomain}: Props) => {
               })}
             </div>
           </Grid>
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={8}>
             <Grid item container xs={12}>
               {
                 footerLink.map((links:any, index:number) => 
@@ -46,6 +46,35 @@ const Footer = ({subDomain}: Props) => {
                 )
               }
             </Grid>
+            <div className="footer-images-div">
+              <div>
+                <img src={data.footerImageData.deviceList} className='footer-device-response'/>
+              </div>
+              <div>
+                <img src={data.footerImageData.buyNow} className='footer-buynow'/>
+                {data.footerImageData.others.map((item:any, index:number) => {
+                  return (
+                    <div className="footer-others" key={index}>
+                      <img src={item} key={index} />
+                    </div>
+                  )
+                })}
+                <img src={data.footerImageData.deviceList} className='footer-device-list'/>
+              </div>
+            </div>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box className='footer-container-special'>
+        <Grid item container xs={12} className='special-footer'>
+          <Grid item xs={12} md={4}>
+            <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
+            <div className='device-list-grid'>
+              <div>{data.homeTextData.footer.content[0]}</div>
+              <div className='footer-special-content'>{data.homeTextData.footer.content[1]}</div>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={8}>
             <div className="footer-images-div">
               <div>
                 <img src={data.footerImageData.deviceList} className='footer-device-response'/>

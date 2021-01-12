@@ -31,9 +31,11 @@ const StyledMenu = withStyles({
 
 type Props = {
   subDomain?: string;
+  btnTitle: string;
+  width: string;
 }
 
-const CustomizedMenus = ({subDomain}: Props) => {
+const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeColor = data.colorPalle.themeColor;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -49,7 +51,7 @@ const CustomizedMenus = ({subDomain}: Props) => {
   return (
     <div>
       <Button 
-        title='Find a Store' 
+        title={btnTitle} 
         bgcolor={themeColor} 
         borderR='20px'
         aria-controls="customized-menu"
@@ -57,7 +59,7 @@ const CustomizedMenus = ({subDomain}: Props) => {
         onClick={handleClick}
         icon={true}
         fontSize='17px'
-        width='150px'
+        width={width}
       />
       <StyledMenu
         id="customized-menu"
@@ -113,7 +115,7 @@ const CustomizedMenus = ({subDomain}: Props) => {
         </div>
         <div className='menu-search-div'>
           <div className='menu-search'>
-            <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+            <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' placeholder='Find another location'/>
           </div>
           <Button 
             title='Search' 

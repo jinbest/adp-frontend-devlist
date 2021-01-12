@@ -9,13 +9,13 @@ import store from "./store/RepairWidgetStore"
 /* eslint-disable */
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
 const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
-// const devicelist = ['devicelist', 'geebo', 'northtech', 'phonephix']
-// const subDomain = devicelist[3]
+// const devicelist = ['devicelist', 'geebo', 'mobiletech', 'northtech', 'phonephix']
+// const subDomain = devicelist[2]
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`)
 
-    const [footerStatus, setFooterStatus] = useState(true)
+    const [footerStatus, setFooterStatus] = useState(true);
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)

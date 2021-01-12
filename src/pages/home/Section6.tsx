@@ -16,7 +16,7 @@ const Section6 = ({subDomain}: Props) => {
         {data.homeTextData.section6.title}
       </Typography>
       <Typography className='f24'>
-        View More
+        {data.homeTextData.section6.subtitle}
       </Typography>
       <Grid container item xs={12} spacing={2} className='sec6-card'>
         {data.homeTextData.section6.review.map((item:any, index:number) => {

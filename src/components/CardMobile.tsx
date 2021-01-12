@@ -13,7 +13,7 @@ const CardMobile = ({title, img, btnTitle, color}: Props) => {
   
   return (
     <div className='card-mobile'>
-      <p style={{color: color}}>{title}</p>
+      <p style={{color: color}}>{title.toLocaleUpperCase()}</p>
       <img src={img} />
       <Button title={btnTitle} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' />
     </div>

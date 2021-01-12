@@ -20,6 +20,22 @@ import requestQuote from './repair-widget/quote/requestQuote.png'
 import thankQuote from './repair-widget/quote/thankQuote.png'
 
 const repairWidget = {
+  publicText: {
+    next: 'Next',
+    enterKey: 'or press ENTER',
+    yes: 'Yes',
+    no: 'No',
+    repairSummary: 'Repair Summary',
+    repairService: 'Repair Service:',
+    repairServiceSummary: 'Repair Service Summary',
+    yourInfo: 'Your Information',
+    deliveryMethod: 'Delivery Method',
+    preferredContactMethod: 'Preferred Contact Method',
+    message: 'Message',
+    device: 'Device',
+    scheduleAppointment: 'Schedule Appointment',
+    requestQuote: 'Request Quote'
+  },
   deviceBrand: {
     title: 'Choose Your Device Brand',
     placeholder: 'Search for your Device Brand or enter IMEI',
