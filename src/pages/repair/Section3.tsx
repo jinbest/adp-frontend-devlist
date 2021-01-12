@@ -11,7 +11,7 @@ const Section3 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
   const repair = data.repairData.section3
   return (
-    <section className=''>
+    <section className='repair-section-3'>
       <div className='Container'>
         <Typography className="repair-section-title-2" style={{color: repair.themeCol}}>
           {repair.title}

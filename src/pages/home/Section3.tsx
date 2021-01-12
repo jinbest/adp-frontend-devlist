@@ -11,7 +11,7 @@ const Section3 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
   const deviceCard = require(`../../assets/${subDomain}/img/device-card.png`)
   return (
-    <section>
+    <section className='sec3-container-parent'>
       <div className='Container'>
         <Typography className='section-title'>
           {data.homeTextData.section3.title}

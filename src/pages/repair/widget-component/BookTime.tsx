@@ -16,12 +16,15 @@ type Props = {
 }
 
 const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
+  const mainData = require(`../../../assets/${subDomain}/Database.js`);
+  const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`);
+  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const timeZoneList = timezoneData.timezoneOptions;
   const themeCol = mainData.colorPalle.themeColor;
+  const brandThemeCol = mainData.brandItemsData.brandThemeCol;
   const DAYS_OF_THE_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const MONTHS = ['January', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octorber', 'November', 'December'];
+  const publicText = mockData.repairWidget.publicText;
 
   const [tzIndex, setTZIndex] = useState(0);
   const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
@@ -191,6 +194,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                 <Grid item xs={12} sm={6}>
                   <CustomBookTime 
                     themeCol={themeCol} 
+                    brandThemeCol={brandThemeCol}
                     title={DAYS_OF_THE_WEEK[week] + ', ' + MONTHS[month] + ' ' + day}
                     subDomain={subDomain}
                     timezoneIndex={tzIndex}
@@ -212,10 +216,10 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
             </div>
             <div className='repair-card-button'>
               <Button 
-                title='Next' bgcolor={themeCol} borderR='20px' width='120px' 
+                title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
               />
-              <p>or press ENTER</p>
+              <p>{publicText.enterKey}</p>
             </div>
           </Card>          
         </Grid>

@@ -172,6 +172,11 @@
   max-width: 615px;
   width: 100%;
 }
+
+.sec4-container-special-box {
+  display: none !important;
+}
+
 .mobile {
   display: none;
 }
@@ -224,7 +229,8 @@ p {
 .sec6-card {
   margin: auto;
   padding-top: 1rem;
-  max-width: 500px;
+  /* max-width: 500px; */
+  height: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -254,6 +260,12 @@ p {
     text-align: center;
     margin: auto !important;
     margin-bottom: 2rem !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .sec6-card {
+    max-width: 500px;
   }
 }
 

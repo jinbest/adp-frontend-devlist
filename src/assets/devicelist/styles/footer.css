@@ -81,3 +81,7 @@
 .device-list-grid > div {
   margin: 20px 0;
 }
+
+.footer-container-special {
+  display: none;
+}

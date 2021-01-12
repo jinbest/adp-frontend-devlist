@@ -1,5 +1,5 @@
 .footer {
-  padding: 190px 20px 30px;
+  padding: 680px 20px 30px;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -80,4 +80,17 @@
 
 .device-list-grid > div {
   margin: 20px 0;
+}
+
+.footer-title {
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  position: absolute;
+  top: 350px;
+  right: 200px;
+}
+
+.footer-container-special {
+  display: none;
 }

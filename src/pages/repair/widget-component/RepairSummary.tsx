@@ -80,11 +80,13 @@ class RepairSummary extends React.Component<Props, MyState> {
   render() {
     const { themeCol, subDomain, showInfo, repairWidgetStore } = this.props;
     const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
+    const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
     const caseKey = repairWidgetStore.deliveryMethod.caseKey;
+    const publicText = mockData.repairWidget.publicText;
 
     return (
       <div className='repair-choose-device-container'>
-        <Typography className='topic-title'>Repair summary</Typography>
+        <Typography className='topic-title'>{publicText.repairSummary}</Typography>
         <div className='repair-summary-content-div'>
           {this.state.brand && this.state.brand.map((item:any, index:number) => {
             return (
@@ -101,7 +103,7 @@ class RepairSummary extends React.Component<Props, MyState> {
                       <Typography className='repair-summary-title'>
                         {item.name + ' ' + this.state.model[index]['name']}
                       </Typography>
-                      <Typography className='repair-summary-service'>Repair Service:</Typography>
+                      <Typography className='repair-summary-service'>{publicText.repairService}</Typography>
                       <p className='repair-summary-service-child'>{chooseItem.name}</p>
                     </div>
                   </div>

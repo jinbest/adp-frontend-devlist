@@ -49,7 +49,9 @@ type PropsHeader = {
 
 const Header = ({subDomain, handleStatus}: PropsHeader) => {
   const data = require(`../assets/${subDomain}/Database`);
-  const navItemsLink = data.navItemsData, brandItemLink = data.brandItemsData;
+  const navItemsLink = data.navItemsData, 
+    brandItemLink = data.brandItemsData, 
+    searchPlaceholder = data.homeTextData.section1.searchPlaceholder;
 
   const [userStatus, setUserStatus] = useState(true);
   const [menuStatus, setMenuStatus] = useState(true);
@@ -71,7 +73,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
 
   return (
     <header className='header'>
-      <div className='header-brand' style={{backgroundColor: data.colorPalle.themeColor}}>
+      <div className='header-brand' style={{backgroundColor: data.brandItemsData.brandThemeCol}}>
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
@@ -81,7 +83,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
             <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} />
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
-            <BrandItemLink item='LOG IN' color={brandItemLink.brandCol} />
+            <BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} />
           </ul>          
         </div>
       </div>
@@ -89,7 +91,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
         <Logo subDomain={subDomain} type='header' handleStatus={handleStatus} />
         
         <div className='search-div' id='header-search'>
-          <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+          <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
         </div>
         <div className='nav-div'>
           <ul className='navlink-parent'>
@@ -97,8 +99,8 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
               return <NavItemLink item={item} key={index} handleStatus={handleStatus}/>
             })}
           </ul>
-          <CustomizedMenus subDomain={subDomain} />
-          <img src={data.avatarData.store} />
+          <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} />
+          <img src={data.avatarData.store} className='navlink-avatar-store' />
         </div>
         <div className='avatar-div'>
           {
@@ -119,7 +121,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
           userStatus && menuStatus ? 
           <div className='mobile-search-div'>
             <div className='mobile-child-search'>
-              <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+              <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
             </div>
           </div> : 
           <div className='mobile-menu-navbar'>

@@ -46,30 +46,32 @@ class Section1 extends React.Component<Props> {
     const repair = data.repairData.section1;
 
     return (
-      <section className='Container'>
-        <Grid container className='repair-section1'>
-          <Grid item xs={12} sm={7}>
-            <Typography className="repair-section-title-1" style={{color: repair.themeCol}}>
-              {repair.title}
-            </Typography>
-            <Typography className="repair-section-content" style={{color: repair.themeCol}}>
-              {repair.content}
-            </Typography>
-            <Box className='repair-section-button'>
-              <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
-                <Button 
-                  title={repair.btnTitle} 
-                  bgcolor={data.colorPalle.themeColor} 
-                  borderR='20px'
-                />
-              </Link>
-            </Box>
+      <div className='repair-section1-special-bg'>
+        <section className='Container'>
+          <Grid container className='repair-section1'>
+            <Grid item xs={12} sm={7}>
+              <Typography className="repair-section-title-1" style={{color: repair.themeCol}}>
+                {repair.title}
+              </Typography>
+              <Typography className="repair-section-content" style={{color: repair.themeCol}}>
+                {repair.content}
+              </Typography>
+              <Box className='repair-section-button'>
+                <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
+                  <Button 
+                    title={repair.btnTitle} 
+                    bgcolor={data.colorPalle.themeColor} 
+                    borderR='20px'
+                  />
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={5}>
+              <img src={repair.img} style={{width: '100%', marginTop: '-80px'}}/>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={5}>
-            <img src={repair.img} style={{width: '100%', marginTop: '-80px'}}/>
-          </Grid>
-        </Grid>
-      </section>
+        </section>
+      </div>
     )
   }
 }

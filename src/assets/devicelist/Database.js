@@ -145,6 +145,7 @@ const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
     right: {ip: "204.221.5898", en: "ENGLISH", log: "LOG IN"},
     brandCol: 'white',
+    brandThemeCol: '#054DFA',
     selectOption: ['ENGLISH', 'CANADA']
 }
 
@@ -215,9 +216,14 @@ const footerImageData = {
 }
 
 const homeTextData = {
+    header: {
+        buttonTitle: 'Find a Store',
+        width: '150px'
+    },
     section1: {
         title: ['Trade, repair, buy or sell', 'your mobile device'],
-        subtitle: 'Winnipeg\'s mobile device specialists'
+        subtitle: 'Winnipeg\'s mobile device specialists',
+        searchPlaceholder: 'Find your device'
     },
     section2: {
         title: 'What can we fix for you today?'
@@ -229,7 +235,8 @@ const homeTextData = {
         color: 'white'
     },
     section4: {
-        title: 'Welcome to DeviceList, Canada’s mobile device marketplace'
+        title: 'Welcome to DeviceList, Canada’s mobile device marketplace',
+        btnTitle: 'Our quality charter'
     },
     section5: {
         img: bounce,
@@ -243,6 +250,7 @@ const homeTextData = {
     },
     section6: {
         title: 'See Why Customers Love DeviceList',
+        subtitle: 'View more',
         review: [
             {
                 score: 5,

@@ -20,10 +20,10 @@ const Logo = ({subDomain, type, handleStatus}: Props) => {
   return (
     type === 'header' ? 
     <Link to='/home' onClick={handleLogoClick}>
-      <img className='logo' src={logoHeaderImg.default} alt='logo'/>
+      <img className='logo-header' src={logoHeaderImg.default} alt='logo'/>
     </Link> : 
     <Link to='/' onClick={handleLogoClick}>
-      <img className='logo' src={logoFooterImg.default} alt='logo'/>
+      <img className='logo-footer' src={logoFooterImg.default} alt='logo'/>
     </Link>
   )
 }

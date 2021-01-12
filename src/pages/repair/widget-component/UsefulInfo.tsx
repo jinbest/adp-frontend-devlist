@@ -15,8 +15,10 @@ type Props = {
 }
 
 const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const themeCol = mainData.colorPalle.themeColor
+  const mainData = require(`../../../assets/${subDomain}/Database.js`);
+  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
+  const themeCol = mainData.colorPalle.themeColor;
+  const publicText = mockData.repairWidget.publicText;
 
   const [message, setMessage] = useState('')
 
@@ -61,10 +63,10 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
             </div>
             <div className='repair-card-button'>
               <Button 
-                title='Next' bgcolor={themeCol} borderR='20px' width='120px' 
+                title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep}
               />
-              <p>or press ENTER</p>
+              <p>{publicText.enterKey}</p>
             </div>
           </Card>          
         </Grid>

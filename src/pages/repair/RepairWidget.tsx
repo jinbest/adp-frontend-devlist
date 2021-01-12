@@ -251,6 +251,7 @@ class RepairWidget extends React.Component<Props, MyState> {
             caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
             step={this.state.step} 
             handleStep={this.handleStep.bind(this)}
+            subDomain={subDomain}
           />
         }
         { this.state.step === 10 &&

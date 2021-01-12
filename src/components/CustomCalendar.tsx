@@ -96,8 +96,8 @@ type CanlendarProps = {
 }
 
 const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps) => {
-  const mainData = require(`../assets/${subDomain}/Database.js`)
-  const themeCol = mainData.colorPalle.themeColor
+  const mainData = require(`../assets/${subDomain}/Database.js`);
+  const themeCol = mainData.colorPalle.themeColor;
 
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

@@ -54,10 +54,10 @@ const Section1 = ({subDomain}: Props) => {
           {data.homeTextData.section1.subtitle}
         </Typography>
         <Box className='sec1-search_input'>
-          <Search color='white' bgcolor={data.colorPalle.themeColor} height='60px' />
+          <Search placeholder={data.homeTextData.section1.searchPlaceholder} color='white' bgcolor={data.colorPalle.themeColor} height='60px' />
         </Box>
       </Grid>
-      <Grid container item xs={12} spacing={3}>
+      <Grid container item xs={12} spacing={3} className='sec1-card-mobile-data'>
         {data.cardMobileData.map((item:any, index:number) => {
           return (
             <Grid item xs={6} sm={6} md={3} style={{paddingTop: '0px', marginBottom: '5px'}} key={index}>
