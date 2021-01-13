@@ -29,6 +29,7 @@ function isPast(selyear:number, selmonth:number, selday:number, seloff:number, h
 type Props = {
   themeCol?: string;
   brandThemeCol?: string;
+  repairBooktimeCol?: string;
   title: string;
   subDomain?: string;
   timezoneIndex: number;
@@ -46,7 +47,7 @@ type ArrayProps = {
 }
 
 const CustomBookTime = ({
-  title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, themeCol, brandThemeCol, changeBooktime
+  title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, brandThemeCol, repairBooktimeCol, changeBooktime
 }: Props) => {
 
   const timeRange = { workday: [540, 1050], saturday: [660, 960]}
@@ -107,8 +108,8 @@ const CustomBookTime = ({
     for (let i = 0; i < cntBookArray.length; i++) {
       if (i === n) {
         cntBookArray[i].color = 'white';
-        cntBookArray[i].bgColor = themeCol;
-        cntBookArray[i].borderCol = themeCol;
+        cntBookArray[i].bgColor = repairBooktimeCol;
+        cntBookArray[i].borderCol = repairBooktimeCol;
       } else {
         cntBookArray[i].color = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : brandThemeCol;
         cntBookArray[i].borderCol = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : brandThemeCol;

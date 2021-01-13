@@ -131,7 +131,12 @@ const devicelistData = [
 const colorPalle = {
     orange: '#F36B26',
     themeColor: '#054DFA',
-    priceCol: '#054DFA'
+    underLineCol: '#054DFA',
+    priceCol: '#054DFA',
+    repairButtonCol: '#054DFA',
+    repairChooseItemCol: '#054DFA',
+    repairBooktimeCol: '#054DFA',
+    textThemeCol: '#054DFA'
 }
 
 const navItemsData = [
@@ -276,6 +281,15 @@ const homeTextData = {
     },
     footer: {
         title: { text: '', color: '' },
+        gridVal: {
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
+        },
+        subContent: [
+            {title: '', content: ''},
+            {title: '', content: ''}
+        ],
+        contentSubTitle: '',
         content: [
             'Canada’s mobile device marketplace (204) 221-5898 | sales@devicelist.ca 2020 Corydon Ave, Unit F Winnipeg, MB',
             '© 2020 DeviceList 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "DeviceList" does not own or make claim to those trademarks used on this website in which it is not the holder.'

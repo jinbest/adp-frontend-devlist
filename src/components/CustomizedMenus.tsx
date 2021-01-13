@@ -38,6 +38,7 @@ type Props = {
 const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeColor = data.colorPalle.themeColor;
+  const underLineCol = data.colorPalle.underLineCol;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -76,8 +77,8 @@ const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
               <p className='block-content'>71 Greenford Avenue Winninpeg, MB RiR 1R1 (204) 555-5555</p>
             </div>
             <div className='content-block'>
-              <a className='link' style={{color: themeColor}}>View Store Details</a>
-              <a className='link' style={{color: themeColor}}>Get Directions</a>
+              <a className='link' style={{color: underLineCol}}>View Store Details</a>
+              <a className='link' style={{color: underLineCol}}>Get Directions</a>
             </div>
             <Button 
               title='Book Repair' 

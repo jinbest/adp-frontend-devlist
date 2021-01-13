@@ -131,7 +131,12 @@ const devicelistData = [
 const colorPalle = {
     orange: '#F67500',
     themeColor: '#2B388F',
-    priceCol: '#F67500'
+    underLineCol: '#2B388F',
+    priceCol: '#F67500',
+    repairButtonCol: '#2B388F',
+    repairChooseItemCol: '#2B388F',
+    repairBooktimeCol: '#2B388F',
+    textThemeCol: '#2B388F'
 }
 
 const navItemsData = [
@@ -276,6 +281,15 @@ const homeTextData = {
     },
     footer: {
         title: { text: 'Giving Back to the North', color: 'white' },
+        gridVal: {
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
+        },
+        subContent: [
+            {title: '', content: ''},
+            {title: '', content: ''}
+        ],
+        contentSubTitle: '',
         content: [
             '(819) 700-2211 | info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
             '© 2020 NorthTech Solutions 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "NorthTech Solutions" does not own or make claim to those trademarks used on this website in which it is not the holder.'

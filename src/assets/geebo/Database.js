@@ -131,7 +131,12 @@ const devicelistData = [
 const colorPalle = {
     orange: '#585758',
     themeColor: '#6EB24F',
-    priceCol: '#6EB24F'
+    underLineCol: '#585758',
+    priceCol: '#6EB24F',
+    repairButtonCol: '#6EB24F',
+    repairChooseItemCol: '#6EB24F',
+    repairBooktimeCol: '#6EB24F',
+    textThemeCol: '#6EB24F'
 }
 
 const navItemsData = [
@@ -276,6 +281,15 @@ const homeTextData = {
     },
     footer: {
         title: { text: '', color: '' },
+        gridVal: {
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
+        },
+        subContent: [
+            {title: '', content: ''},
+            {title: '', content: ''}
+        ],
+        contentSubTitle: '',
         content: [
             '(902) 270-4349 | 306 Charlotte St., Halifax, NS',
             '© 2020 Geebo Device Repair 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Geebo Device Repair" does not own or make claim to those trademarks used on this website in which it is not the holder.'

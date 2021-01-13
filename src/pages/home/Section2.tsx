@@ -54,7 +54,7 @@ const Section2 = ({subDomain}: Props) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box className='cart-contentfix-container'>
-                  <ContentFix title={item.title} content={item.content} themeCol={data.colorPalle.themeColor} key={index} />
+                  <ContentFix title={item.title} content={item.content} themeCol={data.colorPalle.underLineCol} key={index} />
                 </Box>
               </Grid>
             )

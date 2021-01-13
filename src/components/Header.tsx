@@ -16,6 +16,10 @@ const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) =
     } else {
       handleStatus(true);
     }
+    if (href === '/repair') {
+      const headerSearch = document.getElementById('header-search') as HTMLElement;
+      headerSearch.style.visibility = 'visible';
+    }
   }
 
   return (
@@ -158,7 +162,7 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
                     <a key={index} className='mobile-item' href={item.href}>{item.text}</a>
                   )
                 })}
-                <a href='#' style={{color: data.colorPalle.themeColor}}>Sign Out</a>
+                <a href='#' style={{color: data.colorPalle.textThemeCol}}>Sign Out</a>
               </div>
             }
           </div>

@@ -46,7 +46,7 @@ interface DayProps {
   isPastDay?: boolean;
   color?: string;
   bg?: string;
-  themeCol?: string;
+  repairBooktimeCol?: string;
   margin?: string;
 }
 
@@ -72,7 +72,7 @@ const Day = styled.div<DayProps>`
     `}
   ${props => props.isToday &&
     css`
-      border: 1px solid ${props.themeCol};
+      border: 1px solid ${props.repairBooktimeCol};
       border-radius: 7px;
       opacity: 0.8;
     `}
@@ -82,7 +82,7 @@ const Day = styled.div<DayProps>`
     `}
   ${props => props.isSelected &&
     css`
-      background-color: ${props.themeCol};
+      background-color: ${props.repairBooktimeCol};
       border-radius: 7px;
       color: white;
       opacity: 0.8;
@@ -97,7 +97,7 @@ type CanlendarProps = {
 
 const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps) => {
   const mainData = require(`../assets/${subDomain}/Database.js`);
-  const themeCol = mainData.colorPalle.themeColor;
+  const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol;
 
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -212,7 +212,7 @@ const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps)
                 isPastDay={new Date(year, month, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate())}
                 isToday={d === today.getDate() && month === today.getMonth() && year === today.getFullYear()}
                 isSelected={d === day}
-                themeCol={themeCol}
+                repairBooktimeCol={repairBooktimeCol}
                 onClick={()=>handleDate(new Date(year, month, d))}
               >
                 {d > 0 ? d : ''}

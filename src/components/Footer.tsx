@@ -9,7 +9,9 @@ type Props = {
 
 const Footer = ({subDomain}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
-  const footerLink = data.homeTextData.footer.footerLink
+  const footerLink = data.homeTextData.footer.footerLink;
+  const gridVal = data.homeTextData.footer.gridVal;
+
   return (
     <footer className='footer'>
       <Typography className='footer-title' style={{color: data.homeTextData.footer.title.color}}>
@@ -17,17 +19,37 @@ const Footer = ({subDomain}: Props) => {
       </Typography>
       <Box className='footer-container'>
         <Grid item container xs={12}>
-          <Grid item xs={12} md={4}>
-            <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
-            <div className='device-list-grid'>
-              {data.homeTextData.footer.content.map((item:any, index:number) => {
-                return (
-                  <div key={index}>{item}</div>
-                )
-              })}
-            </div>
+          <Grid item xs={12} md={gridVal.mainGrid[0]}>
+            <Grid item container xs={12}>
+              <Grid item xs={12} md={gridVal.subGrid[0]}>
+                <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
+                <div className='footer-subContent-title'>
+                  {data.homeTextData.footer.contentSubTitle}
+                </div>
+                <div className='device-list-grid'>
+                  {data.homeTextData.footer.content[0]}
+                </div>
+              </Grid>
+              <Grid item xs={12} md={gridVal.subGrid[1]}>
+                {data.homeTextData.footer.subContent.map((item:any, index:number) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <div className='footer-subContent-title'>
+                        {item.title}
+                      </div>
+                      <div className='device-list-grid'>
+                        {item.content}
+                      </div>
+                    </React.Fragment>
+                  )
+                })}
+              </Grid>
+              <div className='device-list-grid'>
+                {data.homeTextData.footer.content[1]}
+              </div>
+            </Grid>            
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={gridVal.mainGrid[1]}>
             <Grid item container xs={12}>
               {
                 footerLink.map((links:any, index:number) => 

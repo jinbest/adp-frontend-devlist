@@ -60,7 +60,7 @@ class Section1 extends React.Component<Props> {
                 <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
                   <Button 
                     title={repair.btnTitle} 
-                    bgcolor={data.colorPalle.themeColor} 
+                    bgcolor={data.colorPalle.repairButtonCol} 
                     borderR='20px'
                   />
                 </Link>

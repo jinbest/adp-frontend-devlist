@@ -31,7 +31,7 @@ const Section1 = ({subDomain}: Props) => {
     } else {
       setSearchBarVisible(true);
     }
-  }, [scrollPosition])
+  }, [scrollPosition]);
 
   useEffect(() => {
     const headerSearch = document.getElementById('header-search') as HTMLElement;

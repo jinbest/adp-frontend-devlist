@@ -16,7 +16,9 @@ type Props = {
 const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handleStep, subDomain}: Props) => {
 
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
+  const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const publicText = mockData.repairWidget.publicText;
+  const textThemeCol = mainData.colorPalle.textThemeCol;
 
   const ChooseNextStep = () => {
     handleStep(step+1)
@@ -63,7 +65,7 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, themeCol, step, handle
           <Grid container className='repair-service-summary-detail-container' spacing={3}>
             <Grid item xs={12} sm={6} className='every-container'>
               <Typography className='topic'>{publicText.deliveryMethod}</Typography>
-              <Typography className='details' style={{color: themeCol}}>{repairWidgetData.deliveryMethod.method}</Typography>
+              <Typography className='details' style={{color: textThemeCol}}>{repairWidgetData.deliveryMethod.method}</Typography>
               {caseKey === 1 && <Typography className='details bolder'>Pick-Up From</Typography>}
               {caseKey === 0 && <Typography className='details bolder'>Send To</Typography>}
               {caseKey > 0 && <Typography className='details'>{repairWidgetData.bookData[caseKey].address}</Typography>}
