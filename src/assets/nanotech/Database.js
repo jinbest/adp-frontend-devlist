@@ -134,6 +134,7 @@ const colorPalle = {
     underLineCol: '#00B0F0',
     priceCol: '#606163',
     repairButtonCol: '#00B0F0',
+    nextButtonCol: '#606163',
     repairChooseItemCol: '#00B0F0',
     repairBooktimeCol: '#00B0F0',
     textThemeCol: '#00B0F0'
@@ -215,6 +216,7 @@ const shapeData = {
 const footerImageData = {
     buyNow: buyNow,
     deviceList: deviceListImg,
+    bell: '',
     others: [
         visa, round, amex, interactive, paypal
     ]

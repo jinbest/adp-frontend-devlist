@@ -1,9 +1,11 @@
 import React from 'react'
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import { useT } from "../i18n/index";
+import { LangProps } from "../i18n/en";
 
 /* eslint-disable */
 type Props = {
-  title: string;
+  title: LangProps;
   bgcolor?: string;
   txcolor?: string;
   borderR?: string;
@@ -18,6 +20,8 @@ type Props = {
 }
 
 const Button  = ({title, bgcolor, txcolor, borderR, onClick, width, maxWidth, height, margin, fontSize, icon, disable}: Props) => {
+  const t = useT();
+
   return (
     <button 
       onClick={onClick} className='button'
@@ -28,7 +32,7 @@ const Button  = ({title, bgcolor, txcolor, borderR, onClick, width, maxWidth, he
       disabled={disable}
     >
       {icon && <RoomOutlinedIcon />}
-      {title}
+      {t(title)}
     </button>
   )
 }

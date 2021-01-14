@@ -30,7 +30,7 @@ const Footer = ({subDomain}: Props) => {
                   {data.homeTextData.footer.content[0]}
                 </div>
               </Grid>
-              <Grid item xs={12} md={gridVal.subGrid[1]}>
+              {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
                 {data.homeTextData.footer.subContent.map((item:any, index:number) => {
                   return (
                     <React.Fragment key={index}>
@@ -43,7 +43,7 @@ const Footer = ({subDomain}: Props) => {
                     </React.Fragment>
                   )
                 })}
-              </Grid>
+              </Grid>}
               <div className='device-list-grid'>
                 {data.homeTextData.footer.content[1]}
               </div>
@@ -71,6 +71,7 @@ const Footer = ({subDomain}: Props) => {
             <div className="footer-images-div">
               <div>
                 <img src={data.footerImageData.deviceList} className='footer-device-response'/>
+                {data.footerImageData.bell && <img src={data.footerImageData.bell} className='footer-device-response'/>}
               </div>
               <div>
                 <img src={data.footerImageData.buyNow} className='footer-buynow'/>
@@ -82,6 +83,7 @@ const Footer = ({subDomain}: Props) => {
                   )
                 })}
                 <img src={data.footerImageData.deviceList} className='footer-device-list'/>
+                {data.footerImageData.bell && <img src={data.footerImageData.bell} className='footer-device-list'/>}
               </div>
             </div>
           </Grid>

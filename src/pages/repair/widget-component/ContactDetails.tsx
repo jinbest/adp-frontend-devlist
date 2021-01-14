@@ -147,11 +147,11 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             </div>
             {caseKey > 0 && <div className='repair-choose-device-container'>
               <Button 
-                title='Book an Appointment' bgcolor={themeCol} borderR='20px' maxWidth='300px' 
+                title='BOOK_AN_APPOINTMENT' bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
                 height='30px' fontSize='17px' margin='0 auto 10px' onClick={ChooseNextStep} disable={disableStatus}
               />
               <Button 
-                title='Request a Quote' bgcolor={themeCol} borderR='20px' maxWidth='300px' 
+                title='REQUEST_A_QUOTE' bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
                 height='30px' fontSize='17px' margin='0 auto' onClick={()=>{handleStep(11)}} disable={disableStatus}
               />
             </div>}
@@ -179,7 +179,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             </div>}
             {caseKey === 0 && <div className='repair-card-button'>
               <Button 
-                title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
+                title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
               />
               <p>{publicText.enterKey}</p>

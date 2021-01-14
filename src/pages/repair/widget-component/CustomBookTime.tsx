@@ -47,7 +47,7 @@ type ArrayProps = {
 }
 
 const CustomBookTime = ({
-  title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, brandThemeCol, repairBooktimeCol, changeBooktime
+  title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, repairBooktimeCol, changeBooktime
 }: Props) => {
 
   const timeRange = { workday: [540, 1050], saturday: [660, 960]}
@@ -88,9 +88,9 @@ const CustomBookTime = ({
       booklist.push({
         book: markHour + ':' + markMin + ' ' + mark, 
         isPast: past ? true : false, 
-        color: past ? 'rgba(0,0,0,0.2)' : brandThemeCol,
+        color: past ? 'rgba(0,0,0,0.2)' : repairBooktimeCol,
         bgColor: 'white',
-        borderCol: past ? 'rgba(0,0,0,0.2)' : brandThemeCol
+        borderCol: past ? 'rgba(0,0,0,0.2)' : repairBooktimeCol
       });
     }
     setBookArray([...booklist])
@@ -111,8 +111,8 @@ const CustomBookTime = ({
         cntBookArray[i].bgColor = repairBooktimeCol;
         cntBookArray[i].borderCol = repairBooktimeCol;
       } else {
-        cntBookArray[i].color = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : brandThemeCol;
-        cntBookArray[i].borderCol = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : brandThemeCol;
+        cntBookArray[i].color = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : repairBooktimeCol;
+        cntBookArray[i].borderCol = cntBookArray[i].isPast ? 'rgba(0,0,0,0.2)' : repairBooktimeCol;
         cntBookArray[i].bgColor = 'white';
       }
     }

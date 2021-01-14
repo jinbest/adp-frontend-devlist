@@ -293,7 +293,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className='repair-card-button'>
                 <Button 
-                  title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
+                  title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                   height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus}
                 />
                 <p>{publicText.enterKey}</p>
