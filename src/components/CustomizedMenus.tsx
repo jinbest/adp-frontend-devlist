@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Menu, { MenuProps } from '@material-ui/core/Menu';
 import {Button, Search} from '.'
+import { useT } from "../i18n/index"
+import {LangProps} from '../i18n/en'
 
 /* eslint-disable */
 
@@ -31,14 +33,16 @@ const StyledMenu = withStyles({
 
 type Props = {
   subDomain?: string;
-  btnTitle: string;
+  btnTitle: LangProps;
   width: string;
 }
 
 const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeColor = data.colorPalle.themeColor;
+  const underLineCol = data.colorPalle.underLineCol;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const t = useT();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -72,15 +76,15 @@ const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
         <div className='menu-content-div'>
           <div className='left-content'>
             <div className='content-block'>
-              <p className='block-title'>MY STORE</p>
+              <p className='block-title'>{t('MY_STORE')}</p>
               <p className='block-content'>71 Greenford Avenue Winninpeg, MB RiR 1R1 (204) 555-5555</p>
             </div>
             <div className='content-block'>
-              <a className='link' style={{color: themeColor}}>View Store Details</a>
-              <a className='link' style={{color: themeColor}}>Get Directions</a>
+              <a className='link' style={{color: underLineCol}}>View Store Details</a>
+              <a className='link' style={{color: underLineCol}}>Get Directions</a>
             </div>
             <Button 
-              title='Book Repair' 
+              title='BOOK_REPAIR' 
               bgcolor={themeColor} 
               borderR='20px' 
               width='40px'
@@ -94,19 +98,19 @@ const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
             margin: '30px 10px'
           }}></div>
           <div>
-            <p className='block-title'>HOURS</p>
+            <p className='block-title'>{t('HOURS')}</p>
             <div className='hours-div'>
               <div>
                 {data.hoursData.map((item:any, index:number) => {
                   return (
-                    <p className='block-content' key={index}>{item.day}</p>
+                    <p className='block-content' key={index}>{t(item.day)}</p>
                   )
                 })}
               </div>
               <div>
                 {data.hoursData.map((item:any, index:number) => {
                   return (
-                    <p className='block-content' key={index}>{item.time}</p>
+                    <p className='block-content' key={index}>{t(item.time)}</p>
                   )
                 })}
               </div>
@@ -115,10 +119,10 @@ const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
         </div>
         <div className='menu-search-div'>
           <div className='menu-search'>
-            <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' placeholder='Find another location'/>
+            <Search color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' placeholder='FIND_ANOTHER_LOCATION'/>
           </div>
           <Button 
-            title='Search' 
+            title='SEARCH' 
             bgcolor={themeColor} 
             borderR='20px'
             width='100px'

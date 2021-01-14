@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { useT, useSetLang } from "../i18n/index";
+import { LangProps } from "../i18n/en";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -28,12 +30,19 @@ const SelectLang = ({subDomain, color, options}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeCol = data.colorPalle.themeColor;
   const classes = useStyles();
+  const setLang = useSetLang();
+  const t = useT();
 
-  const [state, setState] = useState(options[0])
+  const tItem = (item:LangProps) => {
+    return t(item);
+  }
+
+  const [state, setState] = useState(options[0]);
 
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     const la = event.target.value as keyof typeof state;
     setState(la);
+    setLang(la === "ENGLISH" ? "en" : "fr");
   };
 
   return (
@@ -44,9 +53,11 @@ const SelectLang = ({subDomain, color, options}: Props) => {
           onChange={handleChange}
           style={{color: color}}
         >
-          {options.map((item:any, index:number) => {
+          {options.map((item:LangProps, index:number) => {
             return (
-              <option value={item} className={classes.selectOption} style={{color: themeCol}} key={index}>{item}</option>
+              <option value={item} className={classes.selectOption} style={{color: themeCol}} key={index}>
+                {tItem(item)}
+              </option>
             )
           })}
         </NativeSelect>

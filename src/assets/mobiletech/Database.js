@@ -131,7 +131,13 @@ const devicelistData = [
 const colorPalle = {
     orange: '#F36B26',
     themeColor: '#ED1D24',
-    priceCol: '#054DFA'
+    underLineCol: '#ED1D24',
+    priceCol: '#054DFA',
+    repairButtonCol: '#ED1D24',
+    nextButtonCol: '#ED1D24',
+    repairChooseItemCol: '#333333',
+    repairBooktimeCol: '#ED1D24',
+    textThemeCol: '#ED1D24'
 }
 
 const navItemsData = [
@@ -210,6 +216,7 @@ const shapeData = {
 const footerImageData = {
     buyNow: buyNow,
     deviceList: deviceListImg,
+    bell: '',
     others: [
         visa, round, amex, interactive, paypal
     ]
@@ -276,6 +283,15 @@ const homeTextData = {
     },
     footer: {
         title: { text: '', color: '' },
+        gridVal: {
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
+        },
+        subContent: [
+            {title: '', content: ''},
+            {title: '', content: ''}
+        ],
+        contentSubTitle: '',
         content: [
             '(204) 808-9416 2020 Corydon Ave, Unit F Winnipeg, MB',
             '© 2020 Mobile Tech Lab 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Mobile Tech Lab" does not own or make claim to those trademarks used on this website in which it is not the holder.'

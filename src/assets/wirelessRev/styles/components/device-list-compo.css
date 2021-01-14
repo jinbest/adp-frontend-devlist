@@ -1,0 +1,19 @@
+.device-list-component {
+  text-align: center;
+  width: 100%;
+}
+
+.device-list-component img {
+  width: 40%;
+}
+
+.device-list-component .title {
+  color: black;
+  margin-bottom: 6px;
+}
+
+.device-list-component .content {
+  color: black;
+  line-height: 1.2;
+  margin: 0;
+}

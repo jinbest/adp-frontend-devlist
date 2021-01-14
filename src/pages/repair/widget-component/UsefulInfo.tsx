@@ -63,7 +63,7 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
             </div>
             <div className='repair-card-button'>
               <Button 
-                title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
+                title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep}
               />
               <p>{publicText.enterKey}</p>

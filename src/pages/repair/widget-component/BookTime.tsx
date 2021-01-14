@@ -21,6 +21,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const timeZoneList = timezoneData.timezoneOptions;
   const themeCol = mainData.colorPalle.themeColor;
+  const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol;
   const brandThemeCol = mainData.brandItemsData.brandThemeCol;
   const DAYS_OF_THE_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const MONTHS = ['January', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octorber', 'November', 'December'];
@@ -195,6 +196,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                   <CustomBookTime 
                     themeCol={themeCol} 
                     brandThemeCol={brandThemeCol}
+                    repairBooktimeCol={repairBooktimeCol}
                     title={DAYS_OF_THE_WEEK[week] + ', ' + MONTHS[month] + ' ' + day}
                     subDomain={subDomain}
                     timezoneIndex={tzIndex}
@@ -216,7 +218,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
             </div>
             <div className='repair-card-button'>
               <Button 
-                title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
+                title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
               />
               <p>{publicText.enterKey}</p>

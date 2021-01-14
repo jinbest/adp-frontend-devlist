@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import {Search, CustomizedMenus, Logo, SelectLang} from '../components'
 import { Link } from 'react-router-dom'
+import { useT } from "../i18n/index"
+import { LangProps } from "../i18n/en"
+
 
 /*eslint-disable*/
 type PropsNavItemLink = {
@@ -10,33 +13,42 @@ type PropsNavItemLink = {
 
 const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) => {
 
+  const t = useT();
+
   const handle = () => {
     if (href === '/repair-widget') {
       handleStatus(false);
     } else {
       handleStatus(true);
     }
+    if (href === '/repair') {
+      const headerSearch = document.getElementById('header-search') as HTMLElement;
+      headerSearch.style.visibility = 'visible';
+    }
   }
 
   return (
     <li className='nav-item'>
       <Link className='nav-link' to={href} onClick={handle}>
-        {text}
+        {t(text)}
       </Link>
     </li>
   )
 }
 
 type PropsBrand = {
-  item: string;
+  item: LangProps;
   color: string;
+  trans: boolean;
 }
 
-const BrandItemLink = ({ item, color }: PropsBrand) => {
+const BrandItemLink = ({ item, color, trans }: PropsBrand) => {
+  const t = useT();
+
   return (    
     <li style={{listStyle: 'none'}}>
       <a style={{color: color, padding: '0 5px', fontWeight: 100, fontSize: '15px'}}>
-        {item}
+        {trans ? t(item).toLocaleUpperCase() : item.toLocaleUpperCase()}
       </a>
     </li>
   )
@@ -52,6 +64,8 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
   const navItemsLink = data.navItemsData, 
     brandItemLink = data.brandItemsData, 
     searchPlaceholder = data.homeTextData.section1.searchPlaceholder;
+
+  const t = useT();
 
   const [userStatus, setUserStatus] = useState(true);
   const [menuStatus, setMenuStatus] = useState(true);
@@ -77,13 +91,13 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
-              return <BrandItemLink item={item} key={index} color={brandItemLink.brandCol} />
+              return <BrandItemLink item={item} key={index} color={brandItemLink.brandCol} trans={true} />
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} />
+            <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} trans={false} />
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
-            <BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} />
+            <BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} trans={true} />
           </ul>          
         </div>
       </div>
@@ -138,15 +152,15 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
                   <div>
                     {data.mobileNavItemData.left.map((item:any, index:number) => {
                       return (
-                        <a key={index} className='mobile-item' href={item.href}>{item.text}</a>
+                        <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
                       )
                     })}
                   </div> : 
                   <div>
-                    <p className='arrow-back' onClick={toggleMobileMenu}>Back</p>
+                    <p className='arrow-back' onClick={toggleMobileMenu}>{t('BACK')}</p>
                     {data.mobileNavItemData.right.map((item:any, index:number) => {
                       return (
-                        <a key={index} className='mobile-item' href={item.href}>{item.text}</a>
+                        <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
                       )
                     })}
                   </div>
@@ -155,10 +169,10 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
               <div>
                 {data.userNavItemData.map((item:any, index:number) => {
                   return (
-                    <a key={index} className='mobile-item' href={item.href}>{item.text}</a>
+                    <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
                   )
                 })}
-                <a href='#' style={{color: data.colorPalle.themeColor}}>Sign Out</a>
+                <a href='#' style={{color: data.colorPalle.textThemeCol}}>{t('SIGN_OUT')}</a>
               </div>
             }
           </div>

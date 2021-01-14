@@ -23,7 +23,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   const mainData = require(`../../../assets/${subDomain}/Database.js`);  
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const themeCol = mainData.colorPalle.themeColor;
-  const brandThemeCol = mainData.brandItemsData.brandThemeCol;
+  const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol;
   const publicText = mockData.repairWidget.publicText;
 
   const [sliceNum, setSliceNum] = useState(5);
@@ -97,7 +97,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         cntTypes[i].selected = false;
         for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
           if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
-            cntTypes[i].bg = brandThemeCol;
+            cntTypes[i].bg = repairChooseItemCol;
             cntTypes[i].col = 'white';
             cntTypes[i].selected = true;
           }
@@ -111,7 +111,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         cntTypes[i].col = 'black';
         cntTypes[i].selected = false;
         if (cntTypes[i].name === repairWidgetData.deliveryMethod.method) {
-          cntTypes[i].bg = brandThemeCol;
+          cntTypes[i].bg = repairChooseItemCol;
           cntTypes[i].col = 'white';
           cntTypes[i].selected = true;
         }
@@ -124,7 +124,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         cntTypes[i].col = 'black';
         cntTypes[i].selected = false;
         if (cntTypes[i].name === repairWidgetData.receiveQuote.method) {
-          cntTypes[i].bg = brandThemeCol;
+          cntTypes[i].bg = repairChooseItemCol;
           cntTypes[i].col = 'white';
           cntTypes[i].selected = true;
         }
@@ -137,7 +137,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     if(stepN === 'deviceRepairs') {
       let cntTypes:any[] = itemTypes
       if (cntTypes[i].bg === 'white') {
-        cntTypes[i].bg = brandThemeCol
+        cntTypes[i].bg = repairChooseItemCol
         cntTypes[i].col = 'white'
         cntTypes[i].selected = true
       } else {
@@ -157,7 +157,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       let cntItemTypes:any[] = itemTypes
       for (let u = 0; u < cntItemTypes.length; u++) {
         if (u === i) {
-          cntItemTypes[u].bg = brandThemeCol
+          cntItemTypes[u].bg = repairChooseItemCol
           cntItemTypes[u].col = 'white'
           cntItemTypes[u].selected = true
           handleChangeChooseData(step, {method: cntItemTypes[u].name, caseKey: u})
@@ -175,7 +175,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     let cntArray:any[] = [], cntTypes:any[] = itemTypes
     if(cntTypes && stepName === 'deviceRepairs') {
       for (let i = 0; i < cntTypes.length; i++) {
-        if (cntTypes[i].bg === brandThemeCol) {
+        if (cntTypes[i].bg === repairChooseItemCol) {
           cntArray.push({ name: cntTypes[i].name, estimate: cntTypes[i].estimate })
         }
       }
@@ -293,7 +293,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className='repair-card-button'>
                 <Button 
-                  title={publicText.next} bgcolor={themeCol} borderR='20px' width='120px' 
+                  title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                   height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus}
                 />
                 <p>{publicText.enterKey}</p>

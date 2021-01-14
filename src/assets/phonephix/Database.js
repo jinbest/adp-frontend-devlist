@@ -131,7 +131,13 @@ const devicelistData = [
 const colorPalle = {
     orange: '#FCA425',
     themeColor: '#FCA425',
-    priceCol: '#FCA425'
+    underLineCol: '#FCA425',
+    priceCol: '#FCA425',
+    repairButtonCol: '#FCA425',
+    nextButtonCol: '#FCA425',
+    repairChooseItemCol: '#FCA425',
+    repairBooktimeCol: '#FCA425',
+    textThemeCol: '#FCA425'
 }
 
 const navItemsData = [
@@ -210,6 +216,7 @@ const shapeData = {
 const footerImageData = {
     buyNow: buyNow,
     deviceList: deviceListImg,
+    bell: '',
     others: [
         visa, round, amex, interactive, paypal
     ]
@@ -276,6 +283,15 @@ const homeTextData = {
     },
     footer: {
         title: { text: '', color: '' },
+        gridVal: {
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
+        },
+        subContent: [
+            {title: '', content: ''},
+            {title: '', content: ''}
+        ],
+        contentSubTitle: '',
         content: [
             '(403) 477-6203 | sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB',
             '© 2020 PhonePhix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "PhonePhix" does not own or make claim to those trademarks used on this website in which it is not the holder.'

@@ -1,11 +1,12 @@
 import React from 'react'
 import Button from './Button'
+import {LangProps} from '../i18n/en'
 
 /* eslint-disable */
 type Props = {
   title: string;
   img: string;
-  btnTitle: string;
+  btnTitle: LangProps;
   color?: string; 
 }
 
