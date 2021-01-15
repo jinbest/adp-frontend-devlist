@@ -3,6 +3,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { Card } from './'
 import { Button } from '../../../components'
 import RepairSummary from './RepairSummary'
+import { useT } from '../../../i18n/index'
 
 type Props = {
   data: any;
@@ -20,7 +21,8 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
   const themeCol = mainData.colorPalle.themeColor;
   const publicText = mockData.repairWidget.publicText;
 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('');
+  const t = useT();
 
   const ChooseNextStep = () => {
     handleChangeChooseData(8, message)
@@ -49,7 +51,7 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className="repair-widget-title">
-            {data.title}
+            {t(data.title)}
           </Typography>
         </Grid>
       </Grid>
@@ -58,7 +60,7 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
           <Card>
             <div className='repair-choose-device-container'>
               <div className='useful-textarea-div'>
-                <textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} placeholder={data.placeholder} className='useful-textarea' />
+                <textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} placeholder={t(data.placeholder)} className='useful-textarea' />
               </div>
             </div>
             <div className='repair-card-button'>
@@ -66,7 +68,7 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep}
               />
-              <p>{publicText.enterKey}</p>
+              <p>{t(publicText.enterKey)}</p>
             </div>
           </Card>          
         </Grid>

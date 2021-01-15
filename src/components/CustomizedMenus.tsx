@@ -84,7 +84,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
               <a className='link' style={{color: underLineCol}}>Get Directions</a>
             </div>
             <Button 
-              title='BOOK_REPAIR' 
+              title='BOOK_REPAIR'
               bgcolor={themeColor} 
               borderR='20px' 
               width='40px'

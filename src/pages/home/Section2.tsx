@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography, Grid, Box } from '@material-ui/core'
-import { CardFix, ContentFix } from '../../components'
+import { Typography, Grid, Box } from '@material-ui/core';
+import { CardFix, ContentFix } from '../../components';
+import { useT } from "../../i18n/index";
 
 /* eslint-disable */
 type Props = {
@@ -10,17 +11,19 @@ type Props = {
 const Section2 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
 
+  const t = useT();
+
   return (
-    <section className='Container'>
+    <section className='Container section2-container'>
       <Typography className='section-title'>
-        {data.homeTextData.section2.title}
+        {t(data.homeTextData.section2.title)}
       </Typography>
       <div className='card-customized-container-desktop'>
         {
           data.cardFixData.map((item:any, index:number) => {
             return (
               <div className='card-customized-item' key={index}>
-                <CardFix title={item.title} img={item.img} key={index} />
+                <CardFix title={t(item.title)} img={item.img} key={index} />
               </div>
             )
           })
@@ -31,7 +34,7 @@ const Section2 = ({subDomain}: Props) => {
           data.cardFixData.slice(0,3).map((item:any, index:number) => {
             return (
               <div className='card-customized-item' key={index}>
-                <CardFix title={item.title} img={item.img} key={index} />
+                <CardFix title={t(item.title)} img={item.img} key={index} />
               </div>
             )
           })
@@ -42,7 +45,7 @@ const Section2 = ({subDomain}: Props) => {
           data.cardFixData.slice(3, 5).map((item:any, index:number) => {
             return (
               <div className='card-customized-item' key={index}>
-                <CardFix title={item.title} img={item.img} key={index} />
+                <CardFix title={t(item.title)} img={item.img} key={index} />
               </div>
             )
           })
@@ -54,7 +57,7 @@ const Section2 = ({subDomain}: Props) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box className='cart-contentfix-container'>
-                  <ContentFix title={item.title} content={item.content} themeCol={data.colorPalle.underLineCol} key={index} />
+                  <ContentFix title={t(item.title)} content={t(item.content)} themeCol={data.colorPalle.underLineCol} key={index} />
                 </Box>
               </Grid>
             )

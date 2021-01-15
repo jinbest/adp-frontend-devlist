@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
-import {Logo} from '../components'
+import {Logo} from '../components';
+import { useT } from '../i18n/index';
 
 /* eslint-disable */
 type Props = {
@@ -11,6 +12,7 @@ const Footer = ({subDomain}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const footerLink = data.homeTextData.footer.footerLink;
   const gridVal = data.homeTextData.footer.gridVal;
+  const t = useT();
 
   return (
     <footer className='footer'>
@@ -45,7 +47,7 @@ const Footer = ({subDomain}: Props) => {
                 })}
               </Grid>}
               <div className='device-list-grid'>
-                {data.homeTextData.footer.content[1]}
+                {t(data.homeTextData.footer.content[1])}
               </div>
             </Grid>            
           </Grid>
@@ -55,11 +57,11 @@ const Footer = ({subDomain}: Props) => {
                 footerLink.map((links:any, index:number) => 
                   <Grid item xs={12} sm={3} key={index}>
                     <ul className='footer_link'>
-                      <li className='link_name'>{links.name}</li>
+                      <li className='link_name'>{t(links.name)}</li>
                       {
                         links.lists.map((link:any, i:number) => 
                         <li key={i} className='links'>
-                          <a href={link.href}>{link.text}</a>
+                          <a href={link.href}>{t(link.text)}</a>
                         </li>
                         )
                       }
@@ -95,7 +97,7 @@ const Footer = ({subDomain}: Props) => {
             <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
             <div className='device-list-grid'>
               <div>{data.homeTextData.footer.content[0]}</div>
-              <div className='footer-special-content'>{data.homeTextData.footer.content[1]}</div>
+              <div className='footer-special-content'>{t(data.homeTextData.footer.content[1])}</div>
             </div>
           </Grid>
           <Grid item xs={12} md={8}>

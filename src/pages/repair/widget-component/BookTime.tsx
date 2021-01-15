@@ -4,6 +4,7 @@ import { Card } from './'
 import { Button, CustomSelect, CustomCalendar, InputComponent } from '../../../components'
 import CustomBookTime from './CustomBookTime'
 import RepairSummary from './RepairSummary'
+import { useT } from '../../../i18n/index'
 
 type Props = {
   data: any;
@@ -41,6 +42,8 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   const [sendToAddress, setSendToAddress] = useState('');
   const [mailInChecked, setMailinChecked] = useState(0);
   const [disableStatus, setDisableStatus] = useState(true);
+
+  const t = useT();
 
   useEffect(() => {
     setDay(date.getDate());
@@ -146,7 +149,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className="repair-widget-title">
-            {data.title[caseKey]}
+            {t(data.title[caseKey])}
           </Typography>
         </Grid>
       </Grid>
@@ -154,7 +157,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
         <Grid item xs={12} md={7}>
           <Card className='booking-card'>
             <div className='repair-choose-device-container'>
-              <Typography className='repair-summary-title'>{data.select.location.title[caseKey]}</Typography>
+              <Typography className='repair-summary-title'>{t(data.select.location.title[caseKey])}</Typography>
               <div style={{marginBottom: '20px'}}>
                 {caseKey === 2 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
                 {(caseKey === 1 || caseKey === 3) && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} />}
@@ -175,19 +178,19 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                     )
                   })}
                   <div className='select-mail-in-container'>
-                    <div><u><p className='select-mail-in-text'>Hours</p></u></div>
+                    <div><u><p className='select-mail-in-text'>{t('HOURS')}</p></u></div>
                   </div>
                   {data.select.time.workingHours.map((item:any, index:number) => {
                     return (
                       <div key={index} className='select-mail-in-container'>
-                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{item[0]}</p></div>
-                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{item[1]}</p></div>
+                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{t(item[0])}</p></div>
+                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{t(item[1])}</p></div>
                       </div>
                     )
                   })}
                 </div>}
               </div>
-              {caseKey > 0 && <Typography className='repair-summary-title'>{data.select.time.title[caseKey]}</Typography>}
+              {caseKey > 0 && <Typography className='repair-summary-title'>{t(data.select.time.title[caseKey])}</Typography>}
               {caseKey > 0 && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
@@ -211,7 +214,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                 </Grid>
                 <Grid item xs={12}>
                   <div style={{border: '1px solid rgba(0,0,0,0.1)', borderRadius: '20px', width: '100%', height: '30px', fontSize: '14px', display: 'flex', alignItems: 'center'}}>
-                    <p style={{textAlign: 'center', margin: '0 10px'}}>You've selected {time} on {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
+                    <p style={{textAlign: 'center', margin: '0 10px'}}>{t('YOUR_HAVE_SELECTED')} {time} {t('ON')} {DAYS_OF_THE_WEEK[week]}, {MONTHS[month]} {day}, {year}</p>
                   </div>
                 </Grid>
               </Grid>}
@@ -221,7 +224,7 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
               />
-              <p>{publicText.enterKey}</p>
+              <p>{t(publicText.enterKey)}</p>
             </div>
           </Card>          
         </Grid>

@@ -3,6 +3,8 @@ import { Card, PlusSVG } from './'
 import { Grid, Typography } from '@material-ui/core'
 import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
+import { useT } from '../../../i18n/index'
+import { LangProps } from '../../../i18n/en'
 
 /* eslint-disable */
 type Props = {
@@ -32,6 +34,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([]);
   const [selected, setSelected] = useState(999);
   const [disableStatus, setDisableStatus] = useState(true);
+
+  const t = useT();
 
   const handlePlus = () => {
     setSliceNum(data.images.length);
@@ -204,7 +208,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className="repair-widget-title">
-            {data.title}
+            {t(data.title)}
           </Typography>
         </Grid>
       </Grid>
@@ -279,7 +283,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                           onClick={() => toggleItemTypes(index, stepName)}
                         >
                           <div className='device-repair-item'>
-                            <p style={{ color: item.col }}>{item.name}</p>
+                            <p style={{ color: item.col }}>{t(item.name)}</p>
                           </div>
                         </div>
                       )
@@ -296,7 +300,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                   height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus}
                 />
-                <p>{publicText.enterKey}</p>
+                <p>{t(publicText.enterKey)}</p>
               </div>
             }
           </Card>
@@ -305,26 +309,26 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           <Card className='customized-card-height'>
 
             {step < 2 && <div className='repair-choose-device-container'>
-              <Typography className='topic-title'>{data.mainTopic.title}</Typography>
-              {data.mainTopic.content && data.mainTopic.content.map((item:any, index:number) => {
+              <Typography className='topic-title'>{t(data.mainTopic.title)}</Typography>
+              {data.mainTopic.content && data.mainTopic.content.map((item:LangProps, index:number) => {
                 return (
-                  <Typography className='topic-content' key={index}>{item}</Typography>
+                  <Typography className='topic-content' key={index}>{t(item)}</Typography>
                 )
               })}
               {data.disableTopic.title && <Typography className='topic-title' style={{color: 'rgba(0,0,0,0.3)'}}>
-                {data.disableTopic.title}
+                {t(data.disableTopic.title)}
               </Typography>}
               {data.disableTopic.content && <Typography className='topic-content' style={{color: 'rgba(0,0,0,0.3)'}}>
-                {data.disableTopic.content}
+                {t(data.disableTopic.content)}
               </Typography>}
             </div>}
 
             {step === 2 && <div className='repair-choose-device-container'>
-              <Typography className='topic-title'>{data.mainTopic.title}</Typography>
+              <Typography className='topic-title'>{t(data.mainTopic.title)}</Typography>
               {estimatedTimes && estimatedTimes.map((item:any, index:number) => {
                 return (
                   <div key={index} className='estimate-times-div'>
-                    <p className='estimate-title'>{item.name}</p>
+                    <p className='estimate-title'>{t(item.name)}</p>
                     <p className='estimate-content'>{item.estimate}</p>
                   </div>
                 )
@@ -333,8 +337,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
             {step === 3 && 
               <div className='repair-choose-device-container'>
-                <Typography className='topic-title'>{data.mainTopic.title}</Typography>
-                <Typography className='topic-content'>{data.mainTopic.content}</Typography>
+                <Typography className='topic-title'>{t(data.mainTopic.title)}</Typography>
+                <Typography className='topic-content'>{t(data.mainTopic.content)}</Typography>
               </div>
             }
 

@@ -61,10 +61,18 @@ const Section1 = ({subDomain}: Props) => {
         </Box>
       </Grid>
       <Grid container item xs={12} spacing={3} className='sec1-card-mobile-data'>
-        {data.cardMobileData.map((item:any, index:number) => {
+        {data.cardMobileData.data.map((item:any, index:number) => {
           return (
-            <Grid item xs={6} sm={6} md={3} style={{paddingTop: '0px', marginBottom: '5px'}} key={index}>
-              <CardMobile title={t(item.title)} img={item.img} btnTitle={item.btnTitle} color={data.colorPalle.orange} key={index}/>
+            <Grid item xs={6} sm={6} md={data.cardMobileData.gridMD} style={{paddingTop: '0px', margin: '0 auto 5px'}} key={index}>
+              <CardMobile 
+                title={t(item.title)} 
+                img={item.img} 
+                btnTitle={item.btnTitle} 
+                color={data.colorPalle.orange} 
+                key={index}
+                heart={index === 0 ? data.cardMobileData.heart : ''}
+                heartCol={data.colorPalle.heartCol}
+              />
             </Grid>
           )
         })}

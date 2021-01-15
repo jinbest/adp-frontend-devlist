@@ -1,6 +1,8 @@
 import React from 'react';
 import { Typography, Grid, Box } from '@material-ui/core'
 import { CardPopular } from '../../components'
+import { useT } from '../../i18n/index'
+import {LangProps} from '../../i18n/en'
 
 /* eslint-disable */
 type Props = {
@@ -9,12 +11,15 @@ type Props = {
 
 const Section3 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
-  const deviceCard = require(`../../assets/${subDomain}/img/device-card.png`)
+  const deviceCard = require(`../../assets/${subDomain}/img/device-card.png`);
+
+  const t = useT();
+
   return (
     <section className='sec3-container-parent'>
       <div className='Container'>
         <Typography className='section-title'>
-          {data.homeTextData.section3.title}
+          {t(data.homeTextData.section3.title)}
         </Typography>
       </div>
       <div className='section3-back'>
@@ -25,7 +30,7 @@ const Section3 = ({subDomain}: Props) => {
                 <Grid item xs={6} sm={6} md={3} style={{paddingTop: '0px'}} key={index}>
                   <CardPopular 
                     title={item.title} 
-                    subtitle={item.subtitle} 
+                    subtitle={t(item.subtitle)} 
                     price={item.price} 
                     priceCol={data.colorPalle.priceCol}
                     img={item.img} 
@@ -39,16 +44,16 @@ const Section3 = ({subDomain}: Props) => {
             <Grid container item xs={12} spacing={2}>
               <Grid item sm={12} md={7}>
                 <Typography className='section-title white' style={{color: data.homeTextData.section3.color}}>
-                  {data.homeTextData.section3.subtitle.map((item:string, index:number) => {
+                  {data.homeTextData.section3.subtitle.map((item:LangProps, index:number) => {
                     return (
                       <React.Fragment key={index}>
-                        {item} <br />
+                        {t(item)} <br />
                       </React.Fragment>
                     )
                   })}
                 </Typography>
                 <Typography className='white f24'  style={{color: data.homeTextData.section3.color}}>
-                  {data.homeTextData.section3.content}
+                  {t(data.homeTextData.section3.content)}
                 </Typography>
               </Grid>
               <Grid item sm={12} md={5}>

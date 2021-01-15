@@ -1,6 +1,6 @@
 import React from 'react'
+import { LangProps } from '../i18n/en'
 import Button from './Button'
-import {LangProps} from '../i18n/en'
 
 /* eslint-disable */
 type Props = {
@@ -8,14 +8,19 @@ type Props = {
   img: string;
   btnTitle: LangProps;
   color?: string; 
+  heart?: string;
+  heartCol?: string;
 }
 
-const CardMobile = ({title, img, btnTitle, color}: Props) => {
+const CardMobile = ({title, img, btnTitle, color, heart, heartCol}: Props) => {
   
   return (
     <div className='card-mobile'>
       <p style={{color: color}}>{title.toLocaleUpperCase()}</p>
-      <img src={img} />
+      {heart && <div className='card-mobile-heart' style={{background: heartCol}}>
+        <img src={heart} alt='heart' />
+      </div>}
+      <img src={img} alt='mobile-img' />
       <Button title={btnTitle} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' />
     </div>
   )
@@ -24,7 +29,8 @@ const CardMobile = ({title, img, btnTitle, color}: Props) => {
 CardMobile.defaultProps = {
   title: 'TRADE',
   img: '',
-  btnTitle: 'Trade my Device'
+  btnTitle: 'Trade my Device',
+  heart: ''
 }
 
 export default CardMobile;
