@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import { Card } from '.'
+import { useT } from '../../../i18n/index'
 
 type Props = {
   data: any;
@@ -12,6 +13,8 @@ type Props = {
 
 const QuoteComponent = ({data, quoteKey, repairWidgetData}: Props) => {
 
+  const t = useT();
+
   return (
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <Card className='repair-service-summary-card'>
@@ -20,10 +23,10 @@ const QuoteComponent = ({data, quoteKey, repairWidgetData}: Props) => {
             <img src={data[quoteKey].img} alt='quote-img' />
           </div>
           <Typography className='repair-service-summary-title'>
-            {data[quoteKey].title}
+            {t(data[quoteKey].title)}
           </Typography>
           <Typography className='quote-component-content'>
-            You will receive an <b>email</b> at <b>{repairWidgetData.contactDetails.email}</b> shortly, {data[quoteKey].text}
+            {t('YOU_WILL_RECEIVE_AN')} <b>{t('EMAIL').toLocaleLowerCase()}</b> {t('AT')} <b>{repairWidgetData.contactDetails.email}</b> {t('SHORTLY')}, {t(data[quoteKey].text)}
           </Typography>
         </div>
       </Card>

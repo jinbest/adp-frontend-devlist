@@ -2,6 +2,7 @@ import React, {useEffect, useCallback} from 'react'
 import { Typography, Grid } from '@material-ui/core'
 import { Card } from './'
 import { Button } from '../../../components'
+import { useT } from '../../../i18n/index'
 
 type Props = {
   repairWidgetData: any;
@@ -19,6 +20,8 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const publicText = mockData.repairWidget.publicText;
   const textThemeCol = mainData.colorPalle.textThemeCol;
+
+  const t = useT();
 
   const ChooseNextStep = () => {
     handleStep(step+1)
@@ -46,11 +49,11 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
       <Card className='repair-service-summary-card'>
         <div className='repair-choose-device-container'>
           <Typography className='repair-service-summary-title'>
-            {publicText.repairServiceSummary}
+            {t(publicText.repairServiceSummary)}
           </Typography>
           <Grid container className='repair-service-summary-detail-container' spacing={3}>
             <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>{publicText.yourInfo}</Typography>
+              <Typography className='topic'>{t(publicText.yourInfo)}</Typography>
               <Typography className='details'>
                 {repairWidgetData.contactDetails.firstName + ' ' + repairWidgetData.contactDetails.lastName}
               </Typography>
@@ -58,19 +61,19 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
               <Typography className='details'>{repairWidgetData.contactDetails.phone}</Typography>
             </Grid>
             <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>{publicText.preferredContactMethod}</Typography>
-              <Typography className='details'>{repairWidgetData.receiveQuote.method}</Typography>
+              <Typography className='topic'>{t(publicText.preferredContactMethod)}</Typography>
+              <Typography className='details'>{t(repairWidgetData.receiveQuote.method)}</Typography>
             </Grid>
           </Grid>
           <Grid container className='repair-service-summary-detail-container' spacing={3}>
             <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>{publicText.deliveryMethod}</Typography>
-              <Typography className='details' style={{color: textThemeCol}}>{repairWidgetData.deliveryMethod.method}</Typography>
-              {caseKey === 1 && <Typography className='details bolder'>Pick-Up From</Typography>}
-              {caseKey === 0 && <Typography className='details bolder'>Send To</Typography>}
+              <Typography className='topic'>{t(publicText.deliveryMethod)}</Typography>
+              <Typography className='details' style={{color: textThemeCol}}>{t(repairWidgetData.deliveryMethod.method)}</Typography>
+              {caseKey === 1 && <Typography className='details bolder'>{t('PICK_UP_FROM')}</Typography>}
+              {caseKey === 0 && <Typography className='details bolder'>{t('SEND_TO')}</Typography>}
               {caseKey > 0 && <Typography className='details'>{repairWidgetData.bookData[caseKey].address}</Typography>}
               {caseKey === 0 && <Typography className='details'>{repairWidgetData.bookData[caseKey].sendTo}</Typography>}
-              {caseKey === 0 && <Typography className='details bolder'>Return To</Typography>}
+              {caseKey === 0 && <Typography className='details bolder'>{t('RETURN_TO')}</Typography>}
               {caseKey === 0 && <Typography className='details'>{repairWidgetData.contactDetails.address1}</Typography>}
               {caseKey > 0 && <Typography className='details'>
                 {
@@ -83,14 +86,14 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
               </Typography>}
             </Grid>
             {repairWidgetData.message && <Grid item xs={12} sm={6} className='every-container'>
-              <Typography className='topic'>{publicText.message}</Typography>
+              <Typography className='topic'>{t(publicText.message)}</Typography>
               <Typography className='details'>{repairWidgetData.message}</Typography>
             </Grid>}
           </Grid>
           <div className='repair-service-summary-detail-container'>
             <div className='repair-service-summary-flex-container bordered'>
-              <Typography className='topic'>{publicText.device}</Typography>
-              <Typography className='topic'>{publicText.repairService}</Typography>
+              <Typography className='topic'>{t(publicText.device)}</Typography>
+              <Typography className='topic'>{t(publicText.repairService)}</Typography>
             </div>
             {repairWidgetData.deviceBrand && repairWidgetData.deviceBrand.map((item:any, index:number) => {
               return (
@@ -101,7 +104,7 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
                         <Typography className='details'>
                           {item.name + ' ' + repairWidgetData.deviceModel[index].name}
                         </Typography>
-                        <Typography className='details'>{chooseItem.name}</Typography>
+                        <Typography className='details'>{t(chooseItem.name)}</Typography>
                       </div>
                     )
                   })}

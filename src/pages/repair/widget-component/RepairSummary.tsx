@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core'
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../../store/RepairWidgetStore'
+import { T } from '../../../i18n/index'
 
 /* eslint-disable */
 type StoreProps = {  
@@ -86,7 +87,9 @@ class RepairSummary extends React.Component<Props, MyState> {
 
     return (
       <div className='repair-choose-device-container'>
-        <Typography className='topic-title'>{publicText.repairSummary}</Typography>
+        <Typography className='topic-title'>
+          <T id={publicText.repairSummary} />
+        </Typography>
         <div className='repair-summary-content-div'>
           {this.state.brand && this.state.brand.map((item:any, index:number) => {
             return (
@@ -103,8 +106,12 @@ class RepairSummary extends React.Component<Props, MyState> {
                       <Typography className='repair-summary-title'>
                         {item.name + ' ' + this.state.model[index]['name']}
                       </Typography>
-                      <Typography className='repair-summary-service'>{publicText.repairService}</Typography>
-                      <p className='repair-summary-service-child'>{chooseItem.name}</p>
+                      <Typography className='repair-summary-service'>
+                        <T id={publicText.repairService} />
+                      </Typography>
+                      <p className='repair-summary-service-child'>
+                        <T id={chooseItem.name} />
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -113,14 +120,26 @@ class RepairSummary extends React.Component<Props, MyState> {
           })}
           {showInfo && <div className='repair-summary-div'>
             <div>
-              <Typography className='repair-summary-title'>{repairWidgetStore.deliveryMethod.method}</Typography>
-              {caseKey === 1 && <Typography className='repair-summary-service'>Pick Up From</Typography>}
-              {caseKey === 0 && <Typography className='repair-summary-service'>Send To</Typography>}
-              {caseKey > 0 && <p className='repair-summary-service-child'>{repairWidgetStore.bookData[caseKey].address}</p>}
-              {caseKey === 0 && <p className='repair-summary-service-child' style={{marginBottom: '15px'}}>{repairWidgetStore.bookData[caseKey].sendTo}</p>}
-              {caseKey === 0 && <Typography className='repair-summary-service'>Return To</Typography>}
+              <Typography className='repair-summary-title'>
+                <T id={repairWidgetStore.deliveryMethod.method} />
+              </Typography>
+              {caseKey === 1 && <Typography className='repair-summary-service'>
+                <T id='PICK_UP_FROM' />
+              </Typography>}
+              {caseKey === 0 && <Typography className='repair-summary-service'>
+                <T id='SEND_TO' />
+              </Typography>}
+              {caseKey > 0 && <p className='repair-summary-service-child'>
+                <T id={repairWidgetStore.bookData[caseKey].address} />
+              </p>}
+              {caseKey === 0 && <p className='repair-summary-service-child' style={{marginBottom: '15px'}}>
+                <T id={repairWidgetStore.bookData[caseKey].sendTo} />
+              </p>}
+              {caseKey === 0 && <Typography className='repair-summary-service'>
+                <T id='RETURN_TO' />
+              </Typography>}
               {caseKey === 0 && <p className='repair-summary-service-child'>
-                {repairWidgetStore.contactDetails.address1}
+                <T id={repairWidgetStore.contactDetails.address1} />
               </p>}
               {caseKey > 0 && <p className='repair-summary-service-child'>
                 {

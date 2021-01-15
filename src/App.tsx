@@ -20,7 +20,7 @@ const devicelist = [
     'pradoWireless', 
     'wirelessRev'
 ]
-const subDomain = devicelist[6];
+const subDomain = devicelist[1];
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`)

@@ -3,6 +3,7 @@ import trade from "./img/cardmobile/trade.png"
 import repair from "./img/cardmobile/repair.png"
 import buy from "./img/cardmobile/buy.png"
 import protect from "./img/cardmobile/protect.png"
+import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
 import cellphone from "./img/cardfix/mobile.png"
@@ -63,12 +64,16 @@ import mintImg from './img/repair/section3/mint.png'
 import goodImg from './img/repair/section3/good.png'
 import fairImg from './img/repair/section3/fair.png'
 
-const cardMobileData = [
-    { img: trade, title: "TRADE", btnTitle: "Trade-in" },
-    { img: repair, title: "REPAIR", btnTitle: "Repair" },
-    { img: buy, title: "BUY", btnTitle: "Buy" },
-    { img: protect, title: "PROTECT", btnTitle: "Protect" },
-]
+const cardMobileData = {
+    gridMD: 3,
+    heart: heart,
+    data: [
+        { img: trade, title: "TRADE", btnTitle: "TRADE_IN" },
+        { img: repair, title: "REPAIR", btnTitle: "REPAIR" },
+        { img: buy, title: "BUY", btnTitle: "BUY" },
+        { img: protect, title: "PROTECT", btnTitle: "PROTECT" },
+    ]
+}
 
 const cardFixData = [
     { img: cellphone, title: "Cellphone" },
@@ -137,7 +142,9 @@ const colorPalle = {
     nextButtonCol: '#FCA425',
     repairChooseItemCol: '#FCA425',
     repairBooktimeCol: '#FCA425',
-    textThemeCol: '#FCA425'
+    textThemeCol: '#FCA425',
+    heartCol: '#FCA425',
+    chatBgCol: '#FCA425'
 }
 
 const navItemsData = [

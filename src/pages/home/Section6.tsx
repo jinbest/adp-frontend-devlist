@@ -1,6 +1,7 @@
 import React from 'react';
 import {CardWhyCustomer} from '../../components'
 import { Typography, Grid, Box } from '@material-ui/core'
+import { useT } from '../../i18n/index'
 
 /* eslint-disable */
 type Props = {
@@ -9,14 +10,15 @@ type Props = {
 
 const Section6 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
+  const t = useT();
   
   return (
     <section className='Container center sec6-container'>      
       <Typography className='f40 bold mg-t-1'>
-        {data.homeTextData.section6.title}
+        {t(data.homeTextData.section6.title)}
       </Typography>
       <Typography className='f24'>
-        {data.homeTextData.section6.subtitle}
+        {t(data.homeTextData.section6.subtitle)}
       </Typography>
       <Grid container item xs={12} spacing={2} className='sec6-card'>
         {data.homeTextData.section6.review.map((item:any, index:number) => {

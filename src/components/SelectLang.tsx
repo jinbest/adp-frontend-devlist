@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import NativeSelect from '@material-ui/core/NativeSelect';
@@ -41,9 +41,17 @@ const SelectLang = ({subDomain, color, options}: Props) => {
 
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     const la = event.target.value as keyof typeof state;
+    let cntLang:string = 'en';
     setState(la);
-    setLang(la === "ENGLISH" ? "en" : "fr");
+    setLang(la === 'ENGLISH' ? 'en' : 'fr');
+    cntLang = la === 'ENGLISH' ? 'en' : 'fr';
+    window.localStorage.setItem('cntLang', cntLang);
   };
+
+  useEffect(() => {
+    const cntLang = window.localStorage.getItem('cntLang') || 'en';
+    cntLang === 'en' ? setState(options[0]) : setState(options[1]);
+  }, [])
 
   return (
     <div>      

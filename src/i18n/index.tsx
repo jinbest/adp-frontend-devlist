@@ -13,8 +13,9 @@ const LangUpdaterContext = React.createContext<
 >(undefined);
 
 const LangProvider: React.FunctionComponent<{}> = ({ children }) => {
+  const cntLang = window.localStorage.getItem('cntLang') || 'en'
   
-  const [lang, setLang] = useState<"en" | "fr">("en");
+  const [lang, setLang] = useState<"en" | "fr">(cntLang === 'en' ? "en" : "fr");
 
   const value = useMemo(() => {
     return {

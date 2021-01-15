@@ -16,7 +16,7 @@ const CardPopular = ({title, img, price, subtitle, priceCol}: Props) => {
       <img src={img} />
       <p className='title'>{title}</p>
       <div className='price-div'>
-        <p className='subtitle'>{subtitle}</p>
+        <p className='subtitle'>{subtitle + ' /'}</p>
         <p className='price' style={{color: priceCol}}>{price}</p>
       </div>
     </div>
@@ -26,7 +26,7 @@ const CardPopular = ({title, img, price, subtitle, priceCol}: Props) => {
 CardPopular.defaultProps = {
   title: 'iPhone 11 Pro',
   img: '',
-  subtitle: 'As low as /',
+  subtitle: 'As low as',
   price: '$897'
 }
 

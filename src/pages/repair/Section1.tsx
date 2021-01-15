@@ -4,6 +4,7 @@ import { Button } from '../../components'
 import { Link } from 'react-router-dom'
 import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../store/RepairWidgetStore'
+import { T } from '../../i18n/index'
 
 /* eslint-disable */
 type StoreProps = {  
@@ -44,17 +45,17 @@ class Section1 extends React.Component<Props> {
     const { subDomain } = this.props;
     const data = require(`../../assets/${subDomain}/Database`);
     const repair = data.repairData.section1;
-
+    
     return (
       <div className='repair-section1-special-bg'>
         <section className='Container'>
           <Grid container className='repair-section1'>
             <Grid item xs={12} sm={7}>
               <Typography className="repair-section-title-1" style={{color: repair.themeCol}}>
-                {repair.title}
+                <T id={repair.title} />
               </Typography>
               <Typography className="repair-section-content" style={{color: repair.themeCol}}>
-                {repair.content}
+                <T id={repair.content} />
               </Typography>
               <Box className='repair-section-button'>
                 <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
