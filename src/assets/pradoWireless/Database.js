@@ -377,7 +377,7 @@ const repairData = {
     },
     section3: {
         title: 'FROM_NEW_TO_RECONDITIONED',
-        content: 'FROM_NEW_TO_RECONDITIONED_CONTENT',
+        content: 'PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',

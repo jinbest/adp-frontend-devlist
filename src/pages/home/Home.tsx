@@ -16,7 +16,7 @@ const Home = ({subDomain}: Props) => {
         return (
           <SectionItem subDomain={subDomain} key={index}/>
         )
-      })}
+      })}      
     </div>
   )
 }

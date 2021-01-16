@@ -104,8 +104,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public SEND_US_YOUR_DEVICE = 'Envoyez-nous votre appareil';
   public SEND_US_YOUR_DEVICE_CONTENT = 'Créez un compte avec nous et indiquez ce qui doit être réparé.';
   public RECEIVE_YOUR_DEVICE = 'Recevez votre appareil';
-  public FROM_NEW_TO_RECONDITIONED = 'De nouveau à reconditionné';
-  public FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec Prado Wireless, il est facile de choisir pour tous les budgets!';
+  public FROM_NEW_TO_RECONDITIONED = 'De nouveau à reconditionné';  
   public NEW = 'NOUVEAU';
   public NEW_CONTENT = 'Un tout nouvel appareil sans signe d\'usure';
   public MINT = 'MENTHE';
@@ -114,6 +113,11 @@ export class LanguageKeysFr extends LanguageKeys {
   public GOOD_CONTENT = 'Rayures ou bosses mineures';
   public FAIR = 'JUSTE';
   public FAIR_CONTENT = 'Rayures et bosses visibles';
+  public WE_TYPICALLY_REPLY_IN_FEW_MINS = 'Nous répondons généralement en quelques minutes';
+  public LIFETIME_WARRANTY = 'GARANTIE À VIE';
+  public LIFETIME_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie à vie sans tracas. Cette garantie est valable dans tous nos sites dans le monde.';
+  public WINNIPEG_PROFESSIONAL = 'Professionnel de Winnipeg';
+  public PHONE_REPAIR = 'Réparation de téléphone';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';
@@ -197,9 +201,14 @@ export class LanguageKeysFr extends LanguageKeys {
   public AT = 'à';
   public SHORTLY = 'prochainement';
   public TRACKING = 'Suivi';
-  public WELCOME_TO_VISIT_OUR_WEBSITE = 'Salut! Bienvenue à visiter notre site Web. 😘';
-  public WE_TYPICALLY_REPLY_IN_FEW_MINS = 'Nous répondons généralement en quelques minutes';
-  public HAVE_ANY_QUESTION_HAPPY_HELP_YOU = 'Avez-vous des questions? Je suis heureux de vous aider. 😌';
+
+  /* Devicelist Website Text */
+  public WINNIPEG_MOBILE_DEVICE_SPECIALISTS = 'Les spécialistes des appareils mobiles de Winnipeg';
+  public WELCOME_DEVICELIST = 'Bienvenue sur DeviceList, le marché canadien des appareils mobiles';
+  public SEE_WHY_CUSTOMERS_LOVE_DEVICELIST = 'Découvrez pourquoi les clients aiment DeviceList';
+  public DEVICELIST_FOOTER_CONTENT_TWO = '© 2020 DeviceList 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / une «DeviceList» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
+  public DEVICELIST_RECEIVE_YOUR_DEVICE_CONTENT = 'DeviceList répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public DEVICELIST_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec DeviceList, il est facile de choisir pour tous les budgets!';
 
   /* Geebo Website Text */
   public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS = 'Spécialistes des appareils mobiles de la Nouvelle-Écosse';
@@ -207,7 +216,15 @@ export class LanguageKeysFr extends LanguageKeys {
   public SEE_WHY_CUSTOMERS_LOVE_GEEBO = 'Découvrez pourquoi les clients adorent la réparation d\'appareils Geebo';
   public GEEBO_FOOTER_CONTENT_TWO = '© 2020 Réparation d\'appareils Geebo 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Geebo Device Repair» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
   public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT = 'Geebo Device Repair répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec Geebo, il est facile de choisir pour tous les budgets!';
 
+  /* Mobile-Tech Website Text */
+  public SAME_DAY_ADVANCED_REPAIR_SERVICE = 'Services de réparation avancés le jour même';
+  public WELCOME_MOBILE_TECH = 'Bienvenue sur Mobile Tech Lab, le marché des appareils mobiles du Manitoba';
+  public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = 'Découvrez pourquoi les clients aiment Mobile Tech Lab';
+  public MOBILE_TECH_FOOTER_CONTENT_TWO = '© 2020 Mobile Tech Lab 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Mobile Tech Lab» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
+  public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = 'Mobile Tech Lab répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec DeviceList, il est facile de choisir pour tous les budgets!';
 
   /* Prado Wireless Website */
   public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = 'Les spécialistes des appareils mobiles de la Colombie-Britannique';
@@ -215,6 +232,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = 'Découvrez pourquoi les clients aiment Prado Wireless';
   public PRADO_FOOTER_CONTENT_TWO = '© 2020 Prado Wireless 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 British Columbia Inc. s / a «Prado Wireless» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = 'Prado Wireless répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec Prado Wireless, il est facile de choisir pour tous les budgets!';
 
 }
 

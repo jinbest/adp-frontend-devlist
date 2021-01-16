@@ -104,8 +104,7 @@ export class LanguageKeys {
   public SEND_US_YOUR_DEVICE = 'Send us your device';
   public SEND_US_YOUR_DEVICE_CONTENT = 'Make an account with us and indicate what needs to be repaired.';
   public RECEIVE_YOUR_DEVICE = 'Receive your device';
-  public FROM_NEW_TO_RECONDITIONED = 'From New to Reconditioned';
-  public FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Prado Wireless it\'s easy to choose for any budget!';
+  public FROM_NEW_TO_RECONDITIONED = 'From New to Reconditioned';  
   public NEW = 'NEW';
   public NEW_CONTENT = 'A brand new device with no signs of wear';
   public MINT = 'MINT';
@@ -114,7 +113,12 @@ export class LanguageKeys {
   public GOOD_CONTENT = 'Minor scratches or dents';
   public FAIR = 'FAIR';
   public FAIR_CONTENT = 'Visible scratchs and dents';
-  
+  public WE_TYPICALLY_REPLY_IN_FEW_MINS = 'We typically reply in a few minutes';
+  public LIFETIME_WARRANTY = 'LIFETIME WARRANTY';
+  public LIFETIME_WARRANTY_CONTENT = 'All of our repairs are backed with our lifetime, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
+  public WINNIPEG_PROFESSIONAL = 'Winnipeg’s Professional';
+  public PHONE_REPAIR = 'Phone Repair';
+
   /* Repair-widget Text */
   public NEXT = 'Next';
   public ENTER_KEY = 'or press ENTER';
@@ -197,9 +201,14 @@ export class LanguageKeys {
   public AT = 'at';
   public SHORTLY = 'shortly';
   public TRACKING = 'Tracking';
-  public WELCOME_TO_VISIT_OUR_WEBSITE = 'Hi! Welcome to visit our website. 😘';
-  public WE_TYPICALLY_REPLY_IN_FEW_MINS = 'We typically reply in a few minutes';
-  public HAVE_ANY_QUESTION_HAPPY_HELP_YOU = 'Have any questions? I\'m happy to help you. 😌';
+
+  /* Devicelist Website Text */
+  public WINNIPEG_MOBILE_DEVICE_SPECIALISTS = 'Winnipeg\'s mobile device specialists';
+  public WELCOME_DEVICELIST = 'Welcome to DeviceList, Canada’s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_DEVICELIST = 'See Why Customers Love DeviceList';
+  public DEVICELIST_FOOTER_CONTENT_TWO = '© 2020 DeviceList 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "DeviceList" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public DEVICELIST_RECEIVE_YOUR_DEVICE_CONTENT = 'DeviceList repairs your device and notifies you of pick up or delivery date.';
+  public DEVICELIST_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!';
 
   /* Geebo Website Text */
   public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS = 'Nova Scotia\'s mobile device specialists';
@@ -207,7 +216,15 @@ export class LanguageKeys {
   public SEE_WHY_CUSTOMERS_LOVE_GEEBO = 'See Why Customers Love Geebo Device Repair';
   public GEEBO_FOOTER_CONTENT_TWO = '© 2020 Geebo Device Repair 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Geebo Device Repair" does not own or make claim to those trademarks used on this website in which it is not the holder.';
   public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT = 'Geebo Device Repair repairs your device and notifies you of pick up or delivery date.';
+  public GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Geebo it\'s easy to choose for any budget!';
 
+  /* Mobile-Tech Website Text */
+  public SAME_DAY_ADVANCED_REPAIR_SERVICE = 'Same-Day Advanced Repair Services';
+  public WELCOME_MOBILE_TECH = 'Welcome to Mobile Tech Lab, Manitoba\'s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = 'See Why Customers Love Mobile Tech Lab';
+  public MOBILE_TECH_FOOTER_CONTENT_TWO = '© 2020 Mobile Tech Lab 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Mobile Tech Lab" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = 'Mobile Tech Lab repairs your device and notifies you of pick up or delivery date.';
+  public MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!';
 
   /* Prado Wireless Website */
   public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = 'British Columbia\'s mobile device specialists';
@@ -215,6 +232,7 @@ export class LanguageKeys {
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = 'See Why Customers Love Prado Wireless';
   public PRADO_FOOTER_CONTENT_TWO = '© 2020 Prado Wireless 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 British Columbia Inc. o/a "Prado Wireless" does not own or make claim to those trademarks used on this website in which it is not the holder.';
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = 'Prado Wireless repairs your device and notifies you of pick up or delivery date.';
+  public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Prado Wireless it\'s easy to choose for any budget!';
 
 }
 

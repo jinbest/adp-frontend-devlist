@@ -214,7 +214,6 @@ const userNavItemData = [
     {text: 'TRADE_IN', href: '#'},
 ]
 
-
 const arrowData = {
     arrowLeft: arrowLeft,
     arrowRight: arrowRight
@@ -378,7 +377,7 @@ const repairData = {
     },
     section3: {
         title: 'FROM_NEW_TO_RECONDITIONED',
-        content: 'FROM_NEW_TO_RECONDITIONED_CONTENT',
+        content: 'GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',
