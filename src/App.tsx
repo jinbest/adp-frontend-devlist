@@ -8,24 +8,24 @@ import store from "./store/RepairWidgetStore"
 import { LangProvider } from "./i18n/index"
 
 /* eslint-disable */
-// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
-// const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
-const devicelist = [
-    'devicelist', 
-    'geebo', 
-    'mobiletech', 
-    'nanotech', 
-    'northtech', 
-    'phonephix', 
-    'pradoWireless', 
-    // 'wirelessRev'
-]
-const subDomain = devicelist[6];
+const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
+const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
+// const devicelist = [
+//     'devicelist',
+//     'geebo',
+//     'mobiletech',
+//     'nanotech',
+//     'northtech',
+//     'phonephix',
+//     'pradoWireless',
+//     // 'wirelessRev'
+// ]
+// const subDomain = devicelist[6];
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`)
 
-    const [footerStatus, setFooterStatus] = useState(true);
+    const [footerStatus, setFooterStatus] = useState(true)
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)
