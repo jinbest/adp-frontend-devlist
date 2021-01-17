@@ -1,3 +1,7 @@
 .MuiNativeSelect-icon {
   color: white !important;
 }
+
+#header-search {
+  display: none;
+}

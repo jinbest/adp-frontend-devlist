@@ -72,12 +72,6 @@
   width: 100%;
 }
 
-.cart-mobile-container {
-  /* margin: auto;
-  max-width: 230px;
-  width: 100% */
-}
-
 .section1-top {
   margin-top: 250px !important;
   margin-bottom: 140px !important;
@@ -103,10 +97,16 @@
   line-height: 1.2 !important;
   padding: 1rem 0 0!important;
   margin: 5rem 0 2rem !important;
+  text-align: center;
 }
 .sec1-search_input {
   max-width: 800px;
   width: 100%;
+  display: none;
+}
+
+.sec1-card-mobile-data {
+  display: none !important;
 }
 
 .cartfix-container {
@@ -152,29 +152,73 @@
   width: 100%;
   float: right;
 }
+
+.sec3-container-parent {
+  display: none;
+}
+
 .section3-back {
   background-image: url('../../img/section3-bg.png');
   background-size: cover;
-  /* background-position: top; */
   background-repeat: no-repeat;
 }
+
 .cart-device-list {
   max-width: 280px;
   margin: auto;
   width: 100%;
 }
+
+.sec4-container-box {
+  display: none !important;
+}
+
 .section4-button {
   max-width: 316px;
   width: 100%;
+  display: none !important;
+}
+
+.mg-t-7 {
+  margin: 0 !important;
+}
+
+.sec4-background {
+  background-color: #F5F5F5;
+  padding-bottom: 70px;
+  margin-top: 100px !important;
 }
 
 .section4-title {
-  max-width: 615px;
-  width: 100%;
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  padding: 1rem 0 0!important;
+  margin: 5rem 0 2rem !important;
+  text-align: center;
 }
 
 .sec4-container-special-box {
-  display: none !important;
+  display: block !important;
+}
+
+@media (max-width: 960px) {
+  .sec4-container-box {
+    display: block !important;
+  }
+  .sec4-container-special-box {
+    display: none !important;
+  }
+  .sec4-background {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 425px) {
+  .sec4-background {
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
 }
 
 .mobile {
@@ -222,6 +266,7 @@ p {
 .sec5-Back {
   background-color: #f5f5f5;
   padding-top: 1rem;
+  display: none;
 }
 .sec6-container {
   padding-top: 70px;
@@ -267,12 +312,6 @@ p {
 @media (max-width: 960px) {
   .sec6-card {
     max-width: 500px;
-  }
-}
-
-@media (max-width: 600px) {
-  .sec6-container {
-    padding-bottom: 0px;
   }
 }
 

@@ -100,7 +100,7 @@
   .container-header {
     margin-top: 0;
   }
-  .avatar-div, .mobile-search-div, .card-customized-container-mobile {
+  .avatar-div, .card-customized-container-mobile {
     display: flex;
   }
   .card-customized-item {
@@ -202,6 +202,9 @@
     font-size: 3vw !important;
     padding: 20px 15px;
   }
+  .sec6-container {
+    padding-bottom: 0px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -268,7 +271,7 @@
     font-size: 20px !important;
   }
   .section1-subtitle, .card-mobile > p, .card-fix p, .card-why-customer > p, .score-div > p, 
-  .device-list-grid, .footer_link > li, .footer-subContent-title {
+  .device-list-grid, .footer_link > li {
     font-size: 12px !important; 
   }
   .button {
@@ -297,7 +300,8 @@
     margin: 4rem auto !important;
   }
   .sec6-container {
-    padding-top: 1rem;
+    padding-top: 50px;
+    padding-bottom: 150px;
   }
   .footer {
     margin-top: -100px;
@@ -316,7 +320,7 @@
 
 @media (max-width: 380px) {
   .container-header > a > img {
-    height: 40px;
+    height: 30px;
   }
   .avatar-div > img {
     height: 20px;

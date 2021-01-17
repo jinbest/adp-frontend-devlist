@@ -3,6 +3,7 @@ import trade from "./img/cardmobile/trade.png"
 import repair from "./img/cardmobile/repair.png"
 import buy from "./img/cardmobile/buy.png"
 import protect from "./img/cardmobile/protect.png"
+import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
 import cellphone from "./img/cardfix/mobile.png"
@@ -63,105 +64,116 @@ import mintImg from './img/repair/section3/mint.png'
 import goodImg from './img/repair/section3/good.png'
 import fairImg from './img/repair/section3/fair.png'
 
-const cardMobileData = [
-    { img: trade, title: "TRADE", btnTitle: "Trade-in" },
-    { img: repair, title: "REPAIR", btnTitle: "Repair" },
-    { img: buy, title: "BUY", btnTitle: "Buy" },
-    { img: protect, title: "PROTECT", btnTitle: "Protect" },
-]
+const cardMobileData = {
+    gridMD: 3,
+    heart: heart,
+    data: [
+        { img: trade, title: "TRADE", btnTitle: "TRADE_IN" },
+        { img: repair, title: "REPAIR", btnTitle: "REPAIR" },
+        { img: buy, title: "BUY", btnTitle: "BUY" },
+        { img: protect, title: "PROTECT", btnTitle: "PROTECT" },
+    ]
+}
 
 const cardFixData = [
-    { img: cellphone, title: "Cellphone" },
-    { img: tablet, title: "Tablet" },
-    { img: computer, title: "Computer" },
-    { img: console, title: "Console" },
-    { img: other, title: "Other" },
+    { img: cellphone, title: "CELLPHONE" },
+    { img: tablet, title: "TABLET" },
+    { img: computer, title: "COMPUTER" },
+    { img: console, title: "CONSOLE" },
+    { img: other, title: "OTHER" },
 ]
 
 const contentFixData = [
     {
-        title: "FREE DIAGNOSTICS",
-        content:
-            "We believe in a transparent repqir process. If you're not sure what's wrong with your device, we'll diagnose it for free.",
+        title: "FREE_DIAGNOSTICS",
+        content: "FREE_DIAGNOSTICS_CONTENT",
     },
     {
-        title: "LOW PRICE GUARANTEE",
-        content:
-            "We want you to be confident that you're getting the best price. We'll match any local competitor's published price for the same repair and beat it by $5.",
+        title: "LOW_PRICE_GUARANTEE",
+        content: "LOW_PRICE_GUARANTEE_CONTENT",
     },
     {
-        title: "QUICK TURNAROUND",
-        content:
-            "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours.",
+        title: "QUICK_TURNAROUND",
+        content: "QUICK_TURNAROUND_CONTENT",
     },
     {
-        title: "180 DAY WARRANTY",
-        content:
-            "All of our repairs are backed with our 180-day, hassle-free warranty. This warranty is valid at all of our locations worldwide.",
+        title: "LIFETIME_WARRANTY",
+        content: "LIFETIME_WARRANTY_CONTENT",
     },
 ]
 
 const popularCardData = [
-    { img: camera, title: "iPhone 11 Pro", subtitle: "As low as /", price: "$897" },
-    { img: camera, title: "iPhone 11 Pro", subtitle: "As low as /", price: "$897" },
-    { img: camera, title: "iPhone 11 Pro", subtitle: "As low as /", price: "$897" },
-    { img: camera, title: "iPhone 11 Pro", subtitle: "As low as /", price: "$897" },
+    { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
+    { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
+    { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
+    { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
 ]
 
 const devicelistData = [
     {
         img: best,
-        title: "Best offer available",
-        content: "Selected by our price-quality algorithm",
+        title: "BEST_OFFER_AVAILABLE",
+        content: "BEST_OFFER_AVAILABLE_CONTENT",
     },
     {
         img: warranty,
-        title: "1 Year Warranty",
-        content: "Our partner merchants are continously monitored.",
+        title: "YEAR_1_WARRANTY",
+        content: "YEAR_1_WARRANTY_CONTENT",
     },
-    { img: amazing, title: "Amazing Service", content: "Secure shopping experience." },
+    { 
+        img: amazing, 
+        title: "AMAZING_SERVICE", 
+        content: "AMAZING_SERVICE_CONTENT" 
+    },
     {
         img: positive,
-        title: "Positive Impact",
-        content: "An alternative to new, joyful and elegant.",
+        title: "POSITIVE_IMPACT",
+        content: "POSITIVE_IMPACT_CONTENT",
     },
-    { img: proudly, title: "Proudly Canadian", content: "Canadian owned and Canadian based." },
+    { 
+        img: proudly, 
+        title: "PROUDLY_CANADIAN", 
+        content: "PROUDLY_CANADIAN_CONTENT" 
+    },
 ]
 
 const colorPalle = {
-    orange: '#00B0F0',
-    themeColor: '#606163',
-    underLineCol: '#00B0F0',
-    priceCol: '#606163',
-    repairButtonCol: '#00B0F0',
-    repairChooseItemCol: '#00B0F0',
-    repairBooktimeCol: '#00B0F0',
-    textThemeCol: '#00B0F0'
+    orange: '#F36B26',
+    themeColor: '#ED1D24',
+    underLineCol: '#ED1D24',
+    priceCol: '#054DFA',
+    repairButtonCol: '#ED1D24',
+    nextButtonCol: '#ED1D24',
+    repairChooseItemCol: '#333333',
+    repairBooktimeCol: '#ED1D24',
+    textThemeCol: '#ED1D24',
+    heartCol: '#ED1D24',
+    chatBgCol: '#ED1D24'
 }
 
 const navItemsData = [
-    { href: "#", text: "Trade", isActive: false },
-    { href: "/repair", text: "Repair", isActive: false },
-    { href: "#", text: "Buy", isActive: false },
-    { href: "#", text: "Protect", isActive: false },
+    // { href: "#", text: "Trade", isActive: false },
+    { href: "/repair", text: "REPAIR", isActive: false },
+    // { href: "#", text: "Buy", isActive: false },
+    // { href: "#", text: "Protect", isActive: false },
 ]
 
 const brandItemsData = {
-    left: ["BUSINESS", "FINANCING"],
-    right: {ip: "306.569.6266", en: "ENGLISH", log: "LOG IN"},
+    left: [],
+    right: {ip: "204.808.9416", en: "ENGLISH", log: ""},
     brandCol: 'white',
-    brandThemeCol: '#606163',
-    selectOption: ['ENGLISH', 'CANADA']
+    brandThemeCol: '#333333',
+    selectOption: ['ENGLISH', 'FRENCH']
 }
 
 const hoursData = [
-    { day: "Monday", time: "9:00 a.m. - 5:00 p.m." },
-    { day: "Tuesday", time: "9:00 a.m. - 5:00 p.m." },
-    { day: "Wednesday", time: "9:00 a.m. - 5:00 p.m." },
-    { day: "Thursday", time: "9:00 a.m. - 5:00 p.m." },
-    { day: "Friday", time: "9:00 a.m. - 5:00 p.m." },
-    { day: "Saturday", time: "11:00 a.m. - 4:00 p.m." },
-    { day: "Sunday", time: "Closed" },
+    { day: "MONDAY", time: "9:00 a.m. - 5:00 p.m." },
+    { day: "TUESDAY", time: "9:00 a.m. - 5:00 p.m." },
+    { day: "WEDNESDAY", time: "9:00 a.m. - 5:00 p.m." },
+    { day: "THURSDAY", time: "9:00 a.m. - 5:00 p.m." },
+    { day: "FRIDAY", time: "9:00 a.m. - 5:00 p.m." },
+    { day: "SATURDAY", time: "11:00 a.m. - 4:00 p.m." },
+    { day: "SUNDAY", time: "CLOSED" },
 ]
 
 const avatarData = {
@@ -175,15 +187,15 @@ const avatarData = {
 
 const mobileNavItemData = {
     left: [
-        {text: 'Trade', href: '#'},
-        {text: 'Repair', href: '/repair'},
-        {text: 'Buy', href: '#'},
-        {text: 'Protect', href: '#'},
-        {text: 'Business', href: '#'},
-        {text: 'Financing', href: '#'},
-        {text: 'Insurance', href: '#'},
-        {text: 'Find a Store', href: '#'},
-        {text: 'Conact Us', href: '#'},
+        {text: 'TRADE', href: '#'},
+        {text: 'REPAIR', href: '/repair'},
+        {text: 'BUY', href: '#'},
+        {text: 'PROTECT', href: '#'},
+        {text: 'BUSINESS', href: '#'},
+        {text: 'FINANCING', href: '#'},
+        {text: 'INSURANCE', href: '#'},
+        {text: 'FIND_A_STORE', href: '#'},
+        {text: 'CONTACT_US', href: '#'},
     ],
     right: [
         {text: 'Apple', href: '#'},
@@ -195,11 +207,11 @@ const mobileNavItemData = {
 }
 
 const userNavItemData = [
-    {text: 'My Account', href: '#'},
-    {text: 'Track Repair', href: '/repair'},
-    {text: 'File a Claim', href: '#'},
-    {text: 'Orders', href: '#'},
-    {text: 'Trade-In', href: '#'},
+    {text: 'MY_ACCOUNT', href: '#'},
+    {text: 'TRACK_REPAIR', href: '/repair'},
+    {text: 'FILE_A_CLAIM', href: '#'},
+    {text: 'ORDERS', href: '#'},
+    {text: 'TRADE_IN', href: '#'},
 ]
 
 const arrowData = {
@@ -215,6 +227,7 @@ const shapeData = {
 const footerImageData = {
     buyNow: buyNow,
     deviceList: deviceListImg,
+    bell: '',
     others: [
         visa, round, amex, interactive, paypal
     ]
@@ -222,113 +235,112 @@ const footerImageData = {
 
 const homeTextData = {
     header: {
-        buttonTitle: 'Find a Store',
+        buttonTitle: 'FIND_A_STORE',
         width: '150px'
     },
     section1: {
-        title: ['Trade, repair, buy or sell', 'your mobile device'],
-        subtitle: 'Saskatchewan\'s mobile device specialists',
-        searchPlaceholder: 'Find your device'
+        title: ['WINNIPEG_PROFESSIONAL', 'PHONE_REPAIR'],
+        subtitle: 'SAME_DAY_ADVANCED_REPAIR_SERVICE',
+        searchPlaceholder: 'FIND_YOUR_DEVICE'
     },
     section2: {
-        title: 'What can we fix for you today?'
+        title: 'WHAT_CAN_WE_FIX_FOR_YOU_TODAY'
     },
     section3: {
-        title: 'Popular Devices',
-        subtitle: ['Buy now. Pay later.', 'Whatever works for you.'],
-        content: 'We’ve partnered with Flexiti to offer 0% financing on repairs, devices, and accessories.',
+        title: 'POPULAR_DEVICES',
+        subtitle: ['BUY_NOW_PAY_LATER', 'WHATEVER_WORKS_FOR_YOU'],
+        content: 'POPULAR_DEVICES_CONTENT',
         color: 'white'
     },
     section4: {
-        title: 'Welcome to Nanotech, Saskatchewan\'s mobile device marketplace',
-        btnTitle: 'Our quality charter'
+        title: 'WELCOME_MOBILE_TECH',
+        btnTitle: 'OUR_QUALITY_CHARTER'
     },
     section5: {
         img: bounce,
-        title: "Protect Your Device with Bounce",
-        content:
-            "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
-        subtitle: "As low as $39/year!",
-        subcontent: "24 Hour Refunds",
-        subcontentData: ["No Deductible", "Covers New and Used Phones"],
-        btnTitle: "Insure My Device",
+        title: "PROTECT_YOUR_DEVICE_WITH_BOUNCE",
+        content: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_CONTENT",
+        subtitle: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBTITLE",
+        subcontent: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBCONTENT",
+        subcontentData: ["NO_DEDUCTIBLE", "COVERS_NEW_AND_USED_PHONES"],
+        btnTitle: "INSURE_MY_DEVICE",
     },
     section6: {
-        title: 'See Why Customers Love Nanotech',
-        subtitle: 'View more',
+        title: 'SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH',
+        subtitle: 'VIEW_MORE',
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "October 22, 2020",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I needed a new battery for my iphone 6. After contacting several places who all told me the next available appointment was more than a week away, I called Mobile Tech on Corydon. Within 2 hours, my new battery was installed and ready for pickup. Great service and friendly staff.",
+                reviewer: "Pepo",
             },
             {
                 score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                days: "November 9, 2020",
+                content: "Very glad I found this place! I send a request through FB to couple places asking for an estimate of the screen replacement and Mobile Tech Lab not only has automated estimation but they gave me a call almost right away to confirm that they have a part and it would be done in ... more",
+                reviewer: "Elena Kurakin",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "November 2, 2020",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "My experience was excepion really amazing people working there with reasonable prices for fixing electronics, they fix your electronics with a super reasonable time frame,.would highly recommend this company!",
+                reviewer: "Jessica Johnson",
             },
         ]
     },
     footer: {
         title: { text: '', color: '' },
         gridVal: {
-            mainGrid: [7, 5],
-            subGrid: [6, 6]
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
         },
         subContent: [
-            {title: 'Regina North', content: '1 (306) 569 6266 | info@nanotechrepair.ca 2743 Avonhurst Drive Regina, SK'},
-            {title: 'Regina East', content: '1 (306) 757 6266 | info@nanotechrepair.ca J2 2095 Prince of Wales Regina, SK'}
+            {title: '', content: ''},
+            {title: '', content: ''}
         ],
-        contentSubTitle: 'Saskatoon North',
+        contentSubTitle: '',
         content: [
-            '1 (306) 384 6266 | saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK',
-            '© 2020 Nanotech 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Nanotech" does not own or make claim to those trademarks used on this website in which it is not the holder.'
+            '(204) 808-9416 2020 Corydon Ave, Unit F Winnipeg, MB',
+            'MOBILE_TECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
             {
-                name: "Resources",
+                name: "RESOURCES",
                 lists: [
-                    { href: "#", text: "Contact Us" },
-                    { href: "#", text: "Warranty & Returns" },
-                    { href: "#", text: "Shipping" },
-                    { href: "#", text: "FAQs" },
+                    { href: "#", text: "CONTACT_US" },
+                    { href: "#", text: "WARRANTY_AND_RETURNS" },
+                    { href: "#", text: "SHIPPING" },
+                    { href: "#", text: "FAQS" },
                 ],
             },
             {
-                name: "About",
+                name: "ABOUT",
                 lists: [
-                    { href: "#", text: "Who We Are" },
-                    { href: "#", text: "Finance ing" },
-                    { href: "#", text: "Blog" },
-                    { href: "#", text: "Terms of Service" },
+                    { href: "#", text: "WHO_WE_ARE" },
+                    { href: "#", text: "FINANCING" },
+                    { href: "#", text: "BLOG" },
+                    { href: "#", text: "TERMS_OF_SERVICE" },
                 ],
             },
             {
-                name: "Business",
+                name: "BUSINESS",
                 lists: [
-                    { href: "#", text: "Authorized Dealer Program" },
-                    { href: "#", text: "Sell With Us" },
-                    { href: "#", text: "Find a Location" },
-                    { href: "#", text: "Business Solutions" },
+                    { href: "#", text: "AUTHORIZED_DEALER_PROGRAM" },
+                    { href: "#", text: "SELL_WITH_US" },
+                    { href: "#", text: "FIND_A_LOCATION" },
+                    { href: "#", text: "BUSINESS_SOLUTIONS" },
                 ],
             },
             {
-                name: "Quality",
+                name: "QUALITY",
                 lists: [
-                    { href: "#", text: "Device Grading" },
-                    { href: "#", text: "Quality Control" },
-                    { href: "#", text: "60 Point Quality Check" },
-                    { href: "#", text: "What is PhoneCheck?" },
+                    { href: "#", text: "DEVICE_GRADING" },
+                    { href: "#", text: "QUALITY_CONTROL" },
+                    { href: "#", text: "POINT_QUALITY_CHECK_60" },
+                    { href: "#", text: "WHAT_IS_PHONECHECK" },
                 ],
             },
         ]
@@ -337,54 +349,54 @@ const homeTextData = {
 
 const repairData = {
     section1: {
-        title: 'Fix Your Device Fast!',
-        content: 'Answer a few questions about your damaged device and we’ll help repair it.',
-        btnTitle: 'Get Quote',
+        title: 'FIX_YOUR_DEVICE_FAST',
+        content: 'FIX_YOUR_DEVICE_FAST_CONTENT',
+        btnTitle: 'GET_QUOTE',
         img: repairPhone,
         themeCol: 'black'
     },
     section2: {
-        title: 'How does repair work?',
+        title: 'HOW_DOES_REPAIR_WORK',
         content: [
             {
                 img: selectRepair, 
-                subtitle: 'Select a repair category', 
-                content: 'Make an account with us and indicate what needs to be repaired.',
+                subtitle: 'SELECT_A_REPAIR_CATEGORY', 
+                content: 'SELECT_A_REPAIR_CATEGORY_CONTENT',
             },
             {
                 img: sendDevice,
-                subtitle: 'Send us your device',
-                content: 'Make an account with us and indicate what needs to be repaired.',
+                subtitle: 'SEND_US_YOUR_DEVICE',
+                content: 'SEND_US_YOUR_DEVICE_CONTENT',
             },
             {
                 img: receiveDevice,
-                subtitle: 'Receive your device',
-                content: 'DeviceList repairs your device and notifies you of pick up or delivery date.',
+                subtitle: 'RECEIVE_YOUR_DEVICE',
+                content: 'MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT',
             }
         ]
     },
     section3: {
-        title: 'From New to Reconditioned',
-        content: 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!',
+        title: 'FROM_NEW_TO_RECONDITIONED',
+        content: 'MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',
-                subcontent: 'A brand new device with no signs of wear',
+                subcontent: 'NEW_CONTENT',
                 img: newImg
             },
             {
                 subtitle: 'MINT',
-                subcontent: 'No scratches or dents',
+                subcontent: 'MINT_CONTENT',
                 img: mintImg
             },
             {
                 subtitle: 'GOOD',
-                subcontent: 'Minor scratches or dents',
+                subcontent: 'GOOD_CONTENT',
                 img: goodImg
             },
             {
                 subtitle: 'FAIR',
-                subcontent: 'Visible scratchs and dents',
+                subcontent: 'FAIR_CONTENT',
                 img: fairImg
             }
         ]
