@@ -5,7 +5,6 @@ import { Typography, Grid, Box } from '@material-ui/core';
 import { useT } from '../../i18n/index'
 import {LangProps} from '../../i18n/en'
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }

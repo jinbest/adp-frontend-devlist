@@ -6,7 +6,6 @@ import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../store/RepairWidgetStore'
 import { T } from '../../i18n/index'
 
-/* eslint-disable */
 type StoreProps = {  
   repairWidgetStore: RepairWidgetStore;
 }

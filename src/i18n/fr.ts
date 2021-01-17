@@ -122,6 +122,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public DAY_180_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie sans tracas de 180 jours. Cette garantie est valable dans tous nos sites dans le monde.';
   public MONTH_6_WARRANTY = 'GARANTIE 6 MOIS';
   public MONTH_6_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie de 6 mois sans tracas. Cette garantie est valable dans tous nos sites dans le monde.';
+  public WHOLESALE = 'Degros';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';
@@ -265,6 +266,13 @@ export class LanguageKeysFr extends LanguageKeys {
   public PHONEPHIX_FOOTER_CONTENT_TWO = '© 2020 PhonePhix 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «PhonePhix» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
   public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = 'PhonePhix répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
   public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec PhonePhix, il est facile de choisir pour tous les budgets!';
+  
+  /* Wireless Website Text */
+  public WELCOME_WIRELESS = 'Bienvenue sur Wireless Revolution, le marché des appareils mobiles d\'Ottowa';
+  public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = 'Découvrez pourquoi les clients aiment la révolution sans fil';
+  public WIRELESS_FOOTER_CONTENT_TWO = '© 2020 Wireless Revolution 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Wireless Revolution» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
+  public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = 'Wireless Rev répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec Wireless Rev, il est facile de choisir pour tous les budgets!';
   
 }
 

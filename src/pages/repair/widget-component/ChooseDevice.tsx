@@ -6,7 +6,6 @@ import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
 
-/* eslint-disable */
 type Props = {
   data: any;
   stepName: string;
@@ -94,7 +93,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         }
       }
     } else if (step === 2) {
-      let cntTypes:any[] = data.types;
+      const cntTypes:any[] = data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -109,7 +108,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 4) {
-      let cntTypes:any[] = data.types;
+      const cntTypes:any[] = data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -122,7 +121,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 5) {
-      let cntTypes:any[] = data.types;
+      const cntTypes:any[] = data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -139,7 +138,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
   const toggleItemTypes = (i:number, stepN:string) => {
     if(stepN === 'deviceRepairs') {
-      let cntTypes:any[] = itemTypes
+      const cntTypes:any[] = itemTypes;
       if (cntTypes[i].bg === 'white') {
         cntTypes[i].bg = repairChooseItemCol
         cntTypes[i].col = 'white'
@@ -150,7 +149,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         cntTypes[i].selected = false
       }
       setItemTypes([...cntTypes])
-      let preChooseRepairs:any[] = [];
+      const preChooseRepairs:any[] = [];
       for (let i = 0; i < cntTypes.length; i++) {
         if (cntTypes[i].selected) {
           preChooseRepairs.push({name: cntTypes[i].name})
@@ -158,7 +157,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       handleChangeChooseData(step, {data: preChooseRepairs, counter: repairWidgetData.deviceCounter})
     } else {
-      let cntItemTypes:any[] = itemTypes
+      const cntItemTypes:any[] = itemTypes;
       for (let u = 0; u < cntItemTypes.length; u++) {
         if (u === i) {
           cntItemTypes[u].bg = repairChooseItemCol
@@ -176,7 +175,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   useEffect(() => {
-    let cntArray:any[] = [], cntTypes:any[] = itemTypes
+    const cntArray:any[] = [], cntTypes:any[] = itemTypes;
     if(cntTypes && stepName === 'deviceRepairs') {
       for (let i = 0; i < cntTypes.length; i++) {
         if (cntTypes[i].bg === repairChooseItemCol) {

@@ -4,7 +4,6 @@ import { CardPopular } from '../../components'
 import { useT } from '../../i18n/index'
 import {LangProps} from '../../i18n/en'
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }

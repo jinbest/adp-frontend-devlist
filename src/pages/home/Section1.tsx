@@ -4,8 +4,10 @@ import { Grid, Box, Typography } from '@material-ui/core'
 import { Search } from '../../components';
 import { useT } from "../../i18n/index";
 import { LangProps } from "../../i18n/en";
+// import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
 
-/* eslint-disable */
+// const features:any[] = ['repair'];
+
 type Props = {
   subDomain?: string;
 }
@@ -43,7 +45,7 @@ const Section1 = ({subDomain}: Props) => {
 
   return (
     <section className='Container'>
-      <Grid item xs={12} sm={12} className="section1-top">
+      <Grid item xs={12} sm={12} className='section1-top'>
         <div className="section1-title">
           {data.homeTextData.section1.title.map((item:LangProps, index:number) => {
             return (
@@ -53,9 +55,23 @@ const Section1 = ({subDomain}: Props) => {
             )
           })}
         </div>
+
+        {/* <FeatureToggles features={features}>
+          <Feature
+            name='repair'
+            inactiveComponent={()=><></>}
+            activeComponent={()=>
+              <Typography className='section1-subtitle'>
+                {t(data.homeTextData.section1.subtitle)}
+              </Typography>
+            }
+          />
+        </FeatureToggles> */}
+
         <Typography className="section1-subtitle">
           {t(data.homeTextData.section1.subtitle)}
         </Typography>
+
         <Box className='sec1-search_input'>
           <Search placeholder={data.homeTextData.section1.searchPlaceholder} color='white' bgcolor={data.colorPalle.themeColor} height='60px' />
         </Box>

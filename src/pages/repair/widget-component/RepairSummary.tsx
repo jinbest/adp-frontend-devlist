@@ -5,7 +5,6 @@ import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../../store/RepairWidgetStore'
 import { T } from '../../../i18n/index'
 
-/* eslint-disable */
 type StoreProps = {  
   repairWidgetStore: RepairWidgetStore;
 }
@@ -50,10 +49,10 @@ class RepairSummary extends React.Component<Props, MyState> {
 
   handleTrashSummary(countNum:number, serviceNum:number) {
     const { repairWidgetStore } = this.props;
-    let cntDeviceBrand = repairWidgetStore.deviceBrand,
+    const cntDeviceBrand = repairWidgetStore.deviceBrand,
       cntDeviceModel = repairWidgetStore.deviceModel,
-      cntChooseRepair = repairWidgetStore.chooseRepair,
-      cntDeviceCounter= repairWidgetStore.deviceCounter;
+      cntChooseRepair = repairWidgetStore.chooseRepair;
+    let cntDeviceCounter= repairWidgetStore.deviceCounter;
     cntChooseRepair[countNum].splice(serviceNum, 1);
     if (cntChooseRepair[countNum].length === 0) {
       cntChooseRepair.splice(countNum, 1);

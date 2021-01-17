@@ -3,7 +3,6 @@ import {CardWhyCustomer} from '../../components'
 import { Typography, Grid, Box } from '@material-ui/core'
 import { useT } from '../../i18n/index'
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }
