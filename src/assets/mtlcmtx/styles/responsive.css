@@ -268,7 +268,7 @@
     font-size: 20px !important;
   }
   .section1-subtitle, .card-mobile > p, .card-fix p, .card-why-customer > p, .score-div > p, 
-  .device-list-grid, .footer_link > li, .footer-subContent-title {
+  .device-list-grid, .footer_link > li {
     font-size: 12px !important; 
   }
   .button {
@@ -316,7 +316,7 @@
 
 @media (max-width: 380px) {
   .container-header > a > img {
-    height: 40px;
+    height: 30px;
   }
   .avatar-div > img {
     height: 20px;

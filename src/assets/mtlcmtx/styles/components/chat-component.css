@@ -37,11 +37,11 @@
 .rcw-launcher {
   right: 310px;
   position: relative;
-  background-color:#00B0F0;
+  background-color:#2B388F;
 }
 
 .rcw-conversation-container .rcw-header {
-  background-color: #92daf5;
+  background-color:#57609e;
   padding: 0px 0px 5px;
 }
 
@@ -68,12 +68,12 @@
  
 /* Handle */
 .rcw-messages-container::-webkit-scrollbar-thumb {
-  background: #92daf5;
+  background: #57609e;
 }
 
 /* Handle on hover */
 .rcw-messages-container::-webkit-scrollbar-thumb:hover {
-  background:#00B0F0;
+  background:#2B388F;
 }
 
 .rcw-conversation-container .avatar {
@@ -104,7 +104,7 @@
     border-radius: 10px 10px 0 0;
   }
   .rcw-conversation-container .rcw-close-button {
-    background-color:#92daf5;
+    background-color:#57609e;
   }
   .rcw-conversation-container .rcw-title {
     padding: 15px 0;

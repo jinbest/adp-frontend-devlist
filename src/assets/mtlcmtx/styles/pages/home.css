@@ -166,6 +166,7 @@
 .section4-button {
   max-width: 316px;
   width: 100%;
+  margin-top: 2rem;
 }
 
 .section4-title {
@@ -224,8 +225,7 @@ p {
   padding-top: 1rem;
 }
 .sec6-container {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 4rem;
 }
 .sec6-card {
   margin: auto;
@@ -267,12 +267,6 @@ p {
 @media (max-width: 960px) {
   .sec6-card {
     max-width: 500px;
-  }
-}
-
-@media (max-width: 600px) {
-  .sec6-container {
-    padding-bottom: 0px;
   }
 }
 

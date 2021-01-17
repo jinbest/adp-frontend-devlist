@@ -38,8 +38,8 @@ import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/corner-shape.png'
-import mockupShape from './img/mockup-shape.png'
+import cornerShape from './img/shape-home.png'
+
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -97,9 +97,9 @@ const contentFixData = [
         content: "QUICK_TURNAROUND_CONTENT",
     },
     {
-        title: "DAY_180_WARRANTY",
-        content: "DAY_180_WARRANTY_CONTENT",
-    },
+        title: "MONTH_6_WARRANTY",
+        content: "MONTH_6_WARRANTY_CONTENT",
+    }
 ]
 
 const popularCardData = [
@@ -138,17 +138,17 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-    orange: '#00B0F0',
-    themeColor: '#606163',
-    underLineCol: '#00B0F0',
-    priceCol: '#606163',
-    repairButtonCol: '#00B0F0',
-    nextButtonCol: '#606163',
-    repairChooseItemCol: '#00B0F0',
-    repairBooktimeCol: '#00B0F0',
-    textThemeCol: '#00B0F0',
-    heartCol: '#606163',
-    chatBgCol: '#00B0F0'
+    orange: '#F67500',
+    themeColor: '#2B388F',
+    underLineCol: '#2B388F',
+    priceCol: '#F67500',
+    repairButtonCol: '#2B388F',
+    nextButtonCol: '#2B388F',
+    repairChooseItemCol: '#2B388F',
+    repairBooktimeCol: '#2B388F',
+    textThemeCol: '#2B388F',
+    heartCol: '#2B388F',
+    chatBgCol: '#2B388F'
 }
 
 const navItemsData = [
@@ -160,9 +160,9 @@ const navItemsData = [
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
-    right: {ip: "306.569.6266", en: "ENGLISH", log: "LOG_IN"},
+    right: {ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN"},
     brandCol: 'white',
-    brandThemeCol: '#606163',
+    brandThemeCol: '#2B388F',
     selectOption: ['ENGLISH', 'FRENCH']
 }
 
@@ -208,11 +208,11 @@ const mobileNavItemData = {
 
 const userNavItemData = [
     {text: 'MY_ACCOUNT', href: '#'},
-    {text: 'TRACK_REPAIR', href: '/repair'},
-    {text: 'FILE_A_CLAIM', href: '#'},
+    {text: 'TRACKING', href: '#'},
     {text: 'ORDERS', href: '#'},
     {text: 'TRADE_IN', href: '#'},
 ]
+
 
 const arrowData = {
     arrowLeft: arrowLeft,
@@ -220,8 +220,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: {img: cornerShape, width: ''},
-    mockupShape: {img: mockupShape, width: ''}
+    cornerShape: {img: cornerShape, width: '100vw'},
+    mockupShape: ''
 }
 
 const footerImageData = {
@@ -240,7 +240,7 @@ const homeTextData = {
     },
     section1: {
         title: ['TRADE_REPAIR_BUY_OR_SELL', 'YOUR_MOBILE_DEVICE'],
-        subtitle: 'SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS',
+        subtitle: 'YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH',
         searchPlaceholder: 'FIND_YOUR_DEVICE'
     },
     section2: {
@@ -250,10 +250,10 @@ const homeTextData = {
         title: 'POPULAR_DEVICES',
         subtitle: ['BUY_NOW_PAY_LATER', 'WHATEVER_WORKS_FOR_YOU'],
         content: 'POPULAR_DEVICES_CONTENT',
-        color: 'white'
+        color: 'black'
     },
     section4: {
-        title: 'WELCOME_NANOTECH',
+        title: 'WELCOME_NORTHTECH',
         btnTitle: 'OUR_QUALITY_CHARTER'
     },
     section5: {
@@ -266,7 +266,7 @@ const homeTextData = {
         btnTitle: "INSURE_MY_DEVICE",
     },
     section6: {
-        title: 'SEE_WHY_CUSTOMERS_LOVE_NANOTECH',
+        title: 'SEE_WHY_CUSTOMERS_LOVE_NORTHTECH',
         subtitle: 'VIEW_MORE',
         review: [
             {
@@ -292,19 +292,19 @@ const homeTextData = {
         ]
     },
     footer: {
-        title: { text: '', color: '' },
+        title: { text: 'GIVING_BACK_TO_NORTH', color: 'white' },
         gridVal: {
-            mainGrid: [7, 5],
-            subGrid: [6, 6]
+            mainGrid: [4, 8],
+            subGrid: [11, 1]
         },
         subContent: [
-            {title: 'REGINA_NORTH', content: '1 (306) 569 6266 | info@nanotechrepair.ca 2743 Avonhurst Drive Regina, SK'},
-            {title: 'REGINA_EAST', content: '1 (306) 757 6266 | info@nanotechrepair.ca J2 2095 Prince of Wales Regina, SK'}
+            {title: '', content: ''},
+            {title: '', content: ''}
         ],
-        contentSubTitle: 'SASKATOON_NORTH',
+        contentSubTitle: '',
         content: [
-            '1 (306) 384 6266 | saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK',
-            'NANOTECH_FOOTER_CONTENT_TWO'
+            '(819) 700-2211 | info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
+            'NORTHTECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
             {
@@ -371,13 +371,13 @@ const repairData = {
             {
                 img: receiveDevice,
                 subtitle: 'RECEIVE_YOUR_DEVICE',
-                content: 'NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT',
+                content: 'NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT',
             }
         ]
     },
     section3: {
         title: 'FROM_NEW_TO_RECONDITIONED',
-        content: 'NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT',
+        content: 'NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',

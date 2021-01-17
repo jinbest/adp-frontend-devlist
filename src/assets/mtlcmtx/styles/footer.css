@@ -1,5 +1,5 @@
 .footer {
-  padding: 190px 20px 30px;
+  padding: 750px 20px 30px;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -82,12 +82,15 @@
   margin: 20px 0;
 }
 
-.footer-container-special {
-  display: none;
+.footer-title {
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  position: absolute;
+  top: 350px;
+  right: 200px;
 }
 
-.footer-subContent-title {
-  font-weight: bold;
-  margin-bottom: -20px;
-  margin-top: 25px;
+.footer-container-special {
+  display: none;
 }
