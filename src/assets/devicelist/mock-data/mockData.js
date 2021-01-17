@@ -21,34 +21,34 @@ import thankQuote from './repair-widget/quote/thankQuote.png'
 
 const repairWidget = {
   publicText: {
-    next: 'Next',
-    enterKey: 'or press ENTER',
-    yes: 'Yes',
-    no: 'No',
-    repairSummary: 'Repair Summary',
-    repairService: 'Repair Service:',
-    repairServiceSummary: 'Repair Service Summary',
-    yourInfo: 'Your Information',
-    deliveryMethod: 'Delivery Method',
-    preferredContactMethod: 'Preferred Contact Method',
-    message: 'Message',
-    device: 'Device',
-    scheduleAppointment: 'Schedule Appointment',
-    requestQuote: 'Request Quote'
+    next: 'NEXT',
+    enterKey: 'ENTER_KEY',
+    yes: 'YES',
+    no: 'NO',
+    repairSummary: 'REPAIR_SUMMARY',
+    repairService: 'REPAIR_SERVICE',
+    repairServiceSummary: 'REPAIR_SERVICE_SUMMARY',
+    yourInfo: 'YOUR_INFO',
+    deliveryMethod: 'DELIVERY_METHOD',
+    preferredContactMethod: 'PREFERRED_CONTACT_METHOD',
+    message: 'MESSAGE',
+    device: 'DEVICE',
+    scheduleAppointment: 'SCHEDULE_APPOINTMENT',
+    requestQuote: 'REQUEST_QUOTE'
   },
   deviceBrand: {
-    title: 'Choose Your Device Brand',
-    placeholder: 'Search for your Device Brand or enter IMEI',
+    title: 'CHOOSE_YOUR_DEVICE_BRAND',
+    placeholder: 'SEARCH_FOR_YOUR_DEVICE_BRAND_OR_ENTER_IMEI',
     mainTopic: {
-      title: 'Find your device’s brand',
+      title: 'FIND_YOUR_DEVICE_BRAND',
       content: [
-        'Apple, Samsung, Huawei, Sony, etc. are examples of device brands(manufactures). If you don\'t know the brand of your device, don\'t panic!',
-        'It is indicated on back of the device, on the front, or in the Settings/System/About phone section if you are on Android or Settings/Apple IDs if you are on IOS. It may also be shown on the original box and/or manual that came with your device.'
+        'FIND_YOUR_DEVICE_BRAND_CONTENT_1',
+        'FIND_YOUR_DEVICE_BRAND_CONTENT_2'
       ]
     },
     disableTopic: {
-      title: 'How to find the model of your device',
-      content: 'The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device.'
+      title: 'HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE',
+      content: 'HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT'
     },
     images: [
       { name: 'Apple', img: apple },
@@ -65,12 +65,12 @@ const repairWidget = {
     ],
   },
   deviceModel: {
-    title: 'Choose Your Device Model / Apple',
-    placeholder: 'Search for your Model',
+    title: 'CHOOSE_YOUR_DEVICE_MODEL_APPLE',
+    placeholder: 'SEARCH_FOR_YOUR_MODEL',
     mainTopic: {
-      title: 'How to find the model of your device',
+      title: 'HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE',
       content: [
-        'The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device.',
+        'HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT',
       ]
     },
     disableTopic: { title: '', content: '' },
@@ -92,102 +92,102 @@ const repairWidget = {
     ],
   },
   deviceRepairs: {
-    title: 'Choose Your Repair(s)',
-    placeholder: 'What’s broken?',
+    title: 'CHOOSE_YOUR_REPAIRS',
+    placeholder: 'WHAT_IS_BROKEN',
     mainTopic: {
-      title: 'Estimated repair time',
+      title: 'ESTIMATED_REPAIR_TIME',
       content: []
     },
     types: [
-      { name: 'Back Glass', bg: 'white', col: 'black', estimate: '35 minutes', selected: false },
-      { name: 'Battery', bg: 'white', col: 'black', estimate: '60 minutes', selected: false },
-      { name: 'Camera (Front)', bg: 'white', col: 'black', estimate: '135 minutes', selected: false },
-      { name: 'Camera (Back)', bg: 'white', col: 'black', estimate: '155 minutes', selected: false },
-      { name: 'Charging Port', bg: 'white', col: 'black', estimate: '275 minutes', selected: false },
-      { name: 'Screen', bg: 'white', col: 'black', estimate: '55 minutes', selected: false },
+      { name: 'BACK_GLASS', bg: 'white', col: 'black', estimate: '35 minutes', selected: false },
+      { name: 'BATTERY', bg: 'white', col: 'black', estimate: '60 minutes', selected: false },
+      { name: 'CAMERA_FRONT', bg: 'white', col: 'black', estimate: '135 minutes', selected: false },
+      { name: 'CAMERA_BACK', bg: 'white', col: 'black', estimate: '155 minutes', selected: false },
+      { name: 'CHARGING_PORT', bg: 'white', col: 'black', estimate: '275 minutes', selected: false },
+      { name: 'SCREEN', bg: 'white', col: 'black', estimate: '55 minutes', selected: false },
     ],
   },
   repairAnotherDevice: {
-    title: 'Repair Another Device?',
+    title: 'REPAIR_ANOTHER_DEVICE',
     mainTopic: {
-      title: 'Repair another device?',
-      content: 'Repair all your devices at once with us!'
+      title: 'REPAIR_ANOTHER_DEVICE',
+      content: 'REPAIR_ANOTHER_DEVICE_CONTENT'
     }
   },
   dropOffDevicce: {
-    title: 'How Would You Like to Drop-Off Your Device(s)?',
+    title: 'HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE',
     types: [      
-      { name: 'Mail-In', bg: 'white', col: 'black', selected: false },
-      { name: 'Pick-Up/ Drop-Off Service', bg: 'white', col: 'black', selected: false },
-      { name: 'Curbside Drop-Off', bg: 'white', col: 'black', selected: false },
-      { name: 'Outside Repair', bg: 'white', col: 'black', selected: false },
+      { name: 'MAIL_IN', bg: 'white', col: 'black', selected: false },
+      { name: 'PICK_UP_DROP_OFF_SERVICE', bg: 'white', col: 'black', selected: false },
+      { name: 'CURBSIDE_DROP_OFF', bg: 'white', col: 'black', selected: false },
+      { name: 'OUTSIDE_REPAIR', bg: 'white', col: 'black', selected: false },
     ],
   },
   receiveQuote: {
-    title: 'How Would You Like to Receive Your Quote?',
+    title: 'HOW_WOULD_YOU_LIKE_TO_RECEIVE_YOUR_QUOTE',
     types: [
-      { name: 'Email', bg: 'white', col: 'black', selected: false },
-      { name: 'Text', bg: 'white', col: 'black', selected: false },
-      { name: 'Phone Call', bg: 'white', col: 'black', selected: false },
+      { name: 'EMAIL', bg: 'white', col: 'black', selected: false },
+      { name: 'TEXT', bg: 'white', col: 'black', selected: false },
+      { name: 'PHONE_CALL', bg: 'white', col: 'black', selected: false },
     ],
   },
   contactDetails: {
-    title: 'Please Enter Your Contact Details',
+    title: 'PLEASE_ENTER_YOUR_CONTACT_DETAILS',
     placeholder: {
-      firstName: 'First Name*',
-      lastName: 'Last Name*',
-      emailAdd: 'E-mail Address*',
-      phoneNum: 'Phone Number*',
-      address1: 'Street Address*',
-      address2: 'Address2*',
-      country: 'Country*',
-      city: 'City*',
-      province: 'Province*',
-      postalCode: 'Postal Code*'
+      firstName: 'FIRST_NAME',
+      lastName: 'LAST_NAME',
+      emailAdd: 'EMAIL_ADDRESS',
+      phoneNum: 'PHONE_NUM',
+      address1: 'STREET_ADDRESS',
+      address2: 'ADDRESS_2',
+      country: 'COUNTRY',
+      city: 'CITY',
+      province: 'PROVINCE',
+      postalCode: 'POSTAL_CODE'
     }
   },
   bookTime: {
-    title: ['Select Mail-In Address', 'Schedule a Pick-Up', 'Book Your Time', 'Book Your Time' ],
+    title: ['SELECT_MAIN_IN_ADDRESS', 'SCHEDULE_A_PICK_UP', 'BOOK_YOUR_TIME', 'BOOK_YOUR_TIME' ],
     select: {
       location: {
         title: [
-          'Please Select Preferred Service Location', 
-          'Please Enter Your Address', 
-          'Select Preferred Location', 
-          'Enter Your Residential Address'
+          'PLEASE_SELECT_PREFERRED_SERVICE_LOCATION', 
+          'PLEASE_ENTER_YOUR_ADDRESS', 
+          'SELECT_PREFERRED_LOCATION', 
+          'ENTER_YOUR_RESIDENTIAL_ADDRESS'
         ],
         option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
         mailInOption: [{name: '4160 Mailing Street, lqaluit NU', checked: true}, {name: '111 Mailing Street, lqaluit NU', checked: false}]     
       },
       time: {
         title: [
-          'Please Enter Your Address for Return Shipment', 
-          'Select a Pick-Up Time', 
-          'Select Curbside Drop-Off Time', 
-          'Select Visit Time'
+          'PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT', 
+          'SELECT_A_PICK_UP_TIME', 
+          'SELECT_CURBSIDE_DROP_OFF_TIME', 
+          'SELECT_VISIT_TIME'
         ],
         workingHours: [
-          ['Monday - Friday', '9:00 a.m.-5:00 p.m.'],
-          ['Saturday', '11:00 a.m.-4:00 p.m.'],
-          ['Sunday', 'Closed'],
+          ['MONDAY_FRIDAY', '9:00 a.m.-5:00 p.m.'],
+          ['SATURDAY', '11:00 a.m.-4:00 p.m.'],
+          ['SUNDAY', 'CLOSED'],
         ]
       }
     }
   },
   usefulInfo: {
-    title: 'Enter a Message or Any Useful Information About This Repair',
-    placeholder: 'Type your message here (optional)',
+    title: 'ENTER_A_MESSAGE_OR_USEFUL_INFO',
+    placeholder: 'TYPE_YOUR_MESSAGE_HERE_OPTIONAL',
   },
   quoteData: [
     {
       img: requestQuote,
-      title: 'Thank you for choosing DeviceList for your repair!',
-      text: 'with a detailed service quote.'
+      title: 'THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR',
+      text: 'WITH_A_DETAILED_SERVICE_QUOTE'
     },
     {
       img: thankQuote,
-      title: 'Thank you for choosing DeviceList for your repair!',
-      text: 'with a detailed service quote and appointment information.'
+      title: 'THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR',
+      text: 'WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT'
     }
   ]
 }

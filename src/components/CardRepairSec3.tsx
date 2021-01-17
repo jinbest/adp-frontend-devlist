@@ -1,6 +1,5 @@
 import React from 'react'
 
-/* eslint-disable */
 type Props = {
   img: string;
   subtitle: string;

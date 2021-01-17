@@ -3,7 +3,6 @@ import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import { useT } from '../i18n/index';
 import { LangProps } from '../i18n/en';
 
-/* eslint-disable */
 type Props = {
   title: LangProps;
   bgcolor?: string;

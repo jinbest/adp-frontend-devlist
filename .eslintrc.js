@@ -26,6 +26,7 @@ module.exports = {
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/restrict-plus-operands": "off",
         "no-constant-condition": "off",
+        "@typescript-eslint/unbound-method": "off",
         "react/no-unescaped-entities": "off",
         "@typescript-eslint/no-unsafe-return": "off",
         "@typescript-eslint/no-this-alias": [

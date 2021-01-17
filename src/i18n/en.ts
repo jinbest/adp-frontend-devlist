@@ -104,8 +104,7 @@ export class LanguageKeys {
   public SEND_US_YOUR_DEVICE = 'Send us your device';
   public SEND_US_YOUR_DEVICE_CONTENT = 'Make an account with us and indicate what needs to be repaired.';
   public RECEIVE_YOUR_DEVICE = 'Receive your device';
-  public FROM_NEW_TO_RECONDITIONED = 'From New to Reconditioned';
-  public FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Prado Wireless it\'s easy to choose for any budget!';
+  public FROM_NEW_TO_RECONDITIONED = 'From New to Reconditioned';  
   public NEW = 'NEW';
   public NEW_CONTENT = 'A brand new device with no signs of wear';
   public MINT = 'MINT';
@@ -114,7 +113,17 @@ export class LanguageKeys {
   public GOOD_CONTENT = 'Minor scratches or dents';
   public FAIR = 'FAIR';
   public FAIR_CONTENT = 'Visible scratchs and dents';
-  
+  public WE_TYPICALLY_REPLY_IN_FEW_MINS = 'We typically reply in a few minutes';
+  public LIFETIME_WARRANTY = 'LIFETIME WARRANTY';
+  public LIFETIME_WARRANTY_CONTENT = 'All of our repairs are backed with our lifetime, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
+  public WINNIPEG_PROFESSIONAL = 'Winnipeg’s Professional';
+  public PHONE_REPAIR = 'Phone Repair';
+  public DAY_180_WARRANTY = '180 DAY WARRANTY';
+  public DAY_180_WARRANTY_CONTENT = 'All of our repairs are backed with our 180-day, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
+  public MONTH_6_WARRANTY = '6 MONTH WARRANTY';
+  public MONTH_6_WARRANTY_CONTENT = 'All of our repairs are backed with our 6 month, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
+  public WHOLESALE = 'Wholesale';
+
   /* Repair-widget Text */
   public NEXT = 'Next';
   public ENTER_KEY = 'or press ENTER';
@@ -197,9 +206,14 @@ export class LanguageKeys {
   public AT = 'at';
   public SHORTLY = 'shortly';
   public TRACKING = 'Tracking';
-  public WELCOME_TO_VISIT_OUR_WEBSITE = 'Hi! Welcome to visit our website. 😘';
-  public WE_TYPICALLY_REPLY_IN_FEW_MINS = 'We typically reply in a few minutes';
-  public HAVE_ANY_QUESTION_HAPPY_HELP_YOU = 'Have any questions? I\'m happy to help you. 😌';
+
+  /* Devicelist Website Text */
+  public WINNIPEG_MOBILE_DEVICE_SPECIALISTS = 'Winnipeg\'s mobile device specialists';
+  public WELCOME_DEVICELIST = 'Welcome to DeviceList, Canada’s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_DEVICELIST = 'See Why Customers Love DeviceList';
+  public DEVICELIST_FOOTER_CONTENT_TWO = '© 2020 DeviceList 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "DeviceList" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public DEVICELIST_RECEIVE_YOUR_DEVICE_CONTENT = 'DeviceList repairs your device and notifies you of pick up or delivery date.';
+  public DEVICELIST_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!';
 
   /* Geebo Website Text */
   public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS = 'Nova Scotia\'s mobile device specialists';
@@ -207,7 +221,15 @@ export class LanguageKeys {
   public SEE_WHY_CUSTOMERS_LOVE_GEEBO = 'See Why Customers Love Geebo Device Repair';
   public GEEBO_FOOTER_CONTENT_TWO = '© 2020 Geebo Device Repair 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Geebo Device Repair" does not own or make claim to those trademarks used on this website in which it is not the holder.';
   public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT = 'Geebo Device Repair repairs your device and notifies you of pick up or delivery date.';
+  public GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Geebo it\'s easy to choose for any budget!';
 
+  /* Mobile-Tech Website Text */
+  public SAME_DAY_ADVANCED_REPAIR_SERVICE = 'Same-Day Advanced Repair Services';
+  public WELCOME_MOBILE_TECH = 'Welcome to Mobile Tech Lab, Manitoba\'s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = 'See Why Customers Love Mobile Tech Lab';
+  public MOBILE_TECH_FOOTER_CONTENT_TWO = '© 2020 Mobile Tech Lab 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Mobile Tech Lab" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = 'Mobile Tech Lab repairs your device and notifies you of pick up or delivery date.';
+  public MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!';
 
   /* Prado Wireless Website */
   public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = 'British Columbia\'s mobile device specialists';
@@ -215,7 +237,43 @@ export class LanguageKeys {
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = 'See Why Customers Love Prado Wireless';
   public PRADO_FOOTER_CONTENT_TWO = '© 2020 Prado Wireless 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 British Columbia Inc. o/a "Prado Wireless" does not own or make claim to those trademarks used on this website in which it is not the holder.';
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = 'Prado Wireless repairs your device and notifies you of pick up or delivery date.';
+  public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Prado Wireless it\'s easy to choose for any budget!';
 
+  /* Nanotech Website Text */
+  public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS = 'Saskatchewan\'s mobile device specialists';
+  public WELCOME_NANOTECH = 'Welcome to Nanotech, Saskatchewan\'s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = 'See Why Customers Love Nanotech';
+  public REGINA_NORTH = 'Regina North';
+  public REGINA_EAST = 'Regina East';
+  public SASKATOON_NORTH = 'Saskatoon North';
+  public NANOTECH_FOOTER_CONTENT_TWO = '© 2020 Nanotech 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Nanotech" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT = 'Nanotech repairs your device and notifies you of pick up or delivery date.';
+  public NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Nanotech it\'s easy to choose for any budget!';
+
+  /* NorthTech Website Text */
+  public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH = 'Your affordable solutions for technology in the North';
+  public WELCOME_NORTHTECH = 'Welcome to NorthTech Solutions, your affordable solutions for technology in the North';
+  public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = 'See Why Customers Love NorthTech Solutions';
+  public GIVING_BACK_TO_NORTH = 'Giving Back to the North';
+  public NORTHTECH_FOOTER_CONTENT_TWO = '© 2020 NorthTech Solutions 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "NorthTech Solutions" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT = 'NorthTech Solutions repairs your device and notifies you of pick up or delivery date.';
+  public NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with NorthTech Solutions it\'s easy to choose for any budget!';
+
+  /* Phonephix Website Text */
+  public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = 'Okotoks mobile device specialists';
+  public WELCOME_PHONEPHIX = 'Welcome to PhonePhix, Okotoks mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = 'See Why Customers Love PhonePhix';
+  public PHONEPHIX_FOOTER_CONTENT_TWO = '© 2020 PhonePhix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "PhonePhix" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = 'PhonePhix repairs your device and notifies you of pick up or delivery date.';
+  public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with PhonePhix it’s easy to choose for any budget!';
+
+  /* Wireless Website Text */
+  public WELCOME_WIRELESS = 'Welcome to Wireless Revolution, Ottowa\'s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = 'See Why Customers Love Wireless Revolution';
+  public WIRELESS_FOOTER_CONTENT_TWO = '© 2020 Wireless Revolution 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Wireless Revolution" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = 'Wireless Rev repairs your device and notifies you of pick up or delivery date.';
+  public WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Wireless Rev it\'s easy to choose for any budget!';
+  
 }
 
 export type LangProps = keyof LanguageKeys;

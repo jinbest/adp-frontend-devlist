@@ -2,7 +2,6 @@ import React from 'react'
 import { LangProps } from '../i18n/en'
 import Button from './Button'
 
-/* eslint-disable */
 type Props = {
   title: string;
   img: string;
