@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-/* eslint-disable*/
 type Props = {
   subDomain?: string;
   type?: string;

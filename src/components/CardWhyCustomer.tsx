@@ -1,7 +1,6 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 
-/* eslint-disable */
 type Props = {
   score: number;
   days: string;

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
 
-
-/*eslint-disable*/
 type PropsNavItemLink = {
   item: any;
   handleStatus: (status:boolean) => void;

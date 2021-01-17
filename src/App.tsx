@@ -7,7 +7,6 @@ import { Provider } from "mobx-react"
 import store from "./store/RepairWidgetStore"
 import { LangProvider } from "./i18n/index"
 
-/* eslint-disable */
 // const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
 // const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 const devicelist = [
@@ -18,12 +17,12 @@ const devicelist = [
     'northtech', 
     'phonephix', 
     'pradoWireless', 
-    // 'wirelessRev'
+    'wirelessRev'
 ]
-const subDomain = devicelist[6];
+const subDomain = devicelist[7];
 
 function App(): JSX.Element {
-    require(`./assets/${subDomain}/styles/index.css`)
+    require(`./assets/${subDomain}/styles/index.css`);
 
     const [footerStatus, setFooterStatus] = useState(true);
 

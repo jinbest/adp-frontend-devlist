@@ -1,6 +1,5 @@
 import React from 'react'
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }

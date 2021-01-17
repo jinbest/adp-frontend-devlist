@@ -3,7 +3,6 @@ import { Grid, Box, Typography } from '@material-ui/core';
 import {Logo} from '../components';
 import { useT } from '../i18n/index';
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }
@@ -24,7 +23,7 @@ const Footer = ({subDomain}: Props) => {
           <Grid item xs={12} md={gridVal.mainGrid[0]}>
             <Grid item container xs={12}>
               <Grid item xs={12} md={gridVal.subGrid[0]}>
-                <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
+                <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
                 <div className='footer-subContent-title'>
                   {t(data.homeTextData.footer.contentSubTitle)}
                 </div>
@@ -94,7 +93,7 @@ const Footer = ({subDomain}: Props) => {
       <Box className='footer-container-special'>
         <Grid item container xs={12} className='special-footer'>
           <Grid item xs={12} md={4}>
-            <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
+            <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
             <div className='device-list-grid'>
               <div>{data.homeTextData.footer.content[0]}</div>
               <div className='footer-special-content'>{t(data.homeTextData.footer.content[1])}</div>

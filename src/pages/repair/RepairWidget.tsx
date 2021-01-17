@@ -18,7 +18,6 @@ const stepList:string[] = [
   'quoteData'
 ]
 
-/* eslint-disable */
 type StoreProps = {  
   repairWidgetStore: RepairWidgetStore;
 }
@@ -71,7 +70,7 @@ class RepairWidget extends React.Component<Props, MyState> {
   handleBackStep() {
     const { repairWidgetStore } = this.props,
       cntStep:number = this.state.step;
-    let cntDeviceBrand = repairWidgetStore.deviceBrand, 
+    const cntDeviceBrand = repairWidgetStore.deviceBrand, 
       cntDeviceModel = repairWidgetStore.deviceModel,
       cntChooseRepair = repairWidgetStore.chooseRepair;
     const cntDeviceCounter = repairWidgetStore.deviceCounter;
@@ -145,45 +144,35 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   handleChangeChooseData(i:number, chooseData:any) {
     const { repairWidgetStore } = this.props;
-    switch(i) {
-      case 0:
-        let cntDeviceBrand = repairWidgetStore.deviceBrand, cntDeviceCounter = repairWidgetStore.deviceCounter;
-        cntDeviceBrand.push(chooseData);
-        repairWidgetStore.changeDeviceBrand(cntDeviceBrand);
-        repairWidgetStore.changeDeviceCounter(cntDeviceCounter + 1);
-        break;
-      case 1:
-        let cntDeviceModel = repairWidgetStore.deviceModel;
-        cntDeviceModel.push(chooseData);
-        repairWidgetStore.changeDeviceModel(cntDeviceModel);
-        break;
-      case 2:
-        let cntChooseRepair = repairWidgetStore.chooseRepair;
-        const counter = chooseData.counter;
-        if (cntChooseRepair.length >= counter) {
-          cntChooseRepair[counter-1] = chooseData.data;
-        } else {
-          cntChooseRepair.push(chooseData.data);
-        }
-        repairWidgetStore.changeChooseRepair(cntChooseRepair);
-        break;
-      case 4:
-        repairWidgetStore.changeDeliveryMethod(chooseData);
-        break;
-      case 5:
-        repairWidgetStore.changeReceiveQuote(chooseData);
-        break;
-      case 6:
-        repairWidgetStore.changeContactDetails(chooseData);
-        break;
-      case 7:
-        repairWidgetStore.changeBookData(chooseData);
-        break;
-      case 8:
-        repairWidgetStore.changeMessage(chooseData);
-        break;
-      default:
-        break;
+    if (i === 0) {
+      const cntDeviceBrand = repairWidgetStore.deviceBrand, 
+        cntDeviceCounter = repairWidgetStore.deviceCounter;
+      cntDeviceBrand.push(chooseData);
+      repairWidgetStore.changeDeviceBrand(cntDeviceBrand);
+      repairWidgetStore.changeDeviceCounter(cntDeviceCounter + 1);
+    } else if (i === 1) {
+      const cntDeviceModel = repairWidgetStore.deviceModel;
+      cntDeviceModel.push(chooseData);
+      repairWidgetStore.changeDeviceModel(cntDeviceModel);
+    } else if (i === 2) {
+      const cntChooseRepair = repairWidgetStore.chooseRepair;
+      const counter = chooseData.counter;
+      if (cntChooseRepair.length >= counter) {
+        cntChooseRepair[counter-1] = chooseData.data;
+      } else {
+        cntChooseRepair.push(chooseData.data);
+      }
+      repairWidgetStore.changeChooseRepair(cntChooseRepair);
+    } else if (i === 4) {
+      repairWidgetStore.changeDeliveryMethod(chooseData);
+    } else if (i === 5) {
+      repairWidgetStore.changeReceiveQuote(chooseData);
+    } else if (i === 6) {
+      repairWidgetStore.changeContactDetails(chooseData);
+    } else if (i === 7) {
+      repairWidgetStore.changeBookData(chooseData);
+    } else if (i === 8) {
+      repairWidgetStore.changeMessage(chooseData);
     }
   }
 

@@ -4,8 +4,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useT } from "../i18n/index";
 import {LangProps} from '../i18n/en';
 
-/* eslint-disable */
-
 type Props = {
   color?: string;
   bgcolor?: string;

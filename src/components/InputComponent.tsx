@@ -1,7 +1,5 @@
 import React from 'react'
-import { InputBase } from '@material-ui/core';
-
-/* eslint-disable */
+import { InputBase } from '@material-ui/core'
 
 type Props = {
   color?: string;

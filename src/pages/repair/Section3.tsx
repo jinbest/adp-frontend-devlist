@@ -3,7 +3,6 @@ import { Grid, Typography } from '@material-ui/core'
 import {CardRepairSec3} from '../../components'
 import { useT } from '../../i18n/index'
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }

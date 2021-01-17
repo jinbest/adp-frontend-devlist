@@ -3,7 +3,6 @@ import { Typography, Grid, Box } from '@material-ui/core';
 import { CardFix, ContentFix } from '../../components';
 import { useT } from "../../i18n/index";
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }

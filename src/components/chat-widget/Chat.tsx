@@ -6,7 +6,6 @@ import {useT} from '../../i18n/index';
 
 import queryMessage from './firebase-connection.js';
 
-/* eslint-disable */
 type Props = {
   subDomain?: string;
 }

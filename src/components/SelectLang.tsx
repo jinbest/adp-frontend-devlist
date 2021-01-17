@@ -19,7 +19,6 @@ const useStyles = makeStyles(() =>
   }),
 );
 
- /*eslint-disable*/
 type Props = {
   subDomain?: string;
   color: string;
