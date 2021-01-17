@@ -118,6 +118,10 @@ export class LanguageKeys {
   public LIFETIME_WARRANTY_CONTENT = 'All of our repairs are backed with our lifetime, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
   public WINNIPEG_PROFESSIONAL = 'Winnipeg’s Professional';
   public PHONE_REPAIR = 'Phone Repair';
+  public DAY_180_WARRANTY = '180 DAY WARRANTY';
+  public DAY_180_WARRANTY_CONTENT = 'All of our repairs are backed with our 180-day, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
+  public MONTH_6_WARRANTY = '6 MONTH WARRANTY';
+  public MONTH_6_WARRANTY_CONTENT = 'All of our repairs are backed with our 6 month, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
 
   /* Repair-widget Text */
   public NEXT = 'Next';
@@ -234,6 +238,34 @@ export class LanguageKeys {
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = 'Prado Wireless repairs your device and notifies you of pick up or delivery date.';
   public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Prado Wireless it\'s easy to choose for any budget!';
 
+  /* Nanotech Website Text */
+  public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS = 'Saskatchewan\'s mobile device specialists';
+  public WELCOME_NANOTECH = 'Welcome to Nanotech, Saskatchewan\'s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = 'See Why Customers Love Nanotech';
+  public REGINA_NORTH = 'Regina North';
+  public REGINA_EAST = 'Regina East';
+  public SASKATOON_NORTH = 'Saskatoon North';
+  public NANOTECH_FOOTER_CONTENT_TWO = '© 2020 Nanotech 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Nanotech" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT = 'Nanotech repairs your device and notifies you of pick up or delivery date.';
+  public NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Nanotech it\'s easy to choose for any budget!';
+
+  /* NorthTech Website Text */
+  public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH = 'Your affordable solutions for technology in the North';
+  public WELCOME_NORTHTECH = 'Welcome to NorthTech Solutions, your affordable solutions for technology in the North';
+  public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = 'See Why Customers Love NorthTech Solutions';
+  public GIVING_BACK_TO_NORTH = 'Giving Back to the North';
+  public NORTHTECH_FOOTER_CONTENT_TWO = '© 2020 NorthTech Solutions 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "NorthTech Solutions" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT = 'NorthTech Solutions repairs your device and notifies you of pick up or delivery date.';
+  public NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with NorthTech Solutions it\'s easy to choose for any budget!';
+
+  /* Phonephix Website Text */
+  public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = 'Okotoks mobile device specialists';
+  public WELCOME_PHONEPHIX = 'Welcome to PhonePhix, Okotoks mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = 'See Why Customers Love PhonePhix';
+  public PHONEPHIX_FOOTER_CONTENT_TWO = '© 2020 PhonePhix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "PhonePhix" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = 'PhonePhix repairs your device and notifies you of pick up or delivery date.';
+  public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with PhonePhix it’s easy to choose for any budget!';
+  
 }
 
 export type LangProps = keyof LanguageKeys;

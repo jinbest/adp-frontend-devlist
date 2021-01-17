@@ -14,13 +14,13 @@ const devicelist = [
     'devicelist', 
     'geebo', 
     'mobiletech', 
-    // 'nanotech', 
-    // 'northtech', 
-    // 'phonephix', 
+    'nanotech', 
+    'northtech', 
+    'phonephix', 
     'pradoWireless', 
     // 'wirelessRev'
 ]
-const subDomain = devicelist[3];
+const subDomain = devicelist[6];
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`)

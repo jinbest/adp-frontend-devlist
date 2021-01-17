@@ -17,7 +17,7 @@ const Footer = ({subDomain}: Props) => {
   return (
     <footer className='footer'>
       <Typography className='footer-title' style={{color: data.homeTextData.footer.title.color}}>
-        {data.homeTextData.footer.title.text}
+        {t(data.homeTextData.footer.title.text)}
       </Typography>
       <Box className='footer-container'>
         <Grid item container xs={12}>
@@ -26,7 +26,7 @@ const Footer = ({subDomain}: Props) => {
               <Grid item xs={12} md={gridVal.subGrid[0]}>
                 <Logo subDomain={subDomain} type='footer' handleStatus={()=>{}} />
                 <div className='footer-subContent-title'>
-                  {data.homeTextData.footer.contentSubTitle}
+                  {t(data.homeTextData.footer.contentSubTitle)}
                 </div>
                 <div className='device-list-grid'>
                   {data.homeTextData.footer.content[0]}
@@ -37,10 +37,10 @@ const Footer = ({subDomain}: Props) => {
                   return (
                     <React.Fragment key={index}>
                       <div className='footer-subContent-title'>
-                        {item.title}
+                        {t(item.title)}
                       </div>
                       <div className='device-list-grid'>
-                        {item.content}
+                        {t(item.content)}
                       </div>
                     </React.Fragment>
                   )

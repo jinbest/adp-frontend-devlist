@@ -118,6 +118,10 @@ export class LanguageKeysFr extends LanguageKeys {
   public LIFETIME_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie à vie sans tracas. Cette garantie est valable dans tous nos sites dans le monde.';
   public WINNIPEG_PROFESSIONAL = 'Professionnel de Winnipeg';
   public PHONE_REPAIR = 'Réparation de téléphone';
+  public DAY_180_WARRANTY = 'GARANTIE DE 180 JOURS';
+  public DAY_180_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie sans tracas de 180 jours. Cette garantie est valable dans tous nos sites dans le monde.';
+  public MONTH_6_WARRANTY = 'GARANTIE 6 MOIS';
+  public MONTH_6_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie de 6 mois sans tracas. Cette garantie est valable dans tous nos sites dans le monde.';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';
@@ -234,6 +238,34 @@ export class LanguageKeysFr extends LanguageKeys {
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = 'Prado Wireless répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
   public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec Prado Wireless, il est facile de choisir pour tous les budgets!';
 
+  /* Nanotech Website Text */
+  public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS = 'Spécialistes des appareils mobiles de la Saskatchewan';
+  public WELCOME_NANOTECH = 'Bienvenue sur Nanotech, le marché des appareils mobiles de la Saskatchewan';
+  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = 'Découvrez pourquoi les clients aiment la nanotechnologie';
+  public REGINA_NORTH = 'Regina Nord';
+  public REGINA_EAST = 'Regina Est';
+  public SASKATOON_NORTH = 'Saskatoon Nord';
+  public NANOTECH_FOOTER_CONTENT_TWO = '© 2020 Nanotech 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Nanotech» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
+  public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT = 'Nanotech répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec Nanotech, il est facile de choisir pour tous les budgets!';
+
+  /* NorthTech Website Text */
+  public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH = 'Vos solutions abordables pour la technologie dans le Nord';
+  public WELCOME_NORTHTECH = 'Bienvenue chez NorthTech Solutions, vos solutions abordables pour la technologie dans le Nord';
+  public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = 'Découvrez pourquoi les clients aiment les solutions NorthTech';
+  public GIVING_BACK_TO_NORTH = 'Redonner au Nord';
+  public NORTHTECH_FOOTER_CONTENT_TWO = '© 2020 NorthTech Solutions 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «NorthTech Solutions» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
+  public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT = 'NorthTech Solutions répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec NorthTech Solutions, il est facile de choisir pour tous les budgets!';
+  
+  /* Phonephix Website Text */
+  public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = 'Spécialistes des appareils mobiles Okotoks';
+  public WELCOME_PHONEPHIX = 'Bienvenue sur PhonePhix, le marché des appareils mobiles d\'Okotoks';
+  public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = 'Découvrez pourquoi les clients aiment PhonePhix';
+  public PHONEPHIX_FOOTER_CONTENT_TWO = '© 2020 PhonePhix 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «PhonePhix» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n\'est pas le titulaire.';
+  public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = 'PhonePhix répare votre appareil et vous informe de la date de prise en charge ou de livraison.';
+  public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choisissez votre nouveau téléphone parmi nos 4 grades, avec PhonePhix, il est facile de choisir pour tous les budgets!';
+  
 }
 
 export default LanguageKeysFr;
