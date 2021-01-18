@@ -19,7 +19,20 @@ const devicelist = [
     'pradoWireless', 
     'wirelessRev'
 ]
-const subDomain = devicelist[7];
+const subDomain = devicelist[5];
+
+const publicFeatures = [
+    { flag: 'trade', isActive: true },
+    { flag: 'repair', isActive: true },
+    { flag: 'shop', isActive: true },
+    { flag: 'insure', isActive: true },
+    { flag: 'business', isActive: true },
+    { flag: 'financing', isActive: true },
+    { flag: 'wholesale', isActive: true },
+    { flag: 'insurance', isActive: true },
+    { flag: 'find-store', isActive: true },
+    { flag: 'contact-us', isActive: true },
+]
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`);
@@ -33,13 +46,13 @@ function App(): JSX.Element {
     const BaseRouter = () => {
         return (
             <>
-                <Route path="/" exact component={() => <Home subDomain={subDomain} />} />
+                <Route path="/" exact component={() => <Home subDomain={subDomain} features={publicFeatures} />} />
                 <Route path="/home" render={() => <Redirect to="/" />} />
                 <Route
                     path="/repair"
                     component={() => (
                         <Provider repairWidgetStore={store}>
-                            <Repair subDomain={subDomain} handleStatus={handleFooterStatus} />
+                            <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
                         </Provider>
                     )}
                 />
@@ -47,7 +60,7 @@ function App(): JSX.Element {
                     path="/repair-widget"
                     component={() => (
                         <Provider repairWidgetStore={store}>
-                            <RepairWidget subDomain={subDomain} handleStatus={handleFooterStatus} />
+                            <RepairWidget subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
                         </Provider>
                     )}
                 />
@@ -58,7 +71,7 @@ function App(): JSX.Element {
     return (
         <LangProvider>
             <Router>
-                <Header subDomain={subDomain} handleStatus={handleFooterStatus} />
+                <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
                 <BaseRouter />
                 <Chat subDomain={subDomain} />
                 {footerStatus && <Footer subDomain={subDomain} />}

@@ -127,10 +127,6 @@
 
 /* Section2 Card-Container */
 
-.section2-container {
-  display: none !important;
-}
-
 .card-customized-container-desktop {
   display: flex;
   align-content: space-between;

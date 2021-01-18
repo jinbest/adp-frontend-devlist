@@ -1,6 +1,6 @@
 // card-mobile image
 import trade from "./img/cardmobile/trade.png"
-// import repair from "./img/cardmobile/repair.png"
+import repair from "./img/cardmobile/repair.png"
 import buy from "./img/cardmobile/buy.png"
 import protect from "./img/cardmobile/protect.png"
 import heart from "./img/cardmobile/heart.png"
@@ -65,13 +65,13 @@ import goodImg from './img/repair/section3/good.png'
 import fairImg from './img/repair/section3/fair.png'
 
 const cardMobileData = {
-    gridMD: 4,
+    gridMD: 3,
     heart: heart,
     data: [
-        { img: trade, title: "TRADE", btnTitle: "TRADE_IN" },
-        // { img: repair, title: "REPAIR", btnTitle: "REPAIR" },
-        { img: buy, title: "BUY", btnTitle: "BUY" },
-        { img: protect, title: "PROTECT", btnTitle: "PROTECT" },
+        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'trade' },
+        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'repair' },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'shop' },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'insure' },
     ]
 }
 
@@ -152,10 +152,10 @@ const colorPalle = {
 }
 
 const navItemsData = [
-    { href: "#", text: "TRADE", isActive: false },
-    // { href: "/repair", text: "REPAIR", isActive: false },
-    { href: "#", text: "BUY", isActive: false },
-    { href: "#", text: "PROTECT", isActive: false },
+    { href: "#", text: "TRADE", isActive: false, flag: 'trade' },
+    { href: "/repair", text: "REPAIR", isActive: false, flag: 'repair' },
+    { href: "#", text: "SHOP", isActive: false, flag: 'shop' },
+    { href: "#", text: "INSURE", isActive: false, flag: 'insure' },
 ]
 
 const brandItemsData = {
@@ -187,15 +187,15 @@ const avatarData = {
 
 const mobileNavItemData = {
     left: [
-        {text: 'TRADE', href: '#'},
-        // {text: 'REPAIR', href: '/repair'},
-        {text: 'BUY', href: '#'},
-        {text: 'PROTECT', href: '#'},
-        {text: 'BUSINESS', href: '#'},
-        {text: 'FINANCING', href: '#'},
-        {text: 'INSURANCE', href: '#'},
-        {text: 'FIND_A_STORE', href: '#'},
-        {text: 'CONTACT_US', href: '#'},
+        {text: 'TRADE', href: '#', flag: 'trade'},
+        {text: 'REPAIR', href: '/repair', flag: 'repair'},
+        {text: 'SHOP', href: '#', flag: 'shop'},
+        {text: 'INSURE', href: '#', flag: 'insure'},
+        {text: 'BUSINESS', href: '#', flag: 'business'},
+        {text: 'FINANCING', href: '#', flag: 'financing'},
+        {text: 'INSURANCE', href: '#', flag: 'insurance'},
+        {text: 'FIND_A_STORE', href: '#', flag: 'find-store'},
+        {text: 'CONTACT_US', href: '#', flag: 'contact-us'},
     ],
     right: [
         {text: 'Apple', href: '#'},
