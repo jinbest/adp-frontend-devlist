@@ -19,13 +19,13 @@ const devicelist = [
     'pradoWireless', 
     'wirelessRev'
 ]
-const subDomain = devicelist[1];
+const subDomain = devicelist[5];
 
 const publicFeatures = [
     { flag: 'trade', isActive: true },
-    { flag: 'repair', isActive: false },
-    { flag: 'buy', isActive: true },
-    { flag: 'protect', isActive: true },
+    { flag: 'repair', isActive: true },
+    { flag: 'shop', isActive: true },
+    { flag: 'insure', isActive: true },
     { flag: 'business', isActive: true },
     { flag: 'financing', isActive: true },
     { flag: 'wholesale', isActive: true },

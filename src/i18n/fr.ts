@@ -125,6 +125,11 @@ export class LanguageKeysFr extends LanguageKeys {
   public WHOLESALE = 'Degros';
   public ERROR_TITLE = 'OOPS! LA PAGE QUE VOUS RECHERCHEZ N\'EXISTE PAS SUR CE SITE WEB.';
   public ERROR_BUTTON = 'Retourner à la maison';
+  public SHOP = 'Magasin';
+  public INSURE = 'Assurer';
+  public VIEW_STORE_DETAILS = 'Afficher les détails';
+  public VIEW_MORE_STORES = 'Voir plus magasins';
+  public GET_DIRECTIONS = 'Obtenir directions';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';

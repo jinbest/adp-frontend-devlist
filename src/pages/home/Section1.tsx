@@ -27,7 +27,7 @@ const Section1 = ({subDomain, features}: Props) => {
         cntCustomTitle += cntCustomTitle ? ', ' + t('TRADE') : t('TRADE');
       } else if (features[j].flag === 'repair' && features[j].isActive) {
         cntCustomTitle += cntCustomTitle ? ', ' + t('REPAIR') : t('REPAIR');
-      } else if (features[j].flag === 'buy' && features[j].isActive) {
+      } else if (features[j].flag === 'shop' && features[j].isActive) {
         cntCustomTitle += cntCustomTitle ? ', ' + t('BUY') : t('BUY');
       }
       for (let i = 0; i < cntCardMobileData.length; i++) {

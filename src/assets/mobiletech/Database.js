@@ -70,8 +70,8 @@ const cardMobileData = {
     data: [
         { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'trade' },
         { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'repair' },
-        { img: buy, title: "BUY", btnTitle: "BUY", flag: 'buy' },
-        { img: protect, title: "PROTECT", btnTitle: "PROTECT", flag: 'protect' },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'shop' },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'insure' },
     ]
 }
 
@@ -154,8 +154,8 @@ const colorPalle = {
 const navItemsData = [
     // { href: "#", text: "TRADE", isActive: false, flag: 'trade' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'repair' },
-    // { href: "#", text: "BUY", isActive: false, flag: 'buy' },
-    // { href: "#", text: "PROTECT", isActive: false, flag: 'protect' },
+    // { href: "#", text: "SHOP", isActive: false, flag: 'shop' },
+    // { href: "#", text: "INSURE", isActive: false, flag: 'insure' },
 ]
 
 const brandItemsData = {
@@ -189,8 +189,8 @@ const mobileNavItemData = {
     left: [
         {text: 'TRADE', href: '#', flag: 'trade'},
         {text: 'REPAIR', href: '/repair', flag: 'repair'},
-        {text: 'BUY', href: '#', flag: 'buy'},
-        {text: 'PROTECT', href: '#', flag: 'protect'},
+        {text: 'SHOP', href: '#', flag: 'shop'},
+        {text: 'INSURE', href: '#', flag: 'insure'},
         {text: 'BUSINESS', href: '#', flag: 'business'},
         {text: 'FINANCING', href: '#', flag: 'financing'},
         {text: 'INSURANCE', href: '#', flag: 'insurance'},

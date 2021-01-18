@@ -125,6 +125,11 @@ export class LanguageKeys {
   public WHOLESALE = 'Wholesale';
   public ERROR_TITLE = 'OOPS! THE PAGE YOU WERE LOOKING FOR DOES NOT EXIST IN THIS WEBSITE.';
   public ERROR_BUTTON = 'Return to Home';
+  public SHOP = 'Shop';
+  public INSURE = 'Insure';
+  public VIEW_STORE_DETAILS = 'View Store Details';
+  public VIEW_MORE_STORES = 'View More Stores';
+  public GET_DIRECTIONS = 'Get Directions';
 
   /* Repair-widget Text */
   public NEXT = 'Next';
