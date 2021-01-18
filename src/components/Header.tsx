@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Search, CustomizedMenus, Logo, SelectLang} from '../components'
 import { Link } from 'react-router-dom'
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 type PropsNavItemLink = {
   item: any;
@@ -55,10 +56,12 @@ const BrandItemLink = ({ item, color, trans }: PropsBrand) => {
 type PropsHeader = {
   subDomain?: string;
   handleStatus: (status:boolean) => void;
+  features: any[];
 }
 
-const Header = ({subDomain, handleStatus}: PropsHeader) => {
+const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
   const data = require(`../assets/${subDomain}/Database`);
+  
   const navItemsLink = data.navItemsData, 
     brandItemLink = data.brandItemsData, 
     searchPlaceholder = data.homeTextData.section1.searchPlaceholder;
@@ -68,6 +71,17 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
   const [userStatus, setUserStatus] = useState(true);
   const [menuStatus, setMenuStatus] = useState(true);
   const [mobileMenu, setMobileMenu] = useState('left');
+  const [feats, setFeatures] = useState<any[]>([]);
+
+  useEffect(() => {
+    const cntFeatures:any[] = [];
+    for (let i = 0; i < features.length; i++) {
+      if (features[i].isActive) {
+        cntFeatures.push(features[i].flag);
+      }
+    }
+    setFeatures(cntFeatures);
+  }, [data, features])
 
   function toggleUserStatus() {
     setUserStatus(!userStatus);
@@ -108,10 +122,26 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
         <div className='nav-div'>
           <ul className='navlink-parent'>
             {navItemsLink.map((item:any, index:number) => {
-              return <NavItemLink item={item} key={index} handleStatus={handleStatus}/>
+              return (
+                <FeatureToggles features={feats} key={index}>
+                  <Feature
+                    name={item.flag}
+                    inactiveComponent={()=><></>}
+                    activeComponent={()=><NavItemLink item={item} handleStatus={handleStatus}/>}
+                  />
+                </FeatureToggles>
+              )
             })}
           </ul>
-          <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} />
+          <FeatureToggles features={feats}>
+            <Feature
+              name='find-store'
+              inactiveComponent={()=><></>}
+              activeComponent={()=>
+                <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} />
+              }
+            />
+          </FeatureToggles>
           <img src={data.avatarData.store} className='navlink-avatar-store' />
         </div>
         <div className='avatar-div'>
@@ -150,7 +180,15 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
                   <div>
                     {data.mobileNavItemData.left.map((item:any, index:number) => {
                       return (
-                        <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
+                        <FeatureToggles features={feats} key={index}>
+                          <Feature
+                            name={item.flag}
+                            inactiveComponent={()=><></>}
+                            activeComponent={()=>
+                              <a className='mobile-item' href={item.href}>{t(item.text)}</a>
+                            }
+                          />
+                        </FeatureToggles>
                       )
                     })}
                   </div> : 

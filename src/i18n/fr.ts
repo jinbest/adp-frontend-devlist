@@ -11,7 +11,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public FRENCH = 'FRANÇAISE';
   public FIND_YOUR_DEVICE = 'Trouvez votre appareil';
   public FIND_ANOTHER_LOCATION = 'Trouver un autre emplacement';
-  public TRADE_REPAIR_BUY_OR_SELL = 'Échangez, réparez, achetez ou vendez';
+  public TRADE_REPAIR_BUY_OR_SELL = 'ou vendez';
   public YOUR_MOBILE_DEVICE = 'votre appareil mobile';
   public FIND_A_STORE = 'Trouver';
   public TRADE = 'Commerce';
@@ -123,6 +123,8 @@ export class LanguageKeysFr extends LanguageKeys {
   public MONTH_6_WARRANTY = 'GARANTIE 6 MOIS';
   public MONTH_6_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie de 6 mois sans tracas. Cette garantie est valable dans tous nos sites dans le monde.';
   public WHOLESALE = 'Degros';
+  public ERROR_TITLE = 'OOPS! LA PAGE QUE VOUS RECHERCHEZ N\'EXISTE PAS SUR CE SITE WEB.';
+  public ERROR_BUTTON = 'Retourner à la maison';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';
