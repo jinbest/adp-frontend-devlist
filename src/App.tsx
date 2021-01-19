@@ -7,20 +7,20 @@ import { Provider } from "mobx-react"
 import store from "./store/RepairWidgetStore"
 import { LangProvider } from "./i18n/index"
 
-const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
+// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+// const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 
-// const devicelist = [
-//     'devicelist', 
-//     'geebo', 
-//     'mobiletech', 
-//     'nanotech', 
-//     'northtech', 
-//     'phonephix', 
-//     'pradoWireless', 
-//     'wirelessRev'
-// ]
-// const subDomain = devicelist[2];
+const devicelist = [
+    'devicelist', 
+    'geebo', 
+    'mobiletech', 
+    'nanotech', 
+    'northtech', 
+    'phonephix', 
+    'pradoWireless', 
+    'wirelessRev'
+]
+const subDomain = devicelist[1];
 
 const publicFeatures = [
     { flag: 'FEATURE_TRADE', isActive: true },
@@ -33,7 +33,7 @@ const publicFeatures = [
     { flag: 'FEATURE_USER_ACCOUNT', isActive: true },
     { flag: 'FEATURE_USER_SIGNUP', isActive: true },
     { flag: 'FEATURE_USER_LOGIN', isActive: true },
-    { flag: 'FEATURE_CHAT', isActive: true },
+    { flag: 'FEATURE_CHAT', isActive: false },
     { flag: 'FEATURE_SEARCH', isActive: true },
     { flag: 'FEATURE_GLOBAL_SEARCH', isActive: true },
     { flag: 'ALWAYS_TRUE', isActive: true },
@@ -41,7 +41,7 @@ const publicFeatures = [
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`);
-    // require(`./assets/${subDomain}/scss/index.scss`);
+    require(`./assets/${subDomain}/scss/index.scss`);
 
     const [footerStatus, setFooterStatus] = useState(true);
 
@@ -80,7 +80,7 @@ function App(): JSX.Element {
                 <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
                 <BaseRouter />
                 <Chat subDomain={subDomain} features={publicFeatures} />
-                {footerStatus && <Footer subDomain={subDomain} />}
+                {footerStatus && <Footer subDomain={subDomain} features={publicFeatures} />}
             </Router>
         </LangProvider>
     )

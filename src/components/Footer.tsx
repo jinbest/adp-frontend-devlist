@@ -1,17 +1,31 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
 import {Logo} from '../components';
 import { useT } from '../i18n/index';
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
 
 type Props = {
   subDomain?: string;
+  features: any[]
 }
 
-const Footer = ({subDomain}: Props) => {
+const Footer = ({subDomain, features}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const footerLink = data.homeTextData.footer.footerLink;
   const gridVal = data.homeTextData.footer.gridVal;
   const t = useT();
+
+  const [feats, setFeatures] = useState<any[]>([]);
+
+  useEffect(() => {
+    const cntFeatures:any[] = [];
+    for (let i = 0; i < features.length; i++) {
+      if (features[i].isActive) {
+        cntFeatures.push(features[i].flag);
+      }
+    }
+    setFeatures(cntFeatures);
+  }, [features])
 
   return (
     <footer className='footer'>
@@ -69,24 +83,32 @@ const Footer = ({subDomain}: Props) => {
                 )
               }
             </Grid>
-            <div className="footer-images-div">
-              <div>
-                <img src={data.footerImageData.deviceList} className='footer-device-response'/>
-                {data.footerImageData.bell && <img src={data.footerImageData.bell} className='footer-device-response'/>}
-              </div>
-              <div>
-                <img src={data.footerImageData.buyNow} className='footer-buynow'/>
-                {data.footerImageData.others.map((item:any, index:number) => {
-                  return (
-                    <div className="footer-others" key={index}>
-                      <img src={item} key={index} />
+            <FeatureToggles features={feats}>
+              <Feature
+                name={'FEATURE_ONLINE_PURCHASE'}
+                inactiveComponent={()=><></>}
+                activeComponent={()=>
+                  <div className="footer-images-div">
+                    <div>
+                      <img src={data.footerImageData.deviceList} className='footer-device-response'/>
+                      {data.footerImageData.bell && <img src={data.footerImageData.bell} className='footer-device-response'/>}
                     </div>
-                  )
-                })}
-                <img src={data.footerImageData.deviceList} className='footer-device-list'/>
-                {data.footerImageData.bell && <img src={data.footerImageData.bell} className='footer-device-list'/>}
-              </div>
-            </div>
+                    <div>
+                      <img src={data.footerImageData.buyNow} className='footer-buynow'/>
+                      {data.footerImageData.others.map((item:any, index:number) => {
+                        return (
+                          <div className="footer-others" key={index}>
+                            <img src={item} key={index} />
+                          </div>
+                        )
+                      })}
+                      <img src={data.footerImageData.deviceList} className='footer-device-list'/>
+                      {data.footerImageData.bell && <img src={data.footerImageData.bell} className='footer-device-list'/>}
+                    </div>
+                  </div>
+                }
+              />
+            </FeatureToggles>
           </Grid>
         </Grid>
       </Box>
@@ -99,24 +121,32 @@ const Footer = ({subDomain}: Props) => {
               <div className='footer-special-content'>{t(data.homeTextData.footer.content[1])}</div>
             </div>
           </Grid>
-          <Grid item xs={12} md={8}>
-            <div className="footer-images-div">
-              <div>
-                <img src={data.footerImageData.deviceList} className='footer-device-response'/>
-              </div>
-              <div>
-                <img src={data.footerImageData.buyNow} className='footer-buynow'/>
-                {data.footerImageData.others.map((item:any, index:number) => {
-                  return (
-                    <div className="footer-others" key={index}>
-                      <img src={item} key={index} />
+          <FeatureToggles features={feats}>
+            <Feature
+              name={'FEATURE_ONLINE_PURCHASE'}
+              inactiveComponent={()=><></>}
+              activeComponent={()=>
+                <Grid item xs={12} md={8}>
+                  <div className="footer-images-div">
+                    <div>
+                      <img src={data.footerImageData.deviceList} className='footer-device-response'/>
                     </div>
-                  )
-                })}
-                <img src={data.footerImageData.deviceList} className='footer-device-list'/>
-              </div>
-            </div>
-          </Grid>
+                    <div>
+                      <img src={data.footerImageData.buyNow} className='footer-buynow'/>
+                      {data.footerImageData.others.map((item:any, index:number) => {
+                        return (
+                          <div className="footer-others" key={index}>
+                            <img src={item} key={index} />
+                          </div>
+                        )
+                      })}
+                      <img src={data.footerImageData.deviceList} className='footer-device-list'/>
+                    </div>
+                  </div>
+                </Grid>
+              }
+            />
+          </FeatureToggles>          
         </Grid>
       </Box>
     </footer>
