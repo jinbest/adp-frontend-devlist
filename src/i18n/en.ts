@@ -123,7 +123,7 @@ export class LanguageKeys {
   public MONTH_6_WARRANTY = '6 MONTH WARRANTY';
   public MONTH_6_WARRANTY_CONTENT = 'All of our repairs are backed with our 6 month, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
   public WHOLESALE = 'Wholesale';
-  public ERROR_TITLE = 'OOPS! THE PAGE YOU WERE LOOKING FOR DOES NOT EXIST IN THIS WEBSITE.';
+  public ERROR_TITLE = 'OOPS! WE UNFORTUNATELY DO NOT HAVE AN OFFER FOR YOUR DEVICE AT THIS TIME.';
   public ERROR_BUTTON = 'Return to Home';
   public SHOP = 'Shop';
   public INSURE = 'Insure';

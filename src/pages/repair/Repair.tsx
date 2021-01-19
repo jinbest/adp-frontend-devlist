@@ -26,7 +26,7 @@ const Repair = ({subDomain, handleStatus, features}: Props) => {
   return (
     <FeatureToggles features={feats}>
       <Feature
-        name='repair'
+        name='FEATURE_REPAIR'
         inactiveComponent={()=><Error />}
         activeComponent={()=>
           <div>

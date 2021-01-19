@@ -19,23 +19,28 @@ const devicelist = [
     'pradoWireless', 
     'wirelessRev'
 ]
-const subDomain = devicelist[5];
+const subDomain = devicelist[1];
 
 const publicFeatures = [
-    { flag: 'trade', isActive: true },
-    { flag: 'repair', isActive: true },
-    { flag: 'shop', isActive: true },
-    { flag: 'insure', isActive: true },
-    { flag: 'business', isActive: true },
-    { flag: 'financing', isActive: true },
-    { flag: 'wholesale', isActive: true },
-    { flag: 'insurance', isActive: true },
-    { flag: 'find-store', isActive: true },
-    { flag: 'contact-us', isActive: true },
+    { flag: 'FEATURE_TRADE', isActive: false },
+    { flag: 'FEATURE_REPAIR', isActive: true },
+    { flag: 'FEATURE_REPAIR_QUOTE', isActive: true },
+    { flag: 'FEATURE_REPAIR_APPOINTMENT', isActive: true },
+    { flag: 'FEATURE_SHOP', isActive: true },
+    { flag: 'FEATURE_ONLINE_PURCHASE', isActive: true },
+    { flag: 'FEATURE_FIND_A_STORE', isActive: true },
+    { flag: 'FEATURE_USER_ACCOUNT', isActive: true },
+    { flag: 'FEATURE_USER_SIGNUP', isActive: true },
+    { flag: 'FEATURE_USER_LOGIN', isActive: true },
+    { flag: 'FEATURE_CHAT', isActive: true },
+    { flag: 'FEATURE_SEARCH', isActive: true },
+    { flag: 'FEATURE_GLOBAL_SEARCH', isActive: true },
+    { flag: 'ALWAYS_TRUE', isActive: true },
 ]
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`);
+    // require(`./assets/${subDomain}/scss/index.scss`);
 
     const [footerStatus, setFooterStatus] = useState(true);
 
@@ -73,7 +78,7 @@ function App(): JSX.Element {
             <Router>
                 <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
                 <BaseRouter />
-                <Chat subDomain={subDomain} />
+                <Chat subDomain={subDomain} features={publicFeatures} />
                 {footerStatus && <Footer subDomain={subDomain} />}
             </Router>
         </LangProvider>

@@ -140,6 +140,7 @@ class RepairWidget extends React.Component<Props, MyState> {
         repairWidgetStore.changeCntStep(9);
         this.setState({step: 9});
       } else {
+        repairWidgetStore.changeContactDetails({});
         repairWidgetStore.changeCntStep(6);
         this.setState({step: 6});
       }  
@@ -198,7 +199,7 @@ class RepairWidget extends React.Component<Props, MyState> {
     return (
       <FeatureToggles features={this.state.feats}>
         <Feature
-          name='repair'
+          name='FEATURE_REPAIR'
           inactiveComponent={()=><Error />}
           activeComponent={()=>
             <div className='repair-widget Container'>
@@ -216,6 +217,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   step={this.state.step} 
                   subDomain={subDomain} 
                   repairWidgetData={this.computedRepairWidgetData}
+                  features={this.state.feats}
                 />
               }
               { this.state.step === 6 && 
@@ -227,6 +229,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
                   repairWidgetData={this.computedRepairWidgetData}
                   caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
+                  features={this.state.feats}
                 />
               }
               { this.state.step === 7 && 
@@ -259,6 +262,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   step={this.state.step} 
                   handleStep={this.handleStep.bind(this)}
                   subDomain={subDomain}
+                  features={this.state.feats}
                 />
               }
               { this.state.step === 10 &&

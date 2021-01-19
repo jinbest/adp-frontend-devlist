@@ -1,11 +1,11 @@
-.header {
+.#{$folderName}-header {
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 10;
 }
 
-.header::before {
+.#{$folderName}-header::before {
   content: '';
   position: absolute;
   top: 0;
@@ -15,7 +15,7 @@
   background: rgb(255, 255, 255);
 }
 
-.header-brand {
+.#{$folderName}-header-brand {
   position: absolute;
   width: 100%;
   height: 35px;
@@ -26,7 +26,7 @@
   background-color: #2B388F;
 }
 
-.container-header {
+.#{$folderName}-container-header {
   padding: 0 30px;
   margin: 0 auto;
   margin-top: 35px;
@@ -40,52 +40,52 @@
   justify-content: space-between;
 }
 
-.container-header > a > img {
+.#{$folderName}-container-header > a > img {
   height: 50px;
 }
 
-.container-header .text-1 {
+.#{$folderName}-container-header .text-1 {
   font-size: 15px;
   margin: 20px 20px;
 }
 
-.container-header .text-2 {
+.#{$folderName}-container-header .text-2 {
   font-size: 15px;
   margin: 2px 20px;
   display: block;
   color: black;
 }
 
-.container-header .search-div {
+.#{$folderName}-container-header .search-div {
   display: flex;
   flex-grow: 1;
   margin-left: 50px;
 }
 
-.nav-div {
+.#{$folderName}-nav-div {
   margin-right: 60px;
   display: flex;
   align-items: center;
 }
 
-.nav-div > img {
+.#{$folderName}-nav-div > img {
   height: 40px;
   margin-left: 10px;
 }
 
-.avatar-div {
+.#{$folderName}-avatar-div {
   display: none;
   align-items: center;
   margin-right: 60px;
   cursor: pointer;
 }
 
-.avatar-div > img {
+.#{$folderName}-avatar-div > img {
   height: 25px;
   margin: 0 10px;
 }
 
-.mobile-search-div {
+.#{$folderName}-mobile-search-div {
   display: none;
   width: 100%;
   padding: 0 0 20px;
@@ -97,34 +97,34 @@
   background-color: white;
 }
 
-.mobile-child-search {
+.#{$folderName}-mobile-child-search {
   width: 85%;
   margin-left: 5%;
 }
 
-.navlink-parent {
+.#{$folderName}-navlink-parent {
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0 20px;
 }
 
-.nav-item {
+.#{$folderName}-nav-item {
   margin: 0 10px;
 }
 
-.nav-link {
+.#{$folderName}-nav-link {
   color: black;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
 }
 
-.nav-link:hover {
+.#{$folderName}-nav-link:hover {
   color: gray;
 }
 
-.mobile-menu-navbar {
+.#{$folderName}-mobile-menu-navbar {
   position: absolute;
   top: 84px;
   right: 0;
@@ -135,46 +135,46 @@
   width: 130px;
 }
 
-.mobile-menu-navbar .mobile-item {
+.#{$folderName}-mobile-menu-navbar .#{$folderName}-mobile-item {
   display: block;
   text-decoration: none;
   margin: 10px 0;
   color: black;
 }
 
-.mobile-menu-navbar .mobile-item:hover {
+.#{$folderName}-mobile-menu-navbar .#{$folderName}-mobile-item:hover {
   color: #8d8d8d;
 }
 
-.arrow {
+.#{$folderName}-arrow {
   width: 10px;
   position: absolute;
 }
 
-.arrow > img {
+.#{$folderName}-arrow > img {
   width: 100%;
   cursor: pointer;
 }
 
-.arrow-left {
+.#{$folderName}-arrow-left {
   position: absolute;
   left: 120px;
   top: 90px;
 }
 
-.arrow-right {
+.#{$folderName}-arrow-right {
   position: absolute;
   left: -10px;
   top: 0px;
 }
 
-.arrow-back {
+.#{$folderName}-arrow-back {
   cursor: pointer;
   font-weight: bold;
   margin-left: 10px;
 }
 
-.container-mobile {
+.#{$folderName}-container-mobile {
   display: none;
 }
 

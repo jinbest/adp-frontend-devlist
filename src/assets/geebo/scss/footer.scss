@@ -1,5 +1,5 @@
-.footer {
-  padding: 190px 20px 30px;
+.#{$folderName}-footer {
+  padding: 680px 20px 30px;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -9,45 +9,45 @@
   background-repeat: no-repeat;
 }
 
-.footer-container {
+.#{$folderName}-footer-container {
   max-width: 1440px;
   margin: auto;
 }
 
-.footer_link {
+.#{$folderName}-footer_link {
   list-style: none;
   padding-left: 0px;
 }
-.links > a {
+.#{$folderName}-links > a {
   text-decoration: none;
   color: black;
 }
 
-.links > a:hover {
+.#{$folderName}-links > a:hover{
   color: gray;
 }
 
-.link_name {
+.#{$folderName}-link_name{
   margin: 0.5rem 0;
   font-weight: 700;
 }
 
-.footer-images-div {
+.#{$folderName}-footer-images-div {
   display: flex;
   justify-content: space-between;
 }
 
-.footer-images-div > div {
+.#{$folderName}-footer-images-div > div {
   display: flex;
   align-items: flex-end;
 }
 
-.footer-buynow {
+.#{$folderName}-footer-buynow {
   height: 40px;
   margin-right: 10px;
 }
 
-.footer-others {
+.#{$folderName}-footer-others {
   height: 34px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
@@ -58,30 +58,39 @@
   margin-right: 5px;
 }
 
-.footer-others > img {
+.#{$folderName}-footer-others > img {
   height: 32px;
 }
 
-.footer-device-list {
+.#{$folderName}-footer-device-list {
   height: 80px;
   margin-left: 10px;
 }
 
-.footer-device-response {
+.#{$folderName}-footer-device-response {
   display: none;
   height: 80px;
 }
 
-.device-list-grid {
+.#{$folderName}-device-list-grid {
   display: block;
   margin-top: 25px;
   padding-right: 25px;
 }
 
-.device-list-grid > div {
+.#{$folderName}-device-list-grid > div {
   margin: 20px 0;
 }
 
-.footer-container-special {
+.#{$folderName}-footer-title {
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  position: absolute;
+  top: 350px;
+  right: 200px;
+}
+
+.#{$folderName}-footer-container-special {
   display: none;
 }
