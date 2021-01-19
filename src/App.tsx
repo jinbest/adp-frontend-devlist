@@ -20,7 +20,7 @@ const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 //     'pradoWireless', 
 //     'wirelessRev'
 // ]
-// const subDomain = devicelist[1];
+// const subDomain = devicelist[2];
 
 const publicFeatures = [
     { flag: 'FEATURE_TRADE', isActive: true },
@@ -41,7 +41,7 @@ const publicFeatures = [
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`);
-    require(`./assets/${subDomain}/scss/index.scss`);
+    // require(`./assets/${subDomain}/scss/index.scss`);
 
     const [footerStatus, setFooterStatus] = useState(true);
 
