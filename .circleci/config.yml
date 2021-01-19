@@ -47,7 +47,7 @@ jobs:
 
                   curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin &&
 
-                  gsutil cp gs://adp-dev/config/config.js ./public/ &&
+                  gsutil cp gs://adp-dev/config/frontend/config.js ./public/ &&
 
                   chmod u+x ./templater.sh &&
 
