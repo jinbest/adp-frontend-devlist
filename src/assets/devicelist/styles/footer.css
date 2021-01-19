@@ -23,11 +23,11 @@
   color: black;
 }
 
-.links > a:hover{
+.links > a:hover {
   color: gray;
 }
 
-.link_name{
+.link_name {
   margin: 0.5rem 0;
   font-weight: 700;
 }

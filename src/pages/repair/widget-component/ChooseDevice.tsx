@@ -5,6 +5,7 @@ import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 type Props = {
   data: any;
@@ -14,13 +15,14 @@ type Props = {
   handleStep: (step:number) => void;
   handleChangeChooseData: (step:number, chooseData:any) => void;
   repairWidgetData: any;
+  features: any[];
 }
 
 type ArrayProps = {
   array: any[];
 }
 
-const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
+const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChangeChooseData, repairWidgetData, features}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`);  
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const themeCol = mainData.colorPalle.themeColor;
@@ -216,12 +218,20 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           <Card>
             <div className='repair-choose-device-container'>
               {step < 3 && <div style={{width: '95%'}}>
-                <Search 
-                  color='rgba(0,0,0,0.8)' 
-                  bgcolor='white' 
-                  border='rgba(0,0,0,0.2)'
-                  placeholder={data.placeholder}
-                />
+                <FeatureToggles features={features}>
+                  <Feature
+                    name={'FEATURE_SEARCH'}
+                    inactiveComponent={()=><></>}
+                    activeComponent={()=>
+                      <Search 
+                        color='rgba(0,0,0,0.8)' 
+                        bgcolor='white' 
+                        border='rgba(0,0,0,0.2)'
+                        placeholder={data.placeholder}
+                      />
+                    }
+                  />
+                </FeatureToggles>
               </div>}
               <div className='widget-main-container'>
 

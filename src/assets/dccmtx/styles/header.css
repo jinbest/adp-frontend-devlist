@@ -41,7 +41,7 @@
 }
 
 .container-header > a > img {
-  height: 55px;
+  height: 40px;
   margin-top: 10px;
 }
 
@@ -71,6 +71,7 @@
 
 .nav-div > img {
   height: 40px;
+  margin-left: 10px;
 }
 
 .avatar-div {

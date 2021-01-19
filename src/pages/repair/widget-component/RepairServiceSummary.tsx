@@ -3,6 +3,7 @@ import { Typography, Grid } from '@material-ui/core'
 import { Card } from './'
 import { Button } from '../../../components'
 import { useT } from '../../../i18n/index'
+import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 
 type Props = {
   repairWidgetData: any;
@@ -11,10 +12,11 @@ type Props = {
   step: number;
   handleStep: (step:number) => void;
   subDomain?: string;
+  features: any[];
 }
 
 
-const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subDomain}: Props) => {
+const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subDomain, features}: Props) => {
 
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
@@ -29,10 +31,12 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
 
   const onKeyPress = useCallback((event) => {
     if(event.key === 'Enter' && step === 9) {
-      if (caseKey === 0) {
-        handleStep(11)
+      if (caseKey === 0 && features.includes('FEATURE_REPAIR_QUOTE')) {
+        handleStep(11);
+      } else if (caseKey > 0 && features.includes('FEATURE_REPAIR_APPOINTMENT')) {
+        ChooseNextStep();
       } else {
-        ChooseNextStep()
+        return;
       }
     }
   }, [step, caseKey]);
@@ -113,14 +117,30 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
             })}
           </div>
           <div className='repair-choose-device-container'>            
-            {caseKey > 0 && <Button 
-              title={publicText.scheduleAppointment} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
-              height='30px' fontSize='17px' margin='0 auto' onClick={ChooseNextStep}
-            />}
-            {caseKey === 0 && <Button 
-              title={publicText.requestQuote} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
-              height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleStep(11)}
-            />}
+            {caseKey > 0 && 
+              <FeatureToggles features={features}>
+                <Feature
+                  name='FEATURE_REPAIR_APPOINTMENT'
+                  inactiveComponent={()=><></>}
+                  activeComponent={()=><Button 
+                    title={publicText.scheduleAppointment} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
+                    height='30px' fontSize='17px' margin='0 auto' onClick={ChooseNextStep}
+                  />}
+                />
+              </FeatureToggles>
+            }
+            {caseKey === 0 && 
+              <FeatureToggles features={features}>
+                <Feature
+                  name='FEATURE_REPAIR_QUOTE'
+                  inactiveComponent={()=><></>}
+                  activeComponent={()=><Button 
+                    title={publicText.requestQuote} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
+                    height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleStep(11)}
+                  />}
+                />
+              </FeatureToggles>
+            }
           </div>
         </div>
       </Card>

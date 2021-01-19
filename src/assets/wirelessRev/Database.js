@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/trade.png"
-import repair from "./img/cardmobile/repair.png"
-import buy from "./img/cardmobile/buy.png"
-import protect from "./img/cardmobile/protect.png"
+import trade from "./img/cardmobile/wireless-trade.png"
+import repair from "./img/cardmobile/wireless-repair.png"
+import buy from "./img/cardmobile/wireless-buy.png"
+import protect from "./img/cardmobile/wireless-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/mobile.png"
-import tablet from "./img/cardfix/tablet.png"
-import computer from "./img/cardfix/computer.png"
-import console from "./img/cardfix/game.png"
-import other from "./img/cardfix/other.png"
+import cellphone from "./img/cardfix/wireless-mobile.png"
+import tablet from "./img/cardfix/wireless-tablet.png"
+import computer from "./img/cardfix/wireless-computer.png"
+import console from "./img/cardfix/wireless-game.png"
+import other from "./img/cardfix/wireless-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,20 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/user-active.png'
-import userDeactive from './img/avatar/user-deactive.png'
-import menu from './img/avatar/menu.png'
-import store from './img/avatar/store.png'
-import storeBlue from './img/avatar/store-blue.png'
-import cancel from './img/avatar/cancel.png'
+import userActive from './img/avatar/wireless-user-active.png'
+import userDeactive from './img/avatar/wireless-user-deactive.png'
+import menu from './img/avatar/wireless-menu.png'
+import store from './img/avatar/wireless-store.png'
+import storeBlue from './img/avatar/wireless-store-blue.png'
+import cancel from './img/avatar/wireless-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/corner-shape.png'
-import mockupShape from './img/mockup-shape.png'
+import cornerShape from './img/wireless-corner-shape.png'
+import mockupShape from './img/wireless-mockup-shape.png'
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -55,24 +55,48 @@ import bell from './img/footer/bell.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/select-repair.png'
-import sendDevice from './img/repair/section2/send-device.png'
-import receiveDevice from './img/repair/section2/receive-device.png'
+import selectRepair from './img/repair/section2/wireless-select-repair.png'
+import sendDevice from './img/repair/section2/wireless-send-device.png'
+import receiveDevice from './img/repair/section2/wireless-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/new.png'
-import mintImg from './img/repair/section3/mint.png'
-import goodImg from './img/repair/section3/good.png'
-import fairImg from './img/repair/section3/fair.png'
+import newImg from './img/repair/section3/wireless-new.png'
+import mintImg from './img/repair/section3/wireless-mint.png'
+import goodImg from './img/repair/section3/wireless-good.png'
+import fairImg from './img/repair/section3/wireless-fair.png'
+
+// chat - images
+import chatImg from './img/chat.png';
+
+// logo - images
+import logoHeaderImg from './img/logo/wireless-logo-header.png';
+import logoFooterImg from './img/logo/wireless-logo-footer.png';
+
+// deviceCard - images
+import deviceCardImg from './img/wireless-device-card.png';
+
+const chatData = {
+    chatImg: chatImg,
+    logoHeaderImg: logoHeaderImg
+}
+
+const logoData = {
+    logoHeaderImg: logoHeaderImg,
+    logoFooterImg: logoFooterImg
+}
+
+const deviceCard = {
+    img: deviceCardImg
+}
 
 const cardMobileData = {
     gridMD: 3,
     heart: heart,
     data: [
-        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'trade' },
-        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'repair' },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'shop' },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'insure' },
+        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FEATURE_TRADE' },
+        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FEATURE_REPAIR' },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FEATURE_SHOP' },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE' },
     ]
 }
 
@@ -153,13 +177,13 @@ const colorPalle = {
 }
 
 const navItemsData = [
-    { href: "#", text: "TRADE", isActive: false, flag: 'trade' },
-    { href: "/repair", text: "REPAIR", isActive: false, flag: 'repair' },
-    { href: "#", text: "SHOP", isActive: false, flag: 'shop' },
-    { href: "#", text: "INSURE", isActive: false, flag: 'insure' },
-    { href: "#", text: "BUSINESS", isActive: false, flag: 'business' },
-    { href: "#", text: "FINANCING", isActive: false, flag: 'financing' },
-    { href: "#", text: "WHOLESALE", isActive: false, flag: 'wholesale' },
+    { href: "#", text: "TRADE", isActive: false, flag: 'FEATURE_TRADE' },
+    { href: "/repair", text: "REPAIR", isActive: false, flag: 'FEATURE_REPAIR' },
+    { href: "#", text: "SHOP", isActive: false, flag: 'FEATURE_SHOP' },
+    { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
+    { href: "#", text: "BUSINESS", isActive: false, flag: 'ALWAYS_TRUE' },
+    { href: "#", text: "FINANCING", isActive: false, flag: 'ALWAYS_TRUE' },
+    { href: "#", text: "WHOLESALE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
 
 const brandItemsData = {
@@ -191,15 +215,15 @@ const avatarData = {
 
 const mobileNavItemData = {
     left: [
-        {text: 'TRADE', href: '#', flag: 'trade'},
-        {text: 'REPAIR', href: '/repair', flag: 'repair'},
-        {text: 'SHOP', href: '#', flag: 'shop'},
-        {text: 'INSURE', href: '#', flag: 'insure'},
-        {text: 'BUSINESS', href: '#', flag: 'business'},
-        {text: 'FINANCING', href: '#', flag: 'financing'},
-        {text: 'INSURANCE', href: '#', flag: 'insurance'},
-        {text: 'FIND_A_STORE', href: '#', flag: 'find-store'},
-        {text: 'CONTACT_US', href: '#', flag: 'contact-us'},
+        {text: 'TRADE', href: '#', flag: 'FEATURE_TRADE'},
+        {text: 'REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
+        {text: 'SHOP', href: '#', flag: 'FEATURE_SHOP'},
+        {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
+        {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
+        {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},
+        {text: 'INSURANCE', href: '#', flag: 'ALWAYS_TRUE'},
+        {text: 'FIND_A_STORE', href: '#', flag: 'FEATURE_FIND_A_STORE'},
+        {text: 'CONTACT_US', href: '#', flag: 'ALWAYS_TRUE'},
     ],
     right: [
         {text: 'Apple', href: '#'},
@@ -211,11 +235,11 @@ const mobileNavItemData = {
 }
 
 const userNavItemData = [
-    {text: 'MY_ACCOUNT', href: '#'},
-    {text: 'TRACK_REPAIR', href: '/repair'},
-    {text: 'FILE_A_CLAIM', href: '#'},
-    {text: 'ORDERS', href: '#'},
-    {text: 'TRADE_IN', href: '#'},
+    {text: 'MY_ACCOUNT', href: '#', flag: 'FEATURE_USER_ACCOUNT'},
+    {text: 'TRACK_REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
+    {text: 'FILE_A_CLAIM', href: '#', flag: 'ALWAYS_TRUE'},
+    {text: 'ORDERS', href: '#', flag: 'ALWAYS_TRUE'},
+    {text: 'TRADE_IN', href: '#', flag: 'FEATURE_TRADE'},
 ]
 
 const arrowData = {
@@ -424,5 +448,8 @@ export {
     shapeData,
     footerImageData,
     homeTextData,
-    repairData
+    repairData,
+    chatData,
+    logoData,
+    deviceCard
 }

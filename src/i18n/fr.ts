@@ -123,7 +123,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public MONTH_6_WARRANTY = 'GARANTIE 6 MOIS';
   public MONTH_6_WARRANTY_CONTENT = 'Toutes nos réparations sont couvertes par notre garantie de 6 mois sans tracas. Cette garantie est valable dans tous nos sites dans le monde.';
   public WHOLESALE = 'Degros';
-  public ERROR_TITLE = 'OOPS! LA PAGE QUE VOUS RECHERCHEZ N\'EXISTE PAS SUR CE SITE WEB.';
+  public ERROR_TITLE = 'OOPS! NOUS N\'AVONS MALHEUREUSEMENT PAS D\'OFFRE POUR VOTRE APPAREIL À CE MOMENT.';
   public ERROR_BUTTON = 'Retourner à la maison';
   public SHOP = 'Magasin';
   public INSURE = 'Assurer';

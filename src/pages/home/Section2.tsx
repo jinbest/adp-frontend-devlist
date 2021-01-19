@@ -28,7 +28,7 @@ const Section2 = ({subDomain, features}: Props) => {
   return (
     <FeatureToggles features={feats}>
       <Feature
-        name='repair'
+        name='FEATURE_REPAIR'
         inactiveComponent={()=><></>}
         activeComponent={()=>
           <section className='Container'>

@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles';
 import Menu, { MenuProps } from '@material-ui/core/Menu';
 import {Button} from '.'
 import { useT } from "../i18n/index"
 import {LangProps} from '../i18n/en'
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined'
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 const StyledMenu = withStyles({
   paper: {
@@ -59,9 +60,10 @@ type Props = {
   subDomain?: string;
   btnTitle: LangProps;
   width: string;
+  features: any[];
 }
 
-const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
+const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeColor = data.colorPalle.themeColor;
   const underLineCol = data.colorPalle.underLineCol;
@@ -122,16 +124,25 @@ const CustomizedMenus = ({subDomain, btnTitle, width}: Props) => {
               <a className='link' style={{color: underLineCol}}>{t('VIEW_STORE_DETAILS')}</a>
               <a className='link' style={{color: underLineCol}}>{t('VIEW_MORE_STORES')}</a>
               <a className='link' style={{color: underLineCol}}>{t('GET_DIRECTIONS')}</a>
-            </div>
-            <Button 
-              title='BOOK_REPAIR'
-              bgcolor={themeColor} 
-              borderR='20px' 
-              width='40px'
-              height='30px'
-              margin='0'
-              fontSize='15px'
-            />
+            </div>            
+            <FeatureToggles features={features}>
+              <Feature
+                name='FEATURE_REPAIR'
+                inactiveComponent={()=><></>}
+                activeComponent={()=>
+                  <Button 
+                    title='BOOK_REPAIR'
+                    bgcolor={themeColor} 
+                    borderR='20px' 
+                    width='40px'
+                    height='30px'
+                    margin='0'
+                    fontSize='15px'
+                    onClick={()=>{window.location.href = '/repair'}}
+                  />
+                }
+              />
+            </FeatureToggles>
           </div>
           <div style={{
             borderLeft: '2px solid rgba(0,0,0,0.25)', 
