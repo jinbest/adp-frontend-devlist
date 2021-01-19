@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/trade.png"
-import repair from "./img/cardmobile/repair.png"
-import buy from "./img/cardmobile/buy.png"
-import protect from "./img/cardmobile/protect.png"
+import trade from "./img/cardmobile/northtech-trade.png"
+import repair from "./img/cardmobile/northtech-repair.png"
+import buy from "./img/cardmobile/northtech-buy.png"
+import protect from "./img/cardmobile/northtech-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/mobile.png"
-import tablet from "./img/cardfix/tablet.png"
-import computer from "./img/cardfix/computer.png"
-import console from "./img/cardfix/game.png"
-import other from "./img/cardfix/other.png"
+import cellphone from "./img/cardfix/northtech-mobile.png"
+import tablet from "./img/cardfix/northtech-tablet.png"
+import computer from "./img/cardfix/northtech-computer.png"
+import console from "./img/cardfix/northtech-game.png"
+import other from "./img/cardfix/northtech-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,19 +26,19 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/user-active.png'
-import userDeactive from './img/avatar/user-deactive.png'
-import menu from './img/avatar/menu.png'
-import store from './img/avatar/store.png'
-import storeBlue from './img/avatar/store-blue.png'
-import cancel from './img/avatar/cancel.png'
+import userActive from './img/avatar/northtech-user-active.png'
+import userDeactive from './img/avatar/northtech-user-deactive.png'
+import menu from './img/avatar/northtech-menu.png'
+import store from './img/avatar/northtech-store.png'
+import storeBlue from './img/avatar/northtech-store-blue.png'
+import cancel from './img/avatar/northtech-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/shape-home.png'
+import cornerShape from './img/northtech-shape-home.png'
 
 
 // footer images
@@ -54,15 +54,39 @@ import deviceListImg from './img/footer/device-list.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/select-repair.png'
-import sendDevice from './img/repair/section2/send-device.png'
-import receiveDevice from './img/repair/section2/receive-device.png'
+import selectRepair from './img/repair/section2/northtech-select-repair.png'
+import sendDevice from './img/repair/section2/northtech-send-device.png'
+import receiveDevice from './img/repair/section2/northtech-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/new.png'
-import mintImg from './img/repair/section3/mint.png'
-import goodImg from './img/repair/section3/good.png'
-import fairImg from './img/repair/section3/fair.png'
+import newImg from './img/repair/section3/northtech-new.png'
+import mintImg from './img/repair/section3/northtech-mint.png'
+import goodImg from './img/repair/section3/northtech-good.png'
+import fairImg from './img/repair/section3/northtech-fair.png'
+
+// chat - images
+import chatImg from './img/chat.png';
+
+// logo - images
+import logoHeaderImg from './img/logo/northtech-logo-header.png';
+import logoFooterImg from './img/logo/northtech-logo-footer.png';
+
+// deviceCard - images
+import deviceCardImg from './img/northtech-device-card.png';
+
+const chatData = {
+    chatImg: chatImg,
+    logoHeaderImg: logoHeaderImg
+}
+
+const logoData = {
+    logoHeaderImg: logoHeaderImg,
+    logoFooterImg: logoFooterImg
+}
+
+const deviceCard = {
+    img: deviceCardImg
+}
 
 const cardMobileData = {
     gridMD: 3,
@@ -420,5 +444,8 @@ export {
     shapeData,
     footerImageData,
     homeTextData,
-    repairData
+    repairData,
+    chatData,
+    logoData,
+    deviceCard
 }

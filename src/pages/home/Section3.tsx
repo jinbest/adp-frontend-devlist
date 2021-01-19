@@ -10,8 +10,8 @@ type Props = {
 
 const Section3 = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/Database`);
-  const deviceCard = require(`../../assets/${subDomain}/img/device-card.png`);
-
+  const deviceCard = data.deviceCard;
+  
   const t = useT();
 
   return (
@@ -56,7 +56,7 @@ const Section3 = ({subDomain}: Props) => {
                 </Typography>
               </Grid>
               <Grid item sm={12} md={5}>
-                <img src={deviceCard.default} alt='device-list' className='card-img'/>
+                <img src={deviceCard.img} alt='device-list' className='card-img'/>
               </Grid>
             </Grid>
           </Box>

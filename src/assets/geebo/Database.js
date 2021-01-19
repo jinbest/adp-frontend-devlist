@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/trade.png"
-import repair from "./img/cardmobile/repair.png"
-import buy from "./img/cardmobile/buy.png"
-import protect from "./img/cardmobile/protect.png"
+import trade from "./img/cardmobile/geebo-trade.png"
+import repair from "./img/cardmobile/geebo-repair.png"
+import buy from "./img/cardmobile/geebo-buy.png"
+import protect from "./img/cardmobile/geebo-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/mobile.png"
-import tablet from "./img/cardfix/tablet.png"
-import computer from "./img/cardfix/computer.png"
-import console from "./img/cardfix/game.png"
-import other from "./img/cardfix/other.png"
+import cellphone from "./img/cardfix/geebo-mobile.png"
+import tablet from "./img/cardfix/geebo-tablet.png"
+import computer from "./img/cardfix/geebo-computer.png"
+import console from "./img/cardfix/geebo-game.png"
+import other from "./img/cardfix/geebo-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,19 +26,19 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/user-active.png'
-import userDeactive from './img/avatar/user-deactive.png'
-import menu from './img/avatar/menu.png'
-import store from './img/avatar/store.png'
-import storeBlue from './img/avatar/store-blue.png'
-import cancel from './img/avatar/cancel.png'
+import userActive from './img/avatar/geebo-user-active.png'
+import userDeactive from './img/avatar/geebo-user-deactive.png'
+import menu from './img/avatar/geebo-menu.png'
+import store from './img/avatar/geebo-store.png'
+import storeBlue from './img/avatar/geebo-store-blue.png'
+import cancel from './img/avatar/geebo-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/shape-home.png'
+import cornerShape from './img/geebo-shape-home.png'
 
 
 // footer images
@@ -54,15 +54,39 @@ import deviceListImg from './img/footer/device-list.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/select-repair.png'
-import sendDevice from './img/repair/section2/send-device.png'
-import receiveDevice from './img/repair/section2/receive-device.png'
+import selectRepair from './img/repair/section2/geebo-select-repair.png'
+import sendDevice from './img/repair/section2/geebo-send-device.png'
+import receiveDevice from './img/repair/section2/geebo-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/new.png'
-import mintImg from './img/repair/section3/mint.png'
-import goodImg from './img/repair/section3/good.png'
-import fairImg from './img/repair/section3/fair.png'
+import newImg from './img/repair/section3/geebo-new.png'
+import mintImg from './img/repair/section3/geebo-mint.png'
+import goodImg from './img/repair/section3/geebo-good.png'
+import fairImg from './img/repair/section3/geebo-fair.png'
+
+// chat - images
+import chatImg from './img/chat.png';
+
+// logo - images
+import logoHeaderImg from './img/logo/geebo-logo-header.png';
+import logoFooterImg from './img/logo/geebo-logo-footer.png';
+
+// deviceCard - images
+import deviceCardImg from './img/geebo-device-card.png';
+
+const chatData = {
+    chatImg: chatImg,
+    logoHeaderImg: logoHeaderImg
+}
+
+const logoData = {
+    logoHeaderImg: logoHeaderImg,
+    logoFooterImg: logoFooterImg
+}
+
+const deviceCard = {
+    img: deviceCardImg
+}
 
 const cardMobileData = {
     gridMD: 3,
@@ -420,5 +444,8 @@ export {
     shapeData,
     footerImageData,
     homeTextData,
-    repairData
+    repairData,
+    chatData,
+    logoData,
+    deviceCard
 }

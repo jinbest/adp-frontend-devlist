@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/trade.png"
-import repair from "./img/cardmobile/repair.png"
-import buy from "./img/cardmobile/buy.png"
-import protect from "./img/cardmobile/protect.png"
+import trade from "./img/cardmobile/phonephix-trade.png"
+import repair from "./img/cardmobile/phonephix-repair.png"
+import buy from "./img/cardmobile/phonephix-buy.png"
+import protect from "./img/cardmobile/phonephix-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/mobile.png"
-import tablet from "./img/cardfix/tablet.png"
-import computer from "./img/cardfix/computer.png"
-import console from "./img/cardfix/game.png"
-import other from "./img/cardfix/other.png"
+import cellphone from "./img/cardfix/phonephix-mobile.png"
+import tablet from "./img/cardfix/phonephix-tablet.png"
+import computer from "./img/cardfix/phonephix-computer.png"
+import console from "./img/cardfix/phonephix-game.png"
+import other from "./img/cardfix/phonephix-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,20 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/user-active.png'
-import userDeactive from './img/avatar/user-deactive.png'
-import menu from './img/avatar/menu.png'
-import store from './img/avatar/store.png'
-import storeBlue from './img/avatar/store-blue.png'
-import cancel from './img/avatar/cancel.png'
+import userActive from './img/avatar/phonephix-user-active.png'
+import userDeactive from './img/avatar/phonephix-user-deactive.png'
+import menu from './img/avatar/phonephix-menu.png'
+import store from './img/avatar/phonephix-store.png'
+import storeBlue from './img/avatar/phonephix-store-blue.png'
+import cancel from './img/avatar/phonephix-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/corner-shape.png'
-import mockupShape from './img/mockup-shape.png'
+import cornerShape from './img/phonephix-corner-shape.png'
+import mockupShape from './img/phonephix-mockup-shape.png'
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -54,15 +54,39 @@ import deviceListImg from './img/footer/device-list.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/select-repair.png'
-import sendDevice from './img/repair/section2/send-device.png'
-import receiveDevice from './img/repair/section2/receive-device.png'
+import selectRepair from './img/repair/section2/phonephix-select-repair.png'
+import sendDevice from './img/repair/section2/phonephix-send-device.png'
+import receiveDevice from './img/repair/section2/phonephix-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/new.png'
-import mintImg from './img/repair/section3/mint.png'
-import goodImg from './img/repair/section3/good.png'
-import fairImg from './img/repair/section3/fair.png'
+import newImg from './img/repair/section3/phonephix-new.png'
+import mintImg from './img/repair/section3/phonephix-mint.png'
+import goodImg from './img/repair/section3/phonephix-good.png'
+import fairImg from './img/repair/section3/phonephix-fair.png'
+
+// chat - images
+import chatImg from './img/chat.png';
+
+// logo - images
+import logoHeaderImg from './img/logo/phonephix-logo-header.png';
+import logoFooterImg from './img/logo/phonephix-logo-footer.png';
+
+// deviceCard - images
+import deviceCardImg from './img/phonephix-device-card.png';
+
+const chatData = {
+    chatImg: chatImg,
+    logoHeaderImg: logoHeaderImg
+}
+
+const logoData = {
+    logoHeaderImg: logoHeaderImg,
+    logoFooterImg: logoFooterImg
+}
+
+const deviceCard = {
+    img: deviceCardImg
+}
 
 const cardMobileData = {
     gridMD: 3,
@@ -420,5 +444,8 @@ export {
     shapeData,
     footerImageData,
     homeTextData,
-    repairData
+    repairData,
+    chatData,
+    logoData,
+    deviceCard
 }

@@ -14,8 +14,7 @@ type Props = {
 
 const Chat = ({subDomain, features}: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database.js`);
-  const logoHeaderImg = require(`../../assets/${subDomain}/img/logo/logo-header.png`);
-  const chatImg = require(`../../assets/${subDomain}/img/chat.png`);
+  const chatData = mainData.chatData;
   const chatBgCol = mainData.colorPalle.chatBgCol;
 
   const t = useT();
@@ -44,7 +43,7 @@ const Chat = ({subDomain, features}: Props) => {
 
   const getCustomLauncher = (handleToggle:any) =>
     <div className='chat-container' style={{backgroundColor: chatBgCol}} onClick={handleToggle}>
-      <img src={chatImg.default} />
+      <img src={chatData.chatImg} />
     </div>
 
   return (
@@ -55,7 +54,7 @@ const Chat = ({subDomain, features}: Props) => {
           inactiveComponent={()=><></>}
           activeComponent={()=>
             <Widget 
-              titleAvatar={logoHeaderImg.default}
+              titleAvatar={chatData.logoHeaderImg}
               profileAvatar={support_logo}
               title=""
               subtitle={t("WE_TYPICALLY_REPLY_IN_FEW_MINS")}

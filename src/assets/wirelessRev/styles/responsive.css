@@ -91,7 +91,7 @@
     display: block
   }
   .footer {
-    background-image: url('../img/footer/footer-shape-mobile.png');
+    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
     padding: 190px 20px 30px;
   }
   .back-to-top {
@@ -132,7 +132,7 @@
     width: 60vw;
   }
   .footer {
-    background-image: url('../img/footer/footer-shape-mobile.png');
+    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
   }
   .repair-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;

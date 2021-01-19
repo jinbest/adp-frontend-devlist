@@ -7,22 +7,23 @@ import { Provider } from "mobx-react"
 import store from "./store/RepairWidgetStore"
 import { LangProvider } from "./i18n/index"
 
-// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/)
-// const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
-const devicelist = [
-    'devicelist', 
-    'geebo', 
-    'mobiletech', 
-    'nanotech', 
-    'northtech', 
-    'phonephix', 
-    'pradoWireless', 
-    'wirelessRev'
-]
-const subDomain = devicelist[1];
+const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
+
+// const devicelist = [
+//     'devicelist', 
+//     'geebo', 
+//     'mobiletech', 
+//     'nanotech', 
+//     'northtech', 
+//     'phonephix', 
+//     'pradoWireless', 
+//     'wirelessRev'
+// ]
+// const subDomain = devicelist[1];
 
 const publicFeatures = [
-    { flag: 'FEATURE_TRADE', isActive: false },
+    { flag: 'FEATURE_TRADE', isActive: true },
     { flag: 'FEATURE_REPAIR', isActive: true },
     { flag: 'FEATURE_REPAIR_QUOTE', isActive: true },
     { flag: 'FEATURE_REPAIR_APPOINTMENT', isActive: true },
@@ -40,7 +41,7 @@ const publicFeatures = [
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.css`);
-    // require(`./assets/${subDomain}/scss/index.scss`);
+    require(`./assets/${subDomain}/scss/index.scss`);
 
     const [footerStatus, setFooterStatus] = useState(true);
 

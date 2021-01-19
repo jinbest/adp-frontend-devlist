@@ -64,6 +64,30 @@ import mintImg from './img/repair/section3/mint.png'
 import goodImg from './img/repair/section3/good.png'
 import fairImg from './img/repair/section3/fair.png'
 
+// chat - images
+import chatImg from './img/chat.png';
+
+// logo - images
+import logoHeaderImg from './img/logo/logo-header.png';
+import logoFooterImg from './img/logo/logo-footer.png';
+
+// deviceCard - images
+import deviceCardImg from './img/device-card.png';
+
+const chatData = {
+    chatImg: chatImg,
+    logoHeaderImg: logoHeaderImg
+}
+
+const logoData = {
+    logoHeaderImg: logoHeaderImg,
+    logoFooterImg: logoFooterImg
+}
+
+const deviceCard = {
+    img: deviceCardImg
+}
+
 const cardMobileData = {
     gridMD: 3,
     heart: heart,
@@ -420,5 +444,8 @@ export {
     shapeData,
     footerImageData,
     homeTextData,
-    repairData
+    repairData,
+    chatData,
+    logoData,
+    deviceCard
 }

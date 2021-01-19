@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/trade.png"
-import repair from "./img/cardmobile/repair.png"
-import buy from "./img/cardmobile/buy.png"
-import protect from "./img/cardmobile/protect.png"
+import trade from "./img/cardmobile/nanotech-trade.png"
+import repair from "./img/cardmobile/nanotech-repair.png"
+import buy from "./img/cardmobile/nanotech-buy.png"
+import protect from "./img/cardmobile/nanotech-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/mobile.png"
-import tablet from "./img/cardfix/tablet.png"
-import computer from "./img/cardfix/computer.png"
-import console from "./img/cardfix/game.png"
-import other from "./img/cardfix/other.png"
+import cellphone from "./img/cardfix/nanotech-mobile.png"
+import tablet from "./img/cardfix/nanotech-tablet.png"
+import computer from "./img/cardfix/nanotech-computer.png"
+import console from "./img/cardfix/nanotech-game.png"
+import other from "./img/cardfix/nanotech-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,20 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/user-active.png'
-import userDeactive from './img/avatar/user-deactive.png'
-import menu from './img/avatar/menu.png'
-import store from './img/avatar/store.png'
-import storeBlue from './img/avatar/store-blue.png'
-import cancel from './img/avatar/cancel.png'
+import userActive from './img/avatar/nanotech-user-active.png'
+import userDeactive from './img/avatar/nanotech-user-deactive.png'
+import menu from './img/avatar/nanotech-menu.png'
+import store from './img/avatar/nanotech-store.png'
+import storeBlue from './img/avatar/nanotech-store-blue.png'
+import cancel from './img/avatar/nanotech-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/corner-shape.png'
-import mockupShape from './img/mockup-shape.png'
+import cornerShape from './img/nanotech-corner-shape.png'
+import mockupShape from './img/nanotech-mockup-shape.png'
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -54,15 +54,39 @@ import deviceListImg from './img/footer/device-list.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/select-repair.png'
-import sendDevice from './img/repair/section2/send-device.png'
-import receiveDevice from './img/repair/section2/receive-device.png'
+import selectRepair from './img/repair/section2/nanotech-select-repair.png'
+import sendDevice from './img/repair/section2/nanotech-send-device.png'
+import receiveDevice from './img/repair/section2/nanotech-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/new.png'
-import mintImg from './img/repair/section3/mint.png'
-import goodImg from './img/repair/section3/good.png'
-import fairImg from './img/repair/section3/fair.png'
+import newImg from './img/repair/section3/nanotech-new.png'
+import mintImg from './img/repair/section3/nanotech-mint.png'
+import goodImg from './img/repair/section3/nanotech-good.png'
+import fairImg from './img/repair/section3/nanotech-fair.png'
+
+// chat - images
+import chatImg from './img/chat.png';
+
+// logo - images
+import logoHeaderImg from './img/logo/nanotech-logo-header.png';
+import logoFooterImg from './img/logo/nanotech-logo-footer.png';
+
+// deviceCard - images
+import deviceCardImg from './img/nanotech-device-card.png';
+
+const chatData = {
+    chatImg: chatImg,
+    logoHeaderImg: logoHeaderImg
+}
+
+const logoData = {
+    logoHeaderImg: logoHeaderImg,
+    logoFooterImg: logoFooterImg
+}
+
+const deviceCard = {
+    img: deviceCardImg
+}
 
 const cardMobileData = {
     gridMD: 3,
@@ -420,5 +444,8 @@ export {
     shapeData,
     footerImageData,
     homeTextData,
-    repairData
+    repairData,
+    chatData,
+    logoData,
+    deviceCard
 }
