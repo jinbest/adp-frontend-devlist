@@ -11,7 +11,6 @@ const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*
 const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 
 // const devicelist = [
-//     'devicelist', 
 //     'geebo', 
 //     'mobiletech', 
 //     'nanotech', 
@@ -20,7 +19,7 @@ const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 //     'pradoWireless', 
 //     'wirelessRev'
 // ]
-// const subDomain = devicelist[2];
+// const subDomain = devicelist[3];
 
 const publicFeatures = [
     { flag: 'FEATURE_TRADE', isActive: true },
@@ -40,8 +39,8 @@ const publicFeatures = [
 ]
 
 function App(): JSX.Element {
-    require(`./assets/${subDomain}/styles/index.css`);
-    // require(`./assets/${subDomain}/scss/index.scss`);
+    // require(`./assets/${subDomain}/styles/index.css`);
+    require(`./assets/${subDomain}/scss/index.scss`);
 
     const [footerStatus, setFooterStatus] = useState(true);
 
@@ -80,7 +79,7 @@ function App(): JSX.Element {
                 <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
                 <BaseRouter />
                 <Chat subDomain={subDomain} features={publicFeatures} />
-                {footerStatus && <Footer subDomain={subDomain} />}
+                {footerStatus && <Footer subDomain={subDomain} features={publicFeatures} />}
             </Router>
         </LangProvider>
     )

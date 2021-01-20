@@ -148,23 +148,23 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className="repair-widget-title">
+          <Typography className={subDomain + "-repair-widget-title"}>
             {t(data.title[caseKey])}
           </Typography>
         </Grid>
       </Grid>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={7}>
-          <Card className='booking-card'>
-            <div className='repair-choose-device-container'>
-              <Typography className='repair-summary-title'>{t(data.select.location.title[caseKey])}</Typography>
+          <Card className={subDomain + '-booking-card'}>
+            <div className={subDomain + '-repair-choose-device-container'}>
+              <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.location.title[caseKey])}</Typography>
               <div style={{marginBottom: '20px'}}>
                 {caseKey === 2 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
-                {(caseKey === 1 || caseKey === 3) && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} />}
+                {(caseKey === 1 || caseKey === 3) && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} subDomain={subDomain} />}
                 {caseKey === 0 && <div>
                   {data.select.location.mailInOption.map((item:any, index:number) => {
                     return (
-                      <div key={index} className='select-mail-in-radio'>
+                      <div key={index} className={subDomain + '-select-mail-in-radio'}>
                         <input 
                           type='radio' 
                           id={'radio'+index} 
@@ -177,20 +177,20 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                       </div>
                     )
                   })}
-                  <div className='select-mail-in-container'>
-                    <div><u><p className='select-mail-in-text'>{t('HOURS')}</p></u></div>
+                  <div className={subDomain + '-select-mail-in-container'}>
+                    <div><u><p className={subDomain + '-select-mail-in-text'}>{t('HOURS')}</p></u></div>
                   </div>
                   {data.select.time.workingHours.map((item:any, index:number) => {
                     return (
-                      <div key={index} className='select-mail-in-container'>
-                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{t(item[0])}</p></div>
-                        <div style={{width: '50%'}}><p className='select-mail-in-text'>{t(item[1])}</p></div>
+                      <div key={index} className={subDomain + '-select-mail-in-container'}>
+                        <div style={{width: '50%'}}><p className={subDomain + '-select-mail-in-text'}>{t(item[0])}</p></div>
+                        <div style={{width: '50%'}}><p className={subDomain + '-select-mail-in-text'}>{t(item[1])}</p></div>
                       </div>
                     )
                   })}
                 </div>}
               </div>
-              {caseKey > 0 && <Typography className='repair-summary-title'>{t(data.select.time.title[caseKey])}</Typography>}
+              {caseKey > 0 && <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.time.title[caseKey])}</Typography>}
               {caseKey > 0 && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
@@ -219,17 +219,17 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                 </Grid>
               </Grid>}
             </div>
-            <div className='repair-card-button'>
+            <div className={subDomain + '-repair-card-button'}>
               <Button 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
-                height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
+                height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus} subDomain={subDomain}
               />
               <p>{t(publicText.enterKey)}</p>
             </div>
           </Card>          
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className='repair-summary-card'>
+          <Card className={subDomain + '-repair-summary-card'}>
             <RepairSummary 
               step={step} 
               subDomain={subDomain} 

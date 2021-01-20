@@ -42,12 +42,12 @@ const Chat = ({subDomain, features}: Props) => {
   };
 
   const getCustomLauncher = (handleToggle:any) =>
-    <div className='chat-container' style={{backgroundColor: chatBgCol}} onClick={handleToggle}>
+    <div className={subDomain + '-chat-container'} style={{backgroundColor: chatBgCol}} onClick={handleToggle}>
       <img src={chatData.chatImg} />
     </div>
 
   return (
-    <div className='chat-widget-container'>
+    <div className={subDomain + '-chat-widget-container'}>
       <FeatureToggles features={feats}>
         <Feature
           name='FEATURE_CHAT'

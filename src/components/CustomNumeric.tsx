@@ -36,17 +36,18 @@ type Props = {
   content: string;
   handlePrevState: () => void;
   handleNextState: () => void;
+  subDomain?: string;
 }
 
-const CustomNumeric = ({content, handlePrevState, handleNextState}: Props) => {
+const CustomNumeric = ({content, handlePrevState, handleNextState, subDomain}: Props) => {
   return (
     <Parentdiv>
       <Contentdiv>
         <ContentP>{content}</ContentP>
       </Contentdiv>
       <ArrowDiv>
-        <div onClick={handleNextState} className='arrow-container'><ArrowUP /></div>
-        <div onClick={handlePrevState} className='arrow-container'><ArrowDown /></div>
+        <div onClick={handleNextState} className={subDomain + '-arrow-container'}><ArrowUP /></div>
+        <div onClick={handlePrevState} className={subDomain + '-arrow-container'}><ArrowDown /></div>
       </ArrowDiv>
     </Parentdiv>
   )

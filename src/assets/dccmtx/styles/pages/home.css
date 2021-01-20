@@ -72,12 +72,6 @@
   width: 100%;
 }
 
-.cart-mobile-container {
-  /* margin: auto;
-  max-width: 230px;
-  width: 100% */
-}
-
 .section1-top {
   margin-top: 250px !important;
   margin-bottom: 140px !important;
@@ -153,7 +147,7 @@
   float: right;
 }
 .section3-back {
-  background-image: url('../../img/prado-section3-bg.png');
+  background-image: url('../../img/northtech-section3-bg.png');
   background-size: cover;
   /* background-position: top; */
   background-repeat: no-repeat;
@@ -166,6 +160,7 @@
 .section4-button {
   max-width: 316px;
   width: 100%;
+  margin-top: 2rem;
 }
 
 .section4-title {
@@ -224,8 +219,7 @@ p {
   padding-top: 1rem;
 }
 .sec6-container {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 4rem;
 }
 .sec6-card {
   margin: auto;
@@ -267,12 +261,6 @@ p {
 @media (max-width: 960px) {
   .sec6-card {
     max-width: 500px;
-  }
-}
-
-@media (max-width: 600px) {
-  .sec6-container {
-    padding-bottom: 0px;
   }
 }
 

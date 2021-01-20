@@ -10,20 +10,21 @@ type Props = {
   border?: string;
   height?: string;
   placeholder: LangProps;
+  subDomain?: string;
 }
 
-const Search = ({color, bgcolor, border, height, placeholder}: Props) => {
+const Search = ({color, bgcolor, border, height, placeholder, subDomain}: Props) => {
   const t = useT();
   const tPlaceholder = t(placeholder || 'FIND_YOUR_DEVICE');
 
   return (
-      <Box className="search-container" style={{background: bgcolor, border: `1px solid ${border}`, height: height}}>
+      <Box className={subDomain + "-search-container"} style={{background: bgcolor, border: `1px solid ${border}`, height: height}}>
         <InputBase 
-          className="search-input" 
+          className={subDomain + "-search-input"} 
           style={{color: color}} 
           placeholder={tPlaceholder}
         />
-        <SearchIcon className="search-icon" style={{color: color}}/>
+        <SearchIcon className={subDomain + "-search-icon"} style={{color: color}}/>
       </Box>
   )
 }

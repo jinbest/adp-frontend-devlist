@@ -99,6 +99,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
         icon={true}
         fontSize='17px'
         width={width}
+        subDomain={subDomain}
       /> : 
       <div style={{color: themeColor}} className={classes.rootAddressDiv} onClick={handleClick}>
         <RoomOutlinedIcon />
@@ -113,17 +114,17 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <div className='triangle'></div>
-        <div className='menu-content-div'>
-          <div className='left-content'>
-            <div className='content-block'>
-              <p className='block-title'>{t('MY_STORE')}</p>
-              <p className='block-content' onClick={handleAddress}>71 Greenford Avenue Winninpeg, MB RiR 1R1 (204) 555-5555</p>
+        <div className={subDomain + '-triangle'}></div>
+        <div className={subDomain + '-menu-content-div'}>
+          <div className={subDomain + '-left-content'}>
+            <div className={subDomain + '-content-block'}>
+              <p className={subDomain + '-block-title'}>{t('MY_STORE')}</p>
+              <p className={subDomain + '-block-content'} onClick={handleAddress}>71 Greenford Avenue Winninpeg, MB RiR 1R1 (204) 555-5555</p>
             </div>
-            <div className='content-block'>
-              <a className='link' style={{color: underLineCol}}>{t('VIEW_STORE_DETAILS')}</a>
-              <a className='link' style={{color: underLineCol}}>{t('VIEW_MORE_STORES')}</a>
-              <a className='link' style={{color: underLineCol}}>{t('GET_DIRECTIONS')}</a>
+            <div className={subDomain + '-content-block'}>
+              <a className={subDomain + '-link'} style={{color: underLineCol}}>{t('VIEW_STORE_DETAILS')}</a>
+              <a className={subDomain + '-link'} style={{color: underLineCol}}>{t('VIEW_MORE_STORES')}</a>
+              <a className={subDomain + '-link'} style={{color: underLineCol}}>{t('GET_DIRECTIONS')}</a>
             </div>            
             <FeatureToggles features={features}>
               <Feature
@@ -139,6 +140,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
                     margin='0'
                     fontSize='15px'
                     onClick={()=>{window.location.href = '/repair'}}
+                    subDomain={subDomain}
                   />
                 }
               />
@@ -149,19 +151,19 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
             margin: '30px 10px'
           }}></div>
           <div>
-            <p className='block-title'>{t('HOURS')}</p>
-            <div className='hours-div'>
+            <p className={subDomain + '-block-title'}>{t('HOURS')}</p>
+            <div className={subDomain + '-hours-div'}>
               <div>
                 {data.hoursData.map((item:any, index:number) => {
                   return (
-                    <p className='block-content' key={index}>{t(item.day)}</p>
+                    <p className={subDomain + '-block-content'} key={index}>{t(item.day)}</p>
                   )
                 })}
               </div>
               <div>
                 {data.hoursData.map((item:any, index:number) => {
                   return (
-                    <p className='block-content' key={index}>{t(item.time)}</p>
+                    <p className={subDomain + '-block-content'} key={index}>{t(item.time)}</p>
                   )
                 })}
               </div>

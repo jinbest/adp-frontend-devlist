@@ -8,9 +8,10 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 type PropsNavItemLink = {
   item: any;
   handleStatus: (status:boolean) => void;
+  subDomain?: string;
 }
 
-const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) => {
+const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNavItemLink) => {
 
   const t = useT();
 
@@ -23,8 +24,8 @@ const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) =
   }
 
   return (
-    <li className='nav-item'>
-      <Link className='nav-link' to={href} onClick={handle}>
+    <li className={subDomain + '-nav-item'}>
+      <Link className={subDomain + '-nav-link'} to={href} onClick={handle}>
         {t(text)}
       </Link>
     </li>
@@ -94,8 +95,8 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
   }
 
   return (
-    <header className='header'>
-      <div className='header-brand' style={{backgroundColor: data.brandItemsData.brandThemeCol}}>
+    <header className={subDomain + '-header'}>
+      <div className={subDomain + '-header-brand'} style={{backgroundColor: data.brandItemsData.brandThemeCol}}>
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
@@ -121,7 +122,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           </ul>          
         </div>
       </div>
-      <div className='container-header'>
+      <div className={subDomain + '-container-header'}>
         <Logo subDomain={subDomain} type='header' handleStatus={handleStatus} />
         
         <FeatureToggles features={feats}>
@@ -133,8 +134,8 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                 name={'FEATURE_GLOBAL_SEARCH'}
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
-                  <div className='search-div' id='header-search'>
-                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+                  <div className={subDomain + '-search-div'} id='header-search'>
+                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' subDomain={subDomain} />
                   </div>
                 }
               />
@@ -142,15 +143,15 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           />
         </FeatureToggles>
 
-        <div className='nav-div'>
-          <ul className='navlink-parent'>
+        <div className={subDomain + '-nav-div'}>
+          <ul className={subDomain + '-navlink-parent'}>
             {navItemsLink.map((item:any, index:number) => {
               return (
                 <FeatureToggles features={feats} key={index}>
                   <Feature
                     name={item.flag}
                     inactiveComponent={()=><></>}
-                    activeComponent={()=><NavItemLink item={item} handleStatus={handleStatus}/>}
+                    activeComponent={()=><NavItemLink item={item} handleStatus={handleStatus} subDomain={subDomain} />}
                   />
                 </FeatureToggles>
               )
@@ -165,9 +166,9 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               }
             />
           </FeatureToggles>
-          <img src={data.avatarData.store} className='navlink-avatar-store' />
+          <img src={data.avatarData.store} className={subDomain + '-navlink-avatar-store'} />
         </div>
-        <div className='avatar-div'>
+        <div className={subDomain + '-avatar-div'}>
           {
             userStatus ? 
             <img src={data.avatarData.userActive} onClick={toggleUserStatus} /> :
@@ -181,7 +182,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           }
         </div>
       </div>
-      <div className='container-mobile'>
+      <div className={subDomain + '-container-mobile'}>
         {
           userStatus && menuStatus ? 
           <FeatureToggles features={feats}>
@@ -189,19 +190,19 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               name='FEATURE_SEARCH'
               inactiveComponent={()=><></>}
               activeComponent={()=>
-                <div className='mobile-search-div'>
-                  <div className='mobile-child-search'>
-                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+                <div className={subDomain + '-mobile-search-div'}>
+                  <div className={subDomain + '-mobile-child-search'}>
+                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' subDomain={subDomain} />
                   </div>
                 </div>
               }
             />
           </FeatureToggles> :
-          <div className='mobile-menu-navbar'>
-            {userStatus && <div className='arrow'>
+          <div className={subDomain + '-mobile-menu-navbar'}>
+            {userStatus && <div className={subDomain + '-arrow'}>
               {mobileMenu === 'left' ? 
-                <img className='arrow-left' src={data.arrowData.arrowRight} onClick={toggleMobileMenu} /> : 
-                <img className='arrow-right' src={data.arrowData.arrowLeft} onClick={toggleMobileMenu} />
+                <img className={subDomain + '-arrow-left'} src={data.arrowData.arrowRight} onClick={toggleMobileMenu} /> : 
+                <img className={subDomain + '-arrow-right'} src={data.arrowData.arrowLeft} onClick={toggleMobileMenu} />
               }
             </div>}
             { 
@@ -216,7 +217,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                             name={item.flag}
                             inactiveComponent={()=><></>}
                             activeComponent={()=>
-                              <a className='mobile-item' href={item.href}>{t(item.text)}</a>
+                              <a className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
                             }
                           />
                         </FeatureToggles>
@@ -224,10 +225,10 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                     })}
                   </div> : 
                   <div>
-                    <p className='arrow-back' onClick={toggleMobileMenu}>{t('BACK')}</p>
+                    <p className={subDomain + '-arrow-back'} onClick={toggleMobileMenu}>{t('BACK')}</p>
                     {data.mobileNavItemData.right.map((item:any, index:number) => {
                       return (
-                        <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
+                        <a key={index} className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
                       )
                     })}
                   </div>
@@ -241,7 +242,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                         name={item.flag}
                         inactiveComponent={()=><></>}
                         activeComponent={()=>
-                          <a className='mobile-item' href={item.href}>{t(item.text)}</a>
+                          <a className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
                         }
                       />
                     </FeatureToggles>

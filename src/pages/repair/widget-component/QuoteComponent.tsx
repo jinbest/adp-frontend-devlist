@@ -11,21 +11,21 @@ type Props = {
 }
 
 
-const QuoteComponent = ({data, quoteKey, repairWidgetData}: Props) => {
+const QuoteComponent = ({data, quoteKey, repairWidgetData, subDomain}: Props) => {
 
   const t = useT();
 
   return (
     <div style={{display: 'flex', justifyContent: 'center'}}>
-      <Card className='repair-service-summary-card'>
-        <div className='quote-container'>
-          <div className='quote-image'>
+      <Card className={subDomain + '-repair-service-summary-card'}>
+        <div className={subDomain + '-quote-container'}>
+          <div className={subDomain + '-quote-image'}>
             <img src={data[quoteKey].img} alt='quote-img' />
           </div>
-          <Typography className='repair-service-summary-title'>
+          <Typography className={subDomain + '-repair-service-summary-title'}>
             {t(data[quoteKey].title)}
           </Typography>
-          <Typography className='quote-component-content'>
+          <Typography className={subDomain + '-quote-component-content'}>
             {t('YOU_WILL_RECEIVE_AN')} <b>{t('EMAIL').toLocaleLowerCase()}</b> {t('AT')} <b>{repairWidgetData.contactDetails.email}</b> {t('SHORTLY')}, {t(data[quoteKey].text)}
           </Typography>
         </div>

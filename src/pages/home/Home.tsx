@@ -7,13 +7,14 @@ type Props = {
 }
 
 const Home = ({subDomain, features}: Props) => {
-  const SectionItemComponents = [Section3, Section4, Section5, Section6];
+  const SectionItemComponents = [Section4, Section5, Section6];
   
   return (
     <div>
       <Shape subDomain={subDomain} />
       <Section1 subDomain={subDomain} features={features} />
       <Section2 subDomain={subDomain} features={features} />
+      <Section3 subDomain={subDomain} features={features} />
       {SectionItemComponents.map((SectionItem, index:number) => {
         return (
           <SectionItem subDomain={subDomain} key={index}/>
