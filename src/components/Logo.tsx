@@ -8,8 +8,8 @@ type Props = {
 }
 
 const Logo = ({subDomain, type, handleStatus}: Props) => {
-  const logoHeaderImg = require(`../assets/${subDomain}/img/logo/logo-header.png`);
-  const logoFooterImg = require(`../assets/${subDomain}/img/logo/logo-footer.png`);
+  const mainData = require(`../assets/${subDomain}/Database.js`);
+  const logoData = mainData.logoData;
 
   const handleLogoClick = () => {
     localStorage.clear();
@@ -19,10 +19,10 @@ const Logo = ({subDomain, type, handleStatus}: Props) => {
   return (
     type === 'header' ? 
     <Link to='/home' onClick={handleLogoClick}>
-      <img className='logo-header' src={logoHeaderImg.default} alt='logo'/>
+      <img className='logo-header' src={logoData.logoHeaderImg} alt='logo'/>
     </Link> : 
     <Link to='/' onClick={handleLogoClick}>
-      <img className='logo-footer' src={logoFooterImg.default} alt='logo'/>
+      <img className='logo-footer' src={logoData.logoFooterImg} alt='logo'/>
     </Link>
   )
 }

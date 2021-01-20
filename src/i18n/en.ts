@@ -11,7 +11,7 @@ export class LanguageKeys {
   public FRENCH = 'FRENCH';
   public FIND_YOUR_DEVICE = 'Find your device';
   public FIND_ANOTHER_LOCATION = 'Find another location';
-  public TRADE_REPAIR_BUY_OR_SELL = 'Trade, repair, buy or sell';
+  public TRADE_REPAIR_BUY_OR_SELL = 'or sell';
   public YOUR_MOBILE_DEVICE = 'your mobile device';
   public FIND_A_STORE = 'Find a Store';
   public TRADE = 'Trade';
@@ -123,6 +123,13 @@ export class LanguageKeys {
   public MONTH_6_WARRANTY = '6 MONTH WARRANTY';
   public MONTH_6_WARRANTY_CONTENT = 'All of our repairs are backed with our 6 month, hassle-free warranty. This warranty is valid at all of our locations worldwide.';
   public WHOLESALE = 'Wholesale';
+  public ERROR_TITLE = 'OOPS! WE UNFORTUNATELY DO NOT HAVE AN OFFER FOR YOUR DEVICE AT THIS TIME.';
+  public ERROR_BUTTON = 'Return to Home';
+  public SHOP = 'Shop';
+  public INSURE = 'Insure';
+  public VIEW_STORE_DETAILS = 'View Store Details';
+  public VIEW_MORE_STORES = 'View More Stores';
+  public GET_DIRECTIONS = 'Get Directions';
 
   /* Repair-widget Text */
   public NEXT = 'Next';
@@ -273,7 +280,7 @@ export class LanguageKeys {
   public WIRELESS_FOOTER_CONTENT_TWO = '© 2020 Wireless Revolution 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Wireless Revolution" does not own or make claim to those trademarks used on this website in which it is not the holder.';
   public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = 'Wireless Rev repairs your device and notifies you of pick up or delivery date.';
   public WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Wireless Rev it\'s easy to choose for any budget!';
-  
+
 }
 
 export type LangProps = keyof LanguageKeys;

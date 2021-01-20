@@ -4,6 +4,7 @@ import { Card } from './'
 import { InputComponent, Button, PhoneInput } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
+import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 
 type Props = {
   data: any;
@@ -13,9 +14,10 @@ type Props = {
   handleChangeChooseData: (step:number, chooseData:any) => void;
   repairWidgetData: any;
   caseKey: number;
+  features: any[];
 }
 
-const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, caseKey}: Props) => {
+const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, caseKey, features}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const themeCol = mainData.colorPalle.themeColor;
@@ -46,9 +48,9 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     setCity(repairWidgetData.contactDetails.city);
     setProvince(repairWidgetData.contactDetails.province);
     setPostalCode(repairWidgetData.contactDetails.postalCode);
-  }, [repairWidgetData, step])
+  }, [repairWidgetData, step]);
 
-  const ChooseNextStep = () => {
+  const handleButton = (param: string) => {
     handleChangeChooseData(6, { 
       firstName: firstName, 
       lastName: lastName, 
@@ -60,13 +62,21 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
       city: city,
       province: province,
       postalCode: postalCode
-    })
-    handleStep(step+1)
+    });
+    if (param === 'appointment') {
+      handleStep(step+1);
+    } else {
+      handleStep(11);
+    }
   }
 
   const onKeyPress = useCallback((event) => {
     if(event.key === 'Enter' && !disableStatus && step === 6) {
-      ChooseNextStep()
+      if (features.includes('FEATURE_REPAIR_APPOINTMENT') || caseKey === 0) {
+        handleButton('appointment');
+      } else if (features.includes('FEATURE_REPAIR_QUOTE')) {
+        handleButton('quote');
+      }      
     }
   }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode, disableStatus]);
 
@@ -75,49 +85,49 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode, disableStatus])
+  }, [step, firstName, lastName, email, phone, address1, address2, country, city, province, postalCode, disableStatus]);
 
   useEffect(() => {
     setDisableStatus(true);
     if ( firstName && lastName && email && phone && ((caseKey===0 && address1) || (caseKey>0)) ) {
       setDisableStatus(false)
     }
-  }, [firstName, lastName, email, phone, address1, caseKey])
+  }, [firstName, lastName, email, phone, address1, caseKey]);
 
   const handleChangeFirstName = (val:string) => {
-    setFirstName(val)
+    setFirstName(val);
   }
 
   const handleChangeLastName = (val:string) => {
-    setLastName(val)
+    setLastName(val);
   }
 
   const handleChangeEmail = (val:string) => {
-    setEmail(val)
+    setEmail(val);
   }
 
   const handleChangeAddress1 = (val:string) => {
-    setStreetAddress1(val)
+    setStreetAddress1(val);
   }
 
   const handleChangeAddress2 = (val:string) => {
-    setStreetAddress2(val)
+    setStreetAddress2(val);
   }
 
   const handleChangeCountry = (val:string) => {
-    setCountry(val)
+    setCountry(val);
   }
 
   const handleChangeCity = (val:string) => {
-    setCity(val)
+    setCity(val);
   }
 
   const handleChangeProvince = (val:string) => {
-    setProvince(val)
+    setProvince(val);
   }
 
   const handleChangePostalCode = (val:string) => {
-    setPostalCode(val)
+    setPostalCode(val);
   }
 
   return (
@@ -149,14 +159,26 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
               </Grid>
             </div>
             {caseKey > 0 && <div className='repair-choose-device-container'>
-              <Button 
-                title={'BOOK_AN_APPOINTMENT'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
-                height='30px' fontSize='17px' margin='0 auto 10px' onClick={ChooseNextStep} disable={disableStatus}
-              />
-              <Button 
-                title={'REQUEST_A_QUOTE'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
-                height='30px' fontSize='17px' margin='0 auto' onClick={()=>{handleStep(11)}} disable={disableStatus}
-              />
+              <FeatureToggles features={features}>
+                <Feature
+                  name='FEATURE_REPAIR_APPOINTMENT'
+                  inactiveComponent={()=><></>}
+                  activeComponent={()=><Button 
+                    title={'BOOK_AN_APPOINTMENT'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
+                    height='30px' fontSize='17px' margin='0 auto 10px' onClick={()=>handleButton('appointment')} disable={disableStatus}
+                  />}
+                />
+              </FeatureToggles>
+              <FeatureToggles features={features}>
+                <Feature
+                  name='FEATURE_REPAIR_QUOTE'
+                  inactiveComponent={()=><></>}
+                  activeComponent={()=><Button 
+                    title={'REQUEST_A_QUOTE'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
+                    height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleButton('quote')} disable={disableStatus}
+                  />}
+                />
+              </FeatureToggles>              
             </div>}
             {caseKey === 0 && <div className='repair-choose-device-container'>
               <Grid container spacing={2}>                
@@ -183,7 +205,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             {caseKey === 0 && <div className='repair-card-button'>
               <Button 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
-                height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus}
+                height='30px' fontSize='17px' onClick={()=>handleButton('appointment')} disable={disableStatus}
               />
               <p>{t(publicText.enterKey)}</p>
             </div>}

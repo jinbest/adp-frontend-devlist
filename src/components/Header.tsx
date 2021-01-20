@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Search, CustomizedMenus, Logo, SelectLang} from '../components'
 import { Link } from 'react-router-dom'
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 type PropsNavItemLink = {
   item: any;
@@ -18,10 +19,6 @@ const NavItemLink = ({ item: { href, text }, handleStatus }: PropsNavItemLink) =
       handleStatus(false);
     } else {
       handleStatus(true);
-    }
-    if (href === '/repair') {
-      const headerSearch = document.getElementById('header-search') as HTMLElement;
-      headerSearch.style.visibility = 'visible';
     }
   }
 
@@ -55,10 +52,12 @@ const BrandItemLink = ({ item, color, trans }: PropsBrand) => {
 type PropsHeader = {
   subDomain?: string;
   handleStatus: (status:boolean) => void;
+  features: any[];
 }
 
-const Header = ({subDomain, handleStatus}: PropsHeader) => {
+const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
   const data = require(`../assets/${subDomain}/Database`);
+  
   const navItemsLink = data.navItemsData, 
     brandItemLink = data.brandItemsData, 
     searchPlaceholder = data.homeTextData.section1.searchPlaceholder;
@@ -68,6 +67,17 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
   const [userStatus, setUserStatus] = useState(true);
   const [menuStatus, setMenuStatus] = useState(true);
   const [mobileMenu, setMobileMenu] = useState('left');
+  const [feats, setFeatures] = useState<any[]>([]);
+
+  useEffect(() => {
+    const cntFeatures:any[] = [];
+    for (let i = 0; i < features.length; i++) {
+      if (features[i].isActive) {
+        cntFeatures.push(features[i].flag);
+      }
+    }
+    setFeatures(cntFeatures);
+  }, [data, features])
 
   function toggleUserStatus() {
     setUserStatus(!userStatus);
@@ -95,23 +105,66 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
             <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} trans={false} />
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
-            <BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} trans={true} />
+            <FeatureToggles features={feats}>
+              <Feature
+                name={'FEATURE_USER_ACCOUNT'}
+                inactiveComponent={()=><></>}
+                activeComponent={()=>
+                  <Feature
+                    name={'FEATURE_USER_LOGIN'}
+                    inactiveComponent={()=><></>}
+                    activeComponent={()=><BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} trans={true} />}
+                  />
+                }
+              />
+            </FeatureToggles>
           </ul>          
         </div>
       </div>
       <div className='container-header'>
         <Logo subDomain={subDomain} type='header' handleStatus={handleStatus} />
         
-        <div className='search-div' id='header-search'>
-          <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
-        </div>
+        <FeatureToggles features={feats}>
+          <Feature
+            name={'FEATURE_SEARCH'}
+            inactiveComponent={()=><></>}
+            activeComponent={()=>
+              <Feature
+                name={'FEATURE_GLOBAL_SEARCH'}
+                inactiveComponent={()=><></>}
+                activeComponent={()=>
+                  <div className='search-div' id='header-search'>
+                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+                  </div>
+                }
+              />
+            }
+          />
+        </FeatureToggles>
+
         <div className='nav-div'>
           <ul className='navlink-parent'>
             {navItemsLink.map((item:any, index:number) => {
-              return <NavItemLink item={item} key={index} handleStatus={handleStatus}/>
+              return (
+                <FeatureToggles features={feats} key={index}>
+                  <Feature
+                    name={item.flag}
+                    inactiveComponent={()=><></>}
+                    activeComponent={()=><NavItemLink item={item} handleStatus={handleStatus}/>}
+                  />
+                </FeatureToggles>
+              )
             })}
           </ul>
-          <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} />
+          <FeatureToggles features={feats}>
+            <Feature
+              name='FEATURE_FIND_A_STORE'
+              inactiveComponent={()=><></>}
+              activeComponent={()=>
+                <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} features={feats} />
+              }
+            />
+          </FeatureToggles>
           <img src={data.avatarData.store} className='navlink-avatar-store' />
         </div>
         <div className='avatar-div'>
@@ -131,11 +184,19 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
       <div className='container-mobile'>
         {
           userStatus && menuStatus ? 
-          <div className='mobile-search-div'>
-            <div className='mobile-child-search'>
-              <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
-            </div>
-          </div> : 
+          <FeatureToggles features={feats}>
+            <Feature
+              name='FEATURE_SEARCH'
+              inactiveComponent={()=><></>}
+              activeComponent={()=>
+                <div className='mobile-search-div'>
+                  <div className='mobile-child-search'>
+                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)'/>
+                  </div>
+                </div>
+              }
+            />
+          </FeatureToggles> :
           <div className='mobile-menu-navbar'>
             {userStatus && <div className='arrow'>
               {mobileMenu === 'left' ? 
@@ -150,7 +211,15 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
                   <div>
                     {data.mobileNavItemData.left.map((item:any, index:number) => {
                       return (
-                        <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
+                        <FeatureToggles features={feats} key={index}>
+                          <Feature
+                            name={item.flag}
+                            inactiveComponent={()=><></>}
+                            activeComponent={()=>
+                              <a className='mobile-item' href={item.href}>{t(item.text)}</a>
+                            }
+                          />
+                        </FeatureToggles>
                       )
                     })}
                   </div> : 
@@ -167,10 +236,32 @@ const Header = ({subDomain, handleStatus}: PropsHeader) => {
               <div>
                 {data.userNavItemData.map((item:any, index:number) => {
                   return (
-                    <a key={index} className='mobile-item' href={item.href}>{t(item.text)}</a>
+                    <FeatureToggles features={feats} key={index}>
+                      <Feature
+                        name={item.flag}
+                        inactiveComponent={()=><></>}
+                        activeComponent={()=>
+                          <a className='mobile-item' href={item.href}>{t(item.text)}</a>
+                        }
+                      />
+                    </FeatureToggles>
                   )
                 })}
-                <a href='#' style={{color: data.colorPalle.textThemeCol}}>{t('SIGN_OUT')}</a>
+                <FeatureToggles features={feats}>
+                  <Feature
+                    name={'FEATURE_USER_ACCOUNT'}
+                    inactiveComponent={()=><></>}
+                    activeComponent={()=>
+                      <Feature
+                        name={'FEATURE_USER_SIGNUP'}
+                        inactiveComponent={()=><></>}
+                        activeComponent={()=>
+                          <a href='#' style={{color: data.colorPalle.textThemeCol}}>{t('SIGN_OUT')}</a>
+                        }
+                      />
+                    }
+                  />
+                </FeatureToggles>
               </div>
             }
           </div>

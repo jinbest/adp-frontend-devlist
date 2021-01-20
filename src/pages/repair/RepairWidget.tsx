@@ -3,6 +3,8 @@ import { ChooseDevice, BackSVG, ContactDetails, BookTime, UsefulInfo, RepairServ
 import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../store/RepairWidgetStore'
 import { computed } from 'mobx'
+import {Error} from '../error'
+import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 
 const stepList:string[] = [
   'deviceBrand',
@@ -24,10 +26,12 @@ type StoreProps = {
 interface Props extends StoreProps {
   subDomain: string;
   handleStatus: (status:boolean) => void;
+  features: any[];
 }
 
 type MyState = {
   step: number;
+  feats: any[];
 }
 
 @inject('repairWidgetStore')
@@ -56,15 +60,24 @@ class RepairWidget extends React.Component<Props, MyState> {
     super(props);
     this.state = {
       step: 0,
+      feats: []
     };
     this.handleBackStep = this.handleBackStep.bind(this);
     this.handleChangeChooseData = this.handleChangeChooseData.bind(this);
   }
 
   componentDidMount() {
-    const { handleStatus, repairWidgetStore } = this.props;
+    const { handleStatus, repairWidgetStore, features } = this.props;
     handleStatus(false);
     this.setState({step: repairWidgetStore.cntStep});
+
+    const cntFeatures:any[] = [];
+    for (let i = 0; i < features.length; i++) {
+      if (features[i].isActive) {
+        cntFeatures.push(features[i].flag);
+      }
+    }
+    this.setState({feats: cntFeatures});
   }
 
   handleBackStep() {
@@ -127,6 +140,7 @@ class RepairWidget extends React.Component<Props, MyState> {
         repairWidgetStore.changeCntStep(9);
         this.setState({step: 9});
       } else {
+        repairWidgetStore.changeContactDetails({});
         repairWidgetStore.changeCntStep(6);
         this.setState({step: 6});
       }  
@@ -183,81 +197,92 @@ class RepairWidget extends React.Component<Props, MyState> {
     const themeCol = mainData.colorPalle.themeColor;
 
     return (
-      <div className='repair-widget Container'>
-        { this.state.step > 0 && 
-          <div className='back-to-top' onClick={this.handleBackStep}>
-            <BackSVG color='#BDBFC3' />
-          </div>
-        }
-        { this.state.step <= 5 && 
-          <ChooseDevice 
-            data={mockData.repairWidget[stepList[this.state.step]]} 
-            handleStep={this.handleStep.bind(this)} 
-            handleChangeChooseData={this.handleChangeChooseData.bind(this)}
-            stepName={stepList[this.state.step]} 
-            step={this.state.step} 
-            subDomain={subDomain} 
-            repairWidgetData={this.computedRepairWidgetData}
-          />
-        }
-        { this.state.step === 6 && 
-          <ContactDetails 
-            data={mockData.repairWidget[stepList[this.state.step]]} 
-            subDomain={subDomain} 
-            step={this.state.step} 
-            handleStep={this.handleStep.bind(this)} 
-            handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
-            repairWidgetData={this.computedRepairWidgetData}
-            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
-          />
-        }
-        { this.state.step === 7 && 
-          <BookTime 
-            data={mockData.repairWidget[stepList[this.state.step]]} 
-            subDomain={subDomain} 
-            step={this.state.step} 
-            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
-            handleStep={this.handleStep.bind(this)} 
-            handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
-            repairWidgetData={this.computedRepairWidgetData}
-          />
-        }
-        { this.state.step === 8 && 
-          <UsefulInfo 
-            data={mockData.repairWidget[stepList[this.state.step]]} 
-            subDomain={subDomain} 
-            step={this.state.step} 
-            handleStep={this.handleStep.bind(this)} 
-            handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
-            repairWidgetData={this.computedRepairWidgetData}
-            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
-          />
-        }
-        { this.state.step === 9 &&
-          <RepairServiceSummary 
-            themeCol={themeCol}
-            repairWidgetData={this.computedRepairWidgetData}
-            caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
-            step={this.state.step} 
-            handleStep={this.handleStep.bind(this)}
-            subDomain={subDomain}
-          />
-        }
-        { this.state.step === 10 &&
-          <QuoteComponent
-            data={mockData.repairWidget[stepList[this.state.step]]}
-            repairWidgetData={this.computedRepairWidgetData}
-            quoteKey={1}
-          />
-        }
-        { this.state.step === 11 &&
-          <QuoteComponent
-            data={mockData.repairWidget[stepList[10]]}
-            repairWidgetData={this.computedRepairWidgetData}
-            quoteKey={0}
-          />
-        }
-      </div>
+      <FeatureToggles features={this.state.feats}>
+        <Feature
+          name='FEATURE_REPAIR'
+          inactiveComponent={()=><Error />}
+          activeComponent={()=>
+            <div className='repair-widget Container'>
+              { this.state.step > 0 && 
+                <div className='back-to-top' onClick={this.handleBackStep}>
+                  <BackSVG color='#BDBFC3' />
+                </div>
+              }
+              { this.state.step <= 5 && 
+                <ChooseDevice 
+                  data={mockData.repairWidget[stepList[this.state.step]]} 
+                  handleStep={this.handleStep.bind(this)} 
+                  handleChangeChooseData={this.handleChangeChooseData.bind(this)}
+                  stepName={stepList[this.state.step]} 
+                  step={this.state.step} 
+                  subDomain={subDomain} 
+                  repairWidgetData={this.computedRepairWidgetData}
+                  features={this.state.feats}
+                />
+              }
+              { this.state.step === 6 && 
+                <ContactDetails 
+                  data={mockData.repairWidget[stepList[this.state.step]]} 
+                  subDomain={subDomain} 
+                  step={this.state.step} 
+                  handleStep={this.handleStep.bind(this)} 
+                  handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
+                  repairWidgetData={this.computedRepairWidgetData}
+                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
+                  features={this.state.feats}
+                />
+              }
+              { this.state.step === 7 && 
+                <BookTime 
+                  data={mockData.repairWidget[stepList[this.state.step]]} 
+                  subDomain={subDomain} 
+                  step={this.state.step} 
+                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
+                  handleStep={this.handleStep.bind(this)} 
+                  handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
+                  repairWidgetData={this.computedRepairWidgetData}
+                />
+              }
+              { this.state.step === 8 && 
+                <UsefulInfo 
+                  data={mockData.repairWidget[stepList[this.state.step]]} 
+                  subDomain={subDomain} 
+                  step={this.state.step} 
+                  handleStep={this.handleStep.bind(this)} 
+                  handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
+                  repairWidgetData={this.computedRepairWidgetData}
+                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
+                />
+              }
+              { this.state.step === 9 &&
+                <RepairServiceSummary 
+                  themeCol={themeCol}
+                  repairWidgetData={this.computedRepairWidgetData}
+                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
+                  step={this.state.step} 
+                  handleStep={this.handleStep.bind(this)}
+                  subDomain={subDomain}
+                  features={this.state.feats}
+                />
+              }
+              { this.state.step === 10 &&
+                <QuoteComponent
+                  data={mockData.repairWidget[stepList[this.state.step]]}
+                  repairWidgetData={this.computedRepairWidgetData}
+                  quoteKey={1}
+                />
+              }
+              { this.state.step === 11 &&
+                <QuoteComponent
+                  data={mockData.repairWidget[stepList[10]]}
+                  repairWidgetData={this.computedRepairWidgetData}
+                  quoteKey={0}
+                />
+              }
+            </div>
+          }
+        />
+      </FeatureToggles>      
     )
   }
 }
