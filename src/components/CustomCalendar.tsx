@@ -191,8 +191,8 @@ const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps)
         {month+1}/{day}/{year}
       </InputDate>
       <Numeric>
-        <CustomNumeric content={MONTHS[month]} handlePrevState={handlePrevMonth} handleNextState={handleNextMonth} />
-        <CustomNumeric content={year.toString()} handlePrevState={handlePrevYear} handleNextState={handleNextYear} />
+        <CustomNumeric content={MONTHS[month]} handlePrevState={handlePrevMonth} handleNextState={handleNextMonth} subDomain={subDomain} />
+        <CustomNumeric content={year.toString()} handlePrevState={handlePrevYear} handleNextState={handleNextYear} subDomain={subDomain} />
       </Numeric>
       <Body>
         <Weekdiv>

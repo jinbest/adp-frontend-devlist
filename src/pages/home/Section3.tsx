@@ -33,14 +33,14 @@ const Section3 = ({subDomain, features}: Props) => {
         name={'FEATURE_ONLINE_PURCHASE'}
         inactiveComponent={()=><></>}
         activeComponent={()=>
-          <section className='sec3-container-parent'>
-            <div className='Container'>
-              <Typography className='section-title'>
+          <section className={subDomain + '-sec3-container-parent'}>
+            <div className={subDomain + '-Container'}>
+              <Typography className={subDomain + '-section-title'}>
                 {t(data.homeTextData.section3.title)}
               </Typography>
             </div>
-            <div className='section3-back'>
-              <div className='Container'>
+            <div className={subDomain + '-section3-back'}>
+              <div className={subDomain + '-Container'}>
                 <Grid container item xs={12} spacing={2}>
                   {data.popularCardData.map((item:any, index:number) => {
                     return (
@@ -52,6 +52,7 @@ const Section3 = ({subDomain, features}: Props) => {
                           priceCol={data.colorPalle.priceCol}
                           img={item.img} 
                           key={index} 
+                          subDomain={subDomain}
                         />
                       </Grid>
                     )
@@ -60,7 +61,7 @@ const Section3 = ({subDomain, features}: Props) => {
                 <Box className='pd-t-5'>
                   <Grid container item xs={12} spacing={2}>
                     <Grid item sm={12} md={7}>
-                      <Typography className='section-title white' style={{color: data.homeTextData.section3.color}}>
+                      <Typography className={subDomain + '-section-title white'} style={{color: data.homeTextData.section3.color}}>
                         {data.homeTextData.section3.subtitle.map((item:LangProps, index:number) => {
                           return (
                             <React.Fragment key={index}>
@@ -74,7 +75,7 @@ const Section3 = ({subDomain, features}: Props) => {
                       </Typography>
                     </Grid>
                     <Grid item sm={12} md={5}>
-                      <img src={deviceCard.img} alt='device-list' className='card-img'/>
+                      <img src={deviceCard.img} alt='device-list' className={subDomain + '-card-img'}/>
                     </Grid>
                   </Grid>
                 </Box>

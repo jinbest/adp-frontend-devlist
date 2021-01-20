@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/prado-trade.png"
-import repair from "./img/cardmobile/prado-repair.png"
-import buy from "./img/cardmobile/prado-buy.png"
-import protect from "./img/cardmobile/prado-protect.png"
+import trade from "./img/cardmobile/northtech-trade.png"
+import repair from "./img/cardmobile/northtech-repair.png"
+import buy from "./img/cardmobile/northtech-buy.png"
+import protect from "./img/cardmobile/northtech-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/prado-mobile.png"
-import tablet from "./img/cardfix/prado-tablet.png"
-import computer from "./img/cardfix/prado-computer.png"
-import console from "./img/cardfix/prado-game.png"
-import other from "./img/cardfix/prado-other.png"
+import cellphone from "./img/cardfix/northtech-mobile.png"
+import tablet from "./img/cardfix/northtech-tablet.png"
+import computer from "./img/cardfix/northtech-computer.png"
+import console from "./img/cardfix/northtech-game.png"
+import other from "./img/cardfix/northtech-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,20 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/prado-user-active.png'
-import userDeactive from './img/avatar/prado-user-deactive.png'
-import menu from './img/avatar/prado-menu.png'
-import store from './img/avatar/prado-store.png'
-import storeBlue from './img/avatar/prado-store-blue.png'
-import cancel from './img/avatar/prado-cancel.png'
+import userActive from './img/avatar/northtech-user-active.png'
+import userDeactive from './img/avatar/northtech-user-deactive.png'
+import menu from './img/avatar/northtech-menu.png'
+import store from './img/avatar/northtech-store.png'
+import storeBlue from './img/avatar/northtech-store-blue.png'
+import cancel from './img/avatar/northtech-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/prado-corner-shape.png'
-import mockupShape from './img/prado-mockup-shape.png'
+import cornerShape from './img/northtech-shape-home.png'
+
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -54,25 +54,25 @@ import deviceListImg from './img/footer/device-list.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/prado-select-repair.png'
-import sendDevice from './img/repair/section2/prado-send-device.png'
-import receiveDevice from './img/repair/section2/prado-receive-device.png'
+import selectRepair from './img/repair/section2/northtech-select-repair.png'
+import sendDevice from './img/repair/section2/northtech-send-device.png'
+import receiveDevice from './img/repair/section2/northtech-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/prado-new.png'
-import mintImg from './img/repair/section3/prado-mint.png'
-import goodImg from './img/repair/section3/prado-good.png'
-import fairImg from './img/repair/section3/prado-fair.png'
+import newImg from './img/repair/section3/northtech-new.png'
+import mintImg from './img/repair/section3/northtech-mint.png'
+import goodImg from './img/repair/section3/northtech-good.png'
+import fairImg from './img/repair/section3/northtech-fair.png'
 
 // chat - images
 import chatImg from './img/chat.png';
 
 // logo - images
-import logoHeaderImg from './img/logo/prado-logo-header.png';
-import logoFooterImg from './img/logo/prado-logo-footer.png';
+import logoHeaderImg from './img/logo/northtech-logo-header.png';
+import logoFooterImg from './img/logo/northtech-logo-footer.png';
 
 // deviceCard - images
-import deviceCardImg from './img/prado-device-card.png';
+import deviceCardImg from './img/northtech-device-card.png';
 
 const chatData = {
     chatImg: chatImg,
@@ -121,9 +121,9 @@ const contentFixData = [
         content: "QUICK_TURNAROUND_CONTENT",
     },
     {
-        title: "DAY_90_WARRANTY",
-        content: "DAY_90_WARRANTY_CONTENT",
-    },
+        title: "MONTH_6_WARRANTY",
+        content: "MONTH_6_WARRANTY_CONTENT",
+    }
 ]
 
 const popularCardData = [
@@ -162,17 +162,17 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-    orange: '#000000',
-    themeColor: '#000000',
-    underLineCol: '#000000',
-    priceCol: '#00C2F3',
-    repairButtonCol: '#EC2027',
-    nextButtonCol: '#EC2027',
-    repairChooseItemCol: '#EC2027',
-    repairBooktimeCol: '#EC2027',
-    textThemeCol: '#EC2027',
-    heartCol: '#000000',
-    chatBgCol: '#000000'
+    orange: '#F67500',
+    themeColor: '#2B388F',
+    underLineCol: '#2B388F',
+    priceCol: '#F67500',
+    repairButtonCol: '#2B388F',
+    nextButtonCol: '#2B388F',
+    repairChooseItemCol: '#2B388F',
+    repairBooktimeCol: '#2B388F',
+    textThemeCol: '#2B388F',
+    heartCol: '#2B388F',
+    chatBgCol: '#2B388F'
 }
 
 const navItemsData = [
@@ -184,9 +184,9 @@ const navItemsData = [
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
-    right: {ip: "778.440.3130", en: "ENGLISH", log: "LOG_IN"},
+    right: {ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN"},
     brandCol: 'white',
-    brandThemeCol: '#000000',
+    brandThemeCol: '#2B388F',
     selectOption: ['ENGLISH', 'FRENCH']
 }
 
@@ -232,11 +232,11 @@ const mobileNavItemData = {
 
 const userNavItemData = [
     {text: 'MY_ACCOUNT', href: '#', flag: 'FEATURE_USER_ACCOUNT'},
-    {text: 'TRACK_REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
-    {text: 'FILE_A_CLAIM', href: '#', flag: 'ALWAYS_TRUE'},
+    {text: 'TRACKING', href: '#', flag: 'ALWAYS_TRUE'},
     {text: 'ORDERS', href: '#', flag: 'ALWAYS_TRUE'},
     {text: 'TRADE_IN', href: '#', flag: 'FEATURE_TRADE'},
 ]
+
 
 const arrowData = {
     arrowLeft: arrowLeft,
@@ -244,8 +244,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: {img: cornerShape, width: ''},
-    mockupShape: {img: mockupShape, width: ''}
+    cornerShape: {img: cornerShape, width: '100vw'},
+    mockupShape: ''
 }
 
 const footerImageData = {
@@ -264,7 +264,7 @@ const homeTextData = {
     },
     section1: {
         title: ['TRADE_REPAIR_BUY_OR_SELL', 'YOUR_MOBILE_DEVICE'],
-        subtitle: 'BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS',
+        subtitle: 'YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH',
         searchPlaceholder: 'FIND_YOUR_DEVICE'
     },
     section2: {
@@ -274,10 +274,10 @@ const homeTextData = {
         title: 'POPULAR_DEVICES',
         subtitle: ['BUY_NOW_PAY_LATER', 'WHATEVER_WORKS_FOR_YOU'],
         content: 'POPULAR_DEVICES_CONTENT',
-        color: 'white'
+        color: 'black'
     },
     section4: {
-        title: 'WELCOME_PRADO_WIRELESS',
+        title: 'WELCOME_NORTHTECH',
         btnTitle: 'OUR_QUALITY_CHARTER'
     },
     section5: {
@@ -290,7 +290,7 @@ const homeTextData = {
         btnTitle: "INSURE_MY_DEVICE",
     },
     section6: {
-        title: 'SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS',
+        title: 'SEE_WHY_CUSTOMERS_LOVE_NORTHTECH',
         subtitle: 'VIEW_MORE',
         review: [
             {
@@ -316,7 +316,7 @@ const homeTextData = {
         ]
     },
     footer: {
-        title: { text: '', color: '' },
+        title: { text: 'GIVING_BACK_TO_NORTH', color: 'white' },
         gridVal: {
             mainGrid: [4, 8],
             subGrid: [11, 1]
@@ -327,8 +327,8 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(778) 440-3130 | support@blackapplecellular.com 100-703 Broughton Street, Victoria, BC V8W 1E2',
-            'PRADO_FOOTER_CONTENT_TWO'
+            '(819) 700-2211 | info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
+            'NORTHTECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
             {
@@ -395,13 +395,13 @@ const repairData = {
             {
                 img: receiveDevice,
                 subtitle: 'RECEIVE_YOUR_DEVICE',
-                content: 'PRADO_RECEIVE_YOUR_DEVICE_CONTENT',
+                content: 'NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT',
             }
         ]
     },
     section3: {
         title: 'FROM_NEW_TO_RECONDITIONED',
-        content: 'PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT',
+        content: 'NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',

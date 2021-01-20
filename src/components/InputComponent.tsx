@@ -9,13 +9,14 @@ type Props = {
   placeholder?: string;
   value?: string;
   handleChange: (event: React.ChangeEvent<{ value: string }>) => void;
+  subDomain?: string;
 }
 
-const InputComponent = ({color, bgcolor, border, height, placeholder, value, handleChange}: Props) => {
+const InputComponent = ({color, bgcolor, border, height, placeholder, value, handleChange, subDomain}: Props) => {
 
   return (
       <InputBase 
-        className="input-component" 
+        className={subDomain + "-input-component"} 
         style={{color: color, background: bgcolor, border: `1px solid ${border}`, height: height}} 
         placeholder={placeholder || ''}
         value={value ?? ''}

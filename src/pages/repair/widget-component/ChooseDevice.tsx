@@ -208,7 +208,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className="repair-widget-title">
+          <Typography className={subDomain + "-repair-widget-title"}>
             {t(data.title)}
           </Typography>
         </Grid>
@@ -216,7 +216,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className='repair-choose-device-container'>
+            <div className={subDomain + '-repair-choose-device-container'}>
               {step < 3 && <div style={{width: '95%'}}>
                 <FeatureToggles features={features}>
                   <Feature
@@ -228,18 +228,19 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                         bgcolor='white' 
                         border='rgba(0,0,0,0.2)'
                         placeholder={data.placeholder}
+                        subDomain={subDomain}
                       />
                     }
                   />
                 </FeatureToggles>
               </div>}
-              <div className='widget-main-container'>
+              <div className={subDomain + '-widget-main-container'}>
 
                 {(stepName === 'deviceBrand') && <>
                   {data.images.slice(0,sliceNum).map((item:any, index:number) => {
                     return (
                       <div 
-                        className='device-item-container' 
+                        className={subDomain + '-device-item-container'} 
                         style={{background: selected === index ? 'rgba(0,0,0,0.1)' : 'white'}} 
                         key={index} 
                         onClick={() => ChooseNextStep(index)}
@@ -248,7 +249,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                       </div>
                     )
                   })}
-                  {plusVisible && <div className='device-item-container' onClick={handlePlus}>
+                  {plusVisible && <div className={subDomain + '-device-item-container'} onClick={handlePlus}>
                     <PlusSVG color='#BDBFC3' />
                   </div>}
                 </>}
@@ -257,27 +258,27 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   {data.images && data.images.map((item:any, index:number) => {
                     return (
                       <div 
-                        className='device-item-container' 
+                        className={subDomain + '-device-item-container'} 
                         key={index} 
                         onClick={() => ChooseNextStep(index)}
                         style={{background: selected === index ? 'rgba(0,0,0,0.1)' : 'white'}} 
                       >
-                        <div className='device-model-item'>
-                          <p className='device-brand-subtitle'>{item.name}</p>
+                        <div className={subDomain + '-device-model-item'}>
+                          <p className={subDomain + '-device-brand-subtitle'}>{item.name}</p>
                           <img src={item.img} />
                         </div>
                       </div>
                     )
                   })}
-                  <div className='device-item-container'>
+                  <div className={subDomain + '-device-item-container'}>
                     <PlusSVG color='#BDBFC3' />
                   </div>
                 </>}
 
                 {(stepName === 'repairAnotherDevice') && 
-                  <div className='repair-another-device'>
-                    <Button title={publicText.yes} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} />
-                    <Button title={publicText.no} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} />
+                  <div className={subDomain + '-repair-another-device'}>
+                    <Button title={publicText.yes} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} subDomain={subDomain} />
+                    <Button title={publicText.no} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} subDomain={subDomain} />
                   </div>
                 }
 
@@ -286,12 +287,12 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                     {itemTypes && itemTypes.map((item:any, index:number) => {
                       return (
                         <div 
-                          className='device-item-container' 
+                          className={subDomain + '-device-item-container'} 
                           key={index} 
                           style={{backgroundColor: item.bg}} 
                           onClick={() => toggleItemTypes(index, stepName)}
                         >
-                          <div className='device-repair-item'>
+                          <div className={subDomain + '-device-repair-item'}>
                             <p style={{ color: item.col }}>{t(item.name)}</p>
                           </div>
                         </div>
@@ -304,10 +305,10 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             </div>
 
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
-              <div className='repair-card-button'>
+              <div className={subDomain + '-repair-card-button'}>
                 <Button 
                   title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
-                  height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus}
+                  height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus} subDomain={subDomain}
                 />
                 <p>{t(publicText.enterKey)}</p>
               </div>
@@ -315,39 +316,39 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className='customized-card-height'>
+          <Card className={subDomain + '-customized-card-height'}>
 
-            {step < 2 && <div className='repair-choose-device-container'>
-              <Typography className='topic-title'>{t(data.mainTopic.title)}</Typography>
+            {step < 2 && <div className={subDomain + '-repair-choose-device-container'}>
+              <Typography className={subDomain + '-topic-title'}>{t(data.mainTopic.title)}</Typography>
               {data.mainTopic.content && data.mainTopic.content.map((item:LangProps, index:number) => {
                 return (
-                  <Typography className='topic-content' key={index}>{t(item)}</Typography>
+                  <Typography className={subDomain + '-topic-content'} key={index}>{t(item)}</Typography>
                 )
               })}
-              {data.disableTopic.title && <Typography className='topic-title' style={{color: 'rgba(0,0,0,0.3)'}}>
+              {data.disableTopic.title && <Typography className={subDomain + '=topic-title'} style={{color: 'rgba(0,0,0,0.3)'}}>
                 {t(data.disableTopic.title)}
               </Typography>}
-              {data.disableTopic.content && <Typography className='topic-content' style={{color: 'rgba(0,0,0,0.3)'}}>
+              {data.disableTopic.content && <Typography className={subDomain + '-topic-content'} style={{color: 'rgba(0,0,0,0.3)'}}>
                 {t(data.disableTopic.content)}
               </Typography>}
             </div>}
 
-            {step === 2 && <div className='repair-choose-device-container'>
-              <Typography className='topic-title'>{t(data.mainTopic.title)}</Typography>
+            {step === 2 && <div className={subDomain + '-repair-choose-device-container'}>
+              <Typography className={subDomain + '-topic-title'}>{t(data.mainTopic.title)}</Typography>
               {estimatedTimes && estimatedTimes.map((item:any, index:number) => {
                 return (
-                  <div key={index} className='estimate-times-div'>
-                    <p className='estimate-title'>{t(item.name)}</p>
-                    <p className='estimate-content'>{item.estimate}</p>
+                  <div key={index} className={subDomain + '-estimate-times-div'}>
+                    <p className={subDomain + '-estimate-title'}>{t(item.name)}</p>
+                    <p className={subDomain + '-estimate-content'}>{item.estimate}</p>
                   </div>
                 )
               })}
             </div>}
 
             {step === 3 && 
-              <div className='repair-choose-device-container'>
-                <Typography className='topic-title'>{t(data.mainTopic.title)}</Typography>
-                <Typography className='topic-content'>{t(data.mainTopic.content)}</Typography>
+              <div className={subDomain + '-repair-choose-device-container'}>
+                <Typography className={subDomain + '-topic-title'}>{t(data.mainTopic.title)}</Typography>
+                <Typography className={subDomain + '-topic-content'}>{t(data.mainTopic.content)}</Typography>
               </div>
             }
 

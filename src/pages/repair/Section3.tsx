@@ -13,19 +13,19 @@ const Section3 = ({subDomain}: Props) => {
   const t = useT();
 
   return (
-    <section className='repair-section-3'>
-      <div className='Container'>
-        <Typography className="repair-section-title-2" style={{color: repair.themeCol}}>
+    <section className={subDomain + '-repair-section-3'}>
+      <div className={subDomain + '-Container'}>
+        <Typography className={subDomain + "-repair-section-title-2"} style={{color: repair.themeCol}}>
           {t(repair.title)}
         </Typography>
-        <Typography className="repair-section-content" style={{color: repair.themeCol}}>
+        <Typography className={subDomain + "-repair-section-content"} style={{color: repair.themeCol}}>
           {t(repair.content)}
         </Typography>
         <Grid container item xs={12} spacing={2}>
           {repair.children.map((item:any, index:number) => {
             return (
               <Grid item xs={6} sm={6} md={3} key={index}>
-                <CardRepairSec3 img={item.img} subtitle={t(item.subtitle)} content={t(item.subcontent)} />
+                <CardRepairSec3 img={item.img} subtitle={t(item.subtitle)} content={t(item.subcontent)} subDomain={subDomain} />
               </Grid>
             )
           })}

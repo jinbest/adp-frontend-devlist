@@ -202,9 +202,9 @@ class RepairWidget extends React.Component<Props, MyState> {
           name='FEATURE_REPAIR'
           inactiveComponent={()=><Error />}
           activeComponent={()=>
-            <div className='repair-widget Container'>
+            <div className={subDomain + '-repair-widget ' + subDomain + '-Container'}>
               { this.state.step > 0 && 
-                <div className='back-to-top' onClick={this.handleBackStep}>
+                <div className={subDomain + '-back-to-top'} onClick={this.handleBackStep}>
                   <BackSVG color='#BDBFC3' />
                 </div>
               }
@@ -270,6 +270,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   data={mockData.repairWidget[stepList[this.state.step]]}
                   repairWidgetData={this.computedRepairWidgetData}
                   quoteKey={1}
+                  subDomain={subDomain}
                 />
               }
               { this.state.step === 11 &&
@@ -277,6 +278,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   data={mockData.repairWidget[stepList[10]]}
                   repairWidgetData={this.computedRepairWidgetData}
                   quoteKey={0}
+                  subDomain={subDomain}
                 />
               }
             </div>

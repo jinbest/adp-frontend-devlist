@@ -9,18 +9,19 @@ type Props = {
   color?: string; 
   heart?: string;
   heartCol?: string;
+  subDomain?: string;
 }
 
-const CardMobile = ({title, img, btnTitle, color, heart, heartCol}: Props) => {
+const CardMobile = ({title, img, btnTitle, color, heart, heartCol, subDomain}: Props) => {
   
   return (
-    <div className='card-mobile'>
+    <div className={subDomain + '-card-mobile'}>
       <p style={{color: color}}>{title.toLocaleUpperCase()}</p>
-      {heart && <div className='card-mobile-heart' style={{background: heartCol}}>
+      {heart && <div className={subDomain + '-card-mobile-heart'} style={{background: heartCol}}>
         <img src={heart} alt='heart' />
       </div>}
       <img src={img} alt='mobile-img' />
-      <Button title={btnTitle} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' />
+      <Button title={btnTitle} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' subDomain={subDomain} />
     </div>
   )
 }

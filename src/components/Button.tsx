@@ -16,17 +16,18 @@ type Props = {
   fontSize?: string;
   icon?: boolean;
   disable?: boolean;
+  subDomain?: string;
 }
 
 const Button  = ({
   title, bgcolor, txcolor, borderR, onClick, width, maxWidth, 
-  height, margin, fontSize, icon, disable
+  height, margin, fontSize, icon, disable, subDomain
 }: Props) => {
   const t = useT();
 
   return (
     <button 
-      onClick={onClick} className='button'
+      onClick={onClick} className={subDomain + '-button'}
       style={{
         backgroundColor: bgcolor, color: txcolor, borderRadius: borderR, width: width,
         height: height, margin: margin, fontSize: fontSize, maxWidth: maxWidth, opacity: disable ? 0.5 : 1

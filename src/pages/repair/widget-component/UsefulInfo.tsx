@@ -50,7 +50,7 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className="repair-widget-title">
+          <Typography className={subDomain + "-repair-widget-title"}>
             {t(data.title)}
           </Typography>
         </Grid>
@@ -58,22 +58,22 @@ const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, 
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className='repair-choose-device-container'>
-              <div className='useful-textarea-div'>
-                <textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} placeholder={t(data.placeholder)} className='useful-textarea' />
+            <div className={subDomain + '-repair-choose-device-container'}>
+              <div className={subDomain + '-useful-textarea-div'}>
+                <textarea value={message} onChange={(e)=>{setMessage(e.target.value)}} placeholder={t(data.placeholder)} className={subDomain + '-useful-textarea'} />
               </div>
             </div>
-            <div className='repair-card-button'>
+            <div className={subDomain + '-repair-card-button'}>
               <Button 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
-                height='30px' fontSize='17px' onClick={ChooseNextStep}
+                height='30px' fontSize='17px' onClick={ChooseNextStep} subDomain={subDomain}
               />
               <p>{t(publicText.enterKey)}</p>
             </div>
           </Card>          
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className='repair-summary-card'>            
+          <Card className={subDomain + '-repair-summary-card'}>            
             <RepairSummary 
               step={step} 
               subDomain={subDomain} 

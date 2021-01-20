@@ -47,7 +47,7 @@ type ArrayProps = {
 }
 
 const CustomBookTime = ({
-  title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, repairBooktimeCol, changeBooktime
+  title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, repairBooktimeCol, changeBooktime, subDomain
 }: Props) => {
 
   const timeRange = { workday: [540, 1050], saturday: [660, 960]}
@@ -121,15 +121,15 @@ const CustomBookTime = ({
   }
 
   return (
-    <div className='custom-book-time'>
+    <div className={subDomain + '-custom-book-time'}>
       <p>{title}</p>
-      <div className='booking-list'>
+      <div className={subDomain + '-booking-list'}>
         {bookArray.map((item:any, index:number) => {
           return (
             <div 
               key={index} 
               style={{ border: `1px solid ${item.borderCol}`, color: item.color, backgroundColor: item.bgColor }} 
-              className='booking-item'
+              className={subDomain + '-booking-item'}
               onClick={()=>{handleBook(index)}}
             >
               {item.book}
@@ -138,7 +138,7 @@ const CustomBookTime = ({
         })}
       </div>
       <div>
-        <select className='booking-select-timezone' value={val} onChange={handleChangeOption}>
+        <select className={subDomain + '-booking-select-timezone'} value={val} onChange={handleChangeOption}>
           {timeZoneList.map((item:any, index:number) => {
             return (
               <option value={index} key={index}>{item.title}</option>
