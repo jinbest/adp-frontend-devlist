@@ -42,6 +42,7 @@
 
 .#{$folderName}-container-header > a > img {
   height: 40px;
+  margin-top: 10px;
 }
 
 .#{$folderName}-container-header .text-1 {
@@ -109,15 +110,7 @@
   margin: 0 20px;
 }
 
-<<<<<<< HEAD:src/assets/dccmtx/styles/header.css
-.navlink-avatar-store {
-  display: none;
-}
-
-.nav-item {
-=======
 .#{$folderName}-nav-item {
->>>>>>> devjin:src/assets/phonephix/styles/header.scss
   margin: 0 10px;
 }
 
