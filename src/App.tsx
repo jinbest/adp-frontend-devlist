@@ -11,37 +11,37 @@ import { LangProvider } from "./i18n/index"
 // const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 
 const devicelist = [
-    'geebo', 
-    'mobiletech', 
-    'nanotech', 
-    'northtech', 
-    'phonephix', 
-    'pradoWireless', 
-    'wirelessRev'
+    "geebo",
+    "mobiletech",
+    "nanotech",
+    "northtech",
+    "phonephix",
+    "pradoWireless",
+    "wirelessRev",
 ]
-const subDomain = devicelist[1];
+const subDomain = devicelist[2]
 
 const publicFeatures = [
-    { flag: 'FEATURE_TRADE', isActive: true },
-    { flag: 'FEATURE_REPAIR', isActive: true },
-    { flag: 'FEATURE_REPAIR_QUOTE', isActive: true },
-    { flag: 'FEATURE_REPAIR_APPOINTMENT', isActive: false },
-    { flag: 'FEATURE_SHOP', isActive: true },
-    { flag: 'FEATURE_ONLINE_PURCHASE', isActive: true },
-    { flag: 'FEATURE_FIND_A_STORE', isActive: true },
-    { flag: 'FEATURE_USER_ACCOUNT', isActive: true },
-    { flag: 'FEATURE_USER_SIGNUP', isActive: true },
-    { flag: 'FEATURE_USER_LOGIN', isActive: true },
-    { flag: 'FEATURE_CHAT', isActive: true },
-    { flag: 'FEATURE_SEARCH', isActive: true },
-    { flag: 'FEATURE_GLOBAL_SEARCH', isActive: true },
-    { flag: 'ALWAYS_TRUE', isActive: true },
+    { flag: "FEATURE_TRADE", isActive: true },
+    { flag: "FEATURE_REPAIR", isActive: true },
+    { flag: "FEATURE_REPAIR_QUOTE", isActive: true },
+    { flag: "FEATURE_REPAIR_APPOINTMENT", isActive: false },
+    { flag: "FEATURE_SHOP", isActive: true },
+    { flag: "FEATURE_ONLINE_PURCHASE", isActive: true },
+    { flag: "FEATURE_FIND_A_STORE", isActive: true },
+    { flag: "FEATURE_USER_ACCOUNT", isActive: true },
+    { flag: "FEATURE_USER_SIGNUP", isActive: true },
+    { flag: "FEATURE_USER_LOGIN", isActive: true },
+    { flag: "FEATURE_CHAT", isActive: true },
+    { flag: "FEATURE_SEARCH", isActive: true },
+    { flag: "FEATURE_GLOBAL_SEARCH", isActive: true },
+    { flag: "ALWAYS_TRUE", isActive: true },
 ]
 
 function App(): JSX.Element {
-    require(`./assets/${subDomain}/styles/index.scss`);
+    require(`./assets/${subDomain}/styles/index.scss`)
 
-    const [footerStatus, setFooterStatus] = useState(true);
+    const [footerStatus, setFooterStatus] = useState(true)
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)
@@ -50,13 +50,21 @@ function App(): JSX.Element {
     const BaseRouter = () => {
         return (
             <>
-                <Route path="/" exact component={() => <Home subDomain={subDomain} features={publicFeatures} />} />
+                <Route
+                    path="/"
+                    exact
+                    component={() => <Home subDomain={subDomain} features={publicFeatures} />}
+                />
                 <Route path="/home" render={() => <Redirect to="/" />} />
                 <Route
                     path="/repair"
                     component={() => (
                         <Provider repairWidgetStore={store}>
-                            <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
+                            <Repair
+                                subDomain={subDomain}
+                                handleStatus={handleFooterStatus}
+                                features={publicFeatures}
+                            />
                         </Provider>
                     )}
                 />
@@ -64,7 +72,11 @@ function App(): JSX.Element {
                     path="/repair-widget"
                     component={() => (
                         <Provider repairWidgetStore={store}>
-                            <RepairWidget subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
+                            <RepairWidget
+                                subDomain={subDomain}
+                                handleStatus={handleFooterStatus}
+                                features={publicFeatures}
+                            />
                         </Provider>
                     )}
                 />
@@ -75,7 +87,11 @@ function App(): JSX.Element {
     return (
         <LangProvider>
             <Router>
-                <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={publicFeatures} />
+                <Header
+                    subDomain={subDomain}
+                    handleStatus={handleFooterStatus}
+                    features={publicFeatures}
+                />
                 <BaseRouter />
                 <Chat subDomain={subDomain} features={publicFeatures} />
                 {footerStatus && <Footer subDomain={subDomain} features={publicFeatures} />}
