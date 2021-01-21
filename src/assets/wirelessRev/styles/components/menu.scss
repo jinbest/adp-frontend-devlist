@@ -1,0 +1,77 @@
+.#{$folderName}-menu-content-div {
+  display: flex;
+}
+
+.#{$folderName}-menu-content-div > div {
+  margin: 20px;
+}
+
+.#{$folderName}-menu-content-div .#{$folderName}-left-content {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 215px;
+}
+
+.#{$folderName}-content-block {
+  margin-bottom: 30px;
+  display: inline-grid;
+}
+
+.#{$folderName}-block-title {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.#{$folderName}-block-content {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 5px 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.#{$folderName}-block-content:hover {
+  color: gray;
+}
+
+.#{$folderName}-content-block .#{$folderName}-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.#{$folderName}-content-block .#{$folderName}-link:hover {
+  color: rgb(125, 125, 255);
+}
+
+.#{$folderName}-hours-div {
+  display: flex;
+}
+
+.#{$folderName}-hours-div > div {
+  margin-right: 25px;
+}
+
+.#{$folderName}-menu-search-div {
+  display: flex;
+}
+
+.#{$folderName}-menu-search {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.#{$folderName}-triangle {
+  background-image: url('../../img/header-triangle.png');
+  position: absolute;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 7px;
+  top: -7px;
+  right: 65px;
+}

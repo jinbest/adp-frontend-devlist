@@ -6,7 +6,7 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
 
 type Props = {
   subDomain?: string;
-  features: any[]
+  features: any[];
 }
 
 const Footer = ({subDomain, features}: Props) => {

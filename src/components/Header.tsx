@@ -166,7 +166,13 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               }
             />
           </FeatureToggles>
-          <img src={data.avatarData.store} className={subDomain + '-navlink-avatar-store'} />
+          <FeatureToggles features={feats}>
+            <Feature
+              name='FEATURE_SHOP'
+              inactiveComponent={()=><></>}
+              activeComponent={()=><img src={data.avatarData.store} className={subDomain + '-navlink-avatar-store'} />}
+            />
+          </FeatureToggles>
         </div>
         <div className={subDomain + '-avatar-div'}>
           {
@@ -174,7 +180,13 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
             <img src={data.avatarData.userActive} onClick={toggleUserStatus} /> :
             <img src={data.avatarData.userDeactive} onClick={toggleUserStatus} /> 
           }
-          <img src={data.avatarData.storeBlue} style={{height: '35px'}}/>
+          <FeatureToggles features={feats}>
+            <Feature
+              name='FEATURE_SHOP'
+              inactiveComponent={()=><></>}
+              activeComponent={()=><img src={data.avatarData.storeBlue} style={{height: '35px'}}/>}
+            />
+          </FeatureToggles>          
           {
             menuStatus ? 
             <img src={data.avatarData.menu} onClick={toggleMenuStatus} /> :

@@ -1,0 +1,37 @@
+.#{$folderName}-card-why-customer {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-shadow: -10.1842px -10.1842px 30.5526px #FFFFFF, 10.1842px 10.1842px 30.5526px rgba(174, 174, 192, 0.4);
+}
+
+.#{$folderName}-card-why-customer .#{$folderName}-score-div {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.#{$folderName}-card-why-customer .#{$folderName}-rating {
+  margin-left: 20px;
+}
+
+.#{$folderName}-card-why-customer p {
+  padding: 0;
+  margin: 0 20px;
+}
+
+.#{$folderName}-card-why-customer .#{$folderName}-content {
+  margin: 20px;
+}
+
+.#{$folderName}-card-why-customer .#{$folderName}-reviewer {
+  margin-bottom: 20px;
+}
+
+.MuiRating-root {
+  color:#EC2027 !important;
+}
