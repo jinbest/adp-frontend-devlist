@@ -19,7 +19,7 @@ type Props = {
   handleSetValue: (val:string) => void;
 }
 
-const CustomSelect = ({options, value, handleSetValue}: Props) => {
+const CustomSelect = ({options, value, handleSetValue, subDomain}: Props) => {
   // const data = require(`../assets/${subDomain}/Database`);
 
   const classes = useStyles();
@@ -40,11 +40,11 @@ const CustomSelect = ({options, value, handleSetValue}: Props) => {
         <Select
           value={option}
           onChange={handleChange}
-          className='custom-select'
+          className={subDomain + '-custom-select'}
         >
           {options.map((item:any, index:number) => {
             return (
-              <MenuItem className='custom-select' value={item} key={index}>{item}</MenuItem>
+              <MenuItem className={subDomain + '-custom-select'} value={item} key={index}>{item}</MenuItem>
             )
           })}
         </Select>

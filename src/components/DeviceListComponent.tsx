@@ -4,15 +4,16 @@ type Props = {
   img: string;
   title: string;
   content: string;
+  subDomain?: string;
 }
 
-const DeviceListComponent = ({img, title, content}: Props) => {
+const DeviceListComponent = ({img, title, content, subDomain}: Props) => {
   
   return (
-    <div className='device-list-component'>
+    <div className={subDomain + '-device-list-component'}>
       <img src={img} />
-      <p className='title'><b>{title}</b></p>
-      <p className='content'>{content}</p>
+      <p className={subDomain + '-title'}><b>{title}</b></p>
+      <p className={subDomain + '-content'}>{content}</p>
     </div>
   )
 }
@@ -20,7 +21,8 @@ const DeviceListComponent = ({img, title, content}: Props) => {
 DeviceListComponent.defaultProps = {
   img: '',
   title: 'Best offer available',
-  content: 'Selected by our price-quality algorithm'
+  content: 'Selected by our price-quality algorithm',
+  subDomain: 'geebo'
 }
 
 export default DeviceListComponent;

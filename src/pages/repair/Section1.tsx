@@ -46,22 +46,23 @@ class Section1 extends React.Component<Props> {
     const repair = data.repairData.section1;
     
     return (
-      <div className='repair-section1-special-bg'>
-        <section className='Container'>
-          <Grid container className='repair-section1'>
+      <div className={subDomain + '-repair-section1-special-bg'}>
+        <section className={subDomain + '-Container'}>
+          <Grid container className={subDomain + '-repair-section1'}>
             <Grid item xs={12} sm={7}>
-              <Typography className="repair-section-title-1" style={{color: repair.themeCol}}>
+              <Typography className={subDomain + "-repair-section-title-1"} style={{color: repair.themeCol}}>
                 <T id={repair.title} />
               </Typography>
-              <Typography className="repair-section-content" style={{color: repair.themeCol}}>
+              <Typography className={subDomain + "-repair-section-content"} style={{color: repair.themeCol}}>
                 <T id={repair.content} />
               </Typography>
-              <Box className='repair-section-button'>
+              <Box className={subDomain + '-repair-section-button'}>
                 <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
                   <Button 
                     title={repair.btnTitle} 
                     bgcolor={data.colorPalle.repairButtonCol} 
                     borderR='20px'
+                    subDomain={subDomain}
                   />
                 </Link>
               </Box>

@@ -73,15 +73,15 @@ const Section1 = ({subDomain, features}: Props) => {
   ---------------------------------------------------------------------------------------------------------------- */
 
   return (
-    <section className='Container'>
-      <Grid item xs={12} sm={12} className='section1-top'>
-        <div className="section1-title">
+    <section className={subDomain + '-Container'}>
+      <Grid item xs={12} sm={12} className={subDomain + '-section1-top'}>
+        <div className={subDomain + "-section1-title"}>
           {customeTitle + ' ' + t(data.homeTextData.section1.title[0])}
         </div>
-        <div className="section1-title">
+        <div className={subDomain + "-section1-title"}>
           {t(data.homeTextData.section1.title[1])}
         </div>
-        <Typography className="section1-subtitle">
+        <Typography className={subDomain + "-section1-subtitle"}>
           {t(data.homeTextData.section1.subtitle)}
         </Typography>
 
@@ -90,15 +90,15 @@ const Section1 = ({subDomain, features}: Props) => {
             name={'FEATURE_SEARCH'}
             inactiveComponent={()=><></>}
             activeComponent={()=>
-              <Box className='sec1-search_input'>
-                <Search placeholder={data.homeTextData.section1.searchPlaceholder} color='white' bgcolor={data.colorPalle.themeColor} height='60px' />
+              <Box className={subDomain + '-sec1-search_input'}>
+                <Search placeholder={data.homeTextData.section1.searchPlaceholder} color='white' bgcolor={data.colorPalle.themeColor} height='60px' subDomain={subDomain} />
               </Box>
             }
           />
         </FeatureToggles>
         
       </Grid>
-      <Grid container item xs={12} spacing={3} className='sec1-card-mobile-data'>
+      <Grid container item xs={12} spacing={3} className={subDomain + '-sec1-card-mobile-data'}>
         {data.cardMobileData.data.map((item:any, index:number) => {
           return (            
             <FeatureToggles features={feats} key={index}>
@@ -115,6 +115,7 @@ const Section1 = ({subDomain, features}: Props) => {
                       key={index}
                       heart={index === 0 ? data.cardMobileData.heart : ''}
                       heartCol={data.colorPalle.heartCol}
+                      subDomain={subDomain}
                     />
                   </Grid>
                 }

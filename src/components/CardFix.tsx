@@ -3,12 +3,13 @@ import React from 'react'
 type Props = {
   img: string;
   title: string;
+  subDomain?: string;
 }
 
-const CardFix = ({title, img}: Props) => {
+const CardFix = ({title, img, subDomain}: Props) => {
   
   return (
-    <div className='card-fix'>
+    <div className={subDomain + '-card-fix'}>
       <img src={img} />
       <p>{title}</p>
     </div>
@@ -18,6 +19,7 @@ const CardFix = ({title, img}: Props) => {
 CardFix.defaultProps = {
   title: 'Cellphone',
   img: '',
+  subDomain: 'geebo'
 }
 
 export default CardFix;

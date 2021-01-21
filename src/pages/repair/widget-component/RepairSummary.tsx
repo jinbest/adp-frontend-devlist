@@ -85,30 +85,30 @@ class RepairSummary extends React.Component<Props, MyState> {
     const publicText = mockData.repairWidget.publicText;
 
     return (
-      <div className='repair-choose-device-container'>
-        <Typography className='topic-title'>
+      <div className={subDomain + '-repair-choose-device-container'}>
+        <Typography className={subDomain + '-topic-title'}>
           <T id={publicText.repairSummary} />
         </Typography>
-        <div className='repair-summary-content-div'>
+        <div className={subDomain + '-repair-summary-content-div'}>
           {this.state.brand && this.state.brand.map((item:any, index:number) => {
             return (
               <React.Fragment key={index}>
                 {this.state.choose[index] && this.state.choose[index].map((chooseItem:any, chooseIndex:number) => (
-                  <div key={chooseIndex} className='repair-summary-div'>
+                  <div key={chooseIndex} className={subDomain + '-repair-summary-div'}>
                     <DeleteOutlineOutlinedIcon 
-                      className='repair-trash-icon' 
+                      className={subDomain + '-repair-trash-icon'} 
                       style={{color: themeCol}}
                       onClick={()=>{this.handleTrashSummary(index, chooseIndex)}}
                     />
-                    <div className='repair-summary-img'><img src={iPhoneWhole.default} /></div>
+                    <div className={subDomain + '-repair-summary-img'}><img src={iPhoneWhole.default} /></div>
                     <div>
-                      <Typography className='repair-summary-title'>
+                      <Typography className={subDomain + '-repair-summary-title'}>
                         {item.name + ' ' + this.state.model[index]['name']}
                       </Typography>
-                      <Typography className='repair-summary-service'>
+                      <Typography className={subDomain + '-repair-summary-service'}>
                         <T id={publicText.repairService} />
                       </Typography>
-                      <p className='repair-summary-service-child'>
+                      <p className={subDomain + '-repair-summary-service-child'}>
                         <T id={chooseItem.name} />
                       </p>
                     </div>
@@ -117,30 +117,30 @@ class RepairSummary extends React.Component<Props, MyState> {
               </React.Fragment>
             )
           })}
-          {showInfo && <div className='repair-summary-div'>
+          {showInfo && <div className={subDomain + '-repair-summary-div'}>
             <div>
-              <Typography className='repair-summary-title'>
+              <Typography className={subDomain + '-repair-summary-title'}>
                 <T id={repairWidgetStore.deliveryMethod.method} />
               </Typography>
-              {caseKey === 1 && <Typography className='repair-summary-service'>
+              {caseKey === 1 && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='PICK_UP_FROM' />
               </Typography>}
-              {caseKey === 0 && <Typography className='repair-summary-service'>
+              {caseKey === 0 && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='SEND_TO' />
               </Typography>}
-              {caseKey > 0 && <p className='repair-summary-service-child'>
+              {caseKey > 0 && <p className={subDomain + '-repair-summary-service-child'}>
                 <T id={repairWidgetStore.bookData[caseKey].address} />
               </p>}
-              {caseKey === 0 && <p className='repair-summary-service-child' style={{marginBottom: '15px'}}>
+              {caseKey === 0 && <p className={subDomain + '-repair-summary-service-child'} style={{marginBottom: '15px'}}>
                 <T id={repairWidgetStore.bookData[caseKey].sendTo} />
               </p>}
-              {caseKey === 0 && <Typography className='repair-summary-service'>
+              {caseKey === 0 && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='RETURN_TO' />
               </Typography>}
-              {caseKey === 0 && <p className='repair-summary-service-child'>
+              {caseKey === 0 && <p className={subDomain + '-repair-summary-service-child'}>
                 <T id={repairWidgetStore.contactDetails.address1} />
               </p>}
-              {caseKey > 0 && <p className='repair-summary-service-child'>
+              {caseKey > 0 && <p className={subDomain + '-repair-summary-service-child'}>
                 {
                   repairWidgetStore.bookData[caseKey].week + ', ' + 
                   repairWidgetStore.bookData[caseKey].month + ' ' + 

@@ -1,0 +1,352 @@
+@media (max-width: 1260px) {
+  .#{$folderName}-navlink-parent, .#{$folderName}-nav-item {
+    margin: 0 5px;
+  }
+  .#{$folderName}-nav-link {
+    font-size: 15px;
+  }
+  .#{$folderName}-nav-div button {
+    font-size: 15px !important;
+    width: 135px !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .#{$folderName}-container-header .#{$folderName}-search-div {
+    display: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .#{$folderName}-device-list-grid {
+    display: flex;
+  }
+  .#{$folderName}-device-list-grid > div {
+    margin-right: 20px;
+  }
+  .#{$folderName}-footer-device-list {
+    display: none;
+  }
+  .#{$folderName}-repair-section-title-1 {
+    font-size: 45px !important;
+  }
+  .#{$folderName}-repair-section-content {
+    font-size: 25px !important;
+  }
+  .#{$folderName}-repair-section2-text-field {
+    text-align: center;
+  }
+  .#{$folderName}-card-repair-sec2 {
+    text-align: left;
+  }
+  .#{$folderName}-card-repair-sec2-img {
+    width: 100px !important;
+  }
+  .#{$folderName}-card-repair-sec2-subtitle {
+    font-size: 3vw;
+  }
+  .#{$folderName}-card-repair-sec2-content {
+    font-size: 2vw;
+  }
+  .#{$folderName}-repair-sec-content-div {
+    margin-top: 50px !important;
+  }
+  .#{$folderName}-repair-section2 {
+    margin-bottom: -140px;
+  }
+  .#{$folderName}-device-brand-subtitle {
+    font-size: 2vw;
+    margin-top: 1vw;
+  }
+  .#{$folderName}-customized-card-height {
+    height: auto !important;
+    min-height: 200px !important;
+  }
+  .#{$folderName}-device-repair-item > p {
+    font-size: 2.1vw;
+  }
+  .#{$folderName}-repair-card-button p {
+    display: none;
+  }
+  .#{$folderName}-repair-summary-content-div {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden !important;
+    height: auto;
+  }
+  .#{$folderName}-repair-summary-div {
+    width: 43%;
+    margin-right: 2%;
+  }
+  .repair-widget-card {
+    height: 65vw;
+  }
+  .#{$folderName}-input-component {
+    font-size: 2vw !important;
+  }
+  .#{$folderName}-footer-device-list, .#{$folderName}-footer-title {
+    display: none;
+  }
+  .#{$folderName}-footer-device-response {
+    display: block
+  }
+  .#{$folderName}-footer {
+    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
+    padding: 190px 20px 30px;
+  }
+  .#{$folderName}-back-to-top {
+    left: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .#{$folderName}-container-header .#{$folderName}-nav-div, 
+  .#{$folderName}-header-brand, 
+  .#{$folderName}-mockup-shape, 
+  .#{$folderName}-sec1-search_input,
+  .#{$folderName}-card-customized-container-desktop, .#{$folderName}-repair-section1 img {
+    display: none;
+  }
+  .#{$folderName}-section1-top {
+    margin-bottom: 50px !important;
+  }
+  .#{$folderName}-container-header {
+    margin-top: 0;
+  }
+  .#{$folderName}-avatar-div, .#{$folderName}-mobile-search-div, .#{$folderName}-card-customized-container-mobile {
+    display: flex;
+  }
+  .#{$folderName}-card-customized-item {
+    width: 120px;
+    margin: 20px 10px;
+    max-width: 28%;
+  }
+  .#{$folderName}-container-mobile {
+    display: block;
+  }
+  .#{$folderName}-section1-title, .#{$folderName}-section1-subtitle {
+    text-align: center;
+    display: block;
+  }
+  .#{$folderName}-corner-shape {
+    width: 60vw;
+  }
+  .#{$folderName}-footer {
+    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
+  }
+  .#{$folderName}-repair-section1 .MuiGrid-grid-sm-7 {
+    flex-grow: 0;
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+  }
+  .#{$folderName}-repair-section1, .#{$folderName}-repair-section-button {
+    text-align: center !important;
+    align-items: center;
+    margin: auto;
+  }
+  .#{$folderName}-repair-section-title-1 {
+    font-size: 6.5vw !important;
+  }
+  .#{$folderName}-repair-section-title-2 {
+    font-size: 5.5vw !important;
+  }
+  .#{$folderName}-repair-section-content {
+    font-size: 4vw !important;
+  }
+  .#{$folderName}-card-repair-sec2-subtitle {
+    font-size: 3.5vw;
+  }
+  .#{$folderName}-card-repair-sec2-content {
+    font-size: 2.5vw;
+  }
+  .#{$folderName}-topic-content {
+    font-size: 15px !important;
+  }
+  .#{$folderName}-topic-title {
+    font-size: 18px !important;
+  }
+  .#{$folderName}-repair-summary-content-div {
+    display: block;
+  }
+  .#{$folderName}-repair-summary-div {
+    width: 90%;
+    margin-right: 2%;
+  }
+  .repair-widget-card {
+    height: 80vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .#{$folderName}-device-list-grid {
+    display: block;
+    text-align: center;
+    padding-right: 0;
+  }
+  .#{$folderName}-device-list-grid > div {
+    margin-right: 20px 0;
+  }
+  .#{$folderName}-footer-container {
+    text-align: center;
+  }
+  .#{$folderName}-footer-images-div {
+    display: block;
+  }
+  .#{$folderName}-footer-images-div > div {
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .#{$folderName}-device-list-component {
+    margin: 20px 0;
+  }
+  .repair-widget-card {
+    height: auto;
+    min-height: 200px;
+  }
+  .#{$folderName}-repair-card-button {
+    position: inherit;
+    padding: 50px 0 0;
+    left: 0;
+  }
+  .#{$folderName}-repair-card-button .button {
+    margin: inherit;
+  }
+  .#{$folderName}-input-component {
+    font-size: 3vw !important;
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .#{$folderName}-button {
+    font-size: 12px !important;
+    height: 30px;
+  }
+  .#{$folderName}-container-header > img {
+    height: 35px;
+  }
+  .#{$folderName}-card-repair-sec2-content, .#{$folderName}-card-repair-sec3-container .#{$folderName}-content {
+    font-size: 3.2vw !important;
+  }
+  .#{$folderName}-repair-section-button .#{$folderName}-button {
+    height: 40px;
+    font-size: 4vw !important;
+  }
+  .#{$folderName}-card-repair-sec3-container .#{$folderName}-subtitle {
+    font-size: 5vw;
+  }
+  .#{$folderName}-topic-content {
+    font-size: 12px !important;
+    margin-bottom: 8px !important;
+  }
+  .#{$folderName}-topic-title {
+    font-size: 15px !important;
+    margin-bottom: 8px !important;
+  }
+  .#{$folderName}-repair-choose-device-container {
+    /* padding: 20px 20px 100px; */
+    padding: 20px;
+  }
+  .#{$folderName}-device-item-container {
+    width: 30%;
+  }
+  .#{$folderName}-device-brand-subtitle {
+    font-size: 3vw;
+  }
+  .#{$folderName}-device-repair-item > p {
+    font-size: 3vw;
+  }
+  .#{$folderName}-repair-another-device {
+    display: block;
+  }
+  .#{$folderName}-repair-another-device > button {
+    margin-bottom: 10px;
+  }
+  .#{$folderName}-estimate-title, .#{$folderName}-estimate-content {
+    font-size: 13px;
+  }
+  .#{$folderName}-estimate-times-div {
+    margin-bottom: 10px;
+  }
+  .#{$folderName}-repair-summary-img {
+    width: 11vw;
+  }
+  .#{$folderName}-repair-summary-service, .#{$folderName}-repair-summary-service-child {
+    font-size: 13px !important;
+  }  
+}
+
+@media (max-width: 425px) {
+  .#{$folderName}-section1-title, .#{$folderName}-section-title, .f40 {
+    font-size: 20px !important;
+  }
+  .#{$folderName}-section1-subtitle, .#{$folderName}-card-mobile > p, .#{$folderName}-card-fix p, 
+  .#{$folderName}-card-why-customer > p, .#{$folderName}-score-div > p, 
+  .#{$folderName}-device-list-grid, .#{$folderName}-footer_link > li {
+    font-size: 12px !important; 
+  }
+  .#{$folderName}-button {
+    height: 25px !important;
+  }
+  .#{$folderName}-repair-section-button .#{$folderName}-button {
+    height: 35px !important;
+  }
+  .#{$folderName}-content-fix .#{$folderName}-title, .#{$folderName}-protect-content {
+    font-size: 16px !important;
+  }
+  /* .card-why-customer {
+    height: 175px;
+  } */
+  .#{$folderName}-section1-top {
+    margin-bottom: 25px !important;
+    margin-top: 220px !important;
+  }
+  .#{$folderName}-section-title {
+    margin: 1rem 0 !important;
+  }
+  .pd-t-5 {
+    padding: 1.5rem 0 !important;
+  }
+  .mg-t-7 {
+    margin: 4rem auto !important;
+  }
+  .#{$folderName}-sec6-container {
+    padding-top: 1rem;
+  }
+  .#{$folderName}-footer {
+    margin-top: -100px;
+  }
+  .#{$folderName}-footer-buynow {
+    height: 26px;
+  }
+  .#{$folderName}-footer-others, .#{$folderName}-footer-others > img {
+    height: 22px;
+  }
+  .#{$folderName}-input-component {
+    font-size: 3.5vw !important;
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .#{$folderName}-container-header > a > img {
+    height: 30px;
+  }
+  .#{$folderName}-avatar-div > img {
+    height: 20px;
+    margin: 0 6px;
+  }
+  .#{$folderName}-card-fix {
+    min-width: 90px;
+  }
+  .#{$folderName}-card-popular .#{$folderName}-title {
+    font-size: 3vw;
+  }
+  .#{$folderName}-button {
+    min-width: 80px;
+  }
+  .#{$folderName}-custom-select {
+    font-size: 3.5vw !important;
+  }
+}

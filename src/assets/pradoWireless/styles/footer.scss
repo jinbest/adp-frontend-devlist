@@ -1,0 +1,129 @@
+.#{$folderName}-footer {
+    padding: 200px 20px 30px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background-image: url("../img/footer/mobiletech-footer-shape-desktop.png");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.#{$folderName}-footer-container {
+    max-width: 1440px;
+    margin: auto;
+    visibility: hidden;
+}
+
+.footer-container-special {
+    max-width: 1440px;
+    margin: auto;
+    position: relative;
+}
+
+.footer-special-content {
+    width: 90vw;
+    max-width: 1440px;
+}
+
+.footer-container-special .special-footer {
+    position: absolute;
+    top: -230px;
+}
+
+@media (max-width: 1300px) {
+    .footer-container-special .special-footer {
+        top: -270px;
+    }
+}
+
+@media (max-width: 960px) {
+    .footer-container {
+        visibility: visible;
+    }
+    .footer-container-special {
+        display: none;
+    }
+    .footer_link {
+        display: none;
+    }
+}
+
+.#{$folderName}-footer_link {
+    list-style: none;
+    padding-left: 0px;
+}
+.#{$folderName}-links > a {
+    text-decoration: none;
+    color: black;
+}
+
+.#{$folderName}-links > a:hover {
+    color: gray;
+}
+
+.#{$folderName}-link_name {
+    margin: 0.5rem 0;
+    font-weight: 700;
+}
+
+.#{$folderName}-footer-images-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.#{$folderName}-footer-images-div > div {
+    display: flex;
+    align-items: flex-end;
+}
+
+.#{$folderName}-footer-buynow {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.#{$folderName}-footer-others {
+    height: 34px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 80px;
+    padding: 1px;
+    align-items: center;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.#{$folderName}-footer-others > img {
+    height: 32px;
+}
+
+.#{$folderName}-footer-device-list {
+    height: 80px;
+    margin-left: 10px;
+}
+
+.#{$folderName}-footer-device-response {
+    display: none;
+    height: 80px;
+}
+
+.#{$folderName}-device-list-grid {
+    display: block;
+    margin-top: 25px;
+    padding-right: 25px;
+}
+
+.#{$folderName}-device-list-grid > div {
+    margin: 20px 0;
+}
+
+.#{$folderName}-footer-container-special {
+    display: none;
+}
+
+.#{$folderName}-footer-subContent-title {
+    font-weight: bold;
+    margin-bottom: -20px;
+    margin-top: 25px;
+}

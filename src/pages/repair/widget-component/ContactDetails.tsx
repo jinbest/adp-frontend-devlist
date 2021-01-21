@@ -134,7 +134,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className="repair-widget-title">
+          <Typography className={subDomain + "-repair-widget-title"}>
             {t(data.title)}
           </Typography>
         </Grid>
@@ -142,30 +142,30 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className='repair-choose-device-container'>
+            <div className={subDomain + '-repair-choose-device-container'}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <InputComponent value={firstName} placeholder={t(data.placeholder.firstName)} handleChange={(e)=>{handleChangeFirstName(e.target.value)}} />
+                  <InputComponent value={firstName} placeholder={t(data.placeholder.firstName)} handleChange={(e)=>{handleChangeFirstName(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <InputComponent value={lastName} placeholder={t(data.placeholder.lastName)} handleChange={(e)=>{handleChangeLastName(e.target.value)}} />
+                  <InputComponent value={lastName} placeholder={t(data.placeholder.lastName)} handleChange={(e)=>{handleChangeLastName(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12}>
-                  <InputComponent value={email} placeholder={t(data.placeholder.emailAdd)} handleChange={(e)=>{handleChangeEmail(e.target.value)}} />
+                  <InputComponent value={email} placeholder={t(data.placeholder.emailAdd)} handleChange={(e)=>{handleChangeEmail(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12}>
                   <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t(data.placeholder.phoneNum)} />
                 </Grid>
               </Grid>
             </div>
-            {caseKey > 0 && <div className='repair-choose-device-container'>
+            {caseKey > 0 && <div className={subDomain + '-repair-choose-device-container'}>
               <FeatureToggles features={features}>
                 <Feature
                   name='FEATURE_REPAIR_APPOINTMENT'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={'BOOK_AN_APPOINTMENT'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
-                    height='30px' fontSize='17px' margin='0 auto 10px' onClick={()=>handleButton('appointment')} disable={disableStatus}
+                    height='30px' fontSize='17px' margin='0 auto 10px' onClick={()=>handleButton('appointment')} disable={disableStatus} subDomain={subDomain}
                   />}
                 />
               </FeatureToggles>
@@ -175,44 +175,44 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={'REQUEST_A_QUOTE'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
-                    height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleButton('quote')} disable={disableStatus}
+                    height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleButton('quote')} disable={disableStatus} subDomain={subDomain}
                   />}
                 />
               </FeatureToggles>              
             </div>}
-            {caseKey === 0 && <div className='repair-choose-device-container'>
+            {caseKey === 0 && <div className={subDomain + '-repair-choose-device-container'}>
               <Grid container spacing={2}>                
                 <Grid item xs={12}>
-                  <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} />
+                  <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12}>
-                <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} />
+                <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                  <InputComponent value={country} placeholder={t(data.placeholder.country)} handleChange={(e)=>{handleChangeCountry(e.target.value)}} />
+                  <InputComponent value={country} placeholder={t(data.placeholder.country)} handleChange={(e)=>{handleChangeCountry(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                  <InputComponent value={city} placeholder={t(data.placeholder.city)} handleChange={(e)=>{handleChangeCity(e.target.value)}} />
+                  <InputComponent value={city} placeholder={t(data.placeholder.city)} handleChange={(e)=>{handleChangeCity(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                  <InputComponent value={province} placeholder={t(data.placeholder.province)} handleChange={(e)=>handleChangeProvince(e.target.value)} />
+                  <InputComponent value={province} placeholder={t(data.placeholder.province)} handleChange={(e)=>handleChangeProvince(e.target.value)} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                  <InputComponent value={postalCode} placeholder={t(data.placeholder.postalCode)} handleChange={(e)=>{handleChangePostalCode(e.target.value)}} />
+                  <InputComponent value={postalCode} placeholder={t(data.placeholder.postalCode)} handleChange={(e)=>{handleChangePostalCode(e.target.value)}} subDomain={subDomain} />
                 </Grid>
               </Grid>
             </div>}
-            {caseKey === 0 && <div className='repair-card-button'>
+            {caseKey === 0 && <div className={subDomain + '-repair-card-button'}>
               <Button 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
-                height='30px' fontSize='17px' onClick={()=>handleButton('appointment')} disable={disableStatus}
+                height='30px' fontSize='17px' onClick={()=>handleButton('appointment')} disable={disableStatus} subDomain={subDomain}
               />
               <p>{t(publicText.enterKey)}</p>
             </div>}
           </Card>          
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className='repair-summary-card'>
+          <Card className={subDomain + '-repair-summary-card'}>
             <RepairSummary 
               step={step} 
               subDomain={subDomain} 
