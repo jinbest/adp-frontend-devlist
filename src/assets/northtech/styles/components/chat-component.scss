@@ -31,13 +31,18 @@
 /* Customized react-chat-widget class */
 .rcw-widget-container {
   left: 30px;
+  max-width: 60px;
+  width: 60px;
   /* bottom: 80px; */
 }
 
 .rcw-launcher {
-  right: 310px;
   position: relative;
   background-color: #2B388F;
+}
+
+.rcw-conversation-container.active {
+  width: 370px;
 }
 
 .rcw-conversation-container .rcw-header {
@@ -86,8 +91,8 @@
   .rcw-widget-container {
     height: 600px;
     margin: 0 20px 20px 0;
-    max-width: 370px;
-    width: 90vw;
+    max-width: 60px;
+    width: 60px;
   }
   .rcw-conversation-container {
     border-radius: 10px;

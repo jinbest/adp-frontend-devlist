@@ -130,6 +130,9 @@ export class LanguageKeys {
   public VIEW_STORE_DETAILS = 'View Store Details';
   public VIEW_MORE_STORES = 'View More Stores';
   public GET_DIRECTIONS = 'Get Directions';
+  public SEE_ALL_PRODUCTS = 'See All Products';
+  public SEE_HOME = 'See Home';
+  public HOW_TO_SELL = 'How to Sell';
 
   /* Repair-widget Text */
   public NEXT = 'Next';
