@@ -130,6 +130,9 @@ export class LanguageKeysFr extends LanguageKeys {
   public VIEW_STORE_DETAILS = 'Afficher les détails';
   public VIEW_MORE_STORES = 'Voir plus magasins';
   public GET_DIRECTIONS = 'Obtenir directions';
+  public SEE_ALL_PRODUCTS = 'Voir tous les produits';
+  public SEE_HOME = 'Voir la maison';
+  public HOW_TO_SELL = 'Comment vendre';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';

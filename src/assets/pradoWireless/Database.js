@@ -178,9 +178,61 @@ const colorPalle = {
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: 'FEATURE_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FEATURE_REPAIR' },
-    { href: "#", text: "SHOP", isActive: false, flag: 'FEATURE_SHOP' },
+    { href: "#", text: "SHOP", isActive: false, flag: 'FRONTEND_MEGA_MENU' },
     { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
+
+const navShop = {
+    mainList: [
+        {
+            type: 'Apple',
+            list: [
+                'iPhone 11 Pro Max', 'iPhone 11 Pro', 'iPhone 11', 'iPhone XS Max', 'iPhone XS', 'iPhone XR',
+                'iPhone X', 'iPhone 8 Plus', 'iPhone 8', 'iPhone 7 Plus', 'iPhone 7', 'iPhone 6s Plus',
+                'iPhone 6s', 'iPhone 6 Plus', 'iPhone 6', 'iPhone SE', 'iPhone 5C', 'iPhone 5S',
+                'iPhone 5', 'iPhone 4S', 'iPhone 4', 'iPhone 3GS', 'iPhone 3G',
+            ]
+        },
+        {
+            type: 'Samsung',
+            list: [
+                'Galaxy S10e', 'Galaxy S10 Plus', 'Galaxy S10', 'Galaxy S10 5G', 'Galaxy Note 10', 'Galaxy Note 10 Plus',
+                'Galaxy Note 10 Plus G', 'Galaxy Note 9', 'Galaxy S9', 'Galaxy S9 Plus', 'Galaxy Note 8', 'Galaxy S8',
+                'Galaxy S8 Plus', 'Galaxy S7', 'Galaxy S7 Edge', 'Galaxy Note 5', 'Galaxy S6 Edge Plus', 'Galaxy S6',
+                'Galaxy S6 Edge', 'Galaxy Note 4', 'Galaxy Note Edge', 'Galaxy S5', 'Galaxy Note 3'
+            ]
+        },
+        {
+            type: 'Google',
+            list: [
+                'Google Pixel 3', 'Google Pixel 3 XL', 'Google Pixel 3a', 'Google Pixel 3a XL',
+                'Google Pixel 2', 'Google Pixel 2 XL', 'Google Pixel', 'Google Pixel XL'
+            ]
+        },
+        {
+            type: 'LG',
+            list: [
+                'LG V20', 'LG V30', 'LG V30 ThinQ', 'LG V10', 'LG G6', 'LG G5'
+            ]
+        },
+        {
+            type: 'OnePlus',
+            list: [
+                'OnePlus 7 Pro 5G', 'OnePlus 7 Pro', 'OnePlus 7T', 'OnePlus 6T', 'OnePlus 6', 'OnePlus 5T',
+                'OnePlus 5', 'OnePlus 3T', 'OnePlus 3', 'OnePlus 2', 'OnePlus 1', 'OnePlus X'
+            ]
+        },
+        {
+            type: 'Essential',
+            list: [
+                'Essential PH-1'
+            ]
+        }
+    ],
+    otherList: [
+        'SEE_ALL_PRODUCTS', 'SEE_HOME', 'HOW_TO_SELL'
+    ]
+}
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
@@ -447,5 +499,6 @@ export {
     repairData,
     chatData,
     logoData,
-    deviceCard
+    deviceCard,
+    navShop
 }

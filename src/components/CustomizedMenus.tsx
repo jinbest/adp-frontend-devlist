@@ -139,7 +139,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
                     height='30px'
                     margin='0'
                     fontSize='15px'
-                    onClick={()=>{window.location.href = '/repair'}}
+                    onClick={()=>{window.location.href = '/repair-widget'}}
                     subDomain={subDomain}
                   />
                 }
