@@ -19,7 +19,7 @@ const devicelist = [
     "pradoWireless",
     "wirelessRev",
 ]
-const subDomain = devicelist[0]
+const subDomain = devicelist[2]
 
 const publicFeatures = [
     { flag: "FEATURE_TRADE", isActive: true },
@@ -40,7 +40,7 @@ const publicFeatures = [
 ]
 
 function App(): JSX.Element {
-    require(`./assets/${subDomain}/styles/index.scss`);
+    require(`./assets/${subDomain}/styles/index.scss`)
 
     const [footerStatus, setFooterStatus] = useState(true)
 
