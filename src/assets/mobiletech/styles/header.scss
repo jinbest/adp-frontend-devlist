@@ -172,6 +172,39 @@
   top: 0px;
 }
 
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-scroll-nav-div {
+  height: 450px;
+  overflow: scroll !important;
+  margin-top: 20px;
+}
+
+/* width */
+.mobile-scroll-nav-div::-webkit-scrollbar {
+  width: 3px;
+  cursor: pointer;
+}
+
+/* Track */
+.mobile-scroll-nav-div::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+ 
+/* Handle */
+.mobile-scroll-nav-div::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+/* Handle on hover */
+.mobile-scroll-nav-div::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
 .#{$folderName}-arrow-back {
   cursor: pointer;
   font-weight: bold;

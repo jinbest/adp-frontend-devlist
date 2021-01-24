@@ -10,9 +10,8 @@ const StyledMenu = withStyles({
     boxShadow: '0 4px 4px rgba(0,0,0,0.25)',
     overflow: 'inherit',
     marginTop: '15px',
-    marginLeft: '300px',
+    marginLeft: '-45px',
     width: '700px',
-    right: '-300px',
     paddingBottom: '15px',
     border: '1px solid #C4C4C4',
     height: '480px'
@@ -23,11 +22,11 @@ const StyledMenu = withStyles({
     getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
-      horizontal: 'right',
+      horizontal: 'left',
     }}
     transformOrigin={{
       vertical: 'top',
-      horizontal: 'right',
+      horizontal: 'left',
     }}
     {...props}
   />
@@ -53,7 +52,7 @@ const MegamenuShop = ({subDomain, text}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const megaShopData = data.navShop;
   const textThemeCol = data.colorPalle.textThemeCol;
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const t = useT();
   const classes = useStyles();
 
@@ -75,12 +74,14 @@ const MegamenuShop = ({subDomain, text}: Props) => {
         aria-controls="megamenu-shop"
         aria-haspopup="true"
         onClick={handleClick}
+        className={subDomain + '-nav-link'}
+        style={{cursor: 'pointer'}}
       >{t(text)}</div>      
       <StyledMenu
         id="megamenu-shop"
-        anchorEl={anchorEl}
+        anchorEl={anchEl}
         keepMounted
-        open={Boolean(anchorEl)}
+        open={Boolean(anchEl)}
         onClose={handleClose}
       >
         <div className='triangle'></div>
@@ -124,8 +125,8 @@ const MegamenuShop = ({subDomain, text}: Props) => {
             <div className={subDomain + '-content-block'}>
               {megaShopData.mainList[shopSelect].list.map((item:any, index: number) => {
                 return (
-                  (index < Math.round(megaShopData.mainList[shopSelect].list.length / 2)) ? 
-                  <p className={subDomain + '-block-content'} key={index}>{item}</p> : <></>
+                  (index < Math.round(megaShopData.mainList[shopSelect].list.length / 2)) && 
+                  <p className={subDomain + '-block-content'} key={index}>{item}</p>
                 )
               })}
             </div>
@@ -134,8 +135,8 @@ const MegamenuShop = ({subDomain, text}: Props) => {
             <div className={subDomain + '-content-block'}>
               {megaShopData.mainList[shopSelect].list.map((item:any, index: number) => {
                 return (
-                  (index >= Math.round(megaShopData.mainList[shopSelect].list.length / 2)) ? 
-                  <p className={subDomain + '-block-content'} key={index}>{item}</p> : <></>
+                  (index >= Math.round(megaShopData.mainList[shopSelect].list.length / 2)) && 
+                  <p className={subDomain + '-block-content'} key={index}>{item}</p>
                 )
               })}
             </div>

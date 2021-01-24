@@ -1,5 +1,6 @@
 import React from 'react'
 import {Shape, Section1, Section2, Section3, Section4, Section5, Section6} from './'
+import GetUserLocation from '../../components/GetUserLocation';
 
 type Props = {
   subDomain: string;
@@ -19,7 +20,8 @@ const Home = ({subDomain, features}: Props) => {
         return (
           <SectionItem subDomain={subDomain} key={index}/>
         )
-      })}      
+      })}
+      <GetUserLocation />
     </div>
   )
 }

@@ -21,13 +21,17 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNav
     } else {
       handleStatus(true);
     }
+    return;
   }
 
   return (
     <li className={subDomain + '-nav-item'}>
-      <Link className={subDomain + '-nav-link'} to={href} onClick={handle}>
-        {text === 'SHOP' ? <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
-      </Link>
+      {text === 'SHOP' ? 
+        <MegamenuShop subDomain={subDomain} text={text} /> : 
+        <Link className={subDomain + '-nav-link'} to={text === 'SHOP' ? '' : href} onClick={handle}>
+          {t(text)}
+        </Link>
+      }
     </li>
   )
 }
@@ -68,6 +72,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
   const [userStatus, setUserStatus] = useState(true);
   const [menuStatus, setMenuStatus] = useState(true);
   const [mobileMenu, setMobileMenu] = useState('left');
+  const [mobileShopType, setMobileShopType] = useState(999);
   const [feats, setFeatures] = useState<any[]>([]);
 
   useEffect(() => {
@@ -212,8 +217,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           </FeatureToggles> :
           <div className={subDomain + '-mobile-menu-navbar'}>
             {userStatus && <div className={subDomain + '-arrow'}>
-              {mobileMenu === 'left' ? 
-                <img className={subDomain + '-arrow-left'} src={data.arrowData.arrowRight} onClick={toggleMobileMenu} /> : 
+              {mobileMenu === 'right' && 
                 <img className={subDomain + '-arrow-right'} src={data.arrowData.arrowLeft} onClick={toggleMobileMenu} />
               }
             </div>}
@@ -229,7 +233,12 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                             name={item.flag}
                             inactiveComponent={()=><></>}
                             activeComponent={()=>
-                              <a className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
+                              <div className='flex-space-between' onClick={()=>{item.text === 'SHOP' && setMobileMenu('right')}}>
+                                <a className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
+                                {item.text === 'SHOP' && 
+                                  <img style={{height: '18px'}} src={data.arrowData.arrowRight} />
+                                }
+                              </div>
                             }
                           />
                         </FeatureToggles>
@@ -237,12 +246,28 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                     })}
                   </div> : 
                   <div>
-                    <p className={subDomain + '-arrow-back'} onClick={toggleMobileMenu}>{t('BACK')}</p>
-                    {data.mobileNavItemData.right.map((item:any, index:number) => {
-                      return (
-                        <a key={index} className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
-                      )
-                    })}
+                    {mobileShopType === 999 ? 
+                      <p className={subDomain + '-arrow-back'} onClick={toggleMobileMenu}>
+                        {t('BACK')}
+                      </p> : 
+                      <p className={subDomain + '-arrow-back'} onClick={()=>setMobileShopType(999)}>
+                        {data.navShop.mainList[mobileShopType].type}
+                      </p>
+                    }
+                    <div className='mobile-scroll-nav-div'>
+                      {mobileShopType === 999 ? 
+                        data.navShop.mainList.map((item:any, index:number) => {
+                          return (
+                            <a key={index} className={subDomain + '-mobile-item'} href='#' onClick={()=>setMobileShopType(index)}>{item.type}</a>
+                          )
+                        }) : 
+                        data.navShop.mainList[mobileShopType].list.map((item:any, index:number) => {
+                          return (
+                            <a key={index} className={subDomain + '-mobile-item'} href='#'>{item}</a>
+                          )
+                        })
+                      }
+                    </div>
                   </div>
                 }
               </div> : 
