@@ -265,7 +265,7 @@ const mobileNavItemData = {
     left: [
         {text: 'TRADE', href: '#', flag: 'FEATURE_TRADE'},
         {text: 'REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
-        {text: 'SHOP', href: '#', flag: 'FEATURE_SHOP'},
+        {text: 'SHOP', href: '#', flag: 'FRONTEND_MEGA_MENU'},
         {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},

@@ -25,7 +25,7 @@ const publicFeatures = [
     { flag: "FEATURE_TRADE", isActive: true },
     { flag: "FEATURE_REPAIR", isActive: true },
     { flag: "FEATURE_REPAIR_QUOTE", isActive: true },
-    { flag: "FEATURE_REPAIR_APPOINTMENT", isActive: false },
+    { flag: "FEATURE_REPAIR_APPOINTMENT", isActive: true },
     { flag: "FEATURE_SHOP", isActive: true },
     { flag: "FEATURE_ONLINE_PURCHASE", isActive: true },
     { flag: "FEATURE_FIND_A_STORE", isActive: true },
