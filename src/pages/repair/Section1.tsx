@@ -32,9 +32,10 @@ class Section1 extends React.Component<Props> {
     repairWidgetStore.changeDeliveryMethod({});
     repairWidgetStore.changeReceiveQuote({});
     repairWidgetStore.changeContactDetails({});
-    for (let i = 0; i < 4; i++) {
-      repairWidgetStore.changeBookData({ caseKey: i, data: {} });
-    }
+    repairWidgetStore.changeBookData({ code: 'MI', data: {} });
+    repairWidgetStore.changeBookData({ code: 'PU', data: {} });
+    repairWidgetStore.changeBookData({ code: 'CU', data: {} });
+    repairWidgetStore.changeBookData({ code: 'ON', data: {} });
     repairWidgetStore.changeMessage('');
     repairWidgetStore.changeCntStep(0);
     handleStatus(false);

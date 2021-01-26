@@ -13,11 +13,11 @@ type Props = {
   handleStep: (step:number) => void;
   handleChangeChooseData: (step:number, chooseData:any) => void;
   repairWidgetData: any;
-  caseKey: number;
+  code: string;
   features: any[];
 }
 
-const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, caseKey, features}: Props) => {
+const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData, features, code}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const themeCol = mainData.colorPalle.themeColor;
@@ -72,7 +72,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
 
   const onKeyPress = useCallback((event) => {
     if(event.key === 'Enter' && !disableStatus && step === 6) {
-      if (features.includes('FEATURE_REPAIR_APPOINTMENT') || caseKey === 0) {
+      if (features.includes('FEATURE_REPAIR_APPOINTMENT') || code === 'MI') {
         handleButton('appointment');
       } else if (features.includes('FEATURE_REPAIR_QUOTE')) {
         handleButton('quote');
@@ -89,10 +89,10 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
 
   useEffect(() => {
     setDisableStatus(true);
-    if ( firstName && lastName && email && phone && ((caseKey===0 && address1) || (caseKey>0)) ) {
+    if ( firstName && lastName && email && phone && ((code === 'MI' && address1) || (code !== 'MI')) ) {
       setDisableStatus(false)
     }
-  }, [firstName, lastName, email, phone, address1, caseKey]);
+  }, [firstName, lastName, email, phone, address1, code]);
 
   const handleChangeFirstName = (val:string) => {
     setFirstName(val);
@@ -158,7 +158,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 </Grid>
               </Grid>
             </div>
-            {caseKey > 0 && <div className={subDomain + '-repair-choose-device-container'}>
+            {code !== 'MI' && <div className={subDomain + '-repair-choose-device-container'}>
               <FeatureToggles features={features}>
                 <Feature
                   name='FEATURE_REPAIR_APPOINTMENT'
@@ -180,7 +180,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 />
               </FeatureToggles>              
             </div>}
-            {caseKey === 0 && <div className={subDomain + '-repair-choose-device-container'}>
+            {code === 'MI' && <div className={subDomain + '-repair-choose-device-container'}>
               <Grid container spacing={2}>                
                 <Grid item xs={12}>
                   <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
@@ -202,7 +202,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 </Grid>
               </Grid>
             </div>}
-            {caseKey === 0 && <div className={subDomain + '-repair-card-button'}>
+            {code === 'MI' && <div className={subDomain + '-repair-card-button'}>
               <Button 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={()=>handleButton('appointment')} disable={disableStatus} subDomain={subDomain}

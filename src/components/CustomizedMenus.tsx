@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
-import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles';
-import Menu, { MenuProps } from '@material-ui/core/Menu';
+import React, {useState} from 'react'
+import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles'
+import Menu, { MenuProps } from '@material-ui/core/Menu'
 import {Button} from '.'
 import { useT } from "../i18n/index"
 import {LangProps} from '../i18n/en'
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined'
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import repairWidgetStore from "../store/RepairWidgetStore"
+import { Link } from 'react-router-dom'
 
 const StyledMenu = withStyles({
   paper: {
@@ -87,6 +89,22 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
     setAddStatus(false);
   };
 
+  const handleBookRepair = () => {
+    repairWidgetStore.changeDeviceBrand([]);
+    repairWidgetStore.changeDeviceModel([]);
+    repairWidgetStore.changeChooseRepair([]);
+    repairWidgetStore.changeDeviceCounter(0);
+    repairWidgetStore.changeDeliveryMethod({});
+    repairWidgetStore.changeReceiveQuote({});
+    repairWidgetStore.changeContactDetails({});
+    repairWidgetStore.changeBookData({ code: 'MI', data: {} });
+    repairWidgetStore.changeBookData({ code: 'PU', data: {} });
+    repairWidgetStore.changeBookData({ code: 'CU', data: {} });
+    repairWidgetStore.changeBookData({ code: 'ON', data: {} });
+    repairWidgetStore.changeMessage('');
+    repairWidgetStore.changeCntStep(0);
+  }
+
   return (
     <div>
       {(!addStatus) ? <Button 
@@ -131,17 +149,19 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
                 name='FEATURE_REPAIR'
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
-                  <Button 
-                    title='BOOK_REPAIR'
-                    bgcolor={themeColor} 
-                    borderR='20px' 
-                    width='40px'
-                    height='30px'
-                    margin='0'
-                    fontSize='15px'
-                    onClick={()=>{window.location.href = '/repair-widget'}}
-                    subDomain={subDomain}
-                  />
+                  <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={handleBookRepair}>
+                    <Button 
+                      title='BOOK_REPAIR'
+                      bgcolor={themeColor} 
+                      borderR='20px' 
+                      width='40px'
+                      height='30px'
+                      margin='0'
+                      fontSize='15px'
+                      subDomain={subDomain}
+                    />
+                  </Link>
+                  
                 }
               />
             </FeatureToggles>

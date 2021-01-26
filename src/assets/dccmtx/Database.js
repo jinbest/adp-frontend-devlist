@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/wireless-trade.png"
-import repair from "./img/cardmobile/wireless-repair.png"
-import buy from "./img/cardmobile/wireless-buy.png"
-import protect from "./img/cardmobile/wireless-protect.png"
+import trade from "./img/cardmobile/northtech-trade.png"
+import repair from "./img/cardmobile/northtech-repair.png"
+import buy from "./img/cardmobile/northtech-buy.png"
+import protect from "./img/cardmobile/northtech-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/wireless-mobile.png"
-import tablet from "./img/cardfix/wireless-tablet.png"
-import computer from "./img/cardfix/wireless-computer.png"
-import console from "./img/cardfix/wireless-game.png"
-import other from "./img/cardfix/wireless-other.png"
+import cellphone from "./img/cardfix/northtech-mobile.png"
+import tablet from "./img/cardfix/northtech-tablet.png"
+import computer from "./img/cardfix/northtech-computer.png"
+import console from "./img/cardfix/northtech-game.png"
+import other from "./img/cardfix/northtech-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,20 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/wireless-user-active.png'
-import userDeactive from './img/avatar/wireless-user-deactive.png'
-import menu from './img/avatar/wireless-menu.png'
-import store from './img/avatar/wireless-store.png'
-import storeBlue from './img/avatar/wireless-store-blue.png'
-import cancel from './img/avatar/wireless-cancel.png'
+import userActive from './img/avatar/northtech-user-active.png'
+import userDeactive from './img/avatar/northtech-user-deactive.png'
+import menu from './img/avatar/northtech-menu.png'
+import store from './img/avatar/northtech-store.png'
+import storeBlue from './img/avatar/northtech-store-blue.png'
+import cancel from './img/avatar/northtech-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/wireless-corner-shape.png'
-import mockupShape from './img/wireless-mockup-shape.png'
+import cornerShape from './img/northtech-shape-home.png'
+
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -49,31 +49,30 @@ import amex from './img/footer/amex.png'
 import interactive from './img/footer/interactive.png'
 import paypal from './img/footer/paypal.png'
 import deviceListImg from './img/footer/device-list.png'
-import bell from './img/footer/bell.png'
 
 // repair images
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/wireless-select-repair.png'
-import sendDevice from './img/repair/section2/wireless-send-device.png'
-import receiveDevice from './img/repair/section2/wireless-receive-device.png'
+import selectRepair from './img/repair/section2/northtech-select-repair.png'
+import sendDevice from './img/repair/section2/northtech-send-device.png'
+import receiveDevice from './img/repair/section2/northtech-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/wireless-new.png'
-import mintImg from './img/repair/section3/wireless-mint.png'
-import goodImg from './img/repair/section3/wireless-good.png'
-import fairImg from './img/repair/section3/wireless-fair.png'
+import newImg from './img/repair/section3/northtech-new.png'
+import mintImg from './img/repair/section3/northtech-mint.png'
+import goodImg from './img/repair/section3/northtech-good.png'
+import fairImg from './img/repair/section3/northtech-fair.png'
 
 // chat - images
 import chatImg from './img/chat.png';
 
 // logo - images
-import logoHeaderImg from './img/logo/wireless-logo-header.png';
-import logoFooterImg from './img/logo/wireless-logo-footer.png';
+import logoHeaderImg from './img/logo/northtech-logo-header.png';
+import logoFooterImg from './img/logo/northtech-logo-footer.png';
 
 // deviceCard - images
-import deviceCardImg from './img/wireless-device-card.png';
+import deviceCardImg from './img/northtech-device-card.png';
 
 const chatData = {
     chatImg: chatImg,
@@ -122,9 +121,9 @@ const contentFixData = [
         content: "QUICK_TURNAROUND_CONTENT",
     },
     {
-        title: "DAY_90_WARRANTY",
-        content: "DAY_90_WARRANTY_CONTENT",
-    },
+        title: "MONTH_6_WARRANTY",
+        content: "MONTH_6_WARRANTY_CONTENT",
+    }
 ]
 
 const popularCardData = [
@@ -163,17 +162,17 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-    orange: '#3677A1',
-    themeColor: '#3677A1',
-    underLineCol: '#3677A1',
-    priceCol: '#3677A1',
-    repairButtonCol: '#3677A1',
-    nextButtonCol: '#3677A1',
-    repairChooseItemCol: '#3677A1',
-    repairBooktimeCol: '#3677A1',
-    textThemeCol: '#3677A1',
-    heartCol: '#3677A1',
-    chatBgCol: '#3677A1'
+    orange: '#F67500',
+    themeColor: '#2B388F',
+    underLineCol: '#2B388F',
+    priceCol: '#F67500',
+    repairButtonCol: '#2B388F',
+    nextButtonCol: '#2B388F',
+    repairChooseItemCol: '#2B388F',
+    repairBooktimeCol: '#2B388F',
+    textThemeCol: '#2B388F',
+    heartCol: '#2B388F',
+    chatBgCol: '#2B388F'
 }
 
 const navItemsData = [
@@ -181,9 +180,6 @@ const navItemsData = [
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FEATURE_REPAIR' },
     { href: "#", text: "SHOP", isActive: false, flag: 'FRONTEND_MEGA_MENU' },
     { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
-    { href: "#", text: "BUSINESS", isActive: false, flag: 'ALWAYS_TRUE' },
-    { href: "#", text: "FINANCING", isActive: false, flag: 'ALWAYS_TRUE' },
-    { href: "#", text: "WHOLESALE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
 
 const navShop = {
@@ -239,10 +235,10 @@ const navShop = {
 }
 
 const brandItemsData = {
-    left: [],
-    right: {ip: "613.723.6363", en: "ENGLISH", log: "LOG_IN"},
+    left: ["BUSINESS", "FINANCING"],
+    right: {ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN"},
     brandCol: 'white',
-    brandThemeCol: '#4D4D4D',
+    brandThemeCol: '#2B388F',
     selectOption: ['ENGLISH', 'FRENCH']
 }
 
@@ -269,7 +265,7 @@ const mobileNavItemData = {
     left: [
         {text: 'TRADE', href: '#', flag: 'FEATURE_TRADE'},
         {text: 'REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
-        {text: 'SHOP', href: '#', flag: 'FEATURE_SHOP'},
+        {text: 'SHOP', href: '#', flag: 'FRONTEND_MEGA_MENU'},
         {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},
@@ -288,11 +284,11 @@ const mobileNavItemData = {
 
 const userNavItemData = [
     {text: 'MY_ACCOUNT', href: '#', flag: 'FEATURE_USER_ACCOUNT'},
-    {text: 'TRACK_REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
-    {text: 'FILE_A_CLAIM', href: '#', flag: 'ALWAYS_TRUE'},
+    {text: 'TRACKING', href: '#', flag: 'ALWAYS_TRUE'},
     {text: 'ORDERS', href: '#', flag: 'ALWAYS_TRUE'},
     {text: 'TRADE_IN', href: '#', flag: 'FEATURE_TRADE'},
 ]
+
 
 const arrowData = {
     arrowLeft: arrowLeft,
@@ -300,14 +296,14 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: {img: cornerShape, width: ''},
-    mockupShape: {img: mockupShape, width: ''}
+    cornerShape: {img: cornerShape, width: '100vw'},
+    mockupShape: ''
 }
 
 const footerImageData = {
     buyNow: buyNow,
     deviceList: deviceListImg,
-    bell: bell,
+    bell: '',
     others: [
         visa, round, amex, interactive, paypal
     ]
@@ -320,7 +316,7 @@ const homeTextData = {
     },
     section1: {
         title: ['TRADE_REPAIR_BUY_OR_SELL', 'YOUR_MOBILE_DEVICE'],
-        subtitle: 'OKOTOKS_MOBILE_DEVICE_SPECIALISTS',
+        subtitle: 'YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH',
         searchPlaceholder: 'FIND_YOUR_DEVICE'
     },
     section2: {
@@ -330,10 +326,10 @@ const homeTextData = {
         title: 'POPULAR_DEVICES',
         subtitle: ['BUY_NOW_PAY_LATER', 'WHATEVER_WORKS_FOR_YOU'],
         content: 'POPULAR_DEVICES_CONTENT',
-        color: 'white'
+        color: 'black'
     },
     section4: {
-        title: 'WELCOME_WIRELESS',
+        title: 'WELCOME_NORTHTECH',
         btnTitle: 'OUR_QUALITY_CHARTER'
     },
     section5: {
@@ -346,7 +342,7 @@ const homeTextData = {
         btnTitle: "INSURE_MY_DEVICE",
     },
     section6: {
-        title: 'SEE_WHY_CUSTOMERS_LOVE_WIRELESS',
+        title: 'SEE_WHY_CUSTOMERS_LOVE_NORTHTECH',
         subtitle: 'VIEW_MORE',
         review: [
             {
@@ -372,10 +368,10 @@ const homeTextData = {
         ]
     },
     footer: {
-        title: { text: '', color: '' },
+        title: { text: 'GIVING_BACK_TO_NORTH', color: 'white' },
         gridVal: {
             mainGrid: [4, 8],
-            subGrid: [8, 4]
+            subGrid: [11, 1]
         },
         subContent: [
             {title: '', content: ''},
@@ -383,8 +379,8 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(613) 723-6363 | info@wirelessrev.ca 4 - 1800 Bank Street, Ottawa, ON',
-            'WIRELESS_FOOTER_CONTENT_TWO'
+            '(819) 700-2211 | info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
+            'NORTHTECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
             {
@@ -451,13 +447,13 @@ const repairData = {
             {
                 img: receiveDevice,
                 subtitle: 'RECEIVE_YOUR_DEVICE',
-                content: 'WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT',
+                content: 'NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT',
             }
         ]
     },
     section3: {
         title: 'FROM_NEW_TO_RECONDITIONED',
-        content: 'WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT',
+        content: 'NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',
