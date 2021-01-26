@@ -4,7 +4,7 @@ import { Footer, Header, Chat, GetUserLocation } from "./components"
 import { Home } from "./pages/home/"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Provider } from "mobx-react"
-import { storesDetails, repairWidgetStore } from './store/'
+import { storesDetails, repairWidgetStore } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 
@@ -55,13 +55,13 @@ function App(): JSX.Element {
         appLoadAPI
             .getStoresDetail(subDomain, false)
             // .getStoresDetail('dccmtx', false)
-            .then((res:any) => {
-                console.log('api-appLoadAPI => store details:', res.data);
-                storesDetails.changestoresDetails(res.data);
+            .then((res: any) => {
+                console.log("api-appLoadAPI => store details:", res.data)
+                storesDetails.changestoresDetails(res.data)
             })
             .catch((error) => {
-                console.log("Error in get Store Details", error);
-            });
+                console.log("Error in get Store Details", error)
+            })
     }, [subDomain])
 
     const BaseRouter = () => {
