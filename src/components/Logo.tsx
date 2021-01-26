@@ -12,7 +12,6 @@ const Logo = ({subDomain, type, handleStatus}: Props) => {
   const logoData = mainData.logoData;
 
   const handleLogoClick = () => {
-    localStorage.clear();
     handleStatus(true);
   }
 

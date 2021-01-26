@@ -1,25 +1,26 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat } from "./components"
+import { Footer, Header, Chat, GetUserLocation } from "./components"
 import { Home } from "./pages/home/"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Provider } from "mobx-react"
-import store from "./store/RepairWidgetStore"
+import { storesDetails, repairWidgetStore } from './store/'
 import { LangProvider } from "./i18n/index"
+import { appLoadAPI } from "./services/"
 
-// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-// const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
+const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 
-const devicelist = [
-    "geebo",
-    "mobiletech",
-    "nanotech",
-    "northtech",
-    "phonephix",
-    "pradoWireless",
-    "wirelessRev",
-]
-const subDomain = devicelist[0]
+// const devicelist = [
+//     "geebo",
+//     "mobiletech",
+//     "nanotech",
+//     "northtech",
+//     "phonephix",
+//     "pradoWireless",
+//     "wirelessRev",
+// ]
+// const subDomain = devicelist[6]
 
 const publicFeatures = [
     { flag: "FEATURE_TRADE", isActive: true },
@@ -48,6 +49,19 @@ function App(): JSX.Element {
         setFooterStatus(status)
     }
 
+    useEffect(() => {
+        appLoadAPI
+            .getStoresDetail(subDomain, false)
+            // .getStoresDetail('dccmtx', false)
+            .then((res:any) => {
+                console.log('api-appLoadAPI => store details:', res.data);
+                storesDetails.changestoresDetails(res.data);
+            })
+            .catch((error) => {
+                console.log("Error in get Store Details", error);
+            });
+    }, [subDomain])
+
     const BaseRouter = () => {
         return (
             <>
@@ -60,7 +74,7 @@ function App(): JSX.Element {
                 <Route
                     path="/repair"
                     component={() => (
-                        <Provider repairWidgetStore={store}>
+                        <Provider repairWidgetStore={repairWidgetStore}>
                             <Repair
                                 subDomain={subDomain}
                                 handleStatus={handleFooterStatus}
@@ -72,7 +86,7 @@ function App(): JSX.Element {
                 <Route
                     path="/repair-widget"
                     component={() => (
-                        <Provider repairWidgetStore={store}>
+                        <Provider repairWidgetStore={repairWidgetStore}>
                             <RepairWidget
                                 subDomain={subDomain}
                                 handleStatus={handleFooterStatus}
@@ -97,6 +111,7 @@ function App(): JSX.Element {
                 <Chat subDomain={subDomain} features={publicFeatures} />
                 {footerStatus && <Footer subDomain={subDomain} features={publicFeatures} />}
             </Router>
+            <GetUserLocation />
         </LangProvider>
     )
 }

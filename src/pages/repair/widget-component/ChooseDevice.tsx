@@ -165,7 +165,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           cntItemTypes[u].bg = repairChooseItemCol
           cntItemTypes[u].col = 'white'
           cntItemTypes[u].selected = true
-          handleChangeChooseData(step, {method: cntItemTypes[u].name, caseKey: u})
+          handleChangeChooseData(step, {method: cntItemTypes[u].name, code: cntItemTypes[u].code})
         } else {
           cntItemTypes[u].bg = 'white'
           cntItemTypes[u].col = 'black'

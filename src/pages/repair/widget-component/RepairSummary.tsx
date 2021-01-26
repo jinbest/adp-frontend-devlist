@@ -81,7 +81,7 @@ class RepairSummary extends React.Component<Props, MyState> {
     const { themeCol, subDomain, showInfo, repairWidgetStore } = this.props;
     const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
     const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
-    const caseKey = repairWidgetStore.deliveryMethod.caseKey;
+    const code = repairWidgetStore.deliveryMethod.code;
     const publicText = mockData.repairWidget.publicText;
 
     return (
@@ -122,31 +122,31 @@ class RepairSummary extends React.Component<Props, MyState> {
               <Typography className={subDomain + '-repair-summary-title'}>
                 <T id={repairWidgetStore.deliveryMethod.method} />
               </Typography>
-              {caseKey === 1 && <Typography className={subDomain + '-repair-summary-service'}>
+              {code === 'PU' && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='PICK_UP_FROM' />
               </Typography>}
-              {caseKey === 0 && <Typography className={subDomain + '-repair-summary-service'}>
+              {code === 'MI' && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='SEND_TO' />
               </Typography>}
-              {caseKey > 0 && <p className={subDomain + '-repair-summary-service-child'}>
-                <T id={repairWidgetStore.bookData[caseKey].address} />
+              {code !== 'MI' && <p className={subDomain + '-repair-summary-service-child'}>
+                <T id={repairWidgetStore.bookData[code].address} />
               </p>}
-              {caseKey === 0 && <p className={subDomain + '-repair-summary-service-child'} style={{marginBottom: '15px'}}>
-                <T id={repairWidgetStore.bookData[caseKey].sendTo} />
+              {code === 'MI' && <p className={subDomain + '-repair-summary-service-child'} style={{marginBottom: '15px'}}>
+                <T id={repairWidgetStore.bookData[code].sendTo} />
               </p>}
-              {caseKey === 0 && <Typography className={subDomain + '-repair-summary-service'}>
+              {code === 'MI' && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='RETURN_TO' />
               </Typography>}
-              {caseKey === 0 && <p className={subDomain + '-repair-summary-service-child'}>
+              {code === 'MI' && <p className={subDomain + '-repair-summary-service-child'}>
                 <T id={repairWidgetStore.contactDetails.address1} />
               </p>}
-              {caseKey > 0 && <p className={subDomain + '-repair-summary-service-child'}>
+              {code !== 'MI' && <p className={subDomain + '-repair-summary-service-child'}>
                 {
-                  repairWidgetStore.bookData[caseKey].week + ', ' + 
-                  repairWidgetStore.bookData[caseKey].month + ' ' + 
-                  repairWidgetStore.bookData[caseKey].day + ', ' + 
-                  repairWidgetStore.bookData[caseKey].year + ' at ' + 
-                  repairWidgetStore.bookData[caseKey].time
+                  repairWidgetStore.bookData[code].week + ', ' + 
+                  repairWidgetStore.bookData[code].month + ' ' + 
+                  repairWidgetStore.bookData[code].day + ', ' + 
+                  repairWidgetStore.bookData[code].year + ' at ' + 
+                  repairWidgetStore.bookData[code].time
                 }
               </p>}
             </div>

@@ -8,8 +8,8 @@ export class RepairWidgetStore {
   @observable deviceModel: any[] = []
   @observable chooseRepair: any[] = []
   @observable deviceCounter: number = 0
-  @observable deliveryMethod: any = { method: '', caseKey: 0 }
-  @observable receiveQuote: any = { method: '', caseKey: 0 }
+  @observable deliveryMethod: any = { method: '', code: '' }
+  @observable receiveQuote: any = { method: '', code: '' }
   @observable contactDetails: any = { 
     firstName: '', 
     lastName: '', 
@@ -22,12 +22,12 @@ export class RepairWidgetStore {
     province: '',
     postalCode: ''
   }
-  @observable bookData: any[] = [
-    { sendTo: '' },
-    { address: '', time: '', day: '', month: '', year: '', week: '' },
-    { address: '', time: '', day: '', month: '', year: '', week: '' },
-    { address: '', time: '', day: '', month: '', year: '', week: '' },
-  ]
+  @observable bookData: any = {
+    'MI': { sendTo: '' },
+    'PU': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'CU': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'ON': { address: '', time: '', day: '', month: '', year: '', week: '' },
+  }
   @observable message: string = ''
   @observable cntStep: number = 0
 
@@ -101,8 +101,24 @@ export class RepairWidgetStore {
 
   @action
   changeBookData = (bookData: any) => {
-    const caseKey = bookData.caseKey, cntBookData = this.bookData
-    cntBookData[caseKey] = bookData.data
+    const code = bookData.code, cntBookData = this.bookData
+    // cntBookData[code] = bookData.data
+    switch (code) {
+      case 'MI':
+        cntBookData['MI'] = bookData.data;
+        break;
+      case 'PU':
+        cntBookData['PU'] = bookData.data;
+        break;
+      case 'CU':
+        cntBookData['CU'] = bookData.data;
+        break;
+      case 'ON':
+        cntBookData['ON'] = bookData.data;
+        break;
+      default:
+        break;
+    }
     this.bookData = cntBookData
     this.save()
   }

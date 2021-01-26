@@ -7,7 +7,7 @@ import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 
 type Props = {
   repairWidgetData: any;
-  caseKey: number;
+  code: string;
   themeCol: string;
   step: number;
   handleStep: (step:number) => void;
@@ -16,7 +16,7 @@ type Props = {
 }
 
 
-const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subDomain, features}: Props) => {
+const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDomain, features}: Props) => {
 
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
@@ -31,15 +31,15 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
 
   const onKeyPress = useCallback((event) => {
     if(event.key === 'Enter' && step === 9) {
-      if (caseKey === 0 && features.includes('FEATURE_REPAIR_QUOTE')) {
+      if (code === 'MI' && features.includes('FEATURE_REPAIR_QUOTE')) {
         handleStep(11);
-      } else if (caseKey > 0 && features.includes('FEATURE_REPAIR_APPOINTMENT')) {
+      } else if (code !== 'MI' && features.includes('FEATURE_REPAIR_APPOINTMENT')) {
         ChooseNextStep();
       } else {
         return;
       }
     }
-  }, [step, caseKey]);
+  }, [step, code]);
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress, false);
@@ -73,19 +73,19 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
             <Grid item xs={12} sm={6} className={subDomain + '-every-container'}>
               <Typography className={subDomain + '-topic'}>{t(publicText.deliveryMethod)}</Typography>
               <Typography className={subDomain + '-details'} style={{color: textThemeCol}}>{t(repairWidgetData.deliveryMethod.method)}</Typography>
-              {caseKey === 1 && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('PICK_UP_FROM')}</Typography>}
-              {caseKey === 0 && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('SEND_TO')}</Typography>}
-              {caseKey > 0 && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[caseKey].address}</Typography>}
-              {caseKey === 0 && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[caseKey].sendTo}</Typography>}
-              {caseKey === 0 && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('RETURN_TO')}</Typography>}
-              {caseKey === 0 && <Typography className={subDomain + '-details'}>{repairWidgetData.contactDetails.address1}</Typography>}
-              {caseKey > 0 && <Typography className={subDomain + '-details'}>
+              {code === 'PU' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('PICK_UP_FROM')}</Typography>}
+              {code === 'MI' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('SEND_TO')}</Typography>}
+              {code !== 'MI' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].address}</Typography>}
+              {code === 'MI' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].sendTo}</Typography>}
+              {code === 'MI' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('RETURN_TO')}</Typography>}
+              {code === 'MI' && <Typography className={subDomain + '-details'}>{repairWidgetData.contactDetails.address1}</Typography>}
+              {code !== 'MI' && <Typography className={subDomain + '-details'}>
                 {
-                  repairWidgetData.bookData[caseKey].week + ', ' + 
-                  repairWidgetData.bookData[caseKey].month + ' ' + 
-                  repairWidgetData.bookData[caseKey].day + ', ' + 
-                  repairWidgetData.bookData[caseKey].year + ' at ' + 
-                  repairWidgetData.bookData[caseKey].time
+                  repairWidgetData.bookData[code].week + ', ' + 
+                  repairWidgetData.bookData[code].month + ' ' + 
+                  repairWidgetData.bookData[code].day + ', ' + 
+                  repairWidgetData.bookData[code].year + ' at ' + 
+                  repairWidgetData.bookData[code].time
                 }
               </Typography>}
             </Grid>
@@ -117,7 +117,7 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
             })}
           </div>
           <div className={subDomain + '-repair-choose-device-container'}>            
-            {caseKey > 0 && 
+            {code !== 'MI' && 
               <FeatureToggles features={features}>
                 <Feature
                   name='FEATURE_REPAIR_APPOINTMENT'
@@ -129,7 +129,7 @@ const RepairServiceSummary = ({repairWidgetData, caseKey, step, handleStep, subD
                 />
               </FeatureToggles>
             }
-            {caseKey === 0 && 
+            {code === 'MI' && 
               <FeatureToggles features={features}>
                 <Feature
                   name='FEATURE_REPAIR_QUOTE'

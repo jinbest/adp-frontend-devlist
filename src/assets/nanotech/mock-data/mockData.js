@@ -117,18 +117,18 @@ const repairWidget = {
   dropOffDevicce: {
     title: 'HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE',
     types: [      
-      { name: 'MAIL_IN', bg: 'white', col: 'black', selected: false },
-      { name: 'PICK_UP_DROP_OFF_SERVICE', bg: 'white', col: 'black', selected: false },
-      { name: 'CURBSIDE_DROP_OFF', bg: 'white', col: 'black', selected: false },
-      { name: 'OUTSIDE_REPAIR', bg: 'white', col: 'black', selected: false },
+      { name: 'MAIL_IN', code: 'MI', bg: 'white', col: 'black', selected: false },
+      { name: 'PICK_UP_DROP_OFF_SERVICE', code: 'PU', bg: 'white', col: 'black', selected: false },
+      { name: 'CURBSIDE_DROP_OFF', code: 'CU', bg: 'white', col: 'black', selected: false },
+      { name: 'OUTSIDE_REPAIR', code: 'ON', bg: 'white', col: 'black', selected: false },
     ],
   },
   receiveQuote: {
     title: 'HOW_WOULD_YOU_LIKE_TO_RECEIVE_YOUR_QUOTE',
     types: [
-      { name: 'EMAIL', bg: 'white', col: 'black', selected: false },
-      { name: 'TEXT', bg: 'white', col: 'black', selected: false },
-      { name: 'PHONE_CALL', bg: 'white', col: 'black', selected: false },
+      { name: 'EMAIL', code: 'email', bg: 'white', col: 'black', selected: false },
+      { name: 'TEXT', code: 'text', bg: 'white', col: 'black', selected: false },
+      { name: 'PHONE_CALL', code: 'phone_call', bg: 'white', col: 'black', selected: false },
     ],
   },
   contactDetails: {
@@ -147,25 +147,30 @@ const repairWidget = {
     }
   },
   bookTime: {
-    title: ['SELECT_MAIN_IN_ADDRESS', 'SCHEDULE_A_PICK_UP', 'BOOK_YOUR_TIME', 'BOOK_YOUR_TIME' ],
+    title: {
+      'MI': 'SELECT_MAIN_IN_ADDRESS', 
+      'PU': 'SCHEDULE_A_PICK_UP', 
+      'CU': 'BOOK_YOUR_TIME', 
+      'ON': 'BOOK_YOUR_TIME'
+    },
     select: {
       location: {
-        title: [
-          'PLEASE_SELECT_PREFERRED_SERVICE_LOCATION', 
-          'PLEASE_ENTER_YOUR_ADDRESS', 
-          'SELECT_PREFERRED_LOCATION', 
-          'ENTER_YOUR_RESIDENTIAL_ADDRESS'
-        ],
+        title: {
+          'MI': 'PLEASE_SELECT_PREFERRED_SERVICE_LOCATION', 
+          'PU': 'PLEASE_ENTER_YOUR_ADDRESS', 
+          'CU': 'SELECT_PREFERRED_LOCATION', 
+          'ON': 'ENTER_YOUR_RESIDENTIAL_ADDRESS'
+        },
         option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
         mailInOption: [{name: '4160 Mailing Street, lqaluit NU', checked: true}, {name: '111 Mailing Street, lqaluit NU', checked: false}]     
       },
       time: {
-        title: [
-          'PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT', 
-          'SELECT_A_PICK_UP_TIME', 
-          'SELECT_CURBSIDE_DROP_OFF_TIME', 
-          'SELECT_VISIT_TIME'
-        ],
+        title: {
+          'MI': 'PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT', 
+          'PU': 'SELECT_A_PICK_UP_TIME', 
+          'CU': 'SELECT_CURBSIDE_DROP_OFF_TIME', 
+          'ON': 'SELECT_VISIT_TIME'
+        },
         workingHours: [
           ['MONDAY_FRIDAY', '9:00 a.m.-5:00 p.m.'],
           ['SATURDAY', '11:00 a.m.-4:00 p.m.'],

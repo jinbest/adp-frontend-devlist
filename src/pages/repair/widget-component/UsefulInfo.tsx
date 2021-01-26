@@ -12,7 +12,6 @@ type Props = {
   handleStep: (step:number) => void;
   handleChangeChooseData: (step:number, chooseData:any) => void;
   repairWidgetData: any;
-  caseKey: number;
 }
 
 const UsefulInfo = ({data, subDomain, step, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {

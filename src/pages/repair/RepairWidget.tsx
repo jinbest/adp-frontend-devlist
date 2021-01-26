@@ -3,8 +3,14 @@ import { ChooseDevice, BackSVG, ContactDetails, BookTime, UsefulInfo, RepairServ
 import { inject, IWrappedComponent, observer } from 'mobx-react'
 import { RepairWidgetStore } from '../../store/RepairWidgetStore'
 import { computed } from 'mobx'
-import {Error} from '../error'
+import { Error } from '../error'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
+import { 
+  getRepairLookupAPI,
+  getDeliveryMethodsAPI,
+  getRepairsOfferedDeviceAPI,
+  postAppointmentQuoteAPI,
+} from './RepairWidgetCallAPI'
 
 const stepList:string[] = [
   'deviceBrand',
@@ -67,6 +73,7 @@ class RepairWidget extends React.Component<Props, MyState> {
   }
 
   componentDidMount() {
+
     const { handleStatus, repairWidgetStore, features } = this.props;
     handleStatus(false);
     this.setState({step: repairWidgetStore.cntStep});
@@ -78,6 +85,12 @@ class RepairWidget extends React.Component<Props, MyState> {
       }
     }
     this.setState({feats: cntFeatures});
+
+    getRepairLookupAPI();
+    getDeliveryMethodsAPI();
+    // getRepairsOfferedDeviceAPI();
+    // postAppointmentQuoteAPI();
+
   }
 
   handleBackStep() {
@@ -119,14 +132,16 @@ class RepairWidget extends React.Component<Props, MyState> {
         break;
       case 7:
         repairWidgetStore.changeContactDetails({});
-        for (let i = 0; i < 4; i++) {
-          repairWidgetStore.changeBookData({ caseKey: i, data: {} });
-        }
+        repairWidgetStore.changeBookData({ code: 'MI', data: {} });
+        repairWidgetStore.changeBookData({ code: 'PU', data: {} });
+        repairWidgetStore.changeBookData({ code: 'CU', data: {} });
+        repairWidgetStore.changeBookData({ code: 'ON', data: {} });
         break;
       case 8:
-        for (let i = 0; i < 4; i++) {
-          repairWidgetStore.changeBookData({ caseKey: i, data: {} });
-        }
+        repairWidgetStore.changeBookData({ code: 'MI', data: {} });
+        repairWidgetStore.changeBookData({ code: 'PU', data: {} });
+        repairWidgetStore.changeBookData({ code: 'CU', data: {} });
+        repairWidgetStore.changeBookData({ code: 'ON', data: {} });
         repairWidgetStore.changeMessage('');
         break;
       case 9:
@@ -136,7 +151,7 @@ class RepairWidget extends React.Component<Props, MyState> {
         break;
     }
     if (cntStep === 11) {
-      if (repairWidgetStore.deliveryMethod.caseKey === 0) {
+      if (repairWidgetStore.deliveryMethod.code === 'MI') {
         repairWidgetStore.changeCntStep(9);
         this.setState({step: 9});
       } else {
@@ -210,7 +225,8 @@ class RepairWidget extends React.Component<Props, MyState> {
               }
               { this.state.step <= 5 && 
                 <ChooseDevice 
-                  data={mockData.repairWidget[stepList[this.state.step]]} 
+                  // data={this.state.step === 4 ? repairWidData.repairWidgetLookup : mockData.repairWidget[stepList[this.state.step]]} 
+                  data={mockData.repairWidget[stepList[this.state.step]]}
                   handleStep={this.handleStep.bind(this)} 
                   handleChangeChooseData={this.handleChangeChooseData.bind(this)}
                   stepName={stepList[this.state.step]} 
@@ -228,7 +244,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   handleStep={this.handleStep.bind(this)} 
                   handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
                   repairWidgetData={this.computedRepairWidgetData}
-                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
+                  code={this.computedRepairWidgetData.deliveryMethod.code}
                   features={this.state.feats}
                 />
               }
@@ -237,7 +253,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                   data={mockData.repairWidget[stepList[this.state.step]]} 
                   subDomain={subDomain} 
                   step={this.state.step} 
-                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
+                  code={this.computedRepairWidgetData.deliveryMethod.code}
                   handleStep={this.handleStep.bind(this)} 
                   handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
                   repairWidgetData={this.computedRepairWidgetData}
@@ -251,14 +267,13 @@ class RepairWidget extends React.Component<Props, MyState> {
                   handleStep={this.handleStep.bind(this)} 
                   handleChangeChooseData={this.handleChangeChooseData.bind(this)} 
                   repairWidgetData={this.computedRepairWidgetData}
-                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey} 
                 />
               }
               { this.state.step === 9 &&
                 <RepairServiceSummary 
                   themeCol={themeCol}
                   repairWidgetData={this.computedRepairWidgetData}
-                  caseKey={this.computedRepairWidgetData.deliveryMethod.caseKey}
+                  code={this.computedRepairWidgetData.deliveryMethod.code}
                   step={this.state.step} 
                   handleStep={this.handleStep.bind(this)}
                   subDomain={subDomain}

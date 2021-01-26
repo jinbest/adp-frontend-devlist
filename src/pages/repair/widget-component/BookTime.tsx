@@ -11,12 +11,12 @@ type Props = {
   subDomain?: string;
   step: number;
   handleStep: (step:number) => void;
-  caseKey: number;
+  code: string;
   handleChangeChooseData: (step:number, chooseData:any) => void;
   repairWidgetData: any;
 }
 
-const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
+const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`);
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
@@ -63,27 +63,27 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   }, [tzIndex]);
 
   useEffect(() => {
-    if (caseKey === 0) {
+    if (code === 'MI') {
       const cntMailinOption:any[] = data.select.location.mailInOption;
       setSendToAddress(cntMailinOption[mailInChecked].name);
       for (let i = 0; i < cntMailinOption.length; i++) {
-        if (cntMailinOption[i].name === repairWidgetData.bookData[caseKey].sendTo) {
+        if (cntMailinOption[i].name === repairWidgetData.bookData[code].sendTo) {
           setMailinChecked(i);
-          setSendToAddress(repairWidgetData.bookData[caseKey].sendTo);
+          setSendToAddress(repairWidgetData.bookData[code].sendTo);
         }
       }
     } 
-    else if (caseKey === 1 || caseKey === 3) {
-      setAddress(repairWidgetData.bookData[caseKey].address);
+    else if (code === 'PU' || code === 'ON') {
+      setAddress(repairWidgetData.bookData[code].address);
     } 
     else {
-      if (repairWidgetData.bookData[caseKey].address) {
-        setSelectVal(repairWidgetData.bookData[caseKey].address);
+      if (repairWidgetData.bookData[code].address) {
+        setSelectVal(repairWidgetData.bookData[code].address);
       } else {
         setSelectVal(data.select.location.option[0]);
       }      
     }
-  }, [repairWidgetData, step, caseKey, data]);
+  }, [repairWidgetData, step, code, data]);
 
   const handleChangeAddress = (val:string) => {
     setAddress(val);
@@ -103,13 +103,13 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
   }
 
   const ChooseNextStep = () => {
-    if (caseKey === 0) {
-      handleChangeChooseData(7, { caseKey: caseKey, data: { sendTo: sendToAddress } });
+    if (code === 'MI') {
+      handleChangeChooseData(7, { code: code, data: { sendTo: sendToAddress } });
     } else {
       handleChangeChooseData(7, {
-        caseKey: caseKey, 
+        code: code, 
         data: { 
-          address: caseKey === 2 ? selectVal : address, 
+          address: code === 'CU' ? selectVal : address, 
           time: time, 
           day: day, 
           month: MONTHS[month], 
@@ -125,31 +125,31 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
     if(event.key === 'Enter' && !disableStatus && step === 7) {
       ChooseNextStep();
     }
-  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus]);
+  }, [step, code, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus]);
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress, false);
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step, caseKey, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus])
+  }, [step, code, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus])
 
   useEffect(() => {
     setDisableStatus(true);
-    if (caseKey === 0 && sendToAddress) {
+    if (code === 'MI' && sendToAddress) {
       setDisableStatus(false);
     }
-    if (caseKey > 0 && (address || selectVal) && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
+    if (code !== 'MI' && (address || selectVal) && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
       setDisableStatus(false);
     }
-  }, [caseKey, sendToAddress, address, selectVal, time, day, month, year, week])
+  }, [code, sendToAddress, address, selectVal, time, day, month, year, week])
 
   return (
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className={subDomain + "-repair-widget-title"}>
-            {t(data.title[caseKey])}
+            {t(data.title[code])}
           </Typography>
         </Grid>
       </Grid>
@@ -157,11 +157,11 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
         <Grid item xs={12} md={7}>
           <Card className={subDomain + '-booking-card'}>
             <div className={subDomain + '-repair-choose-device-container'}>
-              <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.location.title[caseKey])}</Typography>
+              <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.location.title[code])}</Typography>
               <div style={{marginBottom: '20px'}}>
-                {caseKey === 2 && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
-                {(caseKey === 1 || caseKey === 3) && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} subDomain={subDomain} />}
-                {caseKey === 0 && <div>
+                {code === 'CU' && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
+                {(code === 'PU' || code === 'ON') && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} subDomain={subDomain} />}
+                {code === 'MI' && <div>
                   {data.select.location.mailInOption.map((item:any, index:number) => {
                     return (
                       <div key={index} className={subDomain + '-select-mail-in-radio'}>
@@ -190,8 +190,8 @@ const BookTime = ({data, subDomain, step, caseKey, handleStep, handleChangeChoos
                   })}
                 </div>}
               </div>
-              {caseKey > 0 && <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.time.title[caseKey])}</Typography>}
-              {caseKey > 0 && <Grid container spacing={2}>
+              {code !== 'MI' && <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.time.title[code])}</Typography>}
+              {code !== 'MI' && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
                 </Grid>
