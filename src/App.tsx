@@ -19,8 +19,10 @@ const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 //     "phonephix",
 //     "pradoWireless",
 //     "wirelessRev",
+//     "dccmtx",
+//     "mtlcmtx"
 // ]
-// const subDomain = devicelist[6]
+// const subDomain = devicelist[8]
 
 const publicFeatures = [
     { flag: "FEATURE_TRADE", isActive: true },
@@ -41,7 +43,7 @@ const publicFeatures = [
 ]
 
 function App(): JSX.Element {
-    require(`./assets/${subDomain}/styles/index.scss`);
+    require(`./assets/${subDomain}/styles/index.scss`)
 
     const [footerStatus, setFooterStatus] = useState(true)
 
