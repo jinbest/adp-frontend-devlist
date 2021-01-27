@@ -77,10 +77,9 @@ class RepairWidgetAPI {
     });
   }
 
-  postAppointmentQuote = (store_id:number, location_id:number, type:string) => {
+  postAppointmentQuote = (store_id:number, location_id:number, data:any) => {
     const apiURL:string = `${Config.REPAIR_SERVICE_API_URL}dc/store/${store_id}/repair/location/${location_id}/appointment`;
-    /* Here, type should be 'QUOTE' or 'APPOINTMENT'. */
-    const data:any = { type: type };
+    
     return new Promise((resolve, reject) => {
       axios
         .post(`${apiURL}`, data)

@@ -71,10 +71,37 @@ function getRepairsOfferedDeviceAPI() {
 function postAppointmentQuoteAPI() {
   const store_id: number = 1;
   const location_id: number = 1;
-  const type: string = 'QUOTE';
+  const data:any = {
+    "store_id": 1,
+    "location_id": 1,
+    "customer_id": 1,
+    "type": 'QUOTE',  /* type is 'QUOTE' or 'APPOINTMENT' */
+    "is_voided": false,
+    "delivery_method": "ONSITE",
+    "customer_email": "e@m.com",
+    "customer_first_name": "John",
+    "customer_last_name": "eee",
+    "customer_phone": "2049554325",
+    "customer_address_1": null,
+    "customer_address_2": null,
+    "customer_city": null,
+    "customer_state": null,
+    "customer_postcode": null,
+    "customer_country": null,
+    "customer_note": null,
+    "customer_contact_method": "EMAIL",
+    "repairs": [
+      {
+        "repair_id": 1,
+        "product_id": 1,
+        "cost": 20.00,
+        "duration": 30
+      }
+    ]
+  }
 
   repairWidgetAPI
-    .postAppointmentQuote(store_id, location_id, type)
+    .postAppointmentQuote(store_id, location_id, data)
     .then((res:any) => {
       console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
     })
