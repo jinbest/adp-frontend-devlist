@@ -29,6 +29,7 @@ module.exports = {
         "@typescript-eslint/unbound-method": "off",
         "react/no-unescaped-entities": "off",
         "@typescript-eslint/no-unsafe-return": "off",
+        "no-extra-boolean-cast": "off",
         "@typescript-eslint/no-this-alias": [
             "error",
             {
