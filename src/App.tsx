@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat, GetUserLocation } from "./components"
+import { Footer, Header, Chat } from "./components"
 import { Home } from "./pages/home/"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Provider } from "mobx-react"
@@ -112,8 +112,7 @@ function App(): JSX.Element {
                 <BaseRouter />
                 <Chat subDomain={subDomain} features={publicFeatures} />
                 {footerStatus && <Footer subDomain={subDomain} features={publicFeatures} />}
-            </Router>
-            <GetUserLocation />
+            </Router>            
         </LangProvider>
     )
 }

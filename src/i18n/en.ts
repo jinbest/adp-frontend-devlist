@@ -133,6 +133,10 @@ export class LanguageKeys {
   public SEE_ALL_PRODUCTS = 'See All Products';
   public SEE_HOME = 'See Home';
   public HOW_TO_SELL = 'How to Sell';
+  public INPUT_YOUR_INFO = 'Input Your Info';
+  public INPUT_YOUR_INFO_DESCRIPTION = 'You need to input your data to find the stores';
+  public SUBMIT = 'Submit';
+  public STORE = 'Store';
 
   /* Repair-widget Text */
   public NEXT = 'Next';
@@ -189,6 +193,7 @@ export class LanguageKeys {
   public COUNTRY = 'Country*';
   public CITY = 'City*';
   public PROVINCE = 'Province*';
+  public STATE = 'State*';
   public POSTAL_CODE = 'Postal Code*';
   public SELECT_MAIN_IN_ADDRESS = 'Select Mail-In Address';
   public SCHEDULE_A_PICK_UP = 'Schedule a Pick-Up';

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Geocode from "react-geocode";
 import { findLocationAPI } from "../services/";
 import { storesDetails } from '../store/';
@@ -44,11 +44,15 @@ const usePos = () => {
   return { lat: pos.lat, long: pos.long }
 }
 
-const findGeoLoc = () => {
+const findGeoLoc = (geoPos: any) => {
   /* geoData should be made from mobx-store later */
-  const geoData:any = {
-    longitude: -97.211811,
-    latitude: 49.865759
+  // const geoData:any = {
+  //   longitude: -97.211811,
+  //   latitude: 49.865759
+  // }
+  const geoData: any = {
+    longitude: geoPos.long,
+    latitude: geoPos.lat
   }
   findLocationAPI
     .findGeoLocation(1, geoData)
@@ -81,14 +85,19 @@ const findAddLoc = () => {
     });
 }
 
-findGeoLoc();
-findAddLoc();
+// findAddLoc();
 
 /* This component does not rendered now, 
    but should be edited later if need to render. */
 const GetUserLocation = () => {
   const pos = usePos();
   // console.log(pos);
+
+  useEffect(() => {
+    if (pos.lat) {
+      findGeoLoc(pos);
+    }
+  }, [pos])
 
   return (
     <div style={{display: 'none'}}>
