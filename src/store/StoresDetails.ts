@@ -7,6 +7,8 @@ export class StoresDetails {
   @observable storesDetails: any = {};
   @observable findGeoLocation: any[] = [];
   @observable findAddLocation: any[] = [];
+  @observable cntUserLocation: any[] = [];
+  @observable cntUserLocationSelected: boolean = false;
 
   constructor() {
     this.load();
@@ -20,6 +22,8 @@ export class StoresDetails {
         storesDetails: this.storesDetails,
         findGeoLocation: this.findGeoLocation,
         findAddLocation: this.findAddLocation,
+        cntUserLocation: this.cntUserLocation,
+        cntUserLocationSelected: this.cntUserLocationSelected,
       })
     )
 
@@ -42,6 +46,18 @@ export class StoresDetails {
   @action
   changeFindAddLocation = (findAddLocation: any[]) => {
     this.findAddLocation = findAddLocation
+    this.save()
+  }
+
+  @action
+  changeCntUserLocation = (cntUserLocation: any[]) => {
+    this.cntUserLocation = cntUserLocation
+    this.save()
+  }
+
+  @action
+  changeCntUserLocationSelected = (cntUserLocationSelected: boolean) => {
+    this.cntUserLocationSelected = cntUserLocationSelected
     this.save()
   }
 
