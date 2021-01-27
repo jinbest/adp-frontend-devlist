@@ -9,7 +9,8 @@ import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
+const apexDomain = domainMatch ? domainMatch[0] : "localhost"
+const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
 //     "geebo",
@@ -20,7 +21,7 @@ const subDomain = domainMatch ? domainMatch[0].split(".")[0] : "localhost"
 //     "pradoWireless",
 //     "wirelessRev",
 //     "dccmtx",
-//     "mtlcmtx"
+//     "mtlcmtx",
 // ]
 // const subDomain = devicelist[8]
 
@@ -53,8 +54,7 @@ function App(): JSX.Element {
 
     useEffect(() => {
         appLoadAPI
-            .getStoresDetail(subDomain, false)
-            // .getStoresDetail('dccmtx', false)
+            .getStoresDetail(apexDomain, false)
             .then((res: any) => {
                 console.log("api-appLoadAPI => store details:", res.data)
                 storesDetails.changestoresDetails(res.data)
@@ -112,7 +112,7 @@ function App(): JSX.Element {
                 <BaseRouter />
                 <Chat subDomain={subDomain} features={publicFeatures} />
                 {footerStatus && <Footer subDomain={subDomain} features={publicFeatures} />}
-            </Router>            
+            </Router>
         </LangProvider>
     )
 }
