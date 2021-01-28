@@ -6,6 +6,8 @@ export class RepairWidData {
 
   @observable repairWidgetLookup: any = {};
   @observable repairDeliveryMethod: any[] = [];
+  @observable apiDropOffDevices: any = {};
+  @observable receiveQuote: any = {};
 
   constructor() {
     this.load();
@@ -18,6 +20,8 @@ export class RepairWidData {
       JSON.stringify({
         repairWidgetLookup: this.repairWidgetLookup,
         repairDeliveryMethod: this.repairDeliveryMethod,
+        apiDropOffDevices: this.apiDropOffDevices,
+        receiveQuote: this.receiveQuote,
       })
     )
 
@@ -34,6 +38,18 @@ export class RepairWidData {
   @action
   changeRepairWidDeliveryMethod = (repairDeliveryMethod: any[]) => {
     this.repairDeliveryMethod = repairDeliveryMethod
+    this.save()
+  }
+
+  @action
+  changeApiDropOffDevices = (apiDropOffDevices: any) => {
+    this.apiDropOffDevices = apiDropOffDevices
+    this.save()
+  }
+
+  @action
+  changeReceiveQuote = (receiveQuote: any) => {
+    this.receiveQuote = receiveQuote
     this.save()
   }
 

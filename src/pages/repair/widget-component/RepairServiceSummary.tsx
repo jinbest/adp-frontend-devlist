@@ -4,6 +4,8 @@ import { Card } from './'
 import { Button } from '../../../components'
 import { useT } from '../../../i18n/index'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
+import { repairWidgetStore, storesDetails } from '../../../store'
+import { repairWidgetAPI } from '../../../services'
 
 type Props = {
   repairWidgetData: any;
@@ -25,19 +27,58 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
 
   const t = useT();
 
+  const handleSubmit = () => {
+    const tp: string = (code === 'MAIL_IN') ? 'QUOTE' : 'APPOINTMENT';
+    const apiData:any = {
+      "store_id": storesDetails.store_id,
+      "location_id": storesDetails.location_id,
+      "customer_id": 1,
+      "type": tp,
+      "is_voided": storesDetails.is_voided,
+      "delivery_method": repairWidgetStore.deliveryMethod.code,
+      "customer_email": repairWidgetStore.contactDetails.email,
+      "customer_first_name": repairWidgetStore.contactDetails.firstName,
+      "customer_last_name": repairWidgetStore.contactDetails.lastName,
+      "customer_phone": repairWidgetStore.contactDetails.phone,
+      "customer_address_1": repairWidgetStore.contactDetails.address1,
+      "customer_address_2": repairWidgetStore.contactDetails.address2,
+      "customer_city": repairWidgetStore.contactDetails.city,
+      "customer_state": repairWidgetStore.contactDetails.province,
+      "customer_postcode": repairWidgetStore.contactDetails.postalCode,
+      "customer_country": repairWidgetStore.contactDetails.country,
+      "customer_note": null,
+      "customer_contact_method": repairWidgetStore.receiveQuote.code,
+      "repairs": [{
+        "repair_id": 1,
+        "product_id": 1,
+        "cost": 20.00,
+        "duration": 30
+      }]
+    }
+    repairWidgetAPI
+      .postAppointmentQuote(apiData)
+      .then((res:any) => {
+        console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
+        if (code === 'MAIL_IN' && features.includes('FRONTEND_REPAIR_QUOTE')) {
+          handleStep(11);
+        } else if (code !== 'MAIL_IN' && features.includes('FRONTEND_REPAIR_APPOINTMENT')) {
+          ChooseNextStep();
+        } else {
+          return;
+        }
+      })
+      .catch((error) => {
+        console.log("Error in post Appointment and Quote", error);
+      });
+  }
+
   const ChooseNextStep = () => {
     handleStep(step+1)
   }
 
   const onKeyPress = useCallback((event) => {
     if(event.key === 'Enter' && step === 9) {
-      if (code === 'MI' && features.includes('FEATURE_REPAIR_QUOTE')) {
-        handleStep(11);
-      } else if (code !== 'MI' && features.includes('FEATURE_REPAIR_APPOINTMENT')) {
-        ChooseNextStep();
-      } else {
-        return;
-      }
+      handleSubmit();
     }
   }, [step, code]);
 
@@ -73,13 +114,13 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
             <Grid item xs={12} sm={6} className={subDomain + '-every-container'}>
               <Typography className={subDomain + '-topic'}>{t(publicText.deliveryMethod)}</Typography>
               <Typography className={subDomain + '-details'} style={{color: textThemeCol}}>{t(repairWidgetData.deliveryMethod.method)}</Typography>
-              {code === 'PU' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('PICK_UP_FROM')}</Typography>}
-              {code === 'MI' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('SEND_TO')}</Typography>}
-              {code !== 'MI' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].address}</Typography>}
-              {code === 'MI' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].sendTo}</Typography>}
-              {code === 'MI' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('RETURN_TO')}</Typography>}
-              {code === 'MI' && <Typography className={subDomain + '-details'}>{repairWidgetData.contactDetails.address1}</Typography>}
-              {code !== 'MI' && <Typography className={subDomain + '-details'}>
+              {code === 'PICK_UP' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('PICK_UP_FROM')}</Typography>}
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('SEND_TO')}</Typography>}
+              {code !== 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].address}</Typography>}
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].sendTo}</Typography>}
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('RETURN_TO')}</Typography>}
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.contactDetails.address1}</Typography>}
+              {code !== 'MAIL_IN' && <Typography className={subDomain + '-details'}>
                 {
                   repairWidgetData.bookData[code].week + ', ' + 
                   repairWidgetData.bookData[code].month + ' ' + 
@@ -117,26 +158,26 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
             })}
           </div>
           <div className={subDomain + '-repair-choose-device-container'}>            
-            {code !== 'MI' && 
+            {code !== 'MAIL_IN' && 
               <FeatureToggles features={features}>
                 <Feature
-                  name='FEATURE_REPAIR_APPOINTMENT'
+                  name='FRONTEND_REPAIR_APPOINTMENT'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={publicText.scheduleAppointment} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
-                    height='30px' fontSize='17px' margin='0 auto' onClick={ChooseNextStep} subDomain={subDomain}
+                    height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain}
                   />}
                 />
               </FeatureToggles>
             }
-            {code === 'MI' && 
+            {code === 'MAIL_IN' && 
               <FeatureToggles features={features}>
                 <Feature
-                  name='FEATURE_REPAIR_QUOTE'
+                  name='FRONTEND_REPAIR_QUOTE'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={publicText.requestQuote} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
-                    height='30px' fontSize='17px' margin='0 auto' onClick={()=>handleStep(11)} subDomain={subDomain}
+                    height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain}
                   />}
                 />
               </FeatureToggles>

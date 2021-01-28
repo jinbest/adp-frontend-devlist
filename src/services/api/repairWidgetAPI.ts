@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import Config from '../../config/config';
 
 class RepairWidgetAPI {
@@ -6,7 +6,7 @@ class RepairWidgetAPI {
   getRepairLookup = (locale: string, types:any[]) => {
     let type:string = '';
     for (let i = 0; i < types.length; i++) {
-      i === 0 ? type += `type[]=${types[i]}` : type += `&type[]=${types[i]}`;
+      i === 0 ? type += `types=${types[i]}` : type += `&types=${types[i]}`;
     }
     const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/${locale}/repair/lookups?${type}`;
     return new Promise((resolve, reject) => {
@@ -57,8 +57,7 @@ class RepairWidgetAPI {
     name_sort_order: string,
     is_active: boolean
   ) => {
-    const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/${locale}/store/${store_id}/repair?per_page=${per_page}?page=${page}?include_voided=${included_voided}?product_id=${product_id}?name_sort_order=${name_sort_order}?is_active=${is_active}`;
-    // console.log(apiURL);
+    const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/${locale}/store/${store_id}/repair?per_page=${per_page}&page=${page}&include_voided=${included_voided}&product_id=${product_id}&name_sort_order=${name_sort_order}&is_active=${is_active}`;
     return new Promise((resolve, reject) => {
       axios
         .get(`${apiURL}`)
@@ -77,10 +76,9 @@ class RepairWidgetAPI {
     });
   }
 
-  postAppointmentQuote = (store_id:number, location_id:number, type:string) => {
-    const apiURL:string = `${Config.REPAIR_SERVICE_API_URL}dc/store/${store_id}/repair/location/${location_id}/appointment`;
-    /* Here, type should be 'QUOTE' or 'APPOINTMENT'. */
-    const data:any = { type: type };
+  postAppointmentQuote = (data:any) => {
+    const apiURL:string = `${Config.REPAIR_SERVICE_API_URL}dc/store/${data.store_id}/repair/location/${data.location_id}/appointment`;
+    
     return new Promise((resolve, reject) => {
       axios
         .post(`${apiURL}`, data)

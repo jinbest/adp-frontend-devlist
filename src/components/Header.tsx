@@ -113,11 +113,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
             <FeatureToggles features={feats}>
               <Feature
-                name={'FEATURE_USER_ACCOUNT'}
+                name={'FRONTEND_USER_ACCOUNT'}
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
                   <Feature
-                    name={'FEATURE_USER_LOGIN'}
+                    name={'FRONTEND_USER_LOGIN'}
                     inactiveComponent={()=><></>}
                     activeComponent={()=><BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} trans={true} />}
                   />
@@ -132,11 +132,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
         
         <FeatureToggles features={feats}>
           <Feature
-            name={'FEATURE_SEARCH'}
+            name={'SEARCH'}
             inactiveComponent={()=><></>}
             activeComponent={()=>
               <Feature
-                name={'FEATURE_GLOBAL_SEARCH'}
+                name={'FRONTEND_GLOBAL_SEARCH'}
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
                   <div className={subDomain + '-search-div'} id='header-search'>
@@ -164,7 +164,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           </ul>
           <FeatureToggles features={feats}>
             <Feature
-              name='FEATURE_FIND_A_STORE'
+              name='FRONTEND_FIND_A_STORE'
               inactiveComponent={()=><></>}
               activeComponent={()=>
                 <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} features={feats} />
@@ -173,7 +173,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           </FeatureToggles>
           <FeatureToggles features={feats}>
             <Feature
-              name='FEATURE_SHOP'
+              name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
               activeComponent={()=><img src={data.avatarData.store} className={subDomain + '-navlink-avatar-store'} />}
             />
@@ -187,7 +187,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           }
           <FeatureToggles features={feats}>
             <Feature
-              name='FEATURE_SHOP'
+              name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
               activeComponent={()=><img src={data.avatarData.storeBlue} style={{height: '35px'}}/>}
             />
@@ -204,7 +204,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           userStatus && menuStatus ? 
           <FeatureToggles features={feats}>
             <Feature
-              name='FEATURE_SEARCH'
+              name='SEARCH'
               inactiveComponent={()=><></>}
               activeComponent={()=>
                 <div className={subDomain + '-mobile-search-div'}>
@@ -287,11 +287,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                 })}
                 <FeatureToggles features={feats}>
                   <Feature
-                    name={'FEATURE_USER_ACCOUNT'}
+                    name={'FRONTEND_USER_ACCOUNT'}
                     inactiveComponent={()=><></>}
                     activeComponent={()=>
                       <Feature
-                        name={'FEATURE_USER_SIGNUP'}
+                        name={'FRONTEND_USER_SIGNUP'}
                         inactiveComponent={()=><></>}
                         activeComponent={()=>
                           <a href='#' style={{color: data.colorPalle.textThemeCol}}>{t('SIGN_OUT')}</a>

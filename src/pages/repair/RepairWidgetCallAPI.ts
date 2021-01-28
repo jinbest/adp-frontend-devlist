@@ -1,5 +1,5 @@
 import { repairWidgetAPI } from '../../services/'
-import { repairWidData } from '../../store/'
+import { repairWidData, repairWidgetStore, storesDetails } from '../../store/'
 
 function getRepairLookupAPI() {
   const lookupTypes:any[] = [
@@ -15,17 +15,43 @@ function getRepairLookupAPI() {
       console.log('api-repairWidgetAPI => Repair-widget Lookup:', res.data);
       repairWidData.changeRepairWidgetLookup(res.data);
 
-      /* --- dropOffDevice Data on mockData.js should be updated from api like below. ---
-        const apiDropOffDevicce:any = {
-          title: 'HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE',
-          types: [      
-            { name: 'mail-in', code: 'MI', bg: 'white', col: 'black', selected: false },
-            { name: 'pick-up', code: 'PU', bg: 'white', col: 'black', selected: false },
-            { name: 'onsite', code: 'ON', bg: 'white', col: 'black', selected: false },
-          ],
-        };
-        repairWidData.changeRepairWidgetLookup(apiDropOffDevicce);
-      --------------------------------------------------------------------------------- */
+      /* repair_delivery_method */
+      const repair_types:any[] = [];
+      for (let i = 0; i < res.data.repair_delivery_method.length; i++) {
+        repair_types.push(
+          {
+            name: res.data.repair_delivery_method[i].code_text,
+            code: res.data.repair_delivery_method[i].code,
+            bg: 'white',
+            col: 'black',
+            selected: false
+          }
+        )
+      }
+      const apiDropOffDevices:any = {
+        title: 'HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE',
+        types: repair_types,
+      };
+      repairWidData.changeApiDropOffDevices(apiDropOffDevices);
+
+      /* repair_contact_method */
+      const repair_contact_types:any[] = [];
+      for (let i = 0; i < res.data.repair_contact_method.length; i++) {
+        repair_contact_types.push(
+          {
+            name: res.data.repair_contact_method[i].code_text,
+            code: res.data.repair_contact_method[i].code,
+            bg: 'white',
+            col: 'black',
+            selected: false
+          }
+        )
+      }
+      const receiveQuote:any = {
+        title: 'HOW_WOULD_YOU_LIKE_TO_RECEIVE_YOUR_QUOTE',
+        types: repair_contact_types,
+      };
+      repairWidData.changeReceiveQuote(receiveQuote);
 
     })
     .catch((error) => {
@@ -51,7 +77,7 @@ function getDeliveryMethodsAPI() {
 function getRepairsOfferedDeviceAPI() {
   const locale: string = window.localStorage.getItem('cntLang') || 'en';
   const store_id: number = 1;
-  const per_page: number = 10;
+  const per_page: number = 20;
   const page: number = 1;
   const included_voided: boolean = false;
   const product_id: number = 1;
@@ -68,13 +94,39 @@ function getRepairsOfferedDeviceAPI() {
     });
 }
 
-function postAppointmentQuoteAPI() {
-  const store_id: number = 1;
-  const location_id: number = 1;
-  const type: string = 'QUOTE';
+function postAppointmentQuoteAPI(type: string, customerData: any) {
+  storesDetails.changeType(type);
+  const data:any = {
+    "store_id": storesDetails.store_id,
+    "location_id": storesDetails.location_id,
+    "customer_id": 1,
+    "type": type,  /* type is 'QUOTE' or 'APPOINTMENT' */
+    "is_voided": storesDetails.is_voided,
+    "delivery_method": repairWidgetStore.deliveryMethod.code,
+    "customer_email": customerData.email,
+    "customer_first_name": customerData.first_name,
+    "customer_last_name": customerData.last_name,
+    "customer_phone": customerData.phone,
+    "customer_address_1": customerData.address_1,
+    "customer_address_2": customerData.address_2,
+    "customer_city": customerData.city,
+    "customer_state": customerData.state,
+    "customer_postcode": customerData.postCode,
+    "customer_country": customerData.country,
+    "customer_note": customerData.note,
+    "customer_contact_method": repairWidgetStore.receiveQuote.code,
+    "repairs": [
+      {
+        "repair_id": 1,
+        "product_id": 1,
+        "cost": 20.00,
+        "duration": 30
+      }
+    ]
+  }
 
   repairWidgetAPI
-    .postAppointmentQuote(store_id, location_id, type)
+    .postAppointmentQuote(data)
     .then((res:any) => {
       console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
     })

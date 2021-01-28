@@ -63,7 +63,7 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
   }, [tzIndex]);
 
   useEffect(() => {
-    if (code === 'MI') {
+    if (code === 'MAIL_IN') {
       const cntMailinOption:any[] = data.select.location.mailInOption;
       setSendToAddress(cntMailinOption[mailInChecked].name);
       for (let i = 0; i < cntMailinOption.length; i++) {
@@ -73,7 +73,7 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
         }
       }
     } 
-    else if (code === 'PU' || code === 'ON') {
+    else if (code === 'PICK_UP' || code === 'ONSITE') {
       setAddress(repairWidgetData.bookData[code].address);
     } 
     else {
@@ -103,13 +103,13 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
   }
 
   const ChooseNextStep = () => {
-    if (code === 'MI') {
+    if (code === 'MAIL_IN') {
       handleChangeChooseData(7, { code: code, data: { sendTo: sendToAddress } });
     } else {
       handleChangeChooseData(7, {
         code: code, 
         data: { 
-          address: code === 'CU' ? selectVal : address, 
+          address: (code === 'CURBSIDE' || code === 'WALK_IN') ? selectVal : address, 
           time: time, 
           day: day, 
           month: MONTHS[month], 
@@ -136,10 +136,10 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
 
   useEffect(() => {
     setDisableStatus(true);
-    if (code === 'MI' && sendToAddress) {
+    if (code === 'MAIL_IN' && sendToAddress) {
       setDisableStatus(false);
     }
-    if (code !== 'MI' && (address || selectVal) && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
+    if (code !== 'MAIL_IN' && (address || selectVal) && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
       setDisableStatus(false);
     }
   }, [code, sendToAddress, address, selectVal, time, day, month, year, week])
@@ -159,9 +159,9 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
             <div className={subDomain + '-repair-choose-device-container'}>
               <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.location.title[code])}</Typography>
               <div style={{marginBottom: '20px'}}>
-                {code === 'CU' && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
-                {(code === 'PU' || code === 'ON') && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} subDomain={subDomain} />}
-                {code === 'MI' && <div>
+                {(code === 'CURBSIDE' || code === 'WALK_IN') && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
+                {(code === 'PICK_UP' || code === 'ONSITE') && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} subDomain={subDomain} />}
+                {code === 'MAIL_IN' && <div>
                   {data.select.location.mailInOption.map((item:any, index:number) => {
                     return (
                       <div key={index} className={subDomain + '-select-mail-in-radio'}>
@@ -190,8 +190,8 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
                   })}
                 </div>}
               </div>
-              {code !== 'MI' && <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.time.title[code])}</Typography>}
-              {code !== 'MI' && <Grid container spacing={2}>
+              {code !== 'MAIL_IN' && <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.time.title[code])}</Typography>}
+              {code !== 'MAIL_IN' && <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <CustomCalendar subDomain={subDomain} handleParentDate={setDate} timezone={timezone} />
                 </Grid>

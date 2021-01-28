@@ -23,8 +23,8 @@ const Chat = ({subDomain, features}: Props) => {
   useEffect(() => {
     setFeatures([]);
     for (let i = 0; i < features.length; i++) {
-      if (features[i].flag === 'FEATURE_CHAT' && features[i].isActive) {
-        setFeatures(['FEATURE_CHAT']);
+      if (features[i].flag === 'FRONTEND_CHAT' && features[i].isActive) {
+        setFeatures(['FRONTEND_CHAT']);
       }
     }
   }, [features]);
@@ -50,7 +50,7 @@ const Chat = ({subDomain, features}: Props) => {
     <div className={subDomain + '-chat-widget-container'}>
       <FeatureToggles features={feats}>
         <Feature
-          name='FEATURE_CHAT'
+          name='FRONTEND_CHAT'
           inactiveComponent={()=><></>}
           activeComponent={()=>
             <Widget 

@@ -85,7 +85,7 @@ const Footer = ({subDomain, features}: Props) => {
             </Grid>
             <FeatureToggles features={feats}>
               <Feature
-                name={'FEATURE_ONLINE_PURCHASE'}
+                name={'FRONTEND_ONLINE_PURCHASE'}
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
                   <div className={subDomain + "-footer-images-div"}>
@@ -123,7 +123,7 @@ const Footer = ({subDomain, features}: Props) => {
           </Grid>
           <FeatureToggles features={feats}>
             <Feature
-              name={'FEATURE_ONLINE_PURCHASE'}
+              name={'FRONTEND_ONLINE_PURCHASE'}
               inactiveComponent={()=><></>}
               activeComponent={()=>
                 <Grid item xs={12} md={8}>

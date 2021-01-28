@@ -91,7 +91,6 @@ const findAddLoc = () => {
    but should be edited later if need to render. */
 const GetUserLocation = () => {
   const pos = usePos();
-  // console.log(pos);
 
   useEffect(() => {
     if (pos.lat) {

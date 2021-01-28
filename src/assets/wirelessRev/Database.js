@@ -93,9 +93,9 @@ const cardMobileData = {
     gridMD: 3,
     heart: heart,
     data: [
-        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FEATURE_TRADE' },
-        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FEATURE_REPAIR' },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FEATURE_SHOP' },
+        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FRONTEND_TRADE' },
+        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FRONTEND_REPAIR' },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY' },
         { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE' },
     ]
 }
@@ -177,8 +177,8 @@ const colorPalle = {
 }
 
 const navItemsData = [
-    { href: "#", text: "TRADE", isActive: false, flag: 'FEATURE_TRADE' },
-    { href: "/repair", text: "REPAIR", isActive: false, flag: 'FEATURE_REPAIR' },
+    { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
+    { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
     { href: "#", text: "SHOP", isActive: false, flag: 'FRONTEND_MEGA_MENU' },
     { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
     { href: "#", text: "BUSINESS", isActive: false, flag: 'ALWAYS_TRUE' },
@@ -267,14 +267,14 @@ const avatarData = {
 
 const mobileNavItemData = {
     left: [
-        {text: 'TRADE', href: '#', flag: 'FEATURE_TRADE'},
-        {text: 'REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
+        {text: 'TRADE', href: '#', flag: 'FRONTEND_TRADE'},
+        {text: 'REPAIR', href: '/repair', flag: 'FRONTEND_REPAIR'},
         {text: 'SHOP', href: '#', flag: 'FRONTEND_MEGA_MENU'},
         {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'INSURANCE', href: '#', flag: 'ALWAYS_TRUE'},
-        {text: 'FIND_A_STORE', href: '#', flag: 'FEATURE_FIND_A_STORE'},
+        {text: 'FIND_A_STORE', href: '#', flag: 'FRONTEND_FIND_A_STORE'},
         {text: 'CONTACT_US', href: '#', flag: 'ALWAYS_TRUE'},
     ],
     right: [
@@ -287,11 +287,11 @@ const mobileNavItemData = {
 }
 
 const userNavItemData = [
-    {text: 'MY_ACCOUNT', href: '#', flag: 'FEATURE_USER_ACCOUNT'},
-    {text: 'TRACK_REPAIR', href: '/repair', flag: 'FEATURE_REPAIR'},
+    {text: 'MY_ACCOUNT', href: '#', flag: 'FRONTEND_USER_ACCOUNT'},
+    {text: 'TRACK_REPAIR', href: '/repair', flag: 'FRONTEND_REPAIR'},
     {text: 'FILE_A_CLAIM', href: '#', flag: 'ALWAYS_TRUE'},
     {text: 'ORDERS', href: '#', flag: 'ALWAYS_TRUE'},
-    {text: 'TRADE_IN', href: '#', flag: 'FEATURE_TRADE'},
+    {text: 'TRADE_IN', href: '#', flag: 'FRONTEND_TRADE'},
 ]
 
 const arrowData = {

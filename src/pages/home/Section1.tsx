@@ -24,13 +24,13 @@ const Section1 = ({subDomain, features}: Props) => {
     const cntFeature:any[] = [], cntFeatSearch:any[] = [];
     let cntCustomTitle:string = '';    
     for (let j = 0; j < features.length; j++) {
-      if (features[j].flag === 'FEATURE_TRADE' && features[j].isActive) {
+      if (features[j].flag === 'FRONTEND_TRADE' && features[j].isActive) {
         cntCustomTitle += cntCustomTitle ? ', ' + t('TRADE') : t('TRADE');
-      } else if (features[j].flag === 'FEATURE_REPAIR' && features[j].isActive) {
+      } else if (features[j].flag === 'FRONTEND_REPAIR' && features[j].isActive) {
         cntCustomTitle += cntCustomTitle ? ', ' + t('REPAIR') : t('REPAIR');
-      } else if (features[j].flag === 'FEATURE_SHOP' && features[j].isActive) {
+      } else if (features[j].flag === 'FRONTEND_BUY' && features[j].isActive) {
         cntCustomTitle += cntCustomTitle ? ', ' + t('BUY') : t('BUY');
-      } else if (features[j].flag === 'FEATURE_SEARCH' && features[j].isActive) {
+      } else if (features[j].flag === 'SEARCH' && features[j].isActive) {
         cntFeatSearch.push(features[j].flag);
       }
       for (let i = 0; i < cntCardMobileData.length; i++) {
@@ -87,7 +87,7 @@ const Section1 = ({subDomain, features}: Props) => {
 
         <FeatureToggles features={featSearch}>
           <Feature
-            name={'FEATURE_SEARCH'}
+            name={'SEARCH'}
             inactiveComponent={()=><></>}
             activeComponent={()=>
               <Box className={subDomain + '-sec1-search_input'}>

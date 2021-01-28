@@ -5,7 +5,8 @@ import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
-import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
+import { repairWidData } from '../../../store/'
 
 type Props = {
   data: any;
@@ -110,7 +111,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 4) {
-      const cntTypes:any[] = data.types;
+      const cntTypes:any[] = repairWidData.apiDropOffDevices.types.length ? repairWidData.apiDropOffDevices.types : data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -123,7 +124,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 5) {
-      const cntTypes:any[] = data.types;
+      const cntTypes:any[] = repairWidData.receiveQuote.types.length ? repairWidData.receiveQuote.types : data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -220,7 +221,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               {step < 3 && <div style={{width: '95%'}}>
                 <FeatureToggles features={features}>
                   <Feature
-                    name={'FEATURE_SEARCH'}
+                    name={'SEARCH'}
                     inactiveComponent={()=><></>}
                     activeComponent={()=>
                       <Search 

@@ -70,6 +70,7 @@ function makeLocations(data:any[]) {
       location_name: data[i].location_name,
       address_1: data[i].address_1,
       distance: data[i].distance / 1000 + 'km',
+      location_id: data[i].id,
       hours: hours,
       days: weekDays
     }
@@ -94,6 +95,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   const handleLocSelect = (index:number) => {
     const cntLocation:any = locations[index];
     setLocations([cntLocation]);
+    storesDetails.changeLocationID(cntLocation.location_id);
     setLocSelStatus(true);
   }
 
@@ -131,10 +133,14 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
         .findGeoLocation(1, pos)
         .then((res:any) => {
           console.log('api-findLocationAPI => findGeoLoc:', res.data);
-          setLocations(makeLocations(res.data));
-          storesDetails.changeFindGeoLocation(res.data);
+          if (res.data.length) {
+            setLocations(makeLocations(res.data));
+            storesDetails.changeFindGeoLocation(res.data);
+          } else {
+            setRequireUserInfo(true);
+          }          
         })
-        .catch((error) => {
+        .catch((error) => {          
           console.log('Error to find location with GeoCode', error);
         });
     }
@@ -156,8 +162,10 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
         .findAddLocation(1, userInfo)
         .then((res:any) => {
           console.log('api-findLocationAPI => findAddLoc:', res.data);
-          setLocations(makeLocations(res.data));
-          storesDetails.changeFindAddLocation(res.data);
+          if (res.data.length) {
+            setLocations(makeLocations(res.data));
+            storesDetails.changeFindAddLocation(res.data);
+          }          
         })
         .catch((error) => {
           console.log('Error to find location with Address', error);
@@ -171,19 +179,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   }
 
   const handleBookRepair = () => {
-    repairWidgetStore.changeDeviceBrand([]);
-    repairWidgetStore.changeDeviceModel([]);
-    repairWidgetStore.changeChooseRepair([]);
-    repairWidgetStore.changeDeviceCounter(0);
-    repairWidgetStore.changeDeliveryMethod({});
-    repairWidgetStore.changeReceiveQuote({});
-    repairWidgetStore.changeContactDetails({});
-    repairWidgetStore.changeBookData({ code: 'MI', data: {} });
-    repairWidgetStore.changeBookData({ code: 'PU', data: {} });
-    repairWidgetStore.changeBookData({ code: 'CU', data: {} });
-    repairWidgetStore.changeBookData({ code: 'ON', data: {} });
-    repairWidgetStore.changeMessage('');
-    repairWidgetStore.changeCntStep(0);
+    repairWidgetStore.init();
   }
 
   return (
@@ -238,7 +234,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
             </div>            
             <FeatureToggles features={features}>
               <Feature
-                name='FEATURE_REPAIR'
+                name='FRONTEND_REPAIR'
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
                   <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={handleBookRepair}>
