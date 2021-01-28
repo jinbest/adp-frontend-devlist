@@ -151,6 +151,7 @@ const repairWidget = {
       'MAIL_IN': 'SELECT_MAIN_IN_ADDRESS', 
       'PICK_UP': 'SCHEDULE_A_PICK_UP', 
       'CURBSIDE': 'BOOK_YOUR_TIME', 
+      'WALK_IN': 'BOOK_YOUR_TIME', 
       'ONSITE': 'BOOK_YOUR_TIME'
     },
     select: {
@@ -159,6 +160,7 @@ const repairWidget = {
           'MAIL_IN': 'PLEASE_SELECT_PREFERRED_SERVICE_LOCATION', 
           'PICK_UP': 'PLEASE_ENTER_YOUR_ADDRESS', 
           'CURBSIDE': 'SELECT_PREFERRED_LOCATION', 
+          'WALK_IN': 'SELECT_PREFERRED_LOCATION', 
           'ONSITE': 'ENTER_YOUR_RESIDENTIAL_ADDRESS'
         },
         option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
@@ -169,6 +171,7 @@ const repairWidget = {
           'MAIL_IN': 'PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT', 
           'PICK_UP': 'SELECT_A_PICK_UP_TIME', 
           'CURBSIDE': 'SELECT_CURBSIDE_DROP_OFF_TIME', 
+          'WALK_IN': 'SELECT_CURBSIDE_DROP_OFF_TIME', 
           'ONSITE': 'SELECT_VISIT_TIME'
         },
         workingHours: [

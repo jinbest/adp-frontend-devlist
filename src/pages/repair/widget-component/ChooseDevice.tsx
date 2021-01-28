@@ -111,7 +111,17 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 4) {
-      const cntTypes:any[] = repairWidData.apiDropOffDevices.types.length ? repairWidData.apiDropOffDevices.types : data.types;
+      const cntTypes:any[] = [];
+      const cntDeliverySets:any[] = repairWidData.apiDropOffDevices.types.length ? repairWidData.apiDropOffDevices.types : data.types;
+      const cntAvailableDeliveryMethod:any[] = repairWidData.repairDeliveryMethod;
+      for (let i = 0; i < cntDeliverySets.length; i++) {
+        for (let j = 0; j < cntAvailableDeliveryMethod.length; j++) {
+          if (cntDeliverySets[i].code === cntAvailableDeliveryMethod[j].code) {
+            cntTypes.push(cntDeliverySets[i]);
+            break;
+          }
+        }
+      }
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';

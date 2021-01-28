@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import { Typography, Grid } from '@material-ui/core'
 import { Card } from './'
 import { Button } from '../../../components'
@@ -24,10 +24,11 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const publicText = mockData.repairWidget.publicText;
   const textThemeCol = mainData.colorPalle.textThemeCol;
-
+  const [disableStatus, setDisableStatus] = useState(false);
   const t = useT();
 
   const handleSubmit = () => {
+    setDisableStatus(true);
     const tp: string = (code === 'MAIL_IN') ? 'QUOTE' : 'APPOINTMENT';
     const apiData:any = {
       "store_id": storesDetails.store_id,
@@ -68,6 +69,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
         }
       })
       .catch((error) => {
+        setDisableStatus(false);
         console.log("Error in post Appointment and Quote", error);
       });
   }
@@ -165,7 +167,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={publicText.scheduleAppointment} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
-                    height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain}
+                    height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain} disable={disableStatus}
                   />}
                 />
               </FeatureToggles>
@@ -177,7 +179,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={publicText.requestQuote} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
-                    height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain}
+                    height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain} disable={disableStatus}
                   />}
                 />
               </FeatureToggles>

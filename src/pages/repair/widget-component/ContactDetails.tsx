@@ -52,7 +52,8 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     setPostalCode(repairWidgetData.contactDetails.postalCode);
   }, [repairWidgetData, step]);
 
-  const handleButton = (param: string) => {    
+  const handleButton = (param: string) => {   
+    setDisableStatus(true); 
     const tp: string = (param === 'appointment') ? 'APPOINTMENT' : 'QUOTE';    
     const apiData:any = {
       "store_id": storesDetails.store_id,
@@ -104,6 +105,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
         }
       })
       .catch((error) => {
+        setDisableStatus(false);
         console.log("Error in post Appointment and Quote", error);
       });
   }
