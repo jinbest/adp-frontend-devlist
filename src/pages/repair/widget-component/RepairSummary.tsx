@@ -122,25 +122,25 @@ class RepairSummary extends React.Component<Props, MyState> {
               <Typography className={subDomain + '-repair-summary-title'}>
                 <T id={repairWidgetStore.deliveryMethod.method} />
               </Typography>
-              {code === 'PU' && <Typography className={subDomain + '-repair-summary-service'}>
+              {code === 'PICK_UP' && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='PICK_UP_FROM' />
               </Typography>}
-              {code === 'MI' && <Typography className={subDomain + '-repair-summary-service'}>
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='SEND_TO' />
               </Typography>}
-              {code !== 'MI' && <p className={subDomain + '-repair-summary-service-child'}>
+              {code !== 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'}>
                 <T id={repairWidgetStore.bookData[code].address} />
               </p>}
-              {code === 'MI' && <p className={subDomain + '-repair-summary-service-child'} style={{marginBottom: '15px'}}>
+              {code === 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'} style={{marginBottom: '15px'}}>
                 <T id={repairWidgetStore.bookData[code].sendTo} />
               </p>}
-              {code === 'MI' && <Typography className={subDomain + '-repair-summary-service'}>
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-repair-summary-service'}>
                 <T id='RETURN_TO' />
               </Typography>}
-              {code === 'MI' && <p className={subDomain + '-repair-summary-service-child'}>
+              {code === 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'}>
                 <T id={repairWidgetStore.contactDetails.address1} />
               </p>}
-              {code !== 'MI' && <p className={subDomain + '-repair-summary-service-child'}>
+              {code !== 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'}>
                 {
                   repairWidgetStore.bookData[code].week + ', ' + 
                   repairWidgetStore.bookData[code].month + ' ' + 

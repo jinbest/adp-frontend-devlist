@@ -30,7 +30,7 @@ const Section3 = ({subDomain, features}: Props) => {
   return (
     <FeatureToggles features={feats}>
       <Feature
-        name={'FEATURE_ONLINE_PURCHASE'}
+        name={'FRONTEND_ONLINE_PURCHASE'}
         inactiveComponent={()=><></>}
         activeComponent={()=>
           <section className={subDomain + '-sec3-container-parent'}>

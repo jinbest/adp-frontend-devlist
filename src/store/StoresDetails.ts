@@ -10,6 +10,12 @@ export class StoresDetails {
   @observable cntUserLocation: any[] = [];
   @observable cntUserLocationSelected: boolean = false;
 
+  @observable store_id: number = 0;
+  @observable location_id: number = 0;
+  @observable is_voided: boolean = false;
+  @observable customer_id: number = 1;
+  @observable type: string = 'QUOTE'; /* type is 'QUOTE' or 'APPOINTMENT' */
+  
   constructor() {
     this.load();
     autorun(this.save);
@@ -24,6 +30,11 @@ export class StoresDetails {
         findAddLocation: this.findAddLocation,
         cntUserLocation: this.cntUserLocation,
         cntUserLocationSelected: this.cntUserLocationSelected,
+        store_id: this.store_id,
+        location_id: this.location_id,
+        is_voided: this.is_voided,
+        customer_id: this.customer_id,
+        type: this.type,
       })
     )
 
@@ -58,6 +69,36 @@ export class StoresDetails {
   @action
   changeCntUserLocationSelected = (cntUserLocationSelected: boolean) => {
     this.cntUserLocationSelected = cntUserLocationSelected
+    this.save()
+  }
+
+  @action
+  changeStoreID = (store_id: number) => {
+    this.store_id = store_id
+    this.save()
+  }
+
+  @action
+  changeLocationID = (location_id: number) => {
+    this.location_id = location_id
+    this.save()
+  }
+
+  @action
+  changeIsVoided = (is_voided: boolean) => {
+    this.is_voided = is_voided
+    this.save()
+  }
+
+  @action
+  changeCustomerID = (customer_id: number) => {
+    this.customer_id = customer_id
+    this.save()
+  }
+
+  @action
+  changeType = (type: string) => {
+    this.type = type
     this.save()
   }
 

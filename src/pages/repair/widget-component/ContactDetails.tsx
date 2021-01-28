@@ -5,6 +5,8 @@ import { InputComponent, Button, PhoneInput } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
+import { repairWidgetStore, storesDetails } from '../../../store'
+import { repairWidgetAPI } from '../../../services'
 
 type Props = {
   data: any;
@@ -50,31 +52,67 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     setPostalCode(repairWidgetData.contactDetails.postalCode);
   }, [repairWidgetData, step]);
 
-  const handleButton = (param: string) => {
-    handleChangeChooseData(6, { 
-      firstName: firstName, 
-      lastName: lastName, 
-      email: email, 
-      phone: phone,
-      address1: address1,
-      address2: address2,
-      country: country,
-      city: city,
-      province: province,
-      postalCode: postalCode
-    });
-    if (param === 'appointment') {
-      handleStep(step+1);
-    } else {
-      handleStep(11);
+  const handleButton = (param: string) => {    
+    const tp: string = (param === 'appointment') ? 'APPOINTMENT' : 'QUOTE';    
+    const apiData:any = {
+      "store_id": storesDetails.store_id,
+      "location_id": storesDetails.location_id,
+      "customer_id": 1,
+      "type": tp,
+      "is_voided": storesDetails.is_voided,
+      "delivery_method": repairWidgetStore.deliveryMethod.code,
+      "customer_email": email,
+      "customer_first_name": firstName,
+      "customer_last_name": lastName,
+      "customer_phone": phone,
+      "customer_address_1": address1,
+      "customer_address_2": address2,
+      "customer_city": city,
+      "customer_state": province,
+      "customer_postcode": postalCode,
+      "customer_country": country,
+      "customer_note": null,
+      "customer_contact_method": repairWidgetStore.receiveQuote.code,
+      "repairs": [{
+        "repair_id": 1,
+        "product_id": 1,
+        "cost": 20.00,
+        "duration": 30
+      }]
     }
+    repairWidgetAPI
+      .postAppointmentQuote(apiData)
+      .then((res:any) => {
+        console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
+        handleChangeChooseData(6, { 
+          firstName: firstName, 
+          lastName: lastName, 
+          email: email, 
+          phone: phone,
+          address1: address1,
+          address2: address2,
+          country: country,
+          city: city,
+          province: province,
+          postalCode: postalCode
+        });
+        storesDetails.changeType(tp);
+        if (param === 'appointment') {
+          handleStep(step+1);
+        } else {
+          handleStep(11);
+        }
+      })
+      .catch((error) => {
+        console.log("Error in post Appointment and Quote", error);
+      });
   }
 
   const onKeyPress = useCallback((event) => {
     if(event.key === 'Enter' && !disableStatus && step === 6) {
-      if (features.includes('FEATURE_REPAIR_APPOINTMENT') || code === 'MI') {
+      if (features.includes('FRONTEND_REPAIR_APPOINTMENT') || code === 'MAIL_IN') {
         handleButton('appointment');
-      } else if (features.includes('FEATURE_REPAIR_QUOTE')) {
+      } else if (features.includes('FRONTEND_REPAIR_QUOTE')) {
         handleButton('quote');
       }      
     }
@@ -89,7 +127,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
 
   useEffect(() => {
     setDisableStatus(true);
-    if ( firstName && lastName && email && phone && ((code === 'MI' && address1) || (code !== 'MI')) ) {
+    if ( firstName && lastName && email && phone && ((code === 'MAIL_IN' && address1) || (code !== 'MAIL_IN')) ) {
       setDisableStatus(false)
     }
   }, [firstName, lastName, email, phone, address1, code]);
@@ -158,10 +196,10 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 </Grid>
               </Grid>
             </div>
-            {code !== 'MI' && <div className={subDomain + '-repair-choose-device-container'}>
+            {code !== 'MAIL_IN' && <div className={subDomain + '-repair-choose-device-container'}>
               <FeatureToggles features={features}>
                 <Feature
-                  name='FEATURE_REPAIR_APPOINTMENT'
+                  name='FRONTEND_REPAIR_APPOINTMENT'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={'BOOK_AN_APPOINTMENT'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
@@ -171,7 +209,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
               </FeatureToggles>
               <FeatureToggles features={features}>
                 <Feature
-                  name='FEATURE_REPAIR_QUOTE'
+                  name='FRONTEND_REPAIR_QUOTE'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
                     title={'REQUEST_A_QUOTE'} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='300px' 
@@ -180,7 +218,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 />
               </FeatureToggles>              
             </div>}
-            {code === 'MI' && <div className={subDomain + '-repair-choose-device-container'}>
+            {code === 'MAIL_IN' && <div className={subDomain + '-repair-choose-device-container'}>
               <Grid container spacing={2}>                
                 <Grid item xs={12}>
                   <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
@@ -202,7 +240,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 </Grid>
               </Grid>
             </div>}
-            {code === 'MI' && <div className={subDomain + '-repair-card-button'}>
+            {code === 'MAIL_IN' && <div className={subDomain + '-repair-card-button'}>
               <Button 
                 title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={()=>handleButton('appointment')} disable={disableStatus} subDomain={subDomain}

@@ -9,7 +9,6 @@ import {
   getRepairLookupAPI,
   getDeliveryMethodsAPI,
   getRepairsOfferedDeviceAPI,
-  postAppointmentQuoteAPI,
 } from './RepairWidgetCallAPI'
 
 const stepList:string[] = [
@@ -88,8 +87,7 @@ class RepairWidget extends React.Component<Props, MyState> {
 
     getRepairLookupAPI();
     getDeliveryMethodsAPI();
-    getRepairsOfferedDeviceAPI();
-    postAppointmentQuoteAPI();
+    // getRepairsOfferedDeviceAPI();
 
   }
 
@@ -132,16 +130,18 @@ class RepairWidget extends React.Component<Props, MyState> {
         break;
       case 7:
         repairWidgetStore.changeContactDetails({});
-        repairWidgetStore.changeBookData({ code: 'MI', data: {} });
-        repairWidgetStore.changeBookData({ code: 'PU', data: {} });
-        repairWidgetStore.changeBookData({ code: 'CU', data: {} });
-        repairWidgetStore.changeBookData({ code: 'ON', data: {} });
+        repairWidgetStore.changeBookData({ code: 'MAIL_IN', data: {} });
+        repairWidgetStore.changeBookData({ code: 'WALK_IN', data: {} });
+        repairWidgetStore.changeBookData({ code: 'PICK_UP', data: {} });
+        repairWidgetStore.changeBookData({ code: 'CURBSIDE', data: {} });
+        repairWidgetStore.changeBookData({ code: 'ONSITE', data: {} });
         break;
       case 8:
-        repairWidgetStore.changeBookData({ code: 'MI', data: {} });
-        repairWidgetStore.changeBookData({ code: 'PU', data: {} });
-        repairWidgetStore.changeBookData({ code: 'CU', data: {} });
-        repairWidgetStore.changeBookData({ code: 'ON', data: {} });
+        repairWidgetStore.changeBookData({ code: 'MAIL_IN', data: {} });
+        repairWidgetStore.changeBookData({ code: 'WALK_IN', data: {} });
+        repairWidgetStore.changeBookData({ code: 'PICK_UP', data: {} });
+        repairWidgetStore.changeBookData({ code: 'CURBSIDE', data: {} });
+        repairWidgetStore.changeBookData({ code: 'ONSITE', data: {} });
         repairWidgetStore.changeMessage('');
         break;
       case 9:
@@ -151,7 +151,7 @@ class RepairWidget extends React.Component<Props, MyState> {
         break;
     }
     if (cntStep === 11) {
-      if (repairWidgetStore.deliveryMethod.code === 'MI') {
+      if (repairWidgetStore.deliveryMethod.code === 'MAIL_IN') {
         repairWidgetStore.changeCntStep(9);
         this.setState({step: 9});
       } else {
@@ -214,7 +214,7 @@ class RepairWidget extends React.Component<Props, MyState> {
     return (
       <FeatureToggles features={this.state.feats}>
         <Feature
-          name='FEATURE_REPAIR'
+          name='FRONTEND_REPAIR'
           inactiveComponent={()=><Error />}
           activeComponent={()=>
             <div className={subDomain + '-repair-widget ' + subDomain + '-Container'}>

@@ -23,10 +23,11 @@ export class RepairWidgetStore {
     postalCode: ''
   }
   @observable bookData: any = {
-    'MI': { sendTo: '' },
-    'PU': { address: '', time: '', day: '', month: '', year: '', week: '' },
-    'CU': { address: '', time: '', day: '', month: '', year: '', week: '' },
-    'ON': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'MAIL_IN': { sendTo: '' },
+    'WALK_IN': { sendTo: '' },
+    'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '' },
   }
   @observable message: string = ''
   @observable cntStep: number = 0
@@ -102,23 +103,7 @@ export class RepairWidgetStore {
   @action
   changeBookData = (bookData: any) => {
     const code = bookData.code, cntBookData = this.bookData
-    // cntBookData[code] = bookData.data
-    switch (code) {
-      case 'MI':
-        cntBookData['MI'] = bookData.data;
-        break;
-      case 'PU':
-        cntBookData['PU'] = bookData.data;
-        break;
-      case 'CU':
-        cntBookData['CU'] = bookData.data;
-        break;
-      case 'ON':
-        cntBookData['ON'] = bookData.data;
-        break;
-      default:
-        break;
-    }
+    cntBookData[code] = bookData.data
     this.bookData = cntBookData
     this.save()
   }
@@ -134,6 +119,39 @@ export class RepairWidgetStore {
     this.cntStep = cntStep
     this.save()
   }
+
+  @action
+  init = () => {
+    this.deviceBrand = [];
+    this.deviceModel = [];
+    this.chooseRepair = [];
+    this.deviceCounter = 0;
+    this.deliveryMethod = { method: '', code: '' };
+    this.receiveQuote = { method: '', code: '' };
+    this.contactDetails = {
+      firstName: '', 
+      lastName: '', 
+      email: '', 
+      phone: '',
+      address1: '',
+      address2: '',
+      country: '',
+      city: '',
+      province: '',
+      postalCode: ''
+    };
+    this.bookData = {
+      'MAIL_IN': { sendTo: '' },
+      'WALK_IN': { sendTo: '' },
+      'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '' },
+      'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+      'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    };
+    this.message = '';
+    this.cntStep = 0;
+    this.save();
+  }
+
 }
 
 export default new RepairWidgetStore();
