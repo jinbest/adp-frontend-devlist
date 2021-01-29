@@ -106,8 +106,9 @@ class RepairSummary extends React.Component<Props, MyState> {
                     </div>
                     <div>
                       <Typography className={subDomain + '-repair-summary-title'}>
-                        {/* {item.name + ' ' + this.state.model[index]['name']} */}
-                        {this.state.model[index]['name']}
+                        {this.state.model[index]['name'].toString().includes(item.name.toString()) ? 
+                          this.state.model[index]['name'] : 
+                          item.name + ' ' + this.state.model[index]['name']}
                       </Typography>
                       <Typography className={subDomain + '-repair-summary-service'}>
                         <T id={publicText.repairService} />

@@ -91,6 +91,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               name: repairWidData.repairDeviceBrands.data[i].name,
               img: repairWidData.repairDeviceBrands.data[i].img_src,
               id: repairWidData.repairDeviceBrands.data[i].id,
+              alt: repairWidData.repairDeviceBrands.data[i].img_alt,
             });
           }
         } 
@@ -111,6 +112,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               name: repairWidData.repairBrandProducts.data[i].name,
               img: repairWidData.repairBrandProducts.data[i].img_src,
               id: repairWidData.repairBrandProducts.data[i].id,
+              alt: repairWidData.repairBrandProducts.data[i].img_alt,
             });
           }
         } 
@@ -320,7 +322,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                         key={index} 
                         onClick={() => ChooseNextStep(index)}
                       >
-                        <img src={item.img} style={{width: '80%'}} />
+                        <img src={item.img} style={{width: '80%'}} alt={item.alt} />
                       </div>
                     )
                   })}
@@ -340,7 +342,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                       >
                         <div className={subDomain + '-device-model-item'}>
                           <p className={subDomain + '-device-brand-subtitle'}>{item.name}</p>
-                          <img src={item.img} />
+                          <img src={item.img} alt={item.alt} />
                         </div>
                       </div>
                     )

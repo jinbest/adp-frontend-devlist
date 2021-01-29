@@ -149,7 +149,9 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
                     return (
                       <div className={subDomain + '-repair-service-summary-flex-container'} key={chooseIndex}>
                         <Typography className={subDomain + '-details'}>
-                          {item.name + ' ' + repairWidgetData.deviceModel[index].name}
+                          {repairWidgetData.deviceModel[index].name.toString().includes(item.name.toString()) ? 
+                            repairWidgetData.deviceModel[index].name : 
+                            item.name + ' ' + repairWidgetData.deviceModel[index].name}
                         </Typography>
                         <Typography className={subDomain + '-details'}>{t(chooseItem.name)}</Typography>
                       </div>
