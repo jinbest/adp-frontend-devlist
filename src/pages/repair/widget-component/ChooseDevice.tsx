@@ -67,7 +67,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     handleChangeChooseData(step, imageData[i]);
     switch (stepName) {
       case 'deviceBrand':
-        await getBrandProductsAPI(imageData[i].id)
+        repairWidData.changeCntBrandID(imageData[i].id)
         handleStep(step+1);
         break;
       case 'deviceModel':
@@ -108,6 +108,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         }
         break;
       case 'deviceModel':
+        await getBrandProductsAPI(repairWidData.cntBrandID)
         if (repairWidData.repairBrandProducts.data.length) {
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({

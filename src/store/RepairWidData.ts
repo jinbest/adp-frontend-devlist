@@ -11,6 +11,8 @@ export class RepairWidData {
   @observable repairsOfferedDevices: any = {};
   @observable apiDropOffDevices: any = {};
   @observable receiveQuote: any = {};
+  @observable cntBrandID: number = 0;
+  @observable cntProductID: number = 0;
 
   constructor() {
     this.load();
@@ -28,6 +30,8 @@ export class RepairWidData {
         repairsOfferedDevices: this.repairsOfferedDevices,
         apiDropOffDevices: this.apiDropOffDevices,
         receiveQuote: this.receiveQuote,
+        cntBrandID: this.cntBrandID,
+        cntProductID: this.cntProductID,
       })
     )
 
@@ -74,6 +78,18 @@ export class RepairWidData {
   @action
   changeReceiveQuote = (receiveQuote: any) => {
     this.receiveQuote = receiveQuote
+    this.save()
+  }
+
+  @action
+  changeCntBrandID = (cntBrandID: number) => {
+    this.cntBrandID = cntBrandID
+    this.save()
+  }
+
+  @action
+  changeCntProductID = (cntProductID: number) => {
+    this.cntProductID = cntProductID
     this.save()
   }
 

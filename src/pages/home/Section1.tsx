@@ -91,7 +91,7 @@ const Section1 = ({subDomain, features}: Props) => {
             inactiveComponent={()=><></>}
             activeComponent={()=>
               <Box className={subDomain + '-sec1-search_input'}>
-                <Search placeholder={data.homeTextData.section1.searchPlaceholder} color='white' bgcolor={data.colorPalle.themeColor} height='60px' subDomain={subDomain} />
+                <Search placeholder={data.homeTextData.section1.searchPlaceholder} color='white' bgcolor={data.colorPalle.themeColor} height='60px' subDomain={subDomain} handleChange={()=>{}} />
               </Box>
             }
           />
