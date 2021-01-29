@@ -74,27 +74,6 @@ function getDeliveryMethodsAPI() {
     });
 }
 
-function getRepairsOfferedDeviceAPI() {
-  const locale: string = window.localStorage.getItem('cntLang') || 'en';
-  const store_id: number = storesDetails.store_id;
-  const per_page: number = 20;
-  const page: number = 1;
-  const included_voided: boolean = false;
-  const product_id: number = 1;
-  const name_sort_order: string = 'asc';
-  const is_active: boolean = true;
-
-  repairWidgetAPI
-    .getRepairsOfferedDevice(locale, store_id, per_page, page, included_voided, product_id, name_sort_order, is_active)
-    .then((res:any) => {
-      console.log('api-repairWidgetAPI => Repair Offered Device:', res.data);
-      repairWidData.changeRepairsOfferedDevice(res.data);
-    })
-    .catch((error) => {
-      console.log("Error in get Repair Offered Device", error);
-    });
-}
-
 function postAppointmentQuoteAPI(type: string, customerData: any) {
   storesDetails.changeType(type);
   const data:any = {
@@ -136,9 +115,65 @@ function postAppointmentQuoteAPI(type: string, customerData: any) {
     });
 }
 
+function getDeviceBrandsAPI() {
+  const store_id: number = storesDetails.store_id;
+  const per_page: number = 10;
+  const page: number = 1;
+  const is_enabled: boolean = true;
+
+  repairWidgetAPI
+    .getDeviceBrands(store_id, per_page, page, is_enabled)
+    .then((res:any) => {
+      console.log('api-repairWidgetAPI => Repair Device Brands:', res.data);
+      repairWidData.changeRepairDeviceBrands(res.data);
+    })
+    .catch((error) => {
+      console.log("Error in get Repair Device Brands", error);
+    });
+}
+
+async function getBrandProductsAPI(brand_id:number) {
+  const store_id: number = storesDetails.store_id;
+  const per_page: number = 10;
+  const page: number = 1;
+  const included_voided: boolean = true;
+
+  await repairWidgetAPI
+    .getBrandProducts(store_id, per_page, page, included_voided, brand_id)
+    .then(async (res:any) => {
+      console.log('api-repairWidgetAPI => Repair Brand Products:', res.data);
+      repairWidData.changeRepairBrandProducts(res.data);
+    })
+    .catch((error) => {
+      console.log("Error in get Repair Brand Products", error);
+    });
+}
+
+async function getRepairsOfferedDeviceAPI(product_id:number) {
+  const locale: string = window.localStorage.getItem('cntLang') || 'en';
+  const store_id: number = storesDetails.store_id;
+  const per_page: number = 20;
+  const page: number = 1;
+  const included_voided: boolean = false;
+  const name_sort_order: string = 'asc';
+  const is_active: boolean = true;
+
+  await repairWidgetAPI
+    .getRepairsOfferedDevice(locale, store_id, per_page, page, included_voided, product_id, name_sort_order, is_active)
+    .then(async (res:any) => {
+      console.log('api-repairWidgetAPI => Repair Offered Device:', res.data);
+      repairWidData.changeRepairsOfferedDevice(res.data);
+    })
+    .catch((error) => {
+      console.log("Error in get Repair Offered Device", error);
+    });
+}
+
 export {
   getRepairLookupAPI,
   getDeliveryMethodsAPI,
   getRepairsOfferedDeviceAPI,
-  postAppointmentQuoteAPI
+  postAppointmentQuoteAPI,
+  getDeviceBrandsAPI,
+  getBrandProductsAPI
 }

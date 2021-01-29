@@ -8,7 +8,7 @@ import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 import { 
   getRepairLookupAPI,
   getDeliveryMethodsAPI,
-  getRepairsOfferedDeviceAPI,
+  getDeviceBrandsAPI,
 } from './RepairWidgetCallAPI'
 
 const stepList:string[] = [
@@ -85,9 +85,9 @@ class RepairWidget extends React.Component<Props, MyState> {
     }
     this.setState({feats: cntFeatures});
 
+    getDeviceBrandsAPI();
     getRepairLookupAPI();
     getDeliveryMethodsAPI();
-    getRepairsOfferedDeviceAPI();
 
   }
 

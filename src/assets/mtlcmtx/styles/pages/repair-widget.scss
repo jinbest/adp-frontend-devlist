@@ -42,6 +42,7 @@
   align-items: center;
   position: relative;
   cursor: pointer;
+  overflow:  hidden !important;
 }
 
 .#{$folderName}-device-item-container:before {
@@ -113,7 +114,7 @@
 .#{$folderName}-device-model-item > img {
   max-width: 80%;
   position: absolute;
-  bottom: 0px;
+  top: 40%;
 }
 
 .#{$folderName}-device-repair-item {
@@ -191,6 +192,9 @@
 .#{$folderName}-repair-summary-img {
   margin-right: 10px;
   width: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .#{$folderName}-repair-summary-img > img {
