@@ -115,15 +115,15 @@ function postAppointmentQuoteAPI(type: string, customerData: any) {
     });
 }
 
-function getDeviceBrandsAPI() {
+async function getDeviceBrandsAPI(searchText:string) {
   const store_id: number = storesDetails.store_id;
   const per_page: number = 10;
   const page: number = 1;
   const is_enabled: boolean = true;
 
-  repairWidgetAPI
-    .getDeviceBrands(store_id, per_page, page, is_enabled)
-    .then((res:any) => {
+  await repairWidgetAPI
+    .getDeviceBrands(store_id, per_page, page, is_enabled, searchText)
+    .then(async (res:any) => {
       console.log('api-repairWidgetAPI => Repair Device Brands:', res.data);
       repairWidData.changeRepairDeviceBrands(res.data);
     })

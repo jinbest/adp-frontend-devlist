@@ -5,9 +5,12 @@ import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
-import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 import { repairWidData } from '../../../store/'
-import { getBrandProductsAPI, getRepairsOfferedDeviceAPI } from '../RepairWidgetCallAPI'
+import { 
+  getDeviceBrandsAPI, 
+  getBrandProductsAPI, 
+  getRepairsOfferedDeviceAPI 
+} from '../RepairWidgetCallAPI'
 
 type Props = {
   data: any;
@@ -38,6 +41,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   const [selected, setSelected] = useState(999);
   const [disableStatus, setDisableStatus] = useState(true);
   const [imageData, setImageData] = useState<any[]>([]);
+  const [searchText, setSearchText] = useState('');
 
   const t = useT();
 
@@ -81,11 +85,18 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }, [step, disableStatus]);
 
-  useEffect(() => {
+  const handleChangeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    e.preventDefault();
+    setSearchText(e.target.value);
+  }
+
+  const loadStepData = async (name: string) => {
     const cntImgData: any[] = [];
-    switch (stepName) {
+    switch (name) {
       case 'deviceBrand':
-        if (repairWidData.repairDeviceBrands.data.length) {
+        await getDeviceBrandsAPI('')
+        if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairDeviceBrands.data[i].name,
@@ -94,16 +105,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               alt: repairWidData.repairDeviceBrands.data[i].img_alt,
             });
           }
-        } 
-        // else {
-        //   for (let i = 0; i < data.images.length; i++) {
-        //     cntImgData.push({
-        //       name: data.images[i].name,
-        //       img: data.images[i].img,
-        //       id: i+1
-        //     })
-        //   }
-        // }
+        }
         break;
       case 'deviceModel':
         if (repairWidData.repairBrandProducts.data.length) {
@@ -130,6 +132,10 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         break;
     }
     setImageData(cntImgData);
+  }
+
+  useEffect(() => {
+    loadStepData(stepName)
   }, [data, stepName, repairWidData])
 
   useEffect(() => {
@@ -295,21 +301,15 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           <Card>
             <div className={subDomain + '-repair-choose-device-container'}>
               {step < 3 && <div style={{width: '95%'}}>
-                <FeatureToggles features={features}>
-                  <Feature
-                    name={'SEARCH'}
-                    inactiveComponent={()=><></>}
-                    activeComponent={()=>
-                      <Search 
-                        color='rgba(0,0,0,0.8)' 
-                        bgcolor='white' 
-                        border='rgba(0,0,0,0.2)'
-                        placeholder={data.placeholder}
-                        subDomain={subDomain}
-                      />
-                    }
-                  />
-                </FeatureToggles>
+                {features.includes('SEARCH') && <Search 
+                  color='rgba(0,0,0,0.8)' 
+                  bgcolor='white' 
+                  border='rgba(0,0,0,0.2)'
+                  placeholder={data.placeholder}
+                  subDomain={subDomain}
+                  value={searchText}
+                  handleChange={(e:React.ChangeEvent<HTMLInputElement>)=>{handleChangeSearch(e)}}
+                />}
               </div>}
               <div className={subDomain + '-widget-main-container'}>
 
