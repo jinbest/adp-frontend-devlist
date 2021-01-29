@@ -60,7 +60,7 @@ function getRepairLookupAPI() {
 }
 
 function getDeliveryMethodsAPI() {
-  const store_id: number = 1;
+  const store_id: number = storesDetails.store_id;
   const include_disabled: boolean = false;
 
   repairWidgetAPI
@@ -76,7 +76,7 @@ function getDeliveryMethodsAPI() {
 
 function getRepairsOfferedDeviceAPI() {
   const locale: string = window.localStorage.getItem('cntLang') || 'en';
-  const store_id: number = 1;
+  const store_id: number = storesDetails.store_id;
   const per_page: number = 20;
   const page: number = 1;
   const included_voided: boolean = false;
@@ -88,6 +88,7 @@ function getRepairsOfferedDeviceAPI() {
     .getRepairsOfferedDevice(locale, store_id, per_page, page, included_voided, product_id, name_sort_order, is_active)
     .then((res:any) => {
       console.log('api-repairWidgetAPI => Repair Offered Device:', res.data);
+      repairWidData.changeRepairsOfferedDevice(res.data);
     })
     .catch((error) => {
       console.log("Error in get Repair Offered Device", error);

@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/phonephix-trade.png"
-import repair from "./img/cardmobile/phonephix-repair.png"
-import buy from "./img/cardmobile/phonephix-buy.png"
-import protect from "./img/cardmobile/phonephix-protect.png"
+import trade from "./img/cardmobile/banana-trade.png"
+import repair from "./img/cardmobile/banana-repair.png"
+import buy from "./img/cardmobile/banana-buy.png"
+import protect from "./img/cardmobile/banana-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/phonephix-mobile.png"
-import tablet from "./img/cardfix/phonephix-tablet.png"
-import computer from "./img/cardfix/phonephix-computer.png"
-import console from "./img/cardfix/phonephix-game.png"
-import other from "./img/cardfix/phonephix-other.png"
+import cellphone from "./img/cardfix/banana-mobile.png"
+import tablet from "./img/cardfix/banana-tablet.png"
+import computer from "./img/cardfix/banana-computer.png"
+import console from "./img/cardfix/banana-game.png"
+import other from "./img/cardfix/banana-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,20 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from './img/avatar/phonephix-user-active.png'
-import userDeactive from './img/avatar/phonephix-user-deactive.png'
-import menu from './img/avatar/phonephix-menu.png'
-import store from './img/avatar/phonephix-store.png'
-import storeBlue from './img/avatar/phonephix-store-blue.png'
-import cancel from './img/avatar/phonephix-cancel.png'
+import userActive from './img/avatar/banana-user-active.png'
+import userDeactive from './img/avatar/banana-user-deactive.png'
+import menu from './img/avatar/banana-menu.png'
+import store from './img/avatar/banana-store.png'
+import storeBlue from './img/avatar/banana-store-blue.png'
+import cancel from './img/avatar/banana-cancel.png'
 
 // arrow images
 import arrowLeft from './img/arrow/arrow-left.png'
 import arrowRight from './img/arrow/arrow-right.png'
 
 // shape images
-import cornerShape from './img/phonephix-corner-shape.png'
-import mockupShape from './img/phonephix-mockup-shape.png'
+import cornerShape from './img/banana-corner-shape.png'
+import mockupShape from './img/banana-mockup-shape.png'
 
 // footer images
 import buyNow from './img/footer/buy-now.png'
@@ -54,25 +54,25 @@ import deviceListImg from './img/footer/device-list.png'
 import repairPhone from './img/repair/repair-phone.png'
 
 // repair section2 - images
-import selectRepair from './img/repair/section2/phonephix-select-repair.png'
-import sendDevice from './img/repair/section2/phonephix-send-device.png'
-import receiveDevice from './img/repair/section2/phonephix-receive-device.png'
+import selectRepair from './img/repair/section2/banana-select-repair.png'
+import sendDevice from './img/repair/section2/banana-send-device.png'
+import receiveDevice from './img/repair/section2/banana-receive-device.png'
 
 // repair section3 - images
-import newImg from './img/repair/section3/phonephix-new.png'
-import mintImg from './img/repair/section3/phonephix-mint.png'
-import goodImg from './img/repair/section3/phonephix-good.png'
-import fairImg from './img/repair/section3/phonephix-fair.png'
+import newImg from './img/repair/section3/banana-new.png'
+import mintImg from './img/repair/section3/banana-mint.png'
+import goodImg from './img/repair/section3/banana-good.png'
+import fairImg from './img/repair/section3/banana-fair.png'
 
 // chat - images
 import chatImg from './img/chat.png';
 
 // logo - images
-import logoHeaderImg from './img/logo/phonephix-logo-header.png';
-import logoFooterImg from './img/logo/phonephix-logo-footer.png';
+import logoHeaderImg from './img/logo/banana-logo-header.png';
+import logoFooterImg from './img/logo/banana-logo-footer.png';
 
 // deviceCard - images
-import deviceCardImg from './img/phonephix-device-card.png';
+import deviceCardImg from './img/banana-device-card.png';
 
 const chatData = {
     chatImg: chatImg,
@@ -121,8 +121,8 @@ const contentFixData = [
         content: "QUICK_TURNAROUND_CONTENT",
     },
     {
-        title: "LIFETIME_WARRANTY",
-        content: "LIFETIME_WARRANTY_CONTENT",
+        title: "DAY_90_WARRANTY",
+        content: "DAY_90_WARRANTY_CONTENT",
     },
 ]
 
@@ -162,17 +162,17 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-    orange: '#FCA425',
-    themeColor: '#FCA425',
-    underLineCol: '#FCA425',
-    priceCol: '#FCA425',
-    repairButtonCol: '#FCA425',
-    nextButtonCol: '#FCA425',
-    repairChooseItemCol: '#FCA425',
-    repairBooktimeCol: '#FCA425',
-    textThemeCol: '#FCA425',
-    heartCol: '#FCA425',
-    chatBgCol: '#FCA425'
+    orange: '#FEDA00',
+    themeColor: '#929292',
+    underLineCol: '#54BA71',
+    priceCol: '#54BA71',
+    repairButtonCol: '#7BBA42',
+    nextButtonCol: '#7BBA42',
+    repairChooseItemCol: '#A6A7AA',
+    repairBooktimeCol: '#7BBA42',
+    textThemeCol: '#54BA71',
+    heartCol: '#929292',
+    chatBgCol: '#929292'
 }
 
 const navItemsData = [
@@ -236,9 +236,9 @@ const navShop = {
 
 const brandItemsData = {
     left: ["BUSINESS", "FINANCING"],
-    right: {ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN"},
+    right: {ip: "705.957.2657", en: "ENGLISH", log: "LOG_IN"},
     brandCol: 'black',
-    brandThemeCol: '#FCA425',
+    brandThemeCol: '#FEDA00',
     selectOption: ['ENGLISH', 'FRENCH']
 }
 
@@ -316,7 +316,7 @@ const homeTextData = {
     },
     section1: {
         title: ['TRADE_REPAIR_BUY_OR_SELL', 'YOUR_MOBILE_DEVICE'],
-        subtitle: 'OKOTOKS_MOBILE_DEVICE_SPECIALISTS',
+        subtitle: 'ONTARIO_MOBILE_DEVICE_SPECIALISTS',
         searchPlaceholder: 'FIND_YOUR_DEVICE'
     },
     section2: {
@@ -329,7 +329,7 @@ const homeTextData = {
         color: 'white'
     },
     section4: {
-        title: 'WELCOME_PHONEPHIX',
+        title: 'WELCOME_BANANA',
         btnTitle: 'OUR_QUALITY_CHARTER'
     },
     section5: {
@@ -342,7 +342,7 @@ const homeTextData = {
         btnTitle: "INSURE_MY_DEVICE",
     },
     section6: {
-        title: 'SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX',
+        title: 'SEE_WHY_CUSTOMERS_LOVE_BANANA',
         subtitle: 'VIEW_MORE',
         review: [
             {
@@ -379,8 +379,8 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(403) 477-6203 | sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB',
-            'PHONEPHIX_FOOTER_CONTENT_TWO'
+            '(705) 957-2657 | bananaserves@gmail.com 55 George St N a1, Peterborough, ON K9J 3G2',
+            'BANANA_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
             {
@@ -447,13 +447,13 @@ const repairData = {
             {
                 img: receiveDevice,
                 subtitle: 'RECEIVE_YOUR_DEVICE',
-                content: 'PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT',
+                content: 'BANANA_RECEIVE_YOUR_DEVICE_CONTENT',
             }
         ]
     },
     section3: {
         title: 'FROM_NEW_TO_RECONDITIONED',
-        content: 'PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT',
+        content: 'BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT',
         children: [
             {
                 subtitle: 'NEW',

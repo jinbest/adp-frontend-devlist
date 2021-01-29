@@ -116,7 +116,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       const cntAvailableDeliveryMethod:any[] = repairWidData.repairDeliveryMethod;
       for (let i = 0; i < cntDeliverySets.length; i++) {
         for (let j = 0; j < cntAvailableDeliveryMethod.length; j++) {
-          if (cntDeliverySets[i].code === cntAvailableDeliveryMethod[j].code) {
+          if (cntDeliverySets[i].code === cntAvailableDeliveryMethod[j].code && cntAvailableDeliveryMethod[j].is_enabled) {
             cntTypes.push(cntDeliverySets[i]);
             break;
           }

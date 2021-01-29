@@ -3,6 +3,26 @@ import Config from '../../config/config';
 
 class RepairWidgetAPI {
 
+  getDeviceBrands = (store_id: number, per_page: number, page: number, is_enabled: boolean) => {
+    const apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/brands?per_page=${per_page}&page=${page}&is_enabled=${is_enabled}`;
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${apiURL}`)
+        .then(response => {
+          if(response) {
+            resolve(response);
+          } else {
+            reject(response);
+          }
+        })
+        .catch(error => {
+          if(error) {
+            console.log('error response in get device brand: ', error);
+          }
+        });
+    });
+  }
+
   getRepairLookup = (locale: string, types:any[]) => {
     let type:string = '';
     for (let i = 0; i < types.length; i++) {

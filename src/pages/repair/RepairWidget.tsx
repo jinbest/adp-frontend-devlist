@@ -87,7 +87,7 @@ class RepairWidget extends React.Component<Props, MyState> {
 
     getRepairLookupAPI();
     getDeliveryMethodsAPI();
-    // getRepairsOfferedDeviceAPI();
+    getRepairsOfferedDeviceAPI();
 
   }
 

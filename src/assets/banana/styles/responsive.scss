@@ -78,11 +78,17 @@
     display: block
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/phonephix-footer-shape-mobile.png');
+    background-image: url('../img/footer/banana-footer-shape-mobile.png');
     padding: 190px 20px 30px;
   }
   .#{$folderName}-back-to-top {
     left: 10px !important;
+  }
+}
+
+@media (max-width: 810px) {
+  .#{$folderName}-container-header > a > img {
+    height: 25px;
   }
 }
 
@@ -119,7 +125,7 @@
     width: 60vw;
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/phonephix-footer-shape-mobile.png');
+    background-image: url('../img/footer/banana-footer-shape-mobile.png');
   }
   .#{$folderName}-repair-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
@@ -314,12 +320,12 @@
     font-size: 3.5vw !important;
     padding: 20px 15px;
   }
+  .#{$folderName}-container-header > a > img {
+    height: 20px;
+  }
 }
 
-@media (max-width: 380px) {
-  .#{$folderName}-container-header > a > img {
-    height: 30px;
-  }
+@media (max-width: 380px) {  
   .#{$folderName}-avatar-div > img {
     height: 20px;
     margin: 0 6px;

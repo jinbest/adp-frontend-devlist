@@ -289,6 +289,14 @@ export class LanguageKeys {
   public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = 'Wireless Rev repairs your device and notifies you of pick up or delivery date.';
   public WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Wireless Rev it\'s easy to choose for any budget!';
 
+  /* Banana Website Text */
+  public ONTARIO_MOBILE_DEVICE_SPECIALISTS = 'Ontario\'s mobile device specialists';
+  public WELCOME_BANANA = 'Welcome to Banana, Canada’s mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_BANANA = 'See Why Customers Love Banana';
+  public BANANA_FOOTER_CONTENT_TWO = '© 2020 Banana Service 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Banana Service" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public BANANA_RECEIVE_YOUR_DEVICE_CONTENT = 'Banana Service repairs your device and notifies you of pick up or delivery date.';
+  public BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Banana Service it\'s easy to choose for any budget!';
+  
 }
 
 export type LangProps = keyof LanguageKeys;
