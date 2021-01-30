@@ -13,6 +13,7 @@ const apexDomain = domainMatch ? domainMatch[0] : "localhost"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
+//     "banana",
 //     "geebo",
 //     "mobiletech",
 //     "nanotech",

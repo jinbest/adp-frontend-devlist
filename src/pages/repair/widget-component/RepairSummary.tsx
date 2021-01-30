@@ -79,7 +79,7 @@ class RepairSummary extends React.Component<Props, MyState> {
 
   render() {
     const { themeCol, subDomain, showInfo, repairWidgetStore } = this.props;
-    const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
+    // const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
     const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
     const code = repairWidgetStore.deliveryMethod.code;
     const publicText = mockData.repairWidget.publicText;
@@ -100,10 +100,15 @@ class RepairSummary extends React.Component<Props, MyState> {
                       style={{color: themeCol}}
                       onClick={()=>{this.handleTrashSummary(index, chooseIndex)}}
                     />
-                    <div className={subDomain + '-repair-summary-img'}><img src={iPhoneWhole.default} /></div>
+                    <div className={subDomain + '-repair-summary-img'}>
+                      {/* <img src={iPhoneWhole.default} /> */}
+                      <img src={item.img} alt={item.name + '-' + item.id} />
+                    </div>
                     <div>
                       <Typography className={subDomain + '-repair-summary-title'}>
-                        {item.name + ' ' + this.state.model[index]['name']}
+                        {this.state.model[index]['name'].toString().includes(item.name.toString()) ? 
+                          this.state.model[index]['name'] : 
+                          item.name + ' ' + this.state.model[index]['name']}
                       </Typography>
                       <Typography className={subDomain + '-repair-summary-service'}>
                         <T id={publicText.repairService} />

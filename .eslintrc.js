@@ -25,6 +25,8 @@ module.exports = {
         "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/restrict-plus-operands": "off",
+        "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/no-empty-function": "off",
         "no-constant-condition": "off",
         "@typescript-eslint/unbound-method": "off",
         "react/no-unescaped-entities": "off",

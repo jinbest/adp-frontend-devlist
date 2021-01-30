@@ -11,9 +11,11 @@ type Props = {
   height?: string;
   placeholder: LangProps;
   subDomain?: string;
+  value?: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Search = ({color, bgcolor, border, height, placeholder, subDomain}: Props) => {
+const Search = ({color, bgcolor, border, height, placeholder, subDomain, value, handleChange}: Props) => {
   const t = useT();
   const tPlaceholder = t(placeholder || 'FIND_YOUR_DEVICE');
 
@@ -23,6 +25,8 @@ const Search = ({color, bgcolor, border, height, placeholder, subDomain}: Props)
           className={subDomain + "-search-input"} 
           style={{color: color}} 
           placeholder={tPlaceholder}
+          value={value ?? ''}
+          onChange={handleChange}
         />
         <SearchIcon className={subDomain + "-search-icon"} style={{color: color}}/>
       </Box>
