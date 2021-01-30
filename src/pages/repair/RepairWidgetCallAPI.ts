@@ -132,14 +132,14 @@ async function getDeviceBrandsAPI(searchText:string) {
     });
 }
 
-async function getBrandProductsAPI(brand_id:number) {
+async function getBrandProductsAPI(brand_id:number, searchText:string) {
   const store_id: number = storesDetails.store_id;
   const per_page: number = 10;
   const page: number = 1;
   const included_voided: boolean = true;
 
   await repairWidgetAPI
-    .getBrandProducts(store_id, per_page, page, included_voided, brand_id)
+    .getBrandProducts(store_id, per_page, page, included_voided, brand_id, searchText)
     .then(async (res:any) => {
       console.log('api-repairWidgetAPI => Repair Brand Products:', res.data);
       repairWidData.changeRepairBrandProducts(res.data);

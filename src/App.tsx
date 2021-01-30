@@ -13,18 +13,18 @@ const apexDomain = domainMatch ? domainMatch[0] : "localhost"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
-//     "banana",
-//     "geebo",
+//     "bananaservice",
 //     "mobiletech",
-//     "nanotech",
-//     "northtech",
+//     "nanotechmobile",
+//     "northtechsolutions",
 //     "phonephix",
-//     "pradoWireless",
-//     "wirelessRev",
+//     "pradowireless",
+//     "wearegeebo",
+//     "wirelessrev",
 //     "dccmtx",
-//     "mtlcmtx",
+//     "mtlcmtx"
 // ]
-// const subDomain = devicelist[8]
+// const subDomain = devicelist[0]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -78,10 +78,7 @@ function App(): JSX.Element {
                 .getFeatures(storeId)
                 .then((res: any) => {
                     console.log("api-appLoadAPI => get features:", res.data)
-                    const feats:any[] = [
-                        { flag: "FRONTEND_MEGA_MENU", isActive: true },
-                        { flag: "ALWAYS_TRUE", isActive: true },
-                    ];
+                    const feats:any[] = [ { flag: "ALWAYS_TRUE", isActive: true } ];
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({
                             flag: res.data[i].feature_id,
