@@ -100,7 +100,7 @@ function postAppointmentQuoteAPI(type: string, customerData: any) {
         "repair_id": 1,
         "product_id": 1,
         "cost": 20.00,
-        "duration": 30
+        "duration": '30 hours'
       }
     ]
   }

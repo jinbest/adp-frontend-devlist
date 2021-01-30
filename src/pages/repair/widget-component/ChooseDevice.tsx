@@ -164,9 +164,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           name: cntOfferedRepairs[i].title,
           bg: 'white',
           col: 'black',
-          estimate: cntOfferedRepairs[i].duration + ' minutes',
+          estimate: cntOfferedRepairs[i].duration,
           selected: false,
-          cost: cntOfferedRepairs[i].cost + '$ (CAD)'
+          cost: cntOfferedRepairs[i].cost
         })
       }
       for (let i = 0; i < cntTypes.length; i++) {
