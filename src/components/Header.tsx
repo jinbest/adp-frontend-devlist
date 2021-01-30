@@ -140,7 +140,15 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                 inactiveComponent={()=><></>}
                 activeComponent={()=>
                   <div className={subDomain + '-search-div'} id='header-search'>
-                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' subDomain={subDomain} handleChange={()=>{}} />
+                    <Search 
+                      placeholder={searchPlaceholder} 
+                      color='rgba(0,0,0,0.8)' 
+                      bgcolor='white' 
+                      border='rgba(0,0,0,0.2)' 
+                      subDomain={subDomain} 
+                      handleChange={()=>{}} 
+                      handleIconClick={()=>{}}
+                    />
                   </div>
                 }
               />
@@ -209,7 +217,15 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               activeComponent={()=>
                 <div className={subDomain + '-mobile-search-div'}>
                   <div className={subDomain + '-mobile-child-search'}>
-                    <Search placeholder={searchPlaceholder} color='rgba(0,0,0,0.8)' bgcolor='white' border='rgba(0,0,0,0.2)' subDomain={subDomain} handleChange={()=>{}} />
+                    <Search 
+                      placeholder={searchPlaceholder} 
+                      color='rgba(0,0,0,0.8)' 
+                      bgcolor='white' 
+                      border='rgba(0,0,0,0.2)' 
+                      subDomain={subDomain} 
+                      handleChange={()=>{}} 
+                      handleIconClick={()=>{}}
+                    />
                   </div>
                 </div>
               }

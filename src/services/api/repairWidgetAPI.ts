@@ -26,8 +26,11 @@ class RepairWidgetAPI {
     });
   }
 
-  getBrandProducts = (store_id:number, per_page:number, page:number, included_voided:boolean, brand_id:number) => {
-    const apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?per_page=${per_page}&page=${page}&include_voided=${included_voided}&brand_id=${brand_id}`;
+  getBrandProducts = (store_id:number, per_page:number, page:number, included_voided:boolean, brand_id:number, searchText:string) => {
+    let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?per_page=${per_page}&page=${page}&include_voided=${included_voided}&brand_id=${brand_id}`;
+    if (searchText) {
+      apiURL += `&name=${searchText}`;
+    }
     return new Promise((resolve, reject) => {
       axios
         .get(`${apiURL}`)

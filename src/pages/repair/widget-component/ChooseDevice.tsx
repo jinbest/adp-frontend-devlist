@@ -5,7 +5,7 @@ import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
-import { repairWidData } from '../../../store/'
+import { repairWidData, storesDetails } from '../../../store/'
 import { 
   getDeviceBrandsAPI, 
   getBrandProductsAPI, 
@@ -51,12 +51,12 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   useEffect(() => {
-    if (imageData.length < sliceNum) {
+    if (imageData.length < sliceNum + 1) {
       setPlusVisible(false);
     } else {
       setPlusVisible(true);
     }
-  }, [imageData])
+  }, [imageData, sliceNum])
 
   const ChooseNextStep = async (i:number) => {
     if (i === 999 ){
@@ -80,22 +80,30 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   const onKeyPress = useCallback((event) => {
+    if (event.key === 'Enter' && (step === 0 || step === 1)) {
+      loadStepData(stepName, event.target.value);
+    }
     if(event.key === 'Enter' && !disableStatus && (step === 2 || step === 4 || step === 5)) {
       handleStep(step+1);
     }
   }, [step, disableStatus]);
 
   const handleChangeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     e.preventDefault();
     setSearchText(e.target.value);
   }
 
-  const loadStepData = async (name: string) => {
+  const handleClickSearchIcon = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (step >= 2) return;
+    e.preventDefault();
+    loadStepData(stepName, searchText);
+  }
+
+  const loadStepData = async (name: string, text:string) => {
     const cntImgData: any[] = [];
     switch (name) {
       case 'deviceBrand':
-        await getDeviceBrandsAPI('')
+        await getDeviceBrandsAPI(text)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
@@ -108,8 +116,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         }
         break;
       case 'deviceModel':
-        await getBrandProductsAPI(repairWidData.cntBrandID)
-        if (repairWidData.repairBrandProducts.data.length) {
+        await getBrandProductsAPI(repairWidData.cntBrandID, text)
+        if (repairWidData.repairBrandProducts.data && repairWidData.repairBrandProducts.data.length) {
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairBrandProducts.data[i].name,
@@ -118,16 +126,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               alt: repairWidData.repairBrandProducts.data[i].img_alt,
             });
           }
-        } 
-        // else {
-        //   for (let i = 0; i < data.images.length; i++) {
-        //     cntImgData.push({
-        //       name: data.images[i].name,
-        //       img: data.images[i].img,
-        //       id: i+1
-        //     })
-        //   }
-        // }
+        }
         break;
       default:
         break;
@@ -136,7 +135,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   useEffect(() => {
-    loadStepData(stepName)
+    loadStepData(stepName, '')
   }, [data, stepName, repairWidData])
 
   useEffect(() => {
@@ -310,6 +309,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   subDomain={subDomain}
                   value={searchText}
                   handleChange={(e:React.ChangeEvent<HTMLInputElement>)=>{handleChangeSearch(e)}}
+                  handleIconClick={(e:React.MouseEvent<HTMLDivElement, MouseEvent>)=>{handleClickSearchIcon(e)}}
                 />}
               </div>}
               <div className={subDomain + '-widget-main-container'}>
@@ -418,7 +418,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   <div key={index} className={subDomain + '-estimate-times-div'}>
                     <p className={subDomain + '-estimate-title'}>{t(item.name)}</p>
                     <p className={subDomain + '-estimate-content'}>{item.estimate}</p>
-                    <p className={subDomain + '-estimate-content'}>{item.cost}</p>
+                    {storesDetails.storesDetails.settings.display_repair_cost && 
+                    <p className={subDomain + '-estimate-content'}>{item.cost}</p>}
                   </div>
                 )
               })}
