@@ -156,7 +156,6 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
   useEffect(() => {
     if (step === 2) {
-      // const cntTypes:any[] = data.types;
       const cntTypes:any[] = [];
       const cntOfferedRepairs:any[] = repairWidData.repairsOfferedDevices.data;
       for (let i = 0; i < cntOfferedRepairs.length; i++) {
@@ -164,15 +163,12 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           name: cntOfferedRepairs[i].title,
           bg: 'white',
           col: 'black',
-          estimate: cntOfferedRepairs[i].duration + ' minutes',
+          estimate: cntOfferedRepairs[i].duration,
           selected: false,
-          cost: cntOfferedRepairs[i].cost + '$ (CAD)'
+          cost: cntOfferedRepairs[i].cost
         })
       }
       for (let i = 0; i < cntTypes.length; i++) {
-        // cntTypes[i].bg = 'white';
-        // cntTypes[i].col = 'black';
-        // cntTypes[i].selected = false;
         for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
           if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
             cntTypes[i].bg = repairChooseItemCol;
@@ -237,7 +233,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       const preChooseRepairs:any[] = [];
       for (let i = 0; i < cntTypes.length; i++) {
         if (cntTypes[i].selected) {
-          preChooseRepairs.push({name: cntTypes[i].name})
+          preChooseRepairs.push({name: cntTypes[i].name, cost: cntTypes[i].cost, estimate: cntTypes[i].estimate})
         }
       }
       handleChangeChooseData(step, {data: preChooseRepairs, counter: repairWidgetData.deviceCounter})
