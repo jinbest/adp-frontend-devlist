@@ -30,6 +30,21 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
   const handleSubmit = () => {
     setDisableStatus(true);
     const tp: string = (code === 'MAIL_IN') ? 'QUOTE' : 'APPOINTMENT';
+    const repairs: any[] = [];
+    let repair_id = 1;
+    for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
+      for (let j = 0; j < repairWidgetStore.chooseRepair[i].length; j++) {
+        repairs.push({
+          "repair_id": repair_id,
+          "product_id": repairWidgetStore.deviceModel[i].id,
+          "cost": repairWidgetStore.chooseRepair[i][j].cost,
+          "duration": repairWidgetStore.chooseRepair[i][j].estimate,
+          "product_name": repairWidgetStore.deviceBrand[i].name + ',' + repairWidgetStore.deviceModel[i].name,
+          "repair_name": repairWidgetStore.chooseRepair[i][j].name
+        });
+        repair_id += 1;
+      }      
+    }
     const apiData:any = {
       "store_id": storesDetails.store_id,
       "location_id": storesDetails.location_id,
@@ -49,12 +64,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
       "customer_country": repairWidgetStore.contactDetails.country,
       "customer_note": null,
       "customer_contact_method": repairWidgetStore.receiveQuote.code,
-      "repairs": [{
-        "repair_id": 1,
-        "product_id": 1,
-        "cost": 20.00,
-        "duration": '30 hours'
-      }]
+      "repairs": repairs
     }
     repairWidgetAPI
       .postAppointmentQuote(apiData)

@@ -100,7 +100,9 @@ function postAppointmentQuoteAPI(type: string, customerData: any) {
         "repair_id": 1,
         "product_id": 1,
         "cost": 20.00,
-        "duration": '30 hours'
+        "duration": '30 hours',
+        "product_name": 'Apple, iPhone 11',
+        "repair_name": 'Screen Replacement'
       }
     ]
   }
