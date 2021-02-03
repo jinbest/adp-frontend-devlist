@@ -12,45 +12,13 @@ const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*
 const apexDomain = domainMatch ? domainMatch[0] : "localhost"
 const subDomain = apexDomain.split(".")[0]
 
-// const devicelist = [
-//     "bananaservice",
-//     "mobiletech",
-//     "nanotechmobile",
-//     "northtechsolutions",
-//     "phonephix",
-//     "pradowireless",
-//     "wearegeebo",
-//     "wirelessrev",
-//     "dccmtx",
-//     "mtlcmtx"
-// ]
-// const subDomain = devicelist[0]
-
-/* const features = [
-    { flag: "FRONTEND_TRADE", isActive: true },
-    { flag: "FRONTEND_REPAIR", isActive: true },
-    { flag: "FRONTEND_REPAIR_QUOTE", isActive: true },
-    { flag: "FRONTEND_REPAIR_APPOINTMENT", isActive: true },
-    { flag: "FRONTEND_BUY", isActive: false },
-    { flag: "FRONTEND_ONLINE_PURCHASE", isActive: true },
-    { flag: "FRONTEND_FIND_A_STORE", isActive: true },
-    { flag: "FRONTEND_USER_ACCOUNT", isActive: true },
-    { flag: "FRONTEND_USER_SIGNUP", isActive: true },
-    { flag: "FRONTEND_USER_LOGIN", isActive: true },
-    { flag: "FRONTEND_CHAT", isActive: true },
-    { flag: "SEARCH", isActive: true },
-    { flag: "FRONTEND_GLOBAL_SEARCH", isActive: true },
-    { flag: "FRONTEND_MEGA_MENU", isActive: true },
-    { flag: "ALWAYS_TRUE", isActive: true },
-] */
-
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.scss`)
 
     const [footerStatus, setFooterStatus] = useState(true)
     const [features, setFeatures] = useState<any[]>([])
-    const [storeId, setStoreID] = useState(0);
-    const [loadStatus, setLoadStatus] = useState(false);
+    const [storeId, setStoreID] = useState(0)
+    const [loadStatus, setLoadStatus] = useState(false)
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)
@@ -59,7 +27,6 @@ function App(): JSX.Element {
     useEffect(() => {
         appLoadAPI
             .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 console.log("api-appLoadAPI => store details:", res.data)
                 setStoreID(res.data.settings.store_id)
@@ -69,7 +36,7 @@ function App(): JSX.Element {
             })
             .catch((error) => {
                 console.log("Error in get Store Details", error)
-            })        
+            })
     }, [])
 
     useEffect(() => {
@@ -78,21 +45,21 @@ function App(): JSX.Element {
                 .getFeatures(storeId)
                 .then((res: any) => {
                     console.log("api-appLoadAPI => get features:", res.data)
-                    const feats:any[] = [ { flag: "ALWAYS_TRUE", isActive: true } ];
+                    const feats: any[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({
                             flag: res.data[i].feature_id,
-                            isActive: res.data[i].is_enabled
+                            isActive: res.data[i].is_enabled,
                         })
                     }
-                    setFeatures(feats);
-                    setLoadStatus(true);
+                    setFeatures(feats)
+                    setLoadStatus(true)
                 })
                 .catch((error) => {
                     console.log("Error in get Features", error)
                 })
         }
-    }, [storeId])    
+    }, [storeId])
 
     const BaseRouter = () => {
         return (
@@ -133,17 +100,20 @@ function App(): JSX.Element {
 
     return (
         <LangProvider>
-            {loadStatus ? <Router>
-                <Header
-                    subDomain={subDomain}
-                    handleStatus={handleFooterStatus}
-                    features={features}
-                />
-                <BaseRouter />
-                <Chat subDomain={subDomain} features={features} />
-                {footerStatus && <Footer subDomain={subDomain} features={features} />}
-            </Router> :
-            <Preloader />}
+            {loadStatus ? (
+                <Router>
+                    <Header
+                        subDomain={subDomain}
+                        handleStatus={handleFooterStatus}
+                        features={features}
+                    />
+                    <BaseRouter />
+                    <Chat subDomain={subDomain} features={features} />
+                    {footerStatus && <Footer subDomain={subDomain} features={features} />}
+                </Router>
+            ) : (
+                <Preloader />
+            )}
         </LangProvider>
     )
 }
