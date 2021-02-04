@@ -202,7 +202,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 5) {
-      const cntTypes:any[] = repairWidData.receiveQuote.types.length ? repairWidData.receiveQuote.types : data.types;
+      const cntQuote:any[] = [], cntTypes:any[] = repairWidData.receiveQuote.types.length ? repairWidData.receiveQuote.types : data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -212,8 +212,11 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           cntTypes[i].col = 'white';
           cntTypes[i].selected = true;
         }
+        if (cntTypes[i].code === 'EMAIL') {
+          cntQuote.push(cntTypes[i]);
+        }
       }
-      setItemTypes([...cntTypes])
+      setItemTypes([...cntQuote])
     }
   }, [step, repairWidgetData, repairWidData]);
 
