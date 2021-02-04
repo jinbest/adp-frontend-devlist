@@ -9,7 +9,7 @@ import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const apexDomain = domainMatch ? domainMatch[0] : "localhost"
+const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 function App(): JSX.Element {
