@@ -19,6 +19,10 @@ import iPhoneHalf from './repair-widget/device-model/iPhone-half.png'
 import requestQuote from './repair-widget/quote/requestQuote.png'
 import thankQuote from './repair-widget/quote/thankQuote.png'
 
+// shop-page-data
+import shopCorner from './shop-page/nano-shop-corner-shape.png'
+import shopIPhone from './shop-page/shop-iPhone.png'
+
 const repairWidget = {
   publicText: {
     next: 'NEXT',
@@ -200,6 +204,23 @@ const repairWidget = {
   ]
 }
 
+const shopPageData = {
+  cornerShape: { img: shopCorner },
+  shopEachItem: {
+    title: 'iPhone 11 Pro',
+    capacity: '128 GB',
+    color: '#00B0F0',
+    midCol: 'Midnight Green',
+    availableStore: 'Available in Store',
+    availableOnline: 'Not available Online',
+    price: '$897',
+    asLow: 'As low as $50 / mo',
+    warranty: '12 months',
+    img: shopIPhone
+  }
+}
+
 export {
-  repairWidget
+  repairWidget,
+  shopPageData
 }

@@ -399,7 +399,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   <Typography className={subDomain + '-topic-content'} key={index}>{t(item)}</Typography>
                 )
               })}
-              {data.disableTopic.title && <Typography className={subDomain + '=topic-title'} style={{color: 'rgba(0,0,0,0.3)'}}>
+              {data.disableTopic.title && <Typography className={subDomain + '-topic-title'} style={{color: 'rgba(0,0,0,0.3)'}}>
                 {t(data.disableTopic.title)}
               </Typography>}
               {data.disableTopic.content && <Typography className={subDomain + '-topic-content'} style={{color: 'rgba(0,0,0,0.3)'}}>

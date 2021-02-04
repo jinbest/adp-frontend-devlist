@@ -114,7 +114,8 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
           day: day, 
           month: MONTHS[month], 
           year: year, 
-          week: DAYS_OF_THE_WEEK[week] 
+          week: DAYS_OF_THE_WEEK[week],
+          timezone: timeZoneList[tzIndex].offset
         }
       });
     }    

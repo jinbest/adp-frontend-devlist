@@ -3,28 +3,29 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Footer, Header, Chat, Preloader } from "./components"
 import { Home } from "./pages/home/"
 import { Repair, RepairWidget } from "./pages/repair/"
+import { Shop } from "./pages/shop/"
 import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 
-const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const apexDomain = domainMatch ? domainMatch[0] : "localhost"
-const subDomain = apexDomain.split(".")[0]
+// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+// const apexDomain = domainMatch ? domainMatch[0] : "localhost"
+// const subDomain = apexDomain.split(".")[0]
 
-// const devicelist = [
-//     "bananaservice",
-//     "mobiletech",
-//     "nanotechmobile",
-//     "northtechsolutions",
-//     "phonephix",
-//     "pradowireless",
-//     "wearegeebo",
-//     "wirelessrev",
-//     "dccmtx",
-//     "mtlcmtx"
-// ]
-// const subDomain = devicelist[0]
+const devicelist = [
+    "bananaservice",
+    "mobiletech",
+    "nanotechmobile",
+    "northtechsolutions",
+    "phonephix",
+    "pradowireless",
+    "wearegeebo",
+    "wirelessrev",
+    "dccmtx",
+    "mtlcmtx"
+]
+const subDomain = devicelist[2]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -58,8 +59,8 @@ function App(): JSX.Element {
 
     useEffect(() => {
         appLoadAPI
-            .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
+            // .getStoresDetail(apexDomain, false)
+            .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 console.log("api-appLoadAPI => store details:", res.data)
                 setStoreID(res.data.settings.store_id)
@@ -69,7 +70,7 @@ function App(): JSX.Element {
             })
             .catch((error) => {
                 console.log("Error in get Store Details", error)
-            })        
+            })
     }, [])
 
     useEffect(() => {
@@ -125,6 +126,16 @@ function App(): JSX.Element {
                                 features={features}
                             />
                         </Provider>
+                    )}
+                />
+                <Route
+                    path="/shop"
+                    component={() => (
+                        <Shop
+                            subDomain={subDomain}
+                            handleStatus={handleFooterStatus}
+                            features={features}
+                        />
                     )}
                 />
             </>

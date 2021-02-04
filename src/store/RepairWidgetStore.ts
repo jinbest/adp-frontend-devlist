@@ -25,9 +25,9 @@ export class RepairWidgetStore {
   @observable bookData: any = {
     'MAIL_IN': { sendTo: '' },
     'WALK_IN': { sendTo: '' },
-    'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '' },
-    'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '' },
-    'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
   }
   @observable message: string = ''
   @observable cntStep: number = 0
@@ -143,9 +143,9 @@ export class RepairWidgetStore {
     this.bookData = {
       'MAIL_IN': { sendTo: '' },
       'WALK_IN': { sendTo: '' },
-      'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '' },
-      'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '' },
-      'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+      'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
     };
     this.message = '';
     this.cntStep = 0;

@@ -64,7 +64,8 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
       "customer_country": repairWidgetStore.contactDetails.country,
       "customer_note": null,
       "customer_contact_method": repairWidgetStore.receiveQuote.code,
-      "repairs": repairs
+      "repairs": repairs,
+      "start_date": "2021-02-02T09:30:00+08:00"
     }
     repairWidgetAPI
       .postAppointmentQuote(apiData)

@@ -26,10 +26,10 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNav
 
   return (
     <li className={subDomain + '-nav-item'}>
-      {text === 'SHOP' ? 
-        <MegamenuShop subDomain={subDomain} text={text} /> : 
+      {
         <Link className={subDomain + '-nav-link'} to={href} onClick={handle}>
-          {t(text)}
+          {text === 'SHOP' ? 
+            <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
         </Link>
       }
     </li>
