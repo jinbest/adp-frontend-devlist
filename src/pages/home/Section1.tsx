@@ -22,7 +22,7 @@ const Section1 = ({subDomain, features}: Props) => {
   useEffect(() => {
     const cntCardMobileData:any = data.cardMobileData.data;
     const cntFeature:any[] = [], cntFeatSearch:any[] = [];
-    let cntCustomTitle:string = '';    
+    let cntCustomTitle = '';    
     for (let j = 0; j < features.length; j++) {
       if (features[j].flag === 'FRONTEND_TRADE' && features[j].isActive) {
         cntCustomTitle += cntCustomTitle ? ', ' + t('TRADE') : t('TRADE');

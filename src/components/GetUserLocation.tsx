@@ -57,7 +57,7 @@ const findGeoLoc = (geoPos: any) => {
   findLocationAPI
     .findGeoLocation(1, geoData)
     .then((res:any) => {
-      console.log('api-findLocationAPI => findGeoLoc:', res.data);
+      // console.log('api-findLocationAPI => findGeoLoc:', res.data);
       storesDetails.changeFindGeoLocation(res.data);
     })
     .catch((error) => {
@@ -65,25 +65,24 @@ const findGeoLoc = (geoPos: any) => {
     });
 }
 
-const findAddLoc = () => {
-  /* addData should be made from mobx-store later */
-  const addData:any = {
-    city: 'winnipeg',
-    state: 'MB',
-    postcode: 'R3P1E7',
-    country: 'CA',
-    address_1: '500 Sterling Lyon Pkwy'
-  }
-  findLocationAPI
-    .findAddLocation(1, addData)
-    .then((res:any) => {
-      console.log('api-findLocationAPI => findAddLoc:', res.data);
-      storesDetails.changeFindAddLocation(res.data);
-    })
-    .catch((error) => {
-      console.log('Error to find location with Address', error);
-    });
-}
+// const findAddLoc = () => {
+//   const addData:any = {
+//     city: 'winnipeg',
+//     state: 'MB',
+//     postcode: 'R3P1E7',
+//     country: 'CA',
+//     address_1: '500 Sterling Lyon Pkwy'
+//   }
+//   findLocationAPI
+//     .findAddLocation(1, addData)
+//     .then((res:any) => {
+//       console.log('api-findLocationAPI => findAddLoc:', res.data);
+//       storesDetails.changeFindAddLocation(res.data);
+//     })
+//     .catch((error) => {
+//       console.log('Error to find location with Address', error);
+//     });
+// }
 
 // findAddLoc();
 

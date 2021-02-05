@@ -27,7 +27,7 @@ const Shop = ({subDomain, handleStatus, features}: Props) => {
     setFeatures(cntFeatures);
   }, [features]);
 
-  console.log(subDomain);
+  // console.log(subDomain);
 
   return (
     <FeatureToggles features={feats}>

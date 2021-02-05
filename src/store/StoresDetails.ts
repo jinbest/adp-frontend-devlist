@@ -8,13 +8,13 @@ export class StoresDetails {
   @observable findGeoLocation: any[] = [];
   @observable findAddLocation: any[] = [];
   @observable cntUserLocation: any[] = [];
-  @observable cntUserLocationSelected: boolean = false;
+  @observable cntUserLocationSelected = false;
 
-  @observable store_id: number = 0;
-  @observable location_id: number = 0;
-  @observable is_voided: boolean = false;
-  @observable customer_id: number = 1;
-  @observable type: string = 'QUOTE'; /* type is 'QUOTE' or 'APPOINTMENT' */
+  @observable store_id = 1;
+  @observable location_id = 1;
+  @observable is_voided = false;
+  @observable customer_id = 1;
+  @observable type = 'QUOTE'; /* type is 'QUOTE' or 'APPOINTMENT' */
   
   constructor() {
     this.load();

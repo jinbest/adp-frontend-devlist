@@ -84,6 +84,12 @@ class RepairWidget extends React.Component<Props, MyState> {
     }
     this.setState({feats: cntFeatures});
 
+    repairWidgetStore.changeRepairWidgetInitialValue({
+      selectDate: new Date().toISOString().split('T')[0],
+      selected_start_time: new Date().getDay() === 0 ? '10:00' : '09:00',
+      selected_end_time: new Date().getDay() === 0 ? '16:00' : '17:30'
+    })
+
     getRepairLookupAPI();
     getDeliveryMethodsAPI();
 

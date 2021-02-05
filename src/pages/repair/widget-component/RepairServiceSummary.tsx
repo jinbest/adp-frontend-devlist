@@ -6,6 +6,7 @@ import { useT } from '../../../i18n/index'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 import { repairWidgetStore, storesDetails } from '../../../store'
 import { repairWidgetAPI } from '../../../services'
+import { PostAppointParams } from '../model/post-appointment-params'
 
 type Props = {
   repairWidgetData: any;
@@ -45,32 +46,35 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
         repair_id += 1;
       }      
     }
-    const apiData:any = {
-      "store_id": storesDetails.store_id,
-      "location_id": storesDetails.location_id,
-      "customer_id": 1,
-      "type": tp,
-      "is_voided": storesDetails.is_voided,
-      "delivery_method": repairWidgetStore.deliveryMethod.code,
-      "customer_email": repairWidgetStore.contactDetails.email,
-      "customer_first_name": repairWidgetStore.contactDetails.firstName,
-      "customer_last_name": repairWidgetStore.contactDetails.lastName,
-      "customer_phone": repairWidgetStore.contactDetails.phone,
-      "customer_address_1": repairWidgetStore.contactDetails.address1,
-      "customer_address_2": repairWidgetStore.contactDetails.address2,
-      "customer_city": repairWidgetStore.contactDetails.city,
-      "customer_state": repairWidgetStore.contactDetails.province,
-      "customer_postcode": repairWidgetStore.contactDetails.postalCode,
-      "customer_country": repairWidgetStore.contactDetails.country,
-      "customer_note": null,
-      "customer_contact_method": repairWidgetStore.receiveQuote.code,
-      "repairs": repairs,
-      "start_date": "2021-02-02T09:30:00+08:00"
-    }
+    const params = {} as PostAppointParams
+    params.store_id = storesDetails.store_id
+    params.location_id = storesDetails.location_id
+    params.customer_id = 1
+    params.type = tp
+    params.is_voided = storesDetails.is_voided
+    params.delivery_method = repairWidgetStore.deliveryMethod.code
+    params.customer_email = repairWidgetStore.contactDetails.email
+    params.customer_first_name = repairWidgetStore.contactDetails.firstName
+    params.customer_last_name = repairWidgetStore.contactDetails.lastName
+    params.customer_phone = repairWidgetStore.contactDetails.phone
+    params.customer_address_1 = repairWidgetStore.contactDetails.address1
+    params.customer_address_2 = repairWidgetStore.contactDetails.address2
+    params.customer_city = repairWidgetStore.contactDetails.city
+    params.customer_state = repairWidgetStore.contactDetails.province
+    params.customer_postcode = repairWidgetStore.contactDetails.postalCode
+    params.customer_country = repairWidgetStore.contactDetails.country
+    params.customer_note = null
+    params.customer_contact_method = repairWidgetStore.receiveQuote.code
+    params.repairs = repairs
+    params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate
+    params.selected_start_time = repairWidgetStore.repairWidgetInitialValue.selected_start_time
+    params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
+    
     repairWidgetAPI
-      .postAppointmentQuote(apiData)
+      .postAppointmentQuote(params)
       .then((res:any) => {
-        console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
+        // console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
+        repairWidgetStore.changeAppointResponse(res.data)
         if (code === 'MAIL_IN' && features.includes('FRONTEND_REPAIR_QUOTE')) {
           handleStep(11);
         } else if (code !== 'MAIL_IN' && features.includes('FRONTEND_REPAIR_APPOINTMENT')) {

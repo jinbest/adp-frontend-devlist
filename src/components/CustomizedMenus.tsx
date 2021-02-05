@@ -76,7 +76,7 @@ function makeLocations(data:any[]) {
     }
     locations.push(cntItem);
   }
-  console.log(locations);
+  // console.log(locations);
   return locations;
 }
 
@@ -128,11 +128,11 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   useEffect(() => {
     if (!requireUserInfo && pos.latitude) {
       if (locations.length) return;
-      console.log('pos: ', pos);
+      // console.log('pos: ', pos);
       findLocationAPI
         .findGeoLocation(1, pos)
         .then((res:any) => {
-          console.log('api-findLocationAPI => findGeoLoc:', res.data);
+          // console.log('api-findLocationAPI => findGeoLoc:', res.data);
           if (res.data.length) {
             setLocations(makeLocations(res.data));
             storesDetails.changeFindGeoLocation(res.data);
@@ -157,11 +157,11 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   useEffect(() => {
     if (userInfo.city) {
       if (locations.length) return;
-      console.log('userInfo: ', userInfo);
+      // console.log('userInfo: ', userInfo);
       findLocationAPI
         .findAddLocation(1, userInfo)
         .then((res:any) => {
-          console.log('api-findLocationAPI => findAddLoc:', res.data);
+          // console.log('api-findLocationAPI => findAddLoc:', res.data);
           if (res.data.length) {
             setLocations(makeLocations(res.data));
             storesDetails.changeFindAddLocation(res.data);

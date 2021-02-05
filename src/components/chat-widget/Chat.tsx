@@ -15,7 +15,7 @@ type Props = {
 const Chat = ({subDomain, features}: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database.js`);
   const chatData = mainData.chatData;
-  const chatBgCol = mainData.colorPalle.chatBgCol;
+  // const chatBgCol = mainData.colorPalle.chatBgCol;
 
   const t = useT();
   const [feats, setFeatures] = useState<any[]>([]);
@@ -41,10 +41,10 @@ const Chat = ({subDomain, features}: Props) => {
     queryMessage(newMessage);
   };
 
-  const getCustomLauncher = (handleToggle:any) =>
-    <div className={subDomain + '-chat-container'} style={{backgroundColor: chatBgCol}} onClick={handleToggle}>
-      <img src={chatData.chatImg} />
-    </div>
+  // const getCustomLauncher = (handleToggle:any) =>
+  //   <div className={subDomain + '-chat-container'} style={{backgroundColor: chatBgCol}} onClick={handleToggle}>
+  //     <img src={chatData.chatImg} />
+  //   </div>
 
   return (
     <div className={subDomain + '-chat-widget-container'}>

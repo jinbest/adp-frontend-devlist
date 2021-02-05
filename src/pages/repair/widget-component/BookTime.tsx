@@ -5,6 +5,7 @@ import { Button, CustomSelect, CustomCalendar, InputComponent } from '../../../c
 import CustomBookTime from './CustomBookTime'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
+import { repairWidgetStore } from '../../../store'
 
 type Props = {
   data: any;
@@ -105,6 +106,18 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
   const ChooseNextStep = () => {
     if (code === 'MAIL_IN') {
       handleChangeChooseData(7, { code: code, data: { sendTo: sendToAddress } });
+      repairWidgetStore.changeContactDetails({
+        firstName: repairWidgetStore.contactDetails.firstName, 
+        lastName: repairWidgetStore.contactDetails.lastName, 
+        email: repairWidgetStore.contactDetails.email, 
+        phone: repairWidgetStore.contactDetails.phone, 
+        address1: sendToAddress, 
+        address2: repairWidgetStore.contactDetails.address2, 
+        country: repairWidgetStore.contactDetails.country, 
+        city: repairWidgetStore.contactDetails.city, 
+        province: repairWidgetStore.contactDetails.province, 
+        postalCode: repairWidgetStore.contactDetails.postalCode, 
+      })
     } else {
       handleChangeChooseData(7, {
         code: code, 
@@ -118,6 +131,24 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
           timezone: timeZoneList[tzIndex].offset
         }
       });
+      const cntSelectDate = year + '-' + (month + 1) + '-' + day;
+      repairWidgetStore.changeRepairWidgetInitialValue({
+        selectDate: cntSelectDate,
+        selected_start_time: new Date(cntSelectDate).getDay() === 0 ? '10:00' : '09:00',
+        selected_end_time: new Date(cntSelectDate).getDay() === 0 ? '16:00' : '17:30'
+      });
+      repairWidgetStore.changeContactDetails({
+        firstName: repairWidgetStore.contactDetails.firstName, 
+        lastName: repairWidgetStore.contactDetails.lastName, 
+        email: repairWidgetStore.contactDetails.email, 
+        phone: repairWidgetStore.contactDetails.phone, 
+        address1: (code === 'CURBSIDE' || code === 'WALK_IN') ? selectVal : address, 
+        address2: repairWidgetStore.contactDetails.address2, 
+        country: repairWidgetStore.contactDetails.country, 
+        city: repairWidgetStore.contactDetails.city, 
+        province: repairWidgetStore.contactDetails.province, 
+        postalCode: repairWidgetStore.contactDetails.postalCode, 
+      })
     }    
     handleStep(step+1)
   }

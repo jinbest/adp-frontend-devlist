@@ -79,9 +79,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }
 
-  const onKeyPress = useCallback((event) => {
+  const onKeyPress = useCallback(async (event) => {
     if (event.key === 'Enter' && (step === 0 || step === 1)) {
-      loadStepData(stepName, event.target.value);
+      await loadStepData(stepName, event.target.value);
     }
     if(event.key === 'Enter' && !disableStatus && (step === 2 || step === 4 || step === 5)) {
       handleStep(step+1);
@@ -93,10 +93,10 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     setSearchText(e.target.value);
   }
 
-  const handleClickSearchIcon = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClickSearchIcon = async (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (step >= 2) return;
     e.preventDefault();
-    loadStepData(stepName, searchText);
+    await loadStepData(stepName, searchText);
   }
 
   const loadStepData = async (name: string, text:string) => {
@@ -145,8 +145,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     };
   }, [step, disableStatus]);
 
-  const GotoNextStep = () => {
-    ChooseNextStep(999);
+  const GotoNextStep = async () => {
+    await ChooseNextStep(999);
   }
 
   const GobackFirst = () => {
@@ -165,7 +165,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           col: 'black',
           estimate: cntOfferedRepairs[i].duration,
           selected: false,
-          cost: cntOfferedRepairs[i].cost
+          cost: cntOfferedRepairs[i].cost,
+          warranty: cntOfferedRepairs[i].warranty,
+          warranty_unit: cntOfferedRepairs[i].warranty_unit
         })
       }
       for (let i = 0; i < cntTypes.length; i++) {
@@ -236,7 +238,13 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       const preChooseRepairs:any[] = [];
       for (let i = 0; i < cntTypes.length; i++) {
         if (cntTypes[i].selected) {
-          preChooseRepairs.push({name: cntTypes[i].name, cost: cntTypes[i].cost, estimate: cntTypes[i].estimate})
+          preChooseRepairs.push({
+            name: cntTypes[i].name, 
+            cost: cntTypes[i].cost, 
+            estimate: cntTypes[i].estimate, 
+            warranty: cntTypes[i].warranty, 
+            warranty_unit: cntTypes[i].warranty_unit
+          })
         }
       }
       handleChangeChooseData(step, {data: preChooseRepairs, counter: repairWidgetData.deviceCounter})
@@ -308,7 +316,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   subDomain={subDomain}
                   value={searchText}
                   handleChange={(e:React.ChangeEvent<HTMLInputElement>)=>{handleChangeSearch(e)}}
-                  handleIconClick={(e:React.MouseEvent<HTMLDivElement, MouseEvent>)=>{handleClickSearchIcon(e)}}
+                  handleIconClick={async (e:React.MouseEvent<HTMLDivElement, MouseEvent>)=>{await handleClickSearchIcon(e)}}
                 />}
               </div>}
               <div className={subDomain + '-widget-main-container'}>
@@ -419,6 +427,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                     <p className={subDomain + '-estimate-content'}>{item.estimate}</p>
                     {storesDetails.storesDetails.settings.display_repair_cost && 
                     <p className={subDomain + '-estimate-content'}>{item.cost}</p>}
+                    {item.warranty && <p className={subDomain + '-estimate-content'}>{item.warranty + ' ' + item.warranty_unit}</p>}
                   </div>
                 )
               })}

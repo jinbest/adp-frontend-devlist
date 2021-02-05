@@ -11,8 +11,8 @@ export class RepairWidData {
   @observable repairsOfferedDevices: any = {};
   @observable apiDropOffDevices: any = {};
   @observable receiveQuote: any = {};
-  @observable cntBrandID: number = 0;
-  @observable cntProductID: number = 0;
+  @observable cntBrandID = 0;
+  @observable cntProductID = 0;
 
   constructor() {
     this.load();

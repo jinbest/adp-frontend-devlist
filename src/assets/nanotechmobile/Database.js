@@ -178,7 +178,7 @@ const colorPalle = {
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
-    { href: "/shop", text: "SHOP", isActive: false, flag: 'FRONTEND_MEGA_MENU' },
+    { href: "#", text: "SHOP", isActive: false, flag: 'FRONTEND_MEGA_MENU' },
     { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
 

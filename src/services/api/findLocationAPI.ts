@@ -4,7 +4,7 @@ import Config from '../../config/config';
 class FindLocationAPI {
 
   findGeoLocation = (store_id:number, data:any) => {
-    const apiURL:string = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/locations/co_ordinates`;
+    const apiURL = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/locations/co_ordinates`;
     return new Promise((resolve, reject) => {
       axios
         .post(`${apiURL}`, data)
@@ -24,7 +24,7 @@ class FindLocationAPI {
   };
 
   findAddLocation = (store_id:number, data:any) => {
-    const apiURL:string = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/locations/address`;
+    const apiURL = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/locations/address`;
     return new Promise((resolve, reject) => {
       axios
         .post(`${apiURL}`, data)

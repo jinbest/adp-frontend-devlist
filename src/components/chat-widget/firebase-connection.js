@@ -13,7 +13,7 @@ const { queryWit, firstEntity } = require("./wit-ai.js");
 // }
 
 function queryMessage(question) {
-  console.log("Message Received: " + question);
+  // console.log("Message Received: " + question);
 
   queryWit(question).then(({ entities }) => {
     const intent = firstEntity(entities, "intent");

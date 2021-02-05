@@ -10,7 +10,7 @@ import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const apexDomain = domainMatch ? domainMatch[0] : "localhost"
+const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
@@ -45,11 +45,16 @@ const subDomain = apexDomain.split(".")[0]
     { flag: "ALWAYS_TRUE", isActive: true },
 ] */
 
+type FeatureProps = {
+    flag: string;
+    isActive: boolean;
+}
+
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.scss`)
 
     const [footerStatus, setFooterStatus] = useState(true)
-    const [features, setFeatures] = useState<any[]>([])
+    const [features, setFeatures] = useState<FeatureProps[]>([])
     const [storeId, setStoreID] = useState(0)
     const [loadStatus, setLoadStatus] = useState(false)
 
@@ -62,7 +67,6 @@ function App(): JSX.Element {
             .getStoresDetail(apexDomain, false)
             // .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
-                console.log("api-appLoadAPI => store details:", res.data)
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)
                 storesDetails.changeIsVoided(res.data.is_voided)
@@ -78,8 +82,7 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    console.log("api-appLoadAPI => get features:", res.data)
-                    const feats: any[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
+                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({
                             flag: res.data[i].feature_id,

@@ -7,6 +7,8 @@ import { useT } from '../../../i18n/index'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 import { repairWidgetStore, storesDetails } from '../../../store'
 import { repairWidgetAPI } from '../../../services'
+import { PostAppointParams } from '../model/post-appointment-params'
+// import { RepairService } from '../../../services/api/repair-service'
 
 type Props = {
   data: any;
@@ -24,6 +26,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
   const themeCol = mainData.colorPalle.themeColor;
   const publicText = mockData.repairWidget.publicText;
+  // const repairService = RepairService.getInstance();
 
   const t = useT();
 
@@ -52,6 +55,33 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     setPostalCode(repairWidgetData.contactDetails.postalCode);
   }, [repairWidgetData, step]);
 
+  // const postAppointParams = (tp:string, repairs: any[]) => {
+  //   const params = {} as PostAppointParams
+  //   params.store_id = storesDetails.store_id
+  //   params.location_id = storesDetails.location_id
+  //   params.customer_id = 1
+  //   params.type = tp
+  //   params.is_voided = storesDetails.is_voided
+  //   params.delivery_method = repairWidgetStore.deliveryMethod.code
+  //   params.customer_email = email
+  //   params.customer_first_name = firstName
+  //   params.customer_last_name = lastName
+  //   params.customer_phone = phone
+  //   params.customer_address_1 = address1
+  //   params.customer_address_2 = address2
+  //   params.customer_city = city
+  //   params.customer_state = province
+  //   params.customer_postcode = postalCode
+  //   params.customer_country = country
+  //   params.customer_note = null
+  //   params.customer_contact_method = repairWidgetStore.receiveQuote.code
+  //   params.repairs = repairs
+  //   params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate
+  //   params.selected_start_time = repairWidgetStore.repairWidgetInitialValue.selected_start_time
+  //   params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
+  //   return params
+  // }
+
   const handleButton = (param: string) => {   
     setDisableStatus(true); 
     const tp: string = (param === 'appointment') ? 'APPOINTMENT' : 'QUOTE';
@@ -70,31 +100,56 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
         repair_id += 1;
       }      
     }
-    const apiData:any = {
-      "store_id": storesDetails.store_id,
-      "location_id": storesDetails.location_id,
-      "customer_id": 1,
-      "type": tp,
-      "is_voided": storesDetails.is_voided,
-      "delivery_method": repairWidgetStore.deliveryMethod.code,
-      "customer_email": email,
-      "customer_first_name": firstName,
-      "customer_last_name": lastName,
-      "customer_phone": phone,
-      "customer_address_1": address1,
-      "customer_address_2": address2,
-      "customer_city": city,
-      "customer_state": province,
-      "customer_postcode": postalCode,
-      "customer_country": country,
-      "customer_note": null,
-      "customer_contact_method": repairWidgetStore.receiveQuote.code,
-      "repairs": repairs
-    }
+
+    // const appntRes = await repairService.postAppointment(1, 1, postAppointParams(tp, repairs))
+    // repairWidgetStore.changeAppointResponse(appntRes)
+
+    // handleChangeChooseData(6, { 
+    //   firstName: firstName, 
+    //   lastName: lastName, 
+    //   email: email, 
+    //   phone: phone,
+    //   address1: address1,
+    //   address2: address2,
+    //   country: country,
+    //   city: city,
+    //   province: province,
+    //   postalCode: postalCode
+    // });
+    // storesDetails.changeType(tp);
+    // if (param === 'appointment') {
+    //   handleStep(step+1);
+    // } else {
+    //   handleStep(11);
+    // }
+
+    const params = {} as PostAppointParams
+    params.store_id = storesDetails.store_id
+    params.location_id = storesDetails.location_id
+    params.customer_id = 1
+    params.type = tp
+    params.is_voided = storesDetails.is_voided
+    params.delivery_method = repairWidgetStore.deliveryMethod.code
+    params.customer_email = email
+    params.customer_first_name = firstName
+    params.customer_last_name = lastName
+    params.customer_phone = phone
+    params.customer_address_1 = address1
+    params.customer_address_2 = address2
+    params.customer_city = city
+    params.customer_state = province
+    params.customer_postcode = postalCode
+    params.customer_country = country
+    params.customer_note = null
+    params.customer_contact_method = repairWidgetStore.receiveQuote.code
+    params.repairs = repairs
+    params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate
+    params.selected_start_time = repairWidgetStore.repairWidgetInitialValue.selected_start_time
+    params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
     repairWidgetAPI
-      .postAppointmentQuote(apiData)
+      .postAppointmentQuote(params)
       .then((res:any) => {
-        console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
+        // console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
         handleChangeChooseData(6, { 
           firstName: firstName, 
           lastName: lastName, 
@@ -107,6 +162,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
           province: province,
           postalCode: postalCode
         });
+        repairWidgetStore.changeAppointResponse(res.data)
         storesDetails.changeType(tp);
         if (param === 'appointment') {
           handleStep(step+1);
