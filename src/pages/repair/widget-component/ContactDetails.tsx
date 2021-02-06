@@ -42,72 +42,83 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
   const [disableStatus, setDisableStatus] = useState(true);
 
   const handleButton = (param: string) => {   
-    setDisableStatus(true); 
-    const tp: string = (param === 'appointment') ? 'APPOINTMENT' : 'QUOTE';
-    const repairs: any[] = [];
-    for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
-      for (let j = 0; j < repairWidgetStore.chooseRepair[i].length; j++) {
-        repairs.push({
-          "repair_id": repairWidgetStore.chooseRepair[i][j].id,
-          "product_id": repairWidgetStore.deviceModel[i].id,
-          "cost": repairWidgetStore.chooseRepair[i][j].cost,
-          "duration": repairWidgetStore.chooseRepair[i][j].estimate,
-          "product_name": repairWidgetStore.deviceBrand[i].name + ',' + repairWidgetStore.deviceModel[i].name,
-          "repair_name": repairWidgetStore.chooseRepair[i][j].name
-        });
-      }      
-    }
-
-    const params = {} as PostAppointParams
-    params.store_id = storesDetails.store_id
-    params.location_id = storesDetails.location_id
-    params.customer_id = 1
-    params.type = tp
-    params.is_voided = storesDetails.is_voided
-    params.delivery_method = repairWidgetStore.deliveryMethod.code
-    params.customer_email = email
-    params.customer_first_name = firstName
-    params.customer_last_name = lastName
-    params.customer_phone = phone
-    params.customer_address_1 = address1
-    params.customer_address_2 = address2
-    params.customer_city = city
-    params.customer_state = province.code
-    params.customer_postcode = postalCode
-    params.customer_country = country.code
-    params.customer_note = null
-    params.customer_contact_method = repairWidgetStore.receiveQuote.code
-    params.repairs = repairs
-    params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate
-    params.selected_start_time = repairWidgetStore.repairWidgetInitialValue.selected_start_time
-    params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
-    repairWidgetAPI
-      .postAppointmentQuote(params)
-      .then((res:any) => {
-        handleChangeChooseData(6, { 
-          firstName: firstName, 
-          lastName: lastName, 
-          email: email, 
-          phone: phone,
-          address1: {name: address1, code: ''},
-          address2: {name: address2, code: ''},
-          country: country,
-          city: city,
-          province: province,
-          postalCode: postalCode
-        });
-        repairWidgetStore.changeAppointResponse(res.data)
-        storesDetails.changeType(tp);
-        if (param === 'appointment') {
-          handleStep(step+1);
-        } else {
+    setDisableStatus(true);
+    if (param !== 'appointment') {
+      const repairs: any[] = [];
+      for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
+        for (let j = 0; j < repairWidgetStore.chooseRepair[i].length; j++) {
+          repairs.push({
+            "repair_id": repairWidgetStore.chooseRepair[i][j].id,
+            "product_id": repairWidgetStore.deviceModel[i].id,
+            "cost": repairWidgetStore.chooseRepair[i][j].cost,
+            "duration": repairWidgetStore.chooseRepair[i][j].estimate,
+            "product_name": repairWidgetStore.deviceBrand[i].name + ' ' + repairWidgetStore.deviceModel[i].name,
+            "repair_name": repairWidgetStore.chooseRepair[i][j].name
+          });
+        }      
+      }
+      const params = {} as PostAppointParams
+      params.store_id = storesDetails.store_id
+      params.location_id = storesDetails.location_id
+      params.customer_id = 1
+      params.type = 'QUOTE'
+      params.is_voided = storesDetails.is_voided
+      params.delivery_method = repairWidgetStore.deliveryMethod.code
+      params.customer_email = email
+      params.customer_first_name = firstName
+      params.customer_last_name = lastName
+      params.customer_phone = phone
+      params.customer_address_1 = address1
+      params.customer_address_2 = address2
+      params.customer_city = city
+      params.customer_state = province.code
+      params.customer_postcode = postalCode
+      params.customer_country = country.code
+      params.customer_note = null
+      params.customer_contact_method = repairWidgetStore.receiveQuote.code
+      params.repairs = repairs
+      params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate
+      params.selected_start_time = repairWidgetStore.repairWidgetInitialValue.selected_start_time
+      params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
+      repairWidgetAPI
+        .postAppointmentQuote(params)
+        .then((res:any) => {
+          handleChangeChooseData(6, { 
+            firstName: firstName, 
+            lastName: lastName, 
+            email: email, 
+            phone: phone,
+            address1: {name: address1, code: ''},
+            address2: {name: address2, code: ''},
+            country: country,
+            city: city,
+            province: province,
+            postalCode: postalCode
+          });
+          repairWidgetStore.changeAppointResponse(res.data)
+          // storesDetails.changeType('QUOTE');
           handleStep(11);
-        }
-      })
-      .catch((error) => {
-        setDisableStatus(false);
-        console.log("Error in post Appointment and Quote", error);
+        })
+        .catch((error) => {
+          setDisableStatus(false);
+          console.log("Error in post Appointment and Quote", error);
+        });
+    } else {
+      handleChangeChooseData(6, { 
+        firstName: firstName, 
+        lastName: lastName, 
+        email: email, 
+        phone: phone,
+        address1: {name: address1, code: ''},
+        address2: {name: address2, code: ''},
+        country: country,
+        city: city,
+        province: province,
+        postalCode: postalCode
       });
+      // storesDetails.changeType('APPOINTMENT');
+      handleStep(step+1);
+    }
   }
 
   const onKeyPress = useCallback((event) => {
@@ -218,7 +229,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                   <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12}>
-                <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
+                  <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} />

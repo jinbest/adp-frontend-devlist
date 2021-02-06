@@ -54,15 +54,48 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
     name: string;
   }
 
+  type SelectHoursProps = {
+    day: string;
+    hour: string;
+  }
+
   const [findLocs, setFindLocs] = useState<FindLocProps[]>([]);
+  const [selHours, setSelHours] = useState<SelectHoursProps[]>([]);
 
   useEffect(() => {
-    const cntFindLoc: FindLocProps[] = [];
-    for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
-      cntFindLoc.push({ code: storesDetails.findAddLocation[i].id, name: storesDetails.findAddLocation[i].location_name })
+    const cntFindLoc: FindLocProps[] = [];    
+    const storeLocs:any[] = storesDetails.findAddLocation;
+    for (let i = 0; i < storeLocs.length; i++) {
+      cntFindLoc.push({ code: storeLocs[i].id, name: storeLocs[i].location_name });
     }
-    setFindLocs(cntFindLoc);
+    setFindLocs(cntFindLoc);    
   }, [storesDetails])
+
+  useEffect(() => {
+    const cntSelHours: SelectHoursProps[] = [];
+    const days:string[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+    const storeLocs:any[] = storesDetails.findAddLocation;
+    const i:number = mailInChecked;
+    if (storeLocs.length) {
+      for (let j = 0; j < storeLocs[i].location_hours.length; j++) {
+        if (storeLocs[i].location_hours[j].type === 'REGULAR') {
+          let hour = '';
+          if (!storeLocs[i].location_hours[j].open || !storeLocs[i].location_hours[j].close) {
+            hour = 'Closed';
+          } else {
+            const open:string = parseInt(storeLocs[i].location_hours[j].open.split(':')[0]) % 12 + ':' + storeLocs[i].location_hours[j].open.split(':')[1] + ' a.m.';
+            const close:string = parseInt(storeLocs[i].location_hours[j].close.split(':')[0]) % 12 + ':' + storeLocs[i].location_hours[j].close.split(':')[1] + ' p.m.';
+            hour = open + ' - ' + close;
+          }
+          cntSelHours.push({
+            day: days[storeLocs[i].location_hours[j].day],
+            hour: hour
+          })
+        }
+      }
+    }
+    setSelHours(cntSelHours);
+  }, [mailInChecked, storesDetails])
 
   useEffect(() => {
     setDay(date.getDate());
@@ -113,7 +146,7 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
         lastName: repairWidgetStore.contactDetails.lastName, 
         email: repairWidgetStore.contactDetails.email, 
         phone: repairWidgetStore.contactDetails.phone, 
-        address1: sendToAddress, 
+        address1: { name: sendToAddress, code: '1' }, 
         address2: repairWidgetStore.contactDetails.address2, 
         country: repairWidgetStore.contactDetails.country, 
         city: repairWidgetStore.contactDetails.city, 
@@ -234,11 +267,11 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
                   <div className={subDomain + '-select-mail-in-container'}>
                     <div><u><p className={subDomain + '-select-mail-in-text'}>{t('HOURS')}</p></u></div>
                   </div>
-                  {data.select.time.workingHours.map((item:any, index:number) => {
+                  {selHours.map((item:any, index:number) => {
                     return (
                       <div key={index} className={subDomain + '-select-mail-in-container'}>
-                        <div style={{width: '50%'}}><p className={subDomain + '-select-mail-in-text'}>{t(item[0])}</p></div>
-                        <div style={{width: '50%'}}><p className={subDomain + '-select-mail-in-text'}>{t(item[1])}</p></div>
+                        <div style={{width: '50%'}}><p className={subDomain + '-select-mail-in-text'}>{item.day}</p></div>
+                        <div style={{width: '50%'}}><p className={subDomain + '-select-mail-in-text'}>{item.hour}</p></div>
                       </div>
                     )
                   })}

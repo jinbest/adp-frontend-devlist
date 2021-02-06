@@ -14,6 +14,7 @@ import { inject, observer } from 'mobx-react'
 
 export function makeLocations(data:any[]) {
   const locations: GetCurrentLocParams[] = [];
+  // console.log('data', data)
   const days:any[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
   for (let i = 0; i < data.length; i++) {
     const hours:any[] = [], weekDays:any[] = [], storeGroup:any[] = [];
@@ -24,10 +25,15 @@ export function makeLocations(data:any[]) {
           storeGroup.push(cntStoreID);
           hours.push({store_id: cntStoreID, hrs: []});
           weekDays.push({store_id: cntStoreID, wkDys: []});
+        }        
+        let hour = '';
+        if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
+          hour = 'Closed';
+        } else {
+          const open:string = parseInt(data[i].location_hours[j].open.split(':')[0]) % 12 + ':' + data[i].location_hours[j].open.split(':')[1] + ' a.m.';
+          const close:string = parseInt(data[i].location_hours[j].close.split(':')[0]) % 12 + ':' + data[i].location_hours[j].close.split(':')[1] + ' p.m.';
+          hour = open + ' - ' + close;
         }
-        const open:string = parseInt(data[i].location_hours[j].open.split(':')[0]) % 12 + ':' + data[i].location_hours[j].open.split(':')[1] + ' a.m.';
-        const close:string = parseInt(data[i].location_hours[j].close.split(':')[0]) % 12 + ':' + data[i].location_hours[j].close.split(':')[1] + ' p.m.';
-        const hour:string = open + ' - ' + close;
         for (let k = 0; k < hours.length; k++) {
           if (cntStoreID === hours[k].store_id) {
             hours[k].hrs.push(hour);
@@ -99,6 +105,7 @@ const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
   const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected);
   const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation);
   const [requireUserInfo, setRequireUserInfo] = useState(false);
+  const [contentWidth, setContentWidth] = useState('215px');
 
   const handleLocSelect = (index:number) => {
     const cntLocation:any = locations[index];
@@ -116,7 +123,7 @@ const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
   };
 
   const setCoords = (pos:any) => {
-    console.log('setCoords: ', pos);
+    // console.log('setCoords: ', pos);
     setPos({
       latitude: pos.coords.latitude,
       longitude: pos.coords.longitude
@@ -163,15 +170,20 @@ const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
           setRequireUserInfo(true);
         });
     }
-  }, [pos, locations]);
+  }, [pos, locations]);  
+
+  useEffect(() => {
+    if (locSelStatus || !locations.length) {
+      setContentWidth('215px');
+    } else {
+      setContentWidth('500px');
+    }
+    headerStore.changeCntUserLocationSelected(locSelStatus);
+  }, [locSelStatus, locations]);
 
   useEffect(() => {
     headerStore.changeCntUserLocation(locations);
   }, [locations]);
-
-  useEffect(() => {
-    headerStore.changeCntUserLocationSelected(locSelStatus);
-  }, [locSelStatus]);
 
   useEffect(() => {
     if (userInfo.city) {
@@ -227,7 +239,7 @@ const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
       >
         <div className='triangle' style={{right: '65px'}}></div>
         <div className={subDomain + '-menu-content-div'}>
-          <div className={subDomain + '-left-content'}>
+          <div className={subDomain + '-left-content'} style={{width: contentWidth}}>
             <div className={subDomain + '-content-block'}>
               {(headerStore.cntUserLocation.length || !requireUserInfo) ? 
                 <p className={subDomain + '-block-title'}>{t('MY_STORE')}</p> : 
@@ -239,8 +251,9 @@ const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
               {headerStore.cntUserLocation.map((item:any, index:number) => {
                 return (
                   <React.Fragment key={index}>
-                    <p onClick={() => handleLocSelect(index)} className={subDomain + '-block-content'}>{item.location_name + ', ' + item.address_1}</p>
-                    <p>{'(' + item.distance + ')'}</p>
+                    <p onClick={() => handleLocSelect(index)} className={subDomain + '-block-content'}>
+                     {'(' + item.distance + ') ' + item.location_name + ', ' + item.address_1}
+                    </p>
                   </React.Fragment>
                 )
               })}

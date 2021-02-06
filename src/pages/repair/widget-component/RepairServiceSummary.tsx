@@ -39,7 +39,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
           "product_id": repairWidgetStore.deviceModel[i].id,
           "cost": repairWidgetStore.chooseRepair[i][j].cost,
           "duration": repairWidgetStore.chooseRepair[i][j].estimate,
-          "product_name": repairWidgetStore.deviceBrand[i].name + ',' + repairWidgetStore.deviceModel[i].name,
+          "product_name": repairWidgetStore.deviceBrand[i].name + ' ' + repairWidgetStore.deviceModel[i].name,
           "repair_name": repairWidgetStore.chooseRepair[i][j].name
         });
       }      
@@ -71,7 +71,6 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
     repairWidgetAPI
       .postAppointmentQuote(params)
       .then((res:any) => {
-        // console.log('api-repairWidgetAPI => Appointment and Quote:', res.data);
         repairWidgetStore.changeAppointResponse(res.data)
         if (code === 'MAIL_IN' && features.includes('FRONTEND_REPAIR_QUOTE')) {
           handleStep(11);
