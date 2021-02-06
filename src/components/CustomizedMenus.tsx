@@ -297,7 +297,7 @@ const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
                       return (
                         <div key={index}>
                           <p className={subDomain + '-block-title'}>
-                            {t('HOURS') + ' (' + t('STORE') + it.store_id + ')'}
+                            {t('HOURS')}
                           </p>
                           <div className={subDomain + '-hours-div'}>
                             <div>
