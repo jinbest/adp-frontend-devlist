@@ -119,7 +119,7 @@ const UserInfoModal = ({bgColor, handleUserInfo, subDomain}: Props) => {
               <CustomSelect value={state} handleSetValue={setState} subDomain={subDomain} options={country.code ? statesData[country.code] : []} variant="filled" />
               <TextField
                 id="city"
-                // label={t('CITY')}
+                label={t('CITY')}
                 variant="filled"
                 color="secondary"
                 value={city}
@@ -127,7 +127,7 @@ const UserInfoModal = ({bgColor, handleUserInfo, subDomain}: Props) => {
               />
               <TextField
                 id="postcode"
-                // label={t('POSTAL_CODE')}
+                label={t('POSTAL_CODE')}
                 variant="filled"
                 color="secondary"
                 value={postCode}
