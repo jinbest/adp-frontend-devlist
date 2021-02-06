@@ -8,6 +8,7 @@ type Props = {
 
 const Home = ({subDomain, features}: Props) => {
   const SectionItemComponents = [Section4, Section5, Section6];
+  document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1);
   
   return (
     <div>

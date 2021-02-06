@@ -3,6 +3,7 @@ import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles';
 import Menu, { MenuProps } from '@material-ui/core/Menu';
 import { useT } from "../i18n/index"
 import {LangProps} from '../i18n/en'
+// import { Link } from 'react-router-dom'
 
 const StyledMenu = withStyles({
   paper: {
@@ -71,18 +72,21 @@ const MegamenuShop = ({subDomain, text}: Props) => {
     <div>
       <div 
         title={text} 
-        aria-controls="megamenu-shop"
+        // aria-controls="megamenu-shop"
+        aria-owns={anchEl ? "megamenu-shop" : undefined}
         aria-haspopup="true"
         onClick={handleClick}
+        // onMouseOver={handleClick}
         className={subDomain + '-nav-link'}
         style={{cursor: 'pointer'}}
-      >{t(text)}</div>      
+      >{t(text)}</div>
       <StyledMenu
         id="megamenu-shop"
         anchorEl={anchEl}
         keepMounted
         open={Boolean(anchEl)}
         onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
       >
         <div className='triangle'></div>
         <div className={subDomain + '-menu-content-div'} style={{height: '100%'}}>

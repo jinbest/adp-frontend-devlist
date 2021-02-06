@@ -134,7 +134,7 @@ class RepairSummary extends React.Component<Props, MyState> {
                 <T id='SEND_TO' />
               </Typography>}
               {code !== 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'}>
-                <T id={repairWidgetStore.bookData[code].address} />
+                <T id={repairWidgetStore.bookData[code].address.name} />
               </p>}
               {code === 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'} style={{marginBottom: '15px'}}>
                 <T id={repairWidgetStore.bookData[code].sendTo} />
@@ -143,7 +143,7 @@ class RepairSummary extends React.Component<Props, MyState> {
                 <T id='RETURN_TO' />
               </Typography>}
               {code === 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'}>
-                <T id={repairWidgetStore.contactDetails.address1} />
+                <T id={repairWidgetStore.contactDetails.address1.name} />
               </p>}
               {code !== 'MAIL_IN' && <p className={subDomain + '-repair-summary-service-child'}>
                 {

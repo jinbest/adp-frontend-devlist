@@ -1,0 +1,58 @@
+.#{$folderName}-shop-main-page {
+  margin-top: 250px !important;
+  margin-bottom: 100px !important;
+}
+
+.#{$folderName}-shop-corner-shape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25vw;
+  z-index: -2;
+}
+
+.#{$folderName}-shop-corner-shape > img {
+  width: 100%;
+}
+
+.shop-image-container {
+	position: relative;
+  width: 100%;
+  background-color: white;
+  box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-image-container:before {
+	content: "";
+	float: left;
+	padding-top: 100%;
+}
+
+.shop-image-container > img {
+  width: 50%;
+  margin-top: 10%;
+}
+
+.shop-product-card-container {
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 1px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column
+}
+
+.shop-card-type {
+  position: absolute;
+  color: white;
+  font-size: 1.3vw;
+  left: 0;
+  top: 1.5vw;
+  z-index: 1;
+  border-radius: 0 5px 5px 0;
+  padding: 3px 15px;
+}

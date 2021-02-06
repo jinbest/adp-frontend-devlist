@@ -1,10 +1,10 @@
 import React from 'react'
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
-import { useT } from '../i18n/index';
-import { LangProps } from '../i18n/en';
+// import { useT } from '../i18n/index';
+// import { LangProps } from '../i18n/en';
 
 type Props = {
-  title: LangProps;
+  title: string;
   bgcolor?: string;
   txcolor?: string;
   borderR?: string;
@@ -26,7 +26,7 @@ const Button  = ({
   title, bgcolor, txcolor, borderR, onClick, width, maxWidth, hover,
   height, margin, fontSize, icon, disable, subDomain, border, textDecorator
 }: Props) => {
-  const t = useT();
+  // const t = useT();
 
   return (
     <button 
@@ -38,7 +38,7 @@ const Button  = ({
       disabled={disable}
     >
       {icon && <RoomOutlinedIcon />}
-      {t(title)}
+      {title}
     </button>
   )
 }

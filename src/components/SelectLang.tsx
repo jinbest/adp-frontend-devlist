@@ -40,7 +40,7 @@ const SelectLang = ({subDomain, color, options}: Props) => {
 
   const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     const la = event.target.value as keyof typeof state;
-    let cntLang:string = 'en';
+    let cntLang = 'en';
     setState(la);
     setLang(la === 'ENGLISH' ? 'en' : 'fr');
     cntLang = la === 'ENGLISH' ? 'en' : 'fr';

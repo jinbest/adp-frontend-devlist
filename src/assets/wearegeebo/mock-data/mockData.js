@@ -163,7 +163,7 @@ const repairWidget = {
           'WALK_IN': 'SELECT_PREFERRED_LOCATION', 
           'ONSITE': 'ENTER_YOUR_RESIDENTIAL_ADDRESS'
         },
-        option: ['111 Mailing Street, lqaluit NU', '555 Street, Canada'],
+        option: [{name: '111 Mailing Street, lqaluit NU', code: 'ML'}, {name: '555 Street, Canada', code: 'SC'}],
         mailInOption: [{name: '4160 Mailing Street, lqaluit NU', checked: true}, {name: '111 Mailing Street, lqaluit NU', checked: false}]     
       },
       time: {

@@ -12,6 +12,7 @@ type Props = {
 const Repair = ({subDomain, handleStatus, features}: Props) => {
 
   const [feats, setFeatures] = useState<any[]>([]);
+  document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1) + ' - Repair';
 
   useEffect(() => {
     const cntFeatures:any[] = [];

@@ -15,36 +15,51 @@ const useStyles = makeStyles(() =>
 type Props = {
   subDomain?: string;
   options: any[];
-  value: string;
-  handleSetValue: (val:string) => void;
+  value: any;
+  handleSetValue: (val:any) => void;
+  variant?: "filled" | "outlined" | "standard" | undefined;
 }
 
-const CustomSelect = ({options, value, handleSetValue, subDomain}: Props) => {
+const CustomSelect = ({options, value, handleSetValue, subDomain, variant}: Props) => {
   // const data = require(`../assets/${subDomain}/Database`);
 
   const classes = useStyles();
-  const [option, setOption] = useState(options[0]);
+
+  const [state, setState] = useState<{ code: string; name: string }>({
+    code: value.code,
+    name: value.name,
+  });
+
+  const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+    const name = event.target.name as keyof typeof state;
+    setState({
+      ...state,
+      [name]: event.target.value,
+    });
+  };
 
   useEffect(() => {
-    setOption(value)
-  }, [value])
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setOption(event.target.value as string);
-    handleSetValue(event.target.value as string)
-  };
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].code === state.code) {
+        handleSetValue(options[i])
+      }
+    }
+  }, [state])
 
   return (
     <div>
-      <FormControl className={classes.root} variant="outlined">
+      <FormControl className={classes.root} variant={variant ?? "outlined"} disabled={options.length === 0}>
         <Select
-          value={option}
+          value={state.code}
           onChange={handleChange}
+          inputProps={{
+            name: 'code'
+          }}
           className={subDomain + '-custom-select'}
         >
           {options.map((item:any, index:number) => {
             return (
-              <MenuItem className={subDomain + '-custom-select'} value={item} key={index}>{item}</MenuItem>
+              <MenuItem className={subDomain + '-custom-select'} value={item.code} key={index}>{item.name}</MenuItem>
             )
           })}
         </Select>

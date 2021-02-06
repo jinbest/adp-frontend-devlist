@@ -72,9 +72,10 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   componentDidMount() {
 
-    const { handleStatus, repairWidgetStore, features } = this.props;
+    const { handleStatus, repairWidgetStore, features, subDomain } = this.props;
     handleStatus(false);
     this.setState({step: repairWidgetStore.cntStep});
+    document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1) + ' - Repair-Widget';
 
     const cntFeatures:any[] = [];
     for (let i = 0; i < features.length; i++) {
@@ -83,6 +84,12 @@ class RepairWidget extends React.Component<Props, MyState> {
       }
     }
     this.setState({feats: cntFeatures});
+
+    repairWidgetStore.changeRepairWidgetInitialValue({
+      selectDate: new Date().toISOString().split('T')[0],
+      selected_start_time: new Date().getDay() === 0 ? '10:00' : '09:00',
+      selected_end_time: new Date().getDay() === 0 ? '16:00' : '17:30'
+    })
 
     getRepairLookupAPI();
     getDeliveryMethodsAPI();
@@ -216,7 +223,7 @@ class RepairWidget extends React.Component<Props, MyState> {
           inactiveComponent={()=><Error />}
           activeComponent={()=>
             <div className={subDomain + '-repair-widget ' + subDomain + '-Container'}>
-              { this.state.step > 0 && 
+              { (this.state.step > 0 && this.state.step < 10) && 
                 <div className={subDomain + '-back-to-top'} onClick={this.handleBackStep}>
                   <BackSVG color='#BDBFC3' />
                 </div>

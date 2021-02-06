@@ -1,4 +1,4 @@
-import { action, autorun, configure, observable } from 'mobx'
+import { action, autorun, configure, observable, makeAutoObservable } from 'mobx'
 
 configure({ enforceActions: 'always' })
 
@@ -7,7 +7,7 @@ export class RepairWidgetStore {
   @observable deviceBrand: any[] = []
   @observable deviceModel: any[] = []
   @observable chooseRepair: any[] = []
-  @observable deviceCounter: number = 0
+  @observable deviceCounter = 0
   @observable deliveryMethod: any = { method: '', code: '' }
   @observable receiveQuote: any = { method: '', code: '' }
   @observable contactDetails: any = { 
@@ -15,26 +15,33 @@ export class RepairWidgetStore {
     lastName: '', 
     email: '', 
     phone: '',
-    address1: '',
-    address2: '',
-    country: '',
+    address1: { code: '', name: '' },
+    address2: { code: '', name: '' },
+    country: { code: '', name: '' },
     city: '',
-    province: '',
+    province: { code: '', name: '' },
     postalCode: ''
   }
   @observable bookData: any = {
     'MAIL_IN': { sendTo: '' },
-    'WALK_IN': { sendTo: '' },
-    'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '' },
-    'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '' },
-    'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+    'WALK_IN': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'PICK_UP': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'CURBSIDE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'ONSITE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
   }
-  @observable message: string = ''
-  @observable cntStep: number = 0
+  @observable message = ''
+  @observable cntStep = 0
+  @observable repairWidgetInitialValue: any = {
+    selectDate: '',
+    selected_start_time: '',
+    selected_end_time: ''
+  }
+  @observable appointResponse: any = {}
 
   constructor() {
     this.load();
     autorun(this.save);
+    makeAutoObservable(this);
   }
 
   private save = () =>
@@ -50,7 +57,9 @@ export class RepairWidgetStore {
         contactDetails: this.contactDetails,
         bookData: this.bookData,
         message: this.message,
-        cntStep: this.cntStep
+        cntStep: this.cntStep,
+        repairWidgetInitialValue: this.repairWidgetInitialValue,
+        appointResponse: this.appointResponse
       })
     )
 
@@ -121,6 +130,18 @@ export class RepairWidgetStore {
   }
 
   @action
+  changeRepairWidgetInitialValue = (repairWidgetInitialValue: any) => {
+    this.repairWidgetInitialValue = repairWidgetInitialValue
+    this.save()
+  }
+
+  @action
+  changeAppointResponse = (appointResponse: any) => {
+    this.appointResponse = appointResponse
+    this.save()
+  }
+
+  @action
   init = () => {
     this.deviceBrand = [];
     this.deviceModel = [];
@@ -133,23 +154,34 @@ export class RepairWidgetStore {
       lastName: '', 
       email: '', 
       phone: '',
-      address1: '',
-      address2: '',
-      country: '',
+      address1: { code: '', name: '' },
+      address2: { code: '', name: '' },
+      country: { code: '', name: '' },
       city: '',
-      province: '',
+      province: { code: '', name: '' },
       postalCode: ''
     };
     this.bookData = {
       'MAIL_IN': { sendTo: '' },
-      'WALK_IN': { sendTo: '' },
-      'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '' },
-      'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '' },
-      'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '' },
+      'WALK_IN': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'PICK_UP': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'CURBSIDE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'ONSITE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
     };
     this.message = '';
     this.cntStep = 0;
+    this.repairWidgetInitialValue = {
+      selectDate: '',
+      selected_start_time: '',
+      selected_end_time: ''
+    }
+    this.appointResponse = {}
     this.save();
+  }
+
+  @action
+  reset = () => {
+    this.init();
   }
 
 }

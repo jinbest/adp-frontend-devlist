@@ -79,9 +79,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }
 
-  const onKeyPress = useCallback((event) => {
+  const onKeyPress = useCallback(async (event) => {
     if (event.key === 'Enter' && (step === 0 || step === 1)) {
-      loadStepData(stepName, event.target.value);
+      await loadStepData(stepName, event.target.value);
     }
     if(event.key === 'Enter' && !disableStatus && (step === 2 || step === 4 || step === 5)) {
       handleStep(step+1);
@@ -93,10 +93,10 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     setSearchText(e.target.value);
   }
 
-  const handleClickSearchIcon = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClickSearchIcon = async (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (step >= 2) return;
     e.preventDefault();
-    loadStepData(stepName, searchText);
+    await loadStepData(stepName, searchText);
   }
 
   const loadStepData = async (name: string, text:string) => {
@@ -145,8 +145,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     };
   }, [step, disableStatus]);
 
-  const GotoNextStep = () => {
-    ChooseNextStep(999);
+  const GotoNextStep = async () => {
+    await ChooseNextStep(999);
   }
 
   const GobackFirst = () => {
@@ -165,7 +165,10 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           col: 'black',
           estimate: cntOfferedRepairs[i].duration,
           selected: false,
-          cost: cntOfferedRepairs[i].cost
+          cost: cntOfferedRepairs[i].cost,
+          warranty: cntOfferedRepairs[i].warranty,
+          warranty_unit: cntOfferedRepairs[i].warranty_unit,
+          id: cntOfferedRepairs[i].id
         })
       }
       for (let i = 0; i < cntTypes.length; i++) {
@@ -202,7 +205,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       }
       setItemTypes([...cntTypes])
     } else if (step === 5) {
-      const cntTypes:any[] = repairWidData.receiveQuote.types.length ? repairWidData.receiveQuote.types : data.types;
+      const cntQuote:any[] = [], cntTypes:any[] = repairWidData.receiveQuote.types.length ? repairWidData.receiveQuote.types : data.types;
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = 'white';
         cntTypes[i].col = 'black';
@@ -212,8 +215,11 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           cntTypes[i].col = 'white';
           cntTypes[i].selected = true;
         }
+        if (cntTypes[i].code === 'EMAIL') {
+          cntQuote.push(cntTypes[i]);
+        }
       }
-      setItemTypes([...cntTypes])
+      setItemTypes([...cntQuote])
     }
   }, [step, repairWidgetData, repairWidData]);
 
@@ -233,7 +239,14 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       const preChooseRepairs:any[] = [];
       for (let i = 0; i < cntTypes.length; i++) {
         if (cntTypes[i].selected) {
-          preChooseRepairs.push({name: cntTypes[i].name, cost: cntTypes[i].cost, estimate: cntTypes[i].estimate})
+          preChooseRepairs.push({
+            name: cntTypes[i].name, 
+            cost: cntTypes[i].cost, 
+            estimate: cntTypes[i].estimate, 
+            warranty: cntTypes[i].warranty, 
+            warranty_unit: cntTypes[i].warranty_unit,
+            id: cntTypes[i].id
+          })
         }
       }
       handleChangeChooseData(step, {data: preChooseRepairs, counter: repairWidgetData.deviceCounter})
@@ -283,13 +296,15 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }, [step, estimatedTimes, itemTypes]);
 
+  // console.log(repairWidgetData.chooseRepair[0].length)
+
   return (
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className={subDomain + "-repair-widget-title"}>
             {t(data.title)}
-          </Typography>
+          </Typography>        
         </Grid>
       </Grid>
       <Grid container className='' spacing={3}>
@@ -305,7 +320,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   subDomain={subDomain}
                   value={searchText}
                   handleChange={(e:React.ChangeEvent<HTMLInputElement>)=>{handleChangeSearch(e)}}
-                  handleIconClick={(e:React.MouseEvent<HTMLDivElement, MouseEvent>)=>{handleClickSearchIcon(e)}}
+                  handleIconClick={async (e:React.MouseEvent<HTMLDivElement, MouseEvent>)=>{await handleClickSearchIcon(e)}}
                 />}
               </div>}
               <div className={subDomain + '-widget-main-container'}>
@@ -351,8 +366,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
                 {(stepName === 'repairAnotherDevice') && 
                   <div className={subDomain + '-repair-another-device'}>
-                    <Button title={publicText.yes} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} subDomain={subDomain} />
-                    <Button title={publicText.no} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} subDomain={subDomain} />
+                    <Button title={t(publicText.yes)} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} subDomain={subDomain} />
+                    <Button title={t(publicText.no)} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} subDomain={subDomain} />
                   </div>
                 }
 
@@ -381,7 +396,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className={subDomain + '-repair-card-button'}>
                 <Button 
-                  title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
+                  title={t(publicText.next)} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                   height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus} subDomain={subDomain}
                 />
                 <p>{t(publicText.enterKey)}</p>
@@ -399,7 +414,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                   <Typography className={subDomain + '-topic-content'} key={index}>{t(item)}</Typography>
                 )
               })}
-              {data.disableTopic.title && <Typography className={subDomain + '=topic-title'} style={{color: 'rgba(0,0,0,0.3)'}}>
+              {data.disableTopic.title && <Typography className={subDomain + '-topic-title'} style={{color: 'rgba(0,0,0,0.3)'}}>
                 {t(data.disableTopic.title)}
               </Typography>}
               {data.disableTopic.content && <Typography className={subDomain + '-topic-content'} style={{color: 'rgba(0,0,0,0.3)'}}>
@@ -416,6 +431,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
                     <p className={subDomain + '-estimate-content'}>{item.estimate}</p>
                     {storesDetails.storesDetails.settings.display_repair_cost && 
                     <p className={subDomain + '-estimate-content'}>{item.cost}</p>}
+                    {item.warranty && <p className={subDomain + '-estimate-content'}>{item.warranty + ' ' + item.warranty_unit}</p>}
                   </div>
                 )
               })}
