@@ -1,4 +1,4 @@
-import { action, autorun, configure, observable } from 'mobx'
+import { action, autorun, configure, observable, makeAutoObservable } from 'mobx'
 
 configure({ enforceActions: 'always' })
 
@@ -15,19 +15,19 @@ export class RepairWidgetStore {
     lastName: '', 
     email: '', 
     phone: '',
-    address1: '',
-    address2: '',
-    country: '',
+    address1: { code: '', name: '' },
+    address2: { code: '', name: '' },
+    country: { code: '', name: '' },
     city: '',
-    province: '',
+    province: { code: '', name: '' },
     postalCode: ''
   }
   @observable bookData: any = {
     'MAIL_IN': { sendTo: '' },
-    'WALK_IN': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
-    'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
-    'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
-    'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'WALK_IN': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'PICK_UP': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'CURBSIDE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+    'ONSITE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
   }
   @observable message = ''
   @observable cntStep = 0
@@ -41,6 +41,7 @@ export class RepairWidgetStore {
   constructor() {
     this.load();
     autorun(this.save);
+    makeAutoObservable(this);
   }
 
   private save = () =>
@@ -153,19 +154,19 @@ export class RepairWidgetStore {
       lastName: '', 
       email: '', 
       phone: '',
-      address1: '',
-      address2: '',
-      country: '',
+      address1: { code: '', name: '' },
+      address2: { code: '', name: '' },
+      country: { code: '', name: '' },
       city: '',
-      province: '',
+      province: { code: '', name: '' },
       postalCode: ''
     };
     this.bookData = {
       'MAIL_IN': { sendTo: '' },
-      'WALK_IN': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
-      'PICK_UP': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
-      'CURBSIDE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
-      'ONSITE': { address: '', time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'WALK_IN': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'PICK_UP': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'CURBSIDE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
+      'ONSITE': { address: { code: '', name: '' }, time: '', day: '', month: '', year: '', week: '', timezone: '' },
     };
     this.message = '';
     this.cntStep = 0;

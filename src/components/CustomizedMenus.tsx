@@ -5,9 +5,50 @@ import { Button, UserInfoModal } from './'
 import { useT } from '../i18n/index'
 import {LangProps} from '../i18n/en'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
-import {repairWidgetStore, storesDetails} from '../store/'
+import { repairWidgetStore } from '../store/'
 import { findLocationAPI } from "../services/"
 import { Link } from 'react-router-dom'
+import { GetCurrentLocParams } from '../pages/repair/model/get-current-location'
+import { StoresDetails } from '../store/StoresDetails'
+import { inject, observer } from 'mobx-react'
+
+export function makeLocations(data:any[]) {
+  const locations: GetCurrentLocParams[] = [];
+  const days:any[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  for (let i = 0; i < data.length; i++) {
+    const hours:any[] = [], weekDays:any[] = [], storeGroup:any[] = [];
+    for (let j = 0; j < data[i].location_hours.length; j++) {
+      if (data[i].location_hours[j].type === 'REGULAR') {
+        const cntStoreID = data[i].location_hours[j].store_id;
+        if (!storeGroup.includes(cntStoreID)) {
+          storeGroup.push(cntStoreID);
+          hours.push({store_id: cntStoreID, hrs: []});
+          weekDays.push({store_id: cntStoreID, wkDys: []});
+        }
+        const open:string = parseInt(data[i].location_hours[j].open.split(':')[0]) % 12 + ':' + data[i].location_hours[j].open.split(':')[1] + ' a.m.';
+        const close:string = parseInt(data[i].location_hours[j].close.split(':')[0]) % 12 + ':' + data[i].location_hours[j].close.split(':')[1] + ' p.m.';
+        const hour:string = open + ' - ' + close;
+        for (let k = 0; k < hours.length; k++) {
+          if (cntStoreID === hours[k].store_id) {
+            hours[k].hrs.push(hour);
+            weekDays[k].wkDys.push(days[data[i].location_hours[j].day]);
+            break;
+          }
+        }
+      }
+    }
+    const cntItem:GetCurrentLocParams = {
+      location_name: data[i].location_name,
+      address_1: data[i].address_1,
+      distance: data[i].distance / 1000 + 'km',
+      location_id: data[i].id,
+      hours: hours,
+      days: weekDays
+    }
+    locations.push(cntItem);
+  }
+  return locations;
+}
 
 const StyledMenu = withStyles({
   paper: {
@@ -34,53 +75,20 @@ const StyledMenu = withStyles({
   />
 ));
 
-type Props = {
+type StoreProps = {
+  headerStore: StoresDetails;
+}
+interface Props extends StoreProps {
   subDomain?: string;
   btnTitle: LangProps;
   width: string;
   features: any[];
 }
 
-function makeLocations(data:any[]) {
-  const locations: any[] = [];
-  const days:any[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-  for (let i = 0; i < data.length; i++) {
-    const hours:any[] = [], weekDays:any[] = [], storeGroup:any[] = [];
-    for (let j = 0; j < data[i].location_hours.length; j++) {
-      if (data[i].location_hours[j].type === 'REGULAR') {
-        const cntStoreID = data[i].location_hours[j].store_id;
-        if (!storeGroup.includes(cntStoreID)) {
-          storeGroup.push(cntStoreID);
-          hours.push({store_id: cntStoreID, hrs: []});
-          weekDays.push({store_id: cntStoreID, wkDys: []});
-        }
-        const open:string = parseInt(data[i].location_hours[j].open.split(':')[0]) % 12 + ':' + data[i].location_hours[j].open.split(':')[1] + ' a.m.';
-        const close:string = parseInt(data[i].location_hours[j].close.split(':')[0]) % 12 + ':' + data[i].location_hours[j].close.split(':')[1] + ' p.m.';
-        const hour:string = open + ' - ' + close;
-        for (let k = 0; k < hours.length; k++) {
-          if (cntStoreID === hours[k].store_id) {
-            hours[k].hrs.push(hour);
-            weekDays[k].wkDys.push(days[data[i].location_hours[j].day]);
-            break;
-          }
-        }
-      }
-    }
-    const cntItem:any = {
-      location_name: data[i].location_name,
-      address_1: data[i].address_1,
-      distance: data[i].distance / 1000 + 'km',
-      location_id: data[i].id,
-      hours: hours,
-      days: weekDays
-    }
-    locations.push(cntItem);
-  }
-  // console.log(locations);
-  return locations;
-}
+// const CustomizedMenus = inject('store')(observer(({subDomain, btnTitle, width, features}: Props) => {
+const CustomizedMenus = inject('headerStore')(observer((props: Props) => {
+  const {subDomain, btnTitle, width, features, headerStore} = props;
 
-const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const themeColor = data.colorPalle.themeColor;
   const underLineCol = data.colorPalle.underLineCol;
@@ -88,14 +96,14 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   const t = useT();
   const [pos, setPos] = useState({latitude: '', longitude: ''});
   const [userInfo, setUserInfo] = useState({city: '', state: '', postCode: '', country: ''});
-  const [locSelStatus, setLocSelStatus] = useState(storesDetails.cntUserLocationSelected);
-  const [locations, setLocations] = useState<any[]>(storesDetails.cntUserLocation);
+  const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected);
+  const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation);
   const [requireUserInfo, setRequireUserInfo] = useState(false);
 
   const handleLocSelect = (index:number) => {
     const cntLocation:any = locations[index];
     setLocations([cntLocation]);
-    storesDetails.changeLocationID(cntLocation.location_id);
+    headerStore.changeLocationID(cntLocation.location_id);
     setLocSelStatus(true);
   }
 
@@ -107,64 +115,73 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
     setAnchorEl(null);
   };
 
-  const getCoords = (pos:any) => {    
+  const setCoords = (pos:any) => {
+    console.log('setCoords: ', pos);
     setPos({
       latitude: pos.coords.latitude,
       longitude: pos.coords.longitude
     })
   }
 
+  navigator.geolocation.getCurrentPosition(()=>{})
+
   useEffect(() => {
     if (Boolean(anchorEl)) {
-      if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getCoords);
-      } else {
-        console.log('geolocation is not available here');
-        setRequireUserInfo(true);
-      }
+      navigator.permissions && navigator.permissions.query({name: 'geolocation'})
+      .then(function(PermissionStatus) {
+        if (PermissionStatus.state == 'granted') {
+          navigator.geolocation.getCurrentPosition(setCoords)
+          setRequireUserInfo(false);
+        } else if (PermissionStatus.state == 'prompt') {
+          console.log('not yet grated or denied')
+        } else {
+          setRequireUserInfo(true);
+          setPos({ latitude: '', longitude: '' });
+        }
+      })
     }
   }, [anchorEl]);
 
   useEffect(() => {
     if (!requireUserInfo && pos.latitude) {
       if (locations.length) return;
-      // console.log('pos: ', pos);
       findLocationAPI
         .findGeoLocation(1, pos)
         .then((res:any) => {
-          // console.log('api-findLocationAPI => findGeoLoc:', res.data);
           if (res.data.length) {
             setLocations(makeLocations(res.data));
-            storesDetails.changeFindGeoLocation(res.data);
+            headerStore.changeFindAddLocation(res.data);
           } else {
+            console.log('Response is an empty data, please input your infos.')
+            setPos({ latitude: '', longitude: '' });
             setRequireUserInfo(true);
           }          
         })
         .catch((error) => {          
           console.log('Error to find location with GeoCode', error);
+          setPos({ latitude: '', longitude: '' });
+          setRequireUserInfo(true);
         });
     }
   }, [pos, locations]);
 
   useEffect(() => {
-    storesDetails.changeCntUserLocation(locations);
+    headerStore.changeCntUserLocation(locations);
   }, [locations]);
 
   useEffect(() => {
-    storesDetails.changeCntUserLocationSelected(locSelStatus);
+    headerStore.changeCntUserLocationSelected(locSelStatus);
   }, [locSelStatus]);
 
   useEffect(() => {
     if (userInfo.city) {
       if (locations.length) return;
-      // console.log('userInfo: ', userInfo);
       findLocationAPI
         .findAddLocation(1, userInfo)
         .then((res:any) => {
-          // console.log('api-findLocationAPI => findAddLoc:', res.data);
           if (res.data.length) {
             setLocations(makeLocations(res.data));
-            storesDetails.changeFindAddLocation(res.data);
+            headerStore.changeFindAddLocation(res.data);
           }          
         })
         .catch((error) => {
@@ -176,6 +193,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   const viewMoreStores = () => {
     setLocations([]);
     setLocSelStatus(false);
+    headerStore.changeFindAddLocation([]);
   }
 
   const handleBookRepair = () => {
@@ -185,7 +203,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
   return (
     <div>
       <Button 
-        title={!locSelStatus ? btnTitle : locations[0].location_name} 
+        title={!locSelStatus ? t(btnTitle) : (headerStore.cntUserLocation[0] && headerStore.cntUserLocation[0].location_name)} 
         bgcolor={!locSelStatus ? themeColor : 'transparent'} 
         txcolor={!locSelStatus ? 'white' : 'black'}
         border={!locSelStatus ? '1px solid rgba(0,0,0,0.1)' : 'none'}
@@ -211,14 +229,14 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
         <div className={subDomain + '-menu-content-div'}>
           <div className={subDomain + '-left-content'}>
             <div className={subDomain + '-content-block'}>
-              {(locations.length || !requireUserInfo) ? 
+              {(headerStore.cntUserLocation.length || !requireUserInfo) ? 
                 <p className={subDomain + '-block-title'}>{t('MY_STORE')}</p> : 
                 <div style={{textAlign: 'center'}}>
                   <p style={{fontSize: '12px', color: 'darkgray'}}>{t('INPUT_YOUR_INFO_DESCRIPTION')}</p>
-                  <UserInfoModal bgColor={themeColor} handleUserInfo={setUserInfo} />
+                  <UserInfoModal bgColor={themeColor} handleUserInfo={setUserInfo} subDomain={subDomain} />
                 </div>
               }
-              {locations.map((item:any, index:number) => {
+              {headerStore.cntUserLocation.map((item:any, index:number) => {
                 return (
                   <React.Fragment key={index}>
                     <p onClick={() => handleLocSelect(index)} className={subDomain + '-block-content'}>{item.location_name + ', ' + item.address_1}</p>
@@ -239,7 +257,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
                 activeComponent={()=>
                   <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={handleBookRepair}>
                     <Button 
-                      title='BOOK_REPAIR'
+                      title={t('BOOK_REPAIR')}
                       bgcolor={themeColor} 
                       borderR='20px' 
                       width='40px'
@@ -259,7 +277,7 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
               margin: '30px 10px'
             }}></div>
             <div style={{width: '375px'}}>
-              {locations.map((item:any, id:number) => {
+              {headerStore.cntUserLocation.map((item:any, id:number) => {
                 return (
                   <div key={id}>
                     {item.days.map((it:any, index:number) => {
@@ -296,6 +314,6 @@ const CustomizedMenus = ({subDomain, btnTitle, width, features}: Props) => {
       </StyledMenu>
     </div>
   );
-}
+}))
 
 export default CustomizedMenus;

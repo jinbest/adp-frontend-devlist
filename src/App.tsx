@@ -16,16 +16,16 @@ const subDomain = apexDomain.split(".")[0]
 // const devicelist = [
 //     "bananaservice",
 //     "mobiletech",
-//     "nanotechmobile",
+//     "nanotechmobilerepair",
 //     "northtechsolutions",
-//     "phonephix",
+//     "okotoksphonephix",
 //     "pradowireless",
 //     "wearegeebo",
 //     "wirelessrev",
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[2]
+// const subDomain = devicelist[7]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -52,6 +52,7 @@ type FeatureProps = {
 
 function App(): JSX.Element {
     require(`./assets/${subDomain}/styles/index.scss`)
+    const mainData = require(`./assets/${subDomain}/Database`)
 
     const [footerStatus, setFooterStatus] = useState(true)
     const [features, setFeatures] = useState<FeatureProps[]>([])
@@ -60,9 +61,13 @@ function App(): JSX.Element {
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)
-    }
+    }    
 
     useEffect(() => {
+        const favIcon = document.getElementById("favicon") as HTMLLinkElement;
+        favIcon.href = mainData.fav.img;
+        document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1);
+
         appLoadAPI
             .getStoresDetail(apexDomain, false)
             // .getStoresDetail('dccmtx.com', false)
@@ -149,11 +154,13 @@ function App(): JSX.Element {
         <LangProvider>
             {loadStatus ? (
                 <Router>
-                    <Header
-                        subDomain={subDomain}
-                        handleStatus={handleFooterStatus}
-                        features={features}
-                    />
+                    <Provider headerStore={storesDetails}>
+                        <Header
+                            subDomain={subDomain}
+                            handleStatus={handleFooterStatus}
+                            features={features}
+                        />
+                    </Provider>
                     <BaseRouter />
                     <Chat subDomain={subDomain} features={features} />
                     {footerStatus && <Footer subDomain={subDomain} features={features} />}

@@ -5,6 +5,8 @@ import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 import { useT } from '../i18n/index'
+import { CustomSelect } from './'
+import { countriesData, statesData } from '../const'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -54,16 +56,17 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
   bgColor: string;
   handleUserInfo: (data:any) => void;
+  subDomain?: string;
 }
 
-const UserInfoModal = ({bgColor, handleUserInfo}: Props) => {
+const UserInfoModal = ({bgColor, handleUserInfo, subDomain}: Props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const t = useT();
   const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [state, setState] = useState({name: '', code: 'MB'});
   const [postCode, setPostCode] = useState('');
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState({name: '', code: 'CA'});
 
   const handleOpen = () => {
     setOpen(true);
@@ -76,23 +79,15 @@ const UserInfoModal = ({bgColor, handleUserInfo}: Props) => {
   const handleSubmit = () => {
     handleClose();
     // handleUserInfo({city: 'winnipeg', state: 'MB', postCode: 'R3P1E7', country: 'CA'});
-    handleUserInfo({city: city, state: state, postCode: postCode, country: country});
+    handleUserInfo({city: city, state: state.code, postCode: postCode, country: country.code});
   };
 
   const handleChangeCity = (val:string) => {
     setCity(val);
   }
 
-  const handleChangeState = (val:string) => {
-    setState(val);
-  }
-
   const handleChangePostCode = (val:string) => {
     setPostCode(val);
-  }
-
-  const handleChangeCountry = (val:string) => {
-    setCountry(val);
   }
 
   return (
@@ -120,38 +115,24 @@ const UserInfoModal = ({bgColor, handleUserInfo}: Props) => {
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Input Your Info</h2>
             <form className={classes.formRoot} noValidate autoComplete="off">
+              <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} variant="filled" />
+              <CustomSelect value={state} handleSetValue={setState} subDomain={subDomain} options={country.code ? statesData[country.code] : []} variant="filled" />
               <TextField
                 id="city"
-                label={t('CITY')}
+                // label={t('CITY')}
                 variant="filled"
                 color="secondary"
                 value={city}
                 onChange={(e)=>{handleChangeCity(e.target.value)}}
               />
               <TextField
-                id="state"
-                label={t('STATE')}
-                variant="filled"
-                color="secondary"
-                value={state}
-                onChange={(e)=>{handleChangeState(e.target.value)}}
-              />
-              <TextField
                 id="postcode"
-                label={t('POSTAL_CODE')}
+                // label={t('POSTAL_CODE')}
                 variant="filled"
                 color="secondary"
                 value={postCode}
                 onChange={(e)=>{handleChangePostCode(e.target.value)}}
-              />
-              <TextField
-                id="country"
-                label={t('COUNTRY')}
-                variant="filled"
-                color="secondary"
-                value={country}
-                onChange={(e)=>{handleChangeCountry(e.target.value)}}
-              />
+              />         
             </form>
             <button 
               className={classes.button}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { LangProps } from '../i18n/en'
 import Button from './Button'
+import { useT } from '../i18n/index';
 
 type Props = {
   title: string;
@@ -13,6 +14,8 @@ type Props = {
 }
 
 const CardMobile = ({title, img, btnTitle, color, heart, heartCol, subDomain}: Props) => {
+
+  const t = useT();
   
   return (
     <div className={subDomain + '-card-mobile'}>
@@ -21,7 +24,7 @@ const CardMobile = ({title, img, btnTitle, color, heart, heartCol, subDomain}: P
         <img src={heart} alt='heart' />
       </div>}
       <img src={img} alt='mobile-img' />
-      <Button title={btnTitle} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' subDomain={subDomain} />
+      <Button title={t(btnTitle)} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' subDomain={subDomain} />
     </div>
   )
 }

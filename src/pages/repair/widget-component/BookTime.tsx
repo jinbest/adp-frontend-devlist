@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { Card } from './'
-import { Button, CustomSelect, CustomCalendar, InputComponent } from '../../../components'
+import { Button, CustomSelect, CustomCalendar } from '../../../components'
 import CustomBookTime from './CustomBookTime'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
-import { repairWidgetStore } from '../../../store'
+import { repairWidgetStore, storesDetails } from '../../../store'
+import { makeLocations } from '../../../components/CustomizedMenus'
 
 type Props = {
   data: any;
@@ -17,7 +18,7 @@ type Props = {
   repairWidgetData: any;
 }
 
-const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseData, repairWidgetData}: Props) => {
+const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseData}: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`);
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`);
   const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`);
@@ -38,13 +39,30 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
   const [year, setYear] = useState(date.getFullYear());
   const [week, setWeek] = useState(date.getDay());
   const [time, setTime] = useState(date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' }));
-  const [selectVal, setSelectVal] = useState('');
-  const [address, setAddress] = useState('');
+  const [selectVal, setSelectVal] = useState({ 
+    code: storesDetails.cntUserLocation.length ? storesDetails.cntUserLocation[0].location_id : 1, 
+    name: storesDetails.cntUserLocation.length ? storesDetails.cntUserLocation[0].location_name : '' 
+  });
   const [sendToAddress, setSendToAddress] = useState('');
   const [mailInChecked, setMailinChecked] = useState(0);
   const [disableStatus, setDisableStatus] = useState(true);
 
   const t = useT();
+
+  type FindLocProps = {
+    code: string;
+    name: string;
+  }
+
+  const [findLocs, setFindLocs] = useState<FindLocProps[]>([]);
+
+  useEffect(() => {
+    const cntFindLoc: FindLocProps[] = [];
+    for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
+      cntFindLoc.push({ code: storesDetails.findAddLocation[i].id, name: storesDetails.findAddLocation[i].location_name })
+    }
+    setFindLocs(cntFindLoc);
+  }, [storesDetails])
 
   useEffect(() => {
     setDay(date.getDate());
@@ -64,31 +82,15 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
   }, [tzIndex]);
 
   useEffect(() => {
-    if (code === 'MAIL_IN') {
-      const cntMailinOption:any[] = data.select.location.mailInOption;
-      setSendToAddress(cntMailinOption[mailInChecked].name);
-      for (let i = 0; i < cntMailinOption.length; i++) {
-        if (cntMailinOption[i].name === repairWidgetData.bookData[code].sendTo) {
+    if (code === 'MAIL_IN' && storesDetails.cntUserLocation.length) {
+      setSendToAddress(storesDetails.cntUserLocation[0].location_name);
+      for (let i = 0; i < findLocs.length; i++) {
+        if (findLocs[i].name === storesDetails.cntUserLocation[0].location_name) {
           setMailinChecked(i);
-          setSendToAddress(repairWidgetData.bookData[code].sendTo);
         }
       }
-    } 
-    else if (code === 'PICK_UP' || code === 'ONSITE') {
-      setAddress(repairWidgetData.bookData[code].address);
-    } 
-    else {
-      if (repairWidgetData.bookData[code].address) {
-        setSelectVal(repairWidgetData.bookData[code].address);
-      } else {
-        setSelectVal(data.select.location.option[0]);
-      }      
     }
-  }, [repairWidgetData, step, code, data]);
-
-  const handleChangeAddress = (val:string) => {
-    setAddress(val);
-  }
+  }, [findLocs]);
 
   const handleChangeMailinAddress = (val:string, i:number) => {
     setMailinChecked(i);
@@ -121,8 +123,8 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
     } else {
       handleChangeChooseData(7, {
         code: code, 
-        data: { 
-          address: (code === 'CURBSIDE' || code === 'WALK_IN') ? selectVal : address, 
+        data: {
+          address: selectVal, 
           time: time, 
           day: day, 
           month: MONTHS[month], 
@@ -141,8 +143,8 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
         firstName: repairWidgetStore.contactDetails.firstName, 
         lastName: repairWidgetStore.contactDetails.lastName, 
         email: repairWidgetStore.contactDetails.email, 
-        phone: repairWidgetStore.contactDetails.phone, 
-        address1: (code === 'CURBSIDE' || code === 'WALK_IN') ? selectVal : address, 
+        phone: repairWidgetStore.contactDetails.phone,
+        address1: selectVal, 
         address2: repairWidgetStore.contactDetails.address2, 
         country: repairWidgetStore.contactDetails.country, 
         city: repairWidgetStore.contactDetails.city, 
@@ -157,24 +159,45 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
     if(event.key === 'Enter' && !disableStatus && step === 7) {
       ChooseNextStep();
     }
-  }, [step, code, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus]);
+  }, [step, code, sendToAddress, selectVal, time, day, month, year, week, disableStatus]);
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyPress, false);
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step, code, sendToAddress, address, selectVal, time, day, month, year, week, disableStatus])
+  }, [step, code, sendToAddress, selectVal, time, day, month, year, week, disableStatus])
 
   useEffect(() => {
     setDisableStatus(true);
     if (code === 'MAIL_IN' && sendToAddress) {
       setDisableStatus(false);
     }
-    if (code !== 'MAIL_IN' && (address || selectVal) && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
+    if (code !== 'MAIL_IN' && selectVal.name && time && day && MONTHS[month] && year && DAYS_OF_THE_WEEK[week]) {
       setDisableStatus(false);
     }
-  }, [code, sendToAddress, address, selectVal, time, day, month, year, week])
+  }, [code, sendToAddress, selectVal, time, day, month, year, week])
+
+  useEffect(() => {
+    if (storesDetails.findAddLocation.length && selectVal.name && code !== 'MAIL_IN') {
+      for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
+        if (selectVal.name === storesDetails.findAddLocation[i].location_name) {
+          const cntLoc:any[] = makeLocations([storesDetails.findAddLocation[i]]);
+          storesDetails.changeCntUserLocation(cntLoc);
+          storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
+        }
+      }
+    }
+    if (storesDetails.findAddLocation.length && sendToAddress && code === 'MAIL_IN') {
+      for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
+        if (sendToAddress === storesDetails.findAddLocation[i].location_name) {
+          const cntLoc:any = makeLocations([storesDetails.findAddLocation[i]]);
+          storesDetails.changeCntUserLocation(cntLoc);
+          storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
+        }
+      }
+    }
+  }, [selectVal, sendToAddress]);
 
   return (
     <div>
@@ -191,10 +214,9 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
             <div className={subDomain + '-repair-choose-device-container'}>
               <Typography className={subDomain + '-repair-summary-title'}>{t(data.select.location.title[code])}</Typography>
               <div style={{marginBottom: '20px'}}>
-                {(code === 'CURBSIDE' || code === 'WALK_IN') && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={data.select.location.option} />}
-                {(code === 'PICK_UP' || code === 'ONSITE') && <InputComponent value={address} handleChange={(e)=>{handleChangeAddress(e.target.value)}} subDomain={subDomain} />}
+                {code !== 'MAIL_IN' && <CustomSelect value={selectVal} handleSetValue={setSelectVal} subDomain={subDomain} options={findLocs} />}
                 {code === 'MAIL_IN' && <div>
-                  {data.select.location.mailInOption.map((item:any, index:number) => {
+                  {findLocs.map((item:any, index:number) => {
                     return (
                       <div key={index} className={subDomain + '-select-mail-in-radio'}>
                         <input 
@@ -253,7 +275,7 @@ const BookTime = ({data, subDomain, step, code, handleStep, handleChangeChooseDa
             </div>
             <div className={subDomain + '-repair-card-button'}>
               <Button 
-                title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
+                title={t(publicText.next)} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                 height='30px' fontSize='17px' onClick={ChooseNextStep} disable={disableStatus} subDomain={subDomain}
               />
               <p>{t(publicText.enterKey)}</p>

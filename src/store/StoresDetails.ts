@@ -1,13 +1,13 @@
-import { action, autorun, configure, observable } from 'mobx'
+import { action, autorun, configure, observable, makeAutoObservable } from 'mobx'
+import { GetCurrentLocParams } from '../pages/repair/model/get-current-location'
 
 configure({ enforceActions: 'always' })
 
 export class StoresDetails {
 
   @observable storesDetails: any = {};
-  @observable findGeoLocation: any[] = [];
   @observable findAddLocation: any[] = [];
-  @observable cntUserLocation: any[] = [];
+  @observable cntUserLocation: GetCurrentLocParams[] = [];
   @observable cntUserLocationSelected = false;
 
   @observable store_id = 1;
@@ -19,6 +19,7 @@ export class StoresDetails {
   constructor() {
     this.load();
     autorun(this.save);
+    makeAutoObservable(this);
   }
 
   private save = () =>
@@ -26,7 +27,6 @@ export class StoresDetails {
       StoresDetails.name,
       JSON.stringify({
         storesDetails: this.storesDetails,
-        findGeoLocation: this.findGeoLocation,
         findAddLocation: this.findAddLocation,
         cntUserLocation: this.cntUserLocation,
         cntUserLocationSelected: this.cntUserLocationSelected,
@@ -49,19 +49,13 @@ export class StoresDetails {
   }
 
   @action
-  changeFindGeoLocation = (findGeoLocation: any[]) => {
-    this.findGeoLocation = findGeoLocation
-    this.save()
-  }
-
-  @action
   changeFindAddLocation = (findAddLocation: any[]) => {
     this.findAddLocation = findAddLocation
     this.save()
   }
 
   @action
-  changeCntUserLocation = (cntUserLocation: any[]) => {
+  changeCntUserLocation = (cntUserLocation: GetCurrentLocParams[]) => {
     this.cntUserLocation = cntUserLocation
     this.save()
   }

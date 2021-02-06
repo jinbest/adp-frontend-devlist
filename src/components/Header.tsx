@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { storesDetails } from '../store'
 
 type PropsNavItemLink = {
   item: any;
@@ -175,7 +176,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               name='FRONTEND_FIND_A_STORE'
               inactiveComponent={()=><></>}
               activeComponent={()=>
-                <CustomizedMenus subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} features={feats} />
+                <CustomizedMenus headerStore={storesDetails} subDomain={subDomain} btnTitle={data.homeTextData.header.buttonTitle} width={data.homeTextData.header.width} features={feats} />
               }
             />
           </FeatureToggles>

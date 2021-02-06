@@ -32,18 +32,16 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
     setDisableStatus(true);
     const tp: string = (code === 'MAIL_IN') ? 'QUOTE' : 'APPOINTMENT';
     const repairs: any[] = [];
-    let repair_id = 1;
     for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
       for (let j = 0; j < repairWidgetStore.chooseRepair[i].length; j++) {
         repairs.push({
-          "repair_id": repair_id,
+          "repair_id": repairWidgetStore.chooseRepair[i][j].id,
           "product_id": repairWidgetStore.deviceModel[i].id,
           "cost": repairWidgetStore.chooseRepair[i][j].cost,
           "duration": repairWidgetStore.chooseRepair[i][j].estimate,
           "product_name": repairWidgetStore.deviceBrand[i].name + ',' + repairWidgetStore.deviceModel[i].name,
           "repair_name": repairWidgetStore.chooseRepair[i][j].name
         });
-        repair_id += 1;
       }      
     }
     const params = {} as PostAppointParams
@@ -57,12 +55,12 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
     params.customer_first_name = repairWidgetStore.contactDetails.firstName
     params.customer_last_name = repairWidgetStore.contactDetails.lastName
     params.customer_phone = repairWidgetStore.contactDetails.phone
-    params.customer_address_1 = repairWidgetStore.contactDetails.address1
-    params.customer_address_2 = repairWidgetStore.contactDetails.address2
+    params.customer_address_1 = repairWidgetStore.contactDetails.address1 && repairWidgetStore.contactDetails.address1.name
+    params.customer_address_2 = repairWidgetStore.contactDetails.address2 && repairWidgetStore.contactDetails.address2.name
     params.customer_city = repairWidgetStore.contactDetails.city
-    params.customer_state = repairWidgetStore.contactDetails.province
+    params.customer_state = repairWidgetStore.contactDetails.province && repairWidgetStore.contactDetails.province.code
     params.customer_postcode = repairWidgetStore.contactDetails.postalCode
-    params.customer_country = repairWidgetStore.contactDetails.country
+    params.customer_country = repairWidgetStore.contactDetails.country && repairWidgetStore.contactDetails.country.code
     params.customer_note = null
     params.customer_contact_method = repairWidgetStore.receiveQuote.code
     params.repairs = repairs
@@ -133,10 +131,10 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
               <Typography className={subDomain + '-details'} style={{color: textThemeCol}}>{t(repairWidgetData.deliveryMethod.method)}</Typography>
               {code === 'PICK_UP' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('PICK_UP_FROM')}</Typography>}
               {code === 'MAIL_IN' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('SEND_TO')}</Typography>}
-              {code !== 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].address}</Typography>}
+              {code !== 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].address.name}</Typography>}
               {code === 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.bookData[code].sendTo}</Typography>}
               {code === 'MAIL_IN' && <Typography className={subDomain + '-details ' + subDomain + '-bolder'}>{t('RETURN_TO')}</Typography>}
-              {code === 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.contactDetails.address1}</Typography>}
+              {code === 'MAIL_IN' && <Typography className={subDomain + '-details'}>{repairWidgetData.contactDetails.address1.name}</Typography>}
               {code !== 'MAIL_IN' && <Typography className={subDomain + '-details'}>
                 {
                   repairWidgetData.bookData[code].week + ', ' + 
@@ -183,7 +181,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
                   name='FRONTEND_REPAIR_APPOINTMENT'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
-                    title={publicText.scheduleAppointment} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
+                    title={t(publicText.scheduleAppointment)} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
                     height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain} disable={disableStatus}
                   />}
                 />
@@ -195,7 +193,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
                   name='FRONTEND_REPAIR_QUOTE'
                   inactiveComponent={()=><></>}
                   activeComponent={()=><Button 
-                    title={publicText.requestQuote} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
+                    title={t(publicText.requestQuote)} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' maxWidth='400px' 
                     height='30px' fontSize='17px' margin='0 auto' onClick={handleSubmit} subDomain={subDomain} disable={disableStatus}
                   />}
                 />

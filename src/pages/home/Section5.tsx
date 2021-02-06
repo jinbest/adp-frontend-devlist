@@ -31,7 +31,7 @@ const Section5 = ({subDomain}: Props) => {
           </ul>
         </Box>
         <Box className={subDomain + '-sec5-button'}>
-          <Button title={bounceData.btnTitle} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
+          <Button title={t(bounceData.btnTitle)} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
         </Box>
       </Box>
     </section>

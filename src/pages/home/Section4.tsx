@@ -23,7 +23,7 @@ const Section4 = ({subDomain}: Props) => {
               </Typography>
               <Box className={subDomain + '-section4-button mobile'}>
                 <Button 
-                  title={data.homeTextData.section4.btnTitle} 
+                  title={t(data.homeTextData.section4.btnTitle)} 
                   bgcolor={data.colorPalle.themeColor} 
                   borderR='20px'
                   subDomain={subDomain}
@@ -45,7 +45,7 @@ const Section4 = ({subDomain}: Props) => {
             </Grid>
             <Grid item xs={12}>
               <Box className={subDomain + '-section4-button desktop'}>
-                <Button title={data.homeTextData.section4.btnTitle} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
+                <Button title={t(data.homeTextData.section4.btnTitle)} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
               </Box>
             </Grid>
           </Grid>

@@ -74,6 +74,13 @@ import logoFooterImg from './img/logo/banana-logo-footer.png';
 // deviceCard - images
 import deviceCardImg from './img/banana-device-card.png';
 
+// favicon - image
+import favicon from './img/favicon.png'
+
+const fav = {
+    img: favicon
+}
+
 const chatData = {
     chatImg: chatImg,
     logoHeaderImg: logoHeaderImg
@@ -500,5 +507,6 @@ export {
     chatData,
     logoData,
     deviceCard,
-    navShop
+    navShop,
+    fav
 }

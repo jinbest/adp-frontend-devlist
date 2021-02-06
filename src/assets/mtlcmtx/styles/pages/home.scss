@@ -147,7 +147,7 @@
   float: right;
 }
 .#{$folderName}-section3-back {
-  background-image: url('../../img/nanotech-section3-bg.png');
+  background-image: url('../../img/northtech-section3-bg.png');
   background-size: cover;
   /* background-position: top; */
   background-repeat: no-repeat;
@@ -160,6 +160,7 @@
 .#{$folderName}-section4-button {
   max-width: 316px;
   width: 100%;
+  margin-top: 2rem;
 }
 
 .#{$folderName}-section4-title {
@@ -218,8 +219,7 @@ p {
   padding-top: 1rem;
 }
 .#{$folderName}-sec6-container {
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 4rem;
 }
 .#{$folderName}-sec6-card {
   margin: auto;
@@ -261,12 +261,6 @@ p {
 @media (max-width: 960px) {
   .#{$folderName}-sec6-card {
     max-width: 500px;
-  }
-}
-
-@media (max-width: 600px) {
-  .#{$folderName}-sec6-container {
-    padding-bottom: 0px;
   }
 }
 

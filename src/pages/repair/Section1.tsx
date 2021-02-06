@@ -33,6 +33,7 @@ class Section1 extends React.Component<Props> {
     const { subDomain } = this.props;
     const data = require(`../../assets/${subDomain}/Database`);
     const repair = data.repairData.section1;
+    // const t = useT();
     
     return (
       <div className={subDomain + '-repair-section1-special-bg'}>
@@ -48,7 +49,8 @@ class Section1 extends React.Component<Props> {
               <Box className={subDomain + '-repair-section-button'}>
                 <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
                   <Button 
-                    title={repair.btnTitle} 
+                    // title={repair.btnTitle} 
+                    title='Get Quote'
                     bgcolor={data.colorPalle.repairButtonCol} 
                     borderR='20px'
                     subDomain={subDomain}

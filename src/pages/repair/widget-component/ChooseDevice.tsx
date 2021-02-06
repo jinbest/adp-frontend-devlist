@@ -167,7 +167,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           selected: false,
           cost: cntOfferedRepairs[i].cost,
           warranty: cntOfferedRepairs[i].warranty,
-          warranty_unit: cntOfferedRepairs[i].warranty_unit
+          warranty_unit: cntOfferedRepairs[i].warranty_unit,
+          id: cntOfferedRepairs[i].id
         })
       }
       for (let i = 0; i < cntTypes.length; i++) {
@@ -243,7 +244,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             cost: cntTypes[i].cost, 
             estimate: cntTypes[i].estimate, 
             warranty: cntTypes[i].warranty, 
-            warranty_unit: cntTypes[i].warranty_unit
+            warranty_unit: cntTypes[i].warranty_unit,
+            id: cntTypes[i].id
           })
         }
       }
@@ -294,13 +296,15 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }, [step, estimatedTimes, itemTypes]);
 
+  // console.log(repairWidgetData.chooseRepair[0].length)
+
   return (
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className={subDomain + "-repair-widget-title"}>
             {t(data.title)}
-          </Typography>
+          </Typography>        
         </Grid>
       </Grid>
       <Grid container className='' spacing={3}>
@@ -362,8 +366,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
                 {(stepName === 'repairAnotherDevice') && 
                   <div className={subDomain + '-repair-another-device'}>
-                    <Button title={publicText.yes} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} subDomain={subDomain} />
-                    <Button title={publicText.no} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} subDomain={subDomain} />
+                    <Button title={t(publicText.yes)} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GobackFirst} subDomain={subDomain} />
+                    <Button title={t(publicText.no)} bgcolor='white' borderR='20px' width='120px' height='30px' fontSize='17px' txcolor='black' onClick={GotoNextStep} subDomain={subDomain} />
                   </div>
                 }
 
@@ -392,7 +396,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
             {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
               <div className={subDomain + '-repair-card-button'}>
                 <Button 
-                  title={publicText.next} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
+                  title={t(publicText.next)} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
                   height='30px' fontSize='17px' onClick={() => ChooseNextStep(999)} disable={disableStatus} subDomain={subDomain}
                 />
                 <p>{t(publicText.enterKey)}</p>

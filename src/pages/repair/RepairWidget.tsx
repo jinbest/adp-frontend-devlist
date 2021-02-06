@@ -72,9 +72,10 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   componentDidMount() {
 
-    const { handleStatus, repairWidgetStore, features } = this.props;
+    const { handleStatus, repairWidgetStore, features, subDomain } = this.props;
     handleStatus(false);
     this.setState({step: repairWidgetStore.cntStep});
+    document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1) + ' - Repair-Widget';
 
     const cntFeatures:any[] = [];
     for (let i = 0; i < features.length; i++) {
