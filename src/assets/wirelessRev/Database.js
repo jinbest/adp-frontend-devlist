@@ -186,7 +186,7 @@ const colorPalle = {
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
-    { href: "http://shop.wirelessrevottawa.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_MEGA_MENU' },
+    { href: "http://shop.wirelessrevottawa.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
     { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
     { href: "#", text: "BUSINESS", isActive: false, flag: 'ALWAYS_TRUE' },
     { href: "#", text: "FINANCING", isActive: false, flag: 'ALWAYS_TRUE' },

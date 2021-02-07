@@ -62,7 +62,7 @@ const MegamenuShop = ({subDomain, text, disableMenu}: Props) => {
   const [otherListSel, setOtherListSel] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    if (disableMenu) return;
+    if (!disableMenu) return;
     setAnchorEl(event.currentTarget);
   };
 

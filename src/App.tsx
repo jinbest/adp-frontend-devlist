@@ -88,8 +88,7 @@ function App(): JSX.Element {
                 .getFeatures(storeId)
                 .then((res: any) => {
                     const feats: FeatureProps[] = [
-                        { flag: "ALWAYS_TRUE", isActive: true },
-                        { flag: "DISABLE_MEGA_MENU", isActive: true },
+                        { flag: "ALWAYS_TRUE", isActive: true }
                     ]
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({

@@ -40,11 +40,11 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: P
       {isExternal(href) ? 
         <a className={subDomain + '-nav-link'} href={href} target='_blank' rel='noreferrer'>
           {text === 'SHOP' ? 
-            <MegamenuShop subDomain={subDomain} text={text} disableMenu={feats.includes('DISABLE_MEGA_MENU')} /> : t(text)}
+            <MegamenuShop subDomain={subDomain} text={text} disableMenu={feats.includes('FRONTEND_MEGA_MENU')} /> : t(text)}
         </a> :
         <Link className={subDomain + '-nav-link'} to={href} onClick={handle}>
           {text === 'SHOP' ? 
-            <MegamenuShop subDomain={subDomain} text={text} disableMenu={feats.includes('DISABLE_MEGA_MENU')} /> : t(text)}
+            <MegamenuShop subDomain={subDomain} text={text} disableMenu={feats.includes('FRONTEND_MEGA_MENU')} /> : t(text)}
         </Link>
       }
     </li>
