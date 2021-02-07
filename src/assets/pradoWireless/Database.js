@@ -99,10 +99,10 @@ const cardMobileData = {
     gridMD: 3,
     heart: heart,
     data: [
-        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FRONTEND_TRADE' },
-        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FRONTEND_REPAIR' },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY' },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE' },
+        { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FRONTEND_TRADE', href: "#" },
+        { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FRONTEND_REPAIR', href: "/repair" },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY', href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE', href: "#" },
     ]
 }
 
@@ -263,7 +263,7 @@ const avatarData = {
     userActive: userActive,
     userDeactive: userDeactive,
     cancel: cancel,
-    store: store,
+    store: { img: store, link: '#' },
     storeBlue: storeBlue,
     menu: menu
 }
