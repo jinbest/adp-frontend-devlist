@@ -1,22 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import Geocode from "react-geocode";
-import { findLocationAPI } from "../services/";
-import { storesDetails } from '../store/';
+import React, { useState, useEffect } from "react"
+import Geocode from "react-geocode"
+import { findLocationAPI } from "../services/"
+import { storesDetails } from "../store/"
 
-Geocode.setApiKey("");
-Geocode.enableDebug();
+Geocode.setApiKey("")
+Geocode.enableDebug()
 
 const usePos = () => {
-  const [pos, setPos] = useState({lat: "", long: ""})
-  const  getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoords)
-    } else {
-      alert('GeoLocation not enabled');
+    const [pos, setPos] = useState({ lat: "", long: "" })
+    const getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getCoords)
+        } else {
+            alert("GeoLocation not enabled")
+        }
     }
-  }
 
-  /* -- get formated address from geocode via api --
+    /* -- get formated address from geocode via api --
   useEffect(() => {    
     if (pos.lat) {      
       Geocode.fromLatLng(pos.lat, pos.long).then(
@@ -32,37 +32,37 @@ const usePos = () => {
   }, [pos]);
   ------------------------------------------------- */
 
-  const getCoords = (pos:any) => {    
-    setPos({
-      lat: pos.coords.latitude,
-      long: pos.coords.longitude
-    })
-  }
+    const getCoords = (pos: any) => {
+        setPos({
+            lat: pos.coords.latitude,
+            long: pos.coords.longitude,
+        })
+    }
 
-  getLocation()
+    getLocation()
 
-  return { lat: pos.lat, long: pos.long }
+    return { lat: pos.lat, long: pos.long }
 }
 
 const findGeoLoc = (geoPos: any) => {
-  /* geoData should be made from mobx-store later */
-  // const geoData:any = {
-  //   longitude: -97.211811,
-  //   latitude: 49.865759
-  // }
-  const geoData: any = {
-    longitude: geoPos.long,
-    latitude: geoPos.lat
-  }
-  findLocationAPI
-    .findGeoLocation(1, geoData)
-    .then((res:any) => {
-      // console.log('api-findLocationAPI => findGeoLoc:', res.data);
-      storesDetails.changeFindAddLocation(res.data);
-    })
-    .catch((error) => {
-      console.log('Error to find location with GeoCode', error);
-    });
+    /* geoData should be made from mobx-store later */
+    // const geoData:any = {
+    //   longitude: -97.211811,
+    //   latitude: 49.865759
+    // }
+    const geoData: any = {
+        longitude: geoPos.long,
+        latitude: geoPos.lat,
+    }
+    findLocationAPI
+        .findGeoLocation(storesDetails.store_id, geoData)
+        .then((res: any) => {
+            // console.log('api-findLocationAPI => findGeoLoc:', res.data);
+            storesDetails.changeFindAddLocation(res.data)
+        })
+        .catch((error) => {
+            console.log("Error to find location with GeoCode", error)
+        })
 }
 
 // const findAddLoc = () => {
@@ -89,20 +89,20 @@ const findGeoLoc = (geoPos: any) => {
 /* This component does not rendered now, 
    but should be edited later if need to render. */
 const GetUserLocation = () => {
-  const pos = usePos();
+    const pos = usePos()
 
-  useEffect(() => {
-    if (pos.lat) {
-      findGeoLoc(pos);
-    }
-  }, [pos])
+    useEffect(() => {
+        if (pos.lat) {
+            findGeoLoc(pos)
+        }
+    }, [pos])
 
-  return (
-    <div style={{display: 'none'}}>
-      <p>Lat {pos.lat}</p>
-      <p>Long: {pos.long}</p>
-    </div>
-  )
+    return (
+        <div style={{ display: "none" }}>
+            <p>Lat {pos.lat}</p>
+            <p>Long: {pos.long}</p>
+        </div>
+    )
 }
 
-export default GetUserLocation;
+export default GetUserLocation

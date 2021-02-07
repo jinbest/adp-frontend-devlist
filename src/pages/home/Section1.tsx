@@ -124,6 +124,7 @@ const Section1 = ({subDomain, features}: Props) => {
                       heart={index === 0 ? data.cardMobileData.heart : ''}
                       heartCol={data.colorPalle.heartCol}
                       subDomain={subDomain}
+                      href={item.href}
                     />
                   </Grid>
                 }

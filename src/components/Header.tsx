@@ -25,9 +25,22 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNav
     return;
   }
 
+  const checkDomain = (url:string) => {
+    if ( url.indexOf('//') === 0 ) { url = location.protocol + url; }
+    return url.toLowerCase().replace(/([a-z])?:\/\//,'$1').split('/')[0];
+  };
+
+  const isExternal = (url:string) => {
+    return ( ( url.indexOf(':') > -1 || url.indexOf('//') > -1 ) && checkDomain(location.href) !== checkDomain(url) );
+  };
+
   return (
     <li className={subDomain + '-nav-item'}>
-      {
+      {isExternal(href) ? 
+        <a className={subDomain + '-nav-link'} href={href} target='_blank'>
+          {text === 'SHOP' ? 
+            <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
+        </a> :
         <Link className={subDomain + '-nav-link'} to={href} onClick={handle}>
           {text === 'SHOP' ? 
             <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
@@ -184,7 +197,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
             <Feature
               name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
-              activeComponent={()=><img src={data.avatarData.store} className={subDomain + '-navlink-avatar-store'} />}
+              activeComponent={()=>
+                <a href="#" className={subDomain + '-navlink-avatar-store'}>
+                  <img src={data.avatarData.store.img} alt='shop-img' />
+                </a>
+              }
             />
           </FeatureToggles>
         </div>

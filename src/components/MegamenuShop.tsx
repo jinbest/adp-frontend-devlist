@@ -11,7 +11,7 @@ const StyledMenu = withStyles({
     boxShadow: '0 4px 4px rgba(0,0,0,0.25)',
     overflow: 'inherit',
     marginTop: '15px',
-    marginLeft: '-45px',
+    // marginLeft: '-45px',
     width: '700px',
     paddingBottom: '15px',
     border: '1px solid #C4C4C4',
@@ -23,11 +23,11 @@ const StyledMenu = withStyles({
     getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
-      horizontal: 'left',
+      horizontal: 'center',
     }}
     transformOrigin={{
       vertical: 'top',
-      horizontal: 'left',
+      horizontal: 'center',
     }}
     {...props}
   />
@@ -86,7 +86,7 @@ const MegamenuShop = ({subDomain, text}: Props) => {
         keepMounted
         open={Boolean(anchEl)}
         onClose={handleClose}
-        MenuListProps={{ onMouseLeave: handleClose }}
+        // MenuListProps={{ onMouseLeave: handleClose }}
       >
         <div className='triangle'></div>
         <div className={subDomain + '-menu-content-div'} style={{height: '100%'}}>
