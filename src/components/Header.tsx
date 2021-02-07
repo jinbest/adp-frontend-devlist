@@ -37,7 +37,7 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNav
   return (
     <li className={subDomain + '-nav-item'}>
       {isExternal(href) ? 
-        <a className={subDomain + '-nav-link'} href={href} target='_blank'>
+        <a className={subDomain + '-nav-link'} href={href} target='_blank' rel='noreferrer'>
           {text === 'SHOP' ? 
             <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
         </a> :

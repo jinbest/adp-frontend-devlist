@@ -36,7 +36,7 @@ const CardMobile = ({title, img, btnTitle, color, heart, heartCol, subDomain, hr
       </div>}
       <img src={img} alt='mobile-img' />
       {isExternal(href) ? 
-        <a href={href} style={{textDecoration: 'none'}} target='_blank'>
+        <a href={href} style={{textDecoration: 'none'}} target='_blank' rel='noreferrer'>
           <Button title={t(btnTitle)} bgcolor={color} borderR='10px' margin='auto' fontSize='16px' subDomain={subDomain} />
         </a> : 
         <Link to={href} style={{textDecoration: 'none'}}>
