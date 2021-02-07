@@ -47,9 +47,10 @@ const useStyles = makeStyles(() =>
 type Props = {
   subDomain?: string;
   text: LangProps;
+  disableMenu: boolean
 }
 
-const MegamenuShop = ({subDomain, text}: Props) => {
+const MegamenuShop = ({subDomain, text, disableMenu}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const megaShopData = data.navShop;
   const textThemeCol = data.colorPalle.textThemeCol;
@@ -61,6 +62,7 @@ const MegamenuShop = ({subDomain, text}: Props) => {
   const [otherListSel, setOtherListSel] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (disableMenu) return;
     setAnchorEl(event.currentTarget);
   };
 

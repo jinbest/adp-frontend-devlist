@@ -10,9 +10,10 @@ type PropsNavItemLink = {
   item: any;
   handleStatus: (status:boolean) => void;
   subDomain?: string;
+  feats: any[];
 }
 
-const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNavItemLink) => {
+const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: PropsNavItemLink) => {
 
   const t = useT();
 
@@ -39,11 +40,11 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain }: PropsNav
       {isExternal(href) ? 
         <a className={subDomain + '-nav-link'} href={href} target='_blank' rel='noreferrer'>
           {text === 'SHOP' ? 
-            <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
+            <MegamenuShop subDomain={subDomain} text={text} disableMenu={feats.includes('DISABLE_MEGA_MENU')} /> : t(text)}
         </a> :
         <Link className={subDomain + '-nav-link'} to={href} onClick={handle}>
           {text === 'SHOP' ? 
-            <MegamenuShop subDomain={subDomain} text={text} /> : t(text)}
+            <MegamenuShop subDomain={subDomain} text={text} disableMenu={feats.includes('DISABLE_MEGA_MENU')} /> : t(text)}
         </Link>
       }
     </li>
@@ -178,7 +179,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                   <Feature
                     name={item.flag}
                     inactiveComponent={()=><></>}
-                    activeComponent={()=><NavItemLink item={item} handleStatus={handleStatus} subDomain={subDomain} />}
+                    activeComponent={()=><NavItemLink item={item} handleStatus={handleStatus} subDomain={subDomain} feats={feats} />}
                   />
                 </FeatureToggles>
               )

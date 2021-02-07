@@ -87,7 +87,10 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
+                    const feats: FeatureProps[] = [
+                        { flag: "ALWAYS_TRUE", isActive: true },
+                        { flag: "DISABLE_MEGA_MENU", isActive: true },
+                    ]
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({
                             flag: res.data[i].feature_id,
