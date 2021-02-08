@@ -25,7 +25,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[1]
+// const subDomain = devicelist[0]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
