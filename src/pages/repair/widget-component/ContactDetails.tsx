@@ -9,6 +9,10 @@ import { repairWidgetStore, storesDetails } from '../../../store'
 import { repairWidgetAPI } from '../../../services'
 import { PostAppointParams } from '../model/post-appointment-params'
 import { countriesData, statesData } from '../../../const'
+import { findLocationAPI } from '../../../services'
+import { makeLocations } from '../../../components/CustomizedMenus'
+import { ToastMsgParams } from '../../../components/toast/toast-msg-params'
+import Toast from '../../../components/toast/toast'
 
 type Props = {
   data: any;
@@ -40,8 +44,9 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
   const [province, setProvince] = useState({code: 'MB', name: ''})
   const [postalCode, setPostalCode] = useState('')
   const [disableStatus, setDisableStatus] = useState(true);
+  const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
 
-  const handleButton = (param: string) => {   
+  const handleSubmit = (param: string) => {
     setDisableStatus(true);
     if (param !== 'appointment') {
       const repairs: any[] = [];
@@ -96,10 +101,13 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             postalCode: postalCode
           });
           repairWidgetStore.changeAppointResponse(res.data)
-          // storesDetails.changeType('QUOTE');
           handleStep(11);
         })
         .catch((error) => {
+          setToastParams({
+            msg: "Error in request an appointment.",
+            isError: true,
+          })
           setDisableStatus(false);
           console.log("Error in post Appointment and Quote", error);
         });
@@ -116,8 +124,42 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
         province: province,
         postalCode: postalCode
       });
-      // storesDetails.changeType('APPOINTMENT');
       handleStep(step+1);
+    }
+  }
+
+  const handleButton = (param: string) => {
+    setDisableStatus(true);
+    if (storesDetails.location_id < 0) {
+      findLocationAPI
+        .findAddLocation(storesDetails.store_id, {
+          city: city, state: province.code, postCode: postalCode, country: country.code
+        })
+        .then((res: any) => {
+          if (res.data.length && res.data[0].location_hours.length) {
+            storesDetails.changeFindAddLocation(res.data);
+            storesDetails.changeLocationID(res.data[0].id);
+            storesDetails.changeCntUserLocation(makeLocations(res.data));
+            handleSubmit(param);
+          } else {
+            setToastParams({
+              msg: "There is not available locations. Please input another address.",
+              isWarning: true,
+            })
+            setDisableStatus(false);
+          }
+        })
+        .catch((error) => {
+          console.log("Error to find location with Address", error);
+          setToastParams({
+            msg: "Error to find location with Address. Please input right address.",
+            isError: true,
+          })
+          setDisableStatus(false);
+        })
+      return;
+    } else {
+      handleSubmit(param);
     }
   }
 
@@ -171,6 +213,16 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
 
   const handleChangePostalCode = (val:string) => {
     setPostalCode(val);
+  }
+
+  const resetStatuses = () => {
+    setToastParams({
+      msg: "",
+      isError: false,
+      isWarning: false,
+      isInfo: false,
+      isSuccess: false,
+    })
   }
 
   return (
@@ -264,6 +316,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
           </Card>
         </Grid>
       </Grid>
+      <Toast params={toastParams} resetStatuses={resetStatuses} />
     </div>
   )
 }

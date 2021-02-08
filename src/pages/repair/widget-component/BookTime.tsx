@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { Card } from "./"
-import { Button, CustomCalendar } from "../../../components"
+import { Button, CustomCalendar, CustomSelect } from "../../../components"
 import CustomBookTime from "./CustomBookTime"
 import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
@@ -62,14 +62,14 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     const [time, setTime] = useState(
         date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
     )
-    // const [selectVal, setSelectVal] = useState({
-    //     code: storesDetails.cntUserLocation.length
-    //         ? storesDetails.cntUserLocation[0].location_id
-    //         : -1,
-    //     name: storesDetails.cntUserLocation.length
-    //         ? storesDetails.cntUserLocation[0].location_name
-    //         : "",
-    // })
+    const [selectVal, setSelectVal] = useState({
+        code: storesDetails.cntUserLocation.length
+            ? storesDetails.cntUserLocation[0].location_id
+            : -1,
+        name: storesDetails.cntUserLocation.length
+            ? storesDetails.cntUserLocation[0].location_name
+            : "",
+    })
     const [sendToAddress, setSendToAddress] = useState("")
     const [mailInChecked, setMailinChecked] = useState(0)
     const [disableStatus, setDisableStatus] = useState(true)
@@ -189,23 +189,11 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     const ChooseNextStep = () => {
         if (code === "MAIL_IN") {
             handleChangeChooseData(7, { code: code, data: { sendTo: sendToAddress } })
-            // repairWidgetStore.changeContactDetails({
-            //     firstName: repairWidgetStore.contactDetails.firstName,
-            //     lastName: repairWidgetStore.contactDetails.lastName,
-            //     email: repairWidgetStore.contactDetails.email,
-            //     phone: repairWidgetStore.contactDetails.phone,
-            //     address1: { name: sendToAddress, code: "1" },
-            //     address2: repairWidgetStore.contactDetails.address2,
-            //     country: repairWidgetStore.contactDetails.country,
-            //     city: repairWidgetStore.contactDetails.city,
-            //     province: repairWidgetStore.contactDetails.province,
-            //     postalCode: repairWidgetStore.contactDetails.postalCode,
-            // })
         } else {
             handleChangeChooseData(7, {
                 code: code,
                 data: {
-                    address: repairWidgetStore.contactDetails.address1,
+                    address: selectVal.name,
                     time: time,
                     day: day,
                     month: MONTHS[month],
@@ -220,18 +208,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 selected_start_time: new Date(cntSelectDate).getDay() === 0 ? "10:00" : "09:00",
                 selected_end_time: new Date(cntSelectDate).getDay() === 0 ? "16:00" : "17:30",
             })
-            // repairWidgetStore.changeContactDetails({
-            //     firstName: repairWidgetStore.contactDetails.firstName,
-            //     lastName: repairWidgetStore.contactDetails.lastName,
-            //     email: repairWidgetStore.contactDetails.email,
-            //     phone: repairWidgetStore.contactDetails.phone,
-            //     address1: selectVal,
-            //     address2: repairWidgetStore.contactDetails.address2,
-            //     country: repairWidgetStore.contactDetails.country,
-            //     city: repairWidgetStore.contactDetails.city,
-            //     province: repairWidgetStore.contactDetails.province,
-            //     postalCode: repairWidgetStore.contactDetails.postalCode,
-            // })
         }
         handleStep(step + 1)
     }
@@ -250,7 +226,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         return () => {
             document.removeEventListener("keydown", onKeyPress, false)
         }
-    }, [step, code, sendToAddress, time, day, month, year, week, disableStatus])
+    }, [step, code, sendToAddress, time, day, month, year, week, disableStatus, selectVal])
 
     useEffect(() => {
         setDisableStatus(true)
@@ -259,6 +235,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         }
         if (
             code !== "MAIL_IN" &&
+            selectVal.name &&
             time &&
             day &&
             MONTHS[month] &&
@@ -267,18 +244,18 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         ) {
             setDisableStatus(false)
         }
-    }, [code, sendToAddress, time, day, month, year, week])
+    }, [code, sendToAddress, time, day, month, year, week, selectVal])
 
     useEffect(() => {
-        // if (storesDetails.findAddLocation.length && selectVal.name && code !== "MAIL_IN") {
-        //     for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
-        //         if (selectVal.name === storesDetails.findAddLocation[i].location_name) {
-        //             const cntLoc: any[] = makeLocations([storesDetails.findAddLocation[i]])
-        //             storesDetails.changeCntUserLocation(cntLoc)
-        //             storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
-        //         }
-        //     }
-        // }
+        if (storesDetails.findAddLocation.length && selectVal.name && code !== "MAIL_IN") {
+            for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
+                if (selectVal.name === storesDetails.findAddLocation[i].location_name) {
+                    const cntLoc: any[] = makeLocations([storesDetails.findAddLocation[i]])
+                    storesDetails.changeCntUserLocation(cntLoc)
+                    storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
+                }
+            }
+        }
         if (storesDetails.findAddLocation.length && sendToAddress && code === "MAIL_IN") {
             for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
                 if (sendToAddress === storesDetails.findAddLocation[i].location_name) {
@@ -288,7 +265,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 }
             }
         }
-    }, [sendToAddress])
+    }, [sendToAddress, selectVal])
 
     return (
         <div>
@@ -303,18 +280,18 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 <Grid item xs={12} md={7}>
                     <Card className={subDomain + "-booking-card"}>
                         <div className={subDomain + "-repair-choose-device-container"}>
-                            {code === "MAIL_IN" && <Typography className={subDomain + "-repair-summary-title"}>
+                            {<Typography className={subDomain + "-repair-summary-title"}>
                                 {t(data.select.location.title[code])}
                             </Typography>}
                             <div style={{ marginBottom: "20px" }}>
-                                {/* {code !== "MAIL_IN" && (
+                                {code !== "MAIL_IN" && (
                                     <CustomSelect
                                         value={selectVal}
                                         handleSetValue={setSelectVal}
                                         subDomain={subDomain}
                                         options={findLocs}
                                     />
-                                )} */}
+                                )}
                                 {code === "MAIL_IN" && (
                                     <div>
                                         {findLocs.map((item: any, index: number) => {
