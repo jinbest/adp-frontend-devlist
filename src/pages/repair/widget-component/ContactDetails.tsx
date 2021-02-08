@@ -9,6 +9,10 @@ import { repairWidgetStore, storesDetails } from '../../../store'
 import { repairWidgetAPI } from '../../../services'
 import { PostAppointParams } from '../model/post-appointment-params'
 import { countriesData, statesData } from '../../../const'
+import { findLocationAPI } from '../../../services'
+import { makeLocations } from '../../../components/CustomizedMenus'
+import { ToastMsgParams } from '../../../components/toast/toast-msg-params'
+import Toast from '../../../components/toast/toast'
 
 type Props = {
   data: any;
@@ -40,8 +44,9 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
   const [province, setProvince] = useState({code: 'MB', name: ''})
   const [postalCode, setPostalCode] = useState('')
   const [disableStatus, setDisableStatus] = useState(true);
+  const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
 
-  const handleButton = (param: string) => {   
+  const handleSubmit = (param: string) => {
     setDisableStatus(true);
     if (param !== 'appointment') {
       const repairs: any[] = [];
@@ -96,10 +101,13 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
             postalCode: postalCode
           });
           repairWidgetStore.changeAppointResponse(res.data)
-          // storesDetails.changeType('QUOTE');
           handleStep(11);
         })
         .catch((error) => {
+          setToastParams({
+            msg: "Error in request an appointment.",
+            isError: true,
+          })
           setDisableStatus(false);
           console.log("Error in post Appointment and Quote", error);
         });
@@ -116,8 +124,42 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
         province: province,
         postalCode: postalCode
       });
-      // storesDetails.changeType('APPOINTMENT');
       handleStep(step+1);
+    }
+  }
+
+  const handleButton = (param: string) => {
+    setDisableStatus(true);
+    if (storesDetails.location_id < 0) {
+      findLocationAPI
+        .findAddLocation(storesDetails.store_id, {
+          city: city, state: province.code, postCode: postalCode, country: country.code
+        })
+        .then((res: any) => {
+          if (res.data.length && res.data[0].location_hours.length) {
+            storesDetails.changeFindAddLocation(res.data);
+            storesDetails.changeLocationID(res.data[0].id);
+            storesDetails.changeCntUserLocation(makeLocations(res.data));
+            handleSubmit(param);
+          } else {
+            setToastParams({
+              msg: "There is not available locations. Please input another address.",
+              isWarning: true,
+            })
+            setDisableStatus(false);
+          }
+        })
+        .catch((error) => {
+          console.log("Error to find location with Address", error);
+          setToastParams({
+            msg: "Error to find location with Address. Please input right address.",
+            isError: true,
+          })
+          setDisableStatus(false);
+        })
+      return;
+    } else {
+      handleSubmit(param);
     }
   }
 
@@ -173,6 +215,16 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
     setPostalCode(val);
   }
 
+  const resetStatuses = () => {
+    setToastParams({
+      msg: "",
+      isError: false,
+      isWarning: false,
+      isInfo: false,
+      isSuccess: false,
+    })
+  }
+
   return (
     <div>
       <Grid container className='' spacing={3}>
@@ -200,7 +252,29 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                   <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t(data.placeholder.phoneNum)} />
                 </Grid>
               </Grid>
-            </div>
+            </div>            
+            {<div className={subDomain + '-repair-choose-device-container'}>
+              <Grid container spacing={2}>                
+                <Grid item xs={12}>
+                  <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+                <Grid item xs={12}>
+                  <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <InputComponent value={city} placeholder={t(data.placeholder.city)} handleChange={(e)=>{handleChangeCity(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <CustomSelect value={province} handleSetValue={setProvince} subDomain={subDomain} options={country.code ? statesData[country.code] : []} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <InputComponent value={postalCode} placeholder={t(data.placeholder.postalCode)} handleChange={(e)=>{handleChangePostalCode(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+              </Grid>
+            </div>}
             {code !== 'MAIL_IN' && <div className={subDomain + '-repair-choose-device-container'}>
               <FeatureToggles features={features}>
                 <Feature
@@ -223,28 +297,6 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 />
               </FeatureToggles>              
             </div>}
-            {code === 'MAIL_IN' && <div className={subDomain + '-repair-choose-device-container'}>
-              <Grid container spacing={2}>                
-                <Grid item xs={12}>
-                  <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12}>
-                  <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <InputComponent value={city} placeholder={t(data.placeholder.city)} handleChange={(e)=>{handleChangeCity(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <CustomSelect value={province} handleSetValue={setProvince} subDomain={subDomain} options={country.code ? statesData[country.code] : []} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <InputComponent value={postalCode} placeholder={t(data.placeholder.postalCode)} handleChange={(e)=>{handleChangePostalCode(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-              </Grid>
-            </div>}
             {code === 'MAIL_IN' && <div className={subDomain + '-repair-card-button'}>
               <Button 
                 title={t(publicText.next)} bgcolor={mainData.colorPalle.nextButtonCol} borderR='20px' width='120px' 
@@ -264,6 +316,7 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
           </Card>
         </Grid>
       </Grid>
+      <Toast params={toastParams} resetStatuses={resetStatuses} />
     </div>
   )
 }

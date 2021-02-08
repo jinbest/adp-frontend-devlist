@@ -7,6 +7,8 @@ import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 import { repairWidgetStore, storesDetails } from '../../../store'
 import { repairWidgetAPI } from '../../../services'
 import { PostAppointParams } from '../model/post-appointment-params'
+import { ToastMsgParams } from '../../../components/toast/toast-msg-params'
+import Toast from '../../../components/toast/toast'
 
 type Props = {
   repairWidgetData: any;
@@ -26,6 +28,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
   const publicText = mockData.repairWidget.publicText;
   const textThemeCol = mainData.colorPalle.textThemeCol;
   const [disableStatus, setDisableStatus] = useState(false);
+  const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const t = useT();
 
   const handleSubmit = () => {
@@ -77,10 +80,18 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
         } else if (code !== 'MAIL_IN' && features.includes('FRONTEND_REPAIR_APPOINTMENT')) {
           ChooseNextStep();
         } else {
+          setToastParams({
+            msg: "There is an empty response for an appointment request.",
+            isWarning: true,
+          })
           return;
         }
       })
       .catch((error) => {
+        setToastParams({
+          msg: "Error in request an appointment.",
+          isError: true,
+        })
         setDisableStatus(false);
         console.log("Error in post Appointment and Quote", error);
       });
@@ -102,6 +113,16 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
       document.removeEventListener("keydown", onKeyPress, false);
     };
   }, [step])
+
+  const resetStatuses = () => {
+    setToastParams({
+      msg: "",
+      isError: false,
+      isWarning: false,
+      isInfo: false,
+      isSuccess: false,
+    })
+  }
 
   return (
     <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -201,6 +222,7 @@ const RepairServiceSummary = ({repairWidgetData, code, step, handleStep, subDoma
           </div>
         </div>
       </Card>
+      <Toast params={toastParams} resetStatuses={resetStatuses} />
     </div>
   )
 }

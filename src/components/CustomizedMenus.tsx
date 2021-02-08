@@ -11,6 +11,8 @@ import { Link } from "react-router-dom"
 import { GetCurrentLocParams } from "../pages/repair/model/get-current-location"
 import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
+import { ToastMsgParams } from './toast/toast-msg-params'
+import Toast from './toast/toast'
 
 export function makeLocations(data: any[]) {
     const locations: GetCurrentLocParams[] = []
@@ -125,9 +127,10 @@ const CustomizedMenus = inject("headerStore")(
         const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
         const [requireUserInfo, setRequireUserInfo] = useState(false)
         const [contentWidth, setContentWidth] = useState("215px")
+        const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
 
         const handleLocSelect = (index: number) => {
-            const cntLocation: any = locations[index]
+            const cntLocation: any = headerStore.cntUserLocation[index]
             setLocations([cntLocation])
             headerStore.changeLocationID(cntLocation.location_id)
             setLocSelStatus(true)
@@ -146,6 +149,16 @@ const CustomizedMenus = inject("headerStore")(
             setPos({
                 latitude: pos.coords.latitude,
                 longitude: pos.coords.longitude,
+            })
+        }
+
+        const resetStatuses = () => {
+            setToastParams({
+                msg: "",
+                isError: false,
+                isWarning: false,
+                isInfo: false,
+                isSuccess: false,
             })
         }
 
@@ -179,14 +192,22 @@ const CustomizedMenus = inject("headerStore")(
                         if (res.data.length) {
                             setLocations(makeLocations(res.data))
                             headerStore.changeFindAddLocation(res.data)
+                            headerStore.changeLocationID(res.data[0].id)
                         } else {
-                            console.log("Response is an empty data, please input your infos.")
+                            setToastParams({
+                                msg: "Response is an empty data, please input your infos.",
+                                isWarning: true,
+                            })
                             setPos({ latitude: "", longitude: "" })
                             setRequireUserInfo(true)
                         }
                     })
                     .catch((error) => {
                         console.log("Error to find location with GeoCode", error)
+                        setToastParams({
+                            msg: "Error to find location with GeoCode.",
+                            isError: true,
+                        })
                         setPos({ latitude: "", longitude: "" })
                         setRequireUserInfo(true)
                     })
@@ -215,10 +236,20 @@ const CustomizedMenus = inject("headerStore")(
                         if (res.data.length) {
                             setLocations(makeLocations(res.data))
                             headerStore.changeFindAddLocation(res.data)
+                            headerStore.changeLocationID(res.data[0].id)
+                        } else {
+                            setToastParams({
+                                msg: "Response is an empty data, please check your infos.",
+                                isWarning: true,
+                            })
                         }
                     })
                     .catch((error) => {
                         console.log("Error to find location with Address", error)
+                        setToastParams({
+                            msg: "Error to find location with Address, please check your infos.",
+                            isError: true,
+                        })
                     })
             }
         }, [userInfo])
@@ -413,6 +444,7 @@ const CustomizedMenus = inject("headerStore")(
                         )}
                     </div>
                 </StyledMenu>
+                <Toast params={toastParams} resetStatuses={resetStatuses} />
             </div>
         )
     })

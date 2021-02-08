@@ -15,17 +15,17 @@ const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
 //     "bananaservice",
+//     "geebodevicerepair",
 //     "mobiletechlab",
-//     "nanotechmobilerepair",
+//     "nanotechmobile",
 //     "northtechsolutions",
 //     "okotoksphonephix",
 //     "pradowireless",
-//     "wearegeebo",
-//     "wirelessrev",
+//     "wirelessrevottawa",
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[9]
+// const subDomain = devicelist[3]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -87,7 +87,9 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
+                    const feats: FeatureProps[] = [
+                        { flag: "ALWAYS_TRUE", isActive: true }
+                    ]
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({
                             flag: res.data[i].feature_id,

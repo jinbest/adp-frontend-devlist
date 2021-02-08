@@ -11,11 +11,11 @@ const StyledMenu = withStyles({
     boxShadow: '0 4px 4px rgba(0,0,0,0.25)',
     overflow: 'inherit',
     marginTop: '15px',
-    // marginLeft: '-45px',
     width: '700px',
     paddingBottom: '15px',
     border: '1px solid #C4C4C4',
-    height: '480px'
+    height: '480px',
+    zIndex: -1
   },
 })((props: MenuProps) => (
   <Menu
@@ -40,16 +40,17 @@ const useStyles = makeStyles(() =>
       justifyContent: 'space-between', 
       flexDirection: 'column',
       width: '180px !important'
-    },
+    }
   }),
 );
 
 type Props = {
   subDomain?: string;
   text: LangProps;
+  disableMenu: boolean
 }
 
-const MegamenuShop = ({subDomain, text}: Props) => {
+const MegamenuShop = ({subDomain, text, disableMenu}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const megaShopData = data.navShop;
   const textThemeCol = data.colorPalle.textThemeCol;
@@ -61,6 +62,7 @@ const MegamenuShop = ({subDomain, text}: Props) => {
   const [otherListSel, setOtherListSel] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (!disableMenu) return;
     setAnchorEl(event.currentTarget);
   };
 

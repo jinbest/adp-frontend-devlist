@@ -3,9 +3,9 @@ import { Customer } from "./customer"
 import { DeliveryMethod } from "./delivery-method"
 
 export interface NewAppointments {
-  id: string
-  store_id: string
-  location_id: string
+  id: number
+  store_id: number
+  location_id: number
   customer: Customer
   booking_date: string
   start_date: string
