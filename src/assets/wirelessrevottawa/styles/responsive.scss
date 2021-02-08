@@ -1,4 +1,17 @@
-@media (max-width: 996px) {
+@media (max-width: 1260px) {
+  .#{$folderName}-navlink-parent, .#{$folderName}-nav-item {
+    margin: 0 5px;
+  }
+  .#{$folderName}-nav-link {
+    font-size: 15px;
+  }
+  .#{$folderName}-nav-div button {
+    font-size: 15px !important;
+    width: 135px !important;
+  }
+}
+
+@media (max-width: 1100px) {
   .#{$folderName}-container-header .#{$folderName}-search-div {
     display: none;
   }
@@ -78,7 +91,7 @@
     display: block
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/mobiletech-footer-shape-mobile.png');
+    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
     padding: 190px 20px 30px;
   }
   .#{$folderName}-back-to-top {
@@ -119,7 +132,7 @@
     width: 60vw;
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/mobiletech-footer-shape-mobile.png');
+    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
   }
   .#{$folderName}-repair-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
@@ -202,9 +215,6 @@
   .#{$folderName}-input-component {
     font-size: 3vw !important;
     padding: 20px 15px;
-  }
-  .#{$folderName}-sec6-container {
-    padding-bottom: 0px;
   }
 }
 
@@ -302,8 +312,7 @@
     margin: 4rem auto !important;
   }
   .#{$folderName}-sec6-container {
-    padding-top: 50px;
-    padding-bottom: 150px;
+    padding-top: 1rem;
   }
   .#{$folderName}-footer {
     margin-top: -100px;
