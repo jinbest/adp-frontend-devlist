@@ -101,7 +101,7 @@ const cardMobileData = {
     data: [
         { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FRONTEND_TRADE', href: "#" },
         { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FRONTEND_REPAIR', href: "/repair" },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY', href: "#" },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY', href: "/shop" },
         { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE', href: "#" },
     ]
 }
@@ -185,7 +185,7 @@ const colorPalle = {
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
-    { href: "#", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
+    { href: "/shop", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
     { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
 

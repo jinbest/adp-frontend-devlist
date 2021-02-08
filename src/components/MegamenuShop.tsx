@@ -11,11 +11,11 @@ const StyledMenu = withStyles({
     boxShadow: '0 4px 4px rgba(0,0,0,0.25)',
     overflow: 'inherit',
     marginTop: '15px',
-    // marginLeft: '-45px',
     width: '700px',
     paddingBottom: '15px',
     border: '1px solid #C4C4C4',
-    height: '480px'
+    height: '480px',
+    zIndex: -1
   },
 })((props: MenuProps) => (
   <Menu
@@ -40,7 +40,7 @@ const useStyles = makeStyles(() =>
       justifyContent: 'space-between', 
       flexDirection: 'column',
       width: '180px !important'
-    },
+    }
   }),
 );
 

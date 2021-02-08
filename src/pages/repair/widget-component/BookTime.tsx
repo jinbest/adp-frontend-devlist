@@ -62,14 +62,14 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     const [time, setTime] = useState(
         date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
     )
-    const [selectVal, setSelectVal] = useState({
-        code: storesDetails.cntUserLocation.length
-            ? storesDetails.cntUserLocation[0].location_id
-            : -1,
-        name: storesDetails.cntUserLocation.length
-            ? storesDetails.cntUserLocation[0].location_name
-            : "",
-    })
+    // const [selectVal, setSelectVal] = useState({
+    //     code: storesDetails.cntUserLocation.length
+    //         ? storesDetails.cntUserLocation[0].location_id
+    //         : -1,
+    //     name: storesDetails.cntUserLocation.length
+    //         ? storesDetails.cntUserLocation[0].location_name
+    //         : "",
+    // })
     const [sendToAddress, setSendToAddress] = useState("")
     const [mailInChecked, setMailinChecked] = useState(0)
     const [disableStatus, setDisableStatus] = useState(true)
@@ -242,7 +242,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 ChooseNextStep()
             }
         },
-        [step, code, sendToAddress, selectVal, time, day, month, year, week, disableStatus]
+        [step, code, sendToAddress, time, day, month, year, week, disableStatus]
     )
 
     useEffect(() => {
@@ -250,7 +250,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         return () => {
             document.removeEventListener("keydown", onKeyPress, false)
         }
-    }, [step, code, sendToAddress, selectVal, time, day, month, year, week, disableStatus])
+    }, [step, code, sendToAddress, time, day, month, year, week, disableStatus])
 
     useEffect(() => {
         setDisableStatus(true)
@@ -259,7 +259,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         }
         if (
             code !== "MAIL_IN" &&
-            selectVal.name &&
             time &&
             day &&
             MONTHS[month] &&
@@ -268,7 +267,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         ) {
             setDisableStatus(false)
         }
-    }, [code, sendToAddress, selectVal, time, day, month, year, week])
+    }, [code, sendToAddress, time, day, month, year, week])
 
     useEffect(() => {
         // if (storesDetails.findAddLocation.length && selectVal.name && code !== "MAIL_IN") {
