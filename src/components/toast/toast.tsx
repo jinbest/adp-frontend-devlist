@@ -1,6 +1,6 @@
 import { Snackbar } from "@material-ui/core"
 import { Alert } from "@material-ui/lab"
-import React, { FunctionComponent, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { ToastMsgParams } from "./toast-msg-params"
 
@@ -11,7 +11,7 @@ interface ToastProps {
 
 type AlertSeverity = "success" | "info" | "error" | "warning"
 
-const Toast: FunctionComponent<ToastProps> = ({ params, resetStatuses }) => {
+const Toast = ({ params, resetStatuses }: ToastProps) => {
   const [t] = useTranslation()
   const [openAlert, setOpenAlert] = useState(false)
   const [alertMsg, setAlertMsg] = useState("")
