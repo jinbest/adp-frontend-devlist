@@ -2,8 +2,8 @@ import { Discount } from "./discount"
 import { Product } from "./product"
 
 export interface Repairs {
-  id: string
-  store_id: string
+  id: number
+  store_id: number
   product: Product
   title: string
   duration: number

@@ -1,5 +1,5 @@
 export interface AppointmentRepair {
-  id?: string
+  id?: number
   appointment_id: number
   repair_id: number
   product_id: number

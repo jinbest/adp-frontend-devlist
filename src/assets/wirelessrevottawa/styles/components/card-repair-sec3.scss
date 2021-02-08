@@ -1,0 +1,28 @@
+.#{$folderName}-card-repair-sec3-container {
+    padding: 30px 20px;
+    border-radius: 13px;
+    box-shadow: -13.3204px -13.3204px 39.9611px #FFFFFF, 13.3204px 13.3204px 39.9611px rgba(174, 174, 192, 0.4);
+    background-color: white;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.#{$folderName}-card-repair-sec3-container .#{$folderName}-subtitle {
+    font-weight: 800;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.#{$folderName}-card-repair-sec3-container > img {
+    width: 40%;
+}
+
+.#{$folderName}-card-repair-sec3-container .#{$folderName}-content {
+    margin-top: 10px;
+    font-weight: normal;
+    font-size: 18px;
+    height: 50px;
+}

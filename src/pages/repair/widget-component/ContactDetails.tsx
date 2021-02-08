@@ -200,7 +200,29 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                   <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t(data.placeholder.phoneNum)} />
                 </Grid>
               </Grid>
-            </div>
+            </div>            
+            {<div className={subDomain + '-repair-choose-device-container'}>
+              <Grid container spacing={2}>                
+                <Grid item xs={12}>
+                  <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+                <Grid item xs={12}>
+                  <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <InputComponent value={city} placeholder={t(data.placeholder.city)} handleChange={(e)=>{handleChangeCity(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <CustomSelect value={province} handleSetValue={setProvince} subDomain={subDomain} options={country.code ? statesData[country.code] : []} />
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                  <InputComponent value={postalCode} placeholder={t(data.placeholder.postalCode)} handleChange={(e)=>{handleChangePostalCode(e.target.value)}} subDomain={subDomain} />
+                </Grid>
+              </Grid>
+            </div>}
             {code !== 'MAIL_IN' && <div className={subDomain + '-repair-choose-device-container'}>
               <FeatureToggles features={features}>
                 <Feature
@@ -222,28 +244,6 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                   />}
                 />
               </FeatureToggles>              
-            </div>}
-            {code === 'MAIL_IN' && <div className={subDomain + '-repair-choose-device-container'}>
-              <Grid container spacing={2}>                
-                <Grid item xs={12}>
-                  <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12}>
-                  <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <InputComponent value={city} placeholder={t(data.placeholder.city)} handleChange={(e)=>{handleChangeCity(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <CustomSelect value={province} handleSetValue={setProvince} subDomain={subDomain} options={country.code ? statesData[country.code] : []} />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <InputComponent value={postalCode} placeholder={t(data.placeholder.postalCode)} handleChange={(e)=>{handleChangePostalCode(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-              </Grid>
             </div>}
             {code === 'MAIL_IN' && <div className={subDomain + '-repair-card-button'}>
               <Button 
