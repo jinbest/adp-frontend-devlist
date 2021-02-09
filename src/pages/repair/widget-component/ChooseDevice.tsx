@@ -58,6 +58,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         await addMoreDeviceBrandsAPI(searchText, page+1, perPage)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           setSliceNum(repairWidData.repairDeviceBrands.data.length)
+          if (repairWidData.repairDeviceBrands.data.length < (page+1) * perPage) {
+            setPlusVisible(false)
+          }
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairDeviceBrands.data[i].name,
@@ -72,6 +75,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         await addMoreBrandProductsAPI(repairWidData.cntBrandID, searchText, page+1, perPage)
         if (repairWidData.repairBrandProducts.data && repairWidData.repairBrandProducts.data.length) {
           setSliceNum(repairWidData.repairBrandProducts.data.length)
+          if (repairWidData.repairBrandProducts.data.length < (page+1) * perPage) {
+            setPlusVisible(false)
+          }
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairBrandProducts.data[i].name,
@@ -85,7 +91,10 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       case 'deviceRepairs':
         await addMoreRepairsOfferedDeviceAPI(repairWidData.cntProductID, searchText, page+1, perPage)
         cntOfferedRepairs = repairWidData.repairsOfferedDevices.data;
-        setSliceNum(repairWidData.repairsOfferedDevices.data.length)
+        setSliceNum(repairWidData.repairsOfferedDevices.data.length)     
+        if (repairWidData.repairsOfferedDevices.data.length < (page+1) * perPage) {
+          setPlusVisible(false)
+        }   
         for (let i = 0; i < cntOfferedRepairs.length; i++) {
           cntTypes.push({
             name: cntOfferedRepairs[i].title,
@@ -113,9 +122,9 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       default:
         break;
     }
-    if (sliceNum < (page+1) * perPage) {
-      setPlusVisible(false)
-    }
+    // if (sliceNum < (page+1) * perPage - 1) {
+    //   setPlusVisible(false)
+    // }
     setImageData(cntImgData)
     setPage(page+1)
   }

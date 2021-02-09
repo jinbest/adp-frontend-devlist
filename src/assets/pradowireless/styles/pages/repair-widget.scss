@@ -101,6 +101,30 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* width */
+.#{$folderName}-widget-main-container::-webkit-scrollbar {
+  width: 3px;
+  cursor: pointer;
+}
+
+/* Track */
+.#{$folderName}-widget-main-container::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+ 
+/* Handle */
+.#{$folderName}-widget-main-container::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+/* Handle on hover */
+.#{$folderName}-widget-main-container::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
 
 .#{$folderName}-device-model-item {

@@ -40,7 +40,7 @@ class RepairWidgetAPI {
         brand_id: number,
         searchText: string
     ) => {
-        let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?per_page=${per_page}&page=${page}&include_voided=${included_voided}&brand_id=${brand_id}`
+        let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?per_page=${per_page}&page=${page}&include_voided=${included_voided}&brand_id=${brand_id}&status=PUBLISHED`
         if (searchText) {
             apiURL += `&name=${searchText}`
         }
