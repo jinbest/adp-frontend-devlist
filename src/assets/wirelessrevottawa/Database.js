@@ -390,7 +390,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(613) 723-6363 | info@wirelessrev.ca 4 - 1800 Bank Street, Ottawa, ON',
+            'info@wirelessrev.ca 4 - 1800 Bank Street, Ottawa, ON',
             'WIRELESS_FOOTER_CONTENT_TWO'
         ],
         footerLink: [

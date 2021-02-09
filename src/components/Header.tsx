@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {Search, CustomizedMenus, Logo, SelectLang, MegamenuShop} from '../components'
 import { Link } from 'react-router-dom'
 import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails } from '../store'
 
@@ -11,6 +10,22 @@ type PropsNavItemLink = {
   handleStatus: (status:boolean) => void;
   subDomain?: string;
   feats: any[];
+}
+
+export function phoneFormatString(phnumber: string) {
+  let formatPhnumber: string = phnumber, countrycode = '', Areacode = '', number = '';
+  if (phnumber.length <= 10 && phnumber.length > 6) {
+    countrycode = phnumber.substring(0, 3);
+    Areacode = phnumber.substring(3, 6);
+    number = phnumber.substring(6, phnumber.length);
+    formatPhnumber ="(" + countrycode + ") " + Areacode + "-" + number;
+  } else if (phnumber.length > 10) {
+    countrycode = phnumber.substring(phnumber.length - 10, phnumber.length - 7);
+    Areacode = phnumber.substring(phnumber.length - 7, phnumber.length - 4);
+    number = phnumber.substring(phnumber.length - 4, phnumber.length);
+    formatPhnumber = "+" + phnumber.substring(0, phnumber.length - 10) + " (" + countrycode + ") " + Areacode + "-" + number;
+  }
+  return formatPhnumber;
 }
 
 const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: PropsNavItemLink) => {
@@ -52,18 +67,15 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: P
 }
 
 type PropsBrand = {
-  item: LangProps;
+  item: string;
   color: string;
-  trans: boolean;
 }
 
-const BrandItemLink = ({ item, color, trans }: PropsBrand) => {
-  const t = useT();
-
+const BrandItemLink = ({ item, color }: PropsBrand) => {
   return (    
     <li style={{listStyle: 'none'}}>
       <a style={{color: color, padding: '0 5px', fontWeight: 100, fontSize: '15px'}}>
-        {trans ? t(item).toLocaleUpperCase() : item.toLocaleUpperCase()}
+        {item.toLocaleUpperCase()}
       </a>
     </li>
   )
@@ -120,11 +132,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
-              return <BrandItemLink item={item} key={index} color={brandItemLink.brandCol} trans={true} />
+              return <BrandItemLink item={t(item)} key={index} color={brandItemLink.brandCol} />
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} trans={false} />
+            <BrandItemLink item={phoneFormatString(storesDetails.storesDetails.phone)} color={brandItemLink.brandCol} />
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
             <FeatureToggles features={feats}>
               <Feature
@@ -134,7 +146,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                   <Feature
                     name={'FRONTEND_USER_LOGIN'}
                     inactiveComponent={()=><></>}
-                    activeComponent={()=><BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} trans={true} />}
+                    activeComponent={()=><BrandItemLink item={t(brandItemLink.right.log)} color={brandItemLink.brandCol} />}
                   />
                 }
               />

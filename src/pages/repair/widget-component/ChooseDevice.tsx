@@ -8,8 +8,11 @@ import { LangProps } from '../../../i18n/en'
 import { repairWidData, storesDetails } from '../../../store/'
 import { 
   getDeviceBrandsAPI, 
+  addMoreDeviceBrandsAPI,
   getBrandProductsAPI, 
-  getRepairsOfferedDeviceAPI 
+  addMoreBrandProductsAPI,
+  getRepairsOfferedDeviceAPI,
+  addMoreRepairsOfferedDeviceAPI
 } from '../RepairWidgetCallAPI'
 
 type Props = {
@@ -34,7 +37,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol;
   const publicText = mockData.repairWidget.publicText;
 
-  const [sliceNum, setSliceNum] = useState(5);
+  const [sliceNum, setSliceNum] = useState(10);
   const [plusVisible, setPlusVisible] = useState(true);
   const [itemTypes, setItemTypes] = useState<ArrayProps[]>([]);
   const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([]);
@@ -42,21 +45,82 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   const [disableStatus, setDisableStatus] = useState(true);
   const [imageData, setImageData] = useState<any[]>([]);
   const [searchText, setSearchText] = useState('');
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
 
   const t = useT();
 
-  const handlePlus = () => {
-    setSliceNum(imageData.length);
-    setPlusVisible(false);
-  }
-
-  useEffect(() => {
-    if (imageData.length < sliceNum + 1) {
-      setPlusVisible(false);
-    } else {
-      setPlusVisible(true);
+  const handlePlus = async () => {
+    const cntImgData: any[] = [];
+    switch (stepName) {
+      case 'deviceBrand':
+        await addMoreDeviceBrandsAPI(searchText, page+1, perPage)
+        if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
+          setSliceNum(repairWidData.repairDeviceBrands.data.length)
+          for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
+            cntImgData.push({
+              name: repairWidData.repairDeviceBrands.data[i].name,
+              img: repairWidData.repairDeviceBrands.data[i].img_src,
+              id: repairWidData.repairDeviceBrands.data[i].id,
+              alt: repairWidData.repairDeviceBrands.data[i].img_alt,
+            });
+          }
+        }
+        break;
+      case 'deviceModel':
+        await addMoreBrandProductsAPI(repairWidData.cntBrandID, searchText, page+1, perPage)
+        if (repairWidData.repairBrandProducts.data && repairWidData.repairBrandProducts.data.length) {
+          setSliceNum(repairWidData.repairBrandProducts.data.length)
+          for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
+            cntImgData.push({
+              name: repairWidData.repairBrandProducts.data[i].name,
+              img: repairWidData.repairBrandProducts.data[i].img_src,
+              id: repairWidData.repairBrandProducts.data[i].id,
+              alt: repairWidData.repairBrandProducts.data[i].img_alt,
+            });
+          }
+        }
+        break;
+      case 'deviceRepairs':
+        await addMoreRepairsOfferedDeviceAPI(repairWidData.cntProductID, searchText, page+1, perPage)
+        const cntTypes:any[] = [];
+        const cntOfferedRepairs:any[] = repairWidData.repairsOfferedDevices.data;
+        setSliceNum(repairWidData.repairsOfferedDevices.data.length)
+        for (let i = 0; i < cntOfferedRepairs.length; i++) {
+          cntTypes.push({
+            name: cntOfferedRepairs[i].title,
+            bg: 'white',
+            col: 'black',
+            estimate: cntOfferedRepairs[i].duration,
+            selected: false,
+            cost: cntOfferedRepairs[i].cost,
+            warranty: cntOfferedRepairs[i].warranty,
+            warranty_unit: cntOfferedRepairs[i].warranty_unit,
+            id: cntOfferedRepairs[i].id
+          })
+        }
+        for (let i = 0; i < cntTypes.length; i++) {
+          for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
+            if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
+              cntTypes[i].bg = repairChooseItemCol;
+              cntTypes[i].col = 'white';
+              cntTypes[i].selected = true;
+            }
+          }
+        }
+        setItemTypes([...cntTypes])
+        break;
+      default:
+        break;
     }
-  }, [imageData, sliceNum])
+    if (sliceNum < (page+1) * perPage) {
+      setPlusVisible(false)
+    }
+    setImageData(cntImgData)
+    setPage(page+1)
+  }
+  
+
 
   const ChooseNextStep = async (i:number) => {
     if (i === 999 ){
@@ -71,7 +135,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         handleStep(step+1);
         break;
       case 'deviceModel':
-        await getRepairsOfferedDeviceAPI(imageData[i].id)
+        repairWidData.changeCntProductID(imageData[i].id)
         handleStep(step+1);
         break;
       default:
@@ -79,14 +143,14 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }
 
-  const onKeyPress = useCallback(async (event) => {
-    if (event.key === 'Enter' && (step === 0 || step === 1)) {
-      await loadStepData(stepName, event.target.value);
+  const onKeyPress = async (event: any) => {
+    if (event.key === 'Enter' && (step === 0 || step === 1 || step === 2)) {
+      await loadStepData(stepName, event.target.value, 1, page * perPage);
     }
     if(event.key === 'Enter' && !disableStatus && (step === 2 || step === 4 || step === 5)) {
       handleStep(step+1);
     }
-  }, [step, disableStatus]);
+  };
 
   const handleChangeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -94,17 +158,18 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   const handleClickSearchIcon = async (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (step >= 2) return;
+    if (step >= 3) return;
     e.preventDefault();
-    await loadStepData(stepName, searchText);
+    await loadStepData(stepName, searchText, 1, page * perPage);
   }
 
-  const loadStepData = async (name: string, text:string) => {
+  const loadStepData = async (name: string, text:string, pg:number, perpg:number) => {
     const cntImgData: any[] = [];
     switch (name) {
       case 'deviceBrand':
-        await getDeviceBrandsAPI(text)
+        await getDeviceBrandsAPI(text, pg, perpg)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
+          setSliceNum(repairWidData.repairDeviceBrands.data.length)
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairDeviceBrands.data[i].name,
@@ -113,11 +178,12 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
               alt: repairWidData.repairDeviceBrands.data[i].img_alt,
             });
           }
-        }
+        }        
         break;
       case 'deviceModel':
-        await getBrandProductsAPI(repairWidData.cntBrandID, text)
+        await getBrandProductsAPI(repairWidData.cntBrandID, text, pg, perpg)
         if (repairWidData.repairBrandProducts.data && repairWidData.repairBrandProducts.data.length) {
+          setSliceNum(repairWidData.repairBrandProducts.data.length)
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairBrandProducts.data[i].name,
@@ -128,14 +194,51 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
           }
         }
         break;
+      case 'deviceRepairs':
+        await getRepairsOfferedDeviceAPI(repairWidData.cntProductID, text, pg, perpg)
+        const cntTypes:any[] = [];
+        const cntOfferedRepairs:any[] = repairWidData.repairsOfferedDevices.data;
+        setSliceNum(repairWidData.repairsOfferedDevices.data.length)
+        for (let i = 0; i < cntOfferedRepairs.length; i++) {
+          cntTypes.push({
+            name: cntOfferedRepairs[i].title,
+            bg: 'white',
+            col: 'black',
+            estimate: cntOfferedRepairs[i].duration,
+            selected: false,
+            cost: cntOfferedRepairs[i].cost,
+            warranty: cntOfferedRepairs[i].warranty,
+            warranty_unit: cntOfferedRepairs[i].warranty_unit,
+            id: cntOfferedRepairs[i].id
+          })
+        }
+        for (let i = 0; i < cntTypes.length; i++) {
+          for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
+            if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
+              cntTypes[i].bg = repairChooseItemCol;
+              cntTypes[i].col = 'white';
+              cntTypes[i].selected = true;
+            }
+          }
+        }
+        setItemTypes([...cntTypes])
+        break;
       default:
         break;
+    }
+    if (sliceNum < pg * perpg) {
+      setPlusVisible(false)
+    } else {
+      setPlusVisible(true)
     }
     setImageData(cntImgData);
   }
 
   useEffect(() => {
-    loadStepData(stepName, '')
+    const initPage = 1, initPerPage = 10;
+    setPage(initPage)
+    setPerPage(initPerPage)
+    loadStepData(stepName, '', initPage, initPerPage)
   }, [data, stepName, repairWidData])
 
   useEffect(() => {
@@ -143,7 +246,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     return () => {
       document.removeEventListener("keydown", onKeyPress, false);
     };
-  }, [step, disableStatus]);
+  }, [step, disableStatus, page, perPage]);
 
   const GotoNextStep = async () => {
     await ChooseNextStep(999);
@@ -155,33 +258,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   useEffect(() => {
-    if (step === 2) {
-      const cntTypes:any[] = [];
-      const cntOfferedRepairs:any[] = repairWidData.repairsOfferedDevices.data;
-      for (let i = 0; i < cntOfferedRepairs.length; i++) {
-        cntTypes.push({
-          name: cntOfferedRepairs[i].title,
-          bg: 'white',
-          col: 'black',
-          estimate: cntOfferedRepairs[i].duration,
-          selected: false,
-          cost: cntOfferedRepairs[i].cost,
-          warranty: cntOfferedRepairs[i].warranty,
-          warranty_unit: cntOfferedRepairs[i].warranty_unit,
-          id: cntOfferedRepairs[i].id
-        })
-      }
-      for (let i = 0; i < cntTypes.length; i++) {
-        for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
-          if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
-            cntTypes[i].bg = repairChooseItemCol;
-            cntTypes[i].col = 'white';
-            cntTypes[i].selected = true;
-          }
-        }
-      }
-      setItemTypes([...cntTypes])
-    } else if (step === 4) {
+    if (step === 4) {
       const cntTypes:any[] = [];
       const cntDeliverySets:any[] = repairWidData.apiDropOffDevices.types.length ? repairWidData.apiDropOffDevices.types : data.types;
       const cntAvailableDeliveryMethod:any[] = repairWidData.repairDeliveryMethod;
@@ -373,7 +450,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
 
                 {(stepName === 'deviceRepairs' || stepName === 'dropOffDevicce' || stepName === 'receiveQuote') && 
                   <>
-                    {itemTypes && itemTypes.map((item:any, index:number) => {
+                    {itemTypes && itemTypes.slice(0,sliceNum).map((item:any, index:number) => {
                       return (
                         <div 
                           className={subDomain + '-device-item-container'} 

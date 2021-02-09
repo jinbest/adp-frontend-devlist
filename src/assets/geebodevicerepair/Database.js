@@ -386,7 +386,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(902) 270-4349 | 306 Charlotte St., Halifax, NS',
+            '306 Charlotte St., Halifax, NS',
             'GEEBO_FOOTER_CONTENT_TWO'
         ],
         footerLink: [

@@ -386,7 +386,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(819) 700-2211 | info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
+            'info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
             'NORTHTECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [

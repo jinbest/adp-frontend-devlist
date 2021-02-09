@@ -386,7 +386,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(204) 808-9416 2020 Corydon Ave, Unit F Winnipeg, MB',
+            '2020 Corydon Ave, Unit F Winnipeg, MB',
             'MOBILE_TECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [

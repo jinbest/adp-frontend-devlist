@@ -386,7 +386,7 @@ const homeTextData = {
         ],
         contentSubTitle: 'SASKATOON_NORTH',
         content: [
-            '1 (306) 384 6266 | saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK',
+            'saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK',
             'NANOTECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [

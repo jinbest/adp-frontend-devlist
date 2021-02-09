@@ -386,7 +386,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(403) 477-6203 | sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB',
+            'sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB',
             'PHONEPHIX_FOOTER_CONTENT_TWO'
         ],
         footerLink: [

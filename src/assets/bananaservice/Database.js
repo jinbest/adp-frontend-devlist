@@ -386,7 +386,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(705) 957-2657 | bananaserves@gmail.com 55 George St N a1, Peterborough, ON K9J 3G2',
+            'bananaserves@gmail.com 55 George St N a1, Peterborough, ON K9J 3G2',
             'BANANA_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
