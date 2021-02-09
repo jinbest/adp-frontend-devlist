@@ -9,23 +9,23 @@ import { storesDetails, repairWidgetStore } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 
-const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-const subDomain = apexDomain.split(".")[0]
+// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+// const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
+// const subDomain = apexDomain.split(".")[0]
 
-// const devicelist = [
-//     "bananaservice",
-//     "geebodevicerepair",
-//     "mobiletechlab",
-//     "nanotechmobile",
-//     "northtechsolutions",
-//     "okotoksphonephix",
-//     "pradowireless",
-//     "wirelessrevottawa",
-//     "dccmtx",
-//     "mtlcmtx"
-// ]
-// const subDomain = devicelist[4]
+const devicelist = [
+    "bananaservice",
+    "geebodevicerepair",
+    "mobiletechlab",
+    "nanotechmobile",
+    "northtechsolutions",
+    "okotoksphonephix",
+    "pradowireless",
+    "wirelessrevottawa",
+    "dccmtx",
+    "mtlcmtx"
+]
+const subDomain = devicelist[0]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -69,8 +69,8 @@ function App(): JSX.Element {
         document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1);
 
         appLoadAPI
-            .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
+            // .getStoresDetail(apexDomain, false)
+            .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)

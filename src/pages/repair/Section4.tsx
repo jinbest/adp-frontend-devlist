@@ -3,7 +3,7 @@ import { Grid, Box, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { Button } from '../../components'
 import { Link } from 'react-router-dom'
-import { useT, T } from '../../i18n/index'
+import { useT } from '../../i18n/index'
 
 type Props = {
   subDomain?: string;

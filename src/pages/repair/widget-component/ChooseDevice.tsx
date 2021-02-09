@@ -14,7 +14,6 @@ import {
   getRepairsOfferedDeviceAPI,
   addMoreRepairsOfferedDeviceAPI
 } from '../RepairWidgetCallAPI'
-import { RepairWidgetStore } from '../../../store/RepairWidgetStore'
 
 type Props = {
   data: any;

@@ -267,7 +267,23 @@
     flex-wrap: wrap;
     margin: auto;
     justify-content: center;
-}
+    height: auto;
+    max-height: 230px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 3px;
+      cursor: pointer;
+    }
+    &::-webkit-scrollbar-track {
+      background: #ffffff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #999;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #666;
+    }
+  }
 
 .#{$folderName}-booking-item {
     border-radius: 30px;
