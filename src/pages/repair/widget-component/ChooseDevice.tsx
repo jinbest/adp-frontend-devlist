@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Card, PlusSVG } from './'
 import { Grid, Typography } from '@material-ui/core'
 import { Search, Button } from '../../../components'
@@ -51,7 +51,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   const t = useT();
 
   const handlePlus = async () => {
-    const cntImgData: any[] = [];
+    const cntImgData: any[] = [], cntTypes:any[] = [];
+    let cntOfferedRepairs:any[] = [];
     switch (stepName) {
       case 'deviceBrand':
         await addMoreDeviceBrandsAPI(searchText, page+1, perPage)
@@ -83,8 +84,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         break;
       case 'deviceRepairs':
         await addMoreRepairsOfferedDeviceAPI(repairWidData.cntProductID, searchText, page+1, perPage)
-        const cntTypes:any[] = [];
-        const cntOfferedRepairs:any[] = repairWidData.repairsOfferedDevices.data;
+        cntOfferedRepairs = repairWidData.repairsOfferedDevices.data;
         setSliceNum(repairWidData.repairsOfferedDevices.data.length)
         for (let i = 0; i < cntOfferedRepairs.length; i++) {
           cntTypes.push({
@@ -164,7 +164,8 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
   }
 
   const loadStepData = async (name: string, text:string, pg:number, perpg:number) => {
-    const cntImgData: any[] = [];
+    const cntImgData: any[] = [], cntTypes:any[] = [];
+    let cntOfferedRepairs:any[] = [];
     switch (name) {
       case 'deviceBrand':
         await getDeviceBrandsAPI(text, pg, perpg)
@@ -196,8 +197,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         break;
       case 'deviceRepairs':
         await getRepairsOfferedDeviceAPI(repairWidData.cntProductID, text, pg, perpg)
-        const cntTypes:any[] = [];
-        const cntOfferedRepairs:any[] = repairWidData.repairsOfferedDevices.data;
+        cntOfferedRepairs = repairWidData.repairsOfferedDevices.data;
         setSliceNum(repairWidData.repairsOfferedDevices.data.length)
         for (let i = 0; i < cntOfferedRepairs.length; i++) {
           cntTypes.push({
