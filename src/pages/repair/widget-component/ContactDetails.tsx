@@ -253,14 +253,14 @@ const ContactDetails = ({data, subDomain, step, handleStep, handleChangeChooseDa
                 </Grid>
               </Grid>
             </div>            
-            {<div className={subDomain + '-repair-choose-device-container'}>
+            {(code === 'MAIL_IN' || storesDetails.location_id < 0) && <div className={subDomain + '-repair-choose-device-container'}>
               <Grid container spacing={2}>                
-                <Grid item xs={12}>
+                {code === 'MAIL_IN' && <Grid item xs={12}>
                   <InputComponent value={address1} placeholder={t(data.placeholder.address1)} handleChange={(e)=>{handleChangeAddress1(e.target.value)}} subDomain={subDomain} />
-                </Grid>
-                <Grid item xs={12}>
+                </Grid>}
+                {code === 'MAIL_IN' && <Grid item xs={12}>
                   <InputComponent value={address2} placeholder={t(data.placeholder.address2)} handleChange={(e)=>{handleChangeAddress2(e.target.value)}} subDomain={subDomain} />
-                </Grid>
+                </Grid>}
                 <Grid item xs={12} sm={3}>
                   <CustomSelect value={country} handleSetValue={setCountry} subDomain={subDomain} options={countriesData} />
                 </Grid>

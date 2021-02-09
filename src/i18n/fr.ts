@@ -137,6 +137,9 @@ export class LanguageKeysFr extends LanguageKeys {
   public INPUT_YOUR_INFO_DESCRIPTION = 'Vous devez saisir vos données pour trouver des magasins';
   public SUBMIT = 'Soumettre';
   public STORE = 'Boutique';
+  public GET_THE_LATEST = 'Obtenir la dernière';
+  public SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE = 'Magasinez notre sélection d\'appareils neufs et d\'occasion!';
+  public SHOP_NOW = 'Achetez maintenant';
 
   /* Repair-widget Text */
   public NEXT = 'Prochain';
@@ -154,13 +157,13 @@ export class LanguageKeysFr extends LanguageKeys {
   public SCHEDULE_APPOINTMENT = 'Rendez-vous';
   public REQUEST_QUOTE = 'Citation requise';
   public CHOOSE_YOUR_DEVICE_BRAND = 'Choisissez la marque de votre appareil';
-  public SEARCH_FOR_YOUR_DEVICE_BRAND_OR_ENTER_IMEI = 'Recherchez la marque de votre appareil ou entrez IMEI';
+  public SEARCH_FOR_YOUR_DEVICE_BRAND = 'Recherchez la marque de votre appareil';
   public FIND_YOUR_DEVICE_BRAND = 'Trouvez la marque de votre appareil';
   public FIND_YOUR_DEVICE_BRAND_CONTENT_1 = 'Apple, Samsung, Huawei, Sony, etc. sont des exemples de marques d\'appareils (fabricants). Si vous ne connaissez pas la marque de votre appareil, ne paniquez pas!';
   public FIND_YOUR_DEVICE_BRAND_CONTENT_2 = 'Il est indiqué à l\'arrière de l\'appareil, à l\'avant ou dans la section Paramètres / Système / À propos du téléphone si vous êtes sous Android ou Paramètres / Identifiants Apple si vous êtes sous IOS. Il peut également figurer sur la boîte d\'origine et / ou le manuel fourni avec votre appareil.';
   public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE = 'Comment trouver le modèle de votre appareil';
   public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT = 'Le modèle de l\'appareil est indiqué dans la section Paramètres / Système / À propos du téléphone ou dans Paramètres / Général / Stockage. Il peut également figurer sur la boîte d\'origine et / ou le manuel fourni avec votre appareil.';
-  public CHOOSE_YOUR_DEVICE_MODEL_APPLE = 'Choisissez votre modèle d\'appareil / Apple';
+  public CHOOSE_YOUR_DEVICE_MODEL_APPLE = 'Choisissez votre modèle d\'appareil /';
   public SEARCH_FOR_YOUR_MODEL = 'Recherchez votre modèle';
   public CHOOSE_YOUR_REPAIRS = 'Choisissez votre (vos) réparation (s)';
   public WHAT_IS_BROKEN = 'Qu\'est-ce qui est cassé?';
@@ -186,10 +189,10 @@ export class LanguageKeysFr extends LanguageKeys {
   public PLEASE_ENTER_YOUR_CONTACT_DETAILS = 'Veuillez saisir vos coordonnées';
   public FIRST_NAME = 'Prénom*';
   public LAST_NAME = 'Nom de famille*';
-  public EMAIL_ADDRESS = 'Adresse e-mail';
+  public EMAIL_ADDRESS = 'Adresse e-mail*';
   public PHONE_NUM = 'Numéro de téléphone*';
   public STREET_ADDRESS = 'Adresse de rue*';
-  public ADDRESS_2 = 'Adresse2*';
+  public ADDRESS_2 = 'Adresse 2';
   public COUNTRY = 'Pays*';
   public CITY = 'Ville*';
   public PROVINCE = 'Province*';
@@ -209,7 +212,9 @@ export class LanguageKeysFr extends LanguageKeys {
   public MONDAY_FRIDAY = 'Lundi - Vendredi';
   public ENTER_A_MESSAGE_OR_USEFUL_INFO = 'Entrez un message ou des informations utiles sur cette réparation';
   public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = 'Tapez votre message ici (facultatif)';
-  public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = 'Merci d\'avoir choisi DeviceList pour votre réparation!';
+  public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({ subDomain }: { subDomain: string }) => {
+    return `Merci d\'avoir choisi ${subDomain.charAt(0).toUpperCase() + subDomain.slice(1)} pour votre réparation!`;
+  }
   public WITH_A_DETAILED_SERVICE_QUOTE = 'avec un devis de service détaillé.';
   public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT = 'avec un devis de service détaillé et des informations de rendez-vous.';
   public PICK_UP_FROM = 'Ramasser de';

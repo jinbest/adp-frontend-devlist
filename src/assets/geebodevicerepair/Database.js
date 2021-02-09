@@ -64,6 +64,9 @@ import mintImg from './img/repair/section3/geebo-mint.png'
 import goodImg from './img/repair/section3/geebo-good.png'
 import fairImg from './img/repair/section3/geebo-fair.png'
 
+// repair section4 - images
+import repairSec4 from './img/repair/repair-sec4.png'
+
 // chat - images
 import chatImg from './img/chat.png';
 
@@ -483,6 +486,13 @@ const repairData = {
                 img: fairImg
             }
         ]
+    },
+    section4: {
+        title: 'GET_THE_LATEST',
+        content: 'SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE',
+        btnTitle: 'SHOP_NOW',
+        img: repairSec4,
+        themeCol: 'black'
     }
 }
 

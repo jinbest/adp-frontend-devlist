@@ -42,7 +42,7 @@ const repairWidget = {
   },
   deviceBrand: {
     title: 'CHOOSE_YOUR_DEVICE_BRAND',
-    placeholder: 'SEARCH_FOR_YOUR_DEVICE_BRAND_OR_ENTER_IMEI',
+    placeholder: 'SEARCH_FOR_YOUR_DEVICE_BRAND',
     mainTopic: {
       title: 'FIND_YOUR_DEVICE_BRAND',
       content: [

@@ -5,7 +5,7 @@ import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
-import { repairWidData, storesDetails } from '../../../store/'
+import { repairWidData, repairWidgetStore, storesDetails } from '../../../store/'
 import { 
   getDeviceBrandsAPI, 
   addMoreDeviceBrandsAPI,
@@ -14,6 +14,7 @@ import {
   getRepairsOfferedDeviceAPI,
   addMoreRepairsOfferedDeviceAPI
 } from '../RepairWidgetCallAPI'
+import { RepairWidgetStore } from '../../../store/RepairWidgetStore'
 
 type Props = {
   data: any;
@@ -122,9 +123,6 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       default:
         break;
     }
-    // if (sliceNum < (page+1) * perPage - 1) {
-    //   setPlusVisible(false)
-    // }
     setImageData(cntImgData)
     setPage(page+1)
   }
@@ -382,14 +380,15 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
     }
   }, [step, estimatedTimes, itemTypes]);
 
-  // console.log(repairWidgetData.chooseRepair[0].length)
-
   return (
     <div>
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className={subDomain + "-repair-widget-title"}>
-            {t(data.title)}
+            {stepName === 'deviceModel' ? 
+              t(data.title) + ' ' + repairWidgetStore.deviceBrand[repairWidgetStore.deviceCounter-1].name : 
+              t(data.title)
+            }
           </Typography>        
         </Grid>
       </Grid>

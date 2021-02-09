@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Section1, Section2, Section3} from './'
+import {Section1, Section2, Section4} from './'
 import {Error} from '../error'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
 
@@ -33,7 +33,8 @@ const Repair = ({subDomain, handleStatus, features}: Props) => {
           <div>
             <Section1 subDomain={subDomain} handleStatus={handleStatus} />
             <Section2 subDomain={subDomain} />
-            <Section3 subDomain={subDomain} />
+            {/* <Section3 subDomain={subDomain} /> */}
+            <Section4 subDomain={subDomain} handleStatus={handleStatus} />
           </div>
         }
       />

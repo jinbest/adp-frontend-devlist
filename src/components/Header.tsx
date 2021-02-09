@@ -23,7 +23,7 @@ export function phoneFormatString(phnumber: string) {
     countrycode = phnumber.substring(phnumber.length - 10, phnumber.length - 7);
     Areacode = phnumber.substring(phnumber.length - 7, phnumber.length - 4);
     number = phnumber.substring(phnumber.length - 4, phnumber.length);
-    formatPhnumber = "+" + phnumber.substring(0, phnumber.length - 10) + " (" + countrycode + ") " + Areacode + "-" + number;
+    formatPhnumber = phnumber.substring(0, phnumber.length - 10) + " (" + countrycode + ") " + Areacode + "-" + number;
   }
   return formatPhnumber;
 }

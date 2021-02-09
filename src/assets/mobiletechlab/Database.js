@@ -64,6 +64,9 @@ import mintImg from './img/repair/section3/mobiletech-mint.png'
 import goodImg from './img/repair/section3/mobiletech-good.png'
 import fairImg from './img/repair/section3/mobiletech-fair.png'
 
+// repair section4 - images
+import repairSec4 from './img/repair/repair-sec4.png'
+
 // chat - images
 import chatImg from './img/chat.png';
 
@@ -183,10 +186,10 @@ const colorPalle = {
 }
 
 const navItemsData = [
-    { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
+    // { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
-    { href: "http://shop.mobiletechlab.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
-    { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
+    // { href: "http://shop.mobiletechlab.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
+    // { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
 
 const navShop = {
@@ -483,6 +486,13 @@ const repairData = {
                 img: fairImg
             }
         ]
+    },
+    section4: {
+        title: 'GET_THE_LATEST',
+        content: 'SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE',
+        btnTitle: 'SHOP_NOW',
+        img: repairSec4,
+        themeCol: 'black'
     }
 }
 

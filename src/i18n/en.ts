@@ -137,6 +137,9 @@ export class LanguageKeys {
   public INPUT_YOUR_INFO_DESCRIPTION = 'You need to input your data to find the stores';
   public SUBMIT = 'Submit';
   public STORE = 'Store';
+  public GET_THE_LATEST = 'Get the Latest';
+  public SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE = 'Shop our selection of new and pre-owned devices!';
+  public SHOP_NOW = 'Shop Now';
 
   /* Repair-widget Text */
   public NEXT = 'Next';
@@ -154,13 +157,13 @@ export class LanguageKeys {
   public SCHEDULE_APPOINTMENT = 'Schedule Appointment';
   public REQUEST_QUOTE = 'Request Quote';
   public CHOOSE_YOUR_DEVICE_BRAND = 'Choose Your Device Brand';
-  public SEARCH_FOR_YOUR_DEVICE_BRAND_OR_ENTER_IMEI = 'Search for your Device Brand or enter IMEI';
+  public SEARCH_FOR_YOUR_DEVICE_BRAND = 'Search for your Device Brand';
   public FIND_YOUR_DEVICE_BRAND = 'Find your device’s brand';
   public FIND_YOUR_DEVICE_BRAND_CONTENT_1 = 'Apple, Samsung, Huawei, Sony, etc. are examples of device brands(manufactures). If you don\'t know the brand of your device, don\'t panic!';
   public FIND_YOUR_DEVICE_BRAND_CONTENT_2 = 'It is indicated on back of the device, on the front, or in the Settings/System/About phone section if you are on Android or Settings/Apple IDs if you are on IOS. It may also be shown on the original box and/or manual that came with your device.';
   public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE = 'How to find the model of your device';
   public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT = 'The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device.';
-  public CHOOSE_YOUR_DEVICE_MODEL_APPLE = 'Choose Your Device Model / Apple';
+  public CHOOSE_YOUR_DEVICE_MODEL_APPLE = 'Choose Your Device Model /';
   public SEARCH_FOR_YOUR_MODEL = 'Search for your Model';
   public CHOOSE_YOUR_REPAIRS = 'Choose Your Repair(s)';
   public WHAT_IS_BROKEN = 'What’s broken?';
@@ -186,10 +189,10 @@ export class LanguageKeys {
   public PLEASE_ENTER_YOUR_CONTACT_DETAILS = 'Please Enter Your Contact Details';
   public FIRST_NAME = 'First Name*';
   public LAST_NAME = 'Last Name*';
-  public EMAIL_ADDRESS = 'E-mail Address';
+  public EMAIL_ADDRESS = 'E-mail Address*';
   public PHONE_NUM = 'Phone Number*';
   public STREET_ADDRESS = 'Street Address*';
-  public ADDRESS_2 = 'Address2*';
+  public ADDRESS_2 = 'Address 2';
   public COUNTRY = 'Country*';
   public CITY = 'City*';
   public PROVINCE = 'Province*';
@@ -209,7 +212,9 @@ export class LanguageKeys {
   public MONDAY_FRIDAY = 'Monday - Friday';
   public ENTER_A_MESSAGE_OR_USEFUL_INFO = 'Enter a Message or Any Useful Information About This Repair';
   public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = 'Type your message here (optional)';
-  public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = 'Thank you for choosing DeviceList for your repair!';
+  public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({ subDomain }: { subDomain: string }) => {
+    return `Thank you for choosing ${subDomain.charAt(0).toUpperCase() + subDomain.slice(1)} for your repair!`;
+  }
   public WITH_A_DETAILED_SERVICE_QUOTE = 'with a detailed service quote.';
   public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT = 'with a detailed service quote and appointment information.';
   public PICK_UP_FROM = 'Pick Up From';
