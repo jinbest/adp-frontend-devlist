@@ -25,7 +25,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[3]
+// const subDomain = devicelist[4]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -66,7 +66,7 @@ function App(): JSX.Element {
     useEffect(() => {
         const favIcon = document.getElementById("favicon") as HTMLLinkElement;
         favIcon.href = mainData.fav.img;
-        document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1);
+        document.title = storesDetails.storesDetails.name;
 
         appLoadAPI
             .getStoresDetail(apexDomain, false)
@@ -88,9 +88,11 @@ function App(): JSX.Element {
                 .getFeatures(storeId)
                 .then((res: any) => {
                     const feats: FeatureProps[] = [
-                        { flag: "ALWAYS_TRUE", isActive: true },
-                        // { flag: "FRONTEND_BUY", isActive: true }
+                        { flag: "ALWAYS_TRUE", isActive: true }
                     ]
+                    if (subDomain === 'mobiletechlab' || subDomain === 'wirelessrevottawa' || subDomain === 'northtechsolutions' || subDomain === 'okotoksphonephix') {
+                        feats.push({ flag: "FRONTEND_BUY", isActive: true })
+                    }
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({
                             flag: res.data[i].feature_id,
@@ -128,7 +130,7 @@ function App(): JSX.Element {
                     )}
                 />
                 <Route
-                    path="/repair-widget"
+                    path="/get-quote"
                     component={() => (
                         <Provider repairWidgetStore={repairWidgetStore}>
                             <RepairWidget

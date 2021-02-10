@@ -353,7 +353,7 @@ const CustomizedMenus = inject("headerStore")(
                                     inactiveComponent={() => <></>}
                                     activeComponent={() => (
                                         <Link
-                                            to="/repair-widget"
+                                            to="/get-quote"
                                             style={{ textDecoration: "none" }}
                                             onClick={handleBookRepair}
                                         >

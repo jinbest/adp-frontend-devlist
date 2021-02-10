@@ -9,6 +9,7 @@ import {
   getRepairLookupAPI,
   getDeliveryMethodsAPI,
 } from './RepairWidgetCallAPI'
+import { storesDetails } from '../../store'
 
 const stepList:string[] = [
   'deviceBrand',
@@ -56,7 +57,8 @@ class RepairWidget extends React.Component<Props, MyState> {
       contactDetails: cntRepairWidgetData.contactDetails,
       bookData: cntRepairWidgetData.bookData,
       message: cntRepairWidgetData.message,
-      cntStep: cntRepairWidgetData.cntStep
+      cntStep: cntRepairWidgetData.cntStep,
+      appointResponse: cntRepairWidgetData.appointResponse,
     };
   }
 
@@ -75,7 +77,7 @@ class RepairWidget extends React.Component<Props, MyState> {
     const { handleStatus, repairWidgetStore, features, subDomain } = this.props;
     handleStatus(false);
     this.setState({step: repairWidgetStore.cntStep});
-    document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1) + ' - Repair-Widget';
+    document.title = storesDetails.storesDetails.name + ' - Repair-Widget';
 
     const cntFeatures:any[] = [];
     for (let i = 0; i < features.length; i++) {
@@ -223,6 +225,11 @@ class RepairWidget extends React.Component<Props, MyState> {
           inactiveComponent={()=><Error />}
           activeComponent={()=>
             <div className={subDomain + '-repair-widget ' + subDomain + '-Container'}>
+              { (this.state.step === 0 && Object.keys(this.computedRepairWidgetData.appointResponse).length) ? 
+                <div className={subDomain + '-back-to-top'} onClick={this.handleBackStep}>
+                  <BackSVG color='#BDBFC3' />
+                </div> : <></>
+              }
               { (this.state.step > 0 && this.state.step < 10) && 
                 <div className={subDomain + '-back-to-top'} onClick={this.handleBackStep}>
                   <BackSVG color='#BDBFC3' />

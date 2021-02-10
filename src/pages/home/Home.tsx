@@ -1,5 +1,6 @@
 import React from 'react'
 import {Shape, Section1, Section2, Section3, Section4, Section5, Section6} from './'
+import { storesDetails } from '../../store'
 
 type Props = {
   subDomain: string;
@@ -8,7 +9,7 @@ type Props = {
 
 const Home = ({subDomain, features}: Props) => {
   const SectionItemComponents = [Section4, Section5, Section6];
-  document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1);
+  document.title = storesDetails.storesDetails.name;
   
   return (
     <div>

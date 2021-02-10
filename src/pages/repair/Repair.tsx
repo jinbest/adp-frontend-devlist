@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Section1, Section2, Section4} from './'
 import {Error} from '../error'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
+import { storesDetails } from '../../store'
 
 type Props = {
   subDomain: string;
@@ -12,7 +13,7 @@ type Props = {
 const Repair = ({subDomain, handleStatus, features}: Props) => {
 
   const [feats, setFeatures] = useState<any[]>([]);
-  document.title = subDomain.charAt(0).toUpperCase() + subDomain.slice(1) + ' - Repair';
+  document.title = storesDetails.storesDetails.name + ' - Repair';
 
   useEffect(() => {
     const cntFeatures:any[] = [];

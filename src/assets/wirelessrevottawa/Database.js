@@ -279,7 +279,7 @@ const mobileNavItemData = {
     left: [
         {text: 'TRADE', href: '#', flag: 'FRONTEND_TRADE'},
         {text: 'REPAIR', href: '/repair', flag: 'FRONTEND_REPAIR'},
-        {text: 'SHOP', href: '#', flag: 'FRONTEND_MEGA_MENU'},
+        {text: 'SHOP', href: 'http://shop.wirelessrevottawa.ca/', flag: 'FRONTEND_BUY'},
         {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},

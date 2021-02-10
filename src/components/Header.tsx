@@ -28,27 +28,27 @@ export function phoneFormatString(phnumber: string) {
   return formatPhnumber;
 }
 
+const checkDomain = (url:string) => {
+  if ( url.indexOf('//') === 0 ) { url = location.protocol + url; }
+  return url.toLowerCase().replace(/([a-z])?:\/\//,'$1').split('/')[0];
+};
+
+const isExternal = (url:string) => {
+  return ( ( url.indexOf(':') > -1 || url.indexOf('//') > -1 ) && checkDomain(location.href) !== checkDomain(url) );
+};
+
 const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: PropsNavItemLink) => {
 
   const t = useT();
 
   const handle = () => {
-    if (href === '/repair-widget') {
+    if (href === '/get-quote') {
       handleStatus(false);
     } else {
       handleStatus(true);
     }
     return;
-  }
-
-  const checkDomain = (url:string) => {
-    if ( url.indexOf('//') === 0 ) { url = location.protocol + url; }
-    return url.toLowerCase().replace(/([a-z])?:\/\//,'$1').split('/')[0];
-  };
-
-  const isExternal = (url:string) => {
-    return ( ( url.indexOf(':') > -1 || url.indexOf('//') > -1 ) && checkDomain(location.href) !== checkDomain(url) );
-  };
+  }  
 
   return (
     <li className={subDomain + '-nav-item'}>
@@ -211,7 +211,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
               activeComponent={()=>
-                <a href="#" className={subDomain + '-navlink-avatar-store'}>
+                <a href={data.avatarData.store.link} className={subDomain + '-navlink-avatar-store'} target='_blank' rel='noreferrer'>
                   <img src={data.avatarData.store.img} alt='shop-img' />
                 </a>
               }
@@ -219,16 +219,20 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           </FeatureToggles>
         </div>
         <div className={subDomain + '-avatar-div'}>
-          {
+          {/* {
             userStatus ? 
             <img src={data.avatarData.userActive} onClick={toggleUserStatus} /> :
             <img src={data.avatarData.userDeactive} onClick={toggleUserStatus} /> 
-          }
+          } */}
           <FeatureToggles features={feats}>
             <Feature
               name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
-              activeComponent={()=><img src={data.avatarData.storeBlue} style={{height: '35px'}}/>}
+              activeComponent={()=>
+                <a href={data.avatarData.store.link} target='_blank' rel='noreferrer' style={{height: '35px'}}>
+                  <img src={data.avatarData.storeBlue} style={{height: '35px'}}/>
+                </a>
+              }
             />
           </FeatureToggles>          
           {
@@ -243,7 +247,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           userStatus && menuStatus ? 
           <FeatureToggles features={feats}>
             <Feature
-              name='SEARCH'
+              name='FRONTEND_GLOBAL_SEARCH'
               inactiveComponent={()=><></>}
               activeComponent={()=>
                 <div className={subDomain + '-mobile-search-div'}>
@@ -281,7 +285,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                             inactiveComponent={()=><></>}
                             activeComponent={()=>
                               <div className='flex-space-between' onClick={()=>{item.text === 'SHOP' && setMobileMenu('right')}}>
-                                <a className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
+                                {isExternal(item.href) ? 
+                                  <a className={subDomain + '-mobile-item'} href={item.href} target='_blank' rel='noreferrer'>{t(item.text)}</a> : 
+                                  (item.href === '#' || !item.href) ? <></> :
+                                  <Link className={subDomain + '-mobile-item'} to={item.href}>{t(item.text)}</Link>
+                                }
                                 {item.text === 'SHOP' && 
                                   <img style={{height: '18px'}} src={data.arrowData.arrowRight} />
                                 }

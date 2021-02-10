@@ -45,7 +45,7 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.map((item:any, index:number) => {
                   return (
-                    <Link to='/repair-widget' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
+                    <Link to='/get-quote' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
                     </Link>
                   )
@@ -56,7 +56,7 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.slice(0,3).map((item:any, index:number) => {
                   return (
-                    <Link to='/repair-widget' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
+                    <Link to='/get-quote' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
                     </Link>
                   )
@@ -67,7 +67,7 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.slice(3, 5).map((item:any, index:number) => {
                   return (
-                    <Link to='/repair-widget' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
+                    <Link to='/get-quote' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
                     </Link>
                   )

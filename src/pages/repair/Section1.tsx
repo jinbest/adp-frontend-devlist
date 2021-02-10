@@ -47,7 +47,7 @@ class Section1 extends React.Component<Props> {
                 <T id={repair.content} />
               </Typography>
               <Box className={subDomain + '-repair-section-button'}>
-                <Link to='/repair-widget' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
+                <Link to='/get-quote' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
                   <Button 
                     // title={repair.btnTitle} 
                     title='Get Quote'

@@ -104,7 +104,7 @@ const cardMobileData = {
     data: [
         { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FRONTEND_TRADE', href: "#" },
         { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FRONTEND_REPAIR', href: "/repair" },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY', href: "http://shop.mobiletechlab.ca/" },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY', href: "https://shop.mobiletechlab.ca/" },
         { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE', href: "#" },
     ]
 }
@@ -188,7 +188,7 @@ const colorPalle = {
 const navItemsData = [
     // { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
-    // { href: "http://shop.mobiletechlab.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
+    { href: "https://shop.mobiletechlab.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
     // { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
 ]
 
@@ -266,7 +266,7 @@ const avatarData = {
     userActive: userActive,
     userDeactive: userDeactive,
     cancel: cancel,
-    store: { img: store, link: 'http://shop.mobiletechlab.ca/' },
+    store: { img: store, link: 'https://shop.mobiletechlab.ca/' },
     storeBlue: storeBlue,
     menu: menu
 }
@@ -275,7 +275,7 @@ const mobileNavItemData = {
     left: [
         {text: 'TRADE', href: '#', flag: 'FRONTEND_TRADE'},
         {text: 'REPAIR', href: '/repair', flag: 'FRONTEND_REPAIR'},
-        {text: 'SHOP', href: '#', flag: 'FRONTEND_MEGA_MENU'},
+        {text: 'SHOP', href: 'https://shop.mobiletechlab.ca/', flag: 'FRONTEND_BUY'},
         {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},
