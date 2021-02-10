@@ -3,6 +3,8 @@ import { Typography, Grid, Box } from '@material-ui/core';
 import { CardFix, ContentFix } from '../../components';
 import { useT } from "../../i18n/index";
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
+import { Link } from 'react-router-dom';
+import { repairWidgetStore } from '../../store';
 
 type Props = {
   subDomain?: string;
@@ -23,7 +25,11 @@ const Section2 = ({subDomain, features}: Props) => {
       }
     }
     setFeatures(cntFeatures);
-  }, [features, data])
+  }, [features, data]);
+
+  const handleRepairWidget = () => {
+    repairWidgetStore.init();
+  }
 
   return (
     <FeatureToggles features={feats}>
@@ -39,9 +45,9 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.map((item:any, index:number) => {
                   return (
-                    <div className={subDomain + '-card-customized-item'} key={index}>
+                    <Link to='/repair-widget' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
-                    </div>
+                    </Link>
                   )
                 })
               }
@@ -50,9 +56,9 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.slice(0,3).map((item:any, index:number) => {
                   return (
-                    <div className={subDomain + '-card-customized-item'} key={index}>
+                    <Link to='/repair-widget' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
-                    </div>
+                    </Link>
                   )
                 })
               }
@@ -61,9 +67,9 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.slice(3, 5).map((item:any, index:number) => {
                   return (
-                    <div className={subDomain + '-card-customized-item'} key={index}>
+                    <Link to='/repair-widget' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
-                    </div>
+                    </Link>
                   )
                 })
               }
