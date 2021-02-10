@@ -74,7 +74,7 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   componentDidMount() {
 
-    const { handleStatus, repairWidgetStore, features, subDomain } = this.props;
+    const { handleStatus, repairWidgetStore, features } = this.props;
     handleStatus(false);
     this.setState({step: repairWidgetStore.cntStep});
     document.title = storesDetails.storesDetails.name + ' - Repair-Widget';

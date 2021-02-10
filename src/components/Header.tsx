@@ -112,10 +112,10 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
     setFeatures(cntFeatures);
   }, [data, features])
 
-  function toggleUserStatus() {
-    setUserStatus(!userStatus);
-    setMenuStatus(true);
-  }
+  // function toggleUserStatus() {
+  //   setUserStatus(!userStatus);
+  //   setMenuStatus(true);
+  // }
 
   function toggleMenuStatus() {
     setMenuStatus(!menuStatus);
