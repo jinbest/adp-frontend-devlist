@@ -25,7 +25,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[0]
+// const subDomain = devicelist[3]
 
 /* const features = [
     { flag: "FRONTEND_TRADE", isActive: true },
@@ -88,7 +88,8 @@ function App(): JSX.Element {
                 .getFeatures(storeId)
                 .then((res: any) => {
                     const feats: FeatureProps[] = [
-                        { flag: "ALWAYS_TRUE", isActive: true }
+                        { flag: "ALWAYS_TRUE", isActive: true },
+                        // { flag: "FRONTEND_BUY", isActive: true }
                     ]
                     for (let i = 0; i < res.data.length; i++) {
                         feats.push({

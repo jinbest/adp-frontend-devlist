@@ -30,7 +30,6 @@ function isPast(selyear:number, selmonth:number, selday:number, seloff:number, h
 function convertTimeRange(hoursRange: any[]) {
   const timesRange = [];
   for (let i = 0; i < hoursRange.length; i++) {
-    console.log(hoursRange[i])
     if(parseInt(hoursRange[i].split('-')[0])) {
       const startTime = parseInt(hoursRange[i].split('-')[0]) + (hoursRange[i].split('-')[0].includes('a') ? 0 : 12);
       const endTime = parseInt(hoursRange[i].split('-')[1]) + (hoursRange[i].split('-')[1].includes('a') ? 0 : 12);
@@ -67,7 +66,6 @@ const CustomBookTime = ({
   title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, repairBooktimeCol, changeBooktime, subDomain, hoursRange
 }: Props) => {
   const timesRng = convertTimeRange(hoursRange)
-  console.log(hoursRange, timesRng)
   const interval = 30, multi = 60 * 1000;
   const [val, setVal] = useState(timezoneIndex);
   const [bookArray, setBookArray] = useState<ArrayProps[]>([]);
