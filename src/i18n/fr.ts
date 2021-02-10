@@ -341,16 +341,17 @@ export class LanguageKeysFr extends LanguageKeys {
 
     /* Phonephix Website Text */
     public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles Okotoks"
-    public WELCOME_PHONEPHIX = "Bienvenue sur PhonePhix, le marché des appareils mobiles d'Okotoks"
-    public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = "Découvrez pourquoi les clients aiment PhonePhix"
+    public WELCOME_PHONEPHIX = "Bienvenue sur Phonephix, le marché des appareils mobiles d'Okotoks"
+    public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = "Découvrez pourquoi les clients aiment Phonephix"
     public PHONEPHIX_FOOTER_CONTENT_TWO =
-        "© 2020 PhonePhix 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «PhonePhix» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
+        "© 2020 Phonephix 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Phonephix» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
     public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT =
-        "PhonePhix répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+        "Phonephix répare votre appareil et vous informe de la date de prise en charge ou de livraison."
     public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT =
-        "Choisissez votre nouveau téléphone parmi nos 4 grades, avec PhonePhix, il est facile de choisir pour tous les budgets!"
+        "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Phonephix, il est facile de choisir pour tous les budgets!"
 
     /* Wireless Website Text */
+    public WIRELESS_MOBILE_DEVICE_SPECIALISTS = 'Spécialistes des appareils mobiles d’Ottawa';
     public WELCOME_WIRELESS =
         "Bienvenue sur Wireless Revolution, le marché des appareils mobiles d'Ottowa"
     public SEE_WHY_CUSTOMERS_LOVE_WIRELESS =

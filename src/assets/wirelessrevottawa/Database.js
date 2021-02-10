@@ -330,7 +330,7 @@ const homeTextData = {
     },
     section1: {
         title: ['TRADE_REPAIR_BUY_OR_SELL', 'YOUR_MOBILE_DEVICE'],
-        subtitle: 'OKOTOKS_MOBILE_DEVICE_SPECIALISTS',
+        subtitle: 'WIRELESS_MOBILE_DEVICE_SPECIALISTS',
         searchPlaceholder: 'FIND_YOUR_DEVICE'
     },
     section2: {

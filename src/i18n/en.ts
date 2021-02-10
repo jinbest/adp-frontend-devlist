@@ -281,13 +281,14 @@ export class LanguageKeys {
 
   /* Phonephix Website Text */
   public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = 'Okotoks mobile device specialists';
-  public WELCOME_PHONEPHIX = 'Welcome to PhonePhix, Okotoks mobile device marketplace';
-  public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = 'See Why Customers Love PhonePhix';
-  public PHONEPHIX_FOOTER_CONTENT_TWO = '© 2020 PhonePhix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "PhonePhix" does not own or make claim to those trademarks used on this website in which it is not the holder.';
-  public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = 'PhonePhix repairs your device and notifies you of pick up or delivery date.';
-  public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with PhonePhix it’s easy to choose for any budget!';
+  public WELCOME_PHONEPHIX = 'Welcome to Phonephix, Okotoks mobile device marketplace';
+  public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = 'See Why Customers Love Phonephix';
+  public PHONEPHIX_FOOTER_CONTENT_TWO = '© 2020 Phonephix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Phonephix" does not own or make claim to those trademarks used on this website in which it is not the holder.';
+  public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = 'Phonephix repairs your device and notifies you of pick up or delivery date.';
+  public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT = 'Choose your new phone among our 4 grades, with Phonephix it’s easy to choose for any budget!';
 
   /* Wireless Website Text */
+  public WIRELESS_MOBILE_DEVICE_SPECIALISTS = 'Ottawa’s Mobile Device Specialists';
   public WELCOME_WIRELESS = 'Welcome to Wireless Revolution, Ottowa\'s mobile device marketplace';
   public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = 'See Why Customers Love Wireless Revolution';
   public WIRELESS_FOOTER_CONTENT_TWO = '© 2020 Wireless Revolution 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Wireless Revolution" does not own or make claim to those trademarks used on this website in which it is not the holder.';

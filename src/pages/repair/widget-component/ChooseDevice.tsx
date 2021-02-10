@@ -5,7 +5,7 @@ import { Search, Button } from '../../../components'
 import RepairSummary from './RepairSummary'
 import { useT } from '../../../i18n/index'
 import { LangProps } from '../../../i18n/en'
-import { repairWidData, repairWidgetStore, storesDetails } from '../../../store/'
+import { repairWidData, storesDetails } from '../../../store/'
 import { 
   getDeviceBrandsAPI, 
   addMoreDeviceBrandsAPI,
@@ -384,10 +384,11 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
       <Grid container className='' spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className={subDomain + "-repair-widget-title"}>
-            {stepName === 'deviceModel' ? 
+            {/* {stepName === 'deviceModel' ? 
               t(data.title) + ' ' + repairWidgetStore.deviceBrand[repairWidgetStore.deviceCounter-1].name : 
               t(data.title)
-            }
+            } */}
+            {t(data.title)}
           </Typography>        
         </Grid>
       </Grid>
