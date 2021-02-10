@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import {Error} from '../error'
+import React, { useState, useEffect } from 'react'
+import { Error } from '../error'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
-import {Shape, ProductList} from './'
+import {Shape, ProductList, SortbyDropdown} from './'
 
 type Props = {
   subDomain: string;
@@ -11,7 +11,7 @@ type Props = {
 
 const Shop = ({subDomain, handleStatus, features}: Props) => {
 
-  const [feats, setFeatures] = useState<any[]>([]);  
+  const [feats, setFeatures] = useState<any[]>([]);
 
   useEffect(() => {
     handleStatus(true);
@@ -27,8 +27,6 @@ const Shop = ({subDomain, handleStatus, features}: Props) => {
     setFeatures(cntFeatures);
   }, [features]);
 
-  // console.log(subDomain);
-
   return (
     <FeatureToggles features={feats}>
       <Feature
@@ -39,7 +37,8 @@ const Shop = ({subDomain, handleStatus, features}: Props) => {
             <Shape subDomain={subDomain} />
             <section className={subDomain + '-Container'}>
               <div style={{display: 'flex'}}>
-                <div style={{width: '20%'}}>
+                <div style={{width: '20%', paddingRight: '20px'}}>
+                  <SortbyDropdown />
                   filter
                 </div>
                 <div style={{width: '80%'}}>

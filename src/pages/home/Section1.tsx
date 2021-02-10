@@ -87,7 +87,7 @@ const Section1 = ({subDomain, features}: Props) => {
 
         <FeatureToggles features={featSearch}>
           <Feature
-            name={'SEARCH'}
+            name={'FRONTEND_GLOBAL_SEARCH'}
             inactiveComponent={()=><></>}
             activeComponent={()=>
               <Box className={subDomain + '-sec1-search_input'}>

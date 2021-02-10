@@ -255,9 +255,8 @@ const CustomizedMenus = inject("headerStore")(
         }, [userInfo])
 
         const viewMoreStores = () => {
-            setLocations([])
+            setLocations(makeLocations(headerStore.findAddLocation))
             setLocSelStatus(false)
-            headerStore.changeFindAddLocation([])
         }
 
         const handleBookRepair = () => {
@@ -381,7 +380,7 @@ const CustomizedMenus = inject("headerStore")(
                                         margin: "30px 10px",
                                     }}
                                 ></div>
-                                <div style={{ width: "375px" }}>
+                                <div style={{ width: "390px" }}>
                                     {headerStore.cntUserLocation.map((item: any, id: number) => {
                                         return (
                                             <div key={id}>
