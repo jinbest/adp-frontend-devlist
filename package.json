@@ -33,6 +33,7 @@
         "react-chat-widget": "^3.0.5",
         "react-dom": "^17.0.1",
         "react-geocode": "^0.2.2",
+        "react-helmet": "^6.1.0",
         "react-i18next": "^11.7.3",
         "react-phone-input-2": "^2.13.9",
         "react-router-dom": "^5.2.0",
@@ -44,7 +45,7 @@
         "yup": "^0.31.0"
     },
     "scripts": {
-        "start": "set HTTPS=true&&react-scripts start",
+        "start": "HTTPS=true react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
@@ -86,6 +87,7 @@
         "@types/react": "^17.0.0",
         "@types/react-dom": "^17.0.0",
         "@types/react-geocode": "^0.2.0",
+        "@types/react-helmet": "^6.1.0",
         "@types/react-i18next": "^8.1.0",
         "@types/react-router-dom": "^5.1.6",
         "@types/yup": "^0.29.10",
