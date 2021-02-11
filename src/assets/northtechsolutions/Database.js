@@ -554,7 +554,7 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Cell Phone, iPhone & iPad Repair Iqaluit | ${companyName}`,
+        title: `Cell Phone, iPhone & iPad Repair Iqaluit | ${companyName ? companyName : ""}`,
         metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Iqaluit. Call ${companyName} or book your repair online today!`,
     }
 }

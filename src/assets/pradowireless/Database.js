@@ -550,7 +550,7 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Cell Phone, iPhone & iPad Repair Victoria, BC | ${companyName}`,
+        title: `Cell Phone, iPhone & iPad Repair Victoria, BC | ${companyName ? companyName : ""}`,
         metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Victoria, BC. Call ${companyName} or book your repair online today!`,
     }
 }

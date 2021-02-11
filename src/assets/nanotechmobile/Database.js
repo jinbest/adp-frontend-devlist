@@ -558,7 +558,7 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Cell Phone, iPhone & iPad Repair Regina, SK | ${companyName}`,
+        title: `Cell Phone, iPhone & iPad Repair Regina, SK | ${companyName ? companyName : ""}`,
         metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Regina, SK. Call ${companyName} or book your repair online today!`,
     }
 }
