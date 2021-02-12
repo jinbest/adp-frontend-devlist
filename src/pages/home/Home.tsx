@@ -29,6 +29,7 @@ const Home = ({ subDomain, features }: Props) => {
             <Helmet>
                 <title>{pageTitle}</title>
                 <meta name="description" content={metaDescription} />
+                {subDomain === "mobiletechlabs" && <meta name="robots" content="noindex"></meta>}
             </Helmet>
 
             <Shape subDomain={subDomain} />

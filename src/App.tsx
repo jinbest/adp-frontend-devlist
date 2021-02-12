@@ -17,7 +17,7 @@ const subDomain = apexDomain.split(".")[0]
 // const devicelist = [
 //     "bananaservice",
 //     "geebodevicerepair",
-//     "mobiletechlab",
+//     "mobiletechlabs",
 //     "nanotechmobile",
 //     "northtechsolutions",
 //     "okotoksphonephix",
@@ -77,7 +77,7 @@ function App(): JSX.Element {
                 .then((res: any) => {
                     const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
                     if (
-                        subDomain === "mobiletechlab" ||
+                        subDomain === "mobiletechlabs" ||
                         subDomain === "wirelessrevottawa" ||
                         subDomain === "northtechsolutions" ||
                         subDomain === "okotoksphonephix"
@@ -151,6 +151,7 @@ function App(): JSX.Element {
             <Helmet>
                 <title>{pageTitle}</title>
                 <meta name="description" content={metaDescription} />
+                {subDomain === "mobiletechlabs" && <meta name="robots" content="noindex"></meta>}
             </Helmet>
 
             <LangProvider>
