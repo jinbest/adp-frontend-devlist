@@ -115,7 +115,7 @@ const cardMobileData = {
             title: "SHOP",
             btnTitle: "SHOP",
             flag: "FRONTEND_BUY",
-            href: "https://shop.mobiletechlabs.ca/",
+            href: "https://shop.mobiletechlab.ca/",
         },
         { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
     ],
@@ -201,7 +201,7 @@ const navItemsData = [
     // { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
     {
-        href: "https://shop.mobiletechlabs.ca/",
+        href: "https://shop.mobiletechlab.ca/",
         text: "SHOP",
         isActive: false,
         flag: "FRONTEND_BUY",
@@ -331,7 +331,7 @@ const avatarData = {
     userActive: userActive,
     userDeactive: userDeactive,
     cancel: cancel,
-    store: { img: store, link: "https://shop.mobiletechlabs.ca/" },
+    store: { img: store, link: "https://shop.mobiletechlab.ca/" },
     storeBlue: storeBlue,
     menu: menu,
 }
@@ -340,7 +340,7 @@ const mobileNavItemData = {
     left: [
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
-        { text: "SHOP", href: "https://shop.mobiletechlabs.ca/", flag: "FRONTEND_BUY" },
+        { text: "SHOP", href: "https://shop.mobiletechlab.ca/", flag: "FRONTEND_BUY" },
         { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
