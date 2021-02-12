@@ -43,6 +43,8 @@ function App(): JSX.Element {
     const [loadStatus, setLoadStatus] = useState(false)
     const [pageTitle, setPageTitle] = useState("Store")
     const [metaDescription, setMetaDescription] = useState("")
+    const [tagScript, setTagScript] = useState(undefined)
+    const parser = new DOMParser()
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)
@@ -55,10 +57,12 @@ function App(): JSX.Element {
 
         setPageTitle(storeTabData.title)
         setMetaDescription(storeTabData.metaDescription)
+        setTagScript(storeTabData.headTag)
+
+        loadScript(storeTabData.bodyTag)
 
         appLoadAPI
             .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)
@@ -98,6 +102,19 @@ function App(): JSX.Element {
                 })
         }
     }, [storeId])
+
+    const loadScript = (tag: string) => {
+        if (tag != null) {
+            const noScript = document.createElement("noscript")
+            const htmlDoc = parser.parseFromString(tag, "text/html")
+            const iframeNode = htmlDoc.getElementsByTagName("iframe")[0]
+
+            if (iframeNode != null) {
+                noScript.prepend(iframeNode)
+                document.body.prepend(noScript)
+            }
+        }
+    }
 
     const BaseRouter = () => {
         return (
@@ -152,6 +169,7 @@ function App(): JSX.Element {
                 <title>{pageTitle}</title>
                 <meta name="description" content={metaDescription} />
                 {subDomain === "mobiletechlabs" && <meta name="robots" content="noindex"></meta>}
+                <script>{tagScript}</script>
             </Helmet>
 
             <LangProvider>

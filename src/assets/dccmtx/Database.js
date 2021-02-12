@@ -562,6 +562,10 @@ const getTabData = (companyName) => {
         metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Peterborough. Call ${
             companyName ? companyName : ""
         } or book your repair online today!`,
+        headTag: `
+        `,
+        bodyTag: `
+        `,
     }
 }
 
