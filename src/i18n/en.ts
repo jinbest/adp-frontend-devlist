@@ -172,13 +172,13 @@ export class LanguageKeys {
     public FIND_YOUR_DEVICE_BRAND_CONTENT_1 =
         "Your device brand can usually be found on the back of the handset itself, but if for whatever reason you aren’t sure don’t panic!"
     public FIND_YOUR_DEVICE_BRAND_CONTENT_2 =
-        "It is indicated on back of the device, on the front, or in the Settings/System/About phone section if you are on Android or Settings/Apple IDs if you are on IOS. It may also be shown on the original box and/or manual that came with your device."
+        "It is indicated on back of the device, on the front, or in the Settings/System/About phone section if you are on Android or Settings/ IDs if you are on IOS. It may also be shown on the original box and/or manual that came with your device."
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE = "How to find the model of your device"
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT =
         "The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device."
     public CHOOSE_YOUR_DEVICE_MODEL_APPLE = "Choose Your Device Model /"
     public SEARCH_FOR_YOUR_MODEL = "Search for your Model"
-    public CHOOSE_YOUR_REPAIRS = "Choose Your Repair(s)"
+    public CHOOSE_YOUR_REPAIRS = "Choose Your Issue"
     public WHAT_IS_BROKEN = "What’s broken?"
     public ESTIMATED_REPAIR_TIME = "Estimated repair time"
     public BACK_GLASS = "Back Glass"

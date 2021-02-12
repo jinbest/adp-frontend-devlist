@@ -124,6 +124,12 @@ class RepairWidgetAPI {
                 .get(`${apiURL}`)
                 .then((response) => {
                     if (response) {
+                        response.data = response.data.map((data: Record<string, any>) => {
+                            data.title =
+                                data.title != null ? data.title.replace("replacement", "") : ""
+
+                            return data
+                        })
                         resolve(response)
                     } else {
                         reject(response)
