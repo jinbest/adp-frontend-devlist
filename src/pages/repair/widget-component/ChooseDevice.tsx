@@ -235,30 +235,33 @@ const ChooseDevice = ({
             case "deviceRepairs":
                 await getRepairsOfferedDeviceAPI(repairWidData.cntProductID, text, pg, perpg)
                 cntOfferedRepairs = repairWidData.repairsOfferedDevices.data
-                setSliceNum(repairWidData.repairsOfferedDevices.data.length)
-                for (let i = 0; i < cntOfferedRepairs.length; i++) {
-                    cntTypes.push({
-                        name: cntOfferedRepairs[i].title,
-                        bg: "white",
-                        col: "black",
-                        estimate: cntOfferedRepairs[i].duration,
-                        selected: false,
-                        cost: cntOfferedRepairs[i].cost,
-                        warranty: cntOfferedRepairs[i].warranty,
-                        warranty_unit: cntOfferedRepairs[i].warranty_unit,
-                        id: cntOfferedRepairs[i].id,
-                    })
-                }
-                for (let i = 0; i < cntTypes.length; i++) {
-                    for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
-                        if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
-                            cntTypes[i].bg = repairChooseItemCol
-                            cntTypes[i].col = "white"
-                            cntTypes[i].selected = true
+
+                if (cntOfferedRepairs != null) {
+                    setSliceNum(repairWidData.repairsOfferedDevices.data.length)
+                    for (let i = 0; i < cntOfferedRepairs.length; i++) {
+                        cntTypes.push({
+                            name: cntOfferedRepairs[i].title,
+                            bg: "white",
+                            col: "black",
+                            estimate: cntOfferedRepairs[i].duration,
+                            selected: false,
+                            cost: cntOfferedRepairs[i].cost,
+                            warranty: cntOfferedRepairs[i].warranty,
+                            warranty_unit: cntOfferedRepairs[i].warranty_unit,
+                            id: cntOfferedRepairs[i].id,
+                        })
+                    }
+                    for (let i = 0; i < cntTypes.length; i++) {
+                        for (let j = 0; j < repairWidgetData.chooseRepair.length; j++) {
+                            if (cntTypes[i].name === repairWidgetData.chooseRepair[j].name) {
+                                cntTypes[i].bg = repairChooseItemCol
+                                cntTypes[i].col = "white"
+                                cntTypes[i].selected = true
+                            }
                         }
                     }
+                    setItemTypes([...cntTypes])
                 }
-                setItemTypes([...cntTypes])
                 break
             default:
                 break

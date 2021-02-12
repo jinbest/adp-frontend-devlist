@@ -124,9 +124,10 @@ class RepairWidgetAPI {
                 .get(`${apiURL}`)
                 .then((response) => {
                     if (response) {
-                        response.data = response.data.map((data: Record<string, any>) => {
+                        response.data.data = response.data.data.map((data: Record<string, any>) => {
                             data.title =
-                                data.title != null ? data.title.replace("replacement", "") : ""
+                                data.title != null ? data.title.replaceAll(/replacement/gi, "") : ""
+                            console.log(data.title)
 
                             return data
                         })
