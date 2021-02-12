@@ -566,7 +566,9 @@ const repairData = {
 const getTabData = (companyName) => {
     return {
         title: `Cell Phone, iPhone & iPad Repair Ottawa, ON | ${companyName ? companyName : ""}`,
-        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Ottawa, ON. Call ${companyName} or book your repair online today!`,
+        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Ottawa, ON. Call ${
+            companyName ? companyName : ""
+        } or book your repair online today!`,
     }
 }
 
