@@ -11,8 +11,8 @@ import { Link } from "react-router-dom"
 import { GetCurrentLocParams } from "../pages/repair/model/get-current-location"
 import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
-import { ToastMsgParams } from './toast/toast-msg-params'
-import Toast from './toast/toast'
+import { ToastMsgParams } from "./toast/toast-msg-params"
+import Toast from "./toast/toast"
 
 export function makeLocations(data: any[]) {
     const locations: GetCurrentLocParams[] = []
@@ -122,7 +122,7 @@ const CustomizedMenus = inject("headerStore")(
         const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
         const t = useT()
         const [pos, setPos] = useState({ latitude: "", longitude: "" })
-        const [userInfo, setUserInfo] = useState({ city: "", state: "", postCode: "", country: "" })
+        const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
         const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected)
         const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
         const [requireUserInfo, setRequireUserInfo] = useState(false)

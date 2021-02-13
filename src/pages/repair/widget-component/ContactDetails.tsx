@@ -150,7 +150,7 @@ const ContactDetails = ({
                 .findAddLocation(storesDetails.store_id, {
                     city: city,
                     state: province.code,
-                    postCode: postalCode,
+                    postcode: postalCode,
                     country: country.code,
                 })
                 .then((res: any) => {
