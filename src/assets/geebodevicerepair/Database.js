@@ -546,7 +546,7 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Cell Phone, iPhone & iPad Repair Halifax, NS | ${companyName ? companyName : ""}`,
+        title: `Get Quote`,
         metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Halifax, NS. Call ${
             companyName ? companyName : ""
         } or book your repair online today!`,

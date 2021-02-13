@@ -176,11 +176,11 @@ export class LanguageKeys {
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE = "How to find the model of your device"
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT =
         "The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device."
-    public CHOOSE_YOUR_DEVICE_MODEL_APPLE = "Choose Your Device Model /"
+    public CHOOSE_YOUR_DEVICE_MODEL_APPLE = "Choose Your Device Model"
     public SEARCH_FOR_YOUR_MODEL = "Search for your Model"
     public CHOOSE_YOUR_REPAIRS = "Choose Your Issue"
     public WHAT_IS_BROKEN = "What’s broken?"
-    public ESTIMATED_REPAIR_TIME = "Estimated repair time"
+    public ESTIMATED_REPAIR_TIME = "Estimated time"
     public BACK_GLASS = "Back Glass"
     public BATTERY = "Battery"
     public CAMERA_FRONT = "Camera (Front)"
