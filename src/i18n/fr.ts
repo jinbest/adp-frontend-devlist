@@ -160,9 +160,9 @@ export class LanguageKeysFr extends LanguageKeys {
     public ENTER_KEY = "ou appuyez sur ENTER"
     public YES = "Oui"
     public NO = "Non"
-    public REPAIR_SUMMARY = "Résumé de la réparation"
-    public REPAIR_SERVICE = "Service de réparation:"
-    public REPAIR_SERVICE_SUMMARY = "Résumé du service de réparation"
+    public REPAIR_SUMMARY = "Sommaire"
+    public REPAIR_SERVICE = "Un service:"
+    public REPAIR_SERVICE_SUMMARY = "Résumé du service"
     public YOUR_INFO = "Vos informations"
     public DELIVERY_METHOD = "Méthode de Livraison"
     public PREFERRED_CONTACT_METHOD = "Méthode de contact préférée"
@@ -174,7 +174,7 @@ export class LanguageKeysFr extends LanguageKeys {
     public SEARCH_FOR_YOUR_DEVICE_BRAND = "Recherchez la marque de votre appareil"
     public FIND_YOUR_DEVICE_BRAND = "Trouvez la marque de votre appareil"
     public FIND_YOUR_DEVICE_BRAND_CONTENT_1 =
-        "Apple, Samsung, Huawei, Sony, etc. sont des exemples de marques d'appareils (fabricants). Si vous ne connaissez pas la marque de votre appareil, ne paniquez pas!"
+        "La marque de votre appareil se trouve généralement à l'arrière du combiné lui-même, mais si pour une raison quelconque vous n'êtes pas sûr, ne paniquez pas!"
     public FIND_YOUR_DEVICE_BRAND_CONTENT_2 =
         "Il est indiqué à l'arrière de l'appareil, à l'avant ou dans la section Paramètres / Système / À propos du téléphone si vous êtes sous Android ou Paramètres / Identifiants Apple si vous êtes sous IOS. Il peut également figurer sur la boîte d'origine et / ou le manuel fourni avec votre appareil."
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE = "Comment trouver le modèle de votre appareil"
@@ -192,8 +192,8 @@ export class LanguageKeysFr extends LanguageKeys {
     public CHARGING_PORT = "Port de chargement"
     public SCREEN = "Écran"
     public MINUTES = "minutes"
-    public REPAIR_ANOTHER_DEVICE = "Réparer un autre appareil?"
-    public REPAIR_ANOTHER_DEVICE_CONTENT = "Réparez tous vos appareils à la fois avec nous!"
+    public REPAIR_ANOTHER_DEVICE = "Ajouter un autre appareil?"
+    public REPAIR_ANOTHER_DEVICE_CONTENT = "Obtenez tous vos appareils en même temps avec nous!"
     public HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE =
         "Comment aimeriez-vous déposer votre ou vos appareils?"
     public MAIL_IN = "Envoi postal"

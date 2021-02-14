@@ -209,9 +209,14 @@ const navItemsData = [
         flag: "FRONTEND_BUY",
     },
     { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
-    { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
-    { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
-    { href: "#", text: "WHOLESALE", isActive: false, flag: "ALWAYS_TRUE" },
+    // { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
+    // { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
+    { 
+        href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/Make", 
+        text: "WHOLESALE", 
+        isActive: false, 
+        flag: "ALWAYS_TRUE" 
+    },
 ]
 
 const navShop = {
@@ -346,10 +351,11 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
+        { text: "WHOLESALE", href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/Make", flag: "ALWAYS_TRUE" },
         { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
-        { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURANCE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
         { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
     ],

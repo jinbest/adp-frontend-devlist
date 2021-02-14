@@ -306,7 +306,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-    left: ["BUSINESS", "FINANCING"],
+    left: [],
     right: { ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN" },
     brandCol: "black",
     brandThemeCol: "#FCA425",

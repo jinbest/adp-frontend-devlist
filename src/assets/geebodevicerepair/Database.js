@@ -440,7 +440,7 @@ const homeTextData = {
             { title: "", content: "" },
         ],
         contentSubTitle: "",
-        content: ["306 Charlotte St., Halifax, NS", "GEEBO_FOOTER_CONTENT_TWO"],
+        content: ["geebo@gmail.com 306 Charlotte St., Halifax, NS", "GEEBO_FOOTER_CONTENT_TWO"],
         footerLink: [
             {
                 name: "RESOURCES",

@@ -166,12 +166,12 @@ const RepairServiceSummary = ({
                                     " " +
                                     repairWidgetData.contactDetails.lastName}
                             </Typography>
-                            <Typography className={subDomain + "-details"}>
+                            <a className={subDomain + "-details"} href={`mailto:${repairWidgetData.contactDetails.email}`} style={{textDecoration: 'none', color: 'black'}}>
                                 {repairWidgetData.contactDetails.email}
-                            </Typography>
-                            <Typography className={subDomain + "-details"}>
+                            </a><br />
+                            <a className={subDomain + "-details"} href={`tel:${repairWidgetData.contactDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
                                 {repairWidgetData.contactDetails.phone}
-                            </Typography>
+                            </a>
                         </Grid>
                         <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
                             <Typography className={subDomain + "-topic"}>

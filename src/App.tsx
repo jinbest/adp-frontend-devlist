@@ -26,7 +26,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[0]
+// const subDomain = devicelist[7]
 
 type FeatureProps = {
     flag: string

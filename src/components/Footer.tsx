@@ -44,8 +44,12 @@ const Footer = ({subDomain, features}: Props) => {
                   {t(data.homeTextData.footer.contentSubTitle)}
                 </div>
                 <div className={subDomain + '-device-list-grid'}>
-                  {phoneFormatString(storesDetails.storesDetails.phone)} | <br/>
-                  {data.homeTextData.footer.content[0]}
+                  <a href={`tel:${storesDetails.storesDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
+                    {phoneFormatString(storesDetails.storesDetails.phone)} |
+                  </a><br />
+                  <a href={`mailto:${data.homeTextData.footer.content[0].split(' ')[0]}`} style={{textDecoration: 'none', color: 'black'}}>
+                    {data.homeTextData.footer.content[0]}
+                  </a>
                 </div>
               </Grid>
               {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
