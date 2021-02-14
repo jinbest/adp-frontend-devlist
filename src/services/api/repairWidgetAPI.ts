@@ -10,7 +10,7 @@ class RepairWidgetAPI {
         is_enabled: boolean,
         searchText: string
     ) => {
-        let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/brands?per_page=${per_page}&page=${page}&is_enabled=${is_enabled}`
+        let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/brands?per_page=${per_page}&page=${page}&is_enabled=${is_enabled}&has_products=true&include_voided=false`
         if (searchText) {
             apiURL += `&name=${searchText}`
         }
@@ -124,6 +124,13 @@ class RepairWidgetAPI {
                 .get(`${apiURL}`)
                 .then((response) => {
                     if (response) {
+                        response.data.data = response.data.data.map((data: Record<string, any>) => {
+                            data.title =
+                                data.title != null ? data.title.replaceAll(/replacement/gi, "") : ""
+                            console.log(data.title)
+
+                            return data
+                        })
                         resolve(response)
                     } else {
                         reject(response)

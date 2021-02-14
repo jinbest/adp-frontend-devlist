@@ -8,6 +8,7 @@ import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
+import { Helmet } from "react-helmet"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
@@ -16,7 +17,7 @@ const subDomain = apexDomain.split(".")[0]
 // const devicelist = [
 //     "bananaservice",
 //     "geebodevicerepair",
-//     "mobiletechlab",
+//     "mobiletechlabs",
 //     "nanotechmobile",
 //     "northtechsolutions",
 //     "okotoksphonephix",
@@ -27,27 +28,9 @@ const subDomain = apexDomain.split(".")[0]
 // ]
 // const subDomain = devicelist[4]
 
-/* const features = [
-    { flag: "FRONTEND_TRADE", isActive: true },
-    { flag: "FRONTEND_REPAIR", isActive: true },
-    { flag: "FRONTEND_REPAIR_QUOTE", isActive: true },
-    { flag: "FRONTEND_REPAIR_APPOINTMENT", isActive: true },
-    { flag: "FRONTEND_BUY", isActive: false },
-    { flag: "FRONTEND_ONLINE_PURCHASE", isActive: true },
-    { flag: "FRONTEND_FIND_A_STORE", isActive: true },
-    { flag: "FRONTEND_USER_ACCOUNT", isActive: true },
-    { flag: "FRONTEND_USER_SIGNUP", isActive: true },
-    { flag: "FRONTEND_USER_LOGIN", isActive: true },
-    { flag: "FRONTEND_CHAT", isActive: true },
-    { flag: "SEARCH", isActive: true },
-    { flag: "FRONTEND_GLOBAL_SEARCH", isActive: true },
-    { flag: "FRONTEND_MEGA_MENU", isActive: true },
-    { flag: "ALWAYS_TRUE", isActive: true },
-] */
-
 type FeatureProps = {
-    flag: string;
-    isActive: boolean;
+    flag: string
+    isActive: boolean
 }
 
 function App(): JSX.Element {
@@ -58,19 +41,28 @@ function App(): JSX.Element {
     const [features, setFeatures] = useState<FeatureProps[]>([])
     const [storeId, setStoreID] = useState(0)
     const [loadStatus, setLoadStatus] = useState(false)
+    const [pageTitle, setPageTitle] = useState("Store")
+    const [metaDescription, setMetaDescription] = useState("")
+    const [tagScript, setTagScript] = useState(undefined)
+    const parser = new DOMParser()
 
     const handleFooterStatus = (status: boolean) => {
         setFooterStatus(status)
-    }    
+    }
 
     useEffect(() => {
-        const favIcon = document.getElementById("favicon") as HTMLLinkElement;
-        favIcon.href = mainData.fav.img;
-        document.title = storesDetails.storesDetails.name;
+        const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
+        const favIcon = document.getElementById("favicon") as HTMLLinkElement
+        favIcon.href = mainData.fav.img
+
+        setPageTitle(storeTabData.title)
+        setMetaDescription(storeTabData.metaDescription)
+        setTagScript(storeTabData.headTag)
+
+        loadScript(storeTabData.bodyTag)
 
         appLoadAPI
             .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)
@@ -87,10 +79,13 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    const feats: FeatureProps[] = [
-                        { flag: "ALWAYS_TRUE", isActive: true }
-                    ]
-                    if (subDomain === 'mobiletechlab' || subDomain === 'wirelessrevottawa' || subDomain === 'northtechsolutions' || subDomain === 'okotoksphonephix') {
+                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
+                    if (
+                        subDomain === "mobiletechlabs" ||
+                        subDomain === "wirelessrevottawa" ||
+                        subDomain === "northtechsolutions" ||
+                        subDomain === "okotoksphonephix"
+                    ) {
                         feats.push({ flag: "FRONTEND_BUY", isActive: true })
                     }
                     for (let i = 0; i < res.data.length; i++) {
@@ -107,6 +102,19 @@ function App(): JSX.Element {
                 })
         }
     }, [storeId])
+
+    const loadScript = (tag: string) => {
+        if (tag != null) {
+            const noScript = document.createElement("noscript")
+            const htmlDoc = parser.parseFromString(tag, "text/html")
+            const iframeNode = htmlDoc.getElementsByTagName("iframe")[0]
+
+            if (iframeNode != null) {
+                noScript.prepend(iframeNode)
+                document.body.prepend(noScript)
+            }
+        }
+    }
 
     const BaseRouter = () => {
         return (
@@ -156,24 +164,33 @@ function App(): JSX.Element {
     }
 
     return (
-        <LangProvider>
-            {loadStatus ? (
-                <Router>
-                    <Provider headerStore={storesDetails}>
-                        <Header
-                            subDomain={subDomain}
-                            handleStatus={handleFooterStatus}
-                            features={features}
-                        />
-                    </Provider>
-                    <BaseRouter />
-                    <Chat subDomain={subDomain} features={features} />
-                    {footerStatus && <Footer subDomain={subDomain} features={features} />}
-                </Router>
-            ) : (
-                <Preloader />
-            )}
-        </LangProvider>
+        <>
+            <Helmet>
+                <title>{pageTitle}</title>
+                <meta name="description" content={metaDescription} />
+                {subDomain === "mobiletechlabs" && <meta name="robots" content="noindex"></meta>}
+                <script>{tagScript}</script>
+            </Helmet>
+
+            <LangProvider>
+                {loadStatus ? (
+                    <Router>
+                        <Provider headerStore={storesDetails}>
+                            <Header
+                                subDomain={subDomain}
+                                handleStatus={handleFooterStatus}
+                                features={features}
+                            />
+                        </Provider>
+                        <BaseRouter />
+                        <Chat subDomain={subDomain} features={features} />
+                        {footerStatus && <Footer subDomain={subDomain} features={features} />}
+                    </Router>
+                ) : (
+                    <Preloader />
+                )}
+            </LangProvider>
+        </>
     )
 }
 
