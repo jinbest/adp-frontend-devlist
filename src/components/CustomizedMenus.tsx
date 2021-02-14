@@ -11,8 +11,8 @@ import { Link } from "react-router-dom"
 import { GetCurrentLocParams } from "../pages/repair/model/get-current-location"
 import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
-import { ToastMsgParams } from './toast/toast-msg-params'
-import Toast from './toast/toast'
+import { ToastMsgParams } from "./toast/toast-msg-params"
+import Toast from "./toast/toast"
 
 export function makeLocations(data: any[]) {
     const locations: GetCurrentLocParams[] = []
@@ -122,7 +122,7 @@ const CustomizedMenus = inject("headerStore")(
         const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
         const t = useT()
         const [pos, setPos] = useState({ latitude: "", longitude: "" })
-        const [userInfo, setUserInfo] = useState({ city: "", state: "", postCode: "", country: "" })
+        const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
         const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected)
         const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
         const [requireUserInfo, setRequireUserInfo] = useState(false)
@@ -255,9 +255,8 @@ const CustomizedMenus = inject("headerStore")(
         }, [userInfo])
 
         const viewMoreStores = () => {
-            setLocations([])
+            setLocations(makeLocations(headerStore.findAddLocation))
             setLocSelStatus(false)
-            headerStore.changeFindAddLocation([])
         }
 
         const handleBookRepair = () => {
@@ -354,7 +353,7 @@ const CustomizedMenus = inject("headerStore")(
                                     inactiveComponent={() => <></>}
                                     activeComponent={() => (
                                         <Link
-                                            to="/repair-widget"
+                                            to="/get-quote"
                                             style={{ textDecoration: "none" }}
                                             onClick={handleBookRepair}
                                         >
@@ -381,7 +380,7 @@ const CustomizedMenus = inject("headerStore")(
                                         margin: "30px 10px",
                                     }}
                                 ></div>
-                                <div style={{ width: "375px" }}>
+                                <div style={{ width: "390px" }}>
                                     {headerStore.cntUserLocation.map((item: any, id: number) => {
                                         return (
                                             <div key={id}>

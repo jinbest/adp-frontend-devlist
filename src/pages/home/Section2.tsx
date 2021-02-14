@@ -3,6 +3,8 @@ import { Typography, Grid, Box } from '@material-ui/core';
 import { CardFix, ContentFix } from '../../components';
 import { useT } from "../../i18n/index";
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
+import { Link } from 'react-router-dom';
+import { repairWidgetStore } from '../../store';
 
 type Props = {
   subDomain?: string;
@@ -23,7 +25,13 @@ const Section2 = ({subDomain, features}: Props) => {
       }
     }
     setFeatures(cntFeatures);
-  }, [features, data])
+  }, [features, data]);
+
+  const handleRepairWidget = () => {
+    const cntAppointment: any = repairWidgetStore.appointResponse;
+    repairWidgetStore.init();
+    repairWidgetStore.changeAppointResponse(cntAppointment);
+  }
 
   return (
     <FeatureToggles features={feats}>
@@ -32,16 +40,16 @@ const Section2 = ({subDomain, features}: Props) => {
         inactiveComponent={()=><></>}
         activeComponent={()=>
           <section className={subDomain + '-Container'}>
-            <Typography className={subDomain + '-section-title'}>
+            <h2 className={subDomain + '-section-title'}>
               {t(data.homeTextData.section2.title)}
-            </Typography>
+            </h2>
             <div className={subDomain + '-card-customized-container-desktop'}>
               {
                 data.cardFixData.map((item:any, index:number) => {
                   return (
-                    <div className={subDomain + '-card-customized-item'} key={index}>
+                    <Link to='/get-quote' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
-                    </div>
+                    </Link>
                   )
                 })
               }
@@ -50,9 +58,9 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.slice(0,3).map((item:any, index:number) => {
                   return (
-                    <div className={subDomain + '-card-customized-item'} key={index}>
+                    <Link to='/get-quote' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
-                    </div>
+                    </Link>
                   )
                 })
               }
@@ -61,9 +69,9 @@ const Section2 = ({subDomain, features}: Props) => {
               {
                 data.cardFixData.slice(3, 5).map((item:any, index:number) => {
                   return (
-                    <div className={subDomain + '-card-customized-item'} key={index}>
+                    <Link to='/get-quote' className={subDomain + '-card-customized-item'} key={index} style={{textDecoration: 'none'}} onClick={handleRepairWidget}>
                       <CardFix title={t(item.title)} img={item.img} key={index} subDomain={subDomain} />
-                    </div>
+                    </Link>
                   )
                 })
               }

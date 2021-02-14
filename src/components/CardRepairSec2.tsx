@@ -1,17 +1,24 @@
 import React from 'react'
+import { GetDeviceUs, SelectRepair, ReceiveDevice } from '../pages/repair/Sec2-SVG'
 
 type Props = {
-  img: string;
   subtitle: string;
   content: string;
   subDomain?: string;
+  type?: string;
 }
 
-const CardRepairSec2 = ({subtitle, img, content, subDomain}: Props) => {
-  
+const CardRepairSec2 = ({subtitle, content, subDomain, type}: Props) => {
+  const data = require(`../assets/${subDomain}/Database`);
+  const sec2SvgCol = data.colorPalle.sec2SvgCol;
+
   return (
     <div className={subDomain + '-card-repair-sec2'}>
-      <div><img src={img} className={subDomain + '-card-repair-sec2-img'}/></div>
+      <div className={subDomain + '-card-repair-sec2-img'}>
+        {type === 'SelectRepair' && <SelectRepair color={sec2SvgCol} /> }
+        {type === 'GetDeviceUs' && <GetDeviceUs color={sec2SvgCol} /> }
+        {type === 'ReceiveDevice' && <ReceiveDevice color={sec2SvgCol} /> }
+      </div>
       <div>
         <p className={subDomain + '-card-repair-sec2-subtitle'}>{subtitle}</p>
         <p className={subDomain + '-card-repair-sec2-content'}>{content}</p>

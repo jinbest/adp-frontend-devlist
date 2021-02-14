@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {Search, CustomizedMenus, Logo, SelectLang, MegamenuShop} from '../components'
 import { Link } from 'react-router-dom'
 import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails } from '../store'
 
@@ -13,27 +12,43 @@ type PropsNavItemLink = {
   feats: any[];
 }
 
+export function phoneFormatString(phnumber: string) {
+  let formatPhnumber: string = phnumber, countrycode = '', Areacode = '', number = '';
+  if (phnumber.length <= 10 && phnumber.length > 6) {
+    countrycode = phnumber.substring(0, 3);
+    Areacode = phnumber.substring(3, 6);
+    number = phnumber.substring(6, phnumber.length);
+    formatPhnumber ="(" + countrycode + ") " + Areacode + "-" + number;
+  } else if (phnumber.length > 10) {
+    countrycode = phnumber.substring(phnumber.length - 10, phnumber.length - 7);
+    Areacode = phnumber.substring(phnumber.length - 7, phnumber.length - 4);
+    number = phnumber.substring(phnumber.length - 4, phnumber.length);
+    formatPhnumber = phnumber.substring(0, phnumber.length - 10) + " (" + countrycode + ") " + Areacode + "-" + number;
+  }
+  return formatPhnumber;
+}
+
+const checkDomain = (url:string) => {
+  if ( url.indexOf('//') === 0 ) { url = location.protocol + url; }
+  return url.toLowerCase().replace(/([a-z])?:\/\//,'$1').split('/')[0];
+};
+
+const isExternal = (url:string) => {
+  return ( ( url.indexOf(':') > -1 || url.indexOf('//') > -1 ) && checkDomain(location.href) !== checkDomain(url) );
+};
+
 const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: PropsNavItemLink) => {
 
   const t = useT();
 
   const handle = () => {
-    if (href === '/repair-widget') {
+    if (href === '/get-quote') {
       handleStatus(false);
     } else {
       handleStatus(true);
     }
     return;
-  }
-
-  const checkDomain = (url:string) => {
-    if ( url.indexOf('//') === 0 ) { url = location.protocol + url; }
-    return url.toLowerCase().replace(/([a-z])?:\/\//,'$1').split('/')[0];
-  };
-
-  const isExternal = (url:string) => {
-    return ( ( url.indexOf(':') > -1 || url.indexOf('//') > -1 ) && checkDomain(location.href) !== checkDomain(url) );
-  };
+  }  
 
   return (
     <li className={subDomain + '-nav-item'}>
@@ -52,18 +67,15 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: P
 }
 
 type PropsBrand = {
-  item: LangProps;
+  item: string;
   color: string;
-  trans: boolean;
 }
 
-const BrandItemLink = ({ item, color, trans }: PropsBrand) => {
-  const t = useT();
-
+const BrandItemLink = ({ item, color }: PropsBrand) => {
   return (    
     <li style={{listStyle: 'none'}}>
       <a style={{color: color, padding: '0 5px', fontWeight: 100, fontSize: '15px'}}>
-        {trans ? t(item).toLocaleUpperCase() : item.toLocaleUpperCase()}
+        {item.toLocaleUpperCase()}
       </a>
     </li>
   )
@@ -100,10 +112,10 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
     setFeatures(cntFeatures);
   }, [data, features])
 
-  function toggleUserStatus() {
-    setUserStatus(!userStatus);
-    setMenuStatus(true);
-  }
+  // function toggleUserStatus() {
+  //   setUserStatus(!userStatus);
+  //   setMenuStatus(true);
+  // }
 
   function toggleMenuStatus() {
     setMenuStatus(!menuStatus);
@@ -120,11 +132,11 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
         <div style={{display: 'flex', justifyContent: 'space-between', height: 0, marginTop: '5px'}}>
           <ul style={{display: 'flex', margin: 0, padding: 0}}>
             {brandItemLink.left.map((item:any, index: number) => {
-              return <BrandItemLink item={item} key={index} color={brandItemLink.brandCol} trans={true} />
+              return <BrandItemLink item={t(item)} key={index} color={brandItemLink.brandCol} />
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            <BrandItemLink item={brandItemLink.right.ip} color={brandItemLink.brandCol} trans={false} />
+            <BrandItemLink item={phoneFormatString(storesDetails.storesDetails.phone)} color={brandItemLink.brandCol} />
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
             <FeatureToggles features={feats}>
               <Feature
@@ -134,7 +146,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                   <Feature
                     name={'FRONTEND_USER_LOGIN'}
                     inactiveComponent={()=><></>}
-                    activeComponent={()=><BrandItemLink item={brandItemLink.right.log} color={brandItemLink.brandCol} trans={true} />}
+                    activeComponent={()=><BrandItemLink item={t(brandItemLink.right.log)} color={brandItemLink.brandCol} />}
                   />
                 }
               />
@@ -199,7 +211,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
               name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
               activeComponent={()=>
-                <a href="#" className={subDomain + '-navlink-avatar-store'}>
+                <a href={data.avatarData.store.link} className={subDomain + '-navlink-avatar-store'} target='_blank' rel='noreferrer'>
                   <img src={data.avatarData.store.img} alt='shop-img' />
                 </a>
               }
@@ -207,16 +219,20 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           </FeatureToggles>
         </div>
         <div className={subDomain + '-avatar-div'}>
-          {
+          {/* {
             userStatus ? 
             <img src={data.avatarData.userActive} onClick={toggleUserStatus} /> :
             <img src={data.avatarData.userDeactive} onClick={toggleUserStatus} /> 
-          }
+          } */}
           <FeatureToggles features={feats}>
             <Feature
               name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
-              activeComponent={()=><img src={data.avatarData.storeBlue} style={{height: '35px'}}/>}
+              activeComponent={()=>
+                <a href={data.avatarData.store.link} target='_blank' rel='noreferrer' style={{height: '35px'}}>
+                  <img src={data.avatarData.storeBlue} style={{height: '35px'}}/>
+                </a>
+              }
             />
           </FeatureToggles>          
           {
@@ -231,7 +247,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
           userStatus && menuStatus ? 
           <FeatureToggles features={feats}>
             <Feature
-              name='SEARCH'
+              name='FRONTEND_GLOBAL_SEARCH'
               inactiveComponent={()=><></>}
               activeComponent={()=>
                 <div className={subDomain + '-mobile-search-div'}>
@@ -268,11 +284,19 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                             name={item.flag}
                             inactiveComponent={()=><></>}
                             activeComponent={()=>
-                              <div className='flex-space-between' onClick={()=>{item.text === 'SHOP' && setMobileMenu('right')}}>
-                                <a className={subDomain + '-mobile-item'} href={item.href}>{t(item.text)}</a>
+                              <div className='flex-space-between' onClick={()=>{
+                                // item.text === 'SHOP' && setMobileMenu('right')
+                              }}>
+                                {isExternal(item.href) ? 
+                                  <a className={subDomain + '-mobile-item'} href={item.href} target='_blank' rel='noreferrer'>{t(item.text)}</a> : 
+                                  (item.href === '#' || !item.href) ? <></> :
+                                  <Link className={subDomain + '-mobile-item'} to={item.href}>{t(item.text)}</Link>
+                                }
+                                
+                                {/* Megamenu on mobile disabled
                                 {item.text === 'SHOP' && 
                                   <img style={{height: '18px'}} src={data.arrowData.arrowRight} />
-                                }
+                                } */}
                               </div>
                             }
                           />

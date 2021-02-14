@@ -65,16 +65,13 @@ function getDeliveryMethodsAPI() {
         })
 }
 
-async function getDeviceBrandsAPI(searchText: string) {
+async function getDeviceBrandsAPI(searchText: string, page: number, per_page: number) {
     const store_id: number = storesDetails.store_id
-    const per_page = 10
-    const page = 1
     const is_enabled = true
 
     await repairWidgetAPI
         .getDeviceBrands(store_id, per_page, page, is_enabled, searchText)
         .then(async (res: any) => {
-            // console.log("api-repairWidgetAPI => Repair Device Brands:", res.data)
             repairWidData.changeRepairDeviceBrands(res.data)
         })
         .catch((error) => {
@@ -82,16 +79,31 @@ async function getDeviceBrandsAPI(searchText: string) {
         })
 }
 
-async function getBrandProductsAPI(brand_id: number, searchText: string) {
+async function addMoreDeviceBrandsAPI(searchText: string, page: number, per_page: number) {
     const store_id: number = storesDetails.store_id
-    const per_page = 10
-    const page = 1
+    const is_enabled = true
+
+    await repairWidgetAPI
+        .getDeviceBrands(store_id, per_page, page, is_enabled, searchText)
+        .then(async (res: any) => {
+            const cntDeviceBrands = repairWidData.repairDeviceBrands
+            for (let i = 0; i < res.data.data.length; i++) {
+                cntDeviceBrands.data.push(res.data.data[i])
+            }
+            repairWidData.changeRepairDeviceBrands(cntDeviceBrands)
+        })
+        .catch((error) => {
+            console.log("Error in add more Repair Device Brands", error)
+        })
+}
+
+async function getBrandProductsAPI(brand_id: number, searchText: string, page: number, per_page: number) {
+    const store_id: number = storesDetails.store_id
     const included_voided = true
 
     await repairWidgetAPI
         .getBrandProducts(store_id, per_page, page, included_voided, brand_id, searchText)
         .then(async (res: any) => {
-            // console.log("api-repairWidgetAPI => Repair Brand Products:", res.data)
             repairWidData.changeRepairBrandProducts(res.data)
         })
         .catch((error) => {
@@ -99,11 +111,27 @@ async function getBrandProductsAPI(brand_id: number, searchText: string) {
         })
 }
 
-async function getRepairsOfferedDeviceAPI(product_id: number) {
+async function addMoreBrandProductsAPI(brand_id: number, searchText: string, page: number, per_page: number) {
+    const store_id: number = storesDetails.store_id
+    const included_voided = true
+
+    await repairWidgetAPI
+        .getBrandProducts(store_id, per_page, page, included_voided, brand_id, searchText)
+        .then(async (res: any) => {
+            const cntDeviceProducts = repairWidData.repairBrandProducts
+            for (let i = 0; i < res.data.data.length; i++) {
+                cntDeviceProducts.data.push(res.data.data[i])
+            }
+            repairWidData.changeRepairBrandProducts(cntDeviceProducts)
+        })
+        .catch((error) => {
+            console.log("Error in add more Repair Brand Products", error)
+        })
+}
+
+async function getRepairsOfferedDeviceAPI(product_id: number, text: string, page: number, per_page: number) {
     const locale: string = window.localStorage.getItem("cntLang") || "en"
     const store_id: number = storesDetails.store_id
-    const per_page = 20
-    const page = 1
     const included_voided = false
     const name_sort_order = "asc"
     const is_active = true
@@ -119,10 +147,10 @@ async function getRepairsOfferedDeviceAPI(product_id: number) {
             product_id,
             name_sort_order,
             is_active,
-            include_cost
+            include_cost,
+            text
         )
         .then(async (res: any) => {
-            // console.log("api-repairWidgetAPI => Repair Offered Device:", res.data)
             repairWidData.changeRepairsOfferedDevice(res.data)
         })
         .catch((error) => {
@@ -130,11 +158,46 @@ async function getRepairsOfferedDeviceAPI(product_id: number) {
         })
 }
 
+async function addMoreRepairsOfferedDeviceAPI(product_id: number, text: string, page: number, per_page: number) {
+    const locale: string = window.localStorage.getItem("cntLang") || "en"
+    const store_id: number = storesDetails.store_id
+    const included_voided = false
+    const name_sort_order = "asc"
+    const is_active = true
+    const include_cost = storesDetails.storesDetails.settings.display_repair_cost
+
+    await repairWidgetAPI
+        .getRepairsOfferedDevice(
+            locale,
+            store_id,
+            per_page,
+            page,
+            included_voided,
+            product_id,
+            name_sort_order,
+            is_active,
+            include_cost,
+            text
+        )
+        .then(async (res: any) => {
+            const cntOfferedRepairs = repairWidData.repairsOfferedDevices;
+            for (let i = 0; i < res.data.data.length; i++) {
+                cntOfferedRepairs.data.push(res.data.data[i])
+            }
+            repairWidData.changeRepairsOfferedDevice(cntOfferedRepairs)
+        })
+        .catch((error) => {
+            console.log("Error in add more Repair Offered Device", error)
+        })
+}
+
 export {
     getRepairLookupAPI,
     getDeliveryMethodsAPI,
     getRepairsOfferedDeviceAPI,
-    // postAppointmentQuoteAPI,
+    addMoreRepairsOfferedDeviceAPI,
     getDeviceBrandsAPI,
+    addMoreDeviceBrandsAPI,
     getBrandProductsAPI,
+    addMoreBrandProductsAPI
 }

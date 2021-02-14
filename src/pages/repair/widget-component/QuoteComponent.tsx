@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import { Card } from '.'
-import { useT } from '../../../i18n/index'
+import { useT, T } from '../../../i18n/index'
 
 type Props = {
   data: any;
@@ -23,7 +23,7 @@ const QuoteComponent = ({data, quoteKey, repairWidgetData, subDomain}: Props) =>
             <img src={data[quoteKey].img} alt='quote-img' />
           </div>
           <Typography className={subDomain + '-repair-service-summary-title'}>
-            {t(data[quoteKey].title)}
+            <T id={data[quoteKey].title} data={{ subDomain: subDomain }} />
           </Typography>
           <Typography className={subDomain + '-quote-component-content'}>
             {t('YOU_WILL_RECEIVE_AN')} <b>{t('EMAIL').toLocaleLowerCase()}</b> {t('AT')} <b>{repairWidgetData.contactDetails.email}</b> {t('SHORTLY')}, {t(data[quoteKey].text)}

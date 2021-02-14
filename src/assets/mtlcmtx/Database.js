@@ -64,6 +64,9 @@ import mintImg from './img/repair/section3/northtech-mint.png'
 import goodImg from './img/repair/section3/northtech-good.png'
 import fairImg from './img/repair/section3/northtech-fair.png'
 
+// repair section4 - images
+import repairSec4 from './img/repair/repair-sec4.png'
+
 // chat - images
 import chatImg from './img/chat.png';
 
@@ -102,7 +105,7 @@ const cardMobileData = {
         { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: 'FRONTEND_TRADE', href: "#" },
         { img: repair, title: "REPAIR", btnTitle: "REPAIR", flag: 'FRONTEND_REPAIR', href: "/repair" },
         { img: buy, title: "SHOP", btnTitle: "SHOP", flag: 'FRONTEND_BUY', href: "http://northtechshop.ca/" },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'ALWAYS_TRUE', href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: 'FRONTEND_INSURE', href: "#" },
     ]
 }
 
@@ -179,14 +182,15 @@ const colorPalle = {
     repairBooktimeCol: '#2B388F',
     textThemeCol: '#2B388F',
     heartCol: '#2B388F',
-    chatBgCol: '#2B388F'
+    chatBgCol: '#2B388F',
+    sec2SvgCol: "#FEDA00"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: 'FRONTEND_REPAIR' },
     { href: "http://northtechshop.ca/", text: "SHOP", isActive: false, flag: 'FRONTEND_BUY' },
-    { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
+    { href: "#", text: "INSURE", isActive: false, flag: 'FRONTEND_INSURE' },
 ]
 
 const navShop = {
@@ -273,7 +277,7 @@ const mobileNavItemData = {
         {text: 'TRADE', href: '#', flag: 'FRONTEND_TRADE'},
         {text: 'REPAIR', href: '/repair', flag: 'FRONTEND_REPAIR'},
         {text: 'SHOP', href: '#', flag: 'FRONTEND_MEGA_MENU'},
-        {text: 'INSURE', href: '#', flag: 'ALWAYS_TRUE'},
+        {text: 'INSURE', href: '#', flag: 'FRONTEND_INSURE'},
         {text: 'BUSINESS', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'FINANCING', href: '#', flag: 'ALWAYS_TRUE'},
         {text: 'INSURANCE', href: '#', flag: 'ALWAYS_TRUE'},
@@ -386,7 +390,7 @@ const homeTextData = {
         ],
         contentSubTitle: '',
         content: [
-            '(819) 700-2211 | info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
+            'info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU',
             'NORTHTECH_FOOTER_CONTENT_TWO'
         ],
         footerLink: [
@@ -445,16 +449,19 @@ const repairData = {
                 img: selectRepair, 
                 subtitle: 'SELECT_A_REPAIR_CATEGORY', 
                 content: 'SELECT_A_REPAIR_CATEGORY_CONTENT',
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: 'SEND_US_YOUR_DEVICE',
-                content: 'SEND_US_YOUR_DEVICE_CONTENT',
+                subtitle: 'GET_YOUR_DEVICE_TO_US',
+                content: 'GET_YOUR_DEVICE_TO_US_CONTENT',
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: 'RECEIVE_YOUR_DEVICE',
                 content: 'NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT',
+                type: 'ReceiveDevice'
             }
         ]
     },
@@ -483,6 +490,13 @@ const repairData = {
                 img: fairImg
             }
         ]
+    },
+    section4: {
+        title: 'GET_THE_LATEST',
+        content: 'SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE',
+        btnTitle: 'SHOP_NOW',
+        img: repairSec4,
+        themeCol: 'black'
     }
 }
 

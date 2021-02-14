@@ -73,6 +73,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     const [sendToAddress, setSendToAddress] = useState("")
     const [mailInChecked, setMailinChecked] = useState(0)
     const [disableStatus, setDisableStatus] = useState(true)
+    const [hoursRange, setHoursRange] = useState<any[]>([])
 
     const t = useT()
 
@@ -253,6 +254,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                     const cntLoc: any[] = makeLocations([storesDetails.findAddLocation[i]])
                     storesDetails.changeCntUserLocation(cntLoc)
                     storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
+                    setHoursRange(cntLoc[0].hours[0].hrs)
                 }
             }
         }
@@ -379,7 +381,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        <CustomBookTime
+                                        {hoursRange.length && <CustomBookTime
                                             themeCol={themeCol}
                                             brandThemeCol={brandThemeCol}
                                             repairBooktimeCol={repairBooktimeCol}
@@ -399,7 +401,8 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                                             selectYear={year}
                                             selectMonth={month}
                                             selectDay={day}
-                                        />
+                                            hoursRange={hoursRange}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div

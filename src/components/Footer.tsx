@@ -3,6 +3,8 @@ import { Grid, Box, Typography } from '@material-ui/core';
 import {Logo} from '../components';
 import { useT } from '../i18n/index';
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
+import { phoneFormatString } from "./Header"
+import { storesDetails } from "../store"
 
 type Props = {
   subDomain?: string;
@@ -42,6 +44,7 @@ const Footer = ({subDomain, features}: Props) => {
                   {t(data.homeTextData.footer.contentSubTitle)}
                 </div>
                 <div className={subDomain + '-device-list-grid'}>
+                  {phoneFormatString(storesDetails.storesDetails.phone)} | <br/>
                   {data.homeTextData.footer.content[0]}
                 </div>
               </Grid>
