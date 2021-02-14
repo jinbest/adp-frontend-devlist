@@ -14,7 +14,7 @@ const Section5 = ({subDomain}: Props) => {
   const t = useT();
 
   return (
-    <section className={subDomain + '-sec5-Back'}>
+    <section className={subDomain + '-sec5-Back'} style={{display: 'none'}}>
       <Box className={subDomain + '-Container ' + subDomain + '-sec5-container'}>
         <Typography className='f40 bold mg-t-1'>{t(bounceData.title)}</Typography>
         <Typography className='f18'>{t(bounceData.content)}</Typography>

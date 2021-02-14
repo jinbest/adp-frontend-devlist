@@ -20,8 +20,8 @@ const DeviceListComponent = ({img, title, content, subDomain}: Props) => {
 
 DeviceListComponent.defaultProps = {
   img: '',
-  title: 'Best offer available',
-  content: 'Selected by our price-quality algorithm',
+  title: 'Competitive Pricing',
+  content: 'We’re proud to offer the largest selection of fully tested and graded pre-owned devices in Winnipeg. All backed by a one year warranty and lifetime IMEI guarantee',
   subDomain: 'geebo'
 }
 

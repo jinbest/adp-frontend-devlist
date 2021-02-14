@@ -118,7 +118,7 @@ const cardMobileData = {
             flag: "FRONTEND_BUY",
             href: "http://shop.wirelessrevottawa.ca/",
         },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -196,6 +196,7 @@ const colorPalle = {
     textThemeCol: "#3677A1",
     heartCol: "#3677A1",
     chatBgCol: "#3677A1",
+    sec2SvgCol: "#3677A1"
 }
 
 const navItemsData = [
@@ -207,7 +208,7 @@ const navItemsData = [
         isActive: false,
         flag: "FRONTEND_BUY",
     },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
     { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
     { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
     { href: "#", text: "WHOLESALE", isActive: false, flag: "ALWAYS_TRUE" },
@@ -345,7 +346,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
@@ -515,16 +516,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },

@@ -15,6 +15,7 @@ import { Error } from "../error"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { getRepairLookupAPI, getDeliveryMethodsAPI } from "./RepairWidgetCallAPI"
 import { storesDetails } from "../../store"
+import { Link } from "react-router-dom"
 
 const stepList: string[] = [
     "deviceBrand",
@@ -235,12 +236,12 @@ class RepairWidget extends React.Component<Props, MyState> {
                         <div className={subDomain + "-repair-widget " + subDomain + "-Container"}>
                             {this.state.step === 0 &&
                             Object.keys(this.computedRepairWidgetData.appointResponse).length ? (
-                                <div
+                                <Link
+                                    to="/home"
                                     className={subDomain + "-back-to-top"}
-                                    onClick={this.handleBackStep}
                                 >
                                     <BackSVG color="#BDBFC3" />
-                                </div>
+                                </Link>
                             ) : (
                                 <></>
                             )}

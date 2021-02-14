@@ -22,7 +22,7 @@ const Section2 = ({subDomain}: Props) => {
           {repair.content.map((item:any, index:number) => {
             return (
               <Grid item xs={12} md={4} key={index}>
-                <CardRepairSec2 img={item.img} subtitle={t(item.subtitle)} content={t(item.content)} subDomain={subDomain} />
+                <CardRepairSec2 type={item.type} subtitle={t(item.subtitle)} content={t(item.content)} subDomain={subDomain} />
               </Grid>
             )
           })}

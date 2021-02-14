@@ -25,7 +25,9 @@ class Section1 extends React.Component<Props> {
 
   handleRepairWidget() {
     const { handleStatus, repairWidgetStore } = this.props;
+    const cntAppointment: any = repairWidgetStore.appointResponse;
     repairWidgetStore.init();
+    repairWidgetStore.changeAppointResponse(cntAppointment);
     handleStatus(false);
   }
 

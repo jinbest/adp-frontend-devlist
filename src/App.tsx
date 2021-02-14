@@ -26,7 +26,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[4]
+// const subDomain = devicelist[0]
 
 type FeatureProps = {
     flag: string
@@ -63,6 +63,7 @@ function App(): JSX.Element {
 
         appLoadAPI
             .getStoresDetail(apexDomain, false)
+            // .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)
@@ -79,7 +80,7 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }]
+                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }, { flag: "FRONTEND_INSURE", isActive: false }]
                     if (
                         subDomain === "mobiletechlabs" ||
                         subDomain === "wirelessrevottawa" ||

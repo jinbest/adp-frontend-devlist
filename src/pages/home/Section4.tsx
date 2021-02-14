@@ -15,20 +15,21 @@ const Section4 = ({subDomain}: Props) => {
   return (
     <div className={subDomain + '-sec4-background'}>
       <section className={subDomain + '-Container'}>
+
         <Box className={'mg-t-7 ' + subDomain + '-sec4-container-box'}>
           <Grid container item xs={12}>
             <Grid item xs={12} sm={12} md={6}>
               <Typography className={'f40 bold ' + subDomain + '-section4-title'}>
                 {t(data.homeTextData.section4.title)}
               </Typography>
-              <Box className={subDomain + '-section4-button mobile'}>
+              {/* <Box className={subDomain + '-section4-button mobile'}>
                 <Button 
                   title={t(data.homeTextData.section4.btnTitle)} 
                   bgcolor={data.colorPalle.themeColor} 
                   borderR='20px'
                   subDomain={subDomain}
                 />
-              </Box>
+              </Box> */}
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Grid item container xs={12}>
@@ -43,11 +44,11 @@ const Section4 = ({subDomain}: Props) => {
                 })}
               </Grid>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Box className={subDomain + '-section4-button desktop'}>
                 <Button title={t(data.homeTextData.section4.btnTitle)} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Grid container item xs={12}>
             <Grid item xs={12} sm={12} md={3}></Grid>
@@ -66,6 +67,7 @@ const Section4 = ({subDomain}: Props) => {
             </Grid>
           </Grid>
         </Box>
+
         <Box className={'mg-t-7 ' + subDomain + '-sec4-container-special-box'}>
           <Grid container item xs={12}>
             <Typography className={'f40 bold ' + subDomain + '-section-title'}>
