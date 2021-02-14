@@ -284,15 +284,19 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
                             name={item.flag}
                             inactiveComponent={()=><></>}
                             activeComponent={()=>
-                              <div className='flex-space-between' onClick={()=>{item.text === 'SHOP' && setMobileMenu('right')}}>
+                              <div className='flex-space-between' onClick={()=>{
+                                // item.text === 'SHOP' && setMobileMenu('right')
+                              }}>
                                 {isExternal(item.href) ? 
                                   <a className={subDomain + '-mobile-item'} href={item.href} target='_blank' rel='noreferrer'>{t(item.text)}</a> : 
                                   (item.href === '#' || !item.href) ? <></> :
                                   <Link className={subDomain + '-mobile-item'} to={item.href}>{t(item.text)}</Link>
                                 }
+                                
+                                {/* Megamenu on mobile disabled
                                 {item.text === 'SHOP' && 
                                   <img style={{height: '18px'}} src={data.arrowData.arrowRight} />
-                                }
+                                } */}
                               </div>
                             }
                           />

@@ -385,7 +385,7 @@ const ChooseDevice = ({data, stepName, step, subDomain, handleStep, handleChange
         <Grid item xs={12} md={12}>
           <Typography className={subDomain + "-repair-widget-title"}>
             {/* {stepName === 'deviceModel' ? 
-              t(data.title) + ' ' + repairWidgetStore.deviceBrand[repairWidgetStore.deviceCounter-1].name : 
+              t(data.title) + ' / ' + repairWidgetStore.deviceBrand[repairWidgetStore.deviceCounter-1].name : 
               t(data.title)
             } */}
             {t(data.title)}

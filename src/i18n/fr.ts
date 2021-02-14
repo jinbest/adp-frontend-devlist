@@ -180,7 +180,7 @@ export class LanguageKeysFr extends LanguageKeys {
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE = "Comment trouver le modèle de votre appareil"
     public HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT =
         "Le modèle de l'appareil est indiqué dans la section Paramètres / Système / À propos du téléphone ou dans Paramètres / Général / Stockage. Il peut également figurer sur la boîte d'origine et / ou le manuel fourni avec votre appareil."
-    public CHOOSE_YOUR_DEVICE_MODEL_APPLE = "Choisissez votre modèle d'appareil /"
+    public CHOOSE_YOUR_DEVICE_MODEL_APPLE = "Choisissez votre modèle d'appareil"
     public SEARCH_FOR_YOUR_MODEL = "Recherchez votre modèle"
     public CHOOSE_YOUR_REPAIRS = "Choisissez votre (vos) réparation (s)"
     public WHAT_IS_BROKEN = "Qu'est-ce qui est cassé?"
