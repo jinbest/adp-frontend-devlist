@@ -77,7 +77,7 @@ const Section1 = ({ subDomain, features }: Props) => {
         <section className={subDomain + "-Container"}>
             <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
                 <div className={subDomain + "-section1-title"}>
-                    {subDomain === "mobiletechlabs"
+                    {subDomain === "mobiletechlab"
                         ? t(data.homeTextData.section1.title[0])
                         : customeTitle + " " + t(data.homeTextData.section1.title[0])}
                 </div>
