@@ -60,7 +60,12 @@ const Footer = ({subDomain, features}: Props) => {
                         {t(item.title)}
                       </div>
                       <div className={subDomain + '-device-list-grid'}>
-                        {t(item.content)}
+                        <a href={`tel:${t(item.content).split("|")[0]}`} style={{textDecoration: 'none', color: 'black'}}>
+                          {t(item.content).split("|")[0]}
+                        </a> |
+                        <a href={`mailto:${t(item.content).split("|")[1].split(" ")[1]}`} style={{textDecoration: 'none', color: 'black'}}>
+                          {t(item.content).split("|")[1]}
+                        </a>
                       </div>
                     </React.Fragment>
                   )

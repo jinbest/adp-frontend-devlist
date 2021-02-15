@@ -56,3 +56,35 @@
   border-radius: 0 5px 5px 0;
   padding: 3px 15px;
 }
+
+.m-0 {
+  margin: 0;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.product-card-title {
+  font-size: 1vw;
+}
+
+.product-card-content {
+  font-size: 0.8vw;
+}
+
+.product-card-container {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+}
+
+.product-card-round-circle {
+  height: 0.6vw;
+  width: 0.6vw;
+}
+
+.product-card-icon {
+  height: 0.75vw !important;
+  width: 0.75vw !important;
+}

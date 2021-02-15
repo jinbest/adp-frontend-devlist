@@ -216,7 +216,8 @@ const shopPageData = {
     price: '$897',
     asLow: 'As low as $50 / mo',
     warranty: '12 months',
-    img: shopIPhone
+    img: shopIPhone,
+    type: 'New'
   }
 }
 
