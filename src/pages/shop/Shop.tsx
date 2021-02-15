@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Error } from '../error'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
-import {Shape, ProductList, SortbyDropdown} from './'
+import {Shape, ProductList, SortbyDropdown, FilterComponent} from './'
 
 type Props = {
   subDomain: string;
@@ -38,8 +38,8 @@ const Shop = ({subDomain, handleStatus, features}: Props) => {
             <section className={subDomain + '-Container'}>
               <div style={{display: 'flex'}}>
                 <div style={{width: '20%', paddingRight: '20px'}}>
-                  <SortbyDropdown />
-                  filter
+                  <SortbyDropdown subDomain={subDomain} options={['First', 'Second', 'Third']} title='Filter By' />
+                  <FilterComponent subDomain={subDomain} />
                 </div>
                 <div style={{width: '80%'}}>
                   <ProductList subDomain={subDomain} />

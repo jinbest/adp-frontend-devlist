@@ -26,7 +26,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[7]
+// const subDomain = devicelist[3]
 
 type FeatureProps = {
     flag: string
@@ -86,6 +86,7 @@ function App(): JSX.Element {
                         subDomain === "wirelessrevottawa" ||
                         subDomain === "northtechsolutions" ||
                         subDomain === "okotoksphonephix"
+                        || subDomain === "nanotechmobile"
                     ) {
                         feats.push({ flag: "FRONTEND_BUY", isActive: true })
                     }
