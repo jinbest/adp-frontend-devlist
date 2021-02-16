@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Error } from '../error'
 import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
-import {Shape, ProductList, SortbyDropdown} from './'
+import {Shape, ProductList, SortbyDropdown, FilterComponent, RightDrawer} from './'
 
 type Props = {
   subDomain: string;
@@ -10,8 +10,15 @@ type Props = {
 }
 
 const Shop = ({subDomain, handleStatus, features}: Props) => {
+  const mockData = require(`../../assets/${subDomain}/mock-data/mockData`);
+  const mainCol = mockData.shopPageData.shopEachItem.color;
 
   const [feats, setFeatures] = useState<any[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  }
 
   useEffect(() => {
     handleStatus(true);
@@ -33,15 +40,20 @@ const Shop = ({subDomain, handleStatus, features}: Props) => {
         name='FRONTEND_BUY'
         inactiveComponent={()=><Error />}
         activeComponent={()=>
-          <div className={subDomain + '-shop-main-page'}>
+          <div className={subDomain + '-shop-main-page'} id="shop-main-page">
             <Shape subDomain={subDomain} />
             <section className={subDomain + '-Container'}>
+              <div className='shop-mobile-filter-by'>
+                <p onClick={toggle} style={{border: `1px solid ${mainCol}`, color: mainCol}}>Filter By</p>
+                {isOpen && <div className='drawer-cover' onClick={toggle}></div>}
+                <RightDrawer open={isOpen} subDomain={subDomain} />
+              </div>
               <div style={{display: 'flex'}}>
-                <div style={{width: '20%', paddingRight: '20px'}}>
-                  <SortbyDropdown />
-                  filter
+                <div className='shop-filter-component'>
+                  <SortbyDropdown subDomain={subDomain} options={['First', 'Second', 'Third']} title='Filter By' />
+                  <FilterComponent subDomain={subDomain} />
                 </div>
-                <div style={{width: '80%'}}>
+                <div>
                   <ProductList subDomain={subDomain} />
                 </div>
               </div>

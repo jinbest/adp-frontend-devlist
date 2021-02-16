@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Typography, Grid, Box } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import { CardFix, ContentFix } from '../../components';
 import { useT } from "../../i18n/index";
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";

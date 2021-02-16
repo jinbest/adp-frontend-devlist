@@ -17,7 +17,7 @@ const subDomain = apexDomain.split(".")[0]
 // const devicelist = [
 //     "bananaservice",
 //     "geebodevicerepair",
-//     "mobiletechlabs",
+//     "mobiletechlab",
 //     "nanotechmobile",
 //     "northtechsolutions",
 //     "okotoksphonephix",
@@ -26,7 +26,7 @@ const subDomain = apexDomain.split(".")[0]
 //     "dccmtx",
 //     "mtlcmtx"
 // ]
-// const subDomain = devicelist[0]
+// const subDomain = devicelist[3]
 
 type FeatureProps = {
     flag: string
@@ -80,12 +80,16 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }, { flag: "FRONTEND_INSURE", isActive: false }]
+                    const feats: FeatureProps[] = [
+                        { flag: "ALWAYS_TRUE", isActive: true }, 
+                        { flag: "FRONTEND_INSURE", isActive: false }
+                    ]
                     if (
-                        subDomain === "mobiletechlabs" ||
+                        subDomain === "mobiletechlab" ||
                         subDomain === "wirelessrevottawa" ||
                         subDomain === "northtechsolutions" ||
                         subDomain === "okotoksphonephix"
+                        || subDomain === "nanotechmobile"
                     ) {
                         feats.push({ flag: "FRONTEND_BUY", isActive: true })
                     }
@@ -123,7 +127,7 @@ function App(): JSX.Element {
                 <Route
                     path="/"
                     exact
-                    component={() => <Home subDomain={subDomain} features={features} />}
+                    component={() => <Home subDomain={subDomain} features={features} handleStatus={handleFooterStatus} />}
                 />
                 <Route path="/home" render={() => <Redirect to="/" />} />
                 <Route
@@ -169,7 +173,7 @@ function App(): JSX.Element {
             <Helmet>
                 <title>{pageTitle}</title>
                 <meta name="description" content={metaDescription} />
-                {subDomain === "mobiletechlabs" && <meta name="robots" content="noindex"></meta>}
+                {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
                 <script>{tagScript}</script>
             </Helmet>
 

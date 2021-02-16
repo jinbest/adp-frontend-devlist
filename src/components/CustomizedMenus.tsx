@@ -270,7 +270,7 @@ const CustomizedMenus = inject("headerStore")(
                         !locSelStatus
                             ? t(btnTitle)
                             : headerStore.cntUserLocation[0] &&
-                              headerStore.cntUserLocation[0].location_name
+                              headerStore.cntUserLocation[0].address_1
                     }
                     bgcolor={!locSelStatus ? themeColor : "transparent"}
                     txcolor={!locSelStatus ? "white" : "black"}

@@ -222,7 +222,7 @@ class RepairWidget extends React.Component<Props, MyState> {
     }
 
     render() {
-        const { subDomain } = this.props
+        const { subDomain, handleStatus } = this.props
         const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`)
         const mainData = require(`../../assets/${subDomain}/Database.js`)
         const themeCol = mainData.colorPalle.themeColor
@@ -239,6 +239,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                                 <Link
                                     to="/home"
                                     className={subDomain + "-back-to-top"}
+                                    onClick={()=>handleStatus(true)}
                                 >
                                     <BackSVG color="#BDBFC3" />
                                 </Link>

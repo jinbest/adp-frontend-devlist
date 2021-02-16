@@ -110,7 +110,7 @@ const cardMobileData = {
             flag: "FRONTEND_REPAIR",
             href: "/repair",
         },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "/shop" },
         { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
@@ -189,13 +189,13 @@ const colorPalle = {
     textThemeCol: "#00B0F0",
     heartCol: "#606163",
     chatBgCol: "#00B0F0",
-    sec2SvgCol: "#FEDA00"
+    sec2SvgCol: "#00B0F0"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
-    { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
+    { href: "/shop", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
     { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
@@ -562,13 +562,18 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Cell Phone, iPhone & iPad Repair Iqaluit | ${companyName ? companyName : ""}`,
-        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Peterborough. Call ${
+        title: `Get Quote`,
+        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Regina, SK. Call ${
             companyName ? companyName : ""
         } or book your repair online today!`,
-        headTag: `
+        headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5BV2QS9');              
         `,
-        bodyTag: `
+        bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BV2QS9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>              
         `,
     }
 }

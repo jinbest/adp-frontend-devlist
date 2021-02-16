@@ -57,7 +57,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
                 container
                 className={classes.root}
                 spacing={2}
-                style={{ display: subDomain === "mobiletechlabs" ? "none" : "flex" }}
+                style={{ display: subDomain === "mobiletechlab" ? "none" : "flex" }}
             >
                 <Grid item xs={12} md={6} className={classes.item1}>
                     <Typography

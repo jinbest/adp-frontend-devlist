@@ -69,13 +69,14 @@ const NavItemLink = ({ item: { href, text }, handleStatus, subDomain, feats }: P
 type PropsBrand = {
   item: string;
   color: string;
+  phoneNumber?: boolean;
 }
 
-const BrandItemLink = ({ item, color }: PropsBrand) => {
+const BrandItemLink = ({ item, color, phoneNumber }: PropsBrand) => {
   return (    
     <li style={{listStyle: 'none'}}>
-      <a style={{color: color, padding: '0 5px', fontWeight: 100, fontSize: '15px'}}>
-        {item.toLocaleUpperCase()}
+      <a style={{color: color, padding: '0 5px', fontWeight: 100, fontSize: '15px', textDecoration: 'none'}} href={phoneNumber ? `tel:${item}` : '#'}>
+        {phoneNumber ? phoneFormatString(item).toLocaleUpperCase() : item.toLocaleUpperCase()}
       </a>
     </li>
   )
@@ -136,7 +137,7 @@ const Header = ({subDomain, handleStatus, features}: PropsHeader) => {
             })}
           </ul>
           <ul style={{display: 'flex', justifyContent: 'flex-end', margin: 0, padding: 0, marginRight: '40px'}}>
-            <BrandItemLink item={phoneFormatString(storesDetails.storesDetails.phone)} color={brandItemLink.brandCol} />
+            <BrandItemLink item={storesDetails.storesDetails.phone} color={brandItemLink.brandCol} phoneNumber={true} />
             <SelectLang subDomain={subDomain} color={brandItemLink.brandCol} options={brandItemLink.selectOption} />
             <FeatureToggles features={feats}>
               <Feature

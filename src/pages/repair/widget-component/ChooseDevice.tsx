@@ -30,6 +30,18 @@ type ArrayProps = {
     array: any[]
 }
 
+function ConvertWarrantyUnit(val:string) {
+    if (val === 'DD' || val === 'DAY') {
+        return 'Day'
+    } else if (val === 'YY' || val === 'YEAR') {
+        return 'Year'
+    } else if (val === 'MM' || val === 'MONTH') {
+        return 'Month'
+    } else {
+        return 'Lifetime'
+    }
+}
+
 const ChooseDevice = ({
     data,
     stepName,
@@ -410,6 +422,9 @@ const ChooseDevice = ({
                         name: cntTypes[i].name,
                         estimate: cntTypes[i].estimate,
                         cost: cntTypes[i].cost,
+                        warranty: cntTypes[i].warranty,
+                        warranty_unit: cntTypes[i].warranty_unit,
+                        id: cntTypes[i].id,
                     })
                 }
             }
@@ -497,6 +512,7 @@ const ChooseDevice = ({
                                                         <img
                                                             src={item.img}
                                                             style={{ width: "80%" }}
+                                                            alt={item.alt}
                                                         />
                                                     </div>
                                                 )
@@ -545,7 +561,7 @@ const ChooseDevice = ({
                                                                 >
                                                                     {item.name}
                                                                 </p>
-                                                                <img src={item.img} />
+                                                                <img src={item.img} alt={item.alt} />
                                                             </div>
                                                         </div>
                                                     )
@@ -703,12 +719,12 @@ const ChooseDevice = ({
                                                 {storesDetails.storesDetails.settings
                                                     .display_repair_cost && (
                                                     <p className={subDomain + "-estimate-content"}>
-                                                        {item.cost}
+                                                        {item.cost + ' (Prices are plus tax where applicable.)'}
                                                     </p>
                                                 )}
-                                                {item.warranty && (
+                                                {item.warranty && item.warranty > 0 && (
                                                     <p className={subDomain + "-estimate-content"}>
-                                                        {item.warranty + " " + item.warranty_unit}
+                                                        {'Warranty: ' + item.warranty + " " + ConvertWarrantyUnit(item.warranty_unit)}
                                                     </p>
                                                 )}
                                             </div>
