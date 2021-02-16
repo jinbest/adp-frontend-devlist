@@ -20,11 +20,12 @@ type Props = {
   border?: string;
   textDecorator?: string;
   hover?: boolean;
+  children?: any;
 }
 
 const Button  = ({
   title, bgcolor, txcolor, borderR, onClick, width, maxWidth, hover,
-  height, margin, fontSize, icon, disable, subDomain, border, textDecorator
+  height, margin, fontSize, icon, disable, subDomain, border, textDecorator, children
 }: Props) => {
   // const t = useT();
 
@@ -38,7 +39,7 @@ const Button  = ({
       disabled={disable}
     >
       {icon && <RoomOutlinedIcon />}
-      {title}
+      {children ? children : title}
     </button>
   )
 }

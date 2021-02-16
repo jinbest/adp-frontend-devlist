@@ -50,13 +50,14 @@ class Section1 extends React.Component<Props> {
               </Typography>
               <Box className={subDomain + '-repair-section-button'}>
                 <Link to='/get-quote' style={{textDecoration: 'none'}} onClick={this.handleRepairWidget}>
-                  <Button 
-                    // title={repair.btnTitle} 
+                  <Button
                     title='Get Quote'
                     bgcolor={data.colorPalle.repairButtonCol} 
                     borderR='20px'
                     subDomain={subDomain}
-                  />
+                  >
+                    <T id={repair.btnTitle} />
+                  </Button>
                 </Link>
               </Box>
             </Grid>

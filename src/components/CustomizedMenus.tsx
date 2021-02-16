@@ -16,7 +16,6 @@ import Toast from "./toast/toast"
 
 export function makeLocations(data: any[]) {
     const locations: GetCurrentLocParams[] = []
-    // console.log('data', data)
     const days: any[] = [
         "SUNDAY",
         "MONDAY",
@@ -70,10 +69,22 @@ export function makeLocations(data: any[]) {
             location_id: data[i].id,
             hours: hours,
             days: weekDays,
+            latitude: data[i].latitude,
+            longitude: data[i].longitude
         }
         locations.push(cntItem)
     }
     return locations
+}
+
+function getNearestLocLink(data:any[]) {
+    let nearestLoc: any = data[0];
+    for (let i = 1; i < data.length; i++) {
+        if (data[i].distance < nearestLoc.distance) {
+            nearestLoc = data[i]
+        }
+    }
+    return `https://www.google.com/maps/search/?api=1&query=${nearestLoc.latitude},${nearestLoc.longitude}`
 }
 
 const StyledMenu = withStyles({
@@ -190,8 +201,8 @@ const CustomizedMenus = inject("headerStore")(
                     .findGeoLocation(headerStore.store_id, pos)
                     .then((res: any) => {
                         if (res.data.length) {
-                            setLocations(makeLocations(res.data))
                             headerStore.changeFindAddLocation(res.data)
+                            setLocations(makeLocations(headerStore.findAddLocation))
                             headerStore.changeLocationID(res.data[0].id)
                         } else {
                             setToastParams({
@@ -234,8 +245,8 @@ const CustomizedMenus = inject("headerStore")(
                     .findAddLocation(headerStore.store_id, userInfo)
                     .then((res: any) => {
                         if (res.data.length) {
-                            setLocations(makeLocations(res.data))
                             headerStore.changeFindAddLocation(res.data)
+                            setLocations(makeLocations(headerStore.findAddLocation))
                             headerStore.changeLocationID(res.data[0].id)
                         } else {
                             setToastParams({
@@ -333,9 +344,15 @@ const CustomizedMenus = inject("headerStore")(
                                 })}
                             </div>
                             <div className={subDomain + "-content-block"}>
-                                <a className={subDomain + "-link"} style={{ color: underLineCol }}>
+                                {headerStore.findAddLocation.length ? <a 
+                                    className={subDomain + "-link"} 
+                                    style={{ color: underLineCol }}
+                                    href={getNearestLocLink(headerStore.findAddLocation)}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                >
                                     {t("VIEW_STORE_DETAILS")}
-                                </a>
+                                </a> : <></>}
                                 <a
                                     className={subDomain + "-link"}
                                     style={{ color: underLineCol }}
@@ -343,9 +360,17 @@ const CustomizedMenus = inject("headerStore")(
                                 >
                                     {t("VIEW_MORE_STORES")}
                                 </a>
-                                <a className={subDomain + "-link"} style={{ color: underLineCol }}>
-                                    {t("GET_DIRECTIONS")}
-                                </a>
+                                {locSelStatus && 
+                                    <a 
+                                        className={subDomain + "-link"} 
+                                        style={{ color: underLineCol }}
+                                        href={`https://www.google.com/maps/search/?api=1&query=${headerStore.cntUserLocation[0].latitude},${headerStore.cntUserLocation[0].longitude}`}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                    >
+                                        {t("GET_DIRECTIONS")}
+                                    </a>
+                                }
                             </div>
                             <FeatureToggles features={features}>
                                 <Feature

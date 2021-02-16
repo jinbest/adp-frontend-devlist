@@ -10,6 +10,7 @@ import { PostAppointParams } from "../model/post-appointment-params"
 import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
+import Loading from "../../../components/Loading";
 
 type Props = {
     repairWidgetData: any
@@ -35,10 +36,12 @@ const RepairServiceSummary = ({
     const textThemeCol = mainData.colorPalle.textThemeCol
     const [disableStatus, setDisableStatus] = useState(false)
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const t = useT()
 
     const handleSubmit = () => {
         setDisableStatus(true)
+        setIsSubmitting(true)
         const tp: string = code === "MAIL_IN" ? "QUOTE" : "APPOINTMENT"
         const repairs: any[] = []
         for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
@@ -99,19 +102,22 @@ const RepairServiceSummary = ({
                     ChooseNextStep()
                 } else {
                     setToastParams({
-                        msg: "There is an empty response for an appointment request.",
+                        msg: "Something went wrong, please try again or contact us.",
                         isWarning: true,
                     })
+                    setDisableStatus(false)
+                    setIsSubmitting(false)
                     return
                 }
             })
             .catch((error) => {
                 setToastParams({
-                    msg: "Error in request an appointment.",
+                    msg: "Something went wrong, please try again or contact us.",
                     isError: true,
                 })
                 setDisableStatus(false)
-                console.log("Error in post Appointment and Quote", error)
+                setIsSubmitting(false)
+                console.log("Something went wrong, please try again or contact us.", error)
             })
     }
 
@@ -336,7 +342,9 @@ const RepairServiceSummary = ({
                                             onClick={handleSubmit}
                                             subDomain={subDomain}
                                             disable={disableStatus}
-                                        />
+                                        >
+                                            {isSubmitting && <Loading />}
+                                        </Button>
                                     )}
                                 />
                             </FeatureToggles>
@@ -358,7 +366,9 @@ const RepairServiceSummary = ({
                                             onClick={handleSubmit}
                                             subDomain={subDomain}
                                             disable={disableStatus}
-                                        />
+                                        >
+                                            {isSubmitting && <Loading />}
+                                        </Button>
                                     )}
                                 />
                             </FeatureToggles>

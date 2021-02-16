@@ -14,6 +14,7 @@ import { makeLocations } from "../../../components/CustomizedMenus"
 import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
+import Loading from "../../../components/Loading";
 
 type Props = {
     data: any
@@ -54,9 +55,15 @@ const ContactDetails = ({
     const [postalCode, setPostalCode] = useState("")
     const [disableStatus, setDisableStatus] = useState(true)
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
+    const [isSubmiting, setIsSubmiting] = useState<boolean[]>([false, false])
 
     const handleSubmit = (param: string) => {
         setDisableStatus(true)
+        if (param === "appointment") {
+            setIsSubmiting([true, false])
+        } else {
+            setIsSubmiting([false, true])
+        }
         if (param !== "appointment") {
             const repairs: any[] = []
             for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
@@ -120,11 +127,12 @@ const ContactDetails = ({
                 })
                 .catch((error) => {
                     setToastParams({
-                        msg: "Error in request an appointment.",
+                        msg: "Something went wrong, please try again or contact us.",
                         isError: true,
                     })
                     setDisableStatus(false)
-                    console.log("Error in post Appointment and Quote", error)
+                    setIsSubmiting([false, false])
+                    console.log("Something went wrong, please try again or contact us.", error)
                 })
         } else {
             handleChangeChooseData(6, {
@@ -145,6 +153,11 @@ const ContactDetails = ({
 
     const handleButton = (param: string) => {
         setDisableStatus(true)
+        if (param === "appointment") {
+            setIsSubmiting([true, false])
+        } else {
+            setIsSubmiting([false, true])
+        }
         if (storesDetails.location_id < 0) {
             findLocationAPI
                 .findAddLocation(storesDetails.store_id, {
@@ -165,6 +178,7 @@ const ContactDetails = ({
                             isWarning: true,
                         })
                         setDisableStatus(false)
+                        setIsSubmiting([false, false])
                     }
                 })
                 .catch((error) => {
@@ -174,6 +188,7 @@ const ContactDetails = ({
                         isError: true,
                     })
                     setDisableStatus(false)
+                    setIsSubmiting([false, false])
                 })
             return
         } else {
@@ -415,7 +430,9 @@ const ContactDetails = ({
                                                 onClick={() => handleButton("appointment")}
                                                 disable={disableStatus}
                                                 subDomain={subDomain}
-                                            />
+                                            >
+                                                {isSubmiting[0] && <Loading />}
+                                            </Button>
                                         )}
                                     />
                                 </FeatureToggles>
@@ -435,7 +452,9 @@ const ContactDetails = ({
                                                 onClick={() => handleButton("quote")}
                                                 disable={disableStatus}
                                                 subDomain={subDomain}
-                                            />
+                                            >
+                                                {isSubmiting[1] && <Loading />}
+                                            </Button>
                                         )}
                                     />
                                 </FeatureToggles>
