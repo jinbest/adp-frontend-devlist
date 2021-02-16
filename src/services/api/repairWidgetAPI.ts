@@ -26,7 +26,7 @@ class RepairWidgetAPI {
                 })
                 .catch((error) => {
                     if (error) {
-                        console.log("error response in get device brand: ", error)
+                        reject(error)                        
                     }
                 })
         })
@@ -56,7 +56,7 @@ class RepairWidgetAPI {
                 })
                 .catch((error) => {
                     if (error) {
-                        console.log("error response in get brand products: ", error)
+                        reject(error)
                     }
                 })
         })
@@ -80,7 +80,7 @@ class RepairWidgetAPI {
                 })
                 .catch((error) => {
                     if (error) {
-                        console.log("error response in get repair look-up: ", error)
+                        reject(error)
                     }
                 })
         })
@@ -100,7 +100,7 @@ class RepairWidgetAPI {
                 })
                 .catch((error) => {
                     if (error) {
-                        console.log("error response in get delivery methods: ", error)
+                        reject(error)
                     }
                 })
         })
@@ -138,7 +138,7 @@ class RepairWidgetAPI {
                 })
                 .catch((error) => {
                     if (error) {
-                        console.log("error response in get repairs offered device: ", error)
+                        reject(error)
                     }
                 })
         })
@@ -159,7 +159,7 @@ class RepairWidgetAPI {
                 })
                 .catch((error) => {
                     if (error) {
-                        console.log("error response in post appointment quote: ", error)
+                        reject(error)
                     }
                 })
         })

@@ -15,4 +15,6 @@ export interface GetCurrentLocParams {
   hours?: hourProps[]
   location_id: number
   location_name: string
+  latitude?: number
+  longitude?: number
 }

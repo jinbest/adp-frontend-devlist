@@ -17,7 +17,7 @@ class AppLoadAPI {
         })
         .catch((error) => {
           if (error) {
-            console.log("error response in get store details: ", error)
+            reject(error)
           }
         })
     })
@@ -37,7 +37,7 @@ class AppLoadAPI {
         })
         .catch((error) => {
           if (error) {
-            console.log("error response in get store details: ", error)
+            reject(error)
           }
         })
     })

@@ -89,7 +89,6 @@ function App(): JSX.Element {
                         subDomain === "wirelessrevottawa" ||
                         subDomain === "northtechsolutions" ||
                         subDomain === "okotoksphonephix"
-                        || subDomain === "nanotechmobile"
                     ) {
                         feats.push({ flag: "FRONTEND_BUY", isActive: true })
                     }
