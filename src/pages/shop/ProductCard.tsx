@@ -17,7 +17,7 @@ const ProductCard = ({data}: Props) => {
       <div className='shop-image-container'>
         <img src={data.img} alt='each-item' />
       </div>
-      <div style={{padding: '0.8vw 1.5vw'}}>
+      <div className='shop-prod-card-container1'>
         <div style={{display: 'flex',justifyContent: 'space-between'}}>
           <p className='m-0 p-0 product-card-title' style={{fontWeight: 'bold'}}>{data.title}</p>
           <p className='m-0 p-0 product-card-title' style={{fontWeight: 'bold'}}>{data.capacity}</p>
@@ -35,8 +35,8 @@ const ProductCard = ({data}: Props) => {
           <p className='m-0 p-0 product-card-content'>{data.availableOnline}</p>
         </div>
       </div>
-      <div style={{padding: '0 1.5vw 0.8vw'}}>
-        <p className='m-0 p-0 card-title' style={{color: data.color}}>{data.price}</p>
+      <div className='shop-prod-card-container2'>
+        <p className='m-0 p-0 product-card-title' style={{color: data.color}}>{data.price}</p>
         <p className='m-0 p-0 product-card-content'>{data.asLow}</p>
         <p className='m-0 p-0 product-card-content'>{data.warranty}</p>
       </div>

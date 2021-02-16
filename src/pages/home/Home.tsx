@@ -6,9 +6,10 @@ import { Helmet } from "react-helmet"
 type Props = {
     subDomain: string
     features: any[]
+    handleStatus: (status:boolean) => void
 }
 
-const Home = ({ subDomain, features }: Props) => {
+const Home = ({ subDomain, features, handleStatus }: Props) => {
     const mainData = require(`../../assets/${subDomain}/Database`)
 
     const SectionItemComponents = [Section4, Section5, Section6]
@@ -33,7 +34,7 @@ const Home = ({ subDomain, features }: Props) => {
             </Helmet>
 
             <Shape subDomain={subDomain} />
-            <Section1 subDomain={subDomain} features={features} />
+            <Section1 subDomain={subDomain} features={features} handleStatus={handleStatus} />
             <Section2 subDomain={subDomain} features={features} />
             <Section3 subDomain={subDomain} features={features} />
             {SectionItemComponents.map((SectionItem, index: number) => {

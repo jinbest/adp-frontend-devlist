@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react"
 import { CardMobile } from "../../components"
 import { Grid, Box, Typography } from "@material-ui/core"
-import { Search } from "../../components"
+import { Search, Button } from "../../components"
 import { useT } from "../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { Link } from "react-router-dom"
+import { repairWidgetStore } from "../../store"
 
 type Props = {
     subDomain?: string
     features: any[]
+    handleStatus: (status:boolean) => void
 }
 
-const Section1 = ({ subDomain, features }: Props) => {
+const Section1 = ({ subDomain, features, handleStatus }: Props) => {
     const data = require(`../../assets/${subDomain}/Database`)
     const t = useT()
 
@@ -73,6 +76,13 @@ const Section1 = ({ subDomain, features }: Props) => {
   |   }, [searchBarVisible])                                                                                        |
   ---------------------------------------------------------------------------------------------------------------- */
 
+    const handleGetQuote = () => {
+        const cntAppointment: any = repairWidgetStore.appointResponse;
+        repairWidgetStore.init();
+        repairWidgetStore.changeAppointResponse(cntAppointment);
+        handleStatus(false);
+    }
+
     return (
         <section className={subDomain + "-Container"}>
             <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
@@ -87,6 +97,17 @@ const Section1 = ({ subDomain, features }: Props) => {
                 <Typography className={subDomain + "-section1-subtitle"}>
                     {t(data.homeTextData.section1.subtitle)}
                 </Typography>
+                <Box className={subDomain + '-repair-section-button'}>
+                    <Link to='/get-quote' style={{textDecoration: 'none'}} onClick={handleGetQuote}>
+                        <Button
+                            title={t('GET_QUOTE')}
+                            bgcolor={data.colorPalle.repairButtonCol} 
+                            borderR='20px'
+                            subDomain={subDomain}
+                            width='100%'
+                        />
+                    </Link>
+                </Box>
 
                 <FeatureToggles features={featSearch}>
                     <Feature

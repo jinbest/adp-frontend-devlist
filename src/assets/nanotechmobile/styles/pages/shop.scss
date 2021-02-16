@@ -37,6 +37,26 @@
   margin-top: 10%;
 }
 
+.shop-prod-card-container1 {
+  padding: 0.8vw 1.5vw;
+  @media (max-width: 960px) {
+    padding: 1.2vw 2vw;
+  }
+  @media (max-width: 600px) {
+    padding: 3vw 5vw;
+  }
+}
+
+.shop-prod-card-container2 {
+  padding: 0 1.5vw 0.8vw;
+  @media (max-width: 960px) {
+    padding: 0 2vw 1.2vw;
+  }
+  @media (max-width: 600px) {
+    padding: 0 5vw 3vw;
+  }
+}
+
 .shop-product-card-container {
   border: 1px solid rgba(0,0,0,0.1);
   padding: 1px;
@@ -55,6 +75,49 @@
   z-index: 1;
   border-radius: 0 5px 5px 0;
   padding: 3px 15px;
+  @media (max-width: 960px) {
+    font-size: 2.5vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 7.5vw;
+    top: 7.5vw;
+  }
+}
+
+.shop-filter-component {
+  padding-right: 50px;  
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.shop-mobile-filter-by {
+  display: none;
+  margin: -80px 0 40px;
+  p {
+    padding: 5px 15px;
+    border-radius: 7px;
+    font-size: 17px;
+    width: fit-content;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+      transform: scale(1.01);
+    }
+  }
+  .drawer-cover {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+  }
+  @media (max-width: 960px) {
+    display: block;
+  }
 }
 
 .m-0 {
@@ -67,10 +130,22 @@
 
 .product-card-title {
   font-size: 1vw;
+  @media (max-width: 960px) {
+    font-size: 2vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 5.5vw;
+  }
 }
 
 .product-card-content {
   font-size: 0.8vw;
+  @media (max-width: 960px) {
+    font-size: 1.7vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 4.5vw;
+  }
 }
 
 .product-card-container {
@@ -82,11 +157,27 @@
 .product-card-round-circle {
   height: 0.6vw;
   width: 0.6vw;
+  @media (max-width: 960px) {
+    height: 1.6vw;
+    width: 1.6vw;
+  }
+  @media (max-width: 600px) {
+    height: 4vw;
+    width: 4vw;
+  }
 }
 
 .product-card-icon {
   height: 0.75vw !important;
   width: 0.75vw !important;
+  @media (max-width: 960px) {
+    height: 1.75vw !important;
+    width: 1.75vw !important;
+  }
+  @media (max-width: 600px) {
+    height: 4vw !important;
+    width: 4vw !important;
+  }
 }
 
 /* Reset Select */
@@ -153,7 +244,7 @@ select {
 .#{$folderName}-filter-component {
   .content-title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     margin: 0;
     padding: 20px 0 8px;
   }
@@ -216,7 +307,7 @@ select {
     padding-left: 27px;
     margin-bottom: 0px;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 16px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -231,7 +322,7 @@ select {
   }
   .checkmark {
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: 0;
     height: 20px;
     width: 20px;

@@ -80,7 +80,10 @@ function App(): JSX.Element {
             appLoadAPI
                 .getFeatures(storeId)
                 .then((res: any) => {
-                    const feats: FeatureProps[] = [{ flag: "ALWAYS_TRUE", isActive: true }, { flag: "FRONTEND_INSURE", isActive: false }]
+                    const feats: FeatureProps[] = [
+                        { flag: "ALWAYS_TRUE", isActive: true }, 
+                        { flag: "FRONTEND_INSURE", isActive: false }
+                    ]
                     if (
                         subDomain === "mobiletechlab" ||
                         subDomain === "wirelessrevottawa" ||
@@ -124,7 +127,7 @@ function App(): JSX.Element {
                 <Route
                     path="/"
                     exact
-                    component={() => <Home subDomain={subDomain} features={features} />}
+                    component={() => <Home subDomain={subDomain} features={features} handleStatus={handleFooterStatus} />}
                 />
                 <Route path="/home" render={() => <Redirect to="/" />} />
                 <Route

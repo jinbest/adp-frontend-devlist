@@ -44,12 +44,12 @@ const FilterComponent = ({subDomain}:Props) => {
       <p className="content-title">Availability</p>
       <CustomCheckBox subDomain={subDomain} options={['Online', 'In-Store']} />
 
-      <div style={{padding: '10px 20px'}}>
+      {/* <div style={{padding: '10px 20px'}}>
         <CustomCheckBox subDomain={subDomain} options={['71 Greenford Avenue', '123 Main Street']} />
         <div style={{padding: '10px 0'}}>
           <a href="#" style={{color: mainCol}}>Set my Location</a>
         </div>
-      </div>
+      </div> */}
 
       <p className="content-title">Price</p>
       <CustomSlider col={mainCol} />
