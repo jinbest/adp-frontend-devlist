@@ -46,11 +46,12 @@ const Footer = ({subDomain, features}: Props) => {
                 <div className={subDomain + '-device-list-grid'}>
                   <a href={`tel:${storesDetails.storesDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
                     {phoneFormatString(storesDetails.storesDetails.phone)} |
-                  </a><br />
+                  </a>&nbsp;
                   <a href={`mailto:${storesDetails.storesDetails.email}`} style={{textDecoration: 'none', color: 'black'}}>
-                    {storesDetails.storesDetails.email + ' ' + data.homeTextData.footer.content[0]}
+                    {storesDetails.storesDetails.email + ' '}
                   </a>
                 </div>
+                <div className={subDomain + '-device-list-grid'}>{data.homeTextData.footer.content[0]}</div>
               </Grid>
               {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
                 {data.homeTextData.footer.subContent.map((item:any, index:number) => {
@@ -126,10 +127,18 @@ const Footer = ({subDomain, features}: Props) => {
       </Box>
       <Box className={subDomain + '-footer-container-special'}>
         <Grid item container xs={12} className={subDomain + '-special-footer'}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={12}>
             <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
             <div className={subDomain + '-device-list-grid'}>
-              <div>{data.homeTextData.footer.content[0]}</div>
+              <div className={subDomain + '-device-list-grid'}>
+                <a href={`tel:${storesDetails.storesDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
+                  {phoneFormatString(storesDetails.storesDetails.phone)} |
+                </a>&nbsp;
+                <a href={`mailto:${storesDetails.storesDetails.email}`} style={{textDecoration: 'none', color: 'black'}}>
+                  {storesDetails.storesDetails.email}
+                </a>
+              </div>
+              <div className={subDomain + '-device-list-grid'}>{data.homeTextData.footer.content[0]}</div>
               <div className={subDomain + '-footer-special-content'}>
                 <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
               </div>

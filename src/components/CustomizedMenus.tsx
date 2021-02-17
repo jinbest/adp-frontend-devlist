@@ -70,6 +70,7 @@ export function makeLocations(data: any[]) {
         const cntItem: GetCurrentLocParams = {
             location_name: data[i].location_name,
             address_1: data[i].address_1,
+            address_2: data[i].address_2,
             distance: data[i].distance / 1000 + "km",
             location_id: data[i].id,
             hours: hours,
