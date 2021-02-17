@@ -248,12 +248,12 @@ const ContactDetails = ({
             firstName &&
             lastName &&
             email &&
-            phone &&
+            ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
             ((code === "MAIL_IN" && address1) || code !== "MAIL_IN")
         ) {
             setDisableStatus(false)
         }
-    }, [firstName, lastName, email, phone, address1, code])
+    }, [firstName, lastName, email, address1, code, postalCode, storesDetails])
 
     const handleChangeFirstName = (val: string) => {
         setFirstName(val)
@@ -337,43 +337,49 @@ const ContactDetails = ({
                                         subDomain={subDomain}
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={storesDetails.location_id < 0 ? 6 : 12}>
                                     <PhoneInput
                                         handleSetPhone={setPhone}
                                         val={phone}
                                         placeholder={t(data.placeholder.phoneNum)}
                                     />
                                 </Grid>
+                                {storesDetails.location_id < 0 && <Grid item xs={6}>
+                                    <InputComponent
+                                        value={postalCode}
+                                        placeholder={t(data.placeholder.postalCode)}
+                                        handleChange={(e) => {
+                                            handleChangePostalCode(e.target.value)
+                                        }}
+                                        subDomain={subDomain}
+                                    />
+                                </Grid>}
                             </Grid>
                         </div>
-                        {(code === "MAIL_IN" || storesDetails.location_id < 0) && (
+                        {code === "MAIL_IN" && (
                             <div className={subDomain + "-repair-choose-device-container"}>
                                 <Grid container spacing={2}>
-                                    {code === "MAIL_IN" && (
-                                        <Grid item xs={12}>
-                                            <InputComponent
-                                                value={address1}
-                                                placeholder={t(data.placeholder.address1)}
-                                                handleChange={(e) => {
-                                                    handleChangeAddress1(e.target.value)
-                                                }}
-                                                subDomain={subDomain}
-                                            />
-                                        </Grid>
-                                    )}
-                                    {code === "MAIL_IN" && (
-                                        <Grid item xs={12}>
-                                            <InputComponent
-                                                value={address2}
-                                                placeholder={t(data.placeholder.address2)}
-                                                handleChange={(e) => {
-                                                    handleChangeAddress2(e.target.value)
-                                                }}
-                                                subDomain={subDomain}
-                                            />
-                                        </Grid>
-                                    )}
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12}>
+                                        <InputComponent
+                                            value={address1}
+                                            placeholder={t(data.placeholder.address1)}
+                                            handleChange={(e) => {
+                                                handleChangeAddress1(e.target.value)
+                                            }}
+                                            subDomain={subDomain}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <InputComponent
+                                            value={address2}
+                                            placeholder={t(data.placeholder.address2)}
+                                            handleChange={(e) => {
+                                                handleChangeAddress2(e.target.value)
+                                            }}
+                                            subDomain={subDomain}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={4}>
                                         <CustomSelect
                                             value={country}
                                             handleSetValue={setCountry}
@@ -381,7 +387,7 @@ const ContactDetails = ({
                                             options={countriesData}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={4}>
                                         <InputComponent
                                             value={city}
                                             placeholder={t(data.placeholder.city)}
@@ -391,22 +397,12 @@ const ContactDetails = ({
                                             subDomain={subDomain}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={4}>
                                         <CustomSelect
                                             value={province}
                                             handleSetValue={setProvince}
                                             subDomain={subDomain}
                                             options={country.code ? statesData[country.code] : []}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={3}>
-                                        <InputComponent
-                                            value={postalCode}
-                                            placeholder={t(data.placeholder.postalCode)}
-                                            handleChange={(e) => {
-                                                handleChangePostalCode(e.target.value)
-                                            }}
-                                            subDomain={subDomain}
                                         />
                                     </Grid>
                                 </Grid>

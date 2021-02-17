@@ -234,7 +234,7 @@ export class LanguageKeysFr extends LanguageKeys {
     public SELECT_VISIT_TIME = "Sélectionnez l'heure de la visite"
     public MONDAY_FRIDAY = "Lundi - Vendredi"
     public ENTER_A_MESSAGE_OR_USEFUL_INFO =
-        "Entrez un message ou des informations utiles sur cette réparation"
+        "Faites-nous savoir s'il y a quelque chose que nous devrions savoir sur votre appareil"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Tapez votre message ici (facultatif)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
         storeName,

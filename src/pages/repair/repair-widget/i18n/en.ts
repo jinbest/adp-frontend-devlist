@@ -228,7 +228,7 @@ export class LanguageKeys {
     public SELECT_VISIT_TIME = "Select Visit Time"
     public MONDAY_FRIDAY = "Monday - Friday"
     public ENTER_A_MESSAGE_OR_USEFUL_INFO =
-        "Enter a Message or Any Useful Information About This Repair"
+        "Let us know if theres anything we should know about your device"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Type your message here (optional)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
         storeName,
