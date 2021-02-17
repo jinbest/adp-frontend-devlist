@@ -463,7 +463,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "info@wirelessrev.ca 4 - 1800 Bank Street, Ottawa, ON",
+            "4 - 1800 Bank Street, Ottawa, ON",
             "WIRELESS_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

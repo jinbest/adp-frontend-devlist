@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
-import { Button, UserInfoModal } from "./"
+import { 
+    Button, 
+    // UserInfoModal, 
+    InputComponent 
+} from "./"
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
@@ -13,6 +17,7 @@ import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
+import Loading from './Loading'
 
 export function makeLocations(data: any[]) {
     const locations: GetCurrentLocParams[] = []
@@ -133,12 +138,14 @@ const CustomizedMenus = inject("headerStore")(
         const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
         const t = useT()
         const [pos, setPos] = useState({ latitude: "", longitude: "" })
-        const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
+        // const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
         const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected)
         const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
         const [requireUserInfo, setRequireUserInfo] = useState(false)
         const [contentWidth, setContentWidth] = useState("215px")
         const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
+        const [postCode, setPostCode] = useState("")
+        const [isRequest, setIsRequest] = useState(false)
 
         const handleLocSelect = (index: number) => {
             const cntLocation: any = headerStore.cntUserLocation[index]
@@ -238,32 +245,32 @@ const CustomizedMenus = inject("headerStore")(
             headerStore.changeCntUserLocation(locations)
         }, [locations])
 
-        useEffect(() => {
-            if (userInfo.city) {
-                if (locations.length) return
-                findLocationAPI
-                    .findAddLocation(headerStore.store_id, userInfo)
-                    .then((res: any) => {
-                        if (res.data.length) {
-                            headerStore.changeFindAddLocation(res.data)
-                            setLocations(makeLocations(headerStore.findAddLocation))
-                            headerStore.changeLocationID(res.data[0].id)
-                        } else {
-                            setToastParams({
-                                msg: "Response is an empty data, please check your infos.",
-                                isWarning: true,
-                            })
-                        }
-                    })
-                    .catch((error) => {
-                        console.log("Error to find location with Address", error)
-                        setToastParams({
-                            msg: "Error to find location with Address, please check your infos.",
-                            isError: true,
-                        })
-                    })
-            }
-        }, [userInfo])
+        // useEffect(() => {
+        //     if (userInfo.city) {
+        //         if (locations.length) return
+        //         findLocationAPI
+        //             .findAddLocation(headerStore.store_id, userInfo)
+        //             .then((res: any) => {
+        //                 if (res.data.length) {
+        //                     headerStore.changeFindAddLocation(res.data)
+        //                     setLocations(makeLocations(headerStore.findAddLocation))
+        //                     headerStore.changeLocationID(res.data[0].id)
+        //                 } else {
+        //                     setToastParams({
+        //                         msg: "Response is an empty data, please check your infos.",
+        //                         isWarning: true,
+        //                     })
+        //                 }
+        //             })
+        //             .catch((error) => {
+        //                 console.log("Error to find location with Address", error)
+        //                 setToastParams({
+        //                     msg: "Error to find location with Address, please check your infos.",
+        //                     isError: true,
+        //                 })
+        //             })
+        //     }
+        // }, [userInfo])
 
         const viewMoreStores = () => {
             setLocations(makeLocations(headerStore.findAddLocation))
@@ -272,6 +279,40 @@ const CustomizedMenus = inject("headerStore")(
 
         const handleBookRepair = () => {
             repairWidgetStore.init()
+        }
+
+        const handleGetLocation = () => {
+            if (!postCode) return;
+            const data:any = {
+                "city": "",
+                "state": "",
+                "postcode": postCode, // R3P0N2
+                "country": ""
+            }
+            setIsRequest(true);
+            findLocationAPI
+                .findAddLocation(headerStore.store_id, data)
+                .then((res: any) => {
+                    if (res.data.length) {
+                        headerStore.changeFindAddLocation(res.data)
+                        setLocations(makeLocations(headerStore.findAddLocation))
+                        headerStore.changeLocationID(res.data[0].id)
+                    } else {
+                        setToastParams({
+                            msg: "Response is an empty data, please check your infos.",
+                            isWarning: true,
+                        })
+                        setIsRequest(false)
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error to find location with Address", error)
+                    setToastParams({
+                        msg: "Error to find location with Postal Code, please check your code.",
+                        isError: true,
+                    })
+                    setIsRequest(false)
+                })
         }
 
         return (
@@ -315,14 +356,33 @@ const CustomizedMenus = inject("headerStore")(
                                     <p className={subDomain + "-block-title"}>{t("MY_STORE")}</p>
                                 ) : (
                                     <div style={{ textAlign: "center" }}>
-                                        <p style={{ fontSize: "12px", color: "darkgray" }}>
+                                        <InputComponent
+                                            value={postCode}
+                                            placeholder={'Postal Code*'}
+                                            handleChange={(e) => {setPostCode(e.target.value)}}
+                                            subDomain={subDomain}
+                                        />
+                                        <Button
+                                            title={'Find Locations'}
+                                            bgcolor={themeColor}
+                                            borderR="20px"
+                                            width="80%"
+                                            height="30px"
+                                            margin="10px auto"
+                                            fontSize="15px"
+                                            subDomain={subDomain}
+                                            onClick={handleGetLocation}
+                                        >
+                                            {isRequest && <Loading />}
+                                        </Button>
+                                        {/* <p style={{ fontSize: "12px", color: "darkgray" }}>
                                             {t("INPUT_YOUR_INFO_DESCRIPTION")}
                                         </p>
                                         <UserInfoModal
                                             bgColor={themeColor}
                                             handleUserInfo={setUserInfo}
                                             subDomain={subDomain}
-                                        />
+                                        /> */}
                                     </div>
                                 )}
                                 {headerStore.cntUserLocation.map((item: any, index: number) => {

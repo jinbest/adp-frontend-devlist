@@ -14,7 +14,7 @@ import { RepairWidgetStore } from "./store/RepairWidgetStore"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { getRepairLookupAPI, getDeliveryMethodsAPI } from "./service/RepairWidgetCallAPI"
 import { storesDetails } from "./store"
-import { repairMockData, colorPalle } from "./mock-data/mockData"
+// import { mockData } from "./mock-data/mockData.js"
 
 const stepList: string[] = [
   "deviceBrand",
@@ -41,8 +41,9 @@ interface Props extends StoreProps {
 
 const RepairWidget = inject("repWidgetStore")(
   observer((props: Props) => {
+    const mockData = require('./mock-data/mockData')
     const { subDomain, handleStatus, features, repWidgetStore } = props;
-    const themeCol = colorPalle[subDomain].themeColor;
+    const themeCol: string = mockData.colorPalle[subDomain].themeColor;
     const [step, setStep] = useState(0);
     const [feats, setFeats] = useState<any[]>([]);
 
@@ -215,7 +216,7 @@ const RepairWidget = inject("repWidgetStore")(
                     )}
                     {step <= 5 && (
                         <ChooseDevice
-                            data={repairMockData[stepList[step]]}
+                            data={mockData.repairMockData[stepList[step]]}
                             handleStep={handleStep}
                             handleChangeChooseData={handleChangeChooseData}
                             stepName={stepList[step]}
@@ -227,7 +228,7 @@ const RepairWidget = inject("repWidgetStore")(
                     )}
                     {step === 6 && (
                         <ContactDetails
-                            data={repairMockData[stepList[step]]}
+                            data={mockData.repairMockData[stepList[step]]}
                             subDomain={subDomain}
                             step={step}
                             handleStep={handleStep}
@@ -239,7 +240,7 @@ const RepairWidget = inject("repWidgetStore")(
                     )}
                     {step === 7 && (
                         <BookTime
-                            data={repairMockData[stepList[step]]}
+                            data={mockData.repairMockData[stepList[step]]}
                             subDomain={subDomain}
                             step={step}
                             code={repWidgetStore.deliveryMethod.code}
@@ -250,7 +251,7 @@ const RepairWidget = inject("repWidgetStore")(
                     )}
                     {step === 8 && (
                         <UsefulInfo
-                            data={repairMockData[stepList[step]]}
+                            data={mockData.repairMockData[stepList[step]]}
                             subDomain={subDomain}
                             step={step}
                             handleStep={handleStep}
@@ -271,7 +272,7 @@ const RepairWidget = inject("repWidgetStore")(
                     )}
                     {step === 10 && (
                         <QuoteComponent
-                            data={repairMockData[stepList[step]]}
+                            data={mockData.repairMockData[stepList[step]]}
                             repairWidgetData={repWidgetStore}
                             quoteKey={1}
                             subDomain={subDomain}
@@ -279,7 +280,7 @@ const RepairWidget = inject("repWidgetStore")(
                     )}
                     {step === 11 && (
                         <QuoteComponent
-                            data={repairMockData[stepList[10]]}
+                            data={mockData.repairMockData[stepList[10]]}
                             repairWidgetData={repWidgetStore}
                             quoteKey={0}
                             subDomain={subDomain}

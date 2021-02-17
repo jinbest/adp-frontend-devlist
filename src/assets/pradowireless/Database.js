@@ -442,7 +442,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "support@blackapplecellular.com 100-703 Broughton Street, Victoria, BC V8W 1E2",
+            "100-703 Broughton Street, Victoria, BC V8W 1E2",
             "PRADO_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

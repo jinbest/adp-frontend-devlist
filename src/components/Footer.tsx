@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
 import {Logo} from '../components';
-import { useT } from '../i18n/index';
+import { useT, T } from '../i18n/index';
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
 import { phoneFormatString } from "./Header"
 import { storesDetails } from "../store"
@@ -47,8 +47,8 @@ const Footer = ({subDomain, features}: Props) => {
                   <a href={`tel:${storesDetails.storesDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
                     {phoneFormatString(storesDetails.storesDetails.phone)} |
                   </a><br />
-                  <a href={`mailto:${data.homeTextData.footer.content[0].split(' ')[0]}`} style={{textDecoration: 'none', color: 'black'}}>
-                    {data.homeTextData.footer.content[0]}
+                  <a href={`mailto:${storesDetails.storesDetails.email}`} style={{textDecoration: 'none', color: 'black'}}>
+                    {storesDetails.storesDetails.email + ' ' + data.homeTextData.footer.content[0]}
                   </a>
                 </div>
               </Grid>
@@ -72,7 +72,7 @@ const Footer = ({subDomain, features}: Props) => {
                 })}
               </Grid>}
               <div className={subDomain + '-device-list-grid'}>
-                {t(data.homeTextData.footer.content[1])}
+                <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
               </div>
             </Grid>            
           </Grid>
@@ -130,7 +130,9 @@ const Footer = ({subDomain, features}: Props) => {
             <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
             <div className={subDomain + '-device-list-grid'}>
               <div>{data.homeTextData.footer.content[0]}</div>
-              <div className={subDomain + '-footer-special-content'}>{t(data.homeTextData.footer.content[1])}</div>
+              <div className={subDomain + '-footer-special-content'}>
+                <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
+              </div>
             </div>
           </Grid>
           <FeatureToggles features={feats}>

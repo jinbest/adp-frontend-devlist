@@ -448,7 +448,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB",
+            "11 - 1300 Village Lane, Okotoks, AB",
             "PHONEPHIX_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

@@ -200,56 +200,56 @@ const repairMockData = {
 }
 
 const colorPalle = {
-  bananaservice: {
+  "bananaservice": {
     themeColor: "#929292",
     nextButtonCol: "#7BBA42",
     repairChooseItemCol: "#A6A7AA",
     repairBooktimeCol: "#7BBA42",
     textThemeCol: "#54BA71",
   },
-  geebodevicerepair: {
+  "geebodevicerepair": {
     themeColor: "#6EB24F",
     nextButtonCol: "#6EB24F",
     repairChooseItemCol: "#6EB24F",
     repairBooktimeCol: "#6EB24F",
     textThemeCol: "#6EB24F",
   },
-  mobiletechlab: {
+  "mobiletechlab": {
     themeColor: "#ED1D24",
     nextButtonCol: "#ED1D24",
     repairChooseItemCol: "#333333",
     repairBooktimeCol: "#ED1D24",
     textThemeCol: "#ED1D24",
   },
-  nanotechmobile: {
+  "nanotechmobile": {
     themeColor: "#606163",
     nextButtonCol: "#606163",
     repairChooseItemCol: "#00B0F0",
     repairBooktimeCol: "#00B0F0",
     textThemeCol: "#00B0F0",
   },
-  northtechsolutions: {
+  "northtechsolutions": {
     themeColor: "#2B388F",
     nextButtonCol: "#2B388F",
     repairChooseItemCol: "#2B388F",
     repairBooktimeCol: "#2B388F",
     textThemeCol: "#2B388F",
   },
-  okotoksphonephix: {
+  "okotoksphonephix": {
     themeColor: "#FCA425",
     nextButtonCol: "#FCA425",
     repairChooseItemCol: "#FCA425",
     repairBooktimeCol: "#FCA425",
     textThemeCol: "#FCA425",
   },
-  pradowireless: {
+  "pradowireless": {
     themeColor: "#000000",
     nextButtonCol: "#EC2027",
     repairChooseItemCol: "#EC2027",
     repairBooktimeCol: "#EC2027",
     textThemeCol: "#EC2027",
   },
-  wirelessrevottawa: {
+  "wirelessrevottawa": {
     themeColor: "#3677A1",
     nextButtonCol: "#3677A1",
     repairChooseItemCol: "#3677A1",

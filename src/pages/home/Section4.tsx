@@ -2,7 +2,8 @@ import React from 'react';
 import {DeviceListComponent} from '../../components'
 // import {Button} from '../../components'
 import { Typography, Grid, Box } from '@material-ui/core';
-import { useT } from '../../i18n/index'
+import { useT, T } from '../../i18n/index'
+import { storesDetails } from '../../store'
 
 type Props = {
   subDomain?: string;
@@ -20,7 +21,7 @@ const Section4 = ({subDomain}: Props) => {
           <Grid container item xs={12}>
             <Grid item xs={12} sm={12} md={6}>
               <Typography className={'f40 bold ' + subDomain + '-section4-title'}>
-                {t(data.homeTextData.section4.title)}
+                <T id={data.homeTextData.section4.title} data={storesDetails.storesDetails.name} />
               </Typography>
               {/* <Box className={subDomain + '-section4-button mobile'}>
                 <Button 

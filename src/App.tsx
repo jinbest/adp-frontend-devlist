@@ -15,18 +15,18 @@ const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
-//     "bananaservice",
-//     "geebodevicerepair",
-//     "mobiletechlab",
-//     "nanotechmobile",
-//     "northtechsolutions",
-//     "okotoksphonephix",
-//     "pradowireless",
-//     "wirelessrevottawa",
-//     "dccmtx",
-//     "mtlcmtx"
+//     {name: "bananaservice", domain: "bananaservice.ca"},
+//     {name: "geebodevicerepair", domain: ""},
+//     {name: "mobiletechlab", domain: "mobiletechlab.ca"},
+//     {name: "nanotechmobile", domain: "nanotechmobile.ca"},
+//     {name: "northtechsolutions", domain: "northtechsolutions.ca"},
+//     {name: "okotoksphonephix", domain: "okotoksphonephix.ca"},
+//     {name: "pradowireless", domain: "pradowireless.com"},
+//     {name: "wirelessrevottawa", domain: "wirelessrevottawa.ca"},
+//     {name: "dccmtx", domain: "dccmtx.com"},
+//     {name: "mtlcmtx", domain: "mtlcmtx.com"}
 // ]
-// const subDomain = devicelist[7]
+// const siteNum = 7, subDomain = devicelist[siteNum].name, apexDomain = "dccmtx.com"
 
 type FeatureProps = {
     flag: string
@@ -63,7 +63,6 @@ function App(): JSX.Element {
 
         appLoadAPI
             .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
             .then((res: any) => {
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)
