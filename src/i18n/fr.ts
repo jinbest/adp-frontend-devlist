@@ -65,13 +65,16 @@ export class LanguageKeysFr extends LanguageKeys {
     public OTHER = "Autre"
     public AS_LOW_AS = "Aussi bas que"
     public BEST_OFFER_AVAILABLE = "Des prix compétitifs"
-    public BEST_OFFER_AVAILABLE_CONTENT = "Nous sommes fiers d’offrir la plus grande sélection d’appareils d’occasion entièrement testés et classés à Winnipeg. Le tout soutenu par une garantie d'un an et une garantie IMEI à vie"
+    public BEST_OFFER_AVAILABLE_CONTENT =
+        "Nous sommes fiers d’offrir la plus grande sélection d’appareils d’occasion entièrement testés et classés à Winnipeg. Le tout soutenu par une garantie d'un an et une garantie IMEI à vie"
     public YEAR_1_WARRANTY = "1 An De Garantie"
-    public YEAR_1_WARRANTY_CONTENT = "Nous garantissons tous nos appareils avec une garantie d'un an de fer qui couvre tout, sauf les dommages physiques ou liquides."
+    public YEAR_1_WARRANTY_CONTENT =
+        "Nous garantissons tous nos appareils avec une garantie d'un an de fer qui couvre tout, sauf les dommages physiques ou liquides."
     public AMAZING_SERVICE = "Service incroyable"
     public AMAZING_SERVICE_CONTENT = "Expérience d'achat sécurisée."
     public POSITIVE_IMPACT = "Échangez votre appareil"
-    public POSITIVE_IMPACT_CONTENT = "Échangez votre appareil existant - cassé ou non - contre un crédit pour une réparation, un produit ou un téléphone plus récent. Nous achetons presque tous les appareils, quelle que soit leur condition."
+    public POSITIVE_IMPACT_CONTENT =
+        "Échangez votre appareil existant - cassé ou non - contre un crédit pour une réparation, un produit ou un téléphone plus récent. Nous achetons presque tous les appareils, quelle que soit leur condition."
     public PROUDLY_CANADIAN = "Fièrement canadien"
     public PROUDLY_CANADIAN_CONTENT = "Propriété canadienne et basée au Canada."
     public OUR_QUALITY_CHARTER = "Notre charte qualité"
@@ -234,13 +237,11 @@ export class LanguageKeysFr extends LanguageKeys {
         "Entrez un message ou des informations utiles sur cette réparation"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Tapez votre message ici (facultatif)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
-        subDomain,
+        storeName,
     }: {
-        subDomain: string
+        storeName: string
     }) => {
-        return `Merci d'avoir choisi ${
-            subDomain.charAt(0).toUpperCase() + subDomain.slice(1)
-        } pour votre réparation!`
+        return `Merci d'avoir choisi ${storeName}`
     }
     public WITH_A_DETAILED_SERVICE_QUOTE = "avec un devis de service détaillé."
     public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT =
@@ -351,7 +352,7 @@ export class LanguageKeysFr extends LanguageKeys {
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Phonephix, il est facile de choisir pour tous les budgets!"
 
     /* Wireless Website Text */
-    public WIRELESS_MOBILE_DEVICE_SPECIALISTS = 'Spécialistes des appareils mobiles d’Ottawa';
+    public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles d’Ottawa"
     public WELCOME_WIRELESS =
         "Bienvenue sur Wireless Revolution, le marché des appareils mobiles d'Ottowa"
     public SEE_WHY_CUSTOMERS_LOVE_WIRELESS =

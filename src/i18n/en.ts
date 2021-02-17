@@ -62,13 +62,16 @@ export class LanguageKeys {
     public OTHER = "Other"
     public AS_LOW_AS = "As low as"
     public BEST_OFFER_AVAILABLE = "Competitive Pricing"
-    public BEST_OFFER_AVAILABLE_CONTENT = "We’re proud to offer the largest selection of fully tested and graded pre-owned devices in Winnipeg. All backed by a one year warranty and lifetime IMEI guarantee"
+    public BEST_OFFER_AVAILABLE_CONTENT =
+        "We’re proud to offer the largest selection of fully tested and graded pre-owned devices in Winnipeg. All backed by a one year warranty and lifetime IMEI guarantee"
     public YEAR_1_WARRANTY = "1 Year Warranty"
-    public YEAR_1_WARRANTY_CONTENT = "We stand behind all our devices with an iron-clad one year warranty that covers everything except physical or liquid damage."
+    public YEAR_1_WARRANTY_CONTENT =
+        "We stand behind all our devices with an iron-clad one year warranty that covers everything except physical or liquid damage."
     public AMAZING_SERVICE = "Amazing Service"
     public AMAZING_SERVICE_CONTENT = "Secure shopping experience."
     public POSITIVE_IMPACT = "Trade-In Your Device"
-    public POSITIVE_IMPACT_CONTENT = "Trade in your existing device - broken or not - for credit towards a repair, product or a newer phone. We buy almost every device, no matter the condition."
+    public POSITIVE_IMPACT_CONTENT =
+        "Trade in your existing device - broken or not - for credit towards a repair, product or a newer phone. We buy almost every device, no matter the condition."
     public PROUDLY_CANADIAN = "Proudly Canadian"
     public PROUDLY_CANADIAN_CONTENT = "Canadian owned and Canadian based."
     public OUR_QUALITY_CHARTER = "Our quality charter"
@@ -190,7 +193,7 @@ export class LanguageKeys {
     public MINUTES = "minutes"
     public REPAIR_ANOTHER_DEVICE = "Add Another Device?"
     public REPAIR_ANOTHER_DEVICE_CONTENT = "Get all your devices done at once with us!"
-    public HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE = "How Would You Like to Drop-Off Your Device(s)?"
+    public HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE = "How Would You Like to Get Service?"
     public MAIL_IN = "Mail-In"
     public PICK_UP_DROP_OFF_SERVICE = "Pick-Up/ Drop-Off Service"
     public CURBSIDE_DROP_OFF = "Curbside Drop-Off"
@@ -228,13 +231,11 @@ export class LanguageKeys {
         "Enter a Message or Any Useful Information About This Repair"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Type your message here (optional)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
-        subDomain,
+        storeName,
     }: {
-        subDomain: string
+        storeName: string
     }) => {
-        return `Thank you for choosing ${
-            subDomain.charAt(0).toUpperCase() + subDomain.slice(1)
-        } for your repair!`
+        return `Thank you for choosing ${storeName}.`
     }
     public WITH_A_DETAILED_SERVICE_QUOTE = "with a detailed service quote."
     public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT =
@@ -273,7 +274,7 @@ export class LanguageKeys {
 
     /* Mobile-Tech Website Text */
     public SAME_DAY_ADVANCED_REPAIR_SERVICE = "Same-Day Advanced Repair Services"
-    public WELCOME_MOBILE_TECH = "Welcome to Mobile Tech Lab, Manitoba's mobile device marketplace"
+    public WELCOME_MOBILE_TECH = "Winnipeg's trusted mobile device shop"
     public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = "See Why Customers Love Mobile Tech Lab"
     public MOBILE_TECH_FOOTER_CONTENT_TWO =
         '© 2020 Mobile Tech Lab 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Mobile Tech Lab" does not own or make claim to those trademarks used on this website in which it is not the holder.'
