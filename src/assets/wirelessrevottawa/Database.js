@@ -212,7 +212,7 @@ const navItemsData = [
     // { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
     // { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
     { 
-        href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/Make", 
+        href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/", 
         text: "WHOLESALE", 
         isActive: false, 
         flag: "ALWAYS_TRUE" 
@@ -351,7 +351,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
-        { text: "WHOLESALE", href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/Make", flag: "ALWAYS_TRUE" },
+        { text: "WHOLESALE", href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/", flag: "ALWAYS_TRUE" },
         { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },

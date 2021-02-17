@@ -97,7 +97,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                 <Typography className={subDomain + "-section1-subtitle"}>
                     {t(data.homeTextData.section1.subtitle)}
                 </Typography>
-                <Box className={subDomain + '-repair-section-button'}>
+                <Box className={subDomain + '-repair-section-button'} style={{margin: 'initial'}}>
                     <Link to='/get-quote' style={{textDecoration: 'none'}} onClick={handleGetQuote}>
                         <Button
                             title={t('GET_QUOTE')}
