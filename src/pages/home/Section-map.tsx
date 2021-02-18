@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: "space-around",
             [theme.breakpoints.down("sm")]: {
                 justifyContent: "space-between",
-                marginRight: "25%",
+                marginRight: "20%",
             },
             [theme.breakpoints.down("xs")]: {
                 marginRight: "0px",
