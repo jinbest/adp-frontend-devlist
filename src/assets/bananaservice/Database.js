@@ -381,6 +381,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "ONTARIO_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Ontario"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -442,7 +443,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "bananaserves@gmail.com 55 George St N a1, Peterborough, ON K9J 3G2",
+            "55 George St N a1, Peterborough, ON K9J 3G2",
             "BANANA_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

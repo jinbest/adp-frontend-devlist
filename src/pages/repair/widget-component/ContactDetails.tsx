@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { Card } from "./"
-import { InputComponent, Button, PhoneInput, CustomSelect } from "../../../components"
+import { 
+    InputComponent, 
+    Button, 
+    PhoneInput, 
+    // CustomSelect 
+} from "../../../components"
 import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { repairWidgetAPI } from "../../../services"
 import { PostAppointParams } from "../model/post-appointment-params"
-import { countriesData, statesData } from "../../../const"
+// import { countriesData, statesData } from "../../../const"
 import { findLocationAPI } from "../../../services"
 import { makeLocations } from "../../../components/CustomizedMenus"
 import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
@@ -49,9 +54,9 @@ const ContactDetails = ({
     const [phone, setPhone] = useState("")
     const [address1, setStreetAddress1] = useState("")
     const [address2, setStreetAddress2] = useState("")
-    const [country, setCountry] = useState({ code: "CA", name: "" })
-    const [city, setCity] = useState("")
-    const [province, setProvince] = useState({ code: "MB", name: "" })
+    // const [country, setCountry] = useState({ code: "CA", name: "" })
+    // const [city, setCity] = useState("")
+    // const [province, setProvince] = useState({ code: "MB", name: "" })
     const [postalCode, setPostalCode] = useState("")
     const [disableStatus, setDisableStatus] = useState(true)
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
@@ -94,10 +99,10 @@ const ContactDetails = ({
             params.customer_phone = phone
             params.customer_address_1 = address1
             params.customer_address_2 = address2
-            params.customer_city = city
-            params.customer_state = province.code
+            // params.customer_city = city
+            // params.customer_state = province.code
             params.customer_postcode = postalCode
-            params.customer_country = country.code
+            // params.customer_country = country.code
             params.customer_note = null
             params.customer_contact_method = repairWidgetStore.receiveQuote.code
             params.repairs = repairs
@@ -117,9 +122,9 @@ const ContactDetails = ({
                         phone: phone,
                         address1: { name: address1, code: "" },
                         address2: { name: address2, code: "" },
-                        country: country,
-                        city: city,
-                        province: province,
+                        // country: country,
+                        // city: city,
+                        // province: province,
                         postalCode: postalCode,
                     })
                     repairWidgetStore.changeAppointResponse(res.data)
@@ -142,9 +147,9 @@ const ContactDetails = ({
                 phone: phone,
                 address1: { name: address1, code: "" },
                 address2: { name: address2, code: "" },
-                country: country,
-                city: city,
-                province: province,
+                // country: country,
+                // city: city,
+                // province: province,
                 postalCode: postalCode,
             })
             handleStep(step + 1)
@@ -161,10 +166,10 @@ const ContactDetails = ({
         if (storesDetails.location_id < 0) {
             findLocationAPI
                 .findAddLocation(storesDetails.store_id, {
-                    city: city,
-                    state: province.code,
+                    city: '', // city,
+                    state: '', // province.code,
                     postcode: postalCode,
-                    country: country.code,
+                    country: '', // country.code,
                 })
                 .then((res: any) => {
                     if (res.data.length && res.data[0].location_hours.length) {
@@ -214,9 +219,9 @@ const ContactDetails = ({
             phone,
             address1,
             address2,
-            country,
-            city,
-            province,
+            // country,
+            // city,
+            // province,
             postalCode,
             disableStatus,
         ]
@@ -235,9 +240,9 @@ const ContactDetails = ({
         phone,
         address1,
         address2,
-        country,
-        city,
-        province,
+        // country,
+        // city,
+        // province,
         postalCode,
         disableStatus,
     ])
@@ -248,12 +253,12 @@ const ContactDetails = ({
             firstName &&
             lastName &&
             email &&
-            phone &&
+            ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
             ((code === "MAIL_IN" && address1) || code !== "MAIL_IN")
         ) {
             setDisableStatus(false)
         }
-    }, [firstName, lastName, email, phone, address1, code])
+    }, [firstName, lastName, email, address1, code, postalCode, storesDetails])
 
     const handleChangeFirstName = (val: string) => {
         setFirstName(val)
@@ -275,9 +280,9 @@ const ContactDetails = ({
         setStreetAddress2(val)
     }
 
-    const handleChangeCity = (val: string) => {
-        setCity(val)
-    }
+    // const handleChangeCity = (val: string) => {
+    //     setCity(val)
+    // }
 
     const handleChangePostalCode = (val: string) => {
         setPostalCode(val)
@@ -337,43 +342,49 @@ const ContactDetails = ({
                                         subDomain={subDomain}
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={storesDetails.location_id < 0 ? 6 : 12}>
                                     <PhoneInput
                                         handleSetPhone={setPhone}
                                         val={phone}
                                         placeholder={t(data.placeholder.phoneNum)}
                                     />
                                 </Grid>
+                                {storesDetails.location_id < 0 && <Grid item xs={6}>
+                                    <InputComponent
+                                        value={postalCode}
+                                        placeholder={t(data.placeholder.postalCode)}
+                                        handleChange={(e) => {
+                                            handleChangePostalCode(e.target.value)
+                                        }}
+                                        subDomain={subDomain}
+                                    />
+                                </Grid>}
                             </Grid>
                         </div>
-                        {(code === "MAIL_IN" || storesDetails.location_id < 0) && (
+                        {code === "MAIL_IN" && (
                             <div className={subDomain + "-repair-choose-device-container"}>
                                 <Grid container spacing={2}>
-                                    {code === "MAIL_IN" && (
-                                        <Grid item xs={12}>
-                                            <InputComponent
-                                                value={address1}
-                                                placeholder={t(data.placeholder.address1)}
-                                                handleChange={(e) => {
-                                                    handleChangeAddress1(e.target.value)
-                                                }}
-                                                subDomain={subDomain}
-                                            />
-                                        </Grid>
-                                    )}
-                                    {code === "MAIL_IN" && (
-                                        <Grid item xs={12}>
-                                            <InputComponent
-                                                value={address2}
-                                                placeholder={t(data.placeholder.address2)}
-                                                handleChange={(e) => {
-                                                    handleChangeAddress2(e.target.value)
-                                                }}
-                                                subDomain={subDomain}
-                                            />
-                                        </Grid>
-                                    )}
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12}>
+                                        <InputComponent
+                                            value={address1}
+                                            placeholder={t(data.placeholder.address1)}
+                                            handleChange={(e) => {
+                                                handleChangeAddress1(e.target.value)
+                                            }}
+                                            subDomain={subDomain}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <InputComponent
+                                            value={address2}
+                                            placeholder={t(data.placeholder.address2)}
+                                            handleChange={(e) => {
+                                                handleChangeAddress2(e.target.value)
+                                            }}
+                                            subDomain={subDomain}
+                                        />
+                                    </Grid>
+                                    {/* <Grid item xs={12} sm={4}>
                                         <CustomSelect
                                             value={country}
                                             handleSetValue={setCountry}
@@ -381,7 +392,7 @@ const ContactDetails = ({
                                             options={countriesData}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={4}>
                                         <InputComponent
                                             value={city}
                                             placeholder={t(data.placeholder.city)}
@@ -391,24 +402,14 @@ const ContactDetails = ({
                                             subDomain={subDomain}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={4}>
                                         <CustomSelect
                                             value={province}
                                             handleSetValue={setProvince}
                                             subDomain={subDomain}
                                             options={country.code ? statesData[country.code] : []}
                                         />
-                                    </Grid>
-                                    <Grid item xs={12} sm={3}>
-                                        <InputComponent
-                                            value={postalCode}
-                                            placeholder={t(data.placeholder.postalCode)}
-                                            handleChange={(e) => {
-                                                handleChangePostalCode(e.target.value)
-                                            }}
-                                            subDomain={subDomain}
-                                        />
-                                    </Grid>
+                                    </Grid> */}
                                 </Grid>
                             </div>
                         )}

@@ -381,6 +381,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Saskatchewan"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -450,7 +451,7 @@ const homeTextData = {
         ],
         contentSubTitle: "SASKATOON_NORTH",
         content: [
-            "saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK",
+            "9, 834 – 51st Street Saskatoon, SK",
             "NANOTECH_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

@@ -703,8 +703,8 @@ const ChooseDevice = ({
                                 <Typography className={subDomain + "-topic-title"}>
                                     {t(data.mainTopic.title)}
                                 </Typography>
-                                {estimatedTimes &&
-                                    estimatedTimes.map((item: any, index: number) => {
+                                <div className={subDomain + "-repair-summary-content-div"} style={{display:'block'}}>
+                                    {estimatedTimes && estimatedTimes.map((item: any, index: number) => {
                                         return (
                                             <div
                                                 key={index}
@@ -722,14 +722,20 @@ const ChooseDevice = ({
                                                         {item.cost + ' (Prices are plus tax where applicable.)'}
                                                     </p>
                                                 )}
-                                                {item.warranty && item.warranty > 0 && (
+                                                {item.warranty && item.warranty > 0 ? (
                                                     <p className={subDomain + "-estimate-content"}>
                                                         {'Warranty: ' + item.warranty + " " + ConvertWarrantyUnit(item.warranty_unit)}
+                                                    </p>
+                                                ) : (
+                                                    <p className={subDomain + "-estimate-content"} style={{color: 'grey'}}>
+                                                        <i>No warranty</i>
                                                     </p>
                                                 )}
                                             </div>
                                         )
                                     })}
+                                </div>
+                                
                             </div>
                         )}
 

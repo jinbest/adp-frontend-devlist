@@ -67,10 +67,10 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             ? storesDetails.cntUserLocation[0].location_id
             : -1,
         name: storesDetails.cntUserLocation.length
-            ? storesDetails.cntUserLocation[0].location_name
+            ? storesDetails.cntUserLocation[0].address_1 + (storesDetails.cntUserLocation[0].address_2 ? ', ' + storesDetails.cntUserLocation[0].address_2 : '')
             : "",
     })
-    const [sendToAddress, setSendToAddress] = useState("")
+    const [sendToAddress, setSendToAddress] = useState<string | undefined>("")
     const [mailInChecked, setMailinChecked] = useState(0)
     const [disableStatus, setDisableStatus] = useState(true)
     const [hoursRange, setHoursRange] = useState<any[]>([])
@@ -94,7 +94,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         const cntFindLoc: FindLocProps[] = []
         const storeLocs: any[] = storesDetails.findAddLocation
         for (let i = 0; i < storeLocs.length; i++) {
-            cntFindLoc.push({ code: storeLocs[i].id, name: storeLocs[i].location_name })
+            cntFindLoc.push({ code: storeLocs[i].id, name: storeLocs[i].address_1 + (storeLocs[i].address_2 ? ', ' + storeLocs[i].address_2 : '') })
         }
         setFindLocs(cntFindLoc)
     }, [storesDetails])
@@ -163,9 +163,9 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
 
     useEffect(() => {
         if (code === "MAIL_IN" && storesDetails.cntUserLocation.length) {
-            setSendToAddress(storesDetails.cntUserLocation[0].location_name)
+            setSendToAddress(storesDetails.cntUserLocation[0].address_1 + (storesDetails.cntUserLocation[0].address_2 ? ', ' + storesDetails.cntUserLocation[0].address_2 : ''))
             for (let i = 0; i < findLocs.length; i++) {
-                if (findLocs[i].name === storesDetails.cntUserLocation[0].location_name) {
+                if (findLocs[i].name === storesDetails.cntUserLocation[0].address_1 + (storesDetails.cntUserLocation[0].address_2 ? ', ' + storesDetails.cntUserLocation[0].address_2 : '')) {
                     setMailinChecked(i)
                 }
             }
@@ -250,7 +250,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     useEffect(() => {
         if (storesDetails.findAddLocation.length && selectVal.name && code !== "MAIL_IN") {
             for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
-                if (selectVal.name === storesDetails.findAddLocation[i].location_name) {
+                if (selectVal.name === storesDetails.findAddLocation[i].address_1 + (storesDetails.findAddLocation[i].address_2 ? ', ' + storesDetails.findAddLocation[i].address_2 : '')) {
                     const cntLoc: any[] = makeLocations([storesDetails.findAddLocation[i]])
                     storesDetails.changeCntUserLocation(cntLoc)
                     storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
@@ -260,7 +260,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         }
         if (storesDetails.findAddLocation.length && sendToAddress && code === "MAIL_IN") {
             for (let i = 0; i < storesDetails.findAddLocation.length; i++) {
-                if (sendToAddress === storesDetails.findAddLocation[i].location_name) {
+                if (sendToAddress === storesDetails.findAddLocation[i].address_1 + (storesDetails.findAddLocation[i].address_2 ? ', ' + storesDetails.findAddLocation[i].address_2 : '')) {
                     const cntLoc: any = makeLocations([storesDetails.findAddLocation[i]])
                     storesDetails.changeCntUserLocation(cntLoc)
                     storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)

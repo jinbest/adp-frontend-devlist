@@ -385,6 +385,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Sinaa"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -446,7 +447,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU",
+            "208 Sinaa, Iqaluit, NU",
             "NORTHTECH_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

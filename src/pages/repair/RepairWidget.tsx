@@ -15,7 +15,6 @@ import { Error } from "../error"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { getRepairLookupAPI, getDeliveryMethodsAPI } from "./RepairWidgetCallAPI"
 import { storesDetails } from "../../store"
-import { Link } from "react-router-dom"
 
 const stepList: string[] = [
     "deviceBrand",
@@ -75,6 +74,7 @@ class RepairWidget extends React.Component<Props, MyState> {
             feats: [],
         }
         this.handleBackStep = this.handleBackStep.bind(this)
+        this.handleDeviceCounterBack = this.handleDeviceCounterBack.bind(this)
         this.handleChangeChooseData = this.handleChangeChooseData.bind(this)
     }
 
@@ -82,7 +82,7 @@ class RepairWidget extends React.Component<Props, MyState> {
         const { handleStatus, repairWidgetStore, features } = this.props
         handleStatus(false)
         this.setState({ step: repairWidgetStore.cntStep })
-        document.title = storesDetails.storesDetails.name + " - Get Quote"
+        document.title = "Quotes | " + storesDetails.storesDetails.name
 
         const cntFeatures: any[] = []
         for (let i = 0; i < features.length; i++) {
@@ -221,8 +221,14 @@ class RepairWidget extends React.Component<Props, MyState> {
         }
     }
 
+    handleDeviceCounterBack() {
+        // const { repairWidgetStore } = this.props;
+        // repairWidgetStore.changeDeviceCounter(this.computedRepairWidgetData.deviceCounter-1);
+        this.handleStep(3);
+    }
+
     render() {
-        const { subDomain, handleStatus } = this.props
+        const { subDomain } = this.props
         const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`)
         const mainData = require(`../../assets/${subDomain}/Database.js`)
         const themeCol = mainData.colorPalle.themeColor
@@ -234,18 +240,14 @@ class RepairWidget extends React.Component<Props, MyState> {
                     inactiveComponent={() => <Error />}
                     activeComponent={() => (
                         <div className={subDomain + "-repair-widget " + subDomain + "-Container"}>
-                            {this.state.step === 0 &&
-                            Object.keys(this.computedRepairWidgetData.appointResponse).length ? (
-                                <Link
-                                    to="/home"
+                            {this.computedRepairWidgetData.deviceCounter > 0 && this.state.step < 10 &&
+                                <div
                                     className={subDomain + "-back-to-top"}
-                                    onClick={()=>handleStatus(true)}
+                                    onClick={this.handleDeviceCounterBack}
                                 >
                                     <BackSVG color="#BDBFC3" />
-                                </Link>
-                            ) : (
-                                <></>
-                            )}
+                                </div>
+                            }
                             {this.state.step > 0 && this.state.step < 10 && (
                                 <div
                                     className={subDomain + "-back-to-top"}

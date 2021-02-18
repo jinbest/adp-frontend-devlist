@@ -212,7 +212,7 @@ const navItemsData = [
     // { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
     // { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
     { 
-        href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/Make", 
+        href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/", 
         text: "WHOLESALE", 
         isActive: false, 
         flag: "ALWAYS_TRUE" 
@@ -351,7 +351,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
-        { text: "WHOLESALE", href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/Make", flag: "ALWAYS_TRUE" },
+        { text: "WHOLESALE", href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/", flag: "ALWAYS_TRUE" },
         { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
@@ -402,6 +402,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "WIRELESS_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Ottawa"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -463,7 +464,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "info@wirelessrev.ca 4 - 1800 Bank Street, Ottawa, ON",
+            "4 - 1800 Bank Street, Ottawa, ON",
             "WIRELESS_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

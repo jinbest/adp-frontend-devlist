@@ -65,13 +65,16 @@ export class LanguageKeysFr extends LanguageKeys {
     public OTHER = "Autre"
     public AS_LOW_AS = "Aussi bas que"
     public BEST_OFFER_AVAILABLE = "Des prix compétitifs"
-    public BEST_OFFER_AVAILABLE_CONTENT = "Nous sommes fiers d’offrir la plus grande sélection d’appareils d’occasion entièrement testés et classés à Winnipeg. Le tout soutenu par une garantie d'un an et une garantie IMEI à vie"
+    public BEST_OFFER_AVAILABLE_CONTENT =
+        "Nous sommes fiers d’offrir la plus grande sélection d’appareils d’occasion entièrement testés et classés à Winnipeg. Le tout soutenu par une garantie d'un an et une garantie IMEI à vie"
     public YEAR_1_WARRANTY = "1 An De Garantie"
-    public YEAR_1_WARRANTY_CONTENT = "Nous garantissons tous nos appareils avec une garantie d'un an de fer qui couvre tout, sauf les dommages physiques ou liquides."
+    public YEAR_1_WARRANTY_CONTENT =
+        "Nous garantissons tous nos appareils avec une garantie d'un an de fer qui couvre tout, sauf les dommages physiques ou liquides."
     public AMAZING_SERVICE = "Service incroyable"
     public AMAZING_SERVICE_CONTENT = "Expérience d'achat sécurisée."
     public POSITIVE_IMPACT = "Échangez votre appareil"
-    public POSITIVE_IMPACT_CONTENT = "Échangez votre appareil existant - cassé ou non - contre un crédit pour une réparation, un produit ou un téléphone plus récent. Nous achetons presque tous les appareils, quelle que soit leur condition."
+    public POSITIVE_IMPACT_CONTENT =
+        "Échangez votre appareil existant - cassé ou non - contre un crédit pour une réparation, un produit ou un téléphone plus récent. Nous achetons presque tous les appareils, quelle que soit leur condition."
     public PROUDLY_CANADIAN = "Fièrement canadien"
     public PROUDLY_CANADIAN_CONTENT = "Propriété canadienne et basée au Canada."
     public OUR_QUALITY_CHARTER = "Notre charte qualité"
@@ -154,6 +157,10 @@ export class LanguageKeysFr extends LanguageKeys {
     public SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE =
         "Magasinez notre sélection d'appareils neufs et d'occasion!"
     public SHOP_NOW = "Achetez maintenant"
+    public REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE = "Réparez, achetez et protégez vos appareils mobiles essentiels."
+    public CITY_MOBILE_DEVICE_SPECIALISTS = (city:string) => {
+        return `Spécialistes des appareils mobiles de la ${city}.`
+    }
 
     /* Repair-widget Text */
     public NEXT = "Prochain"
@@ -231,16 +238,14 @@ export class LanguageKeysFr extends LanguageKeys {
     public SELECT_VISIT_TIME = "Sélectionnez l'heure de la visite"
     public MONDAY_FRIDAY = "Lundi - Vendredi"
     public ENTER_A_MESSAGE_OR_USEFUL_INFO =
-        "Entrez un message ou des informations utiles sur cette réparation"
+        "Faites-nous savoir s'il y a quelque chose que nous devrions savoir sur votre appareil"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Tapez votre message ici (facultatif)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
-        subDomain,
+        storeName,
     }: {
-        subDomain: string
+        storeName: string
     }) => {
-        return `Merci d'avoir choisi ${
-            subDomain.charAt(0).toUpperCase() + subDomain.slice(1)
-        } pour votre réparation!`
+        return `Merci d'avoir choisi ${storeName}`
     }
     public WITH_A_DETAILED_SERVICE_QUOTE = "avec un devis de service détaillé."
     public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT =
@@ -269,14 +274,18 @@ export class LanguageKeysFr extends LanguageKeys {
     /* Geebo Website Text */
     public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS =
         "Spécialistes des appareils mobiles de la Nouvelle-Écosse"
-    public WELCOME_GEEBO =
-        "Bienvenue sur Geebo Device Repair, le marché des appareils mobiles de la Nouvelle-Écosse"
-    public SEE_WHY_CUSTOMERS_LOVE_GEEBO =
-        "Découvrez pourquoi les clients adorent la réparation d'appareils Geebo"
-    public GEEBO_FOOTER_CONTENT_TWO =
-        "© 2020 Réparation d'appareils Geebo 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Geebo Device Repair» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Geebo Device Repair répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public WELCOME_GEEBO = (storeName: string) => {
+        return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Nouvelle-Écosse`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_GEEBO = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
+    public GEEBO_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Geebo, il est facile de choisir pour tous les budgets!"
 
@@ -284,93 +293,124 @@ export class LanguageKeysFr extends LanguageKeys {
     public SAME_DAY_ADVANCED_REPAIR_SERVICE = "Services de réparation avancés le jour même"
     public WELCOME_MOBILE_TECH =
         "Bienvenue sur Mobile Tech Lab, le marché des appareils mobiles du Manitoba"
-    public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH =
-        "Découvrez pourquoi les clients aiment Mobile Tech Lab"
-    public MOBILE_TECH_FOOTER_CONTENT_TWO =
-        "© 2020 Mobile Tech Lab 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Mobile Tech Lab» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Mobile Tech Lab répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
+    public MOBILE_TECH_FOOTER_CONTENT_TWO = (storeName: string) => {
+        // return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `@ 2020 ${storeName} Inc. Tous droits réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. ${storeName} Inc ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec DeviceList, il est facile de choisir pour tous les budgets!"
 
     /* Prado Wireless Website */
     public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS =
         "Les spécialistes des appareils mobiles de la Colombie-Britannique"
-    public WELCOME_PRADO_WIRELESS =
-        "Bienvenue sur Prado Wireless, le marché des appareils mobiles de la Colombie-Britannique"
-    public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS =
-        "Découvrez pourquoi les clients aiment Prado Wireless"
-    public PRADO_FOOTER_CONTENT_TWO =
-        "© 2020 Prado Wireless 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 British Columbia Inc. s / a «Prado Wireless» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public PRADO_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Prado Wireless répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public WELCOME_PRADO_WIRELESS = (storeName: string) => {
+        return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Colombie-Britannique`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
+    public PRADO_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 British Columbia Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Prado Wireless, il est facile de choisir pour tous les budgets!"
 
     /* Nanotech Website Text */
     public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS =
         "Spécialistes des appareils mobiles de la Saskatchewan"
-    public WELCOME_NANOTECH =
-        "Bienvenue sur Nanotech, le marché des appareils mobiles de la Saskatchewan"
-    public SEE_WHY_CUSTOMERS_LOVE_NANOTECH =
-        "Découvrez pourquoi les clients aiment la nanotechnologie"
+    public WELCOME_NANOTECH = (storeName: string) => {
+        return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Saskatchewan`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
     public REGINA_NORTH = "Regina Nord"
     public REGINA_EAST = "Regina Est"
     public SASKATOON_NORTH = "Saskatoon Nord"
-    public NANOTECH_FOOTER_CONTENT_TWO =
-        "© 2020 Nanotech 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Nanotech» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Nanotech répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public NANOTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Nanotech, il est facile de choisir pour tous les budgets!"
 
     /* NorthTech Website Text */
     public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH =
         "Vos solutions abordables pour la technologie dans le Nord"
-    public WELCOME_NORTHTECH =
-        "Bienvenue chez NorthTech Solutions, vos solutions abordables pour la technologie dans le Nord"
-    public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH =
-        "Découvrez pourquoi les clients aiment les solutions NorthTech"
+    public WELCOME_NORTHTECH = (storeName: string) => {
+        return `Bienvenue chez ${storeName}, vos solutions abordables pour la technologie dans le Nord`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
     public GIVING_BACK_TO_NORTH = "Redonner au Nord"
-    public NORTHTECH_FOOTER_CONTENT_TWO =
-        "© 2020 NorthTech Solutions 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «NorthTech Solutions» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT =
-        "NorthTech Solutions répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public NORTHTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec NorthTech Solutions, il est facile de choisir pour tous les budgets!"
 
     /* Phonephix Website Text */
     public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles Okotoks"
-    public WELCOME_PHONEPHIX = "Bienvenue sur Phonephix, le marché des appareils mobiles d'Okotoks"
-    public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = "Découvrez pourquoi les clients aiment Phonephix"
-    public PHONEPHIX_FOOTER_CONTENT_TWO =
-        "© 2020 Phonephix 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Phonephix» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Phonephix répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public WELCOME_PHONEPHIX = (storeName: string) => {
+        return `Bienvenue sur ${storeName}, le marché des appareils mobiles d'Okotoks`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
+    public PHONEPHIX_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Phonephix, il est facile de choisir pour tous les budgets!"
 
     /* Wireless Website Text */
-    public WIRELESS_MOBILE_DEVICE_SPECIALISTS = 'Spécialistes des appareils mobiles d’Ottawa';
-    public WELCOME_WIRELESS =
-        "Bienvenue sur Wireless Revolution, le marché des appareils mobiles d'Ottowa"
-    public SEE_WHY_CUSTOMERS_LOVE_WIRELESS =
-        "Découvrez pourquoi les clients aiment la révolution sans fil"
-    public WIRELESS_FOOTER_CONTENT_TWO =
-        "© 2020 Wireless Revolution 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Wireless Revolution» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Wireless Rev répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles d’Ottawa"
+    public WELCOME_WIRELESS = (storeName: string) => {
+        return `Bienvenue sur ${storeName}, le marché des appareils mobiles d'Ottowa`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
+    public WIRELESS_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
+    }
     public WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Wireless Rev, il est facile de choisir pour tous les budgets!"
 
     /* Banana Website Text */
     public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles de l'Ontario"
-    public WELCOME_BANANA = "Bienvenue sur Banana, le marché canadien des appareils mobiles"
-    public SEE_WHY_CUSTOMERS_LOVE_BANANA = "Découvrez pourquoi les clients aiment la banane"
-    public BANANA_FOOTER_CONTENT_TWO =
-        "© 2020 Banana Service 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «Banana Service» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
-    public BANANA_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Le service banane répare votre appareil et vous informe de la date de prise en charge ou de livraison."
+    public WELCOME_BANANA = (storeName: string) => {
+        return `Bienvenue sur ${storeName}, le marché canadien des appareils mobiles`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_BANANA = (storeName: string) => {
+        return `Découvrez pourquoi les clients aiment la ${storeName}`
+    }
+    public BANANA_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+    }
+    public BANANA_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) =>
+        `Le service ${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
     public BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec le service banane, il est facile de choisir pour tous les budgets!"
 }

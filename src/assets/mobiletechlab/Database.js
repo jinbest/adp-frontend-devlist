@@ -38,8 +38,9 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/mobiletech-corner-shape.png"
-import mockupShape from "./img/mobiletech-mockup-shape.png"
+// import cornerShape from "./img/mobiletech-corner-shape.png"
+// import mockupShape from "./img/mobiletech-mockup-shape.png"
+import backMTLImg from "./img/MTLwinnipeg.jpeg"
 
 // footer images
 import buyNow from "./img/footer/buy-now.png"
@@ -207,6 +208,12 @@ const navItemsData = [
         isActive: false,
         flag: "FRONTEND_BUY",
     },
+    {
+        href: "https://www.mobiletechlabwinnipeg.ca/bounce-screen-insurance",
+        text: "PROTECT",
+        isActive: false,
+        flag: "ALWAYS_TRUE",
+    },
     // { href: "#", text: "INSURE", isActive: false, flag: 'FRONTEND_INSURE' },
 ]
 
@@ -348,6 +355,11 @@ const mobileNavItemData = {
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
         { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
+        {
+            text: "PROTECT",
+            href: "https://www.mobiletechlabwinnipeg.ca/bounce-screen-insurance",
+            flag: "ALWAYS_TRUE",
+        },
     ],
     right: [
         { text: "Apple", href: "#" },
@@ -372,8 +384,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: { img: cornerShape, width: "" },
-    mockupShape: { img: mockupShape, width: "" },
+    cornerShape: { img: backMTLImg, width: "" },
+    mockupShape: { img: "", width: "" },
 }
 
 const footerImageData = {
@@ -392,6 +404,7 @@ const homeTextData = {
         title: ["WINNIPEG_PROFESSIONAL", "PHONE_REPAIR"],
         subtitle: "SAME_DAY_ADVANCED_REPAIR_SERVICE",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Winnipeg"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -574,8 +587,35 @@ const getTabData = (companyName) => {
         })(window,document,'script','dataLayer','GTM-M2GBFK5');                      
         `,
         bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2GBFK5"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>                     
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
         `,
+        scriptTag: `
+            var _support = _support || { 'ui': {}, 'user': {} };
+            _support['account'] = 'mobiletechlab';
+            _support['ui']['contactMode'] = 'anonymous';
+            _support['ui']['enableKb'] = 'true';
+            _support['ui']['styles'] = {
+                widgetColor: 'rgb(57, 106, 179)',
+                gradient: true,
+            };
+            _support['ui']['widget'] = {
+                displayOn: 'all',
+                label: {
+                    text: 'Let us know if you have any questions! &#128522;',
+                    mode: "notification",
+                    delay: 3,
+                    duration: 30,
+                    sound: true,
+                },
+                position: 'bottom-right',
+                mobilePosition: 'bottom-right'
+            };
+            _support['apps'] = {
+                faq: {"enabled":true},
+                recentConversations: {},
+                orders: {}
+            };
+        `
     }
 }
 
