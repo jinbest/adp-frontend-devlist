@@ -16,43 +16,40 @@ type Props = {
 }
 
 const Map = ({ locations }: Props) => {
-    const position = [51.505, -0.09]
     const classes = useStyles()
-    const center = [locations[0].longitude as number, locations[0].latitude as number]
-    console.log("locations==========>", locations)
-    const longitudes = locations.map((v) => v.longitude)
-    const latitudes = locations.map((v) => v.latitude)
-
+    let centerX = 49.865759
+    let centerY = -97.211811
+    let zoom = 2
+    if (locations && locations.length > 0) {
+        const longitudes = locations.map((v) => v.longitude)
+        const latitudes = locations.map((v) => v.latitude)
+        centerX = latitudes.reduce((a, b) => a + b, 0) / 5
+        centerY = longitudes.reduce((a, b) => a + b, 0) / 5
+        const maxRadiusX = Math.max(...latitudes.map((v) => v - centerX))
+        const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
+        zoom = Math.round(maxRadiusY / 2.5)
+    }
     return (
         <div className={classes.mapWrapper}>
             <MapContainer
-                center={[49.865759, -97.211811]}
-                zoom={4}
+                center={[centerX, centerY]}
+                zoom={zoom}
                 scrollWheelZoom={false}
-                style={{ height: "500px" }}
+                style={{ height: "700px" }}
             >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {/* <Marker position={[49.865759, -97.211811]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker> */}
-                {locations.map((element, index) => {
-                    console.log(element)
-                    return (
-                        <Marker
-                            position={[parseFloat(element.latitude), parseFloat(element.longitude)]}
-                            key={index}
-                        >
-                            <Popup>{element.location_name}</Popup>
-                        </Marker>
-                    )
-                })}
+                {locations &&
+                    locations.map((element, index) => {
+                        return (
+                            <Marker position={[element.latitude, element.longitude]} key={index}>
+                                <Popup>{element.location_name}</Popup>
+                            </Marker>
+                        )
+                    })}
                 {/* {locations.forEach((element, index) => {
-                    console.log("element", element)
                     return (
                         <Marker position={[49.865759 + index, -97.211811 + index]} key={index}>
                             <Popup>

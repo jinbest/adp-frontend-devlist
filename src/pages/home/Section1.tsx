@@ -7,6 +7,7 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore } from "../../store"
 import SectionMap from "./Section-map"
+import { storesDetails } from "../../store"
 
 type Props = {
     subDomain?: string
@@ -101,6 +102,7 @@ const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
                 </Typography>
 
                 <SectionMap
+                    headerStore={storesDetails}
                     subDomain={subDomain}
                     features={features}
                     locations={locations}
