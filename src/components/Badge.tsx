@@ -46,7 +46,7 @@ const Badge = ({subDomain}: Props) => {
   return (
     <div className={classes.root}>
       <a href='https://www.devicelist.ca/' target='_blank' rel='noreferrer'>
-        <img src={require(`../assets/${subDomain}/img/footer/device-list.png`).default} alt='badge-img' className={classes.badgeImg} />
+        <img src={require(`../assets/${subDomain}/img/badge.png`).default} alt='badge-img' className={classes.badgeImg} />
       </a>
     </div>
   )
