@@ -153,6 +153,10 @@ export class LanguageKeys {
     public SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE =
         "Shop our selection of new and pre-owned devices!"
     public SHOP_NOW = "Shop Now"
+    public REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE = "Repair, buy & protect your essential mobile devices."
+    public CITY_MOBILE_DEVICE_SPECIALISTS = (city:string) => {
+        return `${city}’s mobile device specialists.`
+    }
 
     /* Repair-widget Text */
     public NEXT = "Next"
@@ -228,7 +232,7 @@ export class LanguageKeys {
     public SELECT_VISIT_TIME = "Select Visit Time"
     public MONDAY_FRIDAY = "Monday - Friday"
     public ENTER_A_MESSAGE_OR_USEFUL_INFO =
-        "Let us know if theres anything we should know about your device"
+        "Let us know if there's anything we should know about your device"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Type your message here (optional)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
         storeName,

@@ -72,7 +72,7 @@ const Footer = ({subDomain, features}: Props) => {
                   )
                 })}
               </Grid>} */}
-              <div className={subDomain + '-device-list-grid'}>
+              <div className={subDomain + '-device-list-grid'} style={{color: 'grey'}}>
                 <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
               </div>
             </Grid>            
@@ -139,7 +139,7 @@ const Footer = ({subDomain, features}: Props) => {
                 </a>
               </div>
               <div className={subDomain + '-device-list-grid'}>{data.homeTextData.footer.content[0]}</div>
-              <div className={subDomain + '-footer-special-content'}>
+              <div className={subDomain + '-footer-special-content'} style={{color: 'grey'}}>
                 <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
               </div>
             </div>

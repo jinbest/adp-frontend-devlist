@@ -61,7 +61,6 @@ function App(): JSX.Element {
 
         loadScript(storeTabData.bodyTag)
         if (subDomain === "mobiletechlab") {
-            // document.body.prepend(storeTabData.scriptTag)
             const script = document.createElement("script")
             script.type="text/javascript";
             script.prepend(storeTabData.scriptTag);
