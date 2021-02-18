@@ -726,6 +726,10 @@ const ChooseDevice = ({
                                                     <p className={subDomain + "-estimate-content"}>
                                                         {'Warranty: ' + item.warranty + " " + ConvertWarrantyUnit(item.warranty_unit, item.warranty)}
                                                     </p>
+                                                ) : item.warranty && item.warranty === -1 ? (
+                                                    <p className={subDomain + "-estimate-content"}>
+                                                        Warranty: Lifetime
+                                                    </p>
                                                 ) : (
                                                     <p className={subDomain + "-estimate-content"} style={{color: 'grey'}}>
                                                         <i>No warranty</i>
