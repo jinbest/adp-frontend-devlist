@@ -402,6 +402,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "WIRELESS_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Ottawa"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",

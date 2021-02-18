@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { CardMobile } from "../../components"
 import { Grid, Box, Typography } from "@material-ui/core"
 import { Search, Button } from "../../components"
-import { useT } from "../../i18n/index"
+import { useT, T } from "../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore } from "../../store"
@@ -23,7 +23,7 @@ const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
     const [feats, setFeatures] = useState<any[]>([])
     const [featSearch, setFeatSearch] = useState<any[]>([])
     const [gridMD, setGridMD] = useState(data.cardMobileData.gridMD)
-    const [customeTitle, setCustomTitle] = useState("")
+    // const [customeTitle, setCustomTitle] = useState("")
 
     useEffect(() => {
         const cntCardMobileData: any = data.cardMobileData.data
@@ -50,7 +50,7 @@ const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
         setFeatures(cntFeature)
         setFeatSearch(cntFeatSearch)
         setGridMD(cntGridMD)
-        setCustomTitle(cntCustomTitle)
+        // setCustomTitle(cntCustomTitle)
     }, [data, features, t])
 
     /* -------------------  handleScroll for show/hide Search-bar regarding on pageYOffset ---------------------------
@@ -89,33 +89,57 @@ const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
     return (
         <section className={subDomain + "-Container"}>
             <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-                <h1 className={subDomain + "-section1-title"}>
+                {/* <h1 className={subDomain + "-section1-title"}>
                     {subDomain === "mobiletechlab"
                         ? t(data.homeTextData.section1.title[0])
                         : customeTitle + " " + t(data.homeTextData.section1.title[0])}
                 </h1>
                 <h1 className={subDomain + "-section1-title"}>
                     {t(data.homeTextData.section1.title[1])}
+                </h1> */}
+                <h1 className={subDomain + "-section1-title"}>
+                    {t("REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE")}
                 </h1>
                 <Typography className={subDomain + "-section1-subtitle"}>
-                    {t(data.homeTextData.section1.subtitle)}
+                    <T
+                        id={"CITY_MOBILE_DEVICE_SPECIALISTS"}
+                        data={data.homeTextData.section1.city}
+                    />
                 </Typography>
-                <Box className={subDomain + "-repair-section-button"} style={{ margin: "initial" }}>
-                    <Link
-                        to="/get-quote"
-                        style={{ textDecoration: "none" }}
-                        onClick={handleGetQuote}
+                <div style={{ display: "flex" }}>
+                    <Box
+                        className={subDomain + "-repair-section-button"}
+                        style={{ margin: "initial" }}
                     >
-                        <Button
-                            title={t("GET_QUOTE")}
-                            bgcolor={data.colorPalle.repairButtonCol}
-                            borderR="20px"
-                            subDomain={subDomain}
-                            width="100%"
-                        />
-                    </Link>
-                </Box>
-
+                        <Link
+                            to="/get-quote"
+                            style={{ textDecoration: "none" }}
+                            onClick={handleGetQuote}
+                        >
+                            <Button
+                                title={t("GET_QUOTE")}
+                                bgcolor={data.colorPalle.repairButtonCol}
+                                borderR="20px"
+                                subDomain={subDomain}
+                                width="90%"
+                            />
+                        </Link>
+                    </Box>
+                    <Box
+                        className={subDomain + "-repair-section-button"}
+                        style={{ margin: "initial" }}
+                    >
+                        <Link to="#" style={{ textDecoration: "none" }}>
+                            <Button
+                                title={t("BOOK_REPAIR")}
+                                bgcolor={data.colorPalle.repairButtonCol}
+                                borderR="20px"
+                                subDomain={subDomain}
+                                width="90%"
+                            />
+                        </Link>
+                    </Box>
+                </div>
                 <SectionMap
                     headerStore={storesDetails}
                     subDomain={subDomain}

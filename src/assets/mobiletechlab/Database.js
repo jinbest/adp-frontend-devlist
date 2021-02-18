@@ -404,6 +404,7 @@ const homeTextData = {
         title: ["WINNIPEG_PROFESSIONAL", "PHONE_REPAIR"],
         subtitle: "SAME_DAY_ADVANCED_REPAIR_SERVICE",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Winnipeg"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",

@@ -157,6 +157,10 @@ export class LanguageKeysFr extends LanguageKeys {
     public SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE =
         "Magasinez notre sélection d'appareils neufs et d'occasion!"
     public SHOP_NOW = "Achetez maintenant"
+    public REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE = "Réparez, achetez et protégez vos appareils mobiles essentiels."
+    public CITY_MOBILE_DEVICE_SPECIALISTS = (city:string) => {
+        return `Spécialistes des appareils mobiles de la ${city}.`
+    }
 
     /* Repair-widget Text */
     public NEXT = "Prochain"

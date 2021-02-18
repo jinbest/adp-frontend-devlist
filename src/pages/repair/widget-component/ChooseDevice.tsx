@@ -722,9 +722,13 @@ const ChooseDevice = ({
                                                         {item.cost + ' (Prices are plus tax where applicable.)'}
                                                     </p>
                                                 )}
-                                                {item.warranty && item.warranty > 0 && (
+                                                {item.warranty && item.warranty > 0 ? (
                                                     <p className={subDomain + "-estimate-content"}>
                                                         {'Warranty: ' + item.warranty + " " + ConvertWarrantyUnit(item.warranty_unit)}
+                                                    </p>
+                                                ) : (
+                                                    <p className={subDomain + "-estimate-content"} style={{color: 'grey'}}>
+                                                        <i>No warranty</i>
                                                     </p>
                                                 )}
                                             </div>

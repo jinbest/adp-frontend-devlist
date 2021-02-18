@@ -22,8 +22,8 @@ const useStyles = makeStyles(() =>
       right: '20px',
       bottom: '20px',
       zIndex: 5,
-      width: '60px',
-      height: '60px'
+      width: '50px',
+      height: '70px'
     },
     badgeImg: {
       width: '100%',
@@ -46,7 +46,7 @@ const Badge = ({subDomain}: Props) => {
   return (
     <div className={classes.root}>
       <a href='https://www.devicelist.ca/' target='_blank' rel='noreferrer'>
-        <img src={require(`../assets/${subDomain}/img/Badge.svg`).default} alt='badge-img' className={classes.badgeImg} />
+        <img src={require(`../assets/${subDomain}/img/footer/device-list.png`).default} alt='badge-img' className={classes.badgeImg} />
       </a>
     </div>
   )
