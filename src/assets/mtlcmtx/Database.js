@@ -446,7 +446,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "info@northtechsolutions.ca 208 Sinaa, Iqaluit, NU",
+            "208 Sinaa, Iqaluit, NU",
             "NORTHTECH_FOOTER_CONTENT_TWO",
         ],
         footerLink: [

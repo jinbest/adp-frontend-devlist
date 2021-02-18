@@ -71,7 +71,7 @@ export function makeLocations(data: any[]) {
             location_name: data[i].location_name,
             address_1: data[i].address_1,
             address_2: data[i].address_2,
-            distance: data[i].distance / 1000 + "km",
+            distance: (data[i].distance / 1000).toFixed(1) + "km",
             location_id: data[i].id,
             hours: hours,
             days: weekDays,
@@ -83,15 +83,15 @@ export function makeLocations(data: any[]) {
     return locations
 }
 
-function getNearestLocLink(data:any[]) {
-    let nearestLoc: any = data[0];
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].distance < nearestLoc.distance) {
-            nearestLoc = data[i]
-        }
-    }
-    return `https://www.google.com/maps/search/?api=1&query=${nearestLoc.latitude},${nearestLoc.longitude}`
-}
+// function getNearestLocLink(data:any[]) {
+//     let nearestLoc: any = data[0];
+//     for (let i = 1; i < data.length; i++) {
+//         if (data[i].distance < nearestLoc.distance) {
+//             nearestLoc = data[i]
+//         }
+//     }
+//     return `https://www.google.com/maps/search/?api=1&query=${nearestLoc.latitude},${nearestLoc.longitude}`
+// }
 
 const StyledMenu = withStyles({
     paper: {
@@ -364,7 +364,7 @@ const CustomizedMenus = inject("headerStore")(
                                             subDomain={subDomain}
                                         />
                                         <Button
-                                            title={'Find Locations'}
+                                            title={'Get Location'}
                                             bgcolor={themeColor}
                                             borderR="20px"
                                             width="80%"
@@ -408,19 +408,20 @@ const CustomizedMenus = inject("headerStore")(
                                 {headerStore.findAddLocation.length ? <a 
                                     className={subDomain + "-link"} 
                                     style={{ color: underLineCol }}
-                                    href={getNearestLocLink(headerStore.findAddLocation)}
+                                    // href={getNearestLocLink(headerStore.findAddLocation)}
+                                    href="https://www.google.com/business/"
                                     target='_blank'
                                     rel='noreferrer'
                                 >
                                     {t("VIEW_STORE_DETAILS")}
                                 </a> : <></>}
-                                <a
+                                {headerStore.findAddLocation.length > 1 && <a
                                     className={subDomain + "-link"}
                                     style={{ color: underLineCol }}
                                     onClick={viewMoreStores}
                                 >
                                     {t("VIEW_MORE_STORES")}
-                                </a>
+                                </a>}
                                 {locSelStatus && 
                                     <a 
                                         className={subDomain + "-link"} 

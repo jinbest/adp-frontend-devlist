@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat, Preloader } from "./components"
+import { Footer, Header, Chat, Preloader, Badge } from "./components"
 import { Home } from "./pages/home/"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
@@ -26,7 +26,7 @@ const subDomain = apexDomain.split(".")[0]
 //     {name: "dccmtx", domain: "dccmtx.com"},
 //     {name: "mtlcmtx", domain: "mtlcmtx.com"}
 // ]
-// const siteNum = 1, subDomain = devicelist[siteNum].name, apexDomain = "dccmtx.com"
+// const siteNum = 2, subDomain = devicelist[siteNum].name, apexDomain = "dccmtx.com"
 
 type FeatureProps = {
     flag: string
@@ -60,6 +60,13 @@ function App(): JSX.Element {
         setTagScript(storeTabData.headTag)
 
         loadScript(storeTabData.bodyTag)
+        if (subDomain === "mobiletechlab") {
+            // document.body.prepend(storeTabData.scriptTag)
+            const script = document.createElement("script")
+            script.type="text/javascript";
+            script.prepend(storeTabData.scriptTag);
+            document.body.prepend(script);
+        }
 
         appLoadAPI
             .getStoresDetail(apexDomain, false)
@@ -187,6 +194,7 @@ function App(): JSX.Element {
                         </Provider>
                         <BaseRouter />
                         <Chat subDomain={subDomain} features={features} />
+                        <Badge subDomain={subDomain} />
                         {footerStatus && <Footer subDomain={subDomain} features={features} />}
                     </Router>
                 ) : (

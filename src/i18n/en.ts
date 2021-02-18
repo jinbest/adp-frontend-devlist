@@ -285,7 +285,8 @@ export class LanguageKeys {
         return `See Why Customers Love ${storeName}`
     }
     public MOBILE_TECH_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+        // return `© 2020 ${storeName} 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+        return `@ 2020 ${storeName} Inc. All Rights Reserved. All trademarks are properties of their respective holders. ${storeName} Inc does not own or make claim to those trademarks used on this website in which it is not the holder.`
     }
     public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} repairs your device and notifies you of pick up or delivery date.`

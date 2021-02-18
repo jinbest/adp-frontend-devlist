@@ -50,14 +50,28 @@
 
 .#{$folderName}-corner-shape {
   position: absolute;
+  margin: auto;
   top: 0;
-  right: 0;
-  width: 40vw;
+  width: 100vw;
+  height: 700px;
+  overflow: hidden;
+  opacity: 0.25;
   z-index: -2;
+  @media (max-width: 425px) {
+    height: 430px;
+  }
 }
 
 .#{$folderName}-corner-shape > img {
   width: 100%;
+  min-width: 1000px;
+  min-height: 650px;
+  @media (max-width: 1024px) {
+    min-height: 600px;
+  }
+  @media (max-width: 768px) {
+    min-height: 500px;
+  }
 }
 
 .#{$folderName}-mockup-shape {

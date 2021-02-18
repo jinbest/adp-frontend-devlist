@@ -13,7 +13,7 @@ type Props = {
 
 const Footer = ({subDomain, features}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
-  const footerLink = data.homeTextData.footer.footerLink;
+  // const footerLink = data.homeTextData.footer.footerLink;
   const gridVal = data.homeTextData.footer.gridVal;
   const t = useT();
 
@@ -36,9 +36,9 @@ const Footer = ({subDomain, features}: Props) => {
       </Typography>
       <Box className={subDomain + '-footer-container'}>
         <Grid item container xs={12}>
-          <Grid item xs={12} md={gridVal.mainGrid[0]}>
+          {/* <Grid item xs={12} md={gridVal.mainGrid[0]}> */}<Grid item xs={12} md={12}>
             <Grid item container xs={12}>
-              <Grid item xs={12} md={gridVal.subGrid[0]}>
+              {/* <Grid item xs={12} md={gridVal.subGrid[0]}> */}<Grid item xs={12} md={12}>
                 <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
                 <div className={subDomain + '-footer-subContent-title'}>
                   {t(data.homeTextData.footer.contentSubTitle)}
@@ -53,7 +53,7 @@ const Footer = ({subDomain, features}: Props) => {
                 </div>
                 <div className={subDomain + '-device-list-grid'}>{data.homeTextData.footer.content[0]}</div>
               </Grid>
-              {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
+              {/* {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
                 {data.homeTextData.footer.subContent.map((item:any, index:number) => {
                   return (
                     <React.Fragment key={index}>
@@ -71,14 +71,14 @@ const Footer = ({subDomain, features}: Props) => {
                     </React.Fragment>
                   )
                 })}
-              </Grid>}
+              </Grid>} */}
               <div className={subDomain + '-device-list-grid'}>
                 <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
               </div>
             </Grid>            
           </Grid>
           <Grid item xs={12} md={gridVal.mainGrid[1]}>
-            <Grid item container xs={12}>
+            {/* <Grid item container xs={12}>
               {
                 footerLink.map((links:any, index:number) => 
                   <Grid item xs={12} sm={3} key={index}>
@@ -95,7 +95,7 @@ const Footer = ({subDomain, features}: Props) => {
                   </Grid>     
                 )
               }
-            </Grid>
+            </Grid> */}
             <FeatureToggles features={feats}>
               <Feature
                 name={'FRONTEND_ONLINE_PURCHASE'}

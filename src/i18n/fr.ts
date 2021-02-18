@@ -293,7 +293,8 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public MOBILE_TECH_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        // return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `@ 2020 ${storeName} Inc. Tous droits réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. ${storeName} Inc ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
