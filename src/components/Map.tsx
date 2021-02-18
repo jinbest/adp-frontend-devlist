@@ -1,12 +1,21 @@
-import { createStyles, makeStyles } from "@material-ui/core"
 import React from "react"
+import { createStyles, makeStyles, Theme } from "@material-ui/core"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         mapWrapper: {
-            height: "fit-content",
-            position: "relative",
+            // height: "fit-content",
+            // position: "relative",
             padding: "10px",
+        },
+        mapContainer: {
+            height: "700px",
+            [theme.breakpoints.down("sm")]: {
+                height: "1200px",
+            },
+            [theme.breakpoints.down("md")]: {
+                height: "1000px",
+            },
         },
     })
 )
@@ -28,13 +37,18 @@ const Map = ({ locations }: Props) => {
         const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
         zoom = Math.round(maxRadiusY / 2.5)
     }
+    const getAddress = (location: any) => {
+        return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+            location.city
+        }, ${location.postcode}, ${location.country}`
+    }
     return (
         <div className={classes.mapWrapper}>
             <MapContainer
                 center={[centerX, centerY]}
                 zoom={zoom}
-                scrollWheelZoom={false}
-                style={{ height: "700px" }}
+                scrollWheelZoom={true}
+                className={classes.mapContainer}
             >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -44,7 +58,7 @@ const Map = ({ locations }: Props) => {
                     locations.map((element, index) => {
                         return (
                             <Marker position={[element.latitude, element.longitude]} key={index}>
-                                <Popup>{element.location_name}</Popup>
+                                <Popup>{getAddress(element)}</Popup>
                             </Marker>
                         )
                     })}

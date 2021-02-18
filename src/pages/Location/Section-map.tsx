@@ -171,8 +171,8 @@ const SectionMap = inject("headerStore")(
             setExpanded(isExpanded ? panel : false)
         }
         return (
-            <div className={subDomain + "-section-map-wrapp"}>
-                <Grid container className={subDomain + "-section1-top"}>
+            <section className={subDomain + "-Container"}>
+                <Grid container>
                     <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
                         {locations.map((element, index) => (
                             <Accordion
@@ -377,7 +377,7 @@ const SectionMap = inject("headerStore")(
                         <Map locations={locations} />
                     </Grid>
                 </Grid>
-            </div>
+            </section>
         )
     })
 )

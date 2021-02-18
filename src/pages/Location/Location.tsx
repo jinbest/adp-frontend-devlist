@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { SectionMap } from "./"
-import Map from "../../components/Map"
-import { storesDetails } from "../../store"
+import { Section1, Shape, SectionMap } from "./"
 import { Helmet } from "react-helmet"
+import { storesDetails } from "../../store"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../store/StoresDetails"
+
 type Props = {
     subDomain: string
     features: any[]
@@ -29,6 +29,14 @@ const Location = ({ subDomain, features, handleStatus, storesDetailsStore }: Pro
 
     return (
         <div>
+            {" "}
+            <Helmet>
+                <title>{pageTitle}</title>
+                <meta name="description" content={metaDescription} />
+                {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
+            </Helmet>
+            {/* <Shape subDomain={subDomain} /> */}
+            <Section1 subDomain={subDomain} features={features} handleStatus={handleStatus} />
             <SectionMap
                 headerStore={storesDetails}
                 subDomain={subDomain}
