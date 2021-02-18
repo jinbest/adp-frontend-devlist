@@ -26,7 +26,7 @@ const devicelist = [
     "dccmtx",
     "mtlcmtx",
 ]
-const subDomain = devicelist[2]
+const subDomain = devicelist[1]
 
 type FeatureProps = {
     flag: string

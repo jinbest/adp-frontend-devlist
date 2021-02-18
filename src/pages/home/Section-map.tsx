@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { CardMobile, Button } from "../../components"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import {
     Grid,
     Box,
@@ -52,11 +53,39 @@ const DAYS_OF_THE_WEEK = [
     "Friday",
     "Saturday",
 ]
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        timePanelWrapp: {
+            justifyContent: "space-around",
+            [theme.breakpoints.down("sm")]: {
+                justifyContent: "space-between",
+                marginRight: "25%",
+            },
+            [theme.breakpoints.down("xs")]: {
+                marginRight: "0px",
+            },
+        },
+
+        item1: {
+            order: 2,
+            [theme.breakpoints.up("lg")]: {
+                order: 1,
+            },
+        },
+        item2: {
+            order: 1,
+            [theme.breakpoints.up("lg")]: {
+                order: 2,
+            },
+        },
+    })
+)
+
 const SectionMap = inject("headerStore")(
     observer(({ subDomain, features, locations, headerStore, handleStatus }: Props) => {
         const data = require(`../../assets/${subDomain}/Database`)
         const t = useT()
-
+        const classes = useStyles()
         const [feats, setFeatures] = useState<any[]>([])
         const [featSearch, setFeatSearch] = useState<any[]>([])
         const [gridMD, setGridMD] = useState(data.cardMobileData.gridMD)
@@ -143,7 +172,7 @@ const SectionMap = inject("headerStore")(
         return (
             <div className={subDomain + "-section-map-wrapp"}>
                 <Grid container className={subDomain + "-section1-top"}>
-                    <Grid item md={6} sm={12} xs={12}>
+                    <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
                         {locations.map((element, index) => (
                             <Accordion
                                 key={index}
@@ -159,128 +188,180 @@ const SectionMap = inject("headerStore")(
                                 </AccordionSummary>
                                 <AccordionDetails style={{ display: "block" }}>
                                     <Grid container>
-                                        <Grid item md={5} sm={5} xs={12}>
-                                            <Link
-                                                to="/get-quote"
-                                                style={{ textDecoration: "none", width: "60px" }}
-                                                onClick={handleGetQuote}
+                                        <Grid
+                                            item
+                                            container
+                                            md={4}
+                                            sm={12}
+                                            xs={12}
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                alignItems: "center",
+                                                height: "fit-content",
+                                            }}
+                                        >
+                                            <Grid
+                                                item
+                                                container
+                                                md={12}
+                                                sm={12}
+                                                xs={12}
+                                                style={{ marginBottom: "20px" }}
                                             >
-                                                <Button
-                                                    title={t("GET_QUOTE")}
-                                                    bgcolor={data.colorPalle.repairButtonCol}
-                                                    borderR="20px"
-                                                    subDomain={subDomain}
-                                                    onClick={() => {
-                                                        handleLocSelect(element)
+                                                <Grid
+                                                    item
+                                                    md={12}
+                                                    sm={6}
+                                                    xs={6}
+                                                    style={{ marginBottom: "20px" }}
+                                                >
+                                                    <p
+                                                        style={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                        }}
+                                                    >
+                                                        <PhoneIcon /> <span>Directions</span>
+                                                    </p>
+                                                </Grid>
+                                                <Grid item md={12} sm={6} xs={6}>
+                                                    <p
+                                                        style={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                        }}
+                                                    >
+                                                        <PhoneIcon />:{" "}
+                                                        <a href={`tel:${element.phone}`}>
+                                                            {element.phone}
+                                                        </a>
+                                                    </p>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid item container md={12} sm={12} xs={12}>
+                                                <Grid
+                                                    item
+                                                    md={12}
+                                                    sm={6}
+                                                    xs={6}
+                                                    style={{
+                                                        marginBottom: "20px",
+                                                        display: "flex",
                                                     }}
-                                                />
-                                            </Link>
+                                                >
+                                                    <Link
+                                                        to="/get-quote"
+                                                        style={{
+                                                            textDecoration: "none",
+                                                            width: "60px",
+                                                        }}
+                                                        onClick={handleGetQuote}
+                                                    >
+                                                        <Button
+                                                            title={t("GET_QUOTE")}
+                                                            bgcolor={
+                                                                data.colorPalle.repairButtonCol
+                                                            }
+                                                            width="150px"
+                                                            borderR="20px"
+                                                            subDomain={subDomain}
+                                                            onClick={() => {
+                                                                handleLocSelect(element)
+                                                            }}
+                                                        />
+                                                    </Link>
+                                                </Grid>
+                                                <Grid
+                                                    item
+                                                    md={12}
+                                                    sm={6}
+                                                    xs={6}
+                                                    style={{ display: "flex" }}
+                                                >
+                                                    <Link
+                                                        to="/get-appointment"
+                                                        style={{ textDecoration: "none" }}
+                                                        onClick={handleGetQuote}
+                                                    >
+                                                        <Button
+                                                            title={"Book Repair"}
+                                                            bgcolor={
+                                                                data.colorPalle.repairButtonCol
+                                                            }
+                                                            width="150px"
+                                                            borderR="20px"
+                                                            subDomain={subDomain}
+                                                            onClick={() => {
+                                                                handleLocSelect(element)
+                                                            }}
+                                                        />
+                                                    </Link>
+                                                </Grid>
+                                            </Grid>
                                         </Grid>
-                                        <Grid item md={7} sm={7} xs={12}>
-                                            <Link
-                                                to="/get-appointment"
-                                                style={{ textDecoration: "none" }}
-                                                onClick={handleGetQuote}
+                                        <Grid item md={8} sm={12} xs={12}>
+                                            <div
+                                                className={
+                                                    subDomain +
+                                                    "-hours-div " +
+                                                    classes.timePanelWrapp
+                                                }
+                                                // style={{
+                                                //     margin: "auto",
+                                                //     justifyContent: "space-around",
+                                                // }}
                                             >
-                                                <Button
-                                                    title={"Get Appointment"}
-                                                    bgcolor={data.colorPalle.repairButtonCol}
-                                                    borderR="20px"
-                                                    subDomain={subDomain}
-                                                    onClick={() => {
-                                                        handleLocSelect(element)
-                                                    }}
-                                                />
-                                            </Link>
+                                                <div>
+                                                    <p
+                                                        className={subDomain + "-block-title"}
+                                                        style={{ textAlign: "start" }}
+                                                    >
+                                                        {"Days"}
+                                                    </p>{" "}
+                                                    {getRegularHours(element.location_hours).map(
+                                                        (element, index) => (
+                                                            <p
+                                                                key={index}
+                                                                className={
+                                                                    subDomain + "-block-content"
+                                                                }
+                                                            >
+                                                                {DAYS_OF_THE_WEEK[element.day]}
+                                                            </p>
+                                                        )
+                                                    )}
+                                                </div>
+                                                <div>
+                                                    <p
+                                                        className={subDomain + "-block-title"}
+                                                        style={{ textAlign: "start" }}
+                                                    >
+                                                        {"Hours"}
+                                                    </p>{" "}
+                                                    {getRegularHours(element.location_hours).map(
+                                                        (element, index) => (
+                                                            <p
+                                                                key={index}
+                                                                className={
+                                                                    subDomain + "-block-content"
+                                                                }
+                                                            >
+                                                                {getHourType(element.open)}
+                                                                {"-"}
+                                                                {getHourType(element.close)}
+                                                            </p>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
                                         </Grid>
                                     </Grid>
-                                    <Box style={{ padding: "10px", marginLeft: "12px" }}>
-                                        <span>
-                                            <PhoneIcon />:{" "}
-                                            <a href={`tel:${element.phone}`}>{element.phone}</a>
-                                        </span>
-                                        <p
-                                            className={subDomain + "-block-title"}
-                                            style={{ textAlign: "start" }}
-                                        >
-                                            {"Hours"}
-                                        </p>
-                                        <div
-                                            className={subDomain + "-hours-div"}
-                                            style={{ margin: "auto", justifyContent: "flex-start" }}
-                                        >
-                                            <div>
-                                                {getRegularHours(element.location_hours).map(
-                                                    (element, index) => (
-                                                        <p
-                                                            key={index}
-                                                            className={subDomain + "-block-content"}
-                                                        >
-                                                            {DAYS_OF_THE_WEEK[element.day]}
-                                                        </p>
-                                                    )
-                                                )}
-                                            </div>
-                                            <div>
-                                                {getRegularHours(element.location_hours).map(
-                                                    (element, index) => (
-                                                        <p
-                                                            key={index}
-                                                            className={subDomain + "-block-content"}
-                                                        >
-                                                            {getHourType(element.open)}
-                                                            {"-"}
-                                                            {getHourType(element.close)}
-                                                        </p>
-                                                    )
-                                                )}
-                                            </div>
-                                        </div>
-                                    </Box>
                                 </AccordionDetails>
                             </Accordion>
-                            // <Box key={index}>
-                            //         <h2>{getAddress(element)}</h2>
-                            //         <Box style={{ display: "flex", width: "100%" }}>
-                            //             <Box style={{ width: "100%" }}>
-                            //                 <Link
-                            //                     to="/get-quote"
-                            //                     style={{ textDecoration: "none", width: "60px" }}
-                            //                     onClick={handleGetQuote}
-                            //                 >
-                            //                     <Button
-                            //                         title={t("GET_QUOTE")}
-                            //                         bgcolor={data.colorPalle.repairButtonCol}
-                            //                         borderR="20px"
-                            //                         subDomain={subDomain}
-                            //                         width="50%"
-                            //                     />
-                            //                 </Link>
-                            //             </Box>
-                            //             <Box style={{ width: "100%" }}>
-                            //                 <Link
-                            //                     to="/get-appointment"
-                            //                     style={{ textDecoration: "none" }}
-                            //                     onClick={handleGetQuote}
-                            //                 >
-                            //                     <Button
-                            //                         title={"Get Appointment"}
-                            //                         bgcolor={data.colorPalle.repairButtonCol}
-                            //                         borderR="20px"
-                            //                         subDomain={subDomain}
-                            //                         width="70%"
-                            //                     />
-                            //                 </Link>
-                            //             </Box>
-                            //         </Box>
-                            //         <span>phone: {element.phone}</span>
-                            //         <div>
-                            //             {`M - F: 10:00 am – 8:00 pm Saturday - Sunday: 10:00 am – 6:00 pm`}
-                            //         </div>
-                            //     </Box>
                         ))}
                     </Grid>
-                    <Grid item md={6} sm={12} xs={12}>
+                    <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item2}>
                         <Map locations={locations} />
                     </Grid>
                 </Grid>

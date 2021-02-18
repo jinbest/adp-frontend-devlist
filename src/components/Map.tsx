@@ -4,10 +4,9 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
 const useStyles = makeStyles(() =>
     createStyles({
         mapWrapper: {
-            width: "100%",
             height: "fit-content",
             position: "relative",
-            padding: "20px",
+            padding: "10px",
         },
     })
 )
