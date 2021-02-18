@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Footer, Header, Chat, Preloader, Badge } from "./components"
 import { Home } from "./pages/home/"
+import { Location } from "./pages/Location"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
 import { Provider } from "mobx-react"
@@ -135,7 +136,6 @@ function App(): JSX.Element {
                     component={() => (
                         <Provider storesDetailsStore={storesDetails}>
                             <Home
-                                storesDetailsStore={storesDetails}
                                 subDomain={subDomain}
                                 features={features}
                                 handleStatus={handleFooterStatus}
@@ -144,6 +144,20 @@ function App(): JSX.Element {
                     )}
                 />
                 <Route path="/home" render={() => <Redirect to="/" />} />
+                <Route
+                    path="/contact"
+                    exact
+                    component={() => (
+                        <Provider storesDetailsStore={storesDetails}>
+                            <Location
+                                storesDetailsStore={storesDetails}
+                                subDomain={subDomain}
+                                features={features}
+                                handleStatus={handleFooterStatus}
+                            />
+                        </Provider>
+                    )}
+                />
                 <Route
                     path="/repair"
                     component={() => (

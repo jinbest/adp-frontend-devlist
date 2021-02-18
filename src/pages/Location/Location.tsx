@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Shape, Section1, Section2, Section3, Section4, Section5, Section6, SectionMap } from "./"
+import { SectionMap } from "./"
 import Map from "../../components/Map"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
@@ -15,7 +15,6 @@ type Props = {
 const Location = ({ subDomain, features, handleStatus, storesDetailsStore }: Props) => {
     const mainData = require(`../../assets/${subDomain}/Database`)
 
-    const SectionItemComponents = [Section4, Section5, Section6]
     const [pageTitle, setPageTitle] = useState("Store")
     const [metaDescription, setMetaDescription] = useState("")
 
@@ -30,30 +29,13 @@ const Location = ({ subDomain, features, handleStatus, storesDetailsStore }: Pro
 
     return (
         <div>
-            <Helmet>
-                <title>{pageTitle}</title>
-                <meta name="description" content={metaDescription} />
-                {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
-            </Helmet>
-
-            <Shape subDomain={subDomain} />
-            {/* <SectionMap
+            <SectionMap
+                headerStore={storesDetails}
                 subDomain={subDomain}
                 features={features}
                 locations={storesDetailsStore.findAddLocation}
-                handleStatus={handleStatus}
-            /> */}
-            <Section1
-                locations={storesDetailsStore.findAddLocation}
-                subDomain={subDomain}
-                features={features}
                 handleStatus={handleStatus}
             />
-            <Section2 subDomain={subDomain} features={features} />
-            <Section3 subDomain={subDomain} features={features} />
-            {SectionItemComponents.map((SectionItem, index: number) => {
-                return <SectionItem subDomain={subDomain} key={index} />
-            })}
         </div>
     )
 }

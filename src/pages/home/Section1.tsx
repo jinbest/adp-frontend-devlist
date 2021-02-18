@@ -6,17 +6,14 @@ import { useT, T } from "../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore } from "../../store"
-import SectionMap from "./Section-map"
-import { storesDetails } from "../../store"
 
 type Props = {
     subDomain?: string
     features: any[]
-    locations: any[]
     handleStatus: (status: boolean) => void
 }
 
-const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
+const Section1 = ({ subDomain, features, handleStatus }: Props) => {
     const data = require(`../../assets/${subDomain}/Database`)
     const t = useT()
 
@@ -140,13 +137,7 @@ const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
                         </Link>
                     </Box>
                 </div>
-                <SectionMap
-                    headerStore={storesDetails}
-                    subDomain={subDomain}
-                    features={features}
-                    locations={locations}
-                    handleStatus={handleStatus}
-                />
+
                 <FeatureToggles features={featSearch}>
                     <Feature
                         name={"FRONTEND_GLOBAL_SEARCH"}
