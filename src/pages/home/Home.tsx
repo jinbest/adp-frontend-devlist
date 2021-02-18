@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react"
-import { Shape, Section1, Section2, Section3, Section4, Section5, Section6 } from "./"
+import { Shape, Section1, Section2, Section3, Section4, Section5, Section6, SectionMap } from "./"
+import Map from "../../components/Map"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
-
+import { inject } from "mobx-react"
+import { observer } from "mobx-react-lite"
+import { StoresDetails } from "../../store/StoresDetails"
 type Props = {
     subDomain: string
     features: any[]
-    handleStatus: (status:boolean) => void
+    storesDetailsStore: StoresDetails
+    handleStatus: (status: boolean) => void
 }
-
-const Home = ({ subDomain, features, handleStatus }: Props) => {
+const Home = ({ subDomain, features, handleStatus, storesDetailsStore }: Props) => {
     const mainData = require(`../../assets/${subDomain}/Database`)
 
     const SectionItemComponents = [Section4, Section5, Section6]
@@ -34,7 +37,18 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
             </Helmet>
 
             <Shape subDomain={subDomain} />
-            <Section1 subDomain={subDomain} features={features} handleStatus={handleStatus} />
+            {/* <SectionMap
+                subDomain={subDomain}
+                features={features}
+                locations={storesDetailsStore.findAddLocation}
+                handleStatus={handleStatus}
+            /> */}
+            <Section1
+                locations={storesDetailsStore.findAddLocation}
+                subDomain={subDomain}
+                features={features}
+                handleStatus={handleStatus}
+            />
             <Section2 subDomain={subDomain} features={features} />
             <Section3 subDomain={subDomain} features={features} />
             {SectionItemComponents.map((SectionItem, index: number) => {
@@ -43,5 +57,4 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
         </div>
     )
 }
-
-export default Home
+export default inject("storesDetailsStore")(observer(Home))

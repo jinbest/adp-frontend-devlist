@@ -10,23 +10,23 @@ import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 import { Helmet } from "react-helmet"
 
-const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-const subDomain = apexDomain.split(".")[0]
+// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+// const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
+// const subDomain = apexDomain.split(".")[0]
 
-// const devicelist = [
-//     "bananaservice",
-//     "geebodevicerepair",
-//     "mobiletechlab",
-//     "nanotechmobile",
-//     "northtechsolutions",
-//     "okotoksphonephix",
-//     "pradowireless",
-//     "wirelessrevottawa",
-//     "dccmtx",
-//     "mtlcmtx"
-// ]
-// const subDomain = devicelist[3]
+const devicelist = [
+    "bananaservice",
+    "geebodevicerepair",
+    "mobiletechlab",
+    "nanotechmobile",
+    "northtechsolutions",
+    "okotoksphonephix",
+    "pradowireless",
+    "wirelessrevottawa",
+    "dccmtx",
+    "mtlcmtx",
+]
+const subDomain = devicelist[2]
 
 type FeatureProps = {
     flag: string
@@ -62,8 +62,8 @@ function App(): JSX.Element {
         loadScript(storeTabData.bodyTag)
 
         appLoadAPI
-            .getStoresDetail(apexDomain, false)
-            // .getStoresDetail('dccmtx.com', false)
+            // .getStoresDetail(apexDomain, false)
+            .getStoresDetail("dccmtx.com", false)
             .then((res: any) => {
                 setStoreID(res.data.settings.store_id)
                 storesDetails.changeStoreID(res.data.settings.store_id)
@@ -81,15 +81,15 @@ function App(): JSX.Element {
                 .getFeatures(storeId)
                 .then((res: any) => {
                     const feats: FeatureProps[] = [
-                        { flag: "ALWAYS_TRUE", isActive: true }, 
-                        { flag: "FRONTEND_INSURE", isActive: false }
+                        { flag: "ALWAYS_TRUE", isActive: true },
+                        { flag: "FRONTEND_INSURE", isActive: false },
                     ]
                     if (
                         subDomain === "mobiletechlab" ||
                         subDomain === "wirelessrevottawa" ||
                         subDomain === "northtechsolutions" ||
-                        subDomain === "okotoksphonephix"
-                        || subDomain === "nanotechmobile"
+                        subDomain === "okotoksphonephix" ||
+                        subDomain === "nanotechmobile"
                     ) {
                         feats.push({ flag: "FRONTEND_BUY", isActive: true })
                     }
@@ -127,7 +127,16 @@ function App(): JSX.Element {
                 <Route
                     path="/"
                     exact
-                    component={() => <Home subDomain={subDomain} features={features} handleStatus={handleFooterStatus} />}
+                    component={() => (
+                        <Provider storesDetailsStore={storesDetails}>
+                            <Home
+                                storesDetailsStore={storesDetails}
+                                subDomain={subDomain}
+                                features={features}
+                                handleStatus={handleFooterStatus}
+                            />
+                        </Provider>
+                    )}
                 />
                 <Route path="/home" render={() => <Redirect to="/" />} />
                 <Route
