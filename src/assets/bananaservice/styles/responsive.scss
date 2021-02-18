@@ -118,7 +118,7 @@
     display: block;
   }
   .#{$folderName}-section1-title, .#{$folderName}-section1-subtitle {
-    text-align: center;
+    text-align: left;
     display: block;
   }
   .#{$folderName}-corner-shape {
@@ -171,6 +171,9 @@
 }
 
 @media (max-width: 600px) {
+  .#{$folderName}-footer {
+    padding: 80px 20px 30px;
+  }
   .#{$folderName}-device-list-grid {
     display: block;
     text-align: center;
@@ -307,9 +310,9 @@
   .#{$folderName}-sec6-container {
     padding-top: 1rem;
   }
-  .#{$folderName}-footer {
-    margin-top: -100px;
-  }
+  // .#{$folderName}-footer {
+  //   margin-top: -100px;
+  // }
   .#{$folderName}-footer-buynow {
     height: 26px;
   }

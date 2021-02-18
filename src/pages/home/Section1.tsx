@@ -100,6 +100,21 @@ const Section1 = ({ subDomain, features, locations, handleStatus }: Props) => {
                 <Typography className={subDomain + "-section1-subtitle"}>
                     {t(data.homeTextData.section1.subtitle)}
                 </Typography>
+                <Box className={subDomain + "-repair-section-button"} style={{ margin: "initial" }}>
+                    <Link
+                        to="/get-quote"
+                        style={{ textDecoration: "none" }}
+                        onClick={handleGetQuote}
+                    >
+                        <Button
+                            title={t("GET_QUOTE")}
+                            bgcolor={data.colorPalle.repairButtonCol}
+                            borderR="20px"
+                            subDomain={subDomain}
+                            width="100%"
+                        />
+                    </Link>
+                </Box>
 
                 <SectionMap
                     headerStore={storesDetails}

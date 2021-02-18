@@ -703,8 +703,8 @@ const ChooseDevice = ({
                                 <Typography className={subDomain + "-topic-title"}>
                                     {t(data.mainTopic.title)}
                                 </Typography>
-                                {estimatedTimes &&
-                                    estimatedTimes.map((item: any, index: number) => {
+                                <div className={subDomain + "-repair-summary-content-div"} style={{display:'block'}}>
+                                    {estimatedTimes && estimatedTimes.map((item: any, index: number) => {
                                         return (
                                             <div
                                                 key={index}
@@ -730,6 +730,8 @@ const ChooseDevice = ({
                                             </div>
                                         )
                                     })}
+                                </div>
+                                
                             </div>
                         )}
 

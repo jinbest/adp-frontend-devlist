@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { CustomNumeric } from '../components';
-import { repairWidgetStore } from '../store';
+// import { repairWidgetStore } from '../store';
 
 const Frame = styled.div`
   width: 100%;
@@ -127,7 +127,7 @@ const CustomCalendar = ({subDomain, handleParentDate, timezone}: CanlendarProps)
     // } else {
     //   setDate(changeTimezone(new Date(), timezone))
     // }
-    setDate(changeTimezone(new Date(repairWidgetStore.repairWidgetInitialValue.selectDate), timezone))
+    // setDate(changeTimezone(new Date(repairWidgetStore.repairWidgetInitialValue.selectDate), timezone))
   }, [timezone])
 
   function changeTimezone(date:Date, ianatz:string) {

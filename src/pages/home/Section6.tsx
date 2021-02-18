@@ -1,7 +1,8 @@
 import React from 'react';
 import {CardWhyCustomer} from '../../components'
 import { Typography, Grid, Box } from '@material-ui/core'
-import { useT } from '../../i18n/index'
+import { useT, T } from '../../i18n/index'
+import { storesDetails } from '../../store'
 
 type Props = {
   subDomain?: string;
@@ -14,7 +15,7 @@ const Section6 = ({subDomain}: Props) => {
   return (
     <section className={subDomain + '-Container center ' + subDomain + '-sec6-container'}>      
       <Typography className='f40 bold mg-t-1'>
-        {t(data.homeTextData.section6.title)}
+        <T id={data.homeTextData.section6.title} data={storesDetails.storesDetails.name} />
       </Typography>
       <Typography className='f24'>
         {t(data.homeTextData.section6.subtitle)}

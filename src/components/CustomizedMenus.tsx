@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
-import { Button, UserInfoModal } from "./"
+import { 
+    Button, 
+    // UserInfoModal, 
+    InputComponent 
+} from "./"
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
@@ -13,10 +17,10 @@ import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
+import Loading from './Loading'
 
 export function makeLocations(data: any[]) {
     const locations: GetCurrentLocParams[] = []
-    // console.log('data', data)
     const days: any[] = [
         "SUNDAY",
         "MONDAY",
@@ -66,15 +70,28 @@ export function makeLocations(data: any[]) {
         const cntItem: GetCurrentLocParams = {
             location_name: data[i].location_name,
             address_1: data[i].address_1,
-            distance: data[i].distance / 1000 + "km",
+            address_2: data[i].address_2,
+            distance: (data[i].distance / 1000).toFixed(1) + "km",
             location_id: data[i].id,
             hours: hours,
             days: weekDays,
+            latitude: data[i].latitude,
+            longitude: data[i].longitude
         }
         locations.push(cntItem)
     }
     return locations
 }
+
+// function getNearestLocLink(data:any[]) {
+//     let nearestLoc: any = data[0];
+//     for (let i = 1; i < data.length; i++) {
+//         if (data[i].distance < nearestLoc.distance) {
+//             nearestLoc = data[i]
+//         }
+//     }
+//     return `https://www.google.com/maps/search/?api=1&query=${nearestLoc.latitude},${nearestLoc.longitude}`
+// }
 
 const StyledMenu = withStyles({
     paper: {
@@ -122,12 +139,14 @@ const CustomizedMenus = inject("headerStore")(
         const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
         const t = useT()
         const [pos, setPos] = useState({ latitude: "", longitude: "" })
-        const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
+        // const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
         const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected)
         const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
         const [requireUserInfo, setRequireUserInfo] = useState(false)
         const [contentWidth, setContentWidth] = useState("215px")
         const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
+        const [postCode, setPostCode] = useState("")
+        const [isRequest, setIsRequest] = useState(false)
 
         const handleLocSelect = (index: number) => {
             const cntLocation: any = headerStore.cntUserLocation[index]
@@ -190,8 +209,8 @@ const CustomizedMenus = inject("headerStore")(
                     .findGeoLocation(headerStore.store_id, pos)
                     .then((res: any) => {
                         if (res.data.length) {
-                            setLocations(makeLocations(res.data))
                             headerStore.changeFindAddLocation(res.data)
+                            setLocations(makeLocations(headerStore.findAddLocation))
                             headerStore.changeLocationID(res.data[0].id)
                         } else {
                             setToastParams({
@@ -227,32 +246,32 @@ const CustomizedMenus = inject("headerStore")(
             headerStore.changeCntUserLocation(locations)
         }, [locations])
 
-        useEffect(() => {
-            if (userInfo.city) {
-                if (locations.length) return
-                findLocationAPI
-                    .findAddLocation(headerStore.store_id, userInfo)
-                    .then((res: any) => {
-                        if (res.data.length) {
-                            setLocations(makeLocations(res.data))
-                            headerStore.changeFindAddLocation(res.data)
-                            headerStore.changeLocationID(res.data[0].id)
-                        } else {
-                            setToastParams({
-                                msg: "Response is an empty data, please check your infos.",
-                                isWarning: true,
-                            })
-                        }
-                    })
-                    .catch((error) => {
-                        console.log("Error to find location with Address", error)
-                        setToastParams({
-                            msg: "Error to find location with Address, please check your infos.",
-                            isError: true,
-                        })
-                    })
-            }
-        }, [userInfo])
+        // useEffect(() => {
+        //     if (userInfo.city) {
+        //         if (locations.length) return
+        //         findLocationAPI
+        //             .findAddLocation(headerStore.store_id, userInfo)
+        //             .then((res: any) => {
+        //                 if (res.data.length) {
+        //                     headerStore.changeFindAddLocation(res.data)
+        //                     setLocations(makeLocations(headerStore.findAddLocation))
+        //                     headerStore.changeLocationID(res.data[0].id)
+        //                 } else {
+        //                     setToastParams({
+        //                         msg: "Response is an empty data, please check your infos.",
+        //                         isWarning: true,
+        //                     })
+        //                 }
+        //             })
+        //             .catch((error) => {
+        //                 console.log("Error to find location with Address", error)
+        //                 setToastParams({
+        //                     msg: "Error to find location with Address, please check your infos.",
+        //                     isError: true,
+        //                 })
+        //             })
+        //     }
+        // }, [userInfo])
 
         const viewMoreStores = () => {
             setLocations(makeLocations(headerStore.findAddLocation))
@@ -261,6 +280,40 @@ const CustomizedMenus = inject("headerStore")(
 
         const handleBookRepair = () => {
             repairWidgetStore.init()
+        }
+
+        const handleGetLocation = () => {
+            if (!postCode) return;
+            const data:any = {
+                "city": "",
+                "state": "",
+                "postcode": postCode, // R3P0N2
+                "country": ""
+            }
+            setIsRequest(true);
+            findLocationAPI
+                .findAddLocation(headerStore.store_id, data)
+                .then((res: any) => {
+                    if (res.data.length) {
+                        headerStore.changeFindAddLocation(res.data)
+                        setLocations(makeLocations(headerStore.findAddLocation))
+                        headerStore.changeLocationID(res.data[0].id)
+                    } else {
+                        setToastParams({
+                            msg: "Response is an empty data, please check your infos.",
+                            isWarning: true,
+                        })
+                        setIsRequest(false)
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error to find location with Address", error)
+                    setToastParams({
+                        msg: "Error to find location with Postal Code, please check your code.",
+                        isError: true,
+                    })
+                    setIsRequest(false)
+                })
         }
 
         return (
@@ -304,14 +357,33 @@ const CustomizedMenus = inject("headerStore")(
                                     <p className={subDomain + "-block-title"}>{t("MY_STORE")}</p>
                                 ) : (
                                     <div style={{ textAlign: "center" }}>
-                                        <p style={{ fontSize: "12px", color: "darkgray" }}>
+                                        <InputComponent
+                                            value={postCode}
+                                            placeholder={'Postal Code*'}
+                                            handleChange={(e) => {setPostCode(e.target.value)}}
+                                            subDomain={subDomain}
+                                        />
+                                        <Button
+                                            title={'Get Location'}
+                                            bgcolor={themeColor}
+                                            borderR="20px"
+                                            width="80%"
+                                            height="30px"
+                                            margin="10px auto"
+                                            fontSize="15px"
+                                            subDomain={subDomain}
+                                            onClick={handleGetLocation}
+                                        >
+                                            {isRequest && <Loading />}
+                                        </Button>
+                                        {/* <p style={{ fontSize: "12px", color: "darkgray" }}>
                                             {t("INPUT_YOUR_INFO_DESCRIPTION")}
                                         </p>
                                         <UserInfoModal
                                             bgColor={themeColor}
                                             handleUserInfo={setUserInfo}
                                             subDomain={subDomain}
-                                        />
+                                        /> */}
                                     </div>
                                 )}
                                 {headerStore.cntUserLocation.map((item: any, index: number) => {
@@ -333,19 +405,34 @@ const CustomizedMenus = inject("headerStore")(
                                 })}
                             </div>
                             <div className={subDomain + "-content-block"}>
-                                <a className={subDomain + "-link"} style={{ color: underLineCol }}>
+                                {headerStore.findAddLocation.length ? <a 
+                                    className={subDomain + "-link"} 
+                                    style={{ color: underLineCol }}
+                                    // href={getNearestLocLink(headerStore.findAddLocation)}
+                                    href="https://www.google.com/business/"
+                                    target='_blank'
+                                    rel='noreferrer'
+                                >
                                     {t("VIEW_STORE_DETAILS")}
-                                </a>
-                                <a
+                                </a> : <></>}
+                                {headerStore.findAddLocation.length > 1 && <a
                                     className={subDomain + "-link"}
                                     style={{ color: underLineCol }}
                                     onClick={viewMoreStores}
                                 >
                                     {t("VIEW_MORE_STORES")}
-                                </a>
-                                <a className={subDomain + "-link"} style={{ color: underLineCol }}>
-                                    {t("GET_DIRECTIONS")}
-                                </a>
+                                </a>}
+                                {locSelStatus && 
+                                    <a 
+                                        className={subDomain + "-link"} 
+                                        style={{ color: underLineCol }}
+                                        href={`https://www.google.com/maps/search/?api=1&query=${headerStore.cntUserLocation[0].latitude},${headerStore.cntUserLocation[0].longitude}`}
+                                        target='_blank'
+                                        rel='noreferrer'
+                                    >
+                                        {t("GET_DIRECTIONS")}
+                                    </a>
+                                }
                             </div>
                             <FeatureToggles features={features}>
                                 <Feature

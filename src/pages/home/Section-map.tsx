@@ -18,6 +18,7 @@ import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../store/StoresDetails"
 import { Link } from "react-router-dom"
 import PhoneIcon from "@material-ui/icons/Phone"
+import CallSplitIcon from "@material-ui/icons/CallSplit"
 import { makeLocations } from "../../components/CustomizedMenus"
 interface Props extends StoreProps {
     subDomain?: string
@@ -222,7 +223,12 @@ const SectionMap = inject("headerStore")(
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <PhoneIcon /> <span>Directions</span>
+                                                        <PhoneIcon />{" "}
+                                                        <a href={`tel:${element.phone}`}>
+                                                            <span style={{ marginLeft: "10px" }}>
+                                                                {element.phone}
+                                                            </span>
+                                                        </a>
                                                     </p>
                                                 </Grid>
                                                 <Grid item md={12} sm={6} xs={6}>
@@ -232,10 +238,16 @@ const SectionMap = inject("headerStore")(
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <PhoneIcon />:{" "}
-                                                        <a href={`tel:${element.phone}`}>
-                                                            {element.phone}
-                                                        </a>
+                                                        <CallSplitIcon />{" "}
+                                                        <span
+                                                            style={{
+                                                                marginLeft: "10px",
+                                                                fontWeight: "bold",
+                                                            }}
+                                                        >
+                                                            {" "}
+                                                            Directions
+                                                        </span>
                                                     </p>
                                                 </Grid>
                                             </Grid>

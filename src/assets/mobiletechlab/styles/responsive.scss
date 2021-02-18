@@ -112,12 +112,12 @@
     display: block;
   }
   .#{$folderName}-section1-title, .#{$folderName}-section1-subtitle {
-    text-align: center;
+    text-align: left;
     display: block;
   }
-  .#{$folderName}-corner-shape {
-    width: 60vw;
-  }
+  // .#{$folderName}-corner-shape {
+  //   width: 60vw;
+  // }
   .#{$folderName}-footer {
     background-image: url('../img/footer/mobiletech-footer-shape-mobile.png');
   }

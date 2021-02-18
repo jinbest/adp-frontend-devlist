@@ -3,12 +3,13 @@ import { GetDeviceUs, SelectRepair, ReceiveDevice } from '../pages/repair/Sec2-S
 
 type Props = {
   subtitle: string;
-  content: string;
+  content?: string;
   subDomain?: string;
   type?: string;
+  children?: any;
 }
 
-const CardRepairSec2 = ({subtitle, content, subDomain, type}: Props) => {
+const CardRepairSec2 = ({subtitle, content, subDomain, type, children}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
   const sec2SvgCol = data.colorPalle.sec2SvgCol;
 
@@ -21,7 +22,7 @@ const CardRepairSec2 = ({subtitle, content, subDomain, type}: Props) => {
       </div>
       <div>
         <p className={subDomain + '-card-repair-sec2-subtitle'}>{subtitle}</p>
-        <p className={subDomain + '-card-repair-sec2-content'}>{content}</p>
+        <p className={subDomain + '-card-repair-sec2-content'}>{children ? children : content}</p>
       </div>
     </div>
   )

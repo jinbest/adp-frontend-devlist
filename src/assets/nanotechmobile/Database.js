@@ -450,7 +450,7 @@ const homeTextData = {
         ],
         contentSubTitle: "SASKATOON_NORTH",
         content: [
-            "saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK",
+            "9, 834 – 51st Street Saskatoon, SK",
             "NANOTECH_FOOTER_CONTENT_TWO",
         ],
         footerLink: [
