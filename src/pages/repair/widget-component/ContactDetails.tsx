@@ -5,7 +5,7 @@ import {
     InputComponent, 
     Button, 
     PhoneInput, 
-    // CustomSelect 
+    CustomSelect 
 } from "../../../components"
 import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
@@ -13,7 +13,10 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { repairWidgetAPI } from "../../../services"
 import { PostAppointParams } from "../model/post-appointment-params"
-// import { countriesData, statesData } from "../../../const"
+import { 
+    countriesData, 
+    // statesData 
+} from "../../../const"
 import { findLocationAPI } from "../../../services"
 import { makeLocations } from "../../../components/CustomizedMenus"
 import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
@@ -54,8 +57,8 @@ const ContactDetails = ({
     const [phone, setPhone] = useState("")
     const [address1, setStreetAddress1] = useState("")
     const [address2, setStreetAddress2] = useState("")
-    // const [country, setCountry] = useState({ code: "CA", name: "" })
-    // const [city, setCity] = useState("")
+    const [country, setCountry] = useState({ code: "CA", name: "" })
+    const [city, setCity] = useState("")
     // const [province, setProvince] = useState({ code: "MB", name: "" })
     const [postalCode, setPostalCode] = useState("")
     const [disableStatus, setDisableStatus] = useState(true)
@@ -99,10 +102,10 @@ const ContactDetails = ({
             params.customer_phone = phone
             params.customer_address_1 = address1
             params.customer_address_2 = address2
-            // params.customer_city = city
+            params.customer_city = city
             // params.customer_state = province.code
             params.customer_postcode = postalCode
-            // params.customer_country = country.code
+            params.customer_country = country.code
             params.customer_note = null
             params.customer_contact_method = repairWidgetStore.receiveQuote.code
             params.repairs = repairs
@@ -122,8 +125,8 @@ const ContactDetails = ({
                         phone: phone,
                         address1: { name: address1, code: "" },
                         address2: { name: address2, code: "" },
-                        // country: country,
-                        // city: city,
+                        country: country,
+                        city: city,
                         // province: province,
                         postalCode: postalCode,
                     })
@@ -147,8 +150,8 @@ const ContactDetails = ({
                 phone: phone,
                 address1: { name: address1, code: "" },
                 address2: { name: address2, code: "" },
-                // country: country,
-                // city: city,
+                country: country,
+                city: city,
                 // province: province,
                 postalCode: postalCode,
             })
@@ -166,10 +169,10 @@ const ContactDetails = ({
         if (storesDetails.location_id < 0) {
             findLocationAPI
                 .findAddLocation(storesDetails.store_id, {
-                    city: '', // city,
+                    city: city,
                     state: '', // province.code,
                     postcode: postalCode,
-                    country: '', // country.code,
+                    country: country.code,
                 })
                 .then((res: any) => {
                     if (res.data.length && res.data[0].location_hours.length) {
@@ -179,7 +182,7 @@ const ContactDetails = ({
                         handleSubmit(param)
                     } else {
                         setToastParams({
-                            msg: "There is not available locations. Please input another address.",
+                            msg: "There is not available locations. Please input another Postal Code.",
                             isWarning: true,
                         })
                         setDisableStatus(false)
@@ -187,9 +190,9 @@ const ContactDetails = ({
                     }
                 })
                 .catch((error) => {
-                    console.log("Error to find location with Address", error)
+                    console.log("Error to find location with Postal Code", error)
                     setToastParams({
-                        msg: "Error to find location with Address. Please input right address.",
+                        msg: "Error to find location with Postal Code. Please input right Postal Code.",
                         isError: true,
                     })
                     setDisableStatus(false)
@@ -219,8 +222,8 @@ const ContactDetails = ({
             phone,
             address1,
             address2,
-            // country,
-            // city,
+            country,
+            city,
             // province,
             postalCode,
             disableStatus,
@@ -240,8 +243,8 @@ const ContactDetails = ({
         phone,
         address1,
         address2,
-        // country,
-        // city,
+        country,
+        city,
         // province,
         postalCode,
         disableStatus,
@@ -280,9 +283,9 @@ const ContactDetails = ({
         setStreetAddress2(val)
     }
 
-    // const handleChangeCity = (val: string) => {
-    //     setCity(val)
-    // }
+    const handleChangeCity = (val: string) => {
+        setCity(val)
+    }
 
     const handleChangePostalCode = (val: string) => {
         setPostalCode(val)
@@ -342,14 +345,14 @@ const ContactDetails = ({
                                         subDomain={subDomain}
                                     />
                                 </Grid>
-                                <Grid item xs={storesDetails.location_id < 0 ? 6 : 12}>
+                                <Grid item xs={(storesDetails.location_id < 0 && code !== "MAIL_IN") ? 6 : 12}>
                                     <PhoneInput
                                         handleSetPhone={setPhone}
                                         val={phone}
                                         placeholder={t(data.placeholder.phoneNum)}
                                     />
                                 </Grid>
-                                {storesDetails.location_id < 0 && <Grid item xs={6}>
+                                {(storesDetails.location_id < 0 && code !== "MAIL_IN") && <Grid item xs={6}>
                                     <InputComponent
                                         value={postalCode}
                                         placeholder={t(data.placeholder.postalCode)}
@@ -384,7 +387,7 @@ const ContactDetails = ({
                                             subDomain={subDomain}
                                         />
                                     </Grid>
-                                    {/* <Grid item xs={12} sm={4}>
+                                    <Grid item xs={12} sm={4}>
                                         <CustomSelect
                                             value={country}
                                             handleSetValue={setCountry}
@@ -403,6 +406,16 @@ const ContactDetails = ({
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={4}>
+                                        <InputComponent
+                                            value={postalCode}
+                                            placeholder={t(data.placeholder.postalCode)}
+                                            handleChange={(e) => {
+                                                handleChangePostalCode(e.target.value)
+                                            }}
+                                            subDomain={subDomain}
+                                        />
+                                    </Grid>
+                                    {/* <Grid item xs={12} sm={4}>
                                         <CustomSelect
                                             value={province}
                                             handleSetValue={setProvince}
