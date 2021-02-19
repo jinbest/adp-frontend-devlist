@@ -323,12 +323,12 @@ const SectionMap = inject("headerStore")(
 
                       {getRegularHours(element.location_hours).map((element, index) => (
                         <Grid key={index} item container md={12} sm={12} xs={12}>
-                          <Grid md={6} sm={6} xs={6}>
+                          <Grid item md={6} sm={6} xs={6}>
                             <p className={subDomain + "-block-content"}>
                               {DAYS_OF_THE_WEEK[element.day]}
                             </p>
                           </Grid>
-                          <Grid md={6} sm={6} xs={6}>
+                          <Grid item md={6} sm={6} xs={6}>
                             <p className={subDomain + "-block-content"}>
                               {getHourType(element.open)}
                               {"-"}

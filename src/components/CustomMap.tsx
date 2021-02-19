@@ -31,10 +31,6 @@ type Props = {
 
 const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
   const classes = useStyles()
-  console.log("isDetail============>", isDetail)
-  // const [centerX, setCenterX] = useState(49.865759)
-  // const [centerY, setCenterY] = useState(-97.211811)
-  // const [zoom, setZoom] = useState(6)
   let centerX = 49.865759
   let centerY = -97.211811
   let zoom = 6
