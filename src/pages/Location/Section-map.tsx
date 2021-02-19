@@ -92,9 +92,9 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         timePanelWrapp: {
-            justifyContent: "space-around",
+            // justifyContent: "space-around",
             [theme.breakpoints.down("sm")]: {
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
                 "& p": {
                     fontSize: "16px",
                 },
