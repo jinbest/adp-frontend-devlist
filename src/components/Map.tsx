@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { Map } from "leaflet"
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         mapWrapper: {
@@ -24,28 +25,51 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 type Props = {
     locations: any[]
-    // onMarkerDoubleClick: () => void
+    selectedLocation: any
 }
 
-const Map = ({ locations }: Props) => {
+const CustomMap = ({ locations, selectedLocation }: Props) => {
     const classes = useStyles()
+    // const [centerX, setCenterX] = useState(49.865759)
+    // const [centerY, setCenterY] = useState(-97.211811)
+    // const [zoom, setZoom] = useState(6)
     let centerX = 49.865759
     let centerY = -97.211811
-    let zoom = 2
-    if (locations && locations.length > 0) {
-        const longitudes = locations.map((v) => v.longitude)
-        const latitudes = locations.map((v) => v.latitude)
-        centerX = latitudes.reduce((a, b) => a + b, 0) / 5
-        centerY = longitudes.reduce((a, b) => a + b, 0) / 5
-        const maxRadiusX = Math.max(...latitudes.map((v) => v - centerX))
-        const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
-        zoom = Math.max(maxRadiusX, maxRadiusY) / 2.2
-    }
+    let zoom = 6
+    const [map, setMap] = useState<null | Map>(null)
+    useEffect(() => {
+        console.log("selectedLocation", selectedLocation, locations)
+
+        if (selectedLocation) {
+            centerX = selectedLocation.latitude
+            centerY = selectedLocation.longitude
+            zoom = 14
+        } else if (locations && locations.length > 0) {
+            const longitudes = locations.map((v) => v.longitude)
+            const latitudes = locations.map((v) => v.latitude)
+            const pCenterX = latitudes.reduce((a, b) => a + b, 0) / 5
+            const pCenterY = longitudes.reduce((a, b) => a + b, 0) / 5
+            const maxRadiusX = Math.max(...latitudes.map((v) => v - centerX))
+            const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
+            console.log(latitudes, longitudes)
+            console.log("maxRadiusX, maxRadiusY", maxRadiusX, maxRadiusY)
+            const pZoom = 17 / (Math.max(maxRadiusX, maxRadiusY) / 5 + 3)
+            centerX = pCenterX
+            centerY = pCenterY
+            zoom = pZoom
+        }
+        // console.log("[centerX, centerY], zoom", [centerX, centerY], zoom)
+        if (map) {
+            map.setView([centerX, centerY], zoom)
+        }
+    }, [selectedLocation, map])
+
     const getAddress = (location: any) => {
         return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
             location.city
         }, ${location.postcode}, ${location.country}`
     }
+
     return (
         <div className={classes.mapWrapper}>
             <MapContainer
@@ -53,6 +77,7 @@ const Map = ({ locations }: Props) => {
                 zoom={zoom}
                 scrollWheelZoom={true}
                 className={classes.mapContainer}
+                whenCreated={setMap}
             >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -79,4 +104,4 @@ const Map = ({ locations }: Props) => {
         </div>
     )
 }
-export default Map
+export default CustomMap

@@ -127,6 +127,7 @@ const SectionMap = inject("headerStore")(
         const t = useT()
         const classes = useStyles()
         const [expanded, setExpanded] = React.useState<number | false>(false)
+        const [selectedLocation, setSelectedLocation] = React.useState<null | any>(null)
         const handleLocSelect = (location: any) => {
             headerStore.cntUserLocation = makeLocations([location])
             headerStore.changeLocationID(location.id)
@@ -175,6 +176,9 @@ const SectionMap = inject("headerStore")(
             isExpanded: boolean
         ) => {
             setExpanded(isExpanded ? panel : false)
+            if (isExpanded) {
+                setSelectedLocation(locations[panel])
+            }
         }
         return (
             <section className={subDomain + "-Container " + classes.root}>
@@ -398,7 +402,7 @@ const SectionMap = inject("headerStore")(
                         ))}
                     </Grid>
                     <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item2}>
-                        <Map locations={locations} />
+                        <Map selectedLocation={selectedLocation} locations={locations} />
                     </Grid>
                 </Grid>
             </section>
