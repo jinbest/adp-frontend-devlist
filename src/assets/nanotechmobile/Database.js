@@ -411,23 +411,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "2 days ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Great quality service got my switch fixed fast. And was working like new. Would recommend everyone to fix their electronic here, only place I come.",
+                reviewer: "Adiam Haile",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a week ago",
+                content: "Never had a problem. they always fix my tech fast and efficiently. and so friendly. good prices as well. thumbs up all the way.",
+                reviewer: "Dion Gale",
+            },
+            {
+                score: 5,
+                days: "2 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I have had to go to Nanotech on a few different occasions for different reasons. My iPhone screen, to replace my battery for another iPhone and now to unlock my late mom’s computer. They have always been quick to resolve, professional and compassionate to each situation. They are priced very reasonable and have always had my items back to me within the timeline given. Thank you so much.",
+                reviewer: "Andrea Mundreon",
             },
         ],
     },

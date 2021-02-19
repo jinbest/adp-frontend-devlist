@@ -87,7 +87,7 @@ const Section4 = ({ subDomain }: Props) => {
             </Typography>
           </Grid>
           <Grid container item xs={12}>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex", margin: "auto" }}>
               {data.devicelistData.map((item: any, index: number) => {
                 return (
                   <Box className={subDomain + "-cart-device-list"} key={index}>

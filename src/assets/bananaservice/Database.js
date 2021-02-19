@@ -411,23 +411,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "I would highly recommend Banana Service. I went in today with a phone that I thought could possibly be beyond repair. The individual that I spoke with was extremely professional and honest. I was lucky that the damage was not as bad as I had thought, obviously they are the experts! They could have easily kept the phone and charged me what they originally quoted, and I would have never known the difference, but they didn't. I will not hesitate to use them in the future and will definitely recommend them to anyone I come across with a damaged phone.",
+                reviewer: "Adrian Moore",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a year ago",
+                content: "I was told it would take 2 weeks for my laptop to be fixed and I got it back in less than one week. They saved all of my data which is most thankful about.",
+                reviewer: "Yolanda Haris",
+            },
+            {
+                score: 5,
+                days: "4 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "Great local and reliable business. Have done my phone, sons Xbox repair, laptop repair... very cool to have an all-in-one electronic service place for once. I’d give a 10 star if I could.",
+                reviewer: "Kent Wiseman",
             },
         ],
     },

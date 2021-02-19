@@ -411,23 +411,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "A guy who loves what he does and who knows what he is doing. Excellent work, I recommend!",
+                reviewer: "Jean-Christophe Couture",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
+                content: "Super professional I recommend 100% repair in less than 3 days for my iPhone 11",
+                reviewer: "Alexandre Roussell",
+            },
+            {
+                score: 5,
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "Thight!",
+                reviewer: "Sophie Berube",
             },
         ],
     },

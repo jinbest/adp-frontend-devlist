@@ -92,9 +92,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
         <h1 className={subDomain + "-section1-title"}>{t("ESSENTIAL_MOBILE_DEVICE")}</h1>
         {/* <h1 className={subDomain + "-section1-title"}>{t('REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE')}</h1> */}
         <Typography className={subDomain + "-section1-subtitle"}>
-          {subDomain === "mobiletechlab" && (
-            <T id={"CITY_MOBILE_DEVICE_SPECIALISTS"} data={data.homeTextData.section1.city} />
-          )}
+          <T id={"CITY_MOBILE_DEVICE_SPECIALISTS"} data={data.homeTextData.section1.city} />
         </Typography>
         <div style={{ display: "flex" }}>
           <Box className={subDomain + "-repair-section-button"} style={{ margin: "initial" }}>

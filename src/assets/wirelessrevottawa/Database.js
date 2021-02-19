@@ -432,23 +432,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "5 days ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Twice I've employed the services of Wireless Rev, the 1st was to repair my Apple Desktop Computer, the 2nd was to repair my keyboard. Unbelievably professional, knowledgeable technicians, and so polite, friendly, helpful. Once initial diagnostics had been performed, they called me right back to clearly explain the problems encountered and their suggested solution. You'll be blown away by their service, they're just that good. My computer is like brand new once again. Thanks guys.",
+                reviewer: "LAURENCE Winter",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "5 months ago",
+                content: "Absolutely amazing and informative staff these guys know a lot about tech. They were very helpful and fast. The workmanship on my phone was quality and all done at a very affordable price. I couldn't recommend this business more if you need a cell phone repairman in the Ottawa area. They also sell a wide variety of premium cell phone cases",
+                reviewer: "Baba Ku",
+            },
+            {
+                score: 5,
+                days: "2 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I needed an iPhone battery replacement and was able to get it done within the hour and they gave me a loaner phone. Everyone was SUPER friendly but shout out to Hassim who made me laugh about 10 times in 5 minutes. Would definitely recommend this place!",
+                reviewer: "Tania",
             },
         ],
     },
