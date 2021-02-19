@@ -161,6 +161,8 @@ export class LanguageKeysFr extends LanguageKeys {
     public CITY_MOBILE_DEVICE_SPECIALISTS = (city:string) => {
         return `Spécialistes des appareils mobiles de la ${city}.`
     }
+    public ESSENTIAL_MOBILE_DEVICE = "appareils mobiles essentiels."
+    public YOUR = "ton"
 
     /* Repair-widget Text */
     public NEXT = "Prochain"
@@ -398,9 +400,10 @@ export class LanguageKeysFr extends LanguageKeys {
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Wireless Rev, il est facile de choisir pour tous les budgets!"
 
     /* Banana Website Text */
-    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles de l'Ontario"
+    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles de l'Peterborough"
     public WELCOME_BANANA = (storeName: string) => {
-        return `Bienvenue sur ${storeName}, le marché canadien des appareils mobiles`
+        console.log(storeName)
+        return `Magasin de téléphonie cellulaire et d’informatique de confiance`
     }
     public SEE_WHY_CUSTOMERS_LOVE_BANANA = (storeName: string) => {
         return `Découvrez pourquoi les clients aiment la ${storeName}`

@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet"
 type Props = {
     subDomain: string
     features: any[]
-    handleStatus: (status:boolean) => void
+    handleStatus: (status: boolean) => void
 }
 
 const Home = ({ subDomain, features, handleStatus }: Props) => {

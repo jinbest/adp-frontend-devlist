@@ -434,24 +434,24 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "October 22, 2020",
+                days: "a year ago",
                 content:
-                    "I needed a new battery for my iphone 6. After contacting several places who all told me the next available appointment was more than a week away, I called Mobile Tech on Corydon. Within 2 hours, my new battery was installed and ready for pickup. Great service and friendly staff.",
-                reviewer: "Pepo",
-            },
-            {
-                score: 4,
-                days: "November 9, 2020",
-                content:
-                    "Very glad I found this place! I send a request through FB to couple places asking for an estimate of the screen replacement and Mobile Tech Lab not only has automated estimation but they gave me a call almost right away to confirm that they have a part and it would be done in ... more",
-                reviewer: "Elena Kurakin",
+                    "Just want you to know how pleased I am with your service. The new battery is working perfectly. Your communication throughout the process was timely and professional and helpful. The reassembly of the pixel is flawless. I can't see any evidence that the phone shell is not the original. Am glad to have come across your business. Won't hesitate to recommend you to friends. Allan Lauder",
+                reviewer: "Allan Lauder",
             },
             {
                 score: 5,
-                days: "November 2, 2020",
+                days: "a year ago",
                 content:
-                    "My experience was excepion really amazing people working there with reasonable prices for fixing electronics, they fix your electronics with a super reasonable time frame,.would highly recommend this company!",
-                reviewer: "Jessica Johnson",
+                    "Excellent service! We were very impressed with the caliber of repair on my son’s iPhone. We had the screen and battery replaced, at a reasonable price. The customer service was great. Highly recommend if you are in the unfortunate position of needing a repair.",
+                reviewer: "Tammy Murdoch",
+            },
+            {
+                score: 5,
+                days: "8 months ago",
+                content:
+                    "Came to them with a cracked iPhone back. The team was engaging, kept me updated, explained everything and Best of all they were the best priced repair place in Winnipeg (I called around to them all) and fixed it same day! I will be recommending them to everyone I know.",
+                reviewer: "Tony Acosta",
             },
         ],
     },

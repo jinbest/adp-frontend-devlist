@@ -69,6 +69,7 @@ export function makeLocations(data: any[]) {
       days: weekDays,
       latitude: data[i].latitude,
       longitude: data[i].longitude,
+      business_page_link: data[i].business_page_link,
     }
     locations.push(cntItem)
   }
@@ -381,26 +382,28 @@ const CustomizedMenus = inject("headerStore")(
                         onClick={() => handleLocSelect(index)}
                         className={subDomain + "-block-content"}
                       >
-                        {"(" + item.distance + ") " + item.location_name + ", " + item.address_1}
+                        {item.location_name + ", " + item.address_1 + " (" + item.distance + ")"}
                       </p>
                     </React.Fragment>
                   )
                 })}
               </div>
               <div className={subDomain + "-content-block"}>
-                {headerStore.findAddLocation.length ? (
+                {locSelStatus && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
                     // href={getNearestLocLink(headerStore.findAddLocation)}
-                    href="https://www.google.com/business/"
+                    href={
+                      headerStore.cntUserLocation[0].business_page_link
+                        ? headerStore.cntUserLocation[0].business_page_link
+                        : "https://www.google.com/business/"
+                    }
                     target="_blank"
                     rel="noreferrer"
                   >
                     {t("VIEW_STORE_DETAILS")}
                   </a>
-                ) : (
-                  <></>
                 )}
                 {headerStore.findAddLocation.length > 1 && (
                   <a
@@ -468,7 +471,11 @@ const CustomizedMenus = inject("headerStore")(
                                 <div>
                                   {it.wkDys.map((itm: any, idx: number) => {
                                     return (
-                                      <p className={subDomain + "-block-content"} key={idx}>
+                                      <p
+                                        className={subDomain + "-block-content"}
+                                        style={{ textDecoration: "none", opacity: 1 }}
+                                        key={idx}
+                                      >
                                         {t(itm)}
                                       </p>
                                     )
@@ -477,7 +484,11 @@ const CustomizedMenus = inject("headerStore")(
                                 <div>
                                   {item.hours[index].hrs.map((itm: any, idx: number) => {
                                     return (
-                                      <p className={subDomain + "-block-content"} key={idx}>
+                                      <p
+                                        className={subDomain + "-block-content"}
+                                        style={{ textDecoration: "none", opacity: 1 }}
+                                        key={idx}
+                                      >
                                         {t(itm)}
                                       </p>
                                     )
