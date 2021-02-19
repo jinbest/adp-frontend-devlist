@@ -281,7 +281,7 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public GEEBO_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -297,8 +297,7 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public MOBILE_TECH_FOOTER_CONTENT_TWO = (storeName: string) => {
-        // return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
-        return `@ 2020 ${storeName} Inc. Tous droits réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. ${storeName} Inc ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}" Inc. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" Inc ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -316,7 +315,7 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public PRADO_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 British Columbia Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -337,7 +336,7 @@ export class LanguageKeysFr extends LanguageKeys {
     public REGINA_EAST = "Regina Est"
     public SASKATOON_NORTH = "Saskatoon Nord"
     public NANOTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -356,7 +355,7 @@ export class LanguageKeysFr extends LanguageKeys {
     }
     public GIVING_BACK_TO_NORTH = "Redonner au Nord"
     public NORTHTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -373,7 +372,7 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public PHONEPHIX_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -390,7 +389,7 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public WIRELESS_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
         return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
@@ -407,7 +406,7 @@ export class LanguageKeysFr extends LanguageKeys {
         return `Découvrez pourquoi les clients aiment la ${storeName}`
     }
     public BANANA_FOOTER_CONTENT_TWO = (storeName: string) => {
-        return `© 2020 ${storeName} 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Canada Inc. s / a «${storeName}» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire.`
+        return `2021 "${storeName}". Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. "${storeName}" ne possède ni ne revendique les marques commerciales utilisées sur ce site Web dont il n'est pas le titulaire.`
     }
     public BANANA_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) =>
         `Le service ${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`

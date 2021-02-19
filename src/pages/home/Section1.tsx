@@ -126,7 +126,11 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                         className={subDomain + "-repair-section-button"}
                         style={{ margin: "initial" }}
                     >
-                        <Link to="#" style={{ textDecoration: "none" }}>
+                        <Link
+                            to="/get-quote"
+                            style={{ textDecoration: "none" }}
+                            onClick={handleGetQuote}
+                        >
                             <Button
                                 title={t("BOOK_REPAIR")}
                                 bgcolor={data.colorPalle.repairButtonCol}
