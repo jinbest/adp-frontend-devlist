@@ -95,7 +95,7 @@ const repairWidget = {
     title: 'CHOOSE_YOUR_REPAIRS',
     placeholder: 'WHAT_IS_BROKEN',
     mainTopic: {
-      title: 'ESTIMATED_REPAIR_TIME',
+      title: 'REPAIR_SERVICE_SUMMARY',
       content: []
     },
     types: [

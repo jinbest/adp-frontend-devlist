@@ -154,7 +154,7 @@ export class LanguageKeys {
         "Shop our selection of new and pre-owned devices!"
     public SHOP_NOW = "Shop Now"
     public REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE = "Repair, buy & protect your essential mobile devices."
-    public CITY_MOBILE_DEVICE_SPECIALISTS = (city:string) => {
+    public CITY_MOBILE_DEVICE_SPECIALISTS = (city: string) => {
         return `${city}’s mobile device specialists.`
     }
 

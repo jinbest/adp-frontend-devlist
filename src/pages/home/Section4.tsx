@@ -1,26 +1,27 @@
-import React from 'react';
-import {DeviceListComponent} from '../../components'
+import React from "react"
+import { DeviceListComponent } from "../../components"
 // import {Button} from '../../components'
-import { Typography, Grid, Box } from '@material-ui/core';
-import { useT, T } from '../../i18n/index'
-import { storesDetails } from '../../store'
+import { Typography, Grid, Box } from "@material-ui/core"
+import { useT, T } from "../../i18n/index"
+import { storesDetails } from "../../store"
 
 type Props = {
-  subDomain?: string;
+  subDomain?: string
 }
 
-const Section4 = ({subDomain}: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`);
-  const t =useT();
+const Section4 = ({ subDomain }: Props) => {
+  const data = require(`../../assets/${subDomain}/Database`)
+  const t = useT()
 
   return (
-    <div className={subDomain + '-sec4-background'}>
-      <section className={subDomain + '-Container'}>
-
-        <Box className={'mg-t-7 ' + subDomain + '-sec4-container-box'}>
+    <div className={subDomain + "-sec4-background"}>
+      <section className={subDomain + "-Container"}>
+        <Box
+          className={subDomain === "mobiletechlab" ? subDomain + "-sec4-container-box" : "mg-t-7"}
+        >
           <Grid container item xs={12}>
             <Grid item xs={12} sm={12} md={6}>
-              <Typography className={'f40 bold ' + subDomain + '-section4-title'}>
+              <Typography className={"f40 bold " + subDomain + "-section4-title"}>
                 <T id={data.homeTextData.section4.title} data={storesDetails.storesDetails.name} />
               </Typography>
               {/* <Box className={subDomain + '-section4-button mobile'}>
@@ -34,11 +35,17 @@ const Section4 = ({subDomain}: Props) => {
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Grid item container xs={12}>
-                {data.devicelistData.slice(0,2).map((item:any, index:number) => {
+                {data.devicelistData.slice(0, 2).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={6} key={index}>
-                      <Box className={subDomain + '-cart-device-list'}>
-                        <DeviceListComponent img={item.img} title={t(item.title)} content={t(item.content)} key={index} subDomain={subDomain} />
+                      <Box className={subDomain + "-cart-device-list"}>
+                        <DeviceListComponent
+                          img={item.img}
+                          title={t(item.title)}
+                          content={t(item.content)}
+                          key={index}
+                          subDomain={subDomain}
+                        />
                       </Box>
                     </Grid>
                   )
@@ -55,11 +62,17 @@ const Section4 = ({subDomain}: Props) => {
             <Grid item xs={12} sm={12} md={3}></Grid>
             <Grid item xs={12} sm={12} md={9}>
               <Grid item container xs={12}>
-                {data.devicelistData.slice(2,5).map((item:any, index:number) => {
+                {data.devicelistData.slice(2, 5).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={4} key={index}>
-                      <Box className={subDomain + '-cart-device-list'}>
-                        <DeviceListComponent img={item.img} title={t(item.title)} content={t(item.content)} key={index} subDomain={subDomain} />
+                      <Box className={subDomain + "-cart-device-list"}>
+                        <DeviceListComponent
+                          img={item.img}
+                          title={t(item.title)}
+                          content={t(item.content)}
+                          key={index}
+                          subDomain={subDomain}
+                        />
                       </Box>
                     </Grid>
                   )
@@ -69,18 +82,24 @@ const Section4 = ({subDomain}: Props) => {
           </Grid>
         </Box>
 
-        <Box className={'mg-t-7 ' + subDomain + '-sec4-container-special-box'}>
+        <Box className={subDomain + "-sec4-container-special-box"}>
           <Grid container item xs={12}>
-            <Typography className={'f40 bold ' + subDomain + '-section-title'}>
+            <Typography className={"f40 bold " + subDomain + "-section-title"}>
               {t(data.homeTextData.section4.title)}
             </Typography>
           </Grid>
           <Grid container item xs={12}>
-            <div style={{display: 'flex'}}>
-              {data.devicelistData.map((item:any, index:number) => {
+            <div style={{ display: "flex" }}>
+              {data.devicelistData.map((item: any, index: number) => {
                 return (
-                  <Box className={subDomain + '-cart-device-list'} key={index}>
-                    <DeviceListComponent img={item.img} title={t(item.title)} content={t(item.content)} key={index} subDomain={subDomain} />
+                  <Box className={subDomain + "-cart-device-list"} key={index}>
+                    <DeviceListComponent
+                      img={item.img}
+                      title={t(item.title)}
+                      content={t(item.content)}
+                      key={index}
+                      subDomain={subDomain}
+                    />
                   </Box>
                 )
               })}
@@ -92,4 +111,4 @@ const Section4 = ({subDomain}: Props) => {
   )
 }
 
-export default Section4;
+export default Section4

@@ -3,16 +3,30 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() =>
   createStyles({
+    // '@keyframes blinker': {
+    //   "0%, 60%, 100%": {
+    //     opacity: 1,
+    //     transform: 'rotateY(0deg)'
+    //   },
+    //   "30%": {
+    //     opacity: 1,
+    //     transform: 'rotateY(90deg)'
+    //   },
+    //   "80%": {
+    //     opacity: 0,
+    //     transform: 'rotateY(0deg)'
+    //   }
+    // },
     '@keyframes blinker': {
-      "0%, 60%, 100%": {
+      "0%, 10%, 25%, 40%, 55%, 70%, 85%, 100%": {
         opacity: 1,
         transform: 'rotateY(0deg)'
       },
-      "30%": {
+      "17.5%, 32.5%, 47.5%, 62.5%, 77.5%, 92.5%": {
         opacity: 1,
         transform: 'rotateY(90deg)'
       },
-      "80%": {
+      "5%": {
         opacity: 0,
         transform: 'rotateY(0deg)'
       }
@@ -29,7 +43,7 @@ const useStyles = makeStyles(() =>
       width: '100%',
       height: '100%',
       animationName: '$blinker',
-      animationDuration: '4s',
+      animationDuration: '30s',
       animationTimingFunction: 'linear',
       animationIterationCount:'infinite',
     }

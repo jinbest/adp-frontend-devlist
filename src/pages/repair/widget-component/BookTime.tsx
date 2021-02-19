@@ -254,7 +254,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                     const cntLoc: any[] = makeLocations([storesDetails.findAddLocation[i]])
                     storesDetails.changeCntUserLocation(cntLoc)
                     storesDetails.changeLocationID(storesDetails.findAddLocation[i].id)
-                    setHoursRange(cntLoc[0].hours[0].hrs)
+                    setHoursRange(cntLoc[0].hours[0] && cntLoc[0].hours[0].hrs ? cntLoc[0].hours[0].hrs : ["Closed", "Closed", "Closed", "Closed", "Closed", "Closed", "Closed"])
                 }
             }
         }
@@ -381,7 +381,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        {hoursRange.length && <CustomBookTime
+                                        {hoursRange.length ? <CustomBookTime
                                             themeCol={themeCol}
                                             brandThemeCol={brandThemeCol}
                                             repairBooktimeCol={repairBooktimeCol}
@@ -402,7 +402,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                                             selectMonth={month}
                                             selectDay={day}
                                             hoursRange={hoursRange}
-                                        />}
+                                        /> : <></>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div
