@@ -382,7 +382,7 @@ const CustomizedMenus = inject("headerStore")(
                         onClick={() => handleLocSelect(index)}
                         className={subDomain + "-block-content"}
                       >
-                        {"(" + item.distance + ") " + item.location_name + ", " + item.address_1}
+                        {item.location_name + ", " + item.address_1 + " (" + item.distance + ")"}
                       </p>
                     </React.Fragment>
                   )
@@ -471,7 +471,11 @@ const CustomizedMenus = inject("headerStore")(
                                 <div>
                                   {it.wkDys.map((itm: any, idx: number) => {
                                     return (
-                                      <p className={subDomain + "-block-content"} key={idx}>
+                                      <p
+                                        className={subDomain + "-block-content"}
+                                        style={{ textDecoration: "none", opacity: 1 }}
+                                        key={idx}
+                                      >
                                         {t(itm)}
                                       </p>
                                     )
@@ -480,7 +484,11 @@ const CustomizedMenus = inject("headerStore")(
                                 <div>
                                   {item.hours[index].hrs.map((itm: any, idx: number) => {
                                     return (
-                                      <p className={subDomain + "-block-content"} key={idx}>
+                                      <p
+                                        className={subDomain + "-block-content"}
+                                        style={{ textDecoration: "none", opacity: 1 }}
+                                        key={idx}
+                                      >
                                         {t(itm)}
                                       </p>
                                     )
