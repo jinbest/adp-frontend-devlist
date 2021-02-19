@@ -21,6 +21,17 @@ const useStyles = makeStyles((theme: Theme) =>
         height: "500px",
       },
     },
+    popupWrapper: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "15px!important" as any,
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "12px!important" as any,
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "10px!important" as any,
+      },
+    },
   })
 )
 type Props = {
@@ -91,7 +102,7 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
                     rel="noreferrer"
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <h2>{getAddress(element)}</h2>
+                    <h2 className={classes.popupWrapper}>{getAddress(element)}</h2>
                   </a>
                 </Popup>
               </Marker>
