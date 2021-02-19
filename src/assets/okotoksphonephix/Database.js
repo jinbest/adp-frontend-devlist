@@ -417,23 +417,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Phonephix is a business who truly cares about their customers! I went in and the staff there were honest about if it was in my best interest to get one of my older devices fixed. They said as much as they want my business that it wasn't worth it for how old the device was. They offered a bunch of other options to help me out with what I needed. They were honest, helpful, and thoughtful!",
+                reviewer: "Madison Edwards",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "2 days ago",
+                content: "The team at Phonephix fixed up my girlfriend's phone screen and have honoured their warranty twice now. I was very happily surprised at their cooperation and professionalism. I would highly recommend this shop if you need repairs. Thanks again!",
+                reviewer: "Cole Dempsey",
+            },
+            {
+                score: 5,
+                days: "4 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I honestly believe this is the best customer service I have ever received. They are amazing, fast and affordable! Also, to top it off the warranty all their work. The woman spoke to my daughter about her broken iPad directly. Seems like a small thing to rave about but it was so kind. She was so heartbroken to have broken the screen and this woman was so soft and uplifting. I will never go anywhere else but Phonephix again. Thank you so much for this service. Keep up the great work!",
+                reviewer: "Hayley Wright",
             },
         ],
     },

@@ -365,7 +365,7 @@ export class LanguageKeysFr extends LanguageKeys {
         "Choisissez votre nouveau téléphone parmi nos 4 grades, avec Wireless Rev, il est facile de choisir pour tous les budgets!"
 
     /* Banana Website Text */
-    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles de l'Ontario"
+    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles de l'Peterborough"
     public WELCOME_BANANA = "Bienvenue sur Banana, le marché canadien des appareils mobiles"
     public SEE_WHY_CUSTOMERS_LOVE_BANANA = "Découvrez pourquoi les clients aiment la banane"
     public BANANA_FOOTER_CONTENT_TWO =

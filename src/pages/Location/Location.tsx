@@ -17,9 +17,8 @@ const Location = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
   useEffect(() => {
     findLocationAPI
       .findAllLocation(storesDetailsStore.store_id)
-      .then((res) => {
-        const resData = res as any
-        const locationData = resData.data as any[]
+      .then((res: any) => {
+        const locationData = res.data as any[]
         setLocations([...locationData])
       })
       .catch(() => {
