@@ -157,6 +157,8 @@ export class LanguageKeys {
     public CITY_MOBILE_DEVICE_SPECIALISTS = (city: string) => {
         return `${city}’s mobile device specialists.`
     }
+    public ESSENTIAL_MOBILE_DEVICE = "essential mobile devices."
+    public YOUR = "your"
 
     /* Repair-widget Text */
     public NEXT = "Next"
@@ -390,9 +392,10 @@ export class LanguageKeys {
         "Choose your new phone among our 4 grades, with Wireless Rev it's easy to choose for any budget!"
 
     /* Banana Website Text */
-    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Ontario's mobile device specialists"
+    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Peterborough's mobile device specialists"
     public WELCOME_BANANA = (storeName: string) => {
-        return `Welcome to ${storeName}, Canada’s mobile device marketplace`
+        console.log(storeName)
+        return `Peterborough’s Trusted Cell Phone & Computer Shop`
     }
     public SEE_WHY_CUSTOMERS_LOVE_BANANA = (storeName: string) => {
         return `See Why Customers Love ${storeName}`
