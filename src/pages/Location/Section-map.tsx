@@ -4,7 +4,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
 import { repairWidgetStore } from "../../store"
-import Map from "../../components/Map"
+import CustomMap from "../../components/CustomMap"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
@@ -402,7 +402,7 @@ const SectionMap = inject("headerStore")(
                         ))}
                     </Grid>
                     <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item2}>
-                        <Map selectedLocation={selectedLocation} locations={locations} />
+                        <CustomMap selectedLocation={selectedLocation} locations={locations} />
                     </Grid>
                 </Grid>
             </section>
