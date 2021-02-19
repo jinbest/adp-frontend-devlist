@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from "react"
-import { CardMobile, Button } from "../../components"
+import React from "react"
+import Button from "@material-ui/core/Button"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import {
-    Grid,
-    Box,
-    Typography,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-} from "@material-ui/core"
+import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
 import { repairWidgetStore } from "../../store"
 import Map from "../../components/Map"
@@ -22,7 +15,6 @@ import CallSplitIcon from "@material-ui/icons/CallSplit"
 import { makeLocations } from "../../components/CustomizedMenus"
 interface Props extends StoreProps {
     subDomain?: string
-    features: any[]
     locations: any[]
     handleStatus: (status: boolean) => void
 }
@@ -56,14 +48,61 @@ const DAYS_OF_THE_WEEK = [
 ]
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            [theme.breakpoints.down("sm")]: {
+                justifyContent: "space-between",
+                "& h2": {
+                    fontSize: " 18px",
+                },
+                "& span": {
+                    fontSize: "12px",
+                },
+            },
+            [theme.breakpoints.down("xs")]: {
+                "& h2": {
+                    fontSize: " 18px",
+                },
+                "& span": {
+                    fontSize: "12px",
+                },
+            },
+        },
+        getQuote: {
+            width: "170px",
+            fontSize: "13px!important" as any,
+            [theme.breakpoints.down("sm")]: {
+                width: "120px",
+                fontSize: "12px!important" as any,
+            },
+            [theme.breakpoints.down("xs")]: {
+                width: "80px",
+                fontSize: "10px!important" as any,
+            },
+        },
+        getAppoint: {
+            width: "170px",
+            fontSize: "13px!important" as any,
+            [theme.breakpoints.down("sm")]: {
+                width: "170px",
+                fontSize: "12px!important" as any,
+            },
+            [theme.breakpoints.down("xs")]: {
+                width: "130px",
+                fontSize: "10px!important" as any,
+            },
+        },
         timePanelWrapp: {
             justifyContent: "space-around",
             [theme.breakpoints.down("sm")]: {
                 justifyContent: "space-between",
-                marginRight: "20%",
+                "& p": {
+                    fontSize: "16px",
+                },
             },
             [theme.breakpoints.down("xs")]: {
-                marginRight: "0px",
+                "& p": {
+                    fontSize: "12px",
+                },
             },
         },
 
@@ -83,49 +122,16 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const SectionMap = inject("headerStore")(
-    observer(({ subDomain, features, locations, headerStore, handleStatus }: Props) => {
+    observer(({ subDomain, locations, headerStore, handleStatus }: Props) => {
         const data = require(`../../assets/${subDomain}/Database`)
         const t = useT()
         const classes = useStyles()
-        const [feats, setFeatures] = useState<any[]>([])
-        const [featSearch, setFeatSearch] = useState<any[]>([])
-        const [gridMD, setGridMD] = useState(data.cardMobileData.gridMD)
-        const [customeTitle, setCustomTitle] = useState("")
         const [expanded, setExpanded] = React.useState<number | false>(false)
         const handleLocSelect = (location: any) => {
             headerStore.cntUserLocation = makeLocations([location])
             headerStore.changeLocationID(location.id)
             headerStore.changeCntUserLocationSelected(true)
         }
-
-        useEffect(() => {
-            const cntCardMobileData: any = data.cardMobileData.data
-            const cntFeature: any[] = [],
-                cntFeatSearch: any[] = []
-            let cntCustomTitle = ""
-            for (let j = 0; j < features.length; j++) {
-                if (features[j].flag === "FRONTEND_TRADE" && features[j].isActive) {
-                    cntCustomTitle += cntCustomTitle ? ", " + t("TRADE") : t("TRADE")
-                } else if (features[j].flag === "FRONTEND_REPAIR" && features[j].isActive) {
-                    cntCustomTitle += cntCustomTitle ? ", " + t("REPAIR") : t("REPAIR")
-                } else if (features[j].flag === "FRONTEND_BUY" && features[j].isActive) {
-                    cntCustomTitle += cntCustomTitle ? ", " + t("BUY") : t("BUY")
-                } else if (features[j].flag === "SEARCH" && features[j].isActive) {
-                    cntFeatSearch.push(features[j].flag)
-                }
-                for (let i = 0; i < cntCardMobileData.length; i++) {
-                    if (cntCardMobileData[i].flag === features[j].flag && features[j].isActive) {
-                        cntFeature.push(cntCardMobileData[i].flag)
-                    }
-                }
-            }
-            const cntGridMD = Math.round(12 / cntFeature.length)
-            setFeatures(cntFeature)
-            setFeatSearch(cntFeatSearch)
-            setGridMD(cntGridMD)
-            setCustomTitle(cntCustomTitle)
-        }, [data, features, t])
-
         const handleGetQuote = () => {
             const cntAppointment: any = repairWidgetStore.appointResponse
             repairWidgetStore.init()
@@ -171,7 +177,7 @@ const SectionMap = inject("headerStore")(
             setExpanded(isExpanded ? panel : false)
         }
         return (
-            <section className={subDomain + "-Container"}>
+            <section className={subDomain + "-Container " + classes.root}>
                 <Grid container className={subDomain + "-section1-top"}>
                     <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
                         {locations.map((element, index) => (
@@ -238,16 +244,27 @@ const SectionMap = inject("headerStore")(
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <CallSplitIcon />{" "}
-                                                        <span
+                                                        {" "}
+                                                        <a
+                                                            href={`https://www.google.com/maps/search/?api=1&query=${element.latitude},${element.longitude}`}
+                                                            target="_blank"
+                                                            rel="noreferrer"
                                                             style={{
-                                                                marginLeft: "10px",
-                                                                fontWeight: "bold",
+                                                                textDecoration: "none",
+                                                                color: "black",
                                                             }}
                                                         >
-                                                            {" "}
-                                                            Directions
-                                                        </span>
+                                                            <CallSplitIcon />{" "}
+                                                            <span
+                                                                style={{
+                                                                    marginLeft: "10px",
+                                                                    fontWeight: "bold",
+                                                                }}
+                                                            >
+                                                                {" "}
+                                                                Directions
+                                                            </span>
+                                                        </a>
                                                     </p>
                                                 </Grid>
                                             </Grid>
@@ -270,18 +287,23 @@ const SectionMap = inject("headerStore")(
                                                         }}
                                                         onClick={handleGetQuote}
                                                     >
-                                                        <Button
-                                                            title={t("GET_QUOTE")}
-                                                            bgcolor={
-                                                                data.colorPalle.repairButtonCol
+                                                        <button
+                                                            style={{
+                                                                backgroundColor:
+                                                                    data.colorPalle.repairButtonCol,
+                                                                borderRadius: "20px",
+                                                            }}
+                                                            className={
+                                                                subDomain +
+                                                                "-button " +
+                                                                classes.getQuote
                                                             }
-                                                            width="150px"
-                                                            borderR="20px"
-                                                            subDomain={subDomain}
                                                             onClick={() => {
                                                                 handleLocSelect(element)
                                                             }}
-                                                        />
+                                                        >
+                                                            {t("GET_QUOTE")}
+                                                        </button>
                                                     </Link>
                                                 </Grid>
                                                 <Grid
@@ -292,69 +314,71 @@ const SectionMap = inject("headerStore")(
                                                     style={{ display: "flex" }}
                                                 >
                                                     <Link
-                                                        to="/get-appointment"
+                                                        to="/get-quote"
                                                         style={{ textDecoration: "none" }}
                                                         onClick={handleGetQuote}
                                                     >
-                                                        <Button
-                                                            title={"Book Repair"}
-                                                            bgcolor={
-                                                                data.colorPalle.repairButtonCol
+                                                        <button
+                                                            style={{
+                                                                backgroundColor:
+                                                                    data.colorPalle.repairButtonCol,
+                                                                borderRadius: "20px",
+                                                            }}
+                                                            className={
+                                                                subDomain +
+                                                                "-button " +
+                                                                classes.getAppoint
                                                             }
-                                                            width="150px"
-                                                            borderR="20px"
-                                                            subDomain={subDomain}
                                                             onClick={() => {
                                                                 handleLocSelect(element)
                                                             }}
-                                                        />
+                                                        >
+                                                            {t("BOOK_AN_APPOINTMENT")}
+                                                        </button>
                                                     </Link>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
-                                        <Grid item md={8} sm={12} xs={12}>
-                                            <div
-                                                className={
-                                                    subDomain +
-                                                    "-hours-div " +
-                                                    classes.timePanelWrapp
-                                                }
-                                                // style={{
-                                                //     margin: "auto",
-                                                //     justifyContent: "space-around",
-                                                // }}
-                                            >
-                                                <div>
-                                                    <p
-                                                        className={subDomain + "-block-title"}
-                                                        style={{ textAlign: "start" }}
+                                        <Grid
+                                            item
+                                            container
+                                            md={8}
+                                            sm={12}
+                                            xs={12}
+                                            className={
+                                                subDomain + "-hours-div " + classes.timePanelWrapp
+                                            }
+                                        >
+                                            <div>
+                                                <p
+                                                    className={subDomain + "-block-title"}
+                                                    style={{ textAlign: "start" }}
+                                                >
+                                                    {"Days"}
+                                                </p>{" "}
+                                            </div>
+
+                                            {getRegularHours(element.location_hours).map(
+                                                (element, index) => (
+                                                    <Grid
+                                                        key={index}
+                                                        item
+                                                        container
+                                                        md={12}
+                                                        sm={12}
+                                                        xs={12}
                                                     >
-                                                        {"Days"}
-                                                    </p>{" "}
-                                                    {getRegularHours(element.location_hours).map(
-                                                        (element, index) => (
+                                                        <Grid md={6} sm={6} xs={6}>
                                                             <p
-                                                                key={index}
                                                                 className={
                                                                     subDomain + "-block-content"
                                                                 }
                                                             >
                                                                 {DAYS_OF_THE_WEEK[element.day]}
                                                             </p>
-                                                        )
-                                                    )}
-                                                </div>
-                                                <div>
-                                                    <p
-                                                        className={subDomain + "-block-title"}
-                                                        style={{ textAlign: "start" }}
-                                                    >
-                                                        {"Hours"}
-                                                    </p>{" "}
-                                                    {getRegularHours(element.location_hours).map(
-                                                        (element, index) => (
+                                                        </Grid>
+                                                        <Grid md={6} sm={6} xs={6}>
                                                             <p
-                                                                key={index}
                                                                 className={
                                                                     subDomain + "-block-content"
                                                                 }
@@ -363,10 +387,10 @@ const SectionMap = inject("headerStore")(
                                                                 {"-"}
                                                                 {getHourType(element.close)}
                                                             </p>
-                                                        )
-                                                    )}
-                                                </div>
-                                            </div>
+                                                        </Grid>
+                                                    </Grid>
+                                                )
+                                            )}
                                         </Grid>
                                     </Grid>
                                 </AccordionDetails>

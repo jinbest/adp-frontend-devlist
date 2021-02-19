@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Section1, Shape, SectionMap } from "./"
+import { SectionMap } from "./"
 import { Helmet } from "react-helmet"
 import { storesDetails } from "../../store"
 import { inject } from "mobx-react"
@@ -8,11 +8,10 @@ import { StoresDetails } from "../../store/StoresDetails"
 
 type Props = {
     subDomain: string
-    features: any[]
     storesDetailsStore: StoresDetails
     handleStatus: (status: boolean) => void
 }
-const Location = ({ subDomain, features, handleStatus, storesDetailsStore }: Props) => {
+const Location = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
     const mainData = require(`../../assets/${subDomain}/Database`)
 
     const [pageTitle, setPageTitle] = useState("Store")
@@ -38,7 +37,6 @@ const Location = ({ subDomain, features, handleStatus, storesDetailsStore }: Pro
             <SectionMap
                 headerStore={storesDetails}
                 subDomain={subDomain}
-                features={features}
                 locations={storesDetailsStore.findAddLocation}
                 handleStatus={handleStatus}
             />

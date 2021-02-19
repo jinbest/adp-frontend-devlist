@@ -10,11 +10,14 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         mapContainer: {
             height: "700px",
-            [theme.breakpoints.down("sm")]: {
-                height: "1200px",
-            },
             [theme.breakpoints.down("md")]: {
                 height: "1000px",
+            },
+            [theme.breakpoints.down("sm")]: {
+                height: "800px",
+            },
+            [theme.breakpoints.down("xs")]: {
+                height: "500px",
             },
         },
     })
@@ -36,7 +39,7 @@ const Map = ({ locations }: Props) => {
         centerY = longitudes.reduce((a, b) => a + b, 0) / 5
         const maxRadiusX = Math.max(...latitudes.map((v) => v - centerX))
         const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
-        zoom = maxRadiusY / 2.2
+        zoom = Math.max(maxRadiusX, maxRadiusY) / 2.2
     }
     const getAddress = (location: any) => {
         return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${

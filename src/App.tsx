@@ -152,7 +152,6 @@ function App(): JSX.Element {
                             <Location
                                 storesDetailsStore={storesDetails}
                                 subDomain={subDomain}
-                                features={features}
                                 handleStatus={handleFooterStatus}
                             />
                         </Provider>
