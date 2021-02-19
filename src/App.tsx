@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Footer, Header, Chat, Preloader, Badge } from "./components"
 import { Home } from "./pages/home/"
+import { Location } from "./pages/Location"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
 import { Provider } from "mobx-react"
@@ -68,7 +69,6 @@ function App(): JSX.Element {
       script.prepend(storeTabData.scriptTag)
       document.body.prepend(script)
     }
-
     appLoadAPI
       .getStoresDetail(apexDomain, false)
       .then((res: any) => {
@@ -143,6 +143,19 @@ function App(): JSX.Element {
           component={() => (
             <Provider repairWidgetStore={repairWidgetStore}>
               <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
+            </Provider>
+          )}
+        />
+        <Route
+          path="/contact"
+          exact
+          component={() => (
+            <Provider storesDetailsStore={storesDetails}>
+              <Location
+                storesDetailsStore={storesDetails}
+                subDomain={subDomain}
+                handleStatus={handleFooterStatus}
+              />
             </Provider>
           )}
         />

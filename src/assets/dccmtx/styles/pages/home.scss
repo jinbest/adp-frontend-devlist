@@ -97,7 +97,7 @@
   font-weight: 800 !important;
   line-height: 1.2 !important;
   padding: 1rem 0 0 !important;
-  margin: 7rem 0 2rem !important;
+  margin: 7rem auto 2rem !important;
   text-align: center;
 }
 .#{$folderName}-sec1-search_input {
@@ -159,9 +159,20 @@
   margin: 0 auto;
   width: 100%;
 }
+
+.#{$folderName}-sec4-container-box {
+  display: none !important;
+}
+
 .#{$folderName}-section4-button {
   max-width: 316px;
   width: 100%;
+}
+
+.#{$folderName}-sec4-background {
+  background-color: #f5f5f5;
+  padding-bottom: 70px;
+  margin-top: 100px !important;
 }
 
 .#{$folderName}-section4-title {
@@ -260,9 +271,29 @@ p {
   }
 }
 
+.#{$folderName}-sec4-container-special-box {
+  display: block !important;
+}
+
 @media (max-width: 960px) {
+  .#{$folderName}-sec4-container-box {
+    display: block !important;
+  }
+  .#{$folderName}-sec4-container-special-box {
+    display: none !important;
+  }
+  .#{$folderName}-sec4-background {
+    padding-top: 70px;
+  }
   .#{$folderName}-sec6-card {
     max-width: 500px;
+  }
+}
+
+@media (max-width: 425px) {
+  .#{$folderName}-sec4-background {
+    padding-top: 1px;
+    padding-bottom: 1px;
   }
 }
 

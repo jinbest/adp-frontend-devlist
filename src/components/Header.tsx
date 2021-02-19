@@ -255,6 +255,9 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             )}
           />
         </FeatureToggles>
+        <div>
+          <h2>{storesDetails.storesDetails.name}</h2>
+        </div>
 
         <div className={subDomain + "-nav-div"}>
           <ul className={subDomain + "-navlink-parent"}>
