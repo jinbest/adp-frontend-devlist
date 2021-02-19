@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 type Props = {
     locations: any[]
+    // onMarkerDoubleClick: () => void
 }
 
 const Map = ({ locations }: Props) => {
@@ -35,7 +36,7 @@ const Map = ({ locations }: Props) => {
         centerY = longitudes.reduce((a, b) => a + b, 0) / 5
         const maxRadiusX = Math.max(...latitudes.map((v) => v - centerX))
         const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
-        zoom = Math.round(maxRadiusY / 2.5)
+        zoom = maxRadiusY / 2.2
     }
     const getAddress = (location: any) => {
         return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
@@ -58,19 +59,19 @@ const Map = ({ locations }: Props) => {
                     locations.map((element, index) => {
                         return (
                             <Marker position={[element.latitude, element.longitude]} key={index}>
-                                <Popup>{getAddress(element)}</Popup>
+                                <Popup>
+                                    <a
+                                        href={`https://www.google.com/maps/search/?api=1&query=${element.latitude},${element.longitude}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        style={{ textDecoration: "none", color: "black" }}
+                                    >
+                                        <h2>{getAddress(element)}</h2>
+                                    </a>
+                                </Popup>
                             </Marker>
                         )
                     })}
-                {/* {locations.forEach((element, index) => {
-                    return (
-                        <Marker position={[49.865759 + index, -97.211811 + index]} key={index}>
-                            <Popup>
-                                A pretty CSS3 popup. <br /> Easily customizable.
-                            </Popup>
-                        </Marker>
-                    )
-                })} */}
             </MapContainer>
         </div>
     )

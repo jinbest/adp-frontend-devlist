@@ -172,7 +172,7 @@ const SectionMap = inject("headerStore")(
         }
         return (
             <section className={subDomain + "-Container"}>
-                <Grid container>
+                <Grid container className={subDomain + "-section1-top"}>
                     <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
                         {locations.map((element, index) => (
                             <Accordion

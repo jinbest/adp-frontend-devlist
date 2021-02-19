@@ -35,8 +35,6 @@ const Location = ({ subDomain, features, handleStatus, storesDetailsStore }: Pro
                 <meta name="description" content={metaDescription} />
                 {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
             </Helmet>
-            {/* <Shape subDomain={subDomain} /> */}
-            <Section1 subDomain={subDomain} features={features} handleStatus={handleStatus} />
             <SectionMap
                 headerStore={storesDetails}
                 subDomain={subDomain}
