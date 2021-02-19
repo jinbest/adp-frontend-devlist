@@ -466,7 +466,7 @@ const homeTextData = {
             { title: "", content: "" },
         ],
         contentSubTitle: "",
-        content: ["2021 Corydon Ave, Unit F Winnipeg, MB", "MOBILE_TECH_FOOTER_CONTENT_TWO"],
+        content: ["2020 Corydon Ave. Unit F. Winnipeg, MB.", "MOBILE_TECH_FOOTER_CONTENT_TWO"],
         footerLink: [
             {
                 name: "RESOURCES",

@@ -1,45 +1,54 @@
-import React, {useState, useEffect} from 'react'
-import {Section1, Section2, Section4} from './'
-import {Error} from '../error'
-import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
-import { storesDetails } from '../../store'
+import React, { useState, useEffect } from "react"
+import { Section1, Section2, Section4 } from "./"
+import { Error } from "../error"
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { storesDetails } from "../../store"
+import { Helmet } from "react-helmet"
 
 type Props = {
-  subDomain: string;
-  handleStatus: (status:boolean) => void;
-  features: any[];
+  subDomain: string
+  handleStatus: (status: boolean) => void
+  features: any[]
 }
 
-const Repair = ({subDomain, handleStatus, features}: Props) => {
-
-  const [feats, setFeatures] = useState<any[]>([]);
-  document.title = storesDetails.storesDetails.name + ' - Repair';
+const Repair = ({ subDomain, handleStatus, features }: Props) => {
+  const [feats, setFeatures] = useState<any[]>([])
+  const [pageTitle, setPageTitle] = useState("Quotes | ")
 
   useEffect(() => {
-    const cntFeatures:any[] = [];
+    const cntFeatures: any[] = []
     for (let i = 0; i < features.length; i++) {
       if (features[i].isActive) {
-        cntFeatures.push(features[i].flag);
+        cntFeatures.push(features[i].flag)
       }
     }
-    setFeatures(cntFeatures);
-  }, [features]);
+    setFeatures(cntFeatures)
+  }, [features])
+
+  useEffect(() => {
+    setPageTitle("Quotes | " + storesDetails.storesDetails.name)
+  }, [])
 
   return (
-    <FeatureToggles features={feats}>
-      <Feature
-        name='FRONTEND_REPAIR'
-        inactiveComponent={()=><Error />}
-        activeComponent={()=>
-          <div>
-            <Section1 subDomain={subDomain} handleStatus={handleStatus} />
-            <Section2 subDomain={subDomain} />
-            {/* <Section3 subDomain={subDomain} /> */}
-            <Section4 subDomain={subDomain} handleStatus={handleStatus} />
-          </div>
-        }
-      />
-    </FeatureToggles>
+    <>
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
+      <FeatureToggles features={feats}>
+        <Feature
+          name="FRONTEND_REPAIR"
+          inactiveComponent={() => <Error />}
+          activeComponent={() => (
+            <div>
+              <Section1 subDomain={subDomain} handleStatus={handleStatus} />
+              <Section2 subDomain={subDomain} />
+              {/* <Section3 subDomain={subDomain} /> */}
+              <Section4 subDomain={subDomain} handleStatus={handleStatus} />
+            </div>
+          )}
+        />
+      </FeatureToggles>
+    </>
   )
 }
 
