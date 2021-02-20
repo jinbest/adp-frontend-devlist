@@ -1,4 +1,4 @@
-.repair-widget {
+.service-widget {
   /* margin-top: 200px !important; */
   position: relative;
   top: 200px;
@@ -13,36 +13,36 @@
   z-index: 999;
 }
 
-.repair-widget-card {
+.service-widget-card {
   width: 100%;
   max-width: 900px;
   height: 600px;
-  background: #FFFFFF;
-  box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
+  background: #ffffff;
+  box-shadow: -10px -10px 30px #ffffff, 10px 10px 30px rgba(174, 174, 192, 0.4);
   border-radius: 20px;
   position: relative;
 }
 
-.repair-widget-title {
+.service-widget-title {
   font-weight: bold !important;
   font-size: 35px !important;
 }
 
-.repair-choose-device-container {
+.service-choose-device-container {
   padding: 30px 20px;
 }
 
 .device-item-container {
   width: 17%;
   margin: 1%;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   cursor: pointer;
-  overflow:  hidden !important;
+  overflow: hidden !important;
 }
 
 .device-item-container:hover {
@@ -61,11 +61,11 @@
 }
 
 .plus-svg:hover {
-  fill:rgba(153, 145, 145, 0.4);
+  fill: rgba(153, 145, 145, 0.4);
 }
 
 .back-path:hover {
-  fill:rgba(15, 15, 15, 0.4);
+  fill: rgba(15, 15, 15, 0.4);
 }
 
 .topic-title {
@@ -81,16 +81,16 @@
   margin-bottom: 20px !important;
 }
 
-.repair-card-button {
+.service-card-button {
   position: absolute;
   bottom: 30px;
   left: 30px;
   display: flex;
   align-items: center;
-  color: rgba(0,0,0,0.35);
+  color: rgba(0, 0, 0, 0.35);
 }
 
-.repair-card-button p {
+.service-card-button p {
   margin-left: 15px;
 }
 
@@ -120,7 +120,7 @@
 .widget-main-container::-webkit-scrollbar-track {
   background: #ffffff;
 }
- 
+
 /* Handle */
 .widget-main-container::-webkit-scrollbar-thumb {
   background: #999;
@@ -145,14 +145,14 @@
   top: 40%;
 }
 
-.device-repair-item {
+.device-service-item {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
 
-.device-repair-item > p {
+.device-service-item > p {
   font-weight: bold;
   padding: 0 10px;
   font-size: 13.5px;
@@ -179,7 +179,7 @@
   padding: 20px 0;
 }
 
-.repair-summary-content-div {
+.service-summary-content-div {
   display: block;
   overflow: scroll !important;
   overflow-x: hidden !important;
@@ -189,28 +189,28 @@
 }
 
 /* width */
-.repair-summary-content-div::-webkit-scrollbar {
+.service-summary-content-div::-webkit-scrollbar {
   width: 3px;
   cursor: pointer;
 }
 
 /* Track */
-.repair-summary-content-div::-webkit-scrollbar-track {
+.service-summary-content-div::-webkit-scrollbar-track {
   background: #ffffff;
 }
- 
+
 /* Handle */
-.repair-summary-content-div::-webkit-scrollbar-thumb {
+.service-summary-content-div::-webkit-scrollbar-thumb {
   background: #999;
 }
 
 /* Handle on hover */
-.repair-summary-content-div::-webkit-scrollbar-thumb:hover {
+.service-summary-content-div::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
 
-.repair-summary-div {
-  border: 1px solid rgba(0,0,0,0.1);
+.service-summary-div {
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
@@ -218,7 +218,7 @@
   position: relative;
 }
 
-.repair-summary-img {
+.service-summary-img {
   margin-right: 10px;
   width: 54px;
   display: flex;
@@ -226,23 +226,23 @@
   align-items: center;
 }
 
-.repair-summary-img > img {
+.service-summary-img > img {
   width: 100%;
 }
 
-.repair-summary-title {
+.service-summary-title {
   font-weight: bold !important;
   font-size: 17px !important;
   margin-bottom: 15px !important;
 }
 
-.repair-summary-service {
+.service-summary-service {
   font-weight: 600 !important;
   font-size: 15px !important;
   margin-bottom: 5px !important;
 }
 
-.repair-summary-service-child {
+.service-summary-service-child {
   font-size: 14px !important;
 }
 
@@ -253,7 +253,7 @@
 }
 
 .custom-book-time {
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   height: 300px;
   width: 100%;
@@ -311,7 +311,7 @@
 }
 
 .useful-textarea-div {
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: 100%;
   height: 300px;
@@ -322,7 +322,7 @@
   border: none;
   margin: 20px;
   font-size: 15px;
-  font-family: 'POPPINS';
+  font-family: "POPPINS";
   width: 87%;
   outline: none;
   height: 250px;
@@ -372,8 +372,8 @@
 }
 
 .repair-service-summary-detail-container .bordered {
-  border-bottom: 1px solid #BDBFC3;
-  border-top: 1px solid #BDBFC3;
+  border-bottom: 1px solid #bdbfc3;
+  border-top: 1px solid #bdbfc3;
   margin-bottom: 15px;
 }
 
@@ -421,14 +421,14 @@
   width: 100px;
 }
 
-.repair-trash-icon {
+.service-trash-icon {
   position: absolute;
   right: 10px;
   top: 10px;
   cursor: pointer;
 }
 
-.repair-trash-icon:hover {
+.service-trash-icon:hover {
   transform: scale(1.2);
 }
 
@@ -452,7 +452,7 @@
   .booking-card {
     height: 600px !important;
   }
-  .repair-summary-card {
+  .service-summary-card {
     height: auto !important;
   }
   .useful-textarea-div {
@@ -494,11 +494,11 @@
   .booking-select-timezone {
     font-size: 9.5px;
   }
-  .repair-widget-title {
+  .service-widget-title {
     text-align: center !important;
     font-size: 5.5vw !important;
   }
-  .repair-summary-title {
+  .service-summary-title {
     text-align: left !important;
     font-size: 3.5vw !important;
     margin-bottom: 10px !important;

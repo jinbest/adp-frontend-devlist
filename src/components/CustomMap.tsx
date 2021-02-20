@@ -21,26 +21,33 @@ const useStyles = makeStyles((theme: Theme) =>
         height: "500px",
       },
     },
+    popupWrapper: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "15px!important" as any,
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "12px!important" as any,
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "10px!important" as any,
+      },
+    },
   })
 )
 type Props = {
   locations: any[]
   selectedLocation: any
+  isDetail: boolean
 }
 
-const CustomMap = ({ locations, selectedLocation }: Props) => {
+const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
   const classes = useStyles()
-  // const [centerX, setCenterX] = useState(49.865759)
-  // const [centerY, setCenterY] = useState(-97.211811)
-  // const [zoom, setZoom] = useState(6)
   let centerX = 49.865759
   let centerY = -97.211811
   let zoom = 6
   const [map, setMap] = useState<null | Map>(null)
   useEffect(() => {
-    console.log("selectedLocation", selectedLocation, locations)
-
-    if (selectedLocation) {
+    if (isDetail && selectedLocation) {
       centerX = selectedLocation.latitude
       centerY = selectedLocation.longitude
       zoom = 14
@@ -51,23 +58,26 @@ const CustomMap = ({ locations, selectedLocation }: Props) => {
       const pCenterY = longitudes.reduce((a, b) => a + b, 0) / 5
       const maxRadiusX = Math.max(...latitudes.map((v) => v - centerX))
       const maxRadiusY = Math.max(...longitudes.map((v) => v - centerY))
-      console.log(latitudes, longitudes)
-      console.log("maxRadiusX, maxRadiusY", maxRadiusX, maxRadiusY)
       const pZoom = 17 / (Math.max(maxRadiusX, maxRadiusY) / 5 + 3)
       centerX = pCenterX
       centerY = pCenterY
       zoom = pZoom
+    } else {
+      centerX = 49.865759
+      centerY = -97.211811
+      zoom = 6
     }
-    // console.log("[centerX, centerY], zoom", [centerX, centerY], zoom)
     if (map) {
       map.setView([centerX, centerY], zoom)
     }
-  }, [selectedLocation, map])
+  }, [isDetail, selectedLocation, map])
 
   const getAddress = (location: any) => {
     return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-      location.city
-    }, ${location.postcode}, ${location.country}`
+      location.city ? location.city + ", " : ""
+    } ${location.state ? location.state + " " : ""} ${
+      location.postcode ? location.postcode + ", " : ""
+    } ${location.country ? location.country + ", " : ""}`
   }
 
   return (
@@ -89,12 +99,14 @@ const CustomMap = ({ locations, selectedLocation }: Props) => {
               <Marker position={[element.latitude, element.longitude]} key={index}>
                 <Popup>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${element.latitude},${element.longitude}`}
+                    href={`https://www.google.com/maps/search/?api=1&query=${getAddress(element)
+                      .split(" ")
+                      .join("+")}`}
                     target="_blank"
                     rel="noreferrer"
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <h2>{getAddress(element)}</h2>
+                    <h2 className={classes.popupWrapper}>{getAddress(element)}</h2>
                   </a>
                 </Popup>
               </Marker>

@@ -1,5 +1,6 @@
 @media (max-width: 1260px) {
-  .#{$folderName}-navlink-parent, .#{$folderName}-nav-item {
+  .#{$folderName}-navlink-parent,
+  .#{$folderName}-nav-item {
     margin: 0 5px;
   }
   .#{$folderName}-nav-link {
@@ -27,13 +28,13 @@
   .#{$folderName}-footer-device-list {
     display: none;
   }
-  .#{$folderName}-repair-section-title-1 {
+  .#{$folderName}-service-section-title-1 {
     font-size: 45px !important;
   }
-  .#{$folderName}-repair-section-content {
+  .#{$folderName}-service-section-content {
     font-size: 25px !important;
   }
-  .#{$folderName}-repair-section2-text-field {
+  .#{$folderName}-service-section2-text-field {
     text-align: center;
   }
   .#{$folderName}-card-repair-sec2 {
@@ -51,7 +52,7 @@
   .#{$folderName}-repair-sec-content-div {
     margin-top: 50px !important;
   }
-  .#{$folderName}-repair-section2 {
+  .#{$folderName}-service-section2 {
     margin-bottom: -140px;
   }
   .#{$folderName}-device-brand-subtitle {
@@ -62,36 +63,37 @@
     height: auto !important;
     min-height: 200px !important;
   }
-  .#{$folderName}-device-repair-item > p {
+  .#{$folderName}-device-service-item > p {
     font-size: 2.1vw;
   }
-  .#{$folderName}-repair-card-button p {
+  .#{$folderName}-service-card-button p {
     display: none;
   }
-  .#{$folderName}-repair-summary-content-div {
+  .#{$folderName}-service-summary-content-div {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden !important;
     height: auto;
   }
-  .#{$folderName}-repair-summary-div {
+  .#{$folderName}-service-summary-div {
     width: 43%;
     margin-right: 2%;
   }
-  // .repair-widget-card {
+  // .service-widget-card {
   //   height: 80vw;
   // }
   .#{$folderName}-input-component {
     font-size: 2vw !important;
   }
-  .#{$folderName}-footer-device-list, .#{$folderName}-footer-title {
+  .#{$folderName}-footer-device-list,
+  .#{$folderName}-footer-title {
     display: none;
   }
   .#{$folderName}-footer-device-response {
-    display: block
+    display: block;
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
+    background-image: url("../img/footer/wireless-footer-shape-mobile.png");
     padding: 150px 20px 30px;
   }
   .#{$folderName}-back-to-top {
@@ -100,11 +102,12 @@
 }
 
 @media (max-width: 768px) {
-  .#{$folderName}-container-header .#{$folderName}-nav-div, 
-  .#{$folderName}-header-brand, 
-  .#{$folderName}-mockup-shape, 
+  .#{$folderName}-container-header .#{$folderName}-nav-div,
+  .#{$folderName}-header-brand,
+  .#{$folderName}-mockup-shape,
   .#{$folderName}-sec1-search_input,
-  .#{$folderName}-card-customized-container-desktop, .#{$folderName}-repair-section1 img {
+  .#{$folderName}-card-customized-container-desktop,
+  .#{$folderName}-service-section1 img {
     display: none;
   }
   .#{$folderName}-section1-top {
@@ -114,7 +117,9 @@
   .#{$folderName}-container-header {
     margin-top: 0;
   }
-  .#{$folderName}-avatar-div, .#{$folderName}-mobile-search-div, .#{$folderName}-card-customized-container-mobile {
+  .#{$folderName}-avatar-div,
+  .#{$folderName}-mobile-search-div,
+  .#{$folderName}-card-customized-container-mobile {
     display: flex;
   }
   .#{$folderName}-card-customized-item {
@@ -125,7 +130,8 @@
   .#{$folderName}-container-mobile {
     display: block;
   }
-  .#{$folderName}-section1-title, .#{$folderName}-section1-subtitle {
+  .#{$folderName}-section1-title,
+  .#{$folderName}-section1-subtitle {
     text-align: left;
     display: block;
   }
@@ -133,25 +139,26 @@
     width: 60vw;
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/wireless-footer-shape-mobile.png');
+    background-image: url("../img/footer/wireless-footer-shape-mobile.png");
   }
-  .#{$folderName}-repair-section1 .MuiGrid-grid-sm-7 {
+  .#{$folderName}-service-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
     max-width: 100% !important;
     flex-basis: 100% !important;
   }
-  .#{$folderName}-repair-section1, .#{$folderName}-repair-section-button {
+  .#{$folderName}-service-section1,
+  .#{$folderName}-service-section-button {
     text-align: center !important;
     align-items: center;
     margin: auto;
   }
-  .#{$folderName}-repair-section-title-1 {
+  .#{$folderName}-service-section-title-1 {
     font-size: 6.5vw !important;
   }
-  .#{$folderName}-repair-section-title-2 {
+  .#{$folderName}-service-section-title-2 {
     font-size: 5.5vw !important;
   }
-  .#{$folderName}-repair-section-content {
+  .#{$folderName}-service-section-content {
     font-size: 4vw !important;
   }
   .#{$folderName}-card-repair-sec2-subtitle {
@@ -166,14 +173,14 @@
   .#{$folderName}-topic-title {
     font-size: 18px !important;
   }
-  .#{$folderName}-repair-summary-content-div {
+  .#{$folderName}-service-summary-content-div {
     display: block;
   }
-  .#{$folderName}-repair-summary-div {
+  .#{$folderName}-service-summary-div {
     width: 90%;
     margin-right: 2%;
   }
-  // .repair-widget-card {
+  // .service-widget-card {
   //   height: 80vw;
   // }
 }
@@ -201,16 +208,16 @@
   .#{$folderName}-device-list-component {
     margin: 20px 0;
   }
-  .repair-widget-card {
+  .service-widget-card {
     height: auto;
     min-height: 200px;
   }
-  .#{$folderName}-repair-card-button {
+  .#{$folderName}-service-card-button {
     position: inherit;
     padding: 50px 0 0;
     left: 0;
   }
-  .#{$folderName}-repair-card-button .button {
+  .#{$folderName}-service-card-button .button {
     margin: inherit;
   }
   .#{$folderName}-input-component {
@@ -227,10 +234,11 @@
   .#{$folderName}-container-header > img {
     height: 35px;
   }
-  .#{$folderName}-card-repair-sec2-content, .#{$folderName}-card-repair-sec3-container .#{$folderName}-content {
+  .#{$folderName}-card-repair-sec2-content,
+  .#{$folderName}-card-repair-sec3-container .#{$folderName}-content {
     font-size: 3.2vw !important;
   }
-  .#{$folderName}-repair-section-button .#{$folderName}-button {
+  .#{$folderName}-service-section-button .#{$folderName}-button {
     height: 40px;
     font-size: 3vw !important;
   }
@@ -245,7 +253,7 @@
     font-size: 15px !important;
     margin-bottom: 8px !important;
   }
-  .#{$folderName}-repair-choose-device-container {
+  .#{$folderName}-service-choose-device-container {
     /* padding: 20px 20px 100px; */
     padding: 20px;
   }
@@ -255,7 +263,7 @@
   .#{$folderName}-device-brand-subtitle {
     font-size: 3vw;
   }
-  .#{$folderName}-device-repair-item > p {
+  .#{$folderName}-device-service-item > p {
     font-size: 3vw;
   }
   .#{$folderName}-repair-another-device {
@@ -264,47 +272,58 @@
   .#{$folderName}-repair-another-device > button {
     margin-bottom: 10px;
   }
-  .#{$folderName}-estimate-title, .#{$folderName}-estimate-content {
+  .#{$folderName}-estimate-title,
+  .#{$folderName}-estimate-content {
     font-size: 13px;
   }
   .#{$folderName}-estimate-times-div {
     margin-bottom: 10px;
   }
-  .#{$folderName}-repair-summary-img {
+  .#{$folderName}-service-summary-img {
     width: 11vw;
   }
-  .#{$folderName}-repair-summary-service, .#{$folderName}-repair-summary-service-child {
+  .#{$folderName}-service-summary-service,
+  .#{$folderName}-service-summary-service-child {
     font-size: 13px !important;
-  }  
+  }
 }
 
 @media (max-width: 425px) {
   .#{$folderName}-section1-title {
-    font-size: 6vw !important;
-  }
-  .#{$folderName}-section-title, .f40 {
     font-size: 5vw !important;
   }
-  .#{$folderName}-section1-subtitle, .#{$folderName}-card-mobile > p, .#{$folderName}-card-fix p, 
-  .#{$folderName}-card-why-customer > p, .#{$folderName}-score-div > p, 
-  .#{$folderName}-device-list-grid, .#{$folderName}-footer_link > li {
-    font-size: 12px !important; 
+  .#{$folderName}-section-title,
+  .f40 {
+    font-size: 4.3vw !important;
+  }
+  .#{$folderName}-section1-subtitle,
+  .#{$folderName}-card-mobile > p,
+  .#{$folderName}-card-fix p,
+  .#{$folderName}-card-why-customer > p,
+  .#{$folderName}-score-div > p,
+  .#{$folderName}-device-list-grid,
+  .#{$folderName}-footer_link > li {
+    font-size: 12px !important;
   }
   .#{$folderName}-button {
     height: 25px !important;
   }
-  .#{$folderName}-repair-section-button .#{$folderName}-button {
+  .#{$folderName}-service-section-button .#{$folderName}-button {
     height: 35px !important;
   }
-  .#{$folderName}-content-fix .#{$folderName}-title, .#{$folderName}-protect-content {
-    font-size: 16px !important;
+  .#{$folderName}-content-fix .#{$folderName}-title,
+  .#{$folderName}-protect-content {
+    font-size: 4vw !important;
+  }
+  .#{$folderName}-content-fix .#{$folderName}-content {
+    font-size: 3.5vw;
   }
   /* .card-why-customer {
     height: 175px;
   } */
   .#{$folderName}-section1-top {
     margin-bottom: 25px !important;
-    margin-top: 190px !important;
+    margin-top: 170px !important;
   }
   .#{$folderName}-section-title {
     margin: 1rem 0 !important;
@@ -324,7 +343,8 @@
   .#{$folderName}-footer-buynow {
     height: 26px;
   }
-  .#{$folderName}-footer-others, .#{$folderName}-footer-others > img {
+  .#{$folderName}-footer-others,
+  .#{$folderName}-footer-others > img {
     height: 22px;
   }
   .#{$folderName}-input-component {

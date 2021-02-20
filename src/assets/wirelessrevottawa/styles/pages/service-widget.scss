@@ -1,4 +1,4 @@
-.#{$folderName}-repair-widget {
+.#{$folderName}-service-widget {
   /* margin-top: 200px !important; */
   position: relative;
   top: 200px;
@@ -13,7 +13,7 @@
   z-index: 999;
 }
 
-.repair-widget-card {
+.service-widget-card {
   width: 100%;
   max-width: 900px;
   height: 600px;
@@ -24,12 +24,12 @@
   // overflow-y: auto;
 }
 
-.#{$folderName}-repair-widget-title {
+.#{$folderName}-service-widget-title {
   font-weight: bold !important;
   font-size: 35px !important;
 }
 
-.#{$folderName}-repair-choose-device-container {
+.#{$folderName}-service-choose-device-container {
   padding: 30px 20px;
 }
 
@@ -82,7 +82,7 @@
   margin-bottom: 20px !important;
 }
 
-.#{$folderName}-repair-card-button {
+.#{$folderName}-service-card-button {
   position: absolute;
   bottom: 30px;
   left: 30px;
@@ -91,7 +91,7 @@
   color: rgba(0, 0, 0, 0.35);
 }
 
-.#{$folderName}-repair-card-button p {
+.#{$folderName}-service-card-button p {
   margin-left: 15px;
 }
 
@@ -146,14 +146,14 @@
   top: 40%;
 }
 
-.#{$folderName}-device-repair-item {
+.#{$folderName}-device-service-item {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
 
-.#{$folderName}-device-repair-item > p {
+.#{$folderName}-device-service-item > p {
   font-weight: bold;
   padding: 0 10px;
   font-size: 13.5px;
@@ -180,7 +180,7 @@
   padding: 20px 0;
 }
 
-.#{$folderName}-repair-summary-content-div {
+.#{$folderName}-service-summary-content-div {
   display: block;
   overflow: scroll !important;
   overflow-x: hidden !important;
@@ -190,27 +190,27 @@
 }
 
 /* width */
-.#{$folderName}-repair-summary-content-div::-webkit-scrollbar {
+.#{$folderName}-service-summary-content-div::-webkit-scrollbar {
   width: 3px;
   cursor: pointer;
 }
 
 /* Track */
-.#{$folderName}-repair-summary-content-div::-webkit-scrollbar-track {
+.#{$folderName}-service-summary-content-div::-webkit-scrollbar-track {
   background: #ffffff;
 }
 
 /* Handle */
-.#{$folderName}-repair-summary-content-div::-webkit-scrollbar-thumb {
+.#{$folderName}-service-summary-content-div::-webkit-scrollbar-thumb {
   background: #999;
 }
 
 /* Handle on hover */
-.#{$folderName}-repair-summary-content-div::-webkit-scrollbar-thumb:hover {
+.#{$folderName}-service-summary-content-div::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
 
-.#{$folderName}-repair-summary-div {
+.#{$folderName}-service-summary-div {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 10px;
@@ -219,7 +219,7 @@
   position: relative;
 }
 
-.#{$folderName}-repair-summary-img {
+.#{$folderName}-service-summary-img {
   margin-right: 10px;
   width: 54px;
   display: flex;
@@ -227,23 +227,23 @@
   align-items: center;
 }
 
-.#{$folderName}-repair-summary-img > img {
+.#{$folderName}-service-summary-img > img {
   width: 100%;
 }
 
-.#{$folderName}-repair-summary-title {
+.#{$folderName}-service-summary-title {
   font-weight: bold !important;
   font-size: 17px !important;
   margin-bottom: 10px !important;
 }
 
-.#{$folderName}-repair-summary-service {
+.#{$folderName}-service-summary-service {
   font-weight: 600 !important;
   font-size: 15px !important;
   margin-bottom: 5px !important;
 }
 
-.#{$folderName}-repair-summary-service-child {
+.#{$folderName}-service-summary-service-child {
   font-size: 14px !important;
 }
 
@@ -428,14 +428,14 @@
   width: 100px;
 }
 
-.#{$folderName}-repair-trash-icon {
+.#{$folderName}-service-trash-icon {
   position: absolute;
   right: 10px;
   top: 10px;
   cursor: pointer;
 }
 
-.#{$folderName}-repair-trash-icon:hover {
+.#{$folderName}-service-trash-icon:hover {
   transform: scale(1.2);
 }
 
@@ -459,7 +459,7 @@
   .#{$folderName}-booking-card {
     height: 600px !important;
   }
-  .#{$folderName}-repair-summary-card {
+  .#{$folderName}-service-summary-card {
     height: auto !important;
   }
   .#{$folderName}-useful-textarea-div {
@@ -505,11 +505,11 @@
   .#{$folderName}-booking-select-timezone {
     font-size: 9.5px;
   }
-  .#{$folderName}-repair-widget-title {
+  .#{$folderName}-service-widget-title {
     text-align: center !important;
     font-size: 5.5vw !important;
   }
-  .#{$folderName}-repair-summary-title {
+  .#{$folderName}-service-summary-title {
     text-align: left !important;
     font-size: 3.5vw !important;
     margin-bottom: 10px !important;

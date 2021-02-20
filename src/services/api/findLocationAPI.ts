@@ -42,6 +42,25 @@ class FindLocationAPI {
         });
     });
   };
+  findAllLocation = (store_id:number) => {
+    const apiURL = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/locations?page=1&per_page=10000&include_voided=false`;
+    return new Promise((resolve, reject) => {
+      axios
+        .get<any>(`${apiURL}`)
+        .then(response => {
+          if(response) {
+            resolve(response.data);
+          } else {
+            reject(response);
+          }
+        })
+        .catch(error => {
+          if (error) {
+            reject(error)
+          }
+        });
+    });
+  };
 
 }
 

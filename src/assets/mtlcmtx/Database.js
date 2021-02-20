@@ -415,23 +415,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "2 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Best customer service. NorthTech will respond to your inquiries ASAP. They're more than helpful for your electronic needs & will have your orders ready upon arrival if requested. NorthTech also provides free delivery in Iqaluit NU or free shipping to communities in Nunavut!",
+                reviewer: "Niomie Kownirk",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "8 months ago",
+                content: "Great customer service. Fast and friendly. My mom bought a phone off them a week ago and she dropped it, but these guys gave her a deal she couldn't refuse. I highly recommend them. Nakurmiik NorthTech!",
+                reviewer: "Martha Lawlor",
+            },
+            {
+                score: 5,
+                days: "10 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "Dealing with this company has been a pleasant experience. They are quick to respond, go above and beyond to find you what you want, and offer quality products at an affordable price. I got an iPhone 11 Pro in Nov 2019 and so far, have zero complaints! I also got a MacBook Pro last month and I must say I am also very pleased! NorthTech also offers great warranties to help reassure you when making your purchase. Definitely recommend.",
+                reviewer: "Sandra Lanois-Bazinet",
             },
         ],
     },

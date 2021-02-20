@@ -127,6 +127,8 @@ const SectionMap = inject("headerStore")(
     const classes = useStyles()
     const [expanded, setExpanded] = React.useState<number | false>(false)
     const [selectedLocation, setSelectedLocation] = React.useState<null | any>(null)
+    const [isExpanded, setIsExpanded] = React.useState<boolean>(false)
+
     const handleLocSelect = (location: any) => {
       headerStore.cntUserLocation = makeLocations([location])
       headerStore.changeLocationID(location.id)
@@ -138,11 +140,15 @@ const SectionMap = inject("headerStore")(
       repairWidgetStore.changeAppointResponse(cntAppointment)
       handleStatus(false)
     }
+
     const getAddress = (location: any) => {
       return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city
-      }, ${location.postcode}, ${location.country}`
+        location.city ? location.city + ", " : ""
+      } ${location.state ? location.state + " " : ""} ${
+        location.postcode ? location.postcode + ", " : ""
+      } ${location.country ? location.country + ", " : ""}`
     }
+
     const getRegularHours = (hours: any[]) => {
       return hours
         .map((v) => v as LocationHour)
@@ -172,6 +178,7 @@ const SectionMap = inject("headerStore")(
     }
     const handleChange = (panel: number) => (_: React.ChangeEvent<any>, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false)
+      setIsExpanded(isExpanded)
       if (isExpanded) {
         setSelectedLocation(locations[panel])
       }
@@ -212,7 +219,7 @@ const SectionMap = inject("headerStore")(
                               alignItems: "center",
                             }}
                           >
-                            <PhoneIcon />{" "}
+                            <PhoneIcon />
                             <a href={`tel:${element.phone}`}>
                               <span style={{ marginLeft: "10px" }}>{element.phone}</span>
                             </a>
@@ -225,9 +232,12 @@ const SectionMap = inject("headerStore")(
                               alignItems: "center",
                             }}
                           >
-                            {" "}
                             <a
-                              href={`https://www.google.com/maps/search/?api=1&query=${element.latitude},${element.longitude}`}
+                              href={`https://www.google.com/maps/search/?api=1&query=${getAddress(
+                                element
+                              )
+                                .split(" ")
+                                .join("+")}`}
                               target="_blank"
                               rel="noreferrer"
                               style={{
@@ -235,14 +245,13 @@ const SectionMap = inject("headerStore")(
                                 color: "black",
                               }}
                             >
-                              <CallSplitIcon />{" "}
+                              <CallSplitIcon />
                               <span
                                 style={{
                                   marginLeft: "10px",
                                   fontWeight: "bold",
                                 }}
                               >
-                                {" "}
                                 Directions
                               </span>
                             </a>
@@ -315,17 +324,17 @@ const SectionMap = inject("headerStore")(
                       <div>
                         <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
                           {"Days"}
-                        </p>{" "}
+                        </p>
                       </div>
 
                       {getRegularHours(element.location_hours).map((element, index) => (
                         <Grid key={index} item container md={12} sm={12} xs={12}>
-                          <Grid md={6} sm={6} xs={6}>
+                          <Grid item md={6} sm={6} xs={6}>
                             <p className={subDomain + "-block-content"}>
                               {DAYS_OF_THE_WEEK[element.day]}
                             </p>
                           </Grid>
-                          <Grid md={6} sm={6} xs={6}>
+                          <Grid item md={6} sm={6} xs={6}>
                             <p className={subDomain + "-block-content"}>
                               {getHourType(element.open)}
                               {"-"}
@@ -341,7 +350,11 @@ const SectionMap = inject("headerStore")(
             ))}
           </Grid>
           <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item2}>
-            <CustomMap selectedLocation={selectedLocation} locations={locations} />
+            <CustomMap
+              selectedLocation={selectedLocation}
+              locations={locations}
+              isDetail={isExpanded}
+            />
           </Grid>
         </Grid>
       </section>
