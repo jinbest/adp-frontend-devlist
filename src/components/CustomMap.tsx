@@ -99,9 +99,7 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
               <Marker position={[element.latitude, element.longitude]} key={index}>
                 <Popup>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${getAddress(element)
-                      .split(" ")
-                      .join("+")}`}
+                    href={`${element.business_page_link}`}
                     target="_blank"
                     rel="noreferrer"
                     style={{ textDecoration: "none", color: "black" }}

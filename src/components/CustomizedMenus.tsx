@@ -431,11 +431,7 @@ const CustomizedMenus = inject("headerStore")(
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
-                    href={`https://www.google.com/maps/search/?api=1&query=${getAddress(
-                      headerStore.cntUserLocation[0]
-                    )
-                      .split(" ")
-                      .join("+")}`}
+                    href={`${headerStore.cntUserLocation[0].business_page_link}`}
                     target="_blank"
                     rel="noreferrer"
                   >

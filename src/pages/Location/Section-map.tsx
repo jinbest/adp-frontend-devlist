@@ -233,11 +233,7 @@ const SectionMap = inject("headerStore")(
                             }}
                           >
                             <a
-                              href={`https://www.google.com/maps/search/?api=1&query=${getAddress(
-                                element
-                              )
-                                .split(" ")
-                                .join("+")}`}
+                              href={`${element.business_page_link}`}
                               target="_blank"
                               rel="noreferrer"
                               style={{
