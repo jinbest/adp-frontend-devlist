@@ -312,13 +312,13 @@ const CustomizedMenus = inject("headerStore")(
         })
     }
 
-    const getAddress = (location: any) => {
-      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city ? location.city + ", " : ""
-      } ${location.state ? location.state + " " : ""} ${
-        location.postcode ? location.postcode + ", " : ""
-      } ${location.country ? location.country + ", " : ""}`
-    }
+    // const getAddress = (location: any) => {
+    //   return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+    //     location.city ? location.city + ", " : ""
+    //   } ${location.state ? location.state + " " : ""} ${
+    //     location.postcode ? location.postcode + ", " : ""
+    //   } ${location.country ? location.country + ", " : ""}`
+    // }
 
     return (
       <div>
