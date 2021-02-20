@@ -332,7 +332,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           <Card className={subDomain + "-booking-card"}>
             <div className={subDomain + "-service-choose-device-container"}>
               {
-                <Typography className={subDomain + "-repair-summary-title"}>
+                <Typography className={subDomain + "-service-summary-title"}>
                   {t(data.select.location.title[code])}
                 </Typography>
               }
@@ -387,7 +387,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 )}
               </div>
               {code !== "MAIL_IN" && (
-                <Typography className={subDomain + "-repair-summary-title"}>
+                <Typography className={subDomain + "-service-summary-title"}>
                   {t(data.select.time.title[code])}
                 </Typography>
               )}
@@ -441,7 +441,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 </Grid>
               )}
             </div>
-            <div className={subDomain + "-repair-card-button"}>
+            <div className={subDomain + "-service-card-button"}>
               <Button
                 title={t(publicText.next)}
                 bgcolor={mainData.colorPalle.nextButtonCol}
@@ -458,7 +458,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-repair-summary-card"}>
+          <Card className={subDomain + "-service-summary-card"}>
             <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} />
           </Card>
         </Grid>

@@ -63,19 +63,19 @@
     height: auto !important;
     min-height: 200px !important;
   }
-  .#{$folderName}-device-repair-item > p {
+  .#{$folderName}-device-service-item > p {
     font-size: 2.1vw;
   }
-  .#{$folderName}-repair-card-button p {
+  .#{$folderName}-service-card-button p {
     display: none;
   }
-  .#{$folderName}-repair-summary-content-div {
+  .#{$folderName}-service-summary-content-div {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden !important;
     height: auto;
   }
-  .#{$folderName}-repair-summary-div {
+  .#{$folderName}-service-summary-div {
     width: 43%;
     margin-right: 2%;
   }
@@ -173,10 +173,10 @@
   .#{$folderName}-topic-title {
     font-size: 18px !important;
   }
-  .#{$folderName}-repair-summary-content-div {
+  .#{$folderName}-service-summary-content-div {
     display: block;
   }
-  .#{$folderName}-repair-summary-div {
+  .#{$folderName}-service-summary-div {
     width: 90%;
     margin-right: 2%;
   }
@@ -212,12 +212,12 @@
     height: auto;
     min-height: 200px;
   }
-  .#{$folderName}-repair-card-button {
+  .#{$folderName}-service-card-button {
     position: inherit;
     padding: 50px 0 0;
     left: 0;
   }
-  .#{$folderName}-repair-card-button .button {
+  .#{$folderName}-service-card-button .button {
     margin: inherit;
   }
   .#{$folderName}-input-component {
@@ -263,7 +263,7 @@
   .#{$folderName}-device-brand-subtitle {
     font-size: 3vw;
   }
-  .#{$folderName}-device-repair-item > p {
+  .#{$folderName}-device-service-item > p {
     font-size: 3vw;
   }
   .#{$folderName}-repair-another-device {
@@ -279,11 +279,11 @@
   .#{$folderName}-estimate-times-div {
     margin-bottom: 10px;
   }
-  .#{$folderName}-repair-summary-img {
+  .#{$folderName}-service-summary-img {
     width: 11vw;
   }
-  .#{$folderName}-repair-summary-service,
-  .#{$folderName}-repair-summary-service-child {
+  .#{$folderName}-service-summary-service,
+  .#{$folderName}-service-summary-service-child {
     font-size: 13px !important;
   }
 }

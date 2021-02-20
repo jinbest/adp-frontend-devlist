@@ -90,26 +90,26 @@ class RepairSummary extends React.Component<Props, MyState> {
         <Typography className={subDomain + "-topic-title"}>
           <T id={publicText.repairServiceSummary} />
         </Typography>
-        <div className={subDomain + "-repair-summary-content-div"}>
+        <div className={subDomain + "-service-summary-content-div"}>
           {this.state.brand &&
             this.state.brand.map((item: any, index: number) => {
               return (
                 <React.Fragment key={index}>
                   {this.state.choose[index] &&
                     this.state.choose[index].map((chooseItem: any, chooseIndex: number) => (
-                      <div key={chooseIndex} className={subDomain + "-repair-summary-div"}>
+                      <div key={chooseIndex} className={subDomain + "-service-summary-div"}>
                         <DeleteOutlineOutlinedIcon
-                          className={subDomain + "-repair-trash-icon"}
+                          className={subDomain + "-service-trash-icon"}
                           style={{ color: themeCol }}
                           onClick={() => {
                             this.handleTrashSummary(index, chooseIndex)
                           }}
                         />
-                        <div className={subDomain + "-repair-summary-img"}>
+                        <div className={subDomain + "-service-summary-img"}>
                           <img src={item.img} />
                         </div>
                         <div>
-                          <Typography className={subDomain + "-repair-summary-title"}>
+                          <Typography className={subDomain + "-service-summary-title"}>
                             {/* {this.state.model[index]["name"]
                               .toString()
                               .includes(item.name.toString())
@@ -117,29 +117,29 @@ class RepairSummary extends React.Component<Props, MyState> {
                               : item.name + " " + this.state.model[index]["name"]} */}
                             {this.state.model[index]["name"]}
                           </Typography>
-                          {/* <Typography className={subDomain + "-repair-summary-service"}>
+                          {/* <Typography className={subDomain + "-service-summary-service"}>
                             <T id={publicText.repairService} />
                           </Typography> */}
-                          <p className={subDomain + "-repair-summary-service-child"}>
+                          <p className={subDomain + "-service-summary-service-child"}>
                             <T id={chooseItem.name} />
                           </p>
-                          <p className={subDomain + "-repair-summary-service-child"}>
+                          <p className={subDomain + "-service-summary-service-child"}>
                             <T id={chooseItem.estimate} />
                           </p>
                           {chooseItem.warranty && chooseItem.warranty > 0 ? (
-                            <p className={subDomain + "-repair-summary-service-child"}>
+                            <p className={subDomain + "-service-summary-service-child"}>
                               {"Warranty: " +
                                 chooseItem.warranty +
                                 " " +
                                 ConvertWarrantyUnit(chooseItem.warranty_unit, chooseItem.warranty)}
                             </p>
                           ) : chooseItem.warranty && chooseItem.warranty === -1 ? (
-                            <p className={subDomain + "-repair-summary-service-child"}>
+                            <p className={subDomain + "-service-summary-service-child"}>
                               Warranty: Lifetime
                             </p>
                           ) : (
                             <p
-                              className={subDomain + "-repair-summary-service-child"}
+                              className={subDomain + "-service-summary-service-child"}
                               style={{ color: "grey" }}
                             >
                               <i>No warranty</i>
@@ -152,46 +152,46 @@ class RepairSummary extends React.Component<Props, MyState> {
               )
             })}
           {showInfo && (
-            <div className={subDomain + "-repair-summary-div"}>
+            <div className={subDomain + "-service-summary-div"}>
               <div>
-                <Typography className={subDomain + "-repair-summary-title"}>
+                <Typography className={subDomain + "-service-summary-title"}>
                   <T id={repairWidgetStore.deliveryMethod.method} />
                 </Typography>
                 {code === "PICK_UP" && (
-                  <Typography className={subDomain + "-repair-summary-service"}>
+                  <Typography className={subDomain + "-service-summary-service"}>
                     <T id="PICK_UP_FROM" />
                   </Typography>
                 )}
                 {code === "MAIL_IN" && (
-                  <Typography className={subDomain + "-repair-summary-service"}>
+                  <Typography className={subDomain + "-service-summary-service"}>
                     <T id="SEND_TO" />
                   </Typography>
                 )}
                 {code !== "MAIL_IN" && (
-                  <p className={subDomain + "-repair-summary-service-child"}>
+                  <p className={subDomain + "-service-summary-service-child"}>
                     <T id={repairWidgetStore.bookData[code].address.name} />
                   </p>
                 )}
                 {code === "MAIL_IN" && (
                   <p
-                    className={subDomain + "-repair-summary-service-child"}
+                    className={subDomain + "-service-summary-service-child"}
                     style={{ marginBottom: "15px" }}
                   >
                     <T id={repairWidgetStore.bookData[code].sendTo} />
                   </p>
                 )}
                 {code === "MAIL_IN" && (
-                  <Typography className={subDomain + "-repair-summary-service"}>
+                  <Typography className={subDomain + "-service-summary-service"}>
                     <T id="RETURN_TO" />
                   </Typography>
                 )}
                 {code === "MAIL_IN" && (
-                  <p className={subDomain + "-repair-summary-service-child"}>
+                  <p className={subDomain + "-service-summary-service-child"}>
                     <T id={repairWidgetStore.contactDetails.address1.name} />
                   </p>
                 )}
                 {code !== "MAIL_IN" && (
-                  <p className={subDomain + "-repair-summary-service-child"}>
+                  <p className={subDomain + "-service-summary-service-child"}>
                     {repairWidgetStore.bookData[code].week +
                       ", " +
                       repairWidgetStore.bookData[code].month +

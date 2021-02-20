@@ -566,7 +566,7 @@ const ChooseDevice = ({
                             style={{ backgroundColor: item.bg }}
                             onClick={() => toggleItemTypes(index, stepName)}
                           >
-                            <div className={subDomain + "-device-repair-item"}>
+                            <div className={subDomain + "-device-service-item"}>
                               <p style={{ color: item.col }}>{t(item.name)}</p>
                             </div>
                           </div>
@@ -580,7 +580,7 @@ const ChooseDevice = ({
             {(stepName === "deviceRepairs" ||
               stepName === "dropOffDevicce" ||
               stepName === "receiveQuote") && (
-              <div className={subDomain + "-repair-card-button"}>
+              <div className={subDomain + "-service-card-button"}>
                 <Button
                   title={t(publicText.next)}
                   bgcolor={mainData.colorPalle.nextButtonCol}

@@ -77,7 +77,7 @@ const UsefulInfo = ({
                 />
               </div>
             </div>
-            <div className={subDomain + "-repair-card-button"}>
+            <div className={subDomain + "-service-card-button"}>
               <Button
                 title={t(publicText.next)}
                 bgcolor={mainData.colorPalle.nextButtonCol}
@@ -93,7 +93,7 @@ const UsefulInfo = ({
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-repair-summary-card"}>
+          <Card className={subDomain + "-service-summary-card"}>
             <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} showInfo={true} />
           </Card>
         </Grid>

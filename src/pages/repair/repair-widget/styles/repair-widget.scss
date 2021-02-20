@@ -81,7 +81,7 @@
   margin-bottom: 20px !important;
 }
 
-.repair-card-button {
+.service-card-button {
   position: absolute;
   bottom: 30px;
   left: 30px;
@@ -90,7 +90,7 @@
   color: rgba(0, 0, 0, 0.35);
 }
 
-.repair-card-button p {
+.service-card-button p {
   margin-left: 15px;
 }
 
@@ -145,14 +145,14 @@
   top: 40%;
 }
 
-.device-repair-item {
+.device-service-item {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
 
-.device-repair-item > p {
+.device-service-item > p {
   font-weight: bold;
   padding: 0 10px;
   font-size: 13.5px;
@@ -179,7 +179,7 @@
   padding: 20px 0;
 }
 
-.repair-summary-content-div {
+.service-summary-content-div {
   display: block;
   overflow: scroll !important;
   overflow-x: hidden !important;
@@ -189,27 +189,27 @@
 }
 
 /* width */
-.repair-summary-content-div::-webkit-scrollbar {
+.service-summary-content-div::-webkit-scrollbar {
   width: 3px;
   cursor: pointer;
 }
 
 /* Track */
-.repair-summary-content-div::-webkit-scrollbar-track {
+.service-summary-content-div::-webkit-scrollbar-track {
   background: #ffffff;
 }
 
 /* Handle */
-.repair-summary-content-div::-webkit-scrollbar-thumb {
+.service-summary-content-div::-webkit-scrollbar-thumb {
   background: #999;
 }
 
 /* Handle on hover */
-.repair-summary-content-div::-webkit-scrollbar-thumb:hover {
+.service-summary-content-div::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
 
-.repair-summary-div {
+.service-summary-div {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 10px;
@@ -218,7 +218,7 @@
   position: relative;
 }
 
-.repair-summary-img {
+.service-summary-img {
   margin-right: 10px;
   width: 54px;
   display: flex;
@@ -226,23 +226,23 @@
   align-items: center;
 }
 
-.repair-summary-img > img {
+.service-summary-img > img {
   width: 100%;
 }
 
-.repair-summary-title {
+.service-summary-title {
   font-weight: bold !important;
   font-size: 17px !important;
   margin-bottom: 15px !important;
 }
 
-.repair-summary-service {
+.service-summary-service {
   font-weight: 600 !important;
   font-size: 15px !important;
   margin-bottom: 5px !important;
 }
 
-.repair-summary-service-child {
+.service-summary-service-child {
   font-size: 14px !important;
 }
 
@@ -421,14 +421,14 @@
   width: 100px;
 }
 
-.repair-trash-icon {
+.service-trash-icon {
   position: absolute;
   right: 10px;
   top: 10px;
   cursor: pointer;
 }
 
-.repair-trash-icon:hover {
+.service-trash-icon:hover {
   transform: scale(1.2);
 }
 
@@ -452,7 +452,7 @@
   .booking-card {
     height: 600px !important;
   }
-  .repair-summary-card {
+  .service-summary-card {
     height: auto !important;
   }
   .useful-textarea-div {
@@ -498,7 +498,7 @@
     text-align: center !important;
     font-size: 5.5vw !important;
   }
-  .repair-summary-title {
+  .service-summary-title {
     text-align: left !important;
     font-size: 3.5vw !important;
     margin-bottom: 10px !important;
