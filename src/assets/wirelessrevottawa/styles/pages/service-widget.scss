@@ -2,6 +2,9 @@
   /* margin-top: 200px !important; */
   position: relative;
   top: 200px;
+  @media (max-width: 768px) {
+    top: 130px;
+  }
 }
 
 .#{$folderName}-back-to-top {
@@ -11,6 +14,9 @@
   width: 35px;
   cursor: pointer;
   z-index: 999;
+  @media (max-width: 425px) {
+    top: 350px;
+  }
 }
 
 .service-widget-card {
@@ -482,6 +488,7 @@
     font-size: 3vw;
     height: 250px;
   }
+  .#{$folderName}-repair-service-summary-detail-container .#{$folderName}-every-container,
   .#{$folderName}-repair-service-summary-detail-container
     .#{$folderName}-every-container
     .#{$folderName}-topic,

@@ -249,7 +249,10 @@ const ContactDetails = ({
       lastName &&
       email &&
       ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
-      ((code === "MAIL_IN" && address1) || code !== "MAIL_IN")
+      ((code === "MAIL_IN" && address1) ||
+        (code === "ONSITE" && address1) ||
+        (code === "PICK_UP" && address1) ||
+        (code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP"))
     ) {
       setDisableStatus(false)
     }
@@ -335,28 +338,41 @@ const ContactDetails = ({
                     subDomain={subDomain}
                   />
                 </Grid>
-                <Grid item xs={storesDetails.location_id < 0 && code !== "MAIL_IN" ? 6 : 12}>
+                <Grid
+                  item
+                  xs={
+                    storesDetails.location_id < 0 &&
+                    code !== "MAIL_IN" &&
+                    code !== "ONSITE" &&
+                    code !== "PICK_UP"
+                      ? 6
+                      : 12
+                  }
+                >
                   <PhoneInput
                     handleSetPhone={setPhone}
                     val={phone}
                     placeholder={t(data.placeholder.phoneNum)}
                   />
                 </Grid>
-                {storesDetails.location_id < 0 && code !== "MAIL_IN" && (
-                  <Grid item xs={6}>
-                    <InputComponent
-                      value={postalCode}
-                      placeholder={t(data.placeholder.postalCode)}
-                      handleChange={(e) => {
-                        handleChangePostalCode(e.target.value)
-                      }}
-                      subDomain={subDomain}
-                    />
-                  </Grid>
-                )}
+                {storesDetails.location_id < 0 &&
+                  code !== "MAIL_IN" &&
+                  code !== "ONSITE" &&
+                  code !== "PICK_UP" && (
+                    <Grid item xs={6}>
+                      <InputComponent
+                        value={postalCode}
+                        placeholder={t(data.placeholder.postalCode)}
+                        handleChange={(e) => {
+                          handleChangePostalCode(e.target.value)
+                        }}
+                        subDomain={subDomain}
+                      />
+                    </Grid>
+                  )}
               </Grid>
             </div>
-            {code === "MAIL_IN" && (
+            {(code === "MAIL_IN" || code === "ONSITE" || code === "PICK_UP") && (
               <div className={subDomain + "-service-choose-device-container"}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -408,17 +424,17 @@ const ContactDetails = ({
                     />
                   </Grid>
                   {/* <Grid item xs={12} sm={4}>
-                                        <CustomSelect
-                                            value={province}
-                                            handleSetValue={setProvince}
-                                            subDomain={subDomain}
-                                            options={country.code ? statesData[country.code] : []}
-                                        />
-                                    </Grid> */}
+                    <CustomSelect
+                      value={province}
+                      handleSetValue={setProvince}
+                      subDomain={subDomain}
+                      options={country.code ? statesData[country.code] : []}
+                    />
+                  </Grid> */}
                 </Grid>
               </div>
             )}
-            {code !== "MAIL_IN" && (
+            {code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP" && (
               <div className={subDomain + "-service-choose-device-container"}>
                 <FeatureToggles features={features}>
                   <Feature
@@ -466,7 +482,7 @@ const ContactDetails = ({
                 </FeatureToggles>
               </div>
             )}
-            {code === "MAIL_IN" && (
+            {(code === "MAIL_IN" || code === "ONSITE" || code === "PICK_UP") && (
               <div className={subDomain + "-service-card-button"}>
                 <Button
                   title={t(publicText.next)}

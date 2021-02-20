@@ -59,7 +59,7 @@ const ChooseDevice = ({
   const publicText = mockData.repairWidget.publicText
 
   const [sliceNum, setSliceNum] = useState(10)
-  const [plusVisible, setPlusVisible] = useState(true)
+  const [plusVisible, setPlusVisible] = useState(false)
   const [itemTypes, setItemTypes] = useState<ArrayProps[]>([])
   const [estimatedTimes, setEstimatedTimes] = useState<ArrayProps[]>([])
   const [selected, setSelected] = useState(999)
@@ -158,8 +158,10 @@ const ChooseDevice = ({
 
   const ChooseNextStep = async (i: number) => {
     if (i === 999) {
-      handleStep(step + 1)
-      return
+      const timer = setTimeout(() => {
+        handleStep(step + 1)
+      }, 500)
+      return () => clearTimeout(timer)
     }
     setSelected(i)
     handleChangeChooseData(step, imageData[i])
@@ -206,6 +208,9 @@ const ChooseDevice = ({
         await getDeviceBrandsAPI(text, pg, perpg)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           setSliceNum(repairWidData.repairDeviceBrands.data.length)
+          if (repairWidData.repairDeviceBrands.data.length === pg * perpg) {
+            setPlusVisible(true)
+          }
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairDeviceBrands.data[i].name,
@@ -223,6 +228,9 @@ const ChooseDevice = ({
           repairWidData.repairBrandProducts.data.length
         ) {
           setSliceNum(repairWidData.repairBrandProducts.data.length)
+          if (repairWidData.repairBrandProducts.data.length === pg * perpg) {
+            setPlusVisible(true)
+          }
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairBrandProducts.data[i].name,
@@ -239,6 +247,9 @@ const ChooseDevice = ({
 
         if (cntOfferedRepairs != null) {
           setSliceNum(repairWidData.repairsOfferedDevices.data.length)
+          if (repairWidData.repairsOfferedDevices.data.length === pg * perpg) {
+            setPlusVisible(true)
+          }
           for (let i = 0; i < cntOfferedRepairs.length; i++) {
             cntTypes.push({
               name: cntOfferedRepairs[i].title,
@@ -267,11 +278,11 @@ const ChooseDevice = ({
       default:
         break
     }
-    if (sliceNum < pg * perpg) {
-      setPlusVisible(false)
-    } else {
-      setPlusVisible(true)
-    }
+    // if (sliceNum < pg * perpg) {
+    //   setPlusVisible(false)
+    // } else {
+    //   setPlusVisible(true)
+    // }
     setImageData(cntImgData)
   }
 
@@ -398,6 +409,7 @@ const ChooseDevice = ({
         }
       }
       setItemTypes([...cntItemTypes])
+      ChooseNextStep(999)
     }
   }
 
@@ -578,9 +590,7 @@ const ChooseDevice = ({
               </div>
             </div>
 
-            {(stepName === "deviceRepairs" ||
-              stepName === "dropOffDevicce" ||
-              stepName === "receiveQuote") && (
+            {stepName === "deviceRepairs" && (
               <div className={subDomain + "-service-card-button"}>
                 <Button
                   title={t(publicText.next)}
