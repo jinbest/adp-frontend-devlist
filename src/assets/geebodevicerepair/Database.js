@@ -110,7 +110,7 @@ const cardMobileData = {
             href: "/repair",
         },
         { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -188,13 +188,14 @@ const colorPalle = {
     textThemeCol: "#6EB24F",
     heartCol: "#6EB24F",
     chatBgCol: "#6EB24F",
+    sec2SvgCol: "#6EB24F"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
     { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
 const navShop = {
@@ -329,7 +330,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
@@ -379,6 +380,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Nova Scotia"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -408,23 +410,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "2/17/2017",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Highly recommend Geebo. My iPhone 6 wouldn't charge - Apple tech told me my phone was damaged internally and not repairable. Geebo replaced the charging port on my phone in less than 1/2 hour - at a very reasonable price. Really friendly and knowledgeable.",
+                reviewer: "Hammonds Plains, NS",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "6/16/2016",
+                content: "Great little shop for phone repairs. Very professional service. They replaced my shattered screen in 24 hours. Great value!",
+                reviewer: "Dartmouth, NS",
+            },
+            {
+                score: 5,
+                days: "10/4/2015",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I got a new battery for my iPhone 4 installed by in less than 5 minutes while I waited, for $25. The service was friendly, fast, and convenient. They even offered to take it back with a $20 refund if the phone performance was no better. Well, it works fine and I'm getting much more usage on a charge. Very happy with them, and I would go back.",
+                reviewer: "Dartmouth, NS",
             },
         ],
     },
@@ -496,16 +498,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "GEEBO_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },

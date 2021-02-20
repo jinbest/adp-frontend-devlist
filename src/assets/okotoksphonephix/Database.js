@@ -117,7 +117,7 @@ const cardMobileData = {
             flag: "FRONTEND_BUY",
             href: "http://shop.phonephix.ca/",
         },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -195,13 +195,14 @@ const colorPalle = {
     textThemeCol: "#FCA425",
     heartCol: "#FCA425",
     chatBgCol: "#FCA425",
+    sec2SvgCol: "#FBB74D"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
     { href: "http://shop.phonephix.ca/", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
 const navShop = {
@@ -305,7 +306,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-    left: ["BUSINESS", "FINANCING"],
+    left: [],
     right: { ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN" },
     brandCol: "black",
     brandThemeCol: "#FCA425",
@@ -336,7 +337,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "http://shop.phonephix.ca/", flag: "FRONTEND_BUY" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
@@ -386,6 +387,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "OKOTOKS_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Okotok"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -415,23 +417,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Phonephix is a business who truly cares about their customers! I went in and the staff there were honest about if it was in my best interest to get one of my older devices fixed. They said as much as they want my business that it wasn't worth it for how old the device was. They offered a bunch of other options to help me out with what I needed. They were honest, helpful, and thoughtful!",
+                reviewer: "Madison Edwards",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "2 days ago",
+                content: "The team at Phonephix fixed up my girlfriend's phone screen and have honoured their warranty twice now. I was very happily surprised at their cooperation and professionalism. I would highly recommend this shop if you need repairs. Thanks again!",
+                reviewer: "Cole Dempsey",
+            },
+            {
+                score: 5,
+                days: "4 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I honestly believe this is the best customer service I have ever received. They are amazing, fast and affordable! Also, to top it off the warranty all their work. The woman spoke to my daughter about her broken iPad directly. Seems like a small thing to rave about but it was so kind. She was so heartbroken to have broken the screen and this woman was so soft and uplifting. I will never go anywhere else but Phonephix again. Thank you so much for this service. Keep up the great work!",
+                reviewer: "Hayley Wright",
             },
         ],
     },
@@ -447,7 +449,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "sales@phonephix.ca 11 - 1300 Village Lane, Okotoks, AB",
+            "11 - 1300 Village Lane, Okotoks, AB",
             "PHONEPHIX_FOOTER_CONTENT_TWO",
         ],
         footerLink: [
@@ -506,16 +508,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },

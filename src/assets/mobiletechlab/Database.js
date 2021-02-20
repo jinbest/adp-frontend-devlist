@@ -38,8 +38,9 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/mobiletech-corner-shape.png"
-import mockupShape from "./img/mobiletech-mockup-shape.png"
+// import cornerShape from "./img/mobiletech-corner-shape.png"
+// import mockupShape from "./img/mobiletech-mockup-shape.png"
+import backMTLImg from "./img/MTLwinnipeg.jpeg"
 
 // footer images
 import buyNow from "./img/footer/buy-now.png"
@@ -117,7 +118,7 @@ const cardMobileData = {
             flag: "FRONTEND_BUY",
             href: "https://shop.mobiletechlab.ca/",
         },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -195,6 +196,7 @@ const colorPalle = {
     textThemeCol: "#ED1D24",
     heartCol: "#ED1D24",
     chatBgCol: "#ED1D24",
+    sec2SvgCol: "#ED1D24"
 }
 
 const navItemsData = [
@@ -206,7 +208,13 @@ const navItemsData = [
         isActive: false,
         flag: "FRONTEND_BUY",
     },
-    // { href: "#", text: "INSURE", isActive: false, flag: 'ALWAYS_TRUE' },
+    {
+        href: "https://www.mobiletechlabwinnipeg.ca/bounce-screen-insurance",
+        text: "PROTECT",
+        isActive: false,
+        flag: "ALWAYS_TRUE",
+    },
+    // { href: "#", text: "INSURE", isActive: false, flag: 'FRONTEND_INSURE' },
 ]
 
 const navShop = {
@@ -341,12 +349,17 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "https://shop.mobiletechlab.ca/", flag: "FRONTEND_BUY" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
         { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
+        {
+            text: "PROTECT",
+            href: "https://www.mobiletechlabwinnipeg.ca/bounce-screen-insurance",
+            flag: "ALWAYS_TRUE",
+        },
     ],
     right: [
         { text: "Apple", href: "#" },
@@ -371,8 +384,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: { img: cornerShape, width: "" },
-    mockupShape: { img: mockupShape, width: "" },
+    cornerShape: { img: backMTLImg, width: "" },
+    mockupShape: { img: "", width: "" },
 }
 
 const footerImageData = {
@@ -391,6 +404,7 @@ const homeTextData = {
         title: ["WINNIPEG_PROFESSIONAL", "PHONE_REPAIR"],
         subtitle: "SAME_DAY_ADVANCED_REPAIR_SERVICE",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Winnipeg"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -420,24 +434,24 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "October 22, 2020",
+                days: "a year ago",
                 content:
-                    "I needed a new battery for my iphone 6. After contacting several places who all told me the next available appointment was more than a week away, I called Mobile Tech on Corydon. Within 2 hours, my new battery was installed and ready for pickup. Great service and friendly staff.",
-                reviewer: "Pepo",
-            },
-            {
-                score: 4,
-                days: "November 9, 2020",
-                content:
-                    "Very glad I found this place! I send a request through FB to couple places asking for an estimate of the screen replacement and Mobile Tech Lab not only has automated estimation but they gave me a call almost right away to confirm that they have a part and it would be done in ... more",
-                reviewer: "Elena Kurakin",
+                    "Just want you to know how pleased I am with your service. The new battery is working perfectly. Your communication throughout the process was timely and professional and helpful. The reassembly of the pixel is flawless. I can't see any evidence that the phone shell is not the original. Am glad to have come across your business. Won't hesitate to recommend you to friends. Allan Lauder",
+                reviewer: "Allan Lauder",
             },
             {
                 score: 5,
-                days: "November 2, 2020",
+                days: "a year ago",
                 content:
-                    "My experience was excepion really amazing people working there with reasonable prices for fixing electronics, they fix your electronics with a super reasonable time frame,.would highly recommend this company!",
-                reviewer: "Jessica Johnson",
+                    "Excellent service! We were very impressed with the caliber of repair on my son’s iPhone. We had the screen and battery replaced, at a reasonable price. The customer service was great. Highly recommend if you are in the unfortunate position of needing a repair.",
+                reviewer: "Tammy Murdoch",
+            },
+            {
+                score: 5,
+                days: "8 months ago",
+                content:
+                    "Came to them with a cracked iPhone back. The team was engaging, kept me updated, explained everything and Best of all they were the best priced repair place in Winnipeg (I called around to them all) and fixed it same day! I will be recommending them to everyone I know.",
+                reviewer: "Tony Acosta",
             },
         ],
     },
@@ -452,7 +466,7 @@ const homeTextData = {
             { title: "", content: "" },
         ],
         contentSubTitle: "",
-        content: ["2020 Corydon Ave, Unit F Winnipeg, MB", "MOBILE_TECH_FOOTER_CONTENT_TWO"],
+        content: ["2020 Corydon Ave. Unit F. Winnipeg, MB.", "MOBILE_TECH_FOOTER_CONTENT_TWO"],
         footerLink: [
             {
                 name: "RESOURCES",
@@ -509,16 +523,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },
@@ -570,8 +587,35 @@ const getTabData = (companyName) => {
         })(window,document,'script','dataLayer','GTM-M2GBFK5');                      
         `,
         bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2GBFK5"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>                     
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
         `,
+        scriptTag: `
+            var _support = _support || { 'ui': {}, 'user': {} };
+            _support['account'] = 'mobiletechlab';
+            _support['ui']['contactMode'] = 'anonymous';
+            _support['ui']['enableKb'] = 'true';
+            _support['ui']['styles'] = {
+                widgetColor: 'rgb(57, 106, 179)',
+                gradient: true,
+            };
+            _support['ui']['widget'] = {
+                displayOn: 'all',
+                label: {
+                    text: 'Let us know if you have any questions! &#128522;',
+                    mode: "notification",
+                    delay: 3,
+                    duration: 30,
+                    sound: true,
+                },
+                position: 'bottom-right',
+                mobilePosition: 'bottom-right'
+            };
+            _support['apps'] = {
+                faq: {"enabled":true},
+                recentConversations: {},
+                orders: {}
+            };
+        `
     }
 }
 

@@ -111,7 +111,7 @@ const cardMobileData = {
             href: "/repair",
         },
         { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -189,13 +189,14 @@ const colorPalle = {
     textThemeCol: "#EC2027",
     heartCol: "#000000",
     chatBgCol: "#000000",
+    sec2SvgCol: "#00C2F3"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
     { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
 const navShop = {
@@ -330,7 +331,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
@@ -380,6 +381,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "British Columbia"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -409,23 +411,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "A guy who loves what he does and who knows what he is doing. Excellent work, I recommend!",
+                reviewer: "Jean-Christophe Couture",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a month ago",
+                content: "Super professional I recommend 100% repair in less than 3 days for my iPhone 11",
+                reviewer: "Alexandre Roussell",
+            },
+            {
+                score: 5,
+                days: "a month ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "Thight!",
+                reviewer: "Sophie Berube",
             },
         ],
     },
@@ -441,7 +443,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "support@blackapplecellular.com 100-703 Broughton Street, Victoria, BC V8W 1E2",
+            "100-703 Broughton Street, Victoria, BC V8W 1E2",
             "PRADO_FOOTER_CONTENT_TWO",
         ],
         footerLink: [
@@ -500,16 +502,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "PRADO_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },

@@ -110,8 +110,8 @@ const cardMobileData = {
             flag: "FRONTEND_REPAIR",
             href: "/repair",
         },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "/shop" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -189,13 +189,14 @@ const colorPalle = {
     textThemeCol: "#00B0F0",
     heartCol: "#606163",
     chatBgCol: "#00B0F0",
+    sec2SvgCol: "#00B0F0"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
-    { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "/shop", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
 const navShop = {
@@ -330,7 +331,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
@@ -380,6 +381,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Saskatchewan"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -449,7 +451,7 @@ const homeTextData = {
         ],
         contentSubTitle: "SASKATOON_NORTH",
         content: [
-            "saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK",
+            "9, 834 – 51st Street Saskatoon, SK",
             "NANOTECH_FOOTER_CONTENT_TWO",
         ],
         footerLink: [
@@ -508,16 +510,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },
@@ -558,13 +563,18 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Cell Phone, iPhone & iPad Repair Iqaluit | ${companyName ? companyName : ""}`,
-        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Peterborough. Call ${
+        title: `Get Quote`,
+        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Regina, SK. Call ${
             companyName ? companyName : ""
         } or book your repair online today!`,
-        headTag: `
+        headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5BV2QS9');              
         `,
-        bodyTag: `
+        bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BV2QS9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>              
         `,
     }
 }

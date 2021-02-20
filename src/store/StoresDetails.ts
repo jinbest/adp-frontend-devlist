@@ -49,8 +49,21 @@ export class StoresDetails {
 
     @action
     changeFindAddLocation = (findAddLocation: any[]) => {
-        this.findAddLocation = findAddLocation
+        this.findAddLocation = this.sortDataByDistance(findAddLocation)
         this.save()
+    }
+
+    @action
+    sortDataByDistance = (data: any[]) => {
+        let temp:any = {};
+        for (let i = 0; i < data.length-1; i++) {
+            for (let j = i+1; j < data.length; j++) {
+                if (data[i].distance > data[j].distance) {
+                    temp = data[i]; data[i] = data[j]; data[j] = temp;
+                }
+            }
+        }
+        return data;
     }
 
     @action

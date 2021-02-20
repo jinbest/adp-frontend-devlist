@@ -111,7 +111,7 @@ const cardMobileData = {
             href: "/repair",
         },
         { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "/shop" },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -189,13 +189,14 @@ const colorPalle = {
     textThemeCol: "#00B0F0",
     heartCol: "#606163",
     chatBgCol: "#00B0F0",
+    sec2SvgCol: "#00B0F0"
 }
 
 const navItemsData = [
     { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
     { href: "/shop", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
 const navShop = {
@@ -330,7 +331,7 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
@@ -380,6 +381,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Saskatchewan"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -409,23 +411,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "2 days ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Great quality service got my switch fixed fast. And was working like new. Would recommend everyone to fix their electronic here, only place I come.",
+                reviewer: "Adiam Haile",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a week ago",
+                content: "Never had a problem. they always fix my tech fast and efficiently. and so friendly. good prices as well. thumbs up all the way.",
+                reviewer: "Dion Gale",
+            },
+            {
+                score: 5,
+                days: "2 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I have had to go to Nanotech on a few different occasions for different reasons. My iPhone screen, to replace my battery for another iPhone and now to unlock my late mom’s computer. They have always been quick to resolve, professional and compassionate to each situation. They are priced very reasonable and have always had my items back to me within the timeline given. Thank you so much.",
+                reviewer: "Andrea Mundreon",
             },
         ],
     },
@@ -449,7 +451,7 @@ const homeTextData = {
         ],
         contentSubTitle: "SASKATOON_NORTH",
         content: [
-            "saskatoon@nanotechrepair.ca 9, 834 – 51st Street Saskatoon, SK",
+            "9, 834 – 51st Street Saskatoon, SK",
             "NANOTECH_FOOTER_CONTENT_TWO",
         ],
         footerLink: [
@@ -508,16 +510,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },

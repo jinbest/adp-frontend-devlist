@@ -38,12 +38,12 @@ export class LanguageKeys {
     public BOOK_AN_APPOINTMENT = "Book an Appointment"
     public REQUEST_A_QUOTE = "Request a Quote"
     public WHAT_CAN_WE_FIX_FOR_YOU_TODAY = "What can we fix for you today?"
-    public FREE_DIAGNOSTICS = "FREE DIAGNOSTICS"
+    public FREE_DIAGNOSTICS = "TRANSPARENT REPAIRS"
     public FREE_DIAGNOSTICS_CONTENT =
-        "We believe in a transparent repqir process. If you're not sure what's wrong with your device, we'll diagnose it for free."
-    public LOW_PRICE_GUARANTEE = "LOW PRICE GUARANTEE"
+        "We believe in a transparent repair process - know exactly what we’re going to fix on your device and what the cost is before we start."
+    public LOW_PRICE_GUARANTEE = "WE PRICE MATCH ANYONE"
     public LOW_PRICE_GUARANTEE_CONTENT =
-        "We want you to be confident that you're getting the best price. We'll match any local competitor's published price for the same repair and beat it by $5."
+        "We want you to be confident that you're getting the best price. We'll match any local Winnipeg competitor's published price for the same repair and get it done faster."
     public QUICK_TURNAROUND = "QUICK TURNAROUND"
     public QUICK_TURNAROUND_CONTENT =
         "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours."
@@ -61,14 +61,17 @@ export class LanguageKeys {
     public CONSOLE = "Console"
     public OTHER = "Other"
     public AS_LOW_AS = "As low as"
-    public BEST_OFFER_AVAILABLE = "Best offer available"
-    public BEST_OFFER_AVAILABLE_CONTENT = "Selected by our price-quality algorithm"
+    public BEST_OFFER_AVAILABLE = "Competitive Pricing"
+    public BEST_OFFER_AVAILABLE_CONTENT =
+        "We’re proud to offer the largest selection of fully tested and graded pre-owned devices in Winnipeg. All backed by a one year warranty and lifetime IMEI guarantee"
     public YEAR_1_WARRANTY = "1 Year Warranty"
-    public YEAR_1_WARRANTY_CONTENT = "Our partner merchants are continously monitored."
+    public YEAR_1_WARRANTY_CONTENT =
+        "We stand behind all our devices with an iron-clad one year warranty that covers everything except physical or liquid damage."
     public AMAZING_SERVICE = "Amazing Service"
     public AMAZING_SERVICE_CONTENT = "Secure shopping experience."
-    public POSITIVE_IMPACT = "Positive Impact"
-    public POSITIVE_IMPACT_CONTENT = "An alternative to new, joyful and elegant."
+    public POSITIVE_IMPACT = "Trade-In Your Device"
+    public POSITIVE_IMPACT_CONTENT =
+        "Trade in your existing device - broken or not - for credit towards a repair, product or a newer phone. We buy almost every device, no matter the condition."
     public PROUDLY_CANADIAN = "Proudly Canadian"
     public PROUDLY_CANADIAN_CONTENT = "Canadian owned and Canadian based."
     public OUR_QUALITY_CHARTER = "Our quality charter"
@@ -106,9 +109,9 @@ export class LanguageKeys {
     public SELECT_A_REPAIR_CATEGORY = "Select a repair category"
     public SELECT_A_REPAIR_CATEGORY_CONTENT =
         "Make an account with us and indicate what needs to be repaired."
-    public SEND_US_YOUR_DEVICE = "Send us your device"
-    public SEND_US_YOUR_DEVICE_CONTENT =
-        "Make an account with us and indicate what needs to be repaired."
+    public GET_YOUR_DEVICE_TO_US = "Get your device to us"
+    public GET_YOUR_DEVICE_TO_US_CONTENT =
+        "Find a location near you for drop off or ship to the store of your choosing."
     public RECEIVE_YOUR_DEVICE = "Receive your device"
     public FROM_NEW_TO_RECONDITIONED = "From New to Reconditioned"
     public NEW = "NEW"
@@ -150,15 +153,21 @@ export class LanguageKeys {
     public SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE =
         "Shop our selection of new and pre-owned devices!"
     public SHOP_NOW = "Shop Now"
+    public REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE = "Repair, buy & protect your essential mobile devices."
+    public CITY_MOBILE_DEVICE_SPECIALISTS = (city: string) => {
+        return `${city}’s mobile device specialists.`
+    }
+    public ESSENTIAL_MOBILE_DEVICE = "essential mobile devices."
+    public YOUR = "your"
 
     /* Repair-widget Text */
     public NEXT = "Next"
     public ENTER_KEY = "or press ENTER"
     public YES = "Yes"
     public NO = "No"
-    public REPAIR_SUMMARY = "Repair Summary"
-    public REPAIR_SERVICE = "Repair Service:"
-    public REPAIR_SERVICE_SUMMARY = "Repair Service Summary"
+    public REPAIR_SUMMARY = "Summary"
+    public REPAIR_SERVICE = "Service:"
+    public REPAIR_SERVICE_SUMMARY = "Service Summary"
     public YOUR_INFO = "Your Information"
     public DELIVERY_METHOD = "Delivery Method"
     public PREFERRED_CONTACT_METHOD = "Preferred Contact Method"
@@ -188,9 +197,9 @@ export class LanguageKeys {
     public CHARGING_PORT = "Charging Port"
     public SCREEN = "Screen"
     public MINUTES = "minutes"
-    public REPAIR_ANOTHER_DEVICE = "Repair Another Device?"
-    public REPAIR_ANOTHER_DEVICE_CONTENT = "Repair all your devices at once with us!"
-    public HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE = "How Would You Like to Drop-Off Your Device(s)?"
+    public REPAIR_ANOTHER_DEVICE = "Add Another Device?"
+    public REPAIR_ANOTHER_DEVICE_CONTENT = "Get all your devices done at once with us!"
+    public HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE = "How Would You Like to Get Service?"
     public MAIL_IN = "Mail-In"
     public PICK_UP_DROP_OFF_SERVICE = "Pick-Up/ Drop-Off Service"
     public CURBSIDE_DROP_OFF = "Curbside Drop-Off"
@@ -225,16 +234,14 @@ export class LanguageKeys {
     public SELECT_VISIT_TIME = "Select Visit Time"
     public MONDAY_FRIDAY = "Monday - Friday"
     public ENTER_A_MESSAGE_OR_USEFUL_INFO =
-        "Enter a Message or Any Useful Information About This Repair"
+        "Let us know if there's anything we should know about your device"
     public TYPE_YOUR_MESSAGE_HERE_OPTIONAL = "Type your message here (optional)"
     public THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR = ({
-        subDomain,
+        storeName,
     }: {
-        subDomain: string
+        storeName: string
     }) => {
-        return `Thank you for choosing ${
-            subDomain.charAt(0).toUpperCase() + subDomain.slice(1)
-        } for your repair!`
+        return `Thank you for choosing ${storeName}.`
     }
     public WITH_A_DETAILED_SERVICE_QUOTE = "with a detailed service quote."
     public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT =
@@ -262,97 +269,142 @@ export class LanguageKeys {
 
     /* Geebo Website Text */
     public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS = "Nova Scotia's mobile device specialists"
-    public WELCOME_GEEBO = "Welcome to Geebo Device Repair, Nova Scotia's mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_GEEBO = "See Why Customers Love Geebo Device Repair"
-    public GEEBO_FOOTER_CONTENT_TWO =
-        '© 2020 Geebo Device Repair 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Geebo Device Repair" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Geebo Device Repair repairs your device and notifies you of pick up or delivery date."
+    public WELCOME_GEEBO = (storeName: string) => {
+        return `Welcome to ${storeName}, Nova Scotia's mobile device marketplace`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_GEEBO = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
+    public GEEBO_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public GEEBO_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with Geebo it's easy to choose for any budget!"
 
     /* Mobile-Tech Website Text */
     public SAME_DAY_ADVANCED_REPAIR_SERVICE = "Same-Day Advanced Repair Services"
-    public WELCOME_MOBILE_TECH = "Welcome to Mobile Tech Lab, Manitoba's mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = "See Why Customers Love Mobile Tech Lab"
-    public MOBILE_TECH_FOOTER_CONTENT_TWO =
-        '© 2020 Mobile Tech Lab 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Mobile Tech Lab" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Mobile Tech Lab repairs your device and notifies you of pick up or delivery date."
+    public WELCOME_MOBILE_TECH = "Winnipeg's trusted mobile device shop"
+    public SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
+    public MOBILE_TECH_FOOTER_CONTENT_TWO = (storeName: string) => {
+        // return `© 2020 ${storeName} 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+        return `2021 ${storeName} Inc. All Rights Reserved. All trademarks are properties of their respective holders. ${storeName} Inc does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!"
 
     /* Prado Wireless Website */
     public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS =
         "British Columbia's mobile device specialists"
-    public WELCOME_PRADO_WIRELESS =
-        "Welcome to Prado Wireless, British Columbia's mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = "See Why Customers Love Prado Wireless"
-    public PRADO_FOOTER_CONTENT_TWO =
-        '© 2020 Prado Wireless 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 British Columbia Inc. o/a "Prado Wireless" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public PRADO_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Prado Wireless repairs your device and notifies you of pick up or delivery date."
+    public WELCOME_PRADO_WIRELESS = (storeName: string) => {
+        return `Welcome to ${storeName}, British Columbia's mobile device marketplace`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
+    public PRADO_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public PRADO_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with Prado Wireless it's easy to choose for any budget!"
 
     /* Nanotech Website Text */
     public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS = "Saskatchewan's mobile device specialists"
-    public WELCOME_NANOTECH = "Welcome to Nanotech, Saskatchewan's mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = "See Why Customers Love Nanotech"
+    public WELCOME_NANOTECH = (storeName: string) => {
+        return `Welcome to ${storeName}, Saskatchewan's mobile device marketplace`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
     public REGINA_NORTH = "Regina North"
     public REGINA_EAST = "Regina East"
     public SASKATOON_NORTH = "Saskatoon North"
-    public NANOTECH_FOOTER_CONTENT_TWO =
-        '© 2020 Nanotech 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Nanotech" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Nanotech repairs your device and notifies you of pick up or delivery date."
+    public NANOTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with Nanotech it's easy to choose for any budget!"
 
     /* NorthTech Website Text */
     public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH =
         "Your affordable solutions for technology in the North"
-    public WELCOME_NORTHTECH =
-        "Welcome to NorthTech Solutions, your affordable solutions for technology in the North"
-    public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = "See Why Customers Love NorthTech Solutions"
+    public WELCOME_NORTHTECH = (storeName: string) => {
+        return `Welcome to ${storeName}, your affordable solutions for technology in the North`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
     public GIVING_BACK_TO_NORTH = "Giving Back to the North"
-    public NORTHTECH_FOOTER_CONTENT_TWO =
-        '© 2020 NorthTech Solutions 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "NorthTech Solutions" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT =
-        "NorthTech Solutions repairs your device and notifies you of pick up or delivery date."
+    public NORTHTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with NorthTech Solutions it's easy to choose for any budget!"
 
     /* Phonephix Website Text */
     public OKOTOKS_MOBILE_DEVICE_SPECIALISTS = "Okotoks mobile device specialists"
-    public WELCOME_PHONEPHIX = "Welcome to Phonephix, Okotoks mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = "See Why Customers Love Phonephix"
-    public PHONEPHIX_FOOTER_CONTENT_TWO =
-        '© 2020 Phonephix 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Phonephix" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Phonephix repairs your device and notifies you of pick up or delivery date."
+    public WELCOME_PHONEPHIX = (storeName: string) => {
+        return `Welcome to ${storeName}, Okotoks mobile device marketplace`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_PHONEPHIX = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
+    public PHONEPHIX_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public PHONEPHIX_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public PHONEPHIX_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with Phonephix it’s easy to choose for any budget!"
 
     /* Wireless Website Text */
     public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
-    public WELCOME_WIRELESS = "Welcome to Wireless Revolution, Ottowa's mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = "See Why Customers Love Wireless Revolution"
-    public WIRELESS_FOOTER_CONTENT_TWO =
-        '© 2020 Wireless Revolution 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Wireless Revolution" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Wireless Rev repairs your device and notifies you of pick up or delivery date."
+    public WELCOME_WIRELESS = (storeName: string) => {
+        return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
+    public WIRELESS_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+        return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    }
     public WIRELESS_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with Wireless Rev it's easy to choose for any budget!"
 
     /* Banana Website Text */
-    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Ontario's mobile device specialists"
-    public WELCOME_BANANA = "Welcome to Banana, Canada’s mobile device marketplace"
-    public SEE_WHY_CUSTOMERS_LOVE_BANANA = "See Why Customers Love Banana"
-    public BANANA_FOOTER_CONTENT_TWO =
-        '© 2020 Banana Service 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Banana Service" does not own or make claim to those trademarks used on this website in which it is not the holder.'
-    public BANANA_RECEIVE_YOUR_DEVICE_CONTENT =
-        "Banana Service repairs your device and notifies you of pick up or delivery date."
+    public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Peterborough's mobile device specialists"
+    public WELCOME_BANANA = (storeName: string) => {
+        console.log(storeName)
+        return `Peterborough’s Trusted Cell Phone & Computer Shop`
+    }
+    public SEE_WHY_CUSTOMERS_LOVE_BANANA = (storeName: string) => {
+        return `See Why Customers Love ${storeName}`
+    }
+    public BANANA_FOOTER_CONTENT_TWO = (storeName: string) => {
+        return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+    }
+    public BANANA_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) =>
+        `${storeName} repairs your device and notifies you of pick up or delivery date.`
     public BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT =
         "Choose your new phone among our 4 grades, with Banana Service it's easy to choose for any budget!"
 }

@@ -118,7 +118,7 @@ const cardMobileData = {
             flag: "FRONTEND_BUY",
             href: "http://shop.wirelessrevottawa.ca/",
         },
-        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "ALWAYS_TRUE", href: "#" },
+        { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
 
@@ -196,6 +196,7 @@ const colorPalle = {
     textThemeCol: "#3677A1",
     heartCol: "#3677A1",
     chatBgCol: "#3677A1",
+    sec2SvgCol: "#3677A1"
 }
 
 const navItemsData = [
@@ -207,10 +208,15 @@ const navItemsData = [
         isActive: false,
         flag: "FRONTEND_BUY",
     },
-    { href: "#", text: "INSURE", isActive: false, flag: "ALWAYS_TRUE" },
-    { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
-    { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
-    { href: "#", text: "WHOLESALE", isActive: false, flag: "ALWAYS_TRUE" },
+    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
+    // { href: "#", text: "BUSINESS", isActive: false, flag: "ALWAYS_TRUE" },
+    // { href: "#", text: "FINANCING", isActive: false, flag: "ALWAYS_TRUE" },
+    { 
+        href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/", 
+        text: "WHOLESALE", 
+        isActive: false, 
+        flag: "ALWAYS_TRUE" 
+    },
 ]
 
 const navShop = {
@@ -345,10 +351,11 @@ const mobileNavItemData = {
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
         { text: "SHOP", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
-        { text: "INSURE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "WHOLESALE", href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/", flag: "ALWAYS_TRUE" },
+        { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
-        { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
+        { text: "INSURANCE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
         { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
     ],
@@ -395,6 +402,7 @@ const homeTextData = {
         title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
         subtitle: "WIRELESS_MOBILE_DEVICE_SPECIALISTS",
         searchPlaceholder: "FIND_YOUR_DEVICE",
+        city: "Ottawa"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -424,23 +432,23 @@ const homeTextData = {
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "5 days ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Twice I've employed the services of Wireless Rev, the 1st was to repair my Apple Desktop Computer, the 2nd was to repair my keyboard. Unbelievably professional, knowledgeable technicians, and so polite, friendly, helpful. Once initial diagnostics had been performed, they called me right back to clearly explain the problems encountered and their suggested solution. You'll be blown away by their service, they're just that good. My computer is like brand new once again. Thanks guys.",
+                reviewer: "LAURENCE Winter",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "5 months ago",
+                content: "Absolutely amazing and informative staff these guys know a lot about tech. They were very helpful and fast. The workmanship on my phone was quality and all done at a very affordable price. I couldn't recommend this business more if you need a cell phone repairman in the Ottawa area. They also sell a wide variety of premium cell phone cases",
+                reviewer: "Baba Ku",
+            },
+            {
+                score: 5,
+                days: "2 months ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "I needed an iPhone battery replacement and was able to get it done within the hour and they gave me a loaner phone. Everyone was SUPER friendly but shout out to Hassim who made me laugh about 10 times in 5 minutes. Would definitely recommend this place!",
+                reviewer: "Tania",
             },
         ],
     },
@@ -456,7 +464,7 @@ const homeTextData = {
         ],
         contentSubTitle: "",
         content: [
-            "info@wirelessrev.ca 4 - 1800 Bank Street, Ottawa, ON",
+            "4 - 1800 Bank Street, Ottawa, ON",
             "WIRELESS_FOOTER_CONTENT_TWO",
         ],
         footerLink: [
@@ -515,16 +523,19 @@ const repairData = {
                 img: selectRepair,
                 subtitle: "SELECT_A_REPAIR_CATEGORY",
                 content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+                type: 'SelectRepair'
             },
             {
                 img: sendDevice,
-                subtitle: "SEND_US_YOUR_DEVICE",
-                content: "SEND_US_YOUR_DEVICE_CONTENT",
+                subtitle: "GET_YOUR_DEVICE_TO_US",
+                content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+                type: 'GetDeviceUs'
             },
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
                 content: "WIRELESS_RECEIVE_YOUR_DEVICE_CONTENT",
+                type: 'ReceiveDevice'
             },
         ],
     },

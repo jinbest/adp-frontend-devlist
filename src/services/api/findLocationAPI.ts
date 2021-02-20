@@ -17,7 +17,7 @@ class FindLocationAPI {
         })
         .catch(error => {
           if (error) {
-            console.log('error response in find location with geocode: ', error);
+            reject(error);
           }
         });
     });
@@ -37,7 +37,7 @@ class FindLocationAPI {
         })
         .catch(error => {
           if (error) {
-            console.log('error response in find location with geocode: ', error);
+            reject(error)
           }
         });
     });

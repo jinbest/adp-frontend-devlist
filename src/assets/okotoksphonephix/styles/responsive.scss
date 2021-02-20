@@ -79,7 +79,7 @@
   }
   .#{$folderName}-footer {
     background-image: url('../img/footer/phonephix-footer-shape-mobile.png');
-    padding: 190px 20px 30px;
+    padding: 100px 20px 30px;
   }
   .#{$folderName}-back-to-top {
     left: 10px !important;
@@ -95,6 +95,7 @@
     display: none;
   }
   .#{$folderName}-section1-top {
+    margin-top: 210px !important;
     margin-bottom: 50px !important;
   }
   .#{$folderName}-container-header {
@@ -112,7 +113,7 @@
     display: block;
   }
   .#{$folderName}-section1-title, .#{$folderName}-section1-subtitle {
-    text-align: center;
+    text-align: left;
     display: block;
   }
   .#{$folderName}-corner-shape {
@@ -218,7 +219,7 @@
   }
   .#{$folderName}-repair-section-button .#{$folderName}-button {
     height: 40px;
-    font-size: 4vw !important;
+    font-size: 3vw !important;
   }
   .#{$folderName}-card-repair-sec3-container .#{$folderName}-subtitle {
     font-size: 5vw;
@@ -265,8 +266,11 @@
 }
 
 @media (max-width: 425px) {
-  .#{$folderName}-section1-title, .#{$folderName}-section-title, .f40 {
-    font-size: 20px !important;
+  .#{$folderName}-section1-title {
+    font-size: 6vw !important;
+  }
+  .#{$folderName}-section-title, .f40 {
+    font-size: 5vw !important;
   }
   .#{$folderName}-section1-subtitle, .#{$folderName}-card-mobile > p, .#{$folderName}-card-fix p, 
   .#{$folderName}-card-why-customer > p, .#{$folderName}-score-div > p, 
@@ -287,7 +291,7 @@
   } */
   .#{$folderName}-section1-top {
     margin-bottom: 25px !important;
-    margin-top: 220px !important;
+    margin-top: 190px !important;
   }
   .#{$folderName}-section-title {
     margin: 1rem 0 !important;
@@ -301,9 +305,9 @@
   .#{$folderName}-sec6-container {
     padding-top: 1rem;
   }
-  .#{$folderName}-footer {
-    margin-top: -100px;
-  }
+  // .#{$folderName}-footer {
+  //   margin-top: -100px;
+  // }
   .#{$folderName}-footer-buynow {
     height: 26px;
   }

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Typography, Grid, Box } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import { CardFix, ContentFix } from '../../components';
 import { useT } from "../../i18n/index";
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
@@ -28,7 +28,9 @@ const Section2 = ({subDomain, features}: Props) => {
   }, [features, data]);
 
   const handleRepairWidget = () => {
+    const cntAppointment: any = repairWidgetStore.appointResponse;
     repairWidgetStore.init();
+    repairWidgetStore.changeAppointResponse(cntAppointment);
   }
 
   return (
@@ -38,9 +40,9 @@ const Section2 = ({subDomain, features}: Props) => {
         inactiveComponent={()=><></>}
         activeComponent={()=>
           <section className={subDomain + '-Container'}>
-            <Typography className={subDomain + '-section-title'}>
+            <h2 className={subDomain + '-section-title'}>
               {t(data.homeTextData.section2.title)}
-            </Typography>
+            </h2>
             <div className={subDomain + '-card-customized-container-desktop'}>
               {
                 data.cardFixData.map((item:any, index:number) => {

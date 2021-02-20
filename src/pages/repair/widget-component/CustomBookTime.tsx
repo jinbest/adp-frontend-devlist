@@ -65,12 +65,12 @@ type ArrayProps = {
 const CustomBookTime = ({
   title, timezoneIndex, timeZoneList, changeTimezone, selectYear, selectMonth, selectDay, defaultTimezone, repairBooktimeCol, changeBooktime, subDomain, hoursRange
 }: Props) => {
-  const timesRng = convertTimeRange(hoursRange)
   const interval = 30, multi = 60 * 1000;
   const [val, setVal] = useState(timezoneIndex);
   const [bookArray, setBookArray] = useState<ArrayProps[]>([]);
 
   useEffect(() => {
+    const timesRng = convertTimeRange(hoursRange)
     const cntTimeStamp = new Date(selectYear, selectMonth, selectDay).getTime(), 
       booklist:any[] = [],
       cntTimeStampOffset = timeZoneList[val].offset,
@@ -109,7 +109,7 @@ const CustomBookTime = ({
       }
     }
     setBookArray([...booklist])
-  }, [selectYear, selectMonth, selectDay, val])
+  }, [selectYear, selectMonth, selectDay, val, hoursRange])
 
   const handleChangeOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const cntVal = e.target.value;

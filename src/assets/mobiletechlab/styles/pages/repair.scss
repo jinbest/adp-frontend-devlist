@@ -82,3 +82,40 @@
     padding-top: 170px !important;
   }
 }
+
+.repair-section2-select-repair {
+  width: 95px;
+  height: 143px;
+}
+
+.repair-section2-get-device {
+  width: 100px;
+  height: 143px;
+}
+
+.repair-section2-receive-device {
+  width: 100px;
+  height: 154px;
+}
+
+@media (max-width: 960px) {
+  .repair-section2-select-repair, .repair-section2-get-device, .repair-section2-receive-device {
+    width: 100%;
+    height: auto;
+  }
+  .#{$folderName}-repair-section2 {
+    padding-bottom: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .#{$folderName}-repair-section2 {
+    padding-bottom: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .#{$folderName}-repair-section2 {
+    padding-bottom: 0px;
+  }
+}

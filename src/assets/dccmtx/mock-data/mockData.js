@@ -99,7 +99,7 @@ const repairWidget = {
     title: 'CHOOSE_YOUR_REPAIRS',
     placeholder: 'WHAT_IS_BROKEN',
     mainTopic: {
-      title: 'ESTIMATED_REPAIR_TIME',
+      title: 'REPAIR_SERVICE_SUMMARY',
       content: []
     },
     types: [
@@ -216,7 +216,8 @@ const shopPageData = {
     price: '$897',
     asLow: 'As low as $50 / mo',
     warranty: '12 months',
-    img: shopIPhone
+    img: shopIPhone,
+    type: 'New'
   }
 }
 

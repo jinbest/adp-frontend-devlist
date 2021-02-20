@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
 import {Logo} from '../components';
-import { useT } from '../i18n/index';
+import { useT, T } from '../i18n/index';
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles";
 import { phoneFormatString } from "./Header"
 import { storesDetails } from "../store"
@@ -13,7 +13,7 @@ type Props = {
 
 const Footer = ({subDomain, features}: Props) => {
   const data = require(`../assets/${subDomain}/Database`);
-  const footerLink = data.homeTextData.footer.footerLink;
+  // const footerLink = data.homeTextData.footer.footerLink;
   const gridVal = data.homeTextData.footer.gridVal;
   const t = useT();
 
@@ -36,19 +36,24 @@ const Footer = ({subDomain, features}: Props) => {
       </Typography>
       <Box className={subDomain + '-footer-container'}>
         <Grid item container xs={12}>
-          <Grid item xs={12} md={gridVal.mainGrid[0]}>
+          {/* <Grid item xs={12} md={gridVal.mainGrid[0]}> */}<Grid item xs={12} md={12}>
             <Grid item container xs={12}>
-              <Grid item xs={12} md={gridVal.subGrid[0]}>
+              {/* <Grid item xs={12} md={gridVal.subGrid[0]}> */}<Grid item xs={12} md={12}>
                 <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
                 <div className={subDomain + '-footer-subContent-title'}>
                   {t(data.homeTextData.footer.contentSubTitle)}
                 </div>
                 <div className={subDomain + '-device-list-grid'}>
-                  {phoneFormatString(storesDetails.storesDetails.phone)} | <br/>
-                  {data.homeTextData.footer.content[0]}
+                  <a href={`tel:${storesDetails.storesDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
+                    {phoneFormatString(storesDetails.storesDetails.phone)} |
+                  </a>&nbsp;
+                  <a href={`mailto:${storesDetails.storesDetails.email}`} style={{textDecoration: 'none', color: 'black'}}>
+                    {storesDetails.storesDetails.email + ' '}
+                  </a>
                 </div>
+                <div className={subDomain + '-device-list-grid'}>{data.homeTextData.footer.content[0]}</div>
               </Grid>
-              {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
+              {/* {data.homeTextData.footer.subContent[0].title && <Grid item xs={12} md={gridVal.subGrid[1]}>
                 {data.homeTextData.footer.subContent.map((item:any, index:number) => {
                   return (
                     <React.Fragment key={index}>
@@ -56,19 +61,24 @@ const Footer = ({subDomain, features}: Props) => {
                         {t(item.title)}
                       </div>
                       <div className={subDomain + '-device-list-grid'}>
-                        {t(item.content)}
+                        <a href={`tel:${t(item.content).split("|")[0]}`} style={{textDecoration: 'none', color: 'black'}}>
+                          {t(item.content).split("|")[0]}
+                        </a> |
+                        <a href={`mailto:${t(item.content).split("|")[1].split(" ")[1]}`} style={{textDecoration: 'none', color: 'black'}}>
+                          {t(item.content).split("|")[1]}
+                        </a>
                       </div>
                     </React.Fragment>
                   )
                 })}
-              </Grid>}
-              <div className={subDomain + '-device-list-grid'}>
-                {t(data.homeTextData.footer.content[1])}
+              </Grid>} */}
+              <div className={subDomain + '-device-list-grid copyright'} style={{color: 'grey'}}>
+                <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
               </div>
             </Grid>            
           </Grid>
           <Grid item xs={12} md={gridVal.mainGrid[1]}>
-            <Grid item container xs={12}>
+            {/* <Grid item container xs={12}>
               {
                 footerLink.map((links:any, index:number) => 
                   <Grid item xs={12} sm={3} key={index}>
@@ -85,7 +95,7 @@ const Footer = ({subDomain, features}: Props) => {
                   </Grid>     
                 )
               }
-            </Grid>
+            </Grid> */}
             <FeatureToggles features={feats}>
               <Feature
                 name={'FRONTEND_ONLINE_PURCHASE'}
@@ -117,11 +127,21 @@ const Footer = ({subDomain, features}: Props) => {
       </Box>
       <Box className={subDomain + '-footer-container-special'}>
         <Grid item container xs={12} className={subDomain + '-special-footer'}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={12}>
             <Logo subDomain={subDomain} type='footer' handleStatus={()=>{console.log('logo clicked')}} />
             <div className={subDomain + '-device-list-grid'}>
-              <div>{data.homeTextData.footer.content[0]}</div>
-              <div className={subDomain + '-footer-special-content'}>{t(data.homeTextData.footer.content[1])}</div>
+              <div className={subDomain + '-device-list-grid'}>
+                <a href={`tel:${storesDetails.storesDetails.phone}`} style={{textDecoration: 'none', color: 'black'}}>
+                  {phoneFormatString(storesDetails.storesDetails.phone)} |
+                </a>&nbsp;
+                <a href={`mailto:${storesDetails.storesDetails.email}`} style={{textDecoration: 'none', color: 'black'}}>
+                  {storesDetails.storesDetails.email}
+                </a>
+              </div>
+              <div className={subDomain + '-device-list-grid'}>{data.homeTextData.footer.content[0]}</div>
+              <div className={subDomain + '-device-list-grid copyright'} style={{color: 'grey'}}>
+                <T id={data.homeTextData.footer.content[1]} data={storesDetails.storesDetails.name} />
+              </div>
             </div>
           </Grid>
           <FeatureToggles features={feats}>

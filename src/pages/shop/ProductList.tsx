@@ -1,14 +1,38 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { ProductCard } from './'
 import { ProductModel } from './product-model'
 import { Grid } from '@material-ui/core'
+
+const getWidth = () => window.innerWidth 
+  || document.documentElement.clientWidth 
+  || document.body.clientWidth;
 
 type Props = {
   subDomain?: string;
 }
 
+type GridMDInterface = boolean | 2 | 3 | 1 | 4 | "auto" | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined;
+
 const ProductList = ({subDomain}: Props) => {
   const data = require(`../../assets/${subDomain}/mock-data/mockData`);
+  const [initGridMD, setInitGridMD] = useState<GridMDInterface>(3);
+
+  const handleResize = () => {
+    if (getWidth() < 960) {
+      setInitGridMD(4)
+    } else {
+      setInitGridMD(3)
+    }
+  };
+
+  useEffect(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
   const shopEachItem = data.shopPageData.shopEachItem;
   const propsData: ProductModel = shopEachItem;
   const products: any[] = [];
@@ -33,7 +57,7 @@ const ProductList = ({subDomain}: Props) => {
     <Grid container spacing={2}>
       {products.map((item:any, index:number) => {
         return (
-          <Grid item xs={12} sm={3} key={index}>
+          <Grid item xs={12} sm={initGridMD} key={index}>
             <ProductCard data={item} />
           </Grid>
         )

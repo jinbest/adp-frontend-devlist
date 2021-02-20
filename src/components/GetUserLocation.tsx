@@ -69,7 +69,7 @@ const findGeoLoc = (geoPos: any) => {
 //   const addData:any = {
 //     city: 'winnipeg',
 //     state: 'MB',
-//     postcode: 'R3P1E7',
+//     postcode: 'R3P0N2',
 //     country: 'CA',
 //     address_1: '500 Sterling Lyon Pkwy'
 //   }
