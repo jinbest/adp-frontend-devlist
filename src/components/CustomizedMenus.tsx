@@ -312,13 +312,13 @@ const CustomizedMenus = inject("headerStore")(
         })
     }
 
-    // const getAddress = (location: any) => {
-    //   return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-    //     location.city ? location.city + ", " : ""
-    //   } ${location.state ? location.state + " " : ""} ${
-    //     location.postcode ? location.postcode + ", " : ""
-    //   } ${location.country ? location.country + ", " : ""}`
-    // }
+    const getAddress = (location: any) => {
+      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+        location.city ? location.city + ", " : ""
+      } ${location.state ? location.state + " " : ""} ${
+        location.postcode ? location.postcode + ", " : ""
+      } ${location.country ? location.country + ", " : ""}`
+    }
 
     return (
       <div>
@@ -431,7 +431,15 @@ const CustomizedMenus = inject("headerStore")(
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
-                    href={`${headerStore.cntUserLocation[0].business_page_link}`}
+                    href={`${
+                      headerStore.cntUserLocation[0].business_page_link != null
+                        ? headerStore.cntUserLocation[0].business_page_link
+                        : `https://www.google.com/maps/search/?api=1&query=${getAddress(
+                            headerStore.cntUserLocation[0]
+                          )
+                            .split(" ")
+                            .join("+")}`
+                    }`}
                     target="_blank"
                     rel="noreferrer"
                   >
