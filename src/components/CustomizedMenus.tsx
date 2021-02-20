@@ -307,6 +307,14 @@ const CustomizedMenus = inject("headerStore")(
         })
     }
 
+    const getAddress = (location: any) => {
+      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+        location.city ? location.city + ", " : ""
+      } ${location.state ? location.state + " " : ""} ${
+        location.postcode ? location.postcode + ", " : ""
+      } ${location.country ? location.country + ", " : ""}`
+    }
+
     return (
       <div>
         <Button
@@ -418,7 +426,11 @@ const CustomizedMenus = inject("headerStore")(
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
-                    href={`https://www.google.com/maps/search/?api=1&query=${headerStore.cntUserLocation[0].latitude},${headerStore.cntUserLocation[0].longitude}`}
+                    href={`https://www.google.com/maps/search/?api=1&query=${getAddress(
+                      headerStore.cntUserLocation[0]
+                    )
+                      .split(" ")
+                      .join("+")}`}
                     target="_blank"
                     rel="noreferrer"
                   >

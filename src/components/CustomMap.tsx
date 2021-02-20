@@ -74,8 +74,10 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
 
   const getAddress = (location: any) => {
     return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-      location.city
-    }, ${location.postcode}, ${location.country}`
+      location.city ? location.city + ", " : ""
+    } ${location.state ? location.state + " " : ""} ${
+      location.postcode ? location.postcode + ", " : ""
+    } ${location.country ? location.country + ", " : ""}`
   }
 
   return (
@@ -97,7 +99,9 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
               <Marker position={[element.latitude, element.longitude]} key={index}>
                 <Popup>
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${element.latitude},${element.longitude}`}
+                    href={`https://www.google.com/maps/search/?api=1&query=${getAddress(element)
+                      .split(" ")
+                      .join("+")}`}
                     target="_blank"
                     rel="noreferrer"
                     style={{ textDecoration: "none", color: "black" }}

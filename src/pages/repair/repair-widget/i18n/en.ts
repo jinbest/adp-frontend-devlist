@@ -25,7 +25,7 @@ export class LanguageKeys {
   public BACK = "Back"
   public HOURS = "Hours"
   public SEARCH = "Search"
-  public BOOK_REPAIR = "Book Appointment"
+  public BOOK_REPAIR = "Book Repair"
   public MY_STORE = "My Store"
   public MONDAY = "Monday"
   public TUESDAY = "Tuesday"
