@@ -297,13 +297,13 @@ const ContactDetails = ({
     <div>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-repair-widget-title"}>{t(data.title)}</Typography>
+          <Typography className={subDomain + "-service-widget-title"}>{t(data.title)}</Typography>
         </Grid>
       </Grid>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className={subDomain + "-repair-choose-device-container"}>
+            <div className={subDomain + "-service-choose-device-container"}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <InputComponent
@@ -357,7 +357,7 @@ const ContactDetails = ({
               </Grid>
             </div>
             {code === "MAIL_IN" && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+              <div className={subDomain + "-service-choose-device-container"}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <InputComponent
@@ -419,7 +419,7 @@ const ContactDetails = ({
               </div>
             )}
             {code !== "MAIL_IN" && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+              <div className={subDomain + "-service-choose-device-container"}>
                 <FeatureToggles features={features}>
                   <Feature
                     name="FRONTEND_REPAIR_APPOINTMENT"

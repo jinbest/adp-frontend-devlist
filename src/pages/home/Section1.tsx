@@ -95,7 +95,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
           <T id={"CITY_MOBILE_DEVICE_SPECIALISTS"} data={data.homeTextData.section1.city} />
         </Typography>
         <div style={{ display: "flex" }}>
-          <Box className={subDomain + "-repair-section-button"} style={{ margin: "initial" }}>
+          <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
             <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
               <Button
                 title={t("GET_QUOTE")}
@@ -106,7 +106,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
               />
             </Link>
           </Box>
-          <Box className={subDomain + "-repair-section-button"} style={{ margin: "initial" }}>
+          <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
             <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
               <Button
                 title={t("BOOK_REPAIR")}

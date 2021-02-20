@@ -441,7 +441,7 @@ const ChooseDevice = ({
     <div>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-repair-widget-title"}>
+          <Typography className={subDomain + "-service-widget-title"}>
             {/* {stepName === 'deviceModel' ? 
               t(data.title) + ' ' + repairWidgetStore.deviceBrand[repairWidgetStore.deviceCounter-1].name : 
               t(data.title)
@@ -453,7 +453,7 @@ const ChooseDevice = ({
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className={subDomain + "-repair-choose-device-container"}>
+            <div className={subDomain + "-service-choose-device-container"}>
               {step < 3 && (
                 <div style={{ width: "95%" }}>
                   {features.includes("SEARCH") && (
@@ -601,7 +601,7 @@ const ChooseDevice = ({
         <Grid item xs={12} md={5}>
           <Card className={subDomain + "-customized-card-height"}>
             {step < 2 && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+              <div className={subDomain + "-service-choose-device-container"}>
                 <Typography className={subDomain + "-topic-title"}>
                   {t(data.mainTopic.title)}
                 </Typography>
@@ -633,7 +633,7 @@ const ChooseDevice = ({
             )}
 
             {step === 2 && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+              <div className={subDomain + "-service-choose-device-container"}>
                 <Typography className={subDomain + "-topic-title"}>
                   {t(data.mainTopic.title)}
                 </Typography>
@@ -677,7 +677,7 @@ const ChooseDevice = ({
             )}
 
             {step === 3 && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+              <div className={subDomain + "-service-choose-device-container"}>
                 <Typography className={subDomain + "-topic-title"}>
                   {t(data.mainTopic.title)}
                 </Typography>

@@ -246,7 +246,7 @@ class RepairWidget extends React.Component<Props, MyState> {
             name="FRONTEND_REPAIR"
             inactiveComponent={() => <Error />}
             activeComponent={() => (
-              <div className={subDomain + "-repair-widget " + subDomain + "-Container"}>
+              <div className={subDomain + "-service-widget " + subDomain + "-Container"}>
                 {this.computedRepairWidgetData.deviceCounter > 0 && this.state.step < 10 && (
                   <div
                     className={subDomain + "-back-to-top"}

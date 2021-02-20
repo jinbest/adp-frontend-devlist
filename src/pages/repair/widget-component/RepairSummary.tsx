@@ -80,13 +80,13 @@ class RepairSummary extends React.Component<Props, MyState> {
 
   render() {
     const { themeCol, subDomain, showInfo, repairWidgetStore } = this.props
-    // const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/repair-widget/device-model/iPhone-whole.png`);
+    // const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/service-widget/device-model/iPhone-whole.png`);
     const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
     const code = repairWidgetStore.deliveryMethod.code
     const publicText = mockData.repairWidget.publicText
 
     return (
-      <div className={subDomain + "-repair-choose-device-container"}>
+      <div className={subDomain + "-service-choose-device-container"}>
         <Typography className={subDomain + "-topic-title"}>
           <T id={publicText.repairServiceSummary} />
         </Typography>
