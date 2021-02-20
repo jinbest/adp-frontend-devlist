@@ -336,9 +336,9 @@ const SectionMap = inject("headerStore")(
                           </Grid>
                           <Grid item md={6} sm={6} xs={6}>
                             <p className={subDomain + "-block-content"}>
-                              {getHourType(element.open)}
-                              {"-"}
-                              {getHourType(element.close)}
+                              {!element.open || !element.close
+                                ? "Closed"
+                                : getHourType(element.open) + "-" + getHourType(element.close)}
                             </p>
                           </Grid>
                         </Grid>

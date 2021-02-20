@@ -25,6 +25,7 @@ const Location = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         setLocations([])
       })
   }, [])
+
   return (
     <div>
       <Helmet>
