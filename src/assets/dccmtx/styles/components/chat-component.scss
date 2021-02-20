@@ -38,7 +38,7 @@
 
 .rcw-launcher {
   position: relative;
-  background-color: #00B0F0;
+  background-color: #ED1D24;
 }
 
 .rcw-conversation-container.active {
@@ -46,7 +46,7 @@
 }
 
 .rcw-conversation-container .rcw-header {
-  background-color: #92daf5;
+  background-color: #e6666a;
   padding: 0px 0px 5px;
 }
 
@@ -73,12 +73,16 @@
  
 /* Handle */
 .rcw-messages-container::-webkit-scrollbar-thumb {
-  background: #92daf5;
+  background: #e6666a;
 }
 
 /* Handle on hover */
 .rcw-messages-container::-webkit-scrollbar-thumb:hover {
-  background: #00B0F0;
+  background: #ED1D24;
+}
+
+.rcw-launcher .rcw-badge {
+  background-color: #333333;
 }
 
 .rcw-conversation-container .avatar {
@@ -109,7 +113,7 @@
     border-radius: 10px 10px 0 0;
   }
   .rcw-conversation-container .rcw-close-button {
-    background-color: #92daf5;
+    background-color: #e6666a;
   }
   .rcw-conversation-container .rcw-title {
     padding: 15px 0;

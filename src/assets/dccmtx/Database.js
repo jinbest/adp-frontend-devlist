@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/nanotech-trade.png"
-import repair from "./img/cardmobile/nanotech-repair.png"
-import buy from "./img/cardmobile/nanotech-buy.png"
-import protect from "./img/cardmobile/nanotech-protect.png"
+import trade from "./img/cardmobile/mobiletech-trade.png"
+import repair from "./img/cardmobile/mobiletech-repair.png"
+import buy from "./img/cardmobile/mobiletech-buy.png"
+import protect from "./img/cardmobile/mobiletech-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/nanotech-mobile.png"
-import tablet from "./img/cardfix/nanotech-tablet.png"
-import computer from "./img/cardfix/nanotech-computer.png"
-import console from "./img/cardfix/nanotech-game.png"
-import other from "./img/cardfix/nanotech-other.png"
+import cellphone from "./img/cardfix/mobiletech-mobile.png"
+import tablet from "./img/cardfix/mobiletech-tablet.png"
+import computer from "./img/cardfix/mobiletech-computer.png"
+import console from "./img/cardfix/mobiletech-game.png"
+import other from "./img/cardfix/mobiletech-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,21 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from "./img/avatar/nanotech-user-active.png"
-import userDeactive from "./img/avatar/nanotech-user-deactive.png"
-import menu from "./img/avatar/nanotech-menu.png"
-import store from "./img/avatar/nanotech-store.png"
-import storeBlue from "./img/avatar/nanotech-store-blue.png"
-import cancel from "./img/avatar/nanotech-cancel.png"
+import userActive from "./img/avatar/mobiletech-user-active.png"
+import userDeactive from "./img/avatar/mobiletech-user-deactive.png"
+import menu from "./img/avatar/mobiletech-menu.png"
+import store from "./img/avatar/mobiletech-store.png"
+import storeBlue from "./img/avatar/mobiletech-store-blue.png"
+import cancel from "./img/avatar/mobiletech-cancel.png"
 
 // arrow images
 import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/nanotech-corner-shape.png"
-import mockupShape from "./img/nanotech-mockup-shape.png"
+// import cornerShape from "./img/mobiletech-corner-shape.png"
+// import mockupShape from "./img/mobiletech-mockup-shape.png"
+import backMTLImg from "./img/MTLwinnipeg.jpeg"
 
 // footer images
 import buyNow from "./img/footer/buy-now.png"
@@ -54,15 +55,15 @@ import deviceListImg from "./img/footer/device-list.png"
 import repairPhone from "./img/repair/repair-phone.png"
 
 // repair section2 - images
-import selectRepair from "./img/repair/section2/nanotech-select-repair.png"
-import sendDevice from "./img/repair/section2/nanotech-send-device.png"
-import receiveDevice from "./img/repair/section2/nanotech-receive-device.png"
+import selectRepair from "./img/repair/section2/mobiletech-select-repair.png"
+import sendDevice from "./img/repair/section2/mobiletech-send-device.png"
+import receiveDevice from "./img/repair/section2/mobiletech-receive-device.png"
 
 // repair section3 - images
-import newImg from "./img/repair/section3/nanotech-new.png"
-import mintImg from "./img/repair/section3/nanotech-mint.png"
-import goodImg from "./img/repair/section3/nanotech-good.png"
-import fairImg from "./img/repair/section3/nanotech-fair.png"
+import newImg from "./img/repair/section3/mobiletech-new.png"
+import mintImg from "./img/repair/section3/mobiletech-mint.png"
+import goodImg from "./img/repair/section3/mobiletech-good.png"
+import fairImg from "./img/repair/section3/mobiletech-fair.png"
 
 // repair section4 - images
 import repairSec4 from "./img/repair/repair-sec4.png"
@@ -71,11 +72,11 @@ import repairSec4 from "./img/repair/repair-sec4.png"
 import chatImg from "./img/chat.png"
 
 // logo - images
-import logoHeaderImg from "./img/logo/nanotech-logo-header.png"
-import logoFooterImg from "./img/logo/nanotech-logo-footer.png"
+import logoHeaderImg from "./img/logo/mobiletech-logo-header.png"
+import logoFooterImg from "./img/logo/mobiletech-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/nanotech-device-card.png"
+import deviceCardImg from "./img/mobiletech-device-card.png"
 
 // favicon - image
 import favicon from "./img/favicon.png"
@@ -110,7 +111,13 @@ const cardMobileData = {
             flag: "FRONTEND_REPAIR",
             href: "/repair",
         },
-        { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "/shop" },
+        {
+            img: buy,
+            title: "SHOP",
+            btnTitle: "SHOP",
+            flag: "FRONTEND_BUY",
+            href: "https://shop.mobiletechlab.ca/",
+        },
         { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
     ],
 }
@@ -137,8 +144,8 @@ const contentFixData = [
         content: "QUICK_TURNAROUND_CONTENT",
     },
     {
-        title: "DAY_180_WARRANTY",
-        content: "DAY_180_WARRANTY_CONTENT",
+        title: "LIFETIME_WARRANTY",
+        content: "LIFETIME_WARRANTY_CONTENT",
     },
 ]
 
@@ -178,25 +185,36 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-    orange: "#00B0F0",
-    themeColor: "#606163",
-    underLineCol: "#00B0F0",
-    priceCol: "#606163",
-    repairButtonCol: "#00B0F0",
-    nextButtonCol: "#606163",
-    repairChooseItemCol: "#00B0F0",
-    repairBooktimeCol: "#00B0F0",
-    textThemeCol: "#00B0F0",
-    heartCol: "#606163",
-    chatBgCol: "#00B0F0",
-    sec2SvgCol: "#00B0F0"
+    orange: "#F36B26",
+    themeColor: "#ED1D24",
+    underLineCol: "#ED1D24",
+    priceCol: "#054DFA",
+    repairButtonCol: "#ED1D24",
+    nextButtonCol: "#ED1D24",
+    repairChooseItemCol: "#333333",
+    repairBooktimeCol: "#ED1D24",
+    textThemeCol: "#ED1D24",
+    heartCol: "#ED1D24",
+    chatBgCol: "#ED1D24",
+    sec2SvgCol: "#ED1D24"
 }
 
 const navItemsData = [
-    { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
+    // { href: "#", text: "TRADE", isActive: false, flag: 'FRONTEND_TRADE' },
     { href: "/repair", text: "REPAIR", isActive: false, flag: "FRONTEND_REPAIR" },
-    { href: "/shop", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-    { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
+    {
+        href: "https://shop.mobiletechlab.ca/",
+        text: "SHOP",
+        isActive: false,
+        flag: "FRONTEND_BUY",
+    },
+    {
+        href: "https://www.mobiletechlabwinnipeg.ca/bounce-screen-insurance",
+        text: "PROTECT",
+        isActive: false,
+        flag: "ALWAYS_TRUE",
+    },
+    // { href: "#", text: "INSURE", isActive: false, flag: 'FRONTEND_INSURE' },
 ]
 
 const navShop = {
@@ -300,10 +318,10 @@ const navShop = {
 }
 
 const brandItemsData = {
-    left: ["BUSINESS", "FINANCING"],
-    right: { ip: "306.569.6266", en: "ENGLISH", log: "LOG_IN" },
+    left: [],
+    right: { ip: "204.808.9416", en: "ENGLISH", log: "" },
     brandCol: "white",
-    brandThemeCol: "#606163",
+    brandThemeCol: "#333333",
     selectOption: ["ENGLISH", "FRENCH"],
 }
 
@@ -321,7 +339,7 @@ const avatarData = {
     userActive: userActive,
     userDeactive: userDeactive,
     cancel: cancel,
-    store: { img: store, link: "#" },
+    store: { img: store, link: "https://shop.mobiletechlab.ca/" },
     storeBlue: storeBlue,
     menu: menu,
 }
@@ -330,13 +348,18 @@ const mobileNavItemData = {
     left: [
         { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
         { text: "REPAIR", href: "/repair", flag: "FRONTEND_REPAIR" },
-        { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
+        { text: "SHOP", href: "https://shop.mobiletechlab.ca/", flag: "FRONTEND_BUY" },
         { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
         { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
         { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
         { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
         { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
+        {
+            text: "PROTECT",
+            href: "https://www.mobiletechlabwinnipeg.ca/bounce-screen-insurance",
+            flag: "ALWAYS_TRUE",
+        },
     ],
     right: [
         { text: "Apple", href: "#" },
@@ -361,8 +384,8 @@ const arrowData = {
 }
 
 const shapeData = {
-    cornerShape: { img: cornerShape, width: "" },
-    mockupShape: { img: mockupShape, width: "" },
+    cornerShape: { img: backMTLImg, width: "" },
+    mockupShape: { img: "", width: "" },
 }
 
 const footerImageData = {
@@ -378,10 +401,10 @@ const homeTextData = {
         width: "150px",
     },
     section1: {
-        title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-        subtitle: "SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS",
+        title: ["WINNIPEG_PROFESSIONAL", "PHONE_REPAIR"],
+        subtitle: "SAME_DAY_ADVANCED_REPAIR_SERVICE",
         searchPlaceholder: "FIND_YOUR_DEVICE",
-        city: "Saskatchewan"
+        city: "Winnipeg"
     },
     section2: {
         title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -393,7 +416,7 @@ const homeTextData = {
         color: "white",
     },
     section4: {
-        title: "WELCOME_NANOTECH",
+        title: "WELCOME_MOBILE_TECH",
         btnTitle: "OUR_QUALITY_CHARTER",
     },
     section5: {
@@ -406,54 +429,44 @@ const homeTextData = {
         btnTitle: "INSURE_MY_DEVICE",
     },
     section6: {
-        title: "SEE_WHY_CUSTOMERS_LOVE_NANOTECH",
+        title: "SEE_WHY_CUSTOMERS_LOVE_MOBILE_TECH",
         subtitle: "VIEW_MORE",
         review: [
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a year ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
-            },
-            {
-                score: 4,
-                days: "6 days ago",
-                content: "Super easy to use and quick too!",
-                reviewer: "Anonymous",
+                    "Just want you to know how pleased I am with your service. The new battery is working perfectly. Your communication throughout the process was timely and professional and helpful. The reassembly of the pixel is flawless. I can't see any evidence that the phone shell is not the original. Am glad to have come across your business. Won't hesitate to recommend you to friends. Allan Lauder",
+                reviewer: "Allan Lauder",
             },
             {
                 score: 5,
-                days: "3 days ago",
+                days: "a year ago",
                 content:
-                    "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
-                reviewer: "Philip Sizemore",
+                    "Excellent service! We were very impressed with the caliber of repair on my son’s iPhone. We had the screen and battery replaced, at a reasonable price. The customer service was great. Highly recommend if you are in the unfortunate position of needing a repair.",
+                reviewer: "Tammy Murdoch",
+            },
+            {
+                score: 5,
+                days: "8 months ago",
+                content:
+                    "Came to them with a cracked iPhone back. The team was engaging, kept me updated, explained everything and Best of all they were the best priced repair place in Winnipeg (I called around to them all) and fixed it same day! I will be recommending them to everyone I know.",
+                reviewer: "Tony Acosta",
             },
         ],
     },
     footer: {
         title: { text: "", color: "" },
         gridVal: {
-            mainGrid: [7, 5],
-            subGrid: [6, 6],
+            mainGrid: [4, 8],
+            subGrid: [11, 1],
         },
         subContent: [
-            {
-                title: "REGINA_NORTH",
-                content:
-                    "1 (306) 569 6266 | info@nanotechrepair.ca 2743 Avonhurst Drive Regina, SK",
-            },
-            {
-                title: "REGINA_EAST",
-                content:
-                    "1 (306) 757 6266 | info@nanotechrepair.ca J2 2095 Prince of Wales Regina, SK",
-            },
+            { title: "", content: "" },
+            { title: "", content: "" },
         ],
-        contentSubTitle: "SASKATOON_NORTH",
-        content: [
-            "9, 834 – 51st Street Saskatoon, SK",
-            "NANOTECH_FOOTER_CONTENT_TWO",
-        ],
+        contentSubTitle: "",
+        content: ["2020 Corydon Ave. Unit F. Winnipeg, MB.", "MOBILE_TECH_FOOTER_CONTENT_TWO"],
         footerLink: [
             {
                 name: "RESOURCES",
@@ -521,14 +534,14 @@ const repairData = {
             {
                 img: receiveDevice,
                 subtitle: "RECEIVE_YOUR_DEVICE",
-                content: "NANOTECH_RECEIVE_YOUR_DEVICE_CONTENT",
+                content: "MOBILE_TECH_RECEIVE_YOUR_DEVICE_CONTENT",
                 type: 'ReceiveDevice'
             },
         ],
     },
     section3: {
         title: "FROM_NEW_TO_RECONDITIONED",
-        content: "NANOTECH_FROM_NEW_TO_RECONDITIONED_CONTENT",
+        content: "MOBILE_TECH_FROM_NEW_TO_RECONDITIONED_CONTENT",
         children: [
             {
                 subtitle: "NEW",
@@ -563,19 +576,46 @@ const repairData = {
 
 const getTabData = (companyName) => {
     return {
-        title: `Get Quote`,
-        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Regina, SK. Call ${
+        title: `Cell Phone, iPhone & iPad Repair Winnipeg | ${companyName ? companyName : ""}`,
+        metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Winnipeg. Call ${
             companyName ? companyName : ""
         } or book your repair online today!`,
         headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5BV2QS9');              
+        })(window,document,'script','dataLayer','GTM-M2GBFK5');                      
         `,
-        bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BV2QS9"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>              
+        bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2GBFK5"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
         `,
+        scriptTag: `
+            var _support = _support || { 'ui': {}, 'user': {} };
+            _support['account'] = 'mobiletechlab';
+            _support['ui']['contactMode'] = 'anonymous';
+            _support['ui']['enableKb'] = 'true';
+            _support['ui']['styles'] = {
+                widgetColor: 'rgb(57, 106, 179)',
+                gradient: true,
+            };
+            _support['ui']['widget'] = {
+                displayOn: 'all',
+                label: {
+                    text: 'Let us know if you have any questions! &#128522;',
+                    mode: "notification",
+                    delay: 3,
+                    duration: 30,
+                    sound: true,
+                },
+                position: 'bottom-right',
+                mobilePosition: 'bottom-right'
+            };
+            _support['apps'] = {
+                faq: {"enabled":true},
+                recentConversations: {},
+                orders: {}
+            };
+        `
     }
 }
 

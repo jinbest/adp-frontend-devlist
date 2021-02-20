@@ -78,8 +78,8 @@
     display: block
   }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/nanotech-footer-shape-mobile.png');
-    padding: 80px 20px 30px;
+    background-image: url('../img/footer/mobiletech-footer-shape-mobile.png');
+    padding: 190px 20px 30px;
   }
   .#{$folderName}-back-to-top {
     left: 10px !important;
@@ -116,11 +116,11 @@
     text-align: left;
     display: block;
   }
-  .#{$folderName}-corner-shape {
-    width: 60vw;
-  }
+  // .#{$folderName}-corner-shape {
+  //   width: 60vw;
+  // }
   .#{$folderName}-footer {
-    background-image: url('../img/footer/nanotech-footer-shape-mobile.png');
+    background-image: url('../img/footer/mobiletech-footer-shape-mobile.png');
   }
   .#{$folderName}-repair-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
@@ -203,6 +203,9 @@
   .#{$folderName}-input-component {
     font-size: 3vw !important;
     padding: 20px 15px;
+  }
+  .#{$folderName}-sec6-container {
+    padding-bottom: 0px;
   }
 }
 
@@ -303,11 +306,12 @@
     margin: 4rem auto !important;
   }
   .#{$folderName}-sec6-container {
-    padding-top: 1rem;
+    padding-top: 50px;
+    padding-bottom: 150px;
   }
-  // .#{$folderName}-footer {
-  //   margin-top: -100px;
-  // }
+  .#{$folderName}-footer {
+    margin-top: -100px;
+  }
   .#{$folderName}-footer-buynow {
     height: 26px;
   }
@@ -322,7 +326,7 @@
 
 @media (max-width: 380px) {
   .#{$folderName}-container-header > a > img {
-    height: 40px;
+    height: 30px;
   }
   .#{$folderName}-avatar-div > img {
     height: 20px;

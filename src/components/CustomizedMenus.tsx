@@ -157,7 +157,7 @@ const CustomizedMenus = inject("headerStore")(
     }
 
     const setCoords = (pos: any) => {
-      // console.log('setCoords: ', pos);
+      console.log("setCoords: ", pos)
       setPos({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
@@ -181,8 +181,13 @@ const CustomizedMenus = inject("headerStore")(
         navigator.permissions &&
           navigator.permissions.query({ name: "geolocation" }).then(function (PermissionStatus) {
             if (PermissionStatus.state == "granted") {
-              navigator.geolocation.getCurrentPosition(setCoords)
-              setRequireUserInfo(false)
+              if (navigator.geolocation) {
+                console.log("Geolocation is supported by this browser.")
+                navigator.geolocation.getCurrentPosition(setCoords)
+                setRequireUserInfo(false)
+              } else {
+                console.log("Geolocation is not supported by this browser.")
+              }
             } else if (PermissionStatus.state == "prompt") {
               console.log("not yet grated or denied")
             } else {
