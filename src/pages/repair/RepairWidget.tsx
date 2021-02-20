@@ -239,6 +239,7 @@ class RepairWidget extends React.Component<Props, MyState> {
       <>
         <Helmet>
           <title>{this.state.pageTitle}</title>
+          <meta name="description" content={""} />
         </Helmet>
         <FeatureToggles features={this.state.feats}>
           <Feature

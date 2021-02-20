@@ -29,6 +29,7 @@ const Location = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name="description" content={""} />
       </Helmet>
       <SectionMap
         headerStore={storesDetailsStore}
