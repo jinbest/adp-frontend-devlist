@@ -374,6 +374,7 @@ const CustomizedMenus = inject("headerStore")(
                       margin="10px auto"
                       fontSize="15px"
                       subDomain={subDomain}
+                      disable={isRequest}
                       onClick={handleGetLocation}
                     >
                       {isRequest && <Loading />}

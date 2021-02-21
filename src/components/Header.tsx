@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Search, CustomizedMenus, Logo, SelectLang, MegamenuShop } from "../components"
+import { Search, CustomizedMenus, Logo, SelectLang, MegamenuShop, HeaderDrawer } from "./"
 import { Link } from "react-router-dom"
 import { useT } from "../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails } from "../store"
+import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
 
 type PropsNavItemLink = {
   item: any
@@ -38,7 +39,7 @@ export function phoneFormatString(phnumber: string) {
   return formatPhnumber
 }
 
-const checkDomain = (url: string) => {
+export function checkDomain(url: string) {
   if (url.indexOf("//") === 0) {
     url = location.protocol + url
   }
@@ -48,7 +49,7 @@ const checkDomain = (url: string) => {
     .split("/")[0]
 }
 
-const isExternal = (url: string) => {
+export function isExternal(url: string) {
   return (
     (url.indexOf(":") > -1 || url.indexOf("//") > -1) &&
     checkDomain(location.href) !== checkDomain(url)
@@ -128,6 +129,9 @@ const BrandItemLink = ({ item, color, phoneNumber }: PropsBrand) => {
   )
 }
 
+const getWidth = () =>
+  window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+
 type PropsHeader = {
   subDomain?: string
   handleStatus: (status: boolean) => void
@@ -143,11 +147,31 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
 
   const t = useT()
 
-  const [userStatus, setUserStatus] = useState(true)
-  const [menuStatus, setMenuStatus] = useState(true)
-  const [mobileMenu, setMobileMenu] = useState("left")
-  const [mobileShopType, setMobileShopType] = useState(999)
+  const [menuStatus, setMenuStatus] = useState(false)
   const [feats, setFeatures] = useState<any[]>([])
+  const [mobile, setMobile] = useState(false)
+  const [getQuteStatus, setGetQuoteStatus] = useState(false)
+
+  const handleResize = () => {
+    if (getWidth() < 768) {
+      setMobile(true)
+    } else {
+      setMobile(false)
+    }
+    if (getWidth() > 425 && getWidth() < 768) {
+      setGetQuoteStatus(true)
+    } else {
+      setGetQuoteStatus(false)
+    }
+  }
+
+  useEffect(() => {
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   useEffect(() => {
     const cntFeatures: any[] = []
@@ -159,18 +183,8 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
     setFeatures(cntFeatures)
   }, [data, features])
 
-  // function toggleUserStatus() {
-  //   setUserStatus(!userStatus);
-  //   setMenuStatus(true);
-  // }
-
   function toggleMenuStatus() {
     setMenuStatus(!menuStatus)
-    setUserStatus(true)
-  }
-
-  function toggleMobileMenu() {
-    mobileMenu === "left" ? setMobileMenu("right") : setMobileMenu("left")
   }
 
   return (
@@ -180,13 +194,39 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
         style={{ backgroundColor: data.brandItemsData.brandThemeCol }}
       >
         <div
-          style={{ display: "flex", justifyContent: "space-between", height: 0, marginTop: "5px" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            height: "30px",
+            marginTop: "5px",
+          }}
         >
-          <ul style={{ display: "flex", margin: 0, padding: 0 }}>
-            {brandItemLink.left.map((item: any, index: number) => {
-              return <BrandItemLink item={t(item)} key={index} color={brandItemLink.brandCol} />
-            })}
-          </ul>
+          {!mobile && (
+            <ul style={{ display: "flex", margin: 0, padding: 0 }}>
+              {brandItemLink.left.map((item: any, index: number) => {
+                return <BrandItemLink item={t(item)} key={index} color={brandItemLink.brandCol} />
+              })}
+            </ul>
+          )}
+          {mobile && (
+            <a
+              href="https://g.page/MobileTechLabCorydon?share"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                color: brandItemLink.brandCol,
+                height: "25px",
+                padding: "5px 0",
+                marginTop: "-5px",
+                display: "flex",
+                textDecoration: "none",
+                alignItems: "center",
+              }}
+            >
+              <RoomOutlinedIcon />
+              Directions
+            </a>
+          )}
           <ul
             style={{
               display: "flex",
@@ -201,11 +241,13 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               color={brandItemLink.brandCol}
               phoneNumber={true}
             />
-            <SelectLang
-              subDomain={subDomain}
-              color={brandItemLink.brandCol}
-              options={brandItemLink.selectOption}
-            />
+            {!mobile && (
+              <SelectLang
+                subDomain={subDomain}
+                color={brandItemLink.brandCol}
+                options={brandItemLink.selectOption}
+              />
+            )}
             <FeatureToggles features={feats}>
               <Feature
                 name={"FRONTEND_USER_ACCOUNT"}
@@ -225,9 +267,42 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               />
             </FeatureToggles>
           </ul>
+          {mobile && getQuteStatus && (
+            <Link
+              to="/get-quote"
+              className={subDomain + "-mobile-brand-button"}
+              style={{ background: "#02b9f6", color: "white" }}
+            >
+              {t("GET_QUOTE")}
+            </Link>
+          )}
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "30px",
+            background: "#02b9f6",
+            textAlign: "center",
+            padding: "2px 0",
+            marginLeft: "-20px",
+            opacity: 1,
+          }}
+        >
+          <Link
+            to="/get-quote"
+            style={{
+              color: "white",
+              textDecoration: "none",
+            }}
+          >
+            {t("GET_QUOTE")}
+          </Link>
         </div>
       </div>
-      <div className={subDomain + "-container-header"}>
+      <div
+        className={subDomain + "-container-header"}
+        style={{ marginTop: mobile && !getQuteStatus ? "65px" : "35px" }}
+      >
         <Logo subDomain={subDomain} type="header" handleStatus={handleStatus} />
 
         <FeatureToggles features={feats}>
@@ -255,9 +330,6 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             )}
           />
         </FeatureToggles>
-        {/* <div>
-          <h2>{storesDetails.storesDetails.name}</h2>
-        </div> */}
 
         <div className={subDomain + "-nav-div"}>
           <ul className={subDomain + "-navlink-parent"}>
@@ -308,11 +380,19 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           </FeatureToggles> */}
         </div>
         <div className={subDomain + "-avatar-div"}>
-          {/* {
-            userStatus ? 
-            <img src={data.avatarData.userActive} onClick={toggleUserStatus} /> :
-            <img src={data.avatarData.userDeactive} onClick={toggleUserStatus} /> 
-          } */}
+          <HeaderDrawer
+            subDomain={subDomain}
+            toggleMenuStatus={toggleMenuStatus}
+            handleStatus={handleStatus}
+            features={feats}
+            themeCol={data.colorPalle.repairButtonCol}
+          >
+            {!menuStatus ? (
+              <img src={data.avatarData.menu} onClick={toggleMenuStatus} />
+            ) : (
+              <img src={data.avatarData.cancel} onClick={toggleMenuStatus} />
+            )}
+          </HeaderDrawer>
           {/* <FeatureToggles features={feats}>
             <Feature
               name="FRONTEND_BUY"
@@ -329,14 +409,10 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               )}
             />
           </FeatureToggles> */}
-          {menuStatus ? (
-            <img src={data.avatarData.menu} onClick={toggleMenuStatus} />
-          ) : (
-            <img src={data.avatarData.cancel} onClick={toggleMenuStatus} />
-          )}
         </div>
       </div>
-      <div className={subDomain + "-container-mobile"}>
+
+      {/* <div className={subDomain + "-container-mobile"}>
         {userStatus && menuStatus ? (
           <FeatureToggles features={feats}>
             <Feature
@@ -406,10 +482,9 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                                   </Link>
                                 )}
 
-                                {/* Megamenu on mobile disabled
                                 {item.text === 'SHOP' && 
                                   <img style={{height: '18px'}} src={data.arrowData.arrowRight} />
-                                } */}
+                                }
                               </div>
                             )}
                           />
@@ -496,7 +571,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             )}
           </div>
         )}
-      </div>
+      </div> */}
     </header>
   )
 }

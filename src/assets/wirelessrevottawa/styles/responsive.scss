@@ -103,7 +103,7 @@
 
 @media (max-width: 768px) {
   .#{$folderName}-container-header .#{$folderName}-nav-div,
-  .#{$folderName}-header-brand,
+  // .#{$folderName}-header-brand,
   .#{$folderName}-mockup-shape,
   .#{$folderName}-sec1-search_input,
   .#{$folderName}-card-customized-container-desktop,
@@ -111,12 +111,12 @@
     display: none;
   }
   .#{$folderName}-section1-top {
-    margin-top: 210px !important;
+    // margin-top: 210px !important;
     margin-bottom: 50px !important;
   }
-  .#{$folderName}-container-header {
-    margin-top: 0;
-  }
+  // .#{$folderName}-container-header {
+  //   margin-top: 0;
+  // }
   .#{$folderName}-avatar-div,
   .#{$folderName}-mobile-search-div,
   .#{$folderName}-card-customized-container-mobile {
@@ -323,7 +323,7 @@
   } */
   .#{$folderName}-section1-top {
     margin-bottom: 25px !important;
-    margin-top: 170px !important;
+    margin-top: 200px !important;
   }
   .#{$folderName}-section-title {
     margin: 1rem 0 !important;
