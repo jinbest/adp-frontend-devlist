@@ -109,7 +109,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
           <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
             <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
               <Button
-                title={t("BOOK_REPAIR")}
+                title={t("BOOK_APPOINTMENT")}
                 bgcolor={data.colorPalle.repairButtonCol}
                 borderR="20px"
                 subDomain={subDomain}

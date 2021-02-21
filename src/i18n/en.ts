@@ -160,6 +160,7 @@ export class LanguageKeys {
   }
   public ESSENTIAL_MOBILE_DEVICE = "essential mobile devices."
   public YOUR = "your"
+  public BOOK_APPOINTMENT = "Book Appointment"
 
   /* service-widget Text */
   public NEXT = "Next"

@@ -164,6 +164,7 @@ export class LanguageKeysFr extends LanguageKeys {
   }
   public ESSENTIAL_MOBILE_DEVICE = "appareils mobiles essentiels."
   public YOUR = "ton"
+  public BOOK_APPOINTMENT = "Prendre rendez-vous"
 
   /* service-widget Text */
   public NEXT = "Prochain"
