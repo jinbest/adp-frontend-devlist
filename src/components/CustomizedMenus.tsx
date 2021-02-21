@@ -458,10 +458,10 @@ const CustomizedMenus = inject("headerStore")(
                       onClick={handleBookRepair}
                     >
                       <Button
-                        title={t("BOOK_REPAIR")}
+                        title={t("BOOK_APPOINTMENT")}
                         bgcolor={themeColor}
                         borderR="20px"
-                        width="40px"
+                        width="175px"
                         height="30px"
                         margin="0"
                         fontSize="15px"
