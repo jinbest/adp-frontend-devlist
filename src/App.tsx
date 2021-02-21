@@ -139,7 +139,7 @@ function App(): JSX.Element {
         />
         <Route path="/home" render={() => <Redirect to="/" />} />
         <Route
-          path="/repair"
+          path="/quote"
           component={() => (
             <Provider repairWidgetStore={repairWidgetStore}>
               <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
