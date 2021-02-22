@@ -386,6 +386,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             handleStatus={handleStatus}
             features={feats}
             themeCol={data.colorPalle.repairButtonCol}
+            headerStore={storesDetails}
           >
             {!menuStatus ? (
               <img src={data.avatarData.menu} onClick={toggleMenuStatus} />

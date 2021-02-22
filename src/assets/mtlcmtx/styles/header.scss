@@ -23,7 +23,7 @@
   margin: 0 auto;
   left: 0px;
   top: 0px;
-  background-color: #2b388f;
+  background-color: #054dfa;
 }
 
 .#{$folderName}-container-header {
@@ -41,7 +41,8 @@
 }
 
 .#{$folderName}-container-header > a > img {
-  height: 50px;
+  height: 55px;
+  margin-top: 10px;
 }
 
 .#{$folderName}-container-header .text-1 {
@@ -231,4 +232,19 @@
 .MuiNativeSelect-select.MuiNativeSelect-select {
   padding-left: 10px !important;
   padding-right: 20px !important;
+}
+
+.#{$folderName}-mobile-brand-button {
+  color: white;
+  height: 25px;
+  padding: 5px 20px;
+  margin-top: -5px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
+  text-decoration: none;
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
 }

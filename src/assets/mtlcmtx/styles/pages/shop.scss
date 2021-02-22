@@ -1,0 +1,359 @@
+.#{$folderName}-shop-main-page {
+  margin-top: 250px !important;
+  margin-bottom: 100px !important;
+}
+
+.#{$folderName}-shop-corner-shape {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25vw;
+  z-index: -2;
+}
+
+.#{$folderName}-shop-corner-shape > img {
+  width: 100%;
+}
+
+.shop-image-container {
+	position: relative;
+  width: 100%;
+  background-color: white;
+  box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-image-container:before {
+	content: "";
+	float: left;
+	padding-top: 100%;
+}
+
+.shop-image-container > img {
+  width: 50%;
+  margin-top: 10%;
+}
+
+.shop-prod-card-container1 {
+  padding: 0.8vw 1.5vw;
+  @media (max-width: 960px) {
+    padding: 1.2vw 2vw;
+  }
+  @media (max-width: 600px) {
+    padding: 3vw 5vw;
+  }
+}
+
+.shop-prod-card-container2 {
+  padding: 0 1.5vw 0.8vw;
+  @media (max-width: 960px) {
+    padding: 0 2vw 1.2vw;
+  }
+  @media (max-width: 600px) {
+    padding: 0 5vw 3vw;
+  }
+}
+
+.shop-product-card-container {
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 1px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column
+}
+
+.shop-card-type {
+  position: absolute;
+  color: white;
+  font-size: 1.3vw;
+  left: 0;
+  top: 1.5vw;
+  z-index: 1;
+  border-radius: 0 5px 5px 0;
+  padding: 3px 15px;
+  @media (max-width: 960px) {
+    font-size: 2.5vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 7.5vw;
+    top: 7.5vw;
+  }
+}
+
+.shop-filter-component {
+  padding-right: 50px;  
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.shop-mobile-filter-by {
+  display: none;
+  margin: -80px 0 40px;
+  p {
+    padding: 5px 15px;
+    border-radius: 7px;
+    font-size: 17px;
+    width: fit-content;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+      transform: scale(1.01);
+    }
+  }
+  .drawer-cover {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+  }
+  @media (max-width: 960px) {
+    display: block;
+  }
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.product-card-title {
+  font-size: 1vw;
+  @media (max-width: 960px) {
+    font-size: 2vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 5.5vw;
+  }
+}
+
+.product-card-content {
+  font-size: 0.8vw;
+  @media (max-width: 960px) {
+    font-size: 1.7vw;
+  }
+  @media (max-width: 600px) {
+    font-size: 4.5vw;
+  }
+}
+
+.product-card-container {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+}
+
+.product-card-round-circle {
+  height: 0.6vw;
+  width: 0.6vw;
+  @media (max-width: 960px) {
+    height: 1.6vw;
+    width: 1.6vw;
+  }
+  @media (max-width: 600px) {
+    height: 4vw;
+    width: 4vw;
+  }
+}
+
+.product-card-icon {
+  height: 0.75vw !important;
+  width: 0.75vw !important;
+  @media (max-width: 960px) {
+    height: 1.75vw !important;
+    width: 1.75vw !important;
+  }
+  @media (max-width: 600px) {
+    height: 4vw !important;
+    width: 4vw !important;
+  }
+}
+
+/* Reset Select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  background: #ffffff;
+  background-image: none;
+  border-radius: .5em;
+  border: 2px solid #BDBFC3;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.#{$folderName}-select {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 180px;
+  height: 2em;
+  line-height: 2;
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: .5em;
+  color: #BDBFC3;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #BDBFC3;
+  cursor: pointer;
+}
+/* Arrow */
+.#{$folderName}-select::after {
+  content: '\25BC';
+  color: #BDBFC3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 .5em;
+  background: #ffffff;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+  border: 2px solid#BDBFC3;
+  border-left: none;
+  border-radius: 0 .5em .5em 0;
+}
+/* Transition */
+.#{$folderName}-select:hover::after {
+  color: #7d7e80;
+}
+
+/* Filter Component */
+.#{$folderName}-filter-component {
+  .content-title {
+    font-weight: bold;
+    font-size: 17px;
+    margin: 0;
+    padding: 20px 0 8px;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }  
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }  
+    input:checked + .slider {
+      background-color: #00B0F0;
+    }
+    input:focus + .slider {
+      box-shadow: 0 0 1px #00B0F0;
+    }  
+    input:checked + .slider:before {
+      -webkit-transform: translateX(36px);
+      -ms-transform: translateX(36px);
+      transform: translateX(36px);
+    }
+    .slider.round {
+      border-radius: 34px;
+    }  
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  }
+}
+
+.#{$folderName}-customized-checkbox {
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 27px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;    
+  }
+  .checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50px;
+  }
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+    border-radius: 50px;
+  }
+  .container input:checked ~ .checkmark {
+    background-color: #00B0F0;
+    border-radius: 50px;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 3px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
