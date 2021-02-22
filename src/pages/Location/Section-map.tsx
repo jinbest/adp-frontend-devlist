@@ -171,8 +171,7 @@ const SectionMap = inject("headerStore")(
       let AP = "a.m."
       if (ptr.length > 0) {
         hour = parseInt(ptr[0])
-        hour = hour % 12
-        if (hour / 12 > 1) {
+        if (hour >= 12) {
           AP = "p.m."
         } else {
           AP = "a.m."
@@ -181,7 +180,7 @@ const SectionMap = inject("headerStore")(
       if (ptr.length > 1) {
         minute = ptr[1]
       }
-      return `${hour}:${minute} ${AP}`
+      return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
     }
     const handleChange = (panel: number) => (_: React.ChangeEvent<any>, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false)
@@ -318,7 +317,7 @@ const SectionMap = inject("headerStore")(
                                 handleLocSelect(element)
                               }}
                             >
-                              {t("BOOK_AN_APPOINTMENT")}
+                              {t("BOOK_APPOINTMENT")}
                             </button>
                           </Link>
                         </Grid>
@@ -334,7 +333,7 @@ const SectionMap = inject("headerStore")(
                     >
                       <div>
                         <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
-                          {"Days"}
+                          {"Hours"}
                         </p>
                       </div>
 

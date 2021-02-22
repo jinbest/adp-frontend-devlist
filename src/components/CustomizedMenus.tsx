@@ -178,23 +178,28 @@ const CustomizedMenus = inject("headerStore")(
 
     useEffect(() => {
       if (Boolean(anchorEl)) {
-        navigator.permissions &&
-          navigator.permissions.query({ name: "geolocation" }).then(function (PermissionStatus) {
-            if (PermissionStatus.state == "granted") {
-              if (navigator.geolocation) {
-                console.log("Geolocation is supported by this browser.")
-                navigator.geolocation.getCurrentPosition(setCoords)
-                setRequireUserInfo(false)
+        if (navigator.platform.includes("Mac")) {
+          setRequireUserInfo(true)
+          return
+        }
+        navigator.permissions
+          ? navigator.permissions.query({ name: "geolocation" }).then(function (PermissionStatus) {
+              if (PermissionStatus.state == "granted") {
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(setCoords)
+                  setRequireUserInfo(false)
+                } else {
+                  console.log("Geolocation is not supported by this browser.")
+                  setRequireUserInfo(true)
+                }
+              } else if (PermissionStatus.state == "prompt") {
+                console.log("not yet grated or denied")
               } else {
-                console.log("Geolocation is not supported by this browser.")
+                setRequireUserInfo(true)
+                setPos({ latitude: "", longitude: "" })
               }
-            } else if (PermissionStatus.state == "prompt") {
-              console.log("not yet grated or denied")
-            } else {
-              setRequireUserInfo(true)
-              setPos({ latitude: "", longitude: "" })
-            }
-          })
+            })
+          : setRequireUserInfo(true)
       }
     }, [anchorEl])
 

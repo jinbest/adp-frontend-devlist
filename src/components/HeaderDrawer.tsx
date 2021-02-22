@@ -126,16 +126,7 @@ const HeaderDrawer = inject("headerStore")(
 
     const handleFindStore = () => {
       if (!storeStatus) {
-        // setLoadingStatus(true)
         setGeoPos()
-        // const timer = setTimeout(() => {
-        //   setLoadingStatus(false)
-        //   setToastParams({
-        //     msg: "Error to find location with GeoCode.",
-        //     isError: true,
-        //   })
-        // }, 2000)
-        // return () => clearTimeout(timer)
       } else {
         handleModalOpen()
       }
@@ -151,7 +142,6 @@ const HeaderDrawer = inject("headerStore")(
     }
 
     const setCoords = (pos: any) => {
-      console.log("setCoords: ", pos.coords.latitude)
       setPos({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
@@ -161,6 +151,11 @@ const HeaderDrawer = inject("headerStore")(
     navigator.geolocation.getCurrentPosition(() => {})
 
     const setGeoPos = () => {
+      if (navigator.platform.includes("Mac")) {
+        setRequireUserInfo(true)
+        handleModalOpen()
+        return
+      }
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           setCoords(pos)
@@ -168,7 +163,6 @@ const HeaderDrawer = inject("headerStore")(
         },
         () => {
           setRequireUserInfo(true)
-          setPos({ latitude: "", longitude: "" })
           handleModalOpen()
         }
       )

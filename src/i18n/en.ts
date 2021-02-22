@@ -35,7 +35,7 @@ export class LanguageKeys {
   public SATURDAY = "Saturday"
   public SUNDAY = "Sunday"
   public CLOSED = "Closed"
-  public BOOK_AN_APPOINTMENT = "Book an Appointment"
+  public BOOK_AN_APPOINTMENT = "Book Appointment"
   public REQUEST_A_QUOTE = "Request a Quote"
   public WHAT_CAN_WE_FIX_FOR_YOU_TODAY = "What can we fix for you today?"
   public FREE_DIAGNOSTICS = "TRANSPARENT REPAIRS"
