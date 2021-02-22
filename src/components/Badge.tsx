@@ -38,6 +38,9 @@ const useStyles = makeStyles(() =>
       zIndex: 5,
       width: "50px",
       height: "70px",
+      ["@media (max-width:500px)"]: {
+        display: "none",
+      },
     },
     badgeImg: {
       width: "100%",

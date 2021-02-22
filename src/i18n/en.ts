@@ -43,7 +43,7 @@ export class LanguageKeys {
     "We believe in a transparent repair process - know exactly what we’re going to fix on your device and what the cost is before we start."
   public LOW_PRICE_GUARANTEE = "WE PRICE MATCH ANYONE"
   public LOW_PRICE_GUARANTEE_CONTENT =
-    "We want you to be confident that you're getting the best price. We'll match any local Winnipeg competitor's published price for the same repair and get it done faster."
+    "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster."
   public QUICK_TURNAROUND = "QUICK TURNAROUND"
   public QUICK_TURNAROUND_CONTENT =
     "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours."
@@ -271,9 +271,10 @@ export class LanguageKeys {
 
   /* Geebo Website Text */
   public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS = "Nova Scotia's mobile device specialists"
-  public WELCOME_GEEBO = (storeName: string) => {
-    return `Welcome to ${storeName}, Nova Scotia's mobile device marketplace`
-  }
+  // public WELCOME_GEEBO = (storeName: string) => {
+  //   return `Welcome to ${storeName}, Nova Scotia's mobile device marketplace`
+  // }
+  public WELCOME_GEEBO = "Nova Scotia's trusted mobile device shop"
   public SEE_WHY_CUSTOMERS_LOVE_GEEBO = (storeName: string) => {
     return `See Why Customers Love ${storeName}`
   }

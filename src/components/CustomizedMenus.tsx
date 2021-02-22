@@ -278,12 +278,25 @@ const CustomizedMenus = inject("headerStore")(
       repairWidgetStore.init()
     }
 
-    const handleGetLocation = () => {
-      if (!postCode) return
+    const onKeyPress = (event: any) => {
+      if (event.key === "Enter") {
+        handleGetLocation(event.target.value)
+      }
+    }
+
+    useEffect(() => {
+      document.addEventListener("keydown", onKeyPress, false)
+      return () => {
+        document.removeEventListener("keydown", onKeyPress, false)
+      }
+    }, [])
+
+    const handleGetLocation = (poscode: string) => {
+      if (!poscode) return
       const data: any = {
         city: "",
         state: "",
-        postcode: postCode, // R3P0N2
+        postcode: poscode, // R3P0N2
         country: "",
       }
       setIsRequest(true)
@@ -375,7 +388,7 @@ const CustomizedMenus = inject("headerStore")(
                       fontSize="15px"
                       subDomain={subDomain}
                       disable={isRequest}
-                      onClick={handleGetLocation}
+                      onClick={() => handleGetLocation(postCode)}
                     >
                       {isRequest && <Loading />}
                     </Button>

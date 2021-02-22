@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
@@ -141,6 +141,13 @@ const SectionMap = inject("headerStore")(
       handleStatus(false)
     }
 
+    useEffect(() => {
+      if (locations && locations.length === 1) {
+        setExpanded(0)
+        setIsExpanded(true)
+      }
+    }, [locations])
+
     const getAddress = (location: any) => {
       return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
         location.city ? location.city + ", " : ""
@@ -185,7 +192,7 @@ const SectionMap = inject("headerStore")(
     }
     return (
       <section className={subDomain + "-Container " + classes.root}>
-        <Grid container className={subDomain + "-section1-top"}>
+        <Grid container style={{ marginTop: "180px", marginBottom: "100px" }}>
           <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
             {locations.map((element, index) => (
               <Accordion key={index} expanded={expanded === index} onChange={handleChange(index)}>

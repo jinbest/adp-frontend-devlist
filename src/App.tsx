@@ -187,6 +187,12 @@ function App(): JSX.Element {
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
+        {subDomain === "mobiletechlab" && (
+          <meta
+            name="google-site-verification"
+            content="-7lYFKjpeZOXhFE35pTA-GfcaY9PRNOlrNm-SdgQMlI"
+          />
+        )}
         <script>{tagScript}</script>
       </Helmet>
 

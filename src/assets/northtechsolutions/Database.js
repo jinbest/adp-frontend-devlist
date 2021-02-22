@@ -136,7 +136,7 @@ const contentFixData = [
   {
     title: "LOW_PRICE_GUARANTEE",
     content:
-      "We want you to be confident that you're getting the best price. We'll match any local Nunavut competitor's published price for the same repair and get it done faster.",
+      "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
@@ -309,7 +309,7 @@ const brandItemsData = {
   left: ["BUSINESS", "FINANCING"],
   right: { ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
-  brandThemeCol: "#2B388F",
+  brandThemeCol: "#F67500",
   selectOption: ["ENGLISH", "FRENCH"],
 }
 

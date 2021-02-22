@@ -54,22 +54,42 @@ class Section1 extends React.Component<Props> {
               >
                 <T id={repair.content} />
               </Typography>
-              <Box className={subDomain + "-service-section-button"}>
-                <Link
-                  to="/get-quote"
-                  style={{ textDecoration: "none" }}
-                  onClick={this.handleRepairWidget}
-                >
-                  <Button
-                    title="Get Quote"
-                    bgcolor={data.colorPalle.repairButtonCol}
-                    borderR="20px"
-                    subDomain={subDomain}
+              <div style={{ display: "flex" }}>
+                <Box className={subDomain + "-service-section-button"}>
+                  <Link
+                    to="/get-quote"
+                    style={{ textDecoration: "none" }}
+                    onClick={this.handleRepairWidget}
                   >
-                    <T id={repair.btnTitle} />
-                  </Button>
-                </Link>
-              </Box>
+                    <Button
+                      title="Get Quote"
+                      bgcolor={data.colorPalle.repairButtonCol}
+                      borderR="20px"
+                      subDomain={subDomain}
+                      width="90%"
+                    >
+                      <T id="GET_QUOTE" />
+                    </Button>
+                  </Link>
+                </Box>
+                <Box className={subDomain + "-service-section-button"}>
+                  <Link
+                    to="/get-quote"
+                    style={{ textDecoration: "none" }}
+                    onClick={this.handleRepairWidget}
+                  >
+                    <Button
+                      title="Book Appointment"
+                      bgcolor={data.colorPalle.repairButtonCol}
+                      borderR="20px"
+                      subDomain={subDomain}
+                      width="90%"
+                    >
+                      <T id="BOOK_APPOINTMENT" />
+                    </Button>
+                  </Link>
+                </Box>
+              </div>
             </Grid>
             <Grid item xs={12} sm={5}>
               <img src={repair.img} style={{ width: "100%", marginTop: "-80px" }} />

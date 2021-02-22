@@ -34,8 +34,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     findStoreDiv: {
       position: "absolute",
-      bottom: "20px",
+      bottom: "100px",
       width: 200,
+      ["@media (max-width:425px)"]: {
+        "& button": {
+          height: "40px !important",
+          fontSize: "15px !important",
+        },
+      },
     },
     drawerLogo: {
       width: 150,
@@ -212,12 +218,25 @@ const HeaderDrawer = inject("headerStore")(
       headerStore.changeCntUserLocationSelected(locSelStatus)
     }, [locSelStatus])
 
-    const handleGetLocation = () => {
-      if (!postCode) return
+    const onKeyPress = (event: any) => {
+      if (event.key === "Enter") {
+        handleGetLocation(event.target.value)
+      }
+    }
+
+    useEffect(() => {
+      document.addEventListener("keydown", onKeyPress, false)
+      return () => {
+        document.removeEventListener("keydown", onKeyPress, false)
+      }
+    }, [])
+
+    const handleGetLocation = (poscode: string) => {
+      if (!poscode) return
       const data: any = {
         city: "",
         state: "",
-        postcode: postCode, // R3P0N2
+        postcode: poscode, // R3P0N2
         country: "",
       }
       setLoadingStatus(true)
@@ -347,9 +366,9 @@ const HeaderDrawer = inject("headerStore")(
                 bgcolor={themeCol}
                 borderR="20px"
                 width="80%"
-                height="30px"
+                height="40px"
                 margin="10px auto"
-                fontSize="15px"
+                fontSize="17px"
                 subDomain={subDomain}
                 disable={loadingStatus}
                 onClick={handleFindStore}
@@ -390,7 +409,7 @@ const HeaderDrawer = inject("headerStore")(
                       fontSize="15px"
                       subDomain={subDomain}
                       disable={loadingStatus}
-                      onClick={handleGetLocation}
+                      onClick={() => handleGetLocation(postCode)}
                     >
                       {loadingStatus && <Loading />}
                     </Button>

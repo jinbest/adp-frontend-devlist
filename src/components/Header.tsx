@@ -271,7 +271,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             <Link
               to="/get-quote"
               className={subDomain + "-mobile-brand-button"}
-              style={{ background: "#02b9f6", color: "white" }}
+              style={{ background: data.colorPalle.repairButtonCol, color: "white" }}
             >
               {t("GET_QUOTE")}
             </Link>
@@ -281,7 +281,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           style={{
             width: "100%",
             height: "30px",
-            background: "#02b9f6",
+            background: data.colorPalle.repairButtonCol,
             textAlign: "center",
             padding: "2px 0",
             marginLeft: "-20px",

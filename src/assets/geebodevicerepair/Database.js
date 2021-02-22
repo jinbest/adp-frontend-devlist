@@ -130,7 +130,7 @@ const contentFixData = [
   {
     title: "LOW_PRICE_GUARANTEE",
     content:
-      "We want you to be confident that you're getting the best price. We'll match any local Nova Scotia competitor's published price for the same repair and get it done faster.",
+      "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
@@ -303,7 +303,7 @@ const brandItemsData = {
   left: ["BUSINESS", "FINANCING", "INSURANCE"],
   right: { ip: "902.270.4349", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
-  brandThemeCol: "#6EB24F",
+  brandThemeCol: "#585758",
   selectOption: ["ENGLISH", "FRENCH"],
 }
 

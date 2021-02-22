@@ -138,7 +138,7 @@ const contentFixData = [
   {
     title: "LOW_PRICE_GUARANTEE",
     content:
-      "We want you to be confident that you're getting the best price. We'll match any local Winnipeg competitor's published price for the same repair and get it done faster.",
+      "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
@@ -591,32 +591,31 @@ const getTabData = (companyName) => {
         height="0" width="0" style="display:none;visibility:hidden"></iframe>
         `,
     scriptTag: `
-            var _support = _support || { 'ui': {}, 'user': {} };
-            _support['account'] = 'mobiletechlab';
-            _support['ui']['contactMode'] = 'anonymous';
-            _support['ui']['enableKb'] = 'true';
-            _support['ui']['styles'] = {
-                widgetColor: 'rgb(57, 106, 179)',
-                gradient: true,
-            };
-            _support['ui']['widget'] = {
-                displayOn: 'all',
-                label: {
-                    text: 'Let us know if you have any questions! &#128522;',
-                    mode: "notification",
-                    delay: 3,
-                    duration: 30,
-                    sound: true,
-                },
-                position: 'bottom-right',
-                mobilePosition: 'bottom-right'
-            };
-            _support['apps'] = {
-                faq: {"enabled":true},
-                recentConversations: {},
-                orders: {}
-            };
-        `,
+    var _support = _support || { 'ui': {}, 'user': {} };
+    _support['account'] = 'mobiletechlab';
+    _support['ui']['contactMode'] = 'anonymous';
+    _support['ui']['enableKb'] = 'true';
+    _support['ui']['styles'] = {
+    widgetColor: 'rgb(237, 35, 36)',
+    gradient: true,
+    };
+    _support['ui']['widget'] = {
+    displayOn: 'all',
+    label: {
+    text: 'Let us know if you have any questions! &#128522;',
+    mode: "notification",
+    delay: 3,
+    duration: 30,
+    sound: true,
+    },
+    position: 'bottom-right',
+    mobilePosition: 'bottom-right'
+    };
+    _support['apps'] = {
+    faq: {"enabled":true},
+    recentConversations: {},
+    orders: {}
+    };`,
   }
 }
 

@@ -137,7 +137,7 @@ const contentFixData = [
   {
     title: "LOW_PRICE_GUARANTEE",
     content:
-      "We want you to be confident that you're getting the best price. We'll match any local Okotoks competitor's published price for the same repair and get it done faster.",
+      "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
@@ -309,8 +309,8 @@ const navShop = {
 const brandItemsData = {
   left: [],
   right: { ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN" },
-  brandCol: "black",
-  brandThemeCol: "#FCA425",
+  brandCol: "white",
+  brandThemeCol: "#6C6C73",
   selectOption: ["ENGLISH", "FRENCH"],
 }
 

@@ -46,7 +46,7 @@ export class LanguageKeysFr extends LanguageKeys {
     "Nous croyons en un processus de réparation transparent - sachez exactement ce que nous allons réparer sur votre appareil et quel est le coût avant de commencer."
   public LOW_PRICE_GUARANTEE = "NOUS TARIFS QUE TOUT LE MONDE"
   public LOW_PRICE_GUARANTEE_CONTENT =
-    "Nous voulons que vous soyez sûr que vous obtenez le meilleur prix. Nous égalerons le prix publié de tout concurrent local de Winnipeg pour la même réparation et le ferons plus rapidement."
+    "Nous voulons que vous soyez sûr que vous obtenez le meilleur prix. Nous égalerons le prix publié de tout concurrent local de pour la même réparation et le ferons plus rapidement."
   public QUICK_TURNAROUND = "REVISION RAPIDE"
   public QUICK_TURNAROUND_CONTENT =
     "Nous savons que vous n'avez pas toute la journée, nous vous retournerons votre appareil le plus rapidement possible. La plupart de nos réparations peuvent être effectuées en moins de deux heures."
@@ -278,9 +278,10 @@ export class LanguageKeysFr extends LanguageKeys {
   /* Geebo Website Text */
   public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS =
     "Spécialistes des appareils mobiles de la Nouvelle-Écosse"
-  public WELCOME_GEEBO = (storeName: string) => {
-    return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Nouvelle-Écosse`
-  }
+  // public WELCOME_GEEBO = (storeName: string) => {
+  //   return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Nouvelle-Écosse`
+  // }
+  public WELCOME_GEEBO = "Boutique d'appareils mobiles de confiance de la Nouvelle-Écosse"
   public SEE_WHY_CUSTOMERS_LOVE_GEEBO = (storeName: string) => {
     return `Découvrez pourquoi les clients aiment la ${storeName}`
   }
