@@ -186,7 +186,6 @@ function App(): JSX.Element {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-        {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
         {subDomain === "mobiletechlab" && (
           <meta
             name="google-site-verification"
