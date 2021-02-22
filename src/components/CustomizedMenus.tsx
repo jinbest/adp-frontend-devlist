@@ -351,7 +351,7 @@ const CustomizedMenus = inject("headerStore")(
           onClick={handleOpen}
           icon={true}
           fontSize="17px"
-          width={width}
+          width={!locSelStatus ? width : "auto"}
           subDomain={subDomain}
           hover={!locSelStatus ? true : false}
         />

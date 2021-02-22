@@ -4,6 +4,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Button } from "../../components"
 import { Link } from "react-router-dom"
 import { useT } from "../../i18n/index"
+import { isExternal } from "../../components/Header"
 
 type Props = {
   subDomain?: string
@@ -15,11 +16,26 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       textAlign: "center",
       marginTop: "70px !important",
+      display: "flex",
       [theme.breakpoints.up("md")]: {
         margin: "150px 0 !important",
         alignItems: "center",
         display: "flex",
         textAlign: "left",
+      },
+    },
+    mobileTechRoot: {
+      textAlign: "center",
+      marginTop: "0px !important",
+      display: "flex",
+      [theme.breakpoints.up("md")]: {
+        margin: "0 0 200px !important",
+        alignItems: "center",
+        display: "flex",
+        textAlign: "left",
+      },
+      ["@media (max-width:425px)"]: {
+        margin: "-250px 0 100px !important",
       },
     },
     item1: {
@@ -55,9 +71,8 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
     <section className={subDomain + "-Container"}>
       <Grid
         container
-        className={classes.root}
+        className={subDomain === "mobiletechlab" ? classes.mobileTechRoot : classes.root}
         spacing={2}
-        style={{ display: subDomain === "mobiletechlab" ? "none" : "flex" }}
       >
         <Grid item xs={12} md={6} className={classes.item1}>
           <Typography
@@ -73,20 +88,36 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
             {t(repair.content)}
           </Typography>
           <Box className={subDomain + "-service-section-button"}>
-            <Link
-              to="#"
-              style={{ textDecoration: "none" }}
-              onClick={() => {
-                handleStatus(true)
-              }}
-            >
-              <Button
-                title={t(repair.btnTitle)}
-                bgcolor={data.colorPalle.repairButtonCol}
-                borderR="20px"
-                subDomain={subDomain}
-              />
-            </Link>
+            {isExternal(repair.link) ? (
+              <a
+                href={repair.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  title={t(repair.btnTitle)}
+                  bgcolor={data.colorPalle.repairButtonCol}
+                  borderR="20px"
+                  subDomain={subDomain}
+                />
+              </a>
+            ) : (
+              <Link
+                to={repair.link}
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  handleStatus(true)
+                }}
+              >
+                <Button
+                  title={t(repair.btnTitle)}
+                  bgcolor={data.colorPalle.repairButtonCol}
+                  borderR="20px"
+                  subDomain={subDomain}
+                />
+              </Link>
+            )}
           </Box>
         </Grid>
         <Grid item xs={12} md={6} className={classes.item2}>

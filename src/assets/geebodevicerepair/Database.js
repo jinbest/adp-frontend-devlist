@@ -300,7 +300,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: ["BUSINESS", "FINANCING", "INSURANCE"],
+  left: [],
   right: { ip: "902.270.4349", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#585758",
@@ -545,9 +545,10 @@ const repairData = {
   section4: {
     title: "GET_THE_LATEST",
     content: "SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE",
-    btnTitle: "SHOP_NOW",
+    btnTitle: "FIND_A_STORE",
     img: repairSec4,
     themeCol: "black",
+    link: "#"
   },
 }
 
