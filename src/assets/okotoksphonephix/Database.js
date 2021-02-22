@@ -555,6 +555,7 @@ const repairData = {
     btnTitle: "SHOP_NOW",
     img: repairSec4,
     themeCol: "black",
+    link: "http://shop.phonephix.ca/"
   },
 }
 

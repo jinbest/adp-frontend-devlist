@@ -344,10 +344,10 @@ export class LanguageKeys {
   public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH =
     "Your affordable solutions for technology in the North"
   public WELCOME_NORTHTECH = (storeName: string) => {
-    return `Welcome to ${storeName}, your affordable solutions for technology in the North`
+    return `Welcome to ${storeName.replace(/ Inc/g,'').replace(/ Inc./g,'')}, your affordable solutions for technology in the North`
   }
   public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = (storeName: string) => {
-    return `See Why Customers Love ${storeName}`
+    return `See Why Customers Love ${storeName.replace(/ Inc/g,'').replace(/ Inc./g,'')}`
   }
   public GIVING_BACK_TO_NORTH = "Giving Back to the North"
   public NORTHTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
