@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import {
-    ChooseDevice,
-    BackSVG,
-    ContactDetails,
-    BookTime,
-    UsefulInfo,
-    RepairServiceSummary,
-    QuoteComponent,
-    Error
+  ChooseDevice,
+  BackSVG,
+  ContactDetails,
+  BookTime,
+  UsefulInfo,
+  RepairServiceSummary,
+  QuoteComponent,
+  Error,
 } from "./widget-comp"
 import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "./store/RepairWidgetStore"
@@ -41,14 +41,14 @@ interface Props extends StoreProps {
 
 const RepairWidget = inject("repWidgetStore")(
   observer((props: Props) => {
-    const mockData = require('./mock-data/mockData')
-    const { subDomain, handleStatus, features, repWidgetStore } = props;
-    const themeCol: string = mockData.colorPalle[subDomain].themeColor;
-    const [step, setStep] = useState(0);
-    const [feats, setFeats] = useState<any[]>([]);
+    const mockData = require("./mock-data/mockData")
+    const { subDomain, handleStatus, features, repWidgetStore } = props
+    const themeCol: string = mockData.colorPalle[subDomain].themeColor
+    const [step, setStep] = useState(0)
+    const [feats, setFeats] = useState<any[]>([])
 
     useEffect(() => {
-      handleStatus(false);
+      handleStatus(false)
       setStep(repWidgetStore.cntStep)
       document.title = "Quotes | " + storesDetails.storesDetails.name
 
@@ -68,11 +68,10 @@ const RepairWidget = inject("repWidgetStore")(
 
       getRepairLookupAPI()
       getDeliveryMethodsAPI()
-
     }, [])
 
     const handleBackStep = () => {
-      const  cntStep: number = step,
+      const cntStep: number = step,
         cntDeviceBrand = repWidgetStore.deviceBrand,
         cntDeviceModel = repWidgetStore.deviceModel,
         cntChooseRepair = repWidgetStore.chooseRepair,
@@ -84,9 +83,9 @@ const RepairWidget = inject("repWidgetStore")(
             cntDeviceBrand.pop()
           if (cntDeviceModel.length === cntDeviceCounter && cntDeviceCounter > 0)
             cntDeviceModel.pop()
-            repWidgetStore.changeDeviceBrand(cntDeviceBrand)
-            repWidgetStore.changeDeviceModel(cntDeviceModel)
-            repWidgetStore.changeDeviceCounter(cntDeviceCounter - 1)
+          repWidgetStore.changeDeviceBrand(cntDeviceBrand)
+          repWidgetStore.changeDeviceModel(cntDeviceModel)
+          repWidgetStore.changeDeviceCounter(cntDeviceCounter - 1)
           break
         case 2:
           if (cntDeviceModel.length === cntDeviceCounter && cntDeviceCounter > 0)
@@ -169,9 +168,9 @@ const RepairWidget = inject("repWidgetStore")(
         const cntChooseRepair = repWidgetStore.chooseRepair
         const counter = chooseData.counter
         if (cntChooseRepair.length >= counter) {
-            cntChooseRepair[counter - 1] = chooseData.data
+          cntChooseRepair[counter - 1] = chooseData.data
         } else {
-            cntChooseRepair.push(chooseData.data)
+          cntChooseRepair.push(chooseData.data)
         }
         repWidgetStore.changeChooseRepair(cntChooseRepair)
       } else if (i === 4) {
@@ -194,104 +193,98 @@ const RepairWidget = inject("repWidgetStore")(
     return (
       <FeatureToggles features={feats}>
         <Feature
-            name="FRONTEND_REPAIR"
-            inactiveComponent={() => <Error />}
-            activeComponent={() => (
-                <div className={subDomain + "-repair-widget " + subDomain + "-Container"}>
-                    {repWidgetStore.deviceCounter > 0 && 
-                        <div
-                            className={subDomain + "-back-to-top"}
-                            onClick={handleDeviceCounterBack}
-                        >
-                            <BackSVG color="#BDBFC3" />
-                        </div>
-                    }
-                    {step > 0 && step < 10 && (
-                        <div
-                            className={subDomain + "-back-to-top"}
-                            onClick={handleBackStep}
-                        >
-                            <BackSVG color="#BDBFC3" />
-                        </div>
-                    )}
-                    {step <= 5 && (
-                        <ChooseDevice
-                            data={mockData.repairMockData[stepList[step]]}
-                            handleStep={handleStep}
-                            handleChangeChooseData={handleChangeChooseData}
-                            stepName={stepList[step]}
-                            step={step}
-                            subDomain={subDomain}
-                            repairWidgetData={repWidgetStore}
-                            features={feats}
-                        />
-                    )}
-                    {step === 6 && (
-                        <ContactDetails
-                            data={mockData.repairMockData[stepList[step]]}
-                            subDomain={subDomain}
-                            step={step}
-                            handleStep={handleStep}
-                            handleChangeChooseData={handleChangeChooseData}
-                            repairWidgetData={repWidgetStore}
-                            code={repWidgetStore.deliveryMethod.code}
-                            features={feats}
-                        />
-                    )}
-                    {step === 7 && (
-                        <BookTime
-                            data={mockData.repairMockData[stepList[step]]}
-                            subDomain={subDomain}
-                            step={step}
-                            code={repWidgetStore.deliveryMethod.code}
-                            handleStep={handleStep}
-                            handleChangeChooseData={handleChangeChooseData}
-                            repairWidgetData={repWidgetStore}
-                        />
-                    )}
-                    {step === 8 && (
-                        <UsefulInfo
-                            data={mockData.repairMockData[stepList[step]]}
-                            subDomain={subDomain}
-                            step={step}
-                            handleStep={handleStep}
-                            handleChangeChooseData={handleChangeChooseData}
-                            repairWidgetData={repWidgetStore}
-                        />
-                    )}
-                    {step === 9 && (
-                        <RepairServiceSummary
-                            themeCol={themeCol}
-                            repairWidgetData={repWidgetStore}
-                            code={repWidgetStore.deliveryMethod.code}
-                            step={step}
-                            handleStep={handleStep}
-                            subDomain={subDomain}
-                            features={feats}
-                        />
-                    )}
-                    {step === 10 && (
-                        <QuoteComponent
-                            data={mockData.repairMockData[stepList[step]]}
-                            repairWidgetData={repWidgetStore}
-                            quoteKey={1}
-                            subDomain={subDomain}
-                        />
-                    )}
-                    {step === 11 && (
-                        <QuoteComponent
-                            data={mockData.repairMockData[stepList[10]]}
-                            repairWidgetData={repWidgetStore}
-                            quoteKey={0}
-                            subDomain={subDomain}
-                        />
-                    )}
+          name="FRONTEND_REPAIR"
+          inactiveComponent={() => <Error />}
+          activeComponent={() => (
+            <div className={subDomain + "-service-widget " + subDomain + "-Container"}>
+              {repWidgetStore.deviceCounter > 0 && (
+                <div className={subDomain + "-back-to-top"} onClick={handleDeviceCounterBack}>
+                  <BackSVG color="#BDBFC3" />
                 </div>
-            )}
+              )}
+              {step > 0 && step < 10 && (
+                <div className={subDomain + "-back-to-top"} onClick={handleBackStep}>
+                  <BackSVG color="#BDBFC3" />
+                </div>
+              )}
+              {step <= 5 && (
+                <ChooseDevice
+                  data={mockData.repairMockData[stepList[step]]}
+                  handleStep={handleStep}
+                  handleChangeChooseData={handleChangeChooseData}
+                  stepName={stepList[step]}
+                  step={step}
+                  subDomain={subDomain}
+                  repairWidgetData={repWidgetStore}
+                  features={feats}
+                />
+              )}
+              {step === 6 && (
+                <ContactDetails
+                  data={mockData.repairMockData[stepList[step]]}
+                  subDomain={subDomain}
+                  step={step}
+                  handleStep={handleStep}
+                  handleChangeChooseData={handleChangeChooseData}
+                  repairWidgetData={repWidgetStore}
+                  code={repWidgetStore.deliveryMethod.code}
+                  features={feats}
+                />
+              )}
+              {step === 7 && (
+                <BookTime
+                  data={mockData.repairMockData[stepList[step]]}
+                  subDomain={subDomain}
+                  step={step}
+                  code={repWidgetStore.deliveryMethod.code}
+                  handleStep={handleStep}
+                  handleChangeChooseData={handleChangeChooseData}
+                  repairWidgetData={repWidgetStore}
+                />
+              )}
+              {step === 8 && (
+                <UsefulInfo
+                  data={mockData.repairMockData[stepList[step]]}
+                  subDomain={subDomain}
+                  step={step}
+                  handleStep={handleStep}
+                  handleChangeChooseData={handleChangeChooseData}
+                  repairWidgetData={repWidgetStore}
+                />
+              )}
+              {step === 9 && (
+                <RepairServiceSummary
+                  themeCol={themeCol}
+                  repairWidgetData={repWidgetStore}
+                  code={repWidgetStore.deliveryMethod.code}
+                  step={step}
+                  handleStep={handleStep}
+                  subDomain={subDomain}
+                  features={feats}
+                />
+              )}
+              {step === 10 && (
+                <QuoteComponent
+                  data={mockData.repairMockData[stepList[step]]}
+                  repairWidgetData={repWidgetStore}
+                  quoteKey={1}
+                  subDomain={subDomain}
+                />
+              )}
+              {step === 11 && (
+                <QuoteComponent
+                  data={mockData.repairMockData[stepList[10]]}
+                  repairWidgetData={repWidgetStore}
+                  quoteKey={0}
+                  subDomain={subDomain}
+                />
+              )}
+            </div>
+          )}
         />
-    </FeatureToggles>
+      </FeatureToggles>
     )
-  }))
+  })
+)
 
 export default RepairWidget
-

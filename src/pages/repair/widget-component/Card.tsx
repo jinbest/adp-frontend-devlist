@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react"
 
 type Props = {
-  children?: any;
-  className?: string;
-  height?: string;
+  children?: any
+  className?: string
+  height?: string
 }
 
-const Card = ({children, className, height}: Props) => {  
+const Card = ({ children, className, height }: Props) => {
   return (
-    <div className={'repair-widget-card ' + className} style={{height: height}}>
+    <div className={"service-widget-card " + className} style={{ height: height }}>
       {children}
     </div>
   )
 }
 
-export default Card;
+export default Card

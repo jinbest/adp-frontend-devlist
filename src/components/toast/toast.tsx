@@ -58,6 +58,7 @@ const Toast = ({ params, resetStatuses }: ToastProps) => {
           vertical: "top",
           horizontal: "right",
         }}
+        style={{ zIndex: 2000 }}
       >
         <Alert onClose={closeAlert} severity={setSeverity()}>
           {t(alertMsg)}

@@ -157,7 +157,7 @@ const CustomizedMenus = inject("headerStore")(
     }
 
     const setCoords = (pos: any) => {
-      // console.log('setCoords: ', pos);
+      console.log("setCoords: ", pos)
       setPos({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
@@ -181,8 +181,13 @@ const CustomizedMenus = inject("headerStore")(
         navigator.permissions &&
           navigator.permissions.query({ name: "geolocation" }).then(function (PermissionStatus) {
             if (PermissionStatus.state == "granted") {
-              navigator.geolocation.getCurrentPosition(setCoords)
-              setRequireUserInfo(false)
+              if (navigator.geolocation) {
+                console.log("Geolocation is supported by this browser.")
+                navigator.geolocation.getCurrentPosition(setCoords)
+                setRequireUserInfo(false)
+              } else {
+                console.log("Geolocation is not supported by this browser.")
+              }
             } else if (PermissionStatus.state == "prompt") {
               console.log("not yet grated or denied")
             } else {
@@ -273,12 +278,25 @@ const CustomizedMenus = inject("headerStore")(
       repairWidgetStore.init()
     }
 
-    const handleGetLocation = () => {
-      if (!postCode) return
+    const onKeyPress = (event: any) => {
+      if (event.key === "Enter") {
+        handleGetLocation(event.target.value)
+      }
+    }
+
+    useEffect(() => {
+      document.addEventListener("keydown", onKeyPress, false)
+      return () => {
+        document.removeEventListener("keydown", onKeyPress, false)
+      }
+    }, [])
+
+    const handleGetLocation = (poscode: string) => {
+      if (!poscode) return
       const data: any = {
         city: "",
         state: "",
-        postcode: postCode, // R3P0N2
+        postcode: poscode, // R3P0N2
         country: "",
       }
       setIsRequest(true)
@@ -305,6 +323,14 @@ const CustomizedMenus = inject("headerStore")(
           })
           setIsRequest(false)
         })
+    }
+
+    const getAddress = (location: any) => {
+      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+        location.city ? location.city + ", " : ""
+      } ${location.state ? location.state + " " : ""} ${
+        location.postcode ? location.postcode + ", " : ""
+      } ${location.country ? location.country + ", " : ""}`
     }
 
     return (
@@ -361,7 +387,8 @@ const CustomizedMenus = inject("headerStore")(
                       margin="10px auto"
                       fontSize="15px"
                       subDomain={subDomain}
-                      onClick={handleGetLocation}
+                      disable={isRequest}
+                      onClick={() => handleGetLocation(postCode)}
                     >
                       {isRequest && <Loading />}
                     </Button>
@@ -418,7 +445,15 @@ const CustomizedMenus = inject("headerStore")(
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
-                    href={`https://www.google.com/maps/search/?api=1&query=${headerStore.cntUserLocation[0].latitude},${headerStore.cntUserLocation[0].longitude}`}
+                    href={`${
+                      headerStore.cntUserLocation[0].business_page_link != null
+                        ? headerStore.cntUserLocation[0].business_page_link
+                        : `https://www.google.com/maps/search/?api=1&query=${getAddress(
+                            headerStore.cntUserLocation[0]
+                          )
+                            .split(" ")
+                            .join("+")}`
+                    }`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -437,10 +472,10 @@ const CustomizedMenus = inject("headerStore")(
                       onClick={handleBookRepair}
                     >
                       <Button
-                        title={t("BOOK_REPAIR")}
+                        title={t("BOOK_APPOINTMENT")}
                         bgcolor={themeColor}
                         borderR="20px"
-                        width="40px"
+                        width="175px"
                         height="30px"
                         margin="0"
                         fontSize="15px"

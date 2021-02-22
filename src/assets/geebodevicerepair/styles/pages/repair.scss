@@ -1,30 +1,30 @@
-.#{$folderName}-repair-section-title-1 {
+.#{$folderName}-service-section-title-1 {
   font-weight: 800 !important;
   font-size: 60px !important;
 }
 
-.#{$folderName}-repair-section-title-2 {
+.#{$folderName}-service-section-title-2 {
   font-weight: 800 !important;
   font-size: 45px !important;
 }
 
-.#{$folderName}-repair-section-content {
+.#{$folderName}-service-section-content {
   font-weight: normal !important;
   font-size: 35px !important;
   margin: 35px 0 !important;
 }
 
-.#{$folderName}-repair-section-button {
+.#{$folderName}-service-section-button {
   max-width: 330px !important;
   width: 100% !important;
   padding-bottom: 2rem !important;
 }
 
-.#{$folderName}-repair-section1 {
+.#{$folderName}-service-section1 {
   margin-top: 250px !important;
 }
 
-.#{$folderName}-repair-section2 {
+.#{$folderName}-service-section2 {
   height: 550px;
   margin-top: -200px;
   margin-bottom: -50px;
@@ -32,14 +32,14 @@
   position: relative;
   z-index: -1;
   overflow: hidden;
-  background-image: url('../../img/repair/geebo-section2-bg.png');
+  background-image: url("../../img/repair/geebo-section2-bg.png");
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
 }
 
-.#{$folderName}-repair-section2-text-field {
-  margin-top: -200px !important
+.#{$folderName}-service-section2-text-field {
+  margin-top: -200px !important;
 }
 
 .#{$folderName}-repair-sec-content-div {
@@ -47,39 +47,41 @@
   margin-top: 80px !important;
 }
 
-.repair-section2-select-repair {
+.service-section2-select-repair {
   width: 95px;
   height: 143px;
 }
 
-.repair-section2-get-device {
+.service-section2-get-device {
   width: 100px;
   height: 143px;
 }
 
-.repair-section2-receive-device {
+.service-section2-receive-device {
   width: 100px;
   height: 154px;
 }
 
 @media (max-width: 960px) {
-  .repair-section2-select-repair, .repair-section2-get-device, .repair-section2-receive-device {
+  .service-section2-select-repair,
+  .service-section2-get-device,
+  .service-section2-receive-device {
     width: 100%;
     height: auto;
   }
-  .#{$folderName}-repair-section2 {
+  .#{$folderName}-service-section2 {
     padding-bottom: 200px;
   }
 }
 
 @media (max-width: 600px) {
-  .#{$folderName}-repair-section2 {
+  .#{$folderName}-service-section2 {
     padding-bottom: 50px;
   }
 }
 
 @media (max-width: 400px) {
-  .#{$folderName}-repair-section2 {
+  .#{$folderName}-service-section2 {
     padding-bottom: 0px;
   }
 }

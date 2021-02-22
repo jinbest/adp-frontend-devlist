@@ -249,7 +249,10 @@ const ContactDetails = ({
       lastName &&
       email &&
       ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
-      ((code === "MAIL_IN" && address1) || code !== "MAIL_IN")
+      ((code === "MAIL_IN" && address1) ||
+        (code === "ONSITE" && address1) ||
+        (code === "PICK_UP" && address1) ||
+        (code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP"))
     ) {
       setDisableStatus(false)
     }
@@ -297,13 +300,13 @@ const ContactDetails = ({
     <div>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-repair-widget-title"}>{t(data.title)}</Typography>
+          <Typography className={subDomain + "-service-widget-title"}>{t(data.title)}</Typography>
         </Grid>
       </Grid>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className={subDomain + "-repair-choose-device-container"}>
+            <div className={subDomain + "-service-choose-device-container"}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <InputComponent
@@ -335,29 +338,42 @@ const ContactDetails = ({
                     subDomain={subDomain}
                   />
                 </Grid>
-                <Grid item xs={storesDetails.location_id < 0 && code !== "MAIL_IN" ? 6 : 12}>
+                <Grid
+                  item
+                  xs={
+                    storesDetails.location_id < 0 &&
+                    code !== "MAIL_IN" &&
+                    code !== "ONSITE" &&
+                    code !== "PICK_UP"
+                      ? 6
+                      : 12
+                  }
+                >
                   <PhoneInput
                     handleSetPhone={setPhone}
                     val={phone}
                     placeholder={t(data.placeholder.phoneNum)}
                   />
                 </Grid>
-                {storesDetails.location_id < 0 && code !== "MAIL_IN" && (
-                  <Grid item xs={6}>
-                    <InputComponent
-                      value={postalCode}
-                      placeholder={t(data.placeholder.postalCode)}
-                      handleChange={(e) => {
-                        handleChangePostalCode(e.target.value)
-                      }}
-                      subDomain={subDomain}
-                    />
-                  </Grid>
-                )}
+                {storesDetails.location_id < 0 &&
+                  code !== "MAIL_IN" &&
+                  code !== "ONSITE" &&
+                  code !== "PICK_UP" && (
+                    <Grid item xs={6}>
+                      <InputComponent
+                        value={postalCode}
+                        placeholder={t(data.placeholder.postalCode)}
+                        handleChange={(e) => {
+                          handleChangePostalCode(e.target.value)
+                        }}
+                        subDomain={subDomain}
+                      />
+                    </Grid>
+                  )}
               </Grid>
             </div>
-            {code === "MAIL_IN" && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+            {(code === "MAIL_IN" || code === "ONSITE" || code === "PICK_UP") && (
+              <div className={subDomain + "-service-choose-device-container"}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <InputComponent
@@ -408,18 +424,18 @@ const ContactDetails = ({
                     />
                   </Grid>
                   {/* <Grid item xs={12} sm={4}>
-                                        <CustomSelect
-                                            value={province}
-                                            handleSetValue={setProvince}
-                                            subDomain={subDomain}
-                                            options={country.code ? statesData[country.code] : []}
-                                        />
-                                    </Grid> */}
+                    <CustomSelect
+                      value={province}
+                      handleSetValue={setProvince}
+                      subDomain={subDomain}
+                      options={country.code ? statesData[country.code] : []}
+                    />
+                  </Grid> */}
                 </Grid>
               </div>
             )}
-            {code !== "MAIL_IN" && (
-              <div className={subDomain + "-repair-choose-device-container"}>
+            {code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP" && (
+              <div className={subDomain + "-service-choose-device-container"}>
                 <FeatureToggles features={features}>
                   <Feature
                     name="FRONTEND_REPAIR_APPOINTMENT"
@@ -466,8 +482,8 @@ const ContactDetails = ({
                 </FeatureToggles>
               </div>
             )}
-            {code === "MAIL_IN" && (
-              <div className={subDomain + "-repair-card-button"}>
+            {(code === "MAIL_IN" || code === "ONSITE" || code === "PICK_UP") && (
+              <div className={subDomain + "-service-card-button"}>
                 <Button
                   title={t(publicText.next)}
                   bgcolor={mainData.colorPalle.nextButtonCol}
@@ -485,7 +501,7 @@ const ContactDetails = ({
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-repair-summary-card"}>
+          <Card className={subDomain + "-service-summary-card"}>
             <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} />
           </Card>
         </Grid>

@@ -50,14 +50,31 @@
 
 .#{$folderName}-corner-shape {
   position: absolute;
+  margin: auto;
   top: 0;
-  right: 0;
-  width: 40vw;
+  width: 100%;
+  height: 660px;
+  overflow: hidden;
+  opacity: 0.25;
   z-index: -2;
+  @media (max-width: 768px) {
+    height: 510px;
+  }
+  @media (max-width: 425px) {
+    height: 370px;
+  }
 }
 
 .#{$folderName}-corner-shape > img {
   width: 100%;
+  min-width: 1000px;
+  min-height: 650px;
+  @media (max-width: 1024px) {
+    min-height: 600px;
+  }
+  @media (max-width: 768px) {
+    min-height: 500px;
+  }
 }
 
 .#{$folderName}-mockup-shape {
@@ -79,7 +96,7 @@
 .#{$folderName}-section1-title {
   font-style: normal;
   font-weight: 900 !important;
-  font-size: 75px !important;
+  font-size: 65px !important;
   line-height: 1.2 !important;
   display: flex;
   align-items: center;
@@ -103,6 +120,11 @@
 .#{$folderName}-sec1-search_input {
   max-width: 800px;
   width: 100%;
+  display: none;
+}
+
+.#{$folderName}-sec1-card-mobile-data {
+  display: none !important;
 }
 
 .#{$folderName}-cartfix-container {
@@ -148,12 +170,17 @@
   width: 100%;
   float: right;
 }
+
+.#{$folderName}-sec3-container-parent {
+  display: none;
+}
+
 .#{$folderName}-section3-back {
-  background-image: url("../../img/nanotech-section3-bg.png");
+  background-image: url("../../img/mobiletech-section3-bg.png");
   background-size: cover;
-  /* background-position: top; */
   background-repeat: no-repeat;
 }
+
 .#{$folderName}-cart-device-list {
   max-width: 280px;
   margin: 0 auto;
@@ -167,6 +194,7 @@
 .#{$folderName}-section4-button {
   max-width: 316px;
   width: 100%;
+  margin-top: 2rem;
 }
 
 .#{$folderName}-sec4-background {
@@ -176,12 +204,35 @@
 }
 
 .#{$folderName}-section4-title {
-  max-width: 615px;
-  width: 100%;
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  padding: 1rem 0 0 !important;
+  margin: 5rem 0 2rem !important;
+  text-align: center;
 }
 
 .#{$folderName}-sec4-container-special-box {
-  display: none !important;
+  display: block !important;
+}
+
+@media (max-width: 960px) {
+  .#{$folderName}-sec4-container-box {
+    display: block !important;
+  }
+  .#{$folderName}-sec4-container-special-box {
+    display: none !important;
+  }
+  .#{$folderName}-sec4-background {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 425px) {
+  .#{$folderName}-sec4-background {
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
 }
 
 .mobile {
@@ -229,6 +280,7 @@ p {
 .#{$folderName}-sec5-Back {
   background-color: #f5f5f5;
   padding-top: 1rem;
+  display: none;
 }
 .#{$folderName}-sec6-container {
   padding-top: 70px;
@@ -271,35 +323,9 @@ p {
   }
 }
 
-.#{$folderName}-sec4-container-special-box {
-  display: block !important;
-}
-
 @media (max-width: 960px) {
-  .#{$folderName}-sec4-container-box {
-    display: block !important;
-  }
-  .#{$folderName}-sec4-container-special-box {
-    display: none !important;
-  }
-  .#{$folderName}-sec4-background {
-    padding-top: 70px;
-  }
   .#{$folderName}-sec6-card {
     max-width: 500px;
-  }
-}
-
-@media (max-width: 425px) {
-  .#{$folderName}-sec4-background {
-    padding-top: 1px;
-    padding-bottom: 1px;
-  }
-}
-
-@media (max-width: 600px) {
-  .#{$folderName}-sec6-container {
-    padding-bottom: 0px;
   }
 }
 
@@ -315,7 +341,7 @@ p {
     display: block;
   }
   .#{$folderName}-section-title {
-    font-size: 5.5vw !important;
+    font-size: 5vw !important;
   }
   .f24 {
     font-size: 18px !important;
@@ -327,9 +353,9 @@ p {
     margin-top: 2rem;
   }
   .#{$folderName}-section1-subtitle {
-    font-size: 20px !important;
+    font-size: 4vw !important;
   }
   .#{$folderName}-section1-title {
-    font-size: 6.5vw !important;
+    font-size: 6vw !important;
   }
 }

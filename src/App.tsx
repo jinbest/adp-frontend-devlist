@@ -27,7 +27,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 1,
+// const siteNum = 2,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -139,7 +139,7 @@ function App(): JSX.Element {
         />
         <Route path="/home" render={() => <Redirect to="/" />} />
         <Route
-          path="/repair"
+          path="/quote"
           component={() => (
             <Provider repairWidgetStore={repairWidgetStore}>
               <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
@@ -187,6 +187,12 @@ function App(): JSX.Element {
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
+        {subDomain === "mobiletechlab" && (
+          <meta
+            name="google-site-verification"
+            content="-7lYFKjpeZOXhFE35pTA-GfcaY9PRNOlrNm-SdgQMlI"
+          />
+        )}
         <script>{tagScript}</script>
       </Helmet>
 
