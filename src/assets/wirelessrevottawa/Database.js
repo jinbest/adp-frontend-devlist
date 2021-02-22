@@ -440,7 +440,7 @@ const homeTextData = {
         days: "5 days ago",
         content:
           "Twice I've employed the services of Wireless Rev, the 1st was to repair my Apple Desktop Computer, the 2nd was to repair my keyboard. Unbelievably professional, knowledgeable technicians, and so polite, friendly, helpful. Once initial diagnostics had been performed, they called me right back to clearly explain the problems encountered and their suggested solution. You'll be blown away by their service, they're just that good. My computer is like brand new once again. Thanks guys.",
-        reviewer: "LAURENCE Winter",
+        reviewer: "Laurence Winter",
       },
       {
         score: 5,
@@ -574,6 +574,7 @@ const repairData = {
     btnTitle: "SHOP_NOW",
     img: repairSec4,
     themeCol: "black",
+    link: "http://shop.wirelessrevottawa.ca/"
   },
 }
 

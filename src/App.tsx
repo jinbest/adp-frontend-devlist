@@ -27,7 +27,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 2,
+// const siteNum = 0,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -186,7 +186,6 @@ function App(): JSX.Element {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-        {subDomain === "mobiletechlab" && <meta name="robots" content="noindex"></meta>}
         {subDomain === "mobiletechlab" && (
           <meta
             name="google-site-verification"

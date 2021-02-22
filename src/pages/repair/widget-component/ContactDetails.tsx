@@ -442,7 +442,7 @@ const ContactDetails = ({
                     inactiveComponent={() => <></>}
                     activeComponent={() => (
                       <Button
-                        title={t("BOOK_AN_APPOINTMENT")}
+                        title={t("BOOK_APPOINTMENT")}
                         bgcolor={mainData.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"

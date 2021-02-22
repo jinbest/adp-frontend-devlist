@@ -300,7 +300,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: ["BUSINESS", "FINANCING", "INSURANCE"],
+  left: [],
   right: { ip: "902.270.4349", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#585758",
@@ -414,21 +414,21 @@ const homeTextData = {
         days: "2/17/2017",
         content:
           "Highly recommend Geebo. My iPhone 6 wouldn't charge - Apple tech told me my phone was damaged internally and not repairable. Geebo replaced the charging port on my phone in less than 1/2 hour - at a very reasonable price. Really friendly and knowledgeable.",
-        reviewer: "Hammonds Plains, NS",
+        reviewer: "Ainsley R.",
       },
       {
         score: 5,
         days: "6/16/2016",
         content:
           "Great little shop for phone repairs. Very professional service. They replaced my shattered screen in 24 hours. Great value!",
-        reviewer: "Dartmouth, NS",
+        reviewer: "Ainsley R.",
       },
       {
         score: 5,
         days: "10/4/2015",
         content:
           "I got a new battery for my iPhone 4 installed by in less than 5 minutes while I waited, for $25. The service was friendly, fast, and convenient. They even offered to take it back with a $20 refund if the phone performance was no better. Well, it works fine and I'm getting much more usage on a charge. Very happy with them, and I would go back.",
-        reviewer: "Dartmouth, NS",
+        reviewer: "Ainsley R.",
       },
     ],
   },
@@ -545,9 +545,10 @@ const repairData = {
   section4: {
     title: "GET_THE_LATEST",
     content: "SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE",
-    btnTitle: "SHOP_NOW",
+    btnTitle: "FIND_A_STORE",
     img: repairSec4,
     themeCol: "black",
+    link: "#"
   },
 }
 
