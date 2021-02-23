@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core"
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
 import { Map } from "leaflet"
+
+export function getAddress(location: any) {
+  return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+    location.city ? location.city + ", " : ""
+  } ${location.state ? location.state + " " : ""} ${
+    location.postcode ? location.postcode + ", " : ""
+  } ${location.country ? location.country + ", " : ""}`
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     mapWrapper: {
@@ -34,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
+
 type Props = {
   locations: any[]
   selectedLocation: any
@@ -71,14 +81,6 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
       map.setView([centerX, centerY], zoom)
     }
   }, [isDetail, selectedLocation, map])
-
-  const getAddress = (location: any) => {
-    return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-      location.city ? location.city + ", " : ""
-    } ${location.state ? location.state + " " : ""} ${
-      location.postcode ? location.postcode + ", " : ""
-    } ${location.country ? location.country + ", " : ""}`
-  }
 
   return (
     <div className={classes.mapWrapper}>

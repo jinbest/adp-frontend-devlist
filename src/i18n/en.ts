@@ -304,9 +304,9 @@ export class LanguageKeys {
     "Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!"
 
   /* Prado Wireless Website */
-  public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = "British Columbia's mobile device specialists"
+  public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = "Victoria's mobile device specialists"
   public WELCOME_PRADO_WIRELESS = (storeName: string) => {
-    return `Welcome to ${storeName}, British Columbia's mobile device marketplace`
+    return `Welcome to ${storeName}, Victoria's mobile device marketplace`
   }
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = (storeName: string) => {
     return `See Why Customers Love ${storeName}`

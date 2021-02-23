@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { withStyles } from "@material-ui/core/styles"
+import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
 import {
   Button,
@@ -111,6 +111,16 @@ const StyledMenu = withStyles({
   />
 ))
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
+    },
+  })
+)
+
 type StoreProps = {
   headerStore: StoresDetails
 }
@@ -140,6 +150,9 @@ const CustomizedMenus = inject("headerStore")(
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
     const [postCode, setPostCode] = useState("")
     const [isRequest, setIsRequest] = useState(false)
+    const [myStore, setMyStore] = useState("My Store")
+
+    const classes = useStyles()
 
     const handleLocSelect = (index: number) => {
       const cntLocation: any = headerStore.cntUserLocation[index]
@@ -157,7 +170,6 @@ const CustomizedMenus = inject("headerStore")(
     }
 
     const setCoords = (pos: any) => {
-      console.log("setCoords: ", pos)
       setPos({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
@@ -211,8 +223,9 @@ const CustomizedMenus = inject("headerStore")(
           .then((res: any) => {
             if (res.data.length) {
               headerStore.changeFindAddLocation(res.data)
-              setLocations(makeLocations(headerStore.findAddLocation))
-              headerStore.changeLocationID(res.data[0].id)
+              setLocations(makeLocations([headerStore.findAddLocation[0]]))
+              setLocSelStatus(true)
+              headerStore.changeLocationID(headerStore.findAddLocation[0].id)
             } else {
               setToastParams({
                 msg: "Response is an empty data, please input your infos.",
@@ -235,10 +248,13 @@ const CustomizedMenus = inject("headerStore")(
     }, [pos, locations])
 
     useEffect(() => {
+      console.log(locSelStatus, locations.length)
       if (locSelStatus || !locations.length) {
         setContentWidth("215px")
+        setMyStore("Nearest Location")
       } else {
         setContentWidth("500px")
+        setMyStore("All Locations")
       }
       headerStore.changeCntUserLocationSelected(locSelStatus)
     }, [locSelStatus, locations])
@@ -310,8 +326,9 @@ const CustomizedMenus = inject("headerStore")(
         .then((res: any) => {
           if (res.data.length) {
             headerStore.changeFindAddLocation(res.data)
-            setLocations(makeLocations(headerStore.findAddLocation))
-            headerStore.changeLocationID(res.data[0].id)
+            setLocations(makeLocations([headerStore.findAddLocation[0]]))
+            setLocSelStatus(true)
+            headerStore.changeLocationID(headerStore.findAddLocation[0].id)
           } else {
             setToastParams({
               msg: "Response is an empty data, please check your infos.",
@@ -372,7 +389,7 @@ const CustomizedMenus = inject("headerStore")(
             <div className={subDomain + "-left-content"} style={{ width: contentWidth }}>
               <div className={subDomain + "-content-block"}>
                 {headerStore.cntUserLocation.length || !requireUserInfo ? (
-                  <p className={subDomain + "-block-title"}>{t("MY_STORE")}</p>
+                  <p className={subDomain + "-block-title"}>{myStore}</p>
                 ) : (
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
@@ -407,18 +424,24 @@ const CustomizedMenus = inject("headerStore")(
                     /> */}
                   </div>
                 )}
-                {headerStore.cntUserLocation.map((item: any, index: number) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <p
-                        onClick={() => handleLocSelect(index)}
-                        className={subDomain + "-block-content"}
-                      >
-                        {item.location_name + ", " + item.address_1 + " (" + item.distance + ")"}
-                      </p>
-                    </React.Fragment>
-                  )
-                })}
+                <div className="custom-menu-locations-container">
+                  {headerStore.cntUserLocation.map((item: any, index: number) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <p
+                          onClick={() => handleLocSelect(index)}
+                          className={
+                            subDomain +
+                            "-block-content" +
+                            (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
+                          }
+                        >
+                          {item.location_name + ", " + item.address_1 + " (" + item.distance + ")"}
+                        </p>
+                      </React.Fragment>
+                    )
+                  })}
+                </div>
               </div>
               <div className={subDomain + "-content-block"}>
                 {locSelStatus && (
@@ -437,7 +460,7 @@ const CustomizedMenus = inject("headerStore")(
                     {t("VIEW_STORE_DETAILS")}
                   </a>
                 )}
-                {headerStore.findAddLocation.length > 1 && (
+                {headerStore.findAddLocation.length > 1 && locSelStatus && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}

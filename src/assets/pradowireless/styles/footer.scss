@@ -3,7 +3,7 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-  background-image: url('../img/footer/prado-footer-shape-desktop.png');
+  background-image: url("../img/footer/prado-footer-shape-desktop.png");
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -23,11 +23,11 @@
   color: black;
 }
 
-.#{$folderName}-links > a:hover{
+.#{$folderName}-links > a:hover {
   color: gray;
 }
 
-.#{$folderName}-link_name{
+.#{$folderName}-link_name {
   margin: 0.5rem 0;
   font-weight: 700;
 }
@@ -49,7 +49,7 @@
 
 .#{$folderName}-footer-others {
   height: 34px;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   width: 80px;
   padding: 1px;
@@ -85,10 +85,6 @@
 
 .#{$folderName}-device-list-grid > div {
   margin: 20px 0;
-}
-
-.#{$folderName}-footer-container-special {
-  display: none;
 }
 
 .#{$folderName}-footer-subContent-title {

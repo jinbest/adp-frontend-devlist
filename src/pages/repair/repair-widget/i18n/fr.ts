@@ -296,13 +296,13 @@ export class LanguageKeysFr extends LanguageKeys {
 
   /* Prado Wireless Website */
   public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS =
-    "Les spécialistes des appareils mobiles de la Colombie-Britannique"
+    "Les spécialistes des appareils mobiles de la Victoria"
   public WELCOME_PRADO_WIRELESS =
-    "Bienvenue sur Prado Wireless, le marché des appareils mobiles de la Colombie-Britannique"
+    "Bienvenue sur Prado Wireless, le marché des appareils mobiles de la Victoria"
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS =
     "Découvrez pourquoi les clients aiment Prado Wireless"
   public PRADO_FOOTER_CONTENT_TWO =
-    "© 2020 Prado Wireless 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 British Columbia Inc. s / a «Prado Wireless» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
+    "© 2020 Prado Wireless 1.0.2. Tous les droits sont réservés. Toutes les marques déposées sont la propriété de leurs détenteurs respectifs. 11253913 Victoria Inc. s / a «Prado Wireless» ne possède ni ne revendique les marques de commerce utilisées sur ce site Web dont il n'est pas le titulaire."
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT =
     "Prado Wireless répare votre appareil et vous informe de la date de prise en charge ou de livraison."
   public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT =

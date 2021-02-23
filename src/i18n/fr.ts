@@ -312,9 +312,9 @@ export class LanguageKeysFr extends LanguageKeys {
 
   /* Prado Wireless Website */
   public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS =
-    "Les spécialistes des appareils mobiles de la Colombie-Britannique"
+    "Les spécialistes des appareils mobiles de la Victoria"
   public WELCOME_PRADO_WIRELESS = (storeName: string) => {
-    return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Colombie-Britannique`
+    return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Victoria`
   }
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = (storeName: string) => {
     return `Découvrez pourquoi les clients aiment la ${storeName}`

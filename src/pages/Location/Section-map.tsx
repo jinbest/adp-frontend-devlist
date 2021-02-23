@@ -104,17 +104,24 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
-
     item1: {
-      order: 2,
+      order: 1,
       [theme.breakpoints.up("lg")]: {
         order: 1,
       },
     },
     item2: {
-      order: 1,
+      order: 2,
       [theme.breakpoints.up("lg")]: {
         order: 2,
+      },
+    },
+    directions: {
+      color: "black",
+      marginLeft: "10px",
+      fontWeight: "bold",
+      "&:hover": {
+        color: "rgba(0,0,0,0.4)",
       },
     },
   })
@@ -153,8 +160,12 @@ const SectionMap = inject("headerStore")(
       return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
         location.city ? location.city + ", " : ""
       } ${location.state ? location.state + " " : ""} ${
-        location.postcode ? location.postcode + ", " : ""
-      } ${location.country ? location.country + ", " : ""}`
+        location.postcode
+          ? location.postcode.substring(0, 3) +
+            " " +
+            location.postcode.substring(3, location.postcode.length)
+          : ""
+      }`
     }
 
     const getRegularHours = (hours: any[]) => {
@@ -257,14 +268,7 @@ const SectionMap = inject("headerStore")(
                               }}
                             >
                               <CallSplitIcon />
-                              <span
-                                style={{
-                                  marginLeft: "10px",
-                                  fontWeight: "bold",
-                                }}
-                              >
-                                Directions
-                              </span>
+                              <span className={classes.directions}>Directions</span>
                             </a>
                           </p>
                         </Grid>
