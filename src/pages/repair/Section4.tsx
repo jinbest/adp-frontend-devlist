@@ -77,7 +77,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
         <Grid item xs={12} md={6} className={classes.item1}>
           <Typography
             className={subDomain + "-service-section-title-1"}
-            style={{ color: repair.themeCol }}
+            style={{ color: repair.themeCol, textShadow: `1px 0 ${repair.themeCol}` }}
           >
             {t(repair.title)}
           </Typography>

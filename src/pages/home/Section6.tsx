@@ -14,7 +14,7 @@ const Section6 = ({ subDomain }: Props) => {
 
   return (
     <section className={subDomain + "-Container center " + subDomain + "-sec6-container"}>
-      <Typography className="f40 bold mg-t-1">
+      <Typography className="f40 bold mg-t-1" style={{ color: "black", textShadow: "1px 0 black" }}>
         <T id={data.homeTextData.section6.title} data={storesDetails.storesDetails.name} />
       </Typography>
       {/* <Typography className='f24'>
