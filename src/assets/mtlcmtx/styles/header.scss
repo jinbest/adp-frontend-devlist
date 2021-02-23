@@ -23,7 +23,7 @@
   margin: 0 auto;
   left: 0px;
   top: 0px;
-  background-color: #2b388f;
+  background-color: #054dfa;
 }
 
 .#{$folderName}-container-header {
@@ -41,7 +41,8 @@
 }
 
 .#{$folderName}-container-header > a > img {
-  height: 50px;
+  height: 30px;
+  margin-top: 10px;
 }
 
 .#{$folderName}-container-header .text-1 {
@@ -245,5 +246,23 @@
   text-decoration: none;
   @media (max-width: 400px) {
     font-size: 12px;
+  }
+}
+
+.custom-menu-locations-container {
+  max-height: 250px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 3px;
+    cursor: pointer;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #666;
   }
 }

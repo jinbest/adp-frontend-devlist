@@ -5,3 +5,9 @@
 .#{$folderName}-logo-footer {
   height: 50px;
 }
+
+@media (max-width: 600px) {
+  .#{$folderName}-logo-footer {
+    margin-top: 50px;
+  }
+}

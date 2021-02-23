@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
         color: "black",
         fontSize: "14px",
       },
+      "&:hover": {
+        opacity: 0.5,
+      },
     },
     findStoreDiv: {
       position: "absolute",
@@ -64,6 +67,11 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2, 4, 1),
       outline: "none",
       maxWidth: 300,
+    },
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
     },
   })
 )
@@ -418,29 +426,33 @@ const HeaderDrawer = inject("headerStore")(
                 )}
                 {storeStatus && (
                   <React.Fragment>
-                    {headerStore.cntUserLocation.map((item: any, index: number) => {
-                      return (
-                        <React.Fragment key={index}>
-                          <p
-                            onClick={() => handleLocSelect(index)}
-                            className={subDomain + "-block-content"}
-                            style={{
-                              fontSize: locSelStatus ? "15px" : "12px",
-                              textAlign: locSelStatus ? "center" : "left",
-                              opacity: 1,
-                              textDecoration: "none",
-                            }}
-                          >
-                            {item.location_name +
-                              ", " +
-                              item.address_1 +
-                              " (" +
-                              item.distance +
-                              ")"}
-                          </p>
-                        </React.Fragment>
-                      )
-                    })}
+                    <div className="custom-menu-locations-container">
+                      {headerStore.cntUserLocation.map((item: any, index: number) => {
+                        return (
+                          <React.Fragment key={index}>
+                            <p
+                              onClick={() => handleLocSelect(index)}
+                              className={
+                                subDomain +
+                                "-block-content" +
+                                (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
+                              }
+                              style={{
+                                fontSize: locSelStatus ? "15px" : "12px",
+                                textAlign: locSelStatus ? "center" : "left",
+                              }}
+                            >
+                              {item.location_name +
+                                ", " +
+                                item.address_1 +
+                                " (" +
+                                item.distance +
+                                ")"}
+                            </p>
+                          </React.Fragment>
+                        )
+                      })}
+                    </div>
                     {locSelStatus && (
                       <React.Fragment>
                         {headerStore.cntUserLocation.map((item: any, id: number) => {
@@ -465,6 +477,7 @@ const HeaderDrawer = inject("headerStore")(
                                                 textDecoration: "none",
                                                 opacity: 1,
                                                 fontSize: "14px",
+                                                cursor: "default",
                                               }}
                                               key={idx}
                                             >
@@ -482,6 +495,7 @@ const HeaderDrawer = inject("headerStore")(
                                                 textDecoration: "none",
                                                 opacity: 1,
                                                 fontSize: "14px",
+                                                cursor: "default",
                                               }}
                                               key={idx}
                                             >
@@ -560,7 +574,7 @@ const HeaderDrawer = inject("headerStore")(
                               borderR="20px"
                               width="175px"
                               height="30px"
-                              margin="-20px 0 10px"
+                              margin="0px 0 10px"
                               fontSize="15px"
                               subDomain={subDomain}
                             />

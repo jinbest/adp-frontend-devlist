@@ -1,16 +1,16 @@
 // card-mobile image
-import trade from "./img/cardmobile/banana-trade.png"
-import repair from "./img/cardmobile/banana-repair.png"
-import buy from "./img/cardmobile/banana-buy.png"
-import protect from "./img/cardmobile/banana-protect.png"
+import trade from "./img/cardmobile/northtech-trade.png"
+import repair from "./img/cardmobile/northtech-repair.png"
+import buy from "./img/cardmobile/northtech-buy.png"
+import protect from "./img/cardmobile/northtech-protect.png"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
-import cellphone from "./img/cardfix/banana-mobile.png"
-import tablet from "./img/cardfix/banana-tablet.png"
-import computer from "./img/cardfix/banana-computer.png"
-import console from "./img/cardfix/banana-game.png"
-import other from "./img/cardfix/banana-other.png"
+import cellphone from "./img/cardfix/northtech-mobile.png"
+import tablet from "./img/cardfix/northtech-tablet.png"
+import computer from "./img/cardfix/northtech-computer.png"
+import console from "./img/cardfix/northtech-game.png"
+import other from "./img/cardfix/northtech-other.png"
 
 // card-popular image
 import camera from "./img/popular/camera.png"
@@ -26,20 +26,19 @@ import proudly from "./img/devicelist/proudly.png"
 import bounce from "./img/bounce.png"
 
 // avatar images
-import userActive from "./img/avatar/banana-user-active.png"
-import userDeactive from "./img/avatar/banana-user-deactive.png"
-import menu from "./img/avatar/banana-menu.png"
-import store from "./img/avatar/banana-store.png"
-import storeBlue from "./img/avatar/banana-store-blue.png"
-import cancel from "./img/avatar/banana-cancel.png"
+import userActive from "./img/avatar/northtech-user-active.png"
+import userDeactive from "./img/avatar/northtech-user-deactive.png"
+import menu from "./img/avatar/northtech-menu.png"
+import store from "./img/avatar/northtech-store.png"
+import storeBlue from "./img/avatar/northtech-store-blue.png"
+import cancel from "./img/avatar/northtech-cancel.png"
 
 // arrow images
 import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/banana-corner-shape.png"
-import mockupShape from "./img/banana-mockup-shape.png"
+import cornerShape from "./img/northtech-shape-home.png"
 
 // footer images
 import buyNow from "./img/footer/buy-now.png"
@@ -54,15 +53,15 @@ import deviceListImg from "./img/footer/device-list.png"
 import repairPhone from "./img/repair/repair-phone.png"
 
 // repair section2 - images
-import selectRepair from "./img/repair/section2/banana-select-repair.png"
-import sendDevice from "./img/repair/section2/banana-send-device.png"
-import receiveDevice from "./img/repair/section2/banana-receive-device.png"
+import selectRepair from "./img/repair/section2/northtech-select-repair.png"
+import sendDevice from "./img/repair/section2/northtech-send-device.png"
+import receiveDevice from "./img/repair/section2/northtech-receive-device.png"
 
 // repair section3 - images
-import newImg from "./img/repair/section3/banana-new.png"
-import mintImg from "./img/repair/section3/banana-mint.png"
-import goodImg from "./img/repair/section3/banana-good.png"
-import fairImg from "./img/repair/section3/banana-fair.png"
+import newImg from "./img/repair/section3/northtech-new.png"
+import mintImg from "./img/repair/section3/northtech-mint.png"
+import goodImg from "./img/repair/section3/northtech-good.png"
+import fairImg from "./img/repair/section3/northtech-fair.png"
 
 // repair section4 - images
 import repairSec4 from "./img/repair/repair-sec4.png"
@@ -71,11 +70,11 @@ import repairSec4 from "./img/repair/repair-sec4.png"
 import chatImg from "./img/chat.png"
 
 // logo - images
-import logoHeaderImg from "./img/logo/banana-logo-header.png"
-import logoFooterImg from "./img/logo/banana-logo-footer.png"
+import logoHeaderImg from "./img/logo/northtech-logo-header.png"
+import logoFooterImg from "./img/logo/northtech-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/banana-device-card.png"
+import deviceCardImg from "./img/northtech-device-card.png"
 
 // favicon - image
 import favicon from "./img/favicon.png"
@@ -110,7 +109,13 @@ const cardMobileData = {
       flag: "FRONTEND_REPAIR",
       href: "/quote",
     },
-    { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
+    {
+      img: buy,
+      title: "SHOP",
+      btnTitle: "SHOP",
+      flag: "FRONTEND_BUY",
+      href: "http://northtechshop.ca/",
+    },
     { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
   ],
 }
@@ -138,8 +143,8 @@ const contentFixData = [
     content: "QUICK_TURNAROUND_CONTENT",
   },
   {
-    title: "DAY_90_WARRANTY",
-    content: "DAY_90_WARRANTY_CONTENT",
+    title: "MONTH_6_WARRANTY",
+    content: "MONTH_6_WARRANTY_CONTENT",
   },
 ]
 
@@ -179,24 +184,24 @@ const devicelistData = [
 ]
 
 const colorPalle = {
-  orange: "#FEDA00",
-  themeColor: "#929292",
-  underLineCol: "#54BA71",
-  priceCol: "#54BA71",
-  repairButtonCol: "#7BBA42",
-  nextButtonCol: "#7BBA42",
-  repairChooseItemCol: "#A6A7AA",
-  repairBooktimeCol: "#7BBA42",
-  textThemeCol: "#54BA71",
-  heartCol: "#929292",
-  chatBgCol: "#929292",
-  sec2SvgCol: "#FEDA00",
+  orange: "#F67500",
+  themeColor: "#2B388F",
+  underLineCol: "#2B388F",
+  priceCol: "#F67500",
+  repairButtonCol: "#2B388F",
+  nextButtonCol: "#2B388F",
+  repairChooseItemCol: "#2B388F",
+  repairBooktimeCol: "#2B388F",
+  textThemeCol: "#2B388F",
+  heartCol: "#2B388F",
+  chatBgCol: "#2B388F",
+  sec2SvgCol: "#F67500",
 }
 
 const navItemsData = [
   { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
   { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
-  { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
+  { href: "http://northtechshop.ca/", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
   { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
@@ -301,10 +306,10 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
-  right: { ip: "705.957.2657", en: "ENGLISH", log: "LOG_IN" },
-  brandCol: "black",
-  brandThemeCol: "#FEDA00",
+  left: ["BUSINESS", "FINANCING"],
+  right: { ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN" },
+  brandCol: "white",
+  brandThemeCol: "#F67500",
   selectOption: ["ENGLISH", "FRENCH"],
 }
 
@@ -322,7 +327,7 @@ const avatarData = {
   userActive: userActive,
   userDeactive: userDeactive,
   cancel: cancel,
-  store: { img: store, link: "#" },
+  store: { img: store, link: "http://northtechshop.ca/" },
   storeBlue: storeBlue,
   menu: menu,
 }
@@ -331,7 +336,7 @@ const mobileNavItemData = {
   left: [
     { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
     { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
-    { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
+    { text: "SHOP", href: "http://northtechshop.ca/", flag: "FRONTEND_BUY" },
     { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
     { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
     { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
@@ -350,8 +355,7 @@ const mobileNavItemData = {
 
 const userNavItemData = [
   { text: "MY_ACCOUNT", href: "#", flag: "FRONTEND_USER_ACCOUNT" },
-  { text: "TRACK_REPAIR", href: "/quote", flag: "FRONTEND_REPAIR" },
-  { text: "FILE_A_CLAIM", href: "#", flag: "ALWAYS_TRUE" },
+  { text: "TRACKING", href: "#", flag: "ALWAYS_TRUE" },
   { text: "ORDERS", href: "#", flag: "ALWAYS_TRUE" },
   { text: "TRADE_IN", href: "#", flag: "FRONTEND_TRADE" },
 ]
@@ -362,8 +366,8 @@ const arrowData = {
 }
 
 const shapeData = {
-  cornerShape: { img: cornerShape, width: "" },
-  mockupShape: { img: mockupShape, width: "" },
+  cornerShape: { img: cornerShape, width: "100vw" },
+  mockupShape: "",
 }
 
 const footerImageData = {
@@ -380,9 +384,9 @@ const homeTextData = {
   },
   section1: {
     title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "ONTARIO_MOBILE_DEVICE_SPECIALISTS",
+    subtitle: "YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH",
     searchPlaceholder: "FIND_YOUR_DEVICE",
-    city: "Peterborough",
+    city: "Nunavut",
   },
   section2: {
     title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -391,10 +395,10 @@ const homeTextData = {
     title: "POPULAR_DEVICES",
     subtitle: ["BUY_NOW_PAY_LATER", "WHATEVER_WORKS_FOR_YOU"],
     content: "POPULAR_DEVICES_CONTENT",
-    color: "white",
+    color: "black",
   },
   section4: {
-    title: "WELCOME_BANANA",
+    title: "WELCOME_NORTHTECH",
     btnTitle: "OUR_QUALITY_CHARTER",
   },
   section5: {
@@ -407,34 +411,34 @@ const homeTextData = {
     btnTitle: "INSURE_MY_DEVICE",
   },
   section6: {
-    title: "SEE_WHY_CUSTOMERS_LOVE_BANANA",
+    title: "SEE_WHY_CUSTOMERS_LOVE_NORTHTECH",
     subtitle: "VIEW_MORE",
     review: [
       {
         score: 5,
-        days: "a month ago",
+        days: "2 months ago",
         content:
-          "I would highly recommend Banana Service. I went in today with a phone that I thought could possibly be beyond repair. The individual that I spoke with was extremely professional and honest. I was lucky that the damage was not as bad as I had thought, obviously they are the experts! They could have easily kept the phone and charged me what they originally quoted, and I would have never known the difference, but they didn't. I will not hesitate to use them in the future and will definitely recommend them to anyone I come across with a damaged phone.",
-        reviewer: "Adrian Moore",
+          "Best customer service. NorthTech will respond to your inquiries ASAP. They're more than helpful for your electronic needs & will have your orders ready upon arrival if requested. NorthTech also provides free delivery in Iqaluit NU or free shipping to communities in Nunavut!",
+        reviewer: "Niomie Kownirk",
       },
       {
         score: 5,
-        days: "a year ago",
+        days: "8 months ago",
         content:
-          "I was told it would take 2 weeks for my laptop to be fixed and I got it back in less than one week. They saved all of my data which is most thankful about.",
-        reviewer: "Yolanda Haris",
+          "Great customer service. Fast and friendly. My mom bought a phone off them a week ago and she dropped it, but these guys gave her a deal she couldn't refuse. I highly recommend them. Nakurmiik NorthTech!",
+        reviewer: "Martha Lawlor",
       },
       {
         score: 5,
-        days: "4 months ago",
+        days: "10 months ago",
         content:
-          "Great local and reliable business. Have done my phone, sons Xbox repair, laptop repair... very cool to have an all-in-one electronic service place for once. I’d give a 10 star if I could.",
-        reviewer: "Kent Wiseman",
+          "Dealing with this company has been a pleasant experience. They are quick to respond, go above and beyond to find you what you want, and offer quality products at an affordable price. I got an iPhone 11 Pro in Nov 2019 and so far, have zero complaints! I also got a MacBook Pro last month and I must say I am also very pleased! NorthTech also offers great warranties to help reassure you when making your purchase. Definitely recommend.",
+        reviewer: "Sandra Lanois-Bazinet",
       },
     ],
   },
   footer: {
-    title: { text: "", color: "" },
+    title: { text: "GIVING_BACK_TO_NORTH", color: "white" },
     gridVal: {
       mainGrid: [4, 8],
       subGrid: [11, 1],
@@ -444,7 +448,7 @@ const homeTextData = {
       { title: "", content: "" },
     ],
     contentSubTitle: "",
-    content: ["55 George St N a1, Peterborough, ON K9J 3G2", "BANANA_FOOTER_CONTENT_TWO"],
+    content: ["208 Sinaa, Iqaluit, NU", "NORTHTECH_FOOTER_CONTENT_TWO"],
     footerLink: [
       {
         name: "RESOURCES",
@@ -512,14 +516,14 @@ const repairData = {
       {
         img: receiveDevice,
         subtitle: "RECEIVE_YOUR_DEVICE",
-        content: "BANANA_RECEIVE_YOUR_DEVICE_CONTENT",
+        content: "NORTHTECH_RECEIVE_YOUR_DEVICE_CONTENT",
         type: "ReceiveDevice",
       },
     ],
   },
   section3: {
     title: "FROM_NEW_TO_RECONDITIONED",
-    content: "BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT",
+    content: "NORTHTECH_FROM_NEW_TO_RECONDITIONED_CONTENT",
     children: [
       {
         subtitle: "NEW",
@@ -546,27 +550,27 @@ const repairData = {
   section4: {
     title: "GET_THE_LATEST",
     content: "SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE",
-    btnTitle: "FIND_A_STORE",
+    btnTitle: "SHOP_NOW",
     img: repairSec4,
     themeCol: "black",
-    link: "#"
+    link: "http://northtechshop.ca/"
   },
 }
 
 const getTabData = (companyName) => {
   return {
-    title: `Cell Phone, iPhone & iPad Repair Peterborough | ${companyName ? companyName : ""}`,
-    metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Peterborough. Call ${
+    title: `Cell Phone, iPhone & iPad Repair Iqaluit | ${companyName ? companyName : ""}`,
+    metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Iqaluit. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-WQGQLXB');                                    
+        })(window,document,'script','dataLayer','GTM-NNZV9HL');        
         `,
-    bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGQLXB"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>                        
+    bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNZV9HL"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>        
         `,
   }
 }

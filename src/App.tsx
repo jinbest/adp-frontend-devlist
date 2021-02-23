@@ -28,7 +28,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 8,
+// const siteNum = 9,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -219,7 +219,11 @@ function App(): JSX.Element {
             <BaseRouter />
             <Chat subDomain={subDomain} features={features} />
             <Badge subDomain={subDomain} />
-            {footerStatus && <Footer subDomain={subDomain} features={features} />}
+            {footerStatus && (
+              <Provider headerStore={storesDetails}>
+                <Footer subDomain={subDomain} features={features} headerStore={storesDetails} />
+              </Provider>
+            )}
           </Router>
         ) : (
           <Preloader />
