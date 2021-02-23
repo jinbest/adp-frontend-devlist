@@ -59,9 +59,10 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [week, setWeek] = useState(date.getDay())
-  const [time, setTime] = useState(
-    date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
-  )
+  // const [time, setTime] = useState(
+  //   date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
+  // )
+  const [time, setTime] = useState("")
   const [selectVal, setSelectVal] = useState({
     code: storesDetails.cntUserLocation.length ? storesDetails.cntUserLocation[0].location_id : -1,
     name: storesDetails.cntUserLocation.length
@@ -151,7 +152,8 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     setMonth(date.getMonth())
     setYear(date.getFullYear())
     setWeek(date.getDay())
-    setTime(date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }))
+    // setTime(date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }))
+    setTime("")
   }, [date])
 
   useEffect(() => {
@@ -414,10 +416,16 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         alignItems: "center",
                       }}
                     >
-                      <p style={{ textAlign: "center", margin: "0 10px" }}>
-                        {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {DAYS_OF_THE_WEEK[week]},{" "}
-                        {MONTHS[month]} {day}, {year}
-                      </p>
+                      {time ? (
+                        <p style={{ textAlign: "center", margin: "0 10px" }}>
+                          {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {DAYS_OF_THE_WEEK[week]},{" "}
+                          {MONTHS[month]} {day}, {year}
+                        </p>
+                      ) : (
+                        <p style={{ textAlign: "center", margin: "0 10px" }}>
+                          You did not select time yet.
+                        </p>
+                      )}
                     </div>
                   </Grid>
                 </Grid>

@@ -334,8 +334,8 @@ export class LanguageKeysFr extends LanguageKeys {
   public WELCOME_NANOTECH = () => {
     return `Boutique d'appareils mobiles de confiance de Regina depuis 2010`
   }
-  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = (storeName: string) => {
-    return `Découvrez pourquoi les clients aiment la ${storeName}`
+  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = () => {
+    return `Découvrez pourquoi les clients aiment la NanoTech`
   }
   public REGINA_NORTH = "Regina Nord"
   public REGINA_EAST = "Regina Est"

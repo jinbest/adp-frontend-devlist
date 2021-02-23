@@ -78,7 +78,7 @@ const RepairServiceSummary = ({
     params.customer_postcode = repairWidgetStore.contactDetails.postalCode
     params.customer_country =
       repairWidgetStore.contactDetails.country && repairWidgetStore.contactDetails.country.code
-    params.customer_note = null
+    params.customer_note = repairWidgetStore.message
     params.customer_contact_method = repairWidgetStore.receiveQuote.code
     params.repairs = repairs
     params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate

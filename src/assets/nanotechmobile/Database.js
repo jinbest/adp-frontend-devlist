@@ -449,8 +449,8 @@ const homeTextData = {
         content: "1 (306) 757 6266 | info@nanotechrepair.ca J2 2095 Prince of Wales Regina, SK",
       },
     ],
-    contentSubTitle: "SASKATOON_NORTH",
-    content: ["9, 834 – 51st Street Saskatoon, SK", "NANOTECH_FOOTER_CONTENT_TWO"],
+    contentSubTitle: "",
+    content: ["2747 Avonhurst Dr, Regina, SK S4R 3J3", "NANOTECH_FOOTER_CONTENT_TWO"],
     footerLink: [
       {
         name: "RESOURCES",

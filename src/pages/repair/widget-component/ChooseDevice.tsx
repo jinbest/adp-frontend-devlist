@@ -499,7 +499,8 @@ const ChooseDevice = ({
                           key={index}
                           onClick={() => ChooseNextStep(index)}
                         >
-                          <img src={item.img} style={{ width: "80%" }} alt={item.alt} />
+                          {/* <img src={item.img} style={{ width: "80%" }} alt={item.alt} /> */}
+                          <img src={item.img} style={{ width: "80%" }} />
                         </div>
                       )
                     })}
@@ -526,7 +527,8 @@ const ChooseDevice = ({
                           >
                             <div className={subDomain + "-device-model-item"}>
                               <p className={subDomain + "-device-brand-subtitle"}>{item.name}</p>
-                              <img src={item.img} alt={item.alt} />
+                              {/* <img src={item.img} alt={item.alt} /> */}
+                              <img src={item.img} />
                             </div>
                           </div>
                         )

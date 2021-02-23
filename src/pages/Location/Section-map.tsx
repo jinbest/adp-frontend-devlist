@@ -145,6 +145,7 @@ const SectionMap = inject("headerStore")(
       if (locations && locations.length === 1) {
         setExpanded(0)
         setIsExpanded(true)
+        setSelectedLocation(locations[0])
       }
     }, [locations])
 

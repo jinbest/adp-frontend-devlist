@@ -80,6 +80,11 @@ function App(): JSX.Element {
       .catch((error) => {
         console.log("Error in get Store Details", error)
       })
+    // const timer = setTimeout(() => {
+    //   const chatWidget = document.getElementById("reamaze-wrapper") as HTMLDivElement
+    //   console.log("chatWidget", chatWidget)
+    // }, 3000)
+    // return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {

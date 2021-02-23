@@ -598,6 +598,8 @@ const getTabData = (companyName) => {
     _support['ui']['enableKb'] = 'true';
     _support['ui']['styles'] = {
     widgetColor: 'rgb(237, 35, 36)',
+    width: '350px',
+    height: '550px',
     gradient: true,
     };
     _support['ui']['widget'] = {

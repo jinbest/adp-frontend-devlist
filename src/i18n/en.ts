@@ -325,8 +325,8 @@ export class LanguageKeys {
   public WELCOME_NANOTECH = () => {
     return `Regina’s trusted mobile device shop since 2010`
   }
-  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = (storeName: string) => {
-    return `See Why Customers Love ${storeName}`
+  public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = () => {
+    return `See Why Customers Love NanoTech`
   }
   public REGINA_NORTH = "Regina North"
   public REGINA_EAST = "Regina East"
