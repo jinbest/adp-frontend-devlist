@@ -331,8 +331,8 @@ export class LanguageKeysFr extends LanguageKeys {
   /* Nanotech Website Text */
   public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS =
     "Spécialistes des appareils mobiles de la Saskatchewan"
-  public WELCOME_NANOTECH = (storeName: string) => {
-    return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Saskatchewan`
+  public WELCOME_NANOTECH = () => {
+    return `Boutique d'appareils mobiles de confiance de Regina depuis 2010`
   }
   public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = (storeName: string) => {
     return `Découvrez pourquoi les clients aiment la ${storeName}`
@@ -353,10 +353,14 @@ export class LanguageKeysFr extends LanguageKeys {
   public YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH =
     "Vos solutions abordables pour la technologie dans le Nord"
   public WELCOME_NORTHTECH = (storeName: string) => {
-    return `Bienvenue chez ${storeName.replace(/ Inc/g,'').replace(/ Inc./g,'')}, vos solutions abordables pour la technologie dans le Nord`
+    return `Bienvenue chez ${storeName
+      .replace(/ Inc/g, "")
+      .replace(/ Inc./g, "")}, vos solutions abordables pour la technologie dans le Nord`
   }
   public SEE_WHY_CUSTOMERS_LOVE_NORTHTECH = (storeName: string) => {
-    return `Découvrez pourquoi les clients aiment la ${storeName.replace(/ Inc/g,'').replace(/ Inc./g,'')}`
+    return `Découvrez pourquoi les clients aiment la ${storeName
+      .replace(/ Inc/g, "")
+      .replace(/ Inc./g, "")}`
   }
   public GIVING_BACK_TO_NORTH = "Redonner au Nord"
   public NORTHTECH_FOOTER_CONTENT_TWO = (storeName: string) => {
