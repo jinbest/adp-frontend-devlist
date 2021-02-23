@@ -9,6 +9,7 @@ import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
+import findLocationAPI from "./services/api/findLocationAPI"
 import { Helmet } from "react-helmet"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
@@ -27,7 +28,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 2,
+// const siteNum = 8,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -112,6 +113,15 @@ function App(): JSX.Element {
           }
           setFeatures(feats)
           setLoadStatus(true)
+        })
+        .catch((error) => {
+          console.log("Error in get Features", error)
+        })
+      findLocationAPI
+        .findAllLocation(storeId)
+        .then((res: any) => {
+          const locationData = res.data as any[]
+          storesDetails.changeAddLocations(locationData)
         })
         .catch((error) => {
           console.log("Error in get Features", error)

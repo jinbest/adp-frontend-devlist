@@ -14,6 +14,7 @@ export class StoresDetails {
     @observable is_voided = false
     @observable customer_id = -1
     @observable type = "QUOTE" /* type is 'QUOTE' or 'APPOINTMENT' */
+    @observable allLocations: any[] = []
 
     constructor() {
         this.load()
@@ -34,6 +35,7 @@ export class StoresDetails {
                 is_voided: this.is_voided,
                 customer_id: this.customer_id,
                 type: this.type,
+                allLocations: this.allLocations
             })
         )
 
@@ -50,6 +52,12 @@ export class StoresDetails {
     @action
     changeFindAddLocation = (findAddLocation: any[]) => {
         this.findAddLocation = this.sortDataByDistance(findAddLocation)
+        this.save()
+    }
+
+    @action
+    changeAddLocations = (allLocations: any[]) => {
+        this.allLocations = this.sortDataByDistance(allLocations)
         this.save()
     }
 

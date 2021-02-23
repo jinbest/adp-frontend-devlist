@@ -79,11 +79,17 @@
     display: block;
   }
   .#{$folderName}-footer {
-    background-image: url("../img/footer/mobiletech-footer-shape-mobile.png");
+    background-image: url("../img/footer/banana-footer-shape-mobile.png");
     padding: 190px 20px 30px;
   }
   .#{$folderName}-back-to-top {
     left: 10px !important;
+  }
+}
+
+@media (max-width: 810px) {
+  .#{$folderName}-container-header > a > img {
+    height: 25px;
   }
 }
 
@@ -97,7 +103,7 @@
     display: none;
   }
   .#{$folderName}-section1-top {
-    margin-top: 210px !important;
+    // margin-top: 210px !important;
     margin-bottom: 50px !important;
   }
   // .#{$folderName}-container-header {
@@ -121,11 +127,11 @@
     text-align: left;
     display: block;
   }
-  // .#{$folderName}-corner-shape {
-  //   width: 60vw;
-  // }
+  .#{$folderName}-corner-shape {
+    width: 60vw;
+  }
   .#{$folderName}-footer {
-    background-image: url("../img/footer/mobiletech-footer-shape-mobile.png");
+    background-image: url("../img/footer/banana-footer-shape-mobile.png");
   }
   .#{$folderName}-service-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
@@ -172,6 +178,9 @@
 }
 
 @media (max-width: 600px) {
+  .#{$folderName}-footer {
+    padding: 80px 20px 30px;
+  }
   .#{$folderName}-device-list-grid {
     display: block;
     text-align: center;
@@ -209,9 +218,6 @@
   .#{$folderName}-input-component {
     font-size: 3vw !important;
     padding: 20px 15px;
-  }
-  .#{$folderName}-sec6-container {
-    padding-bottom: 0px;
   }
 }
 
@@ -312,7 +318,7 @@
   } */
   .#{$folderName}-section1-top {
     margin-bottom: 25px !important;
-    margin-top: 190px !important;
+    margin-top: 200px !important;
   }
   .#{$folderName}-section-title {
     margin: 1rem 0 !important;
@@ -324,12 +330,11 @@
     margin: 4rem auto !important;
   }
   .#{$folderName}-sec6-container {
-    padding-top: 50px;
-    padding-bottom: 150px;
+    padding-top: 1rem;
   }
-  .#{$folderName}-footer {
-    margin-top: -100px;
-  }
+  // .#{$folderName}-footer {
+  //   margin-top: -100px;
+  // }
   .#{$folderName}-footer-buynow {
     height: 26px;
   }
@@ -341,12 +346,12 @@
     font-size: 3.5vw !important;
     padding: 20px 15px;
   }
+  .#{$folderName}-container-header > a > img {
+    height: 20px;
+  }
 }
 
 @media (max-width: 380px) {
-  .#{$folderName}-container-header > a > img {
-    height: 30px;
-  }
   .#{$folderName}-avatar-div > img {
     height: 20px;
     margin: 0 6px;

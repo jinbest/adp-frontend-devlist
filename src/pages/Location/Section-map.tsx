@@ -106,13 +106,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     item1: {
-      order: 2,
+      order: 1,
       [theme.breakpoints.up("lg")]: {
         order: 1,
       },
     },
     item2: {
-      order: 1,
+      order: 2,
       [theme.breakpoints.up("lg")]: {
         order: 2,
       },

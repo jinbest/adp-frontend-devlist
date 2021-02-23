@@ -23,7 +23,7 @@
   margin: 0 auto;
   left: 0px;
   top: 0px;
-  background-color: #2b388f;
+  background-color: #054dfa;
 }
 
 .#{$folderName}-container-header {
@@ -41,7 +41,8 @@
 }
 
 .#{$folderName}-container-header > a > img {
-  height: 40px;
+  height: 30px;
+  margin-top: 10px;
 }
 
 .#{$folderName}-container-header .text-1 {

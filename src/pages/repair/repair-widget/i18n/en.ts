@@ -284,12 +284,12 @@ export class LanguageKeys {
     "Choose your new phone among our 4 grades, with DeviceList it’s easy to choose for any budget!"
 
   /* Prado Wireless Website */
-  public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = "British Columbia's mobile device specialists"
+  public BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS = "Victoria's mobile device specialists"
   public WELCOME_PRADO_WIRELESS =
-    "Welcome to Prado Wireless, British Columbia's mobile device marketplace"
+    "Welcome to Prado Wireless, Victoria's mobile device marketplace"
   public SEE_WHY_CUSTOMERS_LOVE_PRADO_WIRELESS = "See Why Customers Love Prado Wireless"
   public PRADO_FOOTER_CONTENT_TWO =
-    '© 2020 Prado Wireless 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 British Columbia Inc. o/a "Prado Wireless" does not own or make claim to those trademarks used on this website in which it is not the holder.'
+    '© 2020 Prado Wireless 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Victoria Inc. o/a "Prado Wireless" does not own or make claim to those trademarks used on this website in which it is not the holder.'
   public PRADO_RECEIVE_YOUR_DEVICE_CONTENT =
     "Prado Wireless repairs your device and notifies you of pick up or delivery date."
   public PRADO_FROM_NEW_TO_RECONDITIONED_CONTENT =

@@ -1,9 +1,9 @@
 .#{$folderName}-footer {
-  padding: 250px 20px 30px;
+  padding: 270px 20px 30px;
   position: relative;
   z-index: 1;
   overflow: hidden;
-  background-image: url('../img/footer/mobiletech-footer-shape-desktop.png');
+  background-image: url('../img/footer/banana-footer-shape-desktop.png');
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -12,41 +12,6 @@
 .#{$folderName}-footer-container {
   max-width: 1440px;
   margin: auto;
-  visibility: hidden;
-}
-
-.#{$folderName}-footer-container-special {
-  max-width: 1440px;
-  margin: auto;
-  position: relative;
-}
-
-.#{$folderName}-footer-special-content {
-  width: 90vw;
-  max-width: 1440px;
-}
-
-.#{$folderName}-footer-container-special .#{$folderName}-special-footer {
-  position: absolute;
-  top: -230px;
-}
-
-@media (max-width: 1300px) {
-  .#{$folderName}-footer-container-special .#{$folderName}-special-footer {
-    top: -270px;
-  }
-}
-
-@media (max-width: 960px) {
-  .#{$folderName}-footer-container {
-    visibility: visible;
-  }
-  .#{$folderName}-footer-container-special {
-    display: none;
-  }
-  .#{$folderName}-footer_link {
-    display: none;
-  }
 }
 
 .#{$folderName}-footer_link {
@@ -70,7 +35,6 @@
 .#{$folderName}-footer-images-div {
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
 }
 
 .#{$folderName}-footer-images-div > div {
@@ -121,4 +85,14 @@
 
 .#{$folderName}-device-list-grid > div {
   margin: 20px 0;
+}
+
+.#{$folderName}-footer-container-special {
+  display: none;
+}
+
+.#{$folderName}-footer-subContent-title {
+  font-weight: bold;
+  margin-bottom: -20px;
+  margin-top: 25px;
 }
