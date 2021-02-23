@@ -382,7 +382,7 @@ const homeTextData = {
     title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
     subtitle: "BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
-    city: "British Columbia",
+    city: "Victoria",
   },
   section2: {
     title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
@@ -547,7 +547,7 @@ const repairData = {
     btnTitle: "FIND_A_STORE",
     img: repairSec4,
     themeCol: "black",
-    link: "#"
+    link: "#",
   },
 }
 

@@ -555,7 +555,7 @@ const repairData = {
     btnTitle: "FIND_A_STORE",
     img: repairSec4,
     themeCol: "black",
-    link: "#"
+    link: "#",
   },
 }
 
