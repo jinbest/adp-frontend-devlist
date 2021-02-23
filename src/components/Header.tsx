@@ -210,10 +210,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           )}
           {mobile && (
             <Link
-              // href="https://g.page/MobileTechLabCorydon?share"
               to="/contact"
-              // target="_blank"
-              // rel="noreferrer"
               style={{
                 color: brandItemLink.brandCol,
                 height: "25px",

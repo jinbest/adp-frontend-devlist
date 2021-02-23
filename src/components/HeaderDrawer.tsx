@@ -120,9 +120,9 @@ const HeaderDrawer = inject("headerStore")(
       setLocSelStatus(headerStore.cntUserLocationSelected)
     }, [])
 
-    useEffect(() => {
-      console.log(storeStatus, locSelStatus)
-    }, [storeStatus, locSelStatus])
+    // useEffect(() => {
+    //   console.log(storeStatus, locSelStatus)
+    // }, [storeStatus, locSelStatus])
 
     const handleFindStore = () => {
       if (!storeStatus) {
