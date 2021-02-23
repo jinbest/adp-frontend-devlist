@@ -296,7 +296,7 @@ export class LanguageKeys {
     "Choose your new phone among our 4 grades, with Prado Wireless it's easy to choose for any budget!"
 
   /* Nanotech Website Text */
-  public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS = "Saskatchewan's mobile device specialists"
+  public REGINA_MOBILE_DEVICE_SPECIALISTS = "Regina’s trusted mobile device shop since 2010"
   public WELCOME_NANOTECH = "Regina’s trusted mobile device shop since 2010"
   public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = "See Why Customers Love Nanotech"
   public REGINA_NORTH = "Regina North"
