@@ -297,7 +297,7 @@ export class LanguageKeys {
 
   /* Nanotech Website Text */
   public SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS = "Saskatchewan's mobile device specialists"
-  public WELCOME_NANOTECH = "Welcome to Nanotech, Saskatchewan's mobile device marketplace"
+  public WELCOME_NANOTECH = "Regina’s trusted mobile device shop since 2010"
   public SEE_WHY_CUSTOMERS_LOVE_NANOTECH = "See Why Customers Love Nanotech"
   public REGINA_NORTH = "Regina North"
   public REGINA_EAST = "Regina East"

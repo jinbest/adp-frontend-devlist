@@ -44,7 +44,10 @@ class Section1 extends React.Component<Props> {
             <Grid item xs={12} sm={7}>
               <Typography
                 className={subDomain + "-service-section-title-1"}
-                style={{ color: repair.themeCol }}
+                style={{
+                  color: repair.themeCol,
+                  textShadow: `1px 0 ${repair.themeCol}`,
+                }}
               >
                 <T id={repair.title} />
               </Typography>

@@ -513,7 +513,11 @@ const CustomizedMenus = inject("headerStore")(
                                     return (
                                       <p
                                         className={subDomain + "-block-content"}
-                                        style={{ textDecoration: "none", opacity: 1 }}
+                                        style={{
+                                          textDecoration: "none",
+                                          opacity: 1,
+                                          cursor: "default",
+                                        }}
                                         key={idx}
                                       >
                                         {t(itm)}
@@ -526,7 +530,11 @@ const CustomizedMenus = inject("headerStore")(
                                     return (
                                       <p
                                         className={subDomain + "-block-content"}
-                                        style={{ textDecoration: "none", opacity: 1 }}
+                                        style={{
+                                          textDecoration: "none",
+                                          opacity: 1,
+                                          cursor: "default",
+                                        }}
                                         key={idx}
                                       >
                                         {t(itm)}

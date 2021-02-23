@@ -209,10 +209,8 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             </ul>
           )}
           {mobile && (
-            <a
-              href="https://g.page/MobileTechLabCorydon?share"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/contact"
               style={{
                 color: brandItemLink.brandCol,
                 height: "25px",
@@ -225,7 +223,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             >
               <RoomOutlinedIcon />
               Directions
-            </a>
+            </Link>
           )}
           <ul
             style={{

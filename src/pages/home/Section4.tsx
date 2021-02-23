@@ -19,7 +19,10 @@ const Section4 = ({ subDomain }: Props) => {
         <Box className={subDomain + "-sec4-container-box"}>
           <Grid container item xs={12}>
             <Grid item xs={12} sm={12} md={6}>
-              <Typography className={"f40 bold " + subDomain + "-section4-title"}>
+              <Typography
+                className={"f40 bold " + subDomain + "-section4-title"}
+                style={{ color: "black", textShadow: "1px 0 black" }}
+              >
                 <T id={data.homeTextData.section4.title} data={storesDetails.storesDetails.name} />
               </Typography>
               {/* <Box className={subDomain + '-section4-button mobile'}>

@@ -86,10 +86,18 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   return (
     <section className={subDomain + "-Container"}>
       <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-        <h1 className={subDomain + "-section1-title"}>
+        <h1
+          className={subDomain + "-section1-title"}
+          style={{ color: "black", textShadow: "1px 0 black" }}
+        >
           {t("REPAIR") + ", " + t("BUY") + " & " + t("PROTECT") + " " + t("YOUR")}
         </h1>
-        <h1 className={subDomain + "-section1-title"}>{t("ESSENTIAL_MOBILE_DEVICE")}</h1>
+        <h1
+          className={subDomain + "-section1-title"}
+          style={{ color: "black", textShadow: "1px 0 black" }}
+        >
+          {t("ESSENTIAL_MOBILE_DEVICE")}
+        </h1>
         {/* <h1 className={subDomain + "-section1-title"}>{t('REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE')}</h1> */}
         <Typography className={subDomain + "-section1-subtitle"}>
           <T id={"CITY_MOBILE_DEVICE_SPECIALISTS"} data={data.homeTextData.section1.city} />

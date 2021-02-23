@@ -59,9 +59,10 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [week, setWeek] = useState(date.getDay())
-  const [time, setTime] = useState(
-    date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
-  )
+  // const [time, setTime] = useState(
+  //   date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
+  // )
+  const [time, setTime] = useState("")
   const [selectVal, setSelectVal] = useState({
     code: storesDetails.cntUserLocation.length ? storesDetails.cntUserLocation[0].location_id : -1,
     name: storesDetails.cntUserLocation.length
@@ -151,7 +152,8 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     setMonth(date.getMonth())
     setYear(date.getFullYear())
     setWeek(date.getDay())
-    setTime(date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }))
+    // setTime(date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }))
+    setTime("")
   }, [date])
 
   useEffect(() => {
@@ -216,14 +218,28 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           timezone: timeZoneList[tzIndex].offset,
         },
       })
-      const cntSelectDate = year + "-" + (month + 1) + "-" + day
-      repairWidgetStore.changeRepairWidgetInitialValue({
-        selectDate: cntSelectDate,
-        selected_start_time: new Date(cntSelectDate).getDay() === 0 ? "10:00" : "09:00",
-        selected_end_time: new Date(cntSelectDate).getDay() === 0 ? "16:00" : "17:30",
-      })
+      handleChangeSelectTime(time)
     }
     handleStep(step + 1)
+  }
+
+  const handleChangeSelectTime = (val: string) => {
+    if (!val) return
+    const ptrVal: any[] = val.split(" ")
+    let hr = 9,
+      min = ""
+    if (ptrVal[1] === "AM") {
+      hr = ptrVal[0].split(":")[0]
+    } else {
+      hr = parseInt(ptrVal[0].split(":")[0]) + 12
+    }
+    min = ptrVal[0].split(":")[1]
+    const repairSelectedTime: any = {
+      selectDate: year + "-" + (month + 1) + "-" + day,
+      selected_start_time: hr + ":" + min,
+      selected_end_time: null,
+    }
+    repairWidgetStore.changeRepairWidgetInitialValue(repairSelectedTime)
   }
 
   const onKeyPress = useCallback(
@@ -414,10 +430,16 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         alignItems: "center",
                       }}
                     >
-                      <p style={{ textAlign: "center", margin: "0 10px" }}>
-                        {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {DAYS_OF_THE_WEEK[week]},{" "}
-                        {MONTHS[month]} {day}, {year}
-                      </p>
+                      {time ? (
+                        <p style={{ textAlign: "center", margin: "0 10px" }}>
+                          {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {DAYS_OF_THE_WEEK[week]},{" "}
+                          {MONTHS[month]} {day}, {year}
+                        </p>
+                      ) : (
+                        <p style={{ textAlign: "center", margin: "0 10px" }}>
+                          You did not select time yet.
+                        </p>
+                      )}
                     </div>
                   </Grid>
                 </Grid>

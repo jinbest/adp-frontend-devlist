@@ -27,7 +27,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 0,
+// const siteNum = 2,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -80,6 +80,11 @@ function App(): JSX.Element {
       .catch((error) => {
         console.log("Error in get Store Details", error)
       })
+    // const timer = setTimeout(() => {
+    //   const chatWidget = document.getElementById("reamaze-wrapper") as HTMLDivElement
+    //   console.log("chatWidget", chatWidget)
+    // }, 3000)
+    // return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {

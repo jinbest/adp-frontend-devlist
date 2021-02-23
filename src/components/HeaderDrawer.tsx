@@ -120,9 +120,9 @@ const HeaderDrawer = inject("headerStore")(
       setLocSelStatus(headerStore.cntUserLocationSelected)
     }, [])
 
-    useEffect(() => {
-      console.log(storeStatus, locSelStatus)
-    }, [storeStatus, locSelStatus])
+    // useEffect(() => {
+    //   console.log(storeStatus, locSelStatus)
+    // }, [storeStatus, locSelStatus])
 
     const handleFindStore = () => {
       if (!storeStatus) {
@@ -340,11 +340,18 @@ const HeaderDrawer = inject("headerStore")(
                             }}
                           >
                             {isExternal(item.href) ? (
-                              <a href={item.href} target="_blank" rel="noreferrer">
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{ display: "flex" }}
+                              >
                                 {t(item.text)}
                               </a>
                             ) : (
-                              <Link to={item.href}>{t(item.text)}</Link>
+                              <Link to={item.href} style={{ display: "flex" }}>
+                                {t(item.text)}
+                              </Link>
                             )}
                           </div>
                         )}
