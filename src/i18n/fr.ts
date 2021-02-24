@@ -409,8 +409,7 @@ export class LanguageKeysFr extends LanguageKeys {
 
   /* Banana Website Text */
   public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles de l'Peterborough"
-  public WELCOME_BANANA = (storeName: string) => {
-    console.log(storeName)
+  public WELCOME_BANANA = () => {
     return `Magasin de téléphonie cellulaire et d’informatique de confiance`
   }
   public SEE_WHY_CUSTOMERS_LOVE_BANANA = (storeName: string) => {

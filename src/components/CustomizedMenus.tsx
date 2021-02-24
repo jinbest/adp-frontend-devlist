@@ -93,7 +93,7 @@ const StyledMenu = withStyles({
     overflow: "inherit",
     marginTop: "5px",
     border: "1px solid #C4C4C4",
-    paddingBottom: "15px",
+    // paddingBottom: "15px",
   },
 })((props: MenuProps) => (
   <Menu
@@ -495,30 +495,32 @@ const CustomizedMenus = inject("headerStore")(
                   </a>
                 )}
               </div>
-              <FeatureToggles features={features}>
-                <Feature
-                  name="FRONTEND_REPAIR"
-                  inactiveComponent={() => <></>}
-                  activeComponent={() => (
-                    <Link
-                      to="/get-quote"
-                      style={{ textDecoration: "none" }}
-                      onClick={handleBookRepair}
-                    >
-                      <Button
-                        title={t("BOOK_APPOINTMENT")}
-                        bgcolor={themeColor}
-                        borderR="20px"
-                        width="175px"
-                        height="30px"
-                        margin="0"
-                        fontSize="15px"
-                        subDomain={subDomain}
-                      />
-                    </Link>
-                  )}
-                />
-              </FeatureToggles>
+              {headerStore.findAddLocation.length > 1 && (
+                <FeatureToggles features={features}>
+                  <Feature
+                    name="FRONTEND_REPAIR"
+                    inactiveComponent={() => <></>}
+                    activeComponent={() => (
+                      <Link
+                        to="/get-quote"
+                        style={{ textDecoration: "none" }}
+                        onClick={handleBookRepair}
+                      >
+                        <Button
+                          title={t("BOOK_APPOINTMENT")}
+                          bgcolor={themeColor}
+                          borderR="20px"
+                          width="175px"
+                          height="30px"
+                          margin="0"
+                          fontSize="15px"
+                          subDomain={subDomain}
+                        />
+                      </Link>
+                    )}
+                  />
+                </FeatureToggles>
+              )}
             </div>
             {locSelStatus && (
               <React.Fragment>

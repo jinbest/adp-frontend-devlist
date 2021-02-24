@@ -398,8 +398,7 @@ export class LanguageKeys {
 
   /* Banana Website Text */
   public ONTARIO_MOBILE_DEVICE_SPECIALISTS = "Peterborough's mobile device specialists"
-  public WELCOME_BANANA = (storeName: string) => {
-    console.log(storeName)
+  public WELCOME_BANANA = () => {
     return `Peterborough’s Trusted Cell Phone & Computer Shop`
   }
   public SEE_WHY_CUSTOMERS_LOVE_BANANA = (storeName: string) => {

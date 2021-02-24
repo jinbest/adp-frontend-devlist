@@ -29,7 +29,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 8,
+// const siteNum = 3,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -63,7 +63,7 @@ function App(): JSX.Element {
     setTagScript(storeTabData.headTag)
 
     loadScript(storeTabData.bodyTag)
-    if (subDomain === "mobiletechlab" || subDomain === "nanotechmobile") {
+    if (storeTabData.scriptTag) {
       const script = document.createElement("script")
       script.type = "text/javascript"
       script.prepend(storeTabData.scriptTag)
