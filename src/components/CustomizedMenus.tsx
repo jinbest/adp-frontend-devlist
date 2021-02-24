@@ -224,7 +224,7 @@ const CustomizedMenus = inject("headerStore")(
             if (res.data.length) {
               headerStore.changeFindAddLocation(res.data)
               setLocations(makeLocations([headerStore.findAddLocation[0]]))
-              setLocSelStatus(true)
+              // setLocSelStatus(true)
               headerStore.changeLocationID(headerStore.findAddLocation[0].id)
             } else {
               setToastParams({
@@ -248,15 +248,20 @@ const CustomizedMenus = inject("headerStore")(
     }, [pos, locations])
 
     useEffect(() => {
-      console.log(locSelStatus, locations.length)
       if (locSelStatus || !locations.length) {
         setContentWidth("215px")
-        setMyStore("Nearest Location")
       } else {
         setContentWidth("500px")
-        setMyStore("All Locations")
       }
       headerStore.changeCntUserLocationSelected(locSelStatus)
+      if (locations.length <= 1) {
+        setMyStore("Nearest Location")
+      } else {
+        setMyStore("All Locations")
+      }
+      if (locSelStatus) {
+        setMyStore("Selected Location")
+      }
     }, [locSelStatus, locations])
 
     useEffect(() => {
@@ -327,7 +332,7 @@ const CustomizedMenus = inject("headerStore")(
           if (res.data.length) {
             headerStore.changeFindAddLocation(res.data)
             setLocations(makeLocations([headerStore.findAddLocation[0]]))
-            setLocSelStatus(true)
+            // setLocSelStatus(true)
             headerStore.changeLocationID(headerStore.findAddLocation[0].id)
           } else {
             setToastParams({
@@ -460,15 +465,16 @@ const CustomizedMenus = inject("headerStore")(
                     {t("VIEW_STORE_DETAILS")}
                   </a>
                 )}
-                {headerStore.findAddLocation.length > 1 && locSelStatus && (
-                  <a
-                    className={subDomain + "-link"}
-                    style={{ color: underLineCol }}
-                    onClick={viewMoreStores}
-                  >
-                    {t("VIEW_MORE_STORES")}
-                  </a>
-                )}
+                {headerStore.findAddLocation.length > 1 &&
+                  locations.length < headerStore.findAddLocation.length && (
+                    <a
+                      className={subDomain + "-link"}
+                      style={{ color: underLineCol }}
+                      onClick={viewMoreStores}
+                    >
+                      {t("VIEW_MORE_STORES")}
+                    </a>
+                  )}
                 {locSelStatus && (
                   <a
                     className={subDomain + "-link"}
