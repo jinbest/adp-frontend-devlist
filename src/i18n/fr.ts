@@ -50,7 +50,8 @@ export class LanguageKeysFr extends LanguageKeys {
   public QUICK_TURNAROUND = "REVISION RAPIDE"
   public QUICK_TURNAROUND_CONTENT =
     "Nous savons que vous n'avez pas toute la journée, nous vous retournerons votre appareil le plus rapidement possible. La plupart de nos réparations peuvent être effectuées en moins de deux heures."
-  public DAY_90_WARRANTY = "GARANTIE 90 JOURS"
+  public DAY_30_WARRANTY = "Garantie 30 Jours"
+  public DAY_90_WARRANTY = "GARANTIE 30 JOURS"
   public DAY_90_WARRANTY_CONTENT =
     "Toutes les réparations sont couvertes par notre garantie de 90 jours sans tracas. Cette garantie. Cette garantie est valable dans tous nos sites dans le monde."
   public POPULAR_DEVICES = "Appareils populaires"
@@ -422,6 +423,23 @@ export class LanguageKeysFr extends LanguageKeys {
     `Le service ${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
   public BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT =
     "Choisissez votre nouveau téléphone parmi nos 4 grades, avec le service banane, il est facile de choisir pour tous les budgets!"
+
+  /* ReparationCellular Website Text */
+  public REPARATIONCELL_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
+  public WELCOME_REPARATIONCELL = (storeName: string) => {
+    return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+  }
+  public SEE_WHY_CUSTOMERS_LOVE_REPARATIONCELL = (storeName: string) => {
+    return `See Why Customers Love ${storeName}`
+  }
+  public REPARATIONCELL_FOOTER_CONTENT_TWO = (storeName: string) => {
+    return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+  }
+  public REPARATIONCELL_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+    return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+  }
+  public REPARATIONCELL_FROM_NEW_TO_RECONDITIONED_CONTENT =
+    "Choose your new phone among our 4 grades, with Wireless Rev it's easy to choose for any budget!"
 }
 
 export default LanguageKeysFr

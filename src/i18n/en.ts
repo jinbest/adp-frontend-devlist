@@ -47,9 +47,10 @@ export class LanguageKeys {
   public QUICK_TURNAROUND = "QUICK TURNAROUND"
   public QUICK_TURNAROUND_CONTENT =
     "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours."
-  public DAY_90_WARRANTY = "90 DAY WARRANTY"
+  public DAY_30_WARRANTY = "30 Days Warranty"
+  public DAY_90_WARRANTY = "90 DAYS WARRANTY"
   public DAY_90_WARRANTY_CONTENT =
-    "All of repairs are backed with our 90-day, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide."
+    "All of repairs are backed with our 90-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide."
   public POPULAR_DEVICES = "Popular Devices"
   public BUY_NOW_PAY_LATER = "Buy now. Pay later."
   public WHATEVER_WORKS_FOR_YOU = "Whatever works for you."
@@ -411,6 +412,23 @@ export class LanguageKeys {
     `${storeName} repairs your device and notifies you of pick up or delivery date.`
   public BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT =
     "Choose your new phone among our 4 grades, with Banana Service it's easy to choose for any budget!"
+
+  /* ReparationCellular Website Text */
+  public REPARATIONCELL_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
+  public WELCOME_REPARATIONCELL = (storeName: string) => {
+    return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+  }
+  public SEE_WHY_CUSTOMERS_LOVE_REPARATIONCELL = (storeName: string) => {
+    return `See Why Customers Love ${storeName}`
+  }
+  public REPARATIONCELL_FOOTER_CONTENT_TWO = (storeName: string) => {
+    return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
+  }
+  public REPARATIONCELL_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
+    return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+  }
+  public REPARATIONCELL_FROM_NEW_TO_RECONDITIONED_CONTENT =
+    "Choose your new phone among our 4 grades, with Wireless Rev it's easy to choose for any budget!"
 }
 
 export type LangProps = keyof LanguageKeys

@@ -78,7 +78,8 @@ import logoFooterImg from "./img/logo/nanotech-logo-footer.png"
 import deviceCardImg from "./img/nanotech-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,
@@ -574,6 +575,37 @@ const getTabData = (companyName) => {
     bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BV2QS9"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>              
         `,
+    scriptTag: `
+    var _support = _support || { 'ui': {}, 'user': {} }; 
+    _support['account'] = 'nanotech'; 
+    _support['ui']['contactMode'] = 'anonymous'; 
+    _support['ui']['enableKb'] = 'false'; 
+    _support['ui']['styles'] = { 
+      widgetColor: 'rgb(7, 164, 224)', 
+      gradient: true, 
+    }; 
+    _support['ui']['widget'] = { 
+      displayOn: 'all', 
+      label: { 
+        text: 'Let us know if you have any questions! &#128522;', 
+        mode: "notification", 
+        delay: 5, 
+        duration: 30, 
+        sound: true, 
+      }, 
+      position: 'bottom-right', 
+      size: 50, 
+      mobilePosition: 'bottom-right', 
+      mobileSize: 50 
+    }; 
+    _support['apps'] = { 
+      faq: {
+        "enabled":false
+      }, 
+      recentConversations: {}, 
+      orders: {} 
+    }; 
+    `,
   }
 }
 

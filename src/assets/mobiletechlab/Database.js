@@ -79,7 +79,8 @@ import logoFooterImg from "./img/logo/mobiletech-logo-footer.png"
 import deviceCardImg from "./img/mobiletech-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,
@@ -610,8 +611,9 @@ const getTabData = (companyName) => {
         sound: true,
       },
       position: 'bottom-right',
-      // size: 55,
-      mobilePosition: 'bottom-right'
+      size: 50,
+      mobilePosition: 'bottom-right',
+      mobileSize: 50 
     };
     _support['apps'] = {
       faq: {"enabled":true},

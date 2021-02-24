@@ -1,0 +1,14 @@
+.#{$folderName}-logo-header {
+  height: 50px;
+}
+
+.#{$folderName}-logo-footer {
+  height: 100px;
+  margin-top: -90px;
+}
+
+@media (max-width: 600px) {
+  .#{$folderName}-logo-footer {
+    margin-top: 0;
+  }
+}
