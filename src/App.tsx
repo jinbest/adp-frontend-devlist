@@ -24,11 +24,12 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "northtechsolutions", domain: "northtechsolutions.ca" },
 //   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
 //   { name: "pradowireless", domain: "pradowireless.com" },
+//   { name: "reparationcellularbsl", domain: "reparationcellularbsl.ca" },
 //   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 2,
+// const siteNum = 3,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -56,15 +57,13 @@ function App(): JSX.Element {
 
   useEffect(() => {
     const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
-    const favIcon = document.getElementById("favicon") as HTMLLinkElement
-    favIcon.href = mainData.fav.img
 
     setPageTitle(storeTabData.title)
     setMetaDescription(storeTabData.metaDescription)
     setTagScript(storeTabData.headTag)
 
     loadScript(storeTabData.bodyTag)
-    if (subDomain === "mobiletechlab") {
+    if (storeTabData.scriptTag) {
       const script = document.createElement("script")
       script.type = "text/javascript"
       script.prepend(storeTabData.scriptTag)
@@ -81,11 +80,6 @@ function App(): JSX.Element {
       .catch((error) => {
         console.log("Error in get Store Details", error)
       })
-    // const timer = setTimeout(() => {
-    //   const chatWidget = document.getElementById("reamaze-wrapper") as HTMLDivElement
-    //   console.log("chatWidget", chatWidget)
-    // }, 3000)
-    // return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {
@@ -200,6 +194,8 @@ function App(): JSX.Element {
     <>
       <Helmet>
         <title>{pageTitle}</title>
+        <link rel="icon" id="favicon" href={mainData.fav.img} />
+        <link rel="apple-touch-icon" href={mainData.fav.img} />
         <meta name="description" content={metaDescription} />
         {subDomain === "mobiletechlab" && (
           <meta

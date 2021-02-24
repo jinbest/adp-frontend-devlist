@@ -78,7 +78,8 @@ import logoFooterImg from "./img/logo/prado-logo-footer.png"
 import deviceCardImg from "./img/prado-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,
@@ -158,7 +159,7 @@ const devicelistData = [
   },
   {
     img: warranty,
-    title: "YEAR_1_WARRANTY",
+    title: "DAY_30_WARRANTY",
     content: "YEAR_1_WARRANTY_CONTENT",
   },
   {

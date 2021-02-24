@@ -79,7 +79,8 @@ import logoFooterImg from "./img/logo/wireless-logo-footer.png"
 import deviceCardImg from "./img/wireless-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,

@@ -42,11 +42,13 @@
     "react-scripts": "4.0.1",
     "react-toastify": "^6.0.0-rc.3",
     "readline": "^1.3.0",
+    "source-map-explorer": "^2.5.2",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1",
     "yup": "^0.31.0"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "set HTTPS=true&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -85,13 +87,13 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/leaflet": "^1.5.23",
     "@types/node": "^12.19.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-geocode": "^0.2.0",
     "@types/react-helmet": "^6.1.0",
     "@types/react-i18next": "^8.1.0",
-    "@types/leaflet": "^1.5.23",
     "@types/react-router-dom": "^5.1.6",
     "@types/yup": "^0.29.10",
     "@typescript-eslint/eslint-plugin": "^4.9.1",

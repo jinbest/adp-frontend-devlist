@@ -78,7 +78,8 @@ import logoFooterImg from "./img/logo/banana-logo-footer.png"
 import deviceCardImg from "./img/banana-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,

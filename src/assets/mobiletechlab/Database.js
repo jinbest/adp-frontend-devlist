@@ -79,7 +79,8 @@ import logoFooterImg from "./img/logo/mobiletech-logo-footer.png"
 import deviceCardImg from "./img/mobiletech-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,
@@ -597,28 +598,29 @@ const getTabData = (companyName) => {
     _support['ui']['contactMode'] = 'anonymous';
     _support['ui']['enableKb'] = 'true';
     _support['ui']['styles'] = {
-    widgetColor: 'rgb(237, 35, 36)',
-    width: '350px',
-    height: '550px',
-    gradient: true,
+      widgetColor: 'rgb(237, 35, 36)',
+      gradient: true,
     };
     _support['ui']['widget'] = {
-    displayOn: 'all',
-    label: {
-    text: 'Let us know if you have any questions! &#128522;',
-    mode: "notification",
-    delay: 3,
-    duration: 30,
-    sound: true,
-    },
-    position: 'bottom-right',
-    mobilePosition: 'bottom-right'
+      displayOn: 'all',
+      label: {
+        text: 'Let us know if you have any questions! &#128522;',
+        mode: "notification",
+        delay: 3,
+        duration: 30,
+        sound: true,
+      },
+      position: 'bottom-right',
+      size: 50,
+      mobilePosition: 'bottom-right',
+      mobileSize: 50 
     };
     _support['apps'] = {
-    faq: {"enabled":true},
-    recentConversations: {},
-    orders: {}
-    };`,
+      faq: {"enabled":true},
+      recentConversations: {},
+      orders: {}
+    };
+    `,
   }
 }
 

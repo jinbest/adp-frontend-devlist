@@ -77,7 +77,8 @@ import logoFooterImg from "./img/logo/geebo-logo-footer.png"
 import deviceCardImg from "./img/geebo-device-card.png"
 
 // favicon - image
-import favicon from "./img/favicon.png"
+// import favicon from "./img/favicon.png"
+import favicon from "./img/favicon.ico"
 
 const fav = {
   img: favicon,
