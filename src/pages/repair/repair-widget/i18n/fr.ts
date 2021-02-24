@@ -50,8 +50,8 @@ export class LanguageKeysFr extends LanguageKeys {
   public QUICK_TURNAROUND = "REVISION RAPIDE"
   public QUICK_TURNAROUND_CONTENT =
     "Nous savons que vous n'avez pas toute la journée, nous vous retournerons votre appareil le plus rapidement possible. La plupart de nos réparations peuvent être effectuées en moins de deux heures."
-  public DAY_90_WARRANTY = "GARANTIE 90 JOURS"
-  public DAY_90_WARRANTY_CONTENT =
+  public DAY_WARRANTY_DYNAMIC = "GARANTIE 90 JOURS"
+  public DAY_WARRANTY_DYNAMIC_CONTENT =
     "Toutes les réparations sont couvertes par notre garantie de 90 jours sans tracas. Cette garantie. Cette garantie est valable dans tous nos sites dans le monde."
   public POPULAR_DEVICES = "Appareils populaires"
   public BUY_NOW_PAY_LATER = "Acheter maintenant. Payer plus tard."
@@ -131,9 +131,6 @@ export class LanguageKeysFr extends LanguageKeys {
     "Toutes nos réparations sont couvertes par notre garantie à vie sans tracas. Cette garantie est valable dans tous nos sites dans le monde."
   public WINNIPEG_PROFESSIONAL = "Professionnel de Winnipeg"
   public PHONE_REPAIR = "Réparation de téléphone"
-  public DAY_180_WARRANTY = "GARANTIE DE 180 JOURS"
-  public DAY_180_WARRANTY_CONTENT =
-    "Toutes nos réparations sont couvertes par notre garantie sans tracas de 180 jours. Cette garantie est valable dans tous nos sites dans le monde."
   public MONTH_6_WARRANTY = "GARANTIE 6 MOIS"
   public MONTH_6_WARRANTY_CONTENT =
     "Toutes nos réparations sont couvertes par notre garantie de 6 mois sans tracas. Cette garantie est valable dans tous nos sites dans le monde."

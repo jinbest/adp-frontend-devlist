@@ -100,7 +100,9 @@ const Section4 = ({ subDomain }: Props) => {
                       content={t(item.content)}
                       key={index}
                       subDomain={subDomain}
-                    />
+                    >
+                      <T id={item.title} data={"qwe"} />
+                    </DeviceListComponent>
                   </Box>
                 )
               })}

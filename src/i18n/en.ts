@@ -48,9 +48,12 @@ export class LanguageKeys {
   public QUICK_TURNAROUND_CONTENT =
     "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours."
   public DAY_30_WARRANTY = "30 Days Warranty"
-  public DAY_90_WARRANTY = "90 DAYS WARRANTY"
-  public DAY_90_WARRANTY_CONTENT =
-    "All of repairs are backed with our 90-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide."
+  public DAY_WARRANTY_DYNAMIC = (val: string) => {
+    return `${val} DAYS WARRANTY`
+  }
+  public DAY_WARRANTY_DYNAMIC_CONTENT = (val: string) => {
+    return `All of repairs are backed with our ${val}-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide.`
+  }
   public POPULAR_DEVICES = "Popular Devices"
   public BUY_NOW_PAY_LATER = "Buy now. Pay later."
   public WHATEVER_WORKS_FOR_YOU = "Whatever works for you."
@@ -129,9 +132,6 @@ export class LanguageKeys {
     "All of our repairs are backed with our lifetime, hassle-free warranty. This warranty is valid at all of our locations worldwide."
   public WINNIPEG_PROFESSIONAL = "Winnipeg’s Professional"
   public PHONE_REPAIR = "Phone Repair"
-  public DAY_180_WARRANTY = "180 DAY WARRANTY"
-  public DAY_180_WARRANTY_CONTENT =
-    "All of our repairs are backed with our 180-day, hassle-free warranty. This warranty is valid at all of our locations worldwide."
   public MONTH_6_WARRANTY = "6 MONTH WARRANTY"
   public MONTH_6_WARRANTY_CONTENT =
     "All of our repairs are backed with our 6 month, hassle-free warranty. This warranty is valid at all of our locations worldwide."

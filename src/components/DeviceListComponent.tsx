@@ -5,14 +5,15 @@ type Props = {
   title: string
   content: string
   subDomain?: string
+  children?: any
 }
 
-const DeviceListComponent = ({ img, title, content, subDomain }: Props) => {
+const DeviceListComponent = ({ img, content, subDomain, children }: Props) => {
   return (
     <div className={subDomain + "-device-list-component"}>
       <img src={img} />
       <p className={subDomain + "-title"} style={{ fontWeight: "bold" }}>
-        {title}
+        {children}
       </p>
       {subDomain === "mobiletechlab" && <p className={subDomain + "-content"}>{content}</p>}
     </div>

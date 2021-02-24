@@ -112,8 +112,9 @@ const Section2 = ({ subDomain, features }: Props) => {
                   <Grid item xs={12} sm={6} md={3} key={index}>
                     <Box className={subDomain + "-cart-contentfix-container"}>
                       <ContentFix
-                        title={t(item.title)}
-                        content={t(item.content)}
+                        title={item.title}
+                        data={item.data}
+                        content={item.content}
                         themeCol={data.colorPalle.underLineCol}
                         key={index}
                         subDomain={subDomain}

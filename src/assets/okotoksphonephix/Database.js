@@ -133,19 +133,23 @@ const cardFixData = [
 const contentFixData = [
   {
     title: "FREE_DIAGNOSTICS",
+    data: '',
     content: "FREE_DIAGNOSTICS_CONTENT",
   },
   {
     title: "LOW_PRICE_GUARANTEE",
+    data: '',
     content:
       "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
+    data: '',
     content: "QUICK_TURNAROUND_CONTENT",
   },
   {
     title: "LIFETIME_WARRANTY",
+    data: '',
     content: "LIFETIME_WARRANTY_CONTENT",
   },
 ]
