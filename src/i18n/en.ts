@@ -415,7 +415,7 @@ export class LanguageKeys {
   /* ReparationCellular Website Text */
   public REPARATIONCELL_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
   public WELCOME_REPARATIONCELL = (storeName: string) => {
-    return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+    return `Welcome to ${storeName}, Quebec's mobile device marketplace`
   }
   public SEE_WHY_CUSTOMERS_LOVE_REPARATIONCELL = (storeName: string) => {
     return `See Why Customers Love ${storeName}`

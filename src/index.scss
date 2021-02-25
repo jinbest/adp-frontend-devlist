@@ -37,16 +37,41 @@ code {
 
 /* Custom reamaze chat-widget */
 #reamaze-wrapper {
-  width: 320px !important;
-  height: 500px !important;
-  @media (max-width: 768px) {
+  width: 350px !important;
+  height: 530px !important;
+  max-height: 70% !important;
+  @media (max-width: 1248px) {
+    width: 300px !important;
+    height: 480px !important;
+  }
+  @media (max-width: 767px) {
+    max-width: 300px !important;
+    max-height: 480px !important;
+    margin-left: auto !important;
+    inset: auto 22px 82px auto !important;
+  }
+  @media (max-width: 499px) {
     width: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-left: 0 !important;
+    inset: auto 0 0 !important;
   }
 }
 
 #reamaze-container {
-  width: 320px !important;
+  width: 350px !important;
+  @media (max-width: 1248px) {
+    width: 300px !important;
+  }
   @media (max-width: 768px) {
+    max-width: 300px !important;
+    border-radius: 10px 20px !important;
+  }
+  @media (max-width: 499px) {
+    max-width: 100% !important;
     width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
   }
 }

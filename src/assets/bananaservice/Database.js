@@ -308,7 +308,7 @@ const navShop = {
 const brandItemsData = {
   left: [],
   right: { ip: "705.957.2657", en: "ENGLISH", log: "LOG_IN" },
-  brandCol: "black",
+  brandCol: "white",
   brandThemeCol: "#FEDA00",
   selectOption: ["ENGLISH", "FRENCH"],
 }

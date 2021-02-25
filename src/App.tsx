@@ -29,7 +29,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 9,
+// const siteNum = 7,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -61,14 +61,15 @@ function App(): JSX.Element {
     setPageTitle(storeTabData.title)
     setMetaDescription(storeTabData.metaDescription)
     setTagScript(storeTabData.headTag)
-
     loadScript(storeTabData.bodyTag)
+
     if (storeTabData.scriptTag) {
       const script = document.createElement("script")
       script.type = "text/javascript"
       script.prepend(storeTabData.scriptTag)
       document.body.prepend(script)
     }
+
     appLoadAPI
       .getStoresDetail(apexDomain, false)
       .then((res: any) => {
