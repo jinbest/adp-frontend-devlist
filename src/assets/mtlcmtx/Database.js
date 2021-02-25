@@ -79,7 +79,7 @@ import deviceCardImg from "./img/banana-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/banana-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -308,7 +308,7 @@ const navShop = {
 const brandItemsData = {
   left: [],
   right: { ip: "705.957.2657", en: "ENGLISH", log: "LOG_IN" },
-  brandCol: "black",
+  brandCol: "white",
   brandThemeCol: "#FEDA00",
   selectOption: ["ENGLISH", "FRENCH"],
 }

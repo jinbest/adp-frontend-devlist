@@ -78,7 +78,7 @@ import deviceCardImg from "./img/northtech-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/northtech-favicon.ico"
 
 const fav = {
   img: favicon,

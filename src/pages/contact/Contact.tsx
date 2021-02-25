@@ -16,6 +16,8 @@ type Props = {
 }
 
 const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
+  const mainData = require(`../../assets/${subDomain}/Database`)
+
   const [pageTitle] = useState("Contact")
   const [locations, setLocations] = useState<any[]>([])
 
@@ -36,7 +38,9 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="description" content={""} />
+        <link rel="icon" id="favicon" href={mainData.fav.img} />
+        <link rel="apple-touch-icon" href={mainData.fav.img} />
+        {/* <meta name="description" content={""} /> */}
       </Helmet>
       <SectionMap
         headerStore={storesDetailsStore}

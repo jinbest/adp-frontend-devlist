@@ -79,7 +79,7 @@ import deviceCardImg from "./img/prado-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/prado-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -201,7 +201,7 @@ const colorPalle = {
 const navItemsData = [
   { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
   { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
-  { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
+  { href: "http://shop.pradowireless.com/", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
   { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
 ]
 
@@ -327,7 +327,7 @@ const avatarData = {
   userActive: userActive,
   userDeactive: userDeactive,
   cancel: cancel,
-  store: { img: store, link: "#" },
+  store: { img: store, link: "http://shop.pradowireless.com/" },
   storeBlue: storeBlue,
   menu: menu,
 }
@@ -336,7 +336,7 @@ const mobileNavItemData = {
   left: [
     { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
     { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
-    { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
+    { text: "SHOP", href: "http://shop.pradowireless.com/", flag: "FRONTEND_BUY" },
     { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
     { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
     { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },

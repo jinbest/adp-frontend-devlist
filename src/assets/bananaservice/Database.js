@@ -79,7 +79,7 @@ import deviceCardImg from "./img/banana-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/banana-favicon.ico"
 
 const fav = {
   img: favicon,

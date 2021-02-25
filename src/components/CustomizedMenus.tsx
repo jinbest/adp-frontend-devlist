@@ -8,7 +8,7 @@ import {
 } from "./"
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
-import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+// import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore } from "../store/"
 import { findLocationAPI } from "../services/"
 import { Link } from "react-router-dom"
@@ -134,7 +134,7 @@ interface Props extends StoreProps {
 // const CustomizedMenus = inject('store')(observer(({subDomain, btnTitle, width, features}: Props) => {
 const CustomizedMenus = inject("headerStore")(
   observer((props: Props) => {
-    const { subDomain, btnTitle, width, features, headerStore } = props
+    const { subDomain, btnTitle, width, headerStore } = props
 
     const data = require(`../assets/${subDomain}/Database`)
     const themeColor = data.colorPalle.themeColor
@@ -496,30 +496,18 @@ const CustomizedMenus = inject("headerStore")(
                 )}
               </div>
               {headerStore.findAddLocation.length > 1 && (
-                <FeatureToggles features={features}>
-                  <Feature
-                    name="FRONTEND_REPAIR"
-                    inactiveComponent={() => <></>}
-                    activeComponent={() => (
-                      <Link
-                        to="/get-quote"
-                        style={{ textDecoration: "none" }}
-                        onClick={handleBookRepair}
-                      >
-                        <Button
-                          title={t("BOOK_APPOINTMENT")}
-                          bgcolor={themeColor}
-                          borderR="20px"
-                          width="175px"
-                          height="30px"
-                          margin="0"
-                          fontSize="15px"
-                          subDomain={subDomain}
-                        />
-                      </Link>
-                    )}
+                <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleBookRepair}>
+                  <Button
+                    title={t("BOOK_APPOINTMENT")}
+                    bgcolor={themeColor}
+                    borderR="20px"
+                    width="175px"
+                    height="30px"
+                    margin="0"
+                    fontSize="15px"
+                    subDomain={subDomain}
                   />
-                </FeatureToggles>
+                </Link>
               )}
             </div>
             {locSelStatus && (

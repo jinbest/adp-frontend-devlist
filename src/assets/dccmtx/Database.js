@@ -78,7 +78,7 @@ import deviceCardImg from "./img/northtech-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/northtech-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -148,7 +148,7 @@ const contentFixData = [
   },
   {
     title: "MONTH_6_WARRANTY",
-    data: '',
+    data: '6',
     content: "MONTH_6_WARRANTY_CONTENT",
   },
 ]

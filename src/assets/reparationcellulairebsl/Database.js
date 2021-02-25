@@ -80,7 +80,7 @@ import deviceCardImg from "./img/reparationcellularbsl-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/reparationcell-favicon.ico"
 
 const fav = {
   img: favicon,
