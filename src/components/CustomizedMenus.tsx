@@ -495,7 +495,7 @@ const CustomizedMenus = inject("headerStore")(
                   </a>
                 )}
               </div>
-              {headerStore.findAddLocation.length > 1 && (
+              {headerStore.findAddLocation.length > 0 && (
                 <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleBookRepair}>
                   <Button
                     title={t("BOOK_APPOINTMENT")}
