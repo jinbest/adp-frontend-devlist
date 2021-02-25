@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
+import { LangProps } from "../../i18n/en"
 import { repairWidgetStore } from "../../store"
 import CustomMap from "../../components/CustomMap"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
@@ -12,14 +13,18 @@ import { Link } from "react-router-dom"
 import PhoneIcon from "@material-ui/icons/Phone"
 import CallSplitIcon from "@material-ui/icons/CallSplit"
 import { makeLocations } from "../../components/CustomizedMenus"
+import { phoneFormatString } from "../../components/Header"
+
 interface Props extends StoreProps {
   subDomain?: string
   locations: any[]
   handleStatus: (status: boolean) => void
 }
+
 type StoreProps = {
   headerStore: StoresDetails
 }
+
 interface LocationHour {
   close: string
   created_by: string
@@ -36,15 +41,17 @@ interface LocationHour {
   store_id: boolean
   type: "REGULAR" | "HOLIDAY"
 }
-const DAYS_OF_THE_WEEK = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
+
+const DAYS_OF_THE_WEEK: LangProps[] = [
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
 ]
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -122,6 +129,18 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: "bold",
       "&:hover": {
         color: "rgba(0,0,0,0.4)",
+      },
+    },
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
+    },
+    phoneText: {
+      marginLeft: "10px",
+      textDecoration: "none",
+      "&:hover": {
+        opacity: 0.6,
       },
     },
   })
@@ -238,8 +257,10 @@ const SectionMap = inject("headerStore")(
                             }}
                           >
                             <PhoneIcon />
-                            <a href={`tel:${element.phone}`}>
-                              <span style={{ marginLeft: "10px" }}>{element.phone}</span>
+                            <a href={`tel:${element.phone}`} className={classes.phoneText}>
+                              <span style={{ color: data.colorPalle.repairButtonCol }}>
+                                {phoneFormatString(element.phone)}
+                              </span>
                             </a>
                           </p>
                         </Grid>
@@ -338,19 +359,19 @@ const SectionMap = inject("headerStore")(
                     >
                       <div>
                         <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
-                          {"Hours"}
+                          {t("HOURS")}
                         </p>
                       </div>
 
                       {getRegularHours(element.location_hours).map((element, index) => (
                         <Grid key={index} item container md={12} sm={12} xs={12}>
                           <Grid item md={6} sm={6} xs={6}>
-                            <p className={subDomain + "-block-content"}>
-                              {DAYS_OF_THE_WEEK[element.day]}
+                            <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                              {t(DAYS_OF_THE_WEEK[element.day])}
                             </p>
                           </Grid>
                           <Grid item md={6} sm={6} xs={6}>
-                            <p className={subDomain + "-block-content"}>
+                            <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
                               {!element.open || !element.close
                                 ? "Closed"
                                 : getHourType(element.open) + "-" + getHourType(element.close)}

@@ -8,7 +8,7 @@
   }
   .#{$folderName}-nav-div button {
     font-size: 15px !important;
-    width: 135px !important;
+    width: auto !important;
   }
 }
 
@@ -290,7 +290,7 @@
 
 @media (max-width: 425px) {
   .#{$folderName}-section1-title {
-    font-size: 5vw !important;
+    font-size: 4.5vw !important;
   }
   .#{$folderName}-section-title,
   .f40 {
@@ -355,7 +355,8 @@
 
 @media (max-width: 380px) {
   .#{$folderName}-container-header > a > img {
-    height: 30px;
+    height: 50px;
+    margin-left: -10px;
   }
   .#{$folderName}-avatar-div > img {
     height: 20px;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Footer, Header, Chat, Preloader, Badge } from "./components"
 import { Home } from "./pages/home/"
-import { Location } from "./pages/Location"
+import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
 import { Provider } from "mobx-react"
@@ -24,12 +24,12 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "northtechsolutions", domain: "northtechsolutions.ca" },
 //   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
 //   { name: "pradowireless", domain: "pradowireless.com" },
-//   { name: "reparationcellularbsl", domain: "reparationcellularbsl.ca" },
+//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
 //   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 3,
+// const siteNum = 0,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -61,14 +61,15 @@ function App(): JSX.Element {
     setPageTitle(storeTabData.title)
     setMetaDescription(storeTabData.metaDescription)
     setTagScript(storeTabData.headTag)
-
     loadScript(storeTabData.bodyTag)
+
     if (storeTabData.scriptTag) {
       const script = document.createElement("script")
       script.type = "text/javascript"
       script.prepend(storeTabData.scriptTag)
       document.body.prepend(script)
     }
+
     appLoadAPI
       .getStoresDetail(apexDomain, false)
       .then((res: any) => {
@@ -95,7 +96,8 @@ function App(): JSX.Element {
             subDomain === "mobiletechlab" ||
             subDomain === "wirelessrevottawa" ||
             subDomain === "northtechsolutions" ||
-            subDomain === "okotoksphonephix"
+            subDomain === "okotoksphonephix" ||
+            subDomain === "pradowireless"
           ) {
             feats.push({ flag: "FRONTEND_BUY", isActive: true })
           }
@@ -160,7 +162,7 @@ function App(): JSX.Element {
           exact
           component={() => (
             <Provider storesDetailsStore={storesDetails}>
-              <Location
+              <Contact
                 storesDetailsStore={storesDetails}
                 subDomain={subDomain}
                 handleStatus={handleFooterStatus}

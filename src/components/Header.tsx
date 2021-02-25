@@ -74,7 +74,7 @@ const NavItemLink = ({
   }
 
   return (
-    <li className={subDomain + "-nav-item"}>
+    <li className={subDomain + "-nav-item"} style={{ textDecoration: "underline" }}>
       {isExternal(href) ? (
         <a className={subDomain + "-nav-link"} href={href} target="_blank" rel="noreferrer">
           {text === "SHOP" ? (
@@ -231,7 +231,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               justifyContent: "flex-end",
               margin: 0,
               padding: 0,
-              marginRight: "40px",
+              marginRight: mobile && getQuteStatus ? 0 : "40px",
             }}
           >
             <BrandItemLink
@@ -291,6 +291,8 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             style={{
               color: "white",
               textDecoration: "none",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             {t("GET_QUOTE")}

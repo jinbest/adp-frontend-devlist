@@ -48,9 +48,12 @@ export class LanguageKeys {
   public QUICK_TURNAROUND_CONTENT =
     "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours."
   public DAY_30_WARRANTY = "30 Days Warranty"
-  public DAY_90_WARRANTY = "90 DAYS WARRANTY"
-  public DAY_90_WARRANTY_CONTENT =
-    "All of repairs are backed with our 90-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide."
+  public DAY_WARRANTY_DYNAMIC = (val: string) => {
+    return `${val} DAYS WARRANTY`
+  }
+  public DAY_WARRANTY_DYNAMIC_CONTENT = (val: string) => {
+    return `All of repairs are backed with our ${val}-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide.`
+  }
   public POPULAR_DEVICES = "Popular Devices"
   public BUY_NOW_PAY_LATER = "Buy now. Pay later."
   public WHATEVER_WORKS_FOR_YOU = "Whatever works for you."
@@ -129,9 +132,6 @@ export class LanguageKeys {
     "All of our repairs are backed with our lifetime, hassle-free warranty. This warranty is valid at all of our locations worldwide."
   public WINNIPEG_PROFESSIONAL = "Winnipeg’s Professional"
   public PHONE_REPAIR = "Phone Repair"
-  public DAY_180_WARRANTY = "180 DAY WARRANTY"
-  public DAY_180_WARRANTY_CONTENT =
-    "All of our repairs are backed with our 180-day, hassle-free warranty. This warranty is valid at all of our locations worldwide."
   public MONTH_6_WARRANTY = "6 MONTH WARRANTY"
   public MONTH_6_WARRANTY_CONTENT =
     "All of our repairs are backed with our 6 month, hassle-free warranty. This warranty is valid at all of our locations worldwide."
@@ -215,7 +215,7 @@ export class LanguageKeys {
   public FIRST_NAME = "First Name*"
   public LAST_NAME = "Last Name*"
   public EMAIL_ADDRESS = "E-mail Address*"
-  public PHONE_NUM = "Phone Number*"
+  public PHONE_NUM = "Phone Number"
   public STREET_ADDRESS = "Street Address*"
   public ADDRESS_2 = "Address 2"
   public COUNTRY = "Country*"
@@ -415,7 +415,7 @@ export class LanguageKeys {
   /* ReparationCellular Website Text */
   public REPARATIONCELL_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
   public WELCOME_REPARATIONCELL = (storeName: string) => {
-    return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+    return `Welcome to ${storeName}, Quebec's mobile device marketplace`
   }
   public SEE_WHY_CUSTOMERS_LOVE_REPARATIONCELL = (storeName: string) => {
     return `See Why Customers Love ${storeName}`

@@ -15,7 +15,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public YOUR_MOBILE_DEVICE = "votre appareil mobile"
   public FIND_A_STORE = "Trouver"
   public TRADE = "Commerce"
-  public REPAIR = "Réparation"
+  public REPAIR = "Réparer"
   public BUY = "Acheter"
   public PROTECT = "Protéger"
   public INSURANCE = "Assurance"
@@ -51,9 +51,12 @@ export class LanguageKeysFr extends LanguageKeys {
   public QUICK_TURNAROUND_CONTENT =
     "Nous savons que vous n'avez pas toute la journée, nous vous retournerons votre appareil le plus rapidement possible. La plupart de nos réparations peuvent être effectuées en moins de deux heures."
   public DAY_30_WARRANTY = "Garantie 30 Jours"
-  public DAY_90_WARRANTY = "GARANTIE 30 JOURS"
-  public DAY_90_WARRANTY_CONTENT =
-    "Toutes les réparations sont couvertes par notre garantie de 90 jours sans tracas. Cette garantie. Cette garantie est valable dans tous nos sites dans le monde."
+  public DAY_WARRANTY_DYNAMIC = (val: string) => {
+    return `GARANTIE ${val} JOURS`
+  }
+  public DAY_WARRANTY_DYNAMIC_CONTENT = (val: string) => {
+    return `Toutes les réparations sont couvertes par notre garantie de ${val} jours sans tracas. Cette garantie. Cette garantie est valable dans tous nos sites dans le monde.`
+  }
   public POPULAR_DEVICES = "Appareils populaires"
   public BUY_NOW_PAY_LATER = "Acheter maintenant. Payer plus tard."
   public WHATEVER_WORKS_FOR_YOU = "Tout ce qui fonctionne pour vous."
@@ -65,15 +68,15 @@ export class LanguageKeysFr extends LanguageKeys {
   public CONSOLE = "Console"
   public OTHER = "Autre"
   public AS_LOW_AS = "Aussi bas que"
-  public BEST_OFFER_AVAILABLE = "Des prix compétitifs"
+  public BEST_OFFER_AVAILABLE = "Meilleure offre disponible"
   public BEST_OFFER_AVAILABLE_CONTENT =
     "Nous sommes fiers d’offrir la plus grande sélection d’appareils d’occasion entièrement testés et classés à Winnipeg. Le tout soutenu par une garantie d'un an et une garantie IMEI à vie"
-  public YEAR_1_WARRANTY = "1 An De Garantie"
+  public YEAR_1_WARRANTY = "1 an de garantie"
   public YEAR_1_WARRANTY_CONTENT =
     "Nous garantissons tous nos appareils avec une garantie d'un an de fer qui couvre tout, sauf les dommages physiques ou liquides."
   public AMAZING_SERVICE = "Service incroyable"
   public AMAZING_SERVICE_CONTENT = "Expérience d'achat sécurisée."
-  public POSITIVE_IMPACT = "Échangez votre appareil"
+  public POSITIVE_IMPACT = "Impact positif"
   public POSITIVE_IMPACT_CONTENT =
     "Échangez votre appareil existant - cassé ou non - contre un crédit pour une réparation, un produit ou un téléphone plus récent. Nous achetons presque tous les appareils, quelle que soit leur condition."
   public PROUDLY_CANADIAN = "Fièrement canadien"
@@ -108,7 +111,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public FIX_YOUR_DEVICE_FAST = "Réparez votre appareil rapidement!"
   public FIX_YOUR_DEVICE_FAST_CONTENT =
     "Répondez à quelques questions sur votre appareil endommagé et nous vous aiderons à le réparer."
-  public GET_QUOTE = "Obtenez devis"
+  public GET_QUOTE = "Obtenir devis"
   public HOW_DOES_REPAIR_WORK = "Comment fonctionne la réparation?"
   public SELECT_A_REPAIR_CATEGORY = "Sélectionnez une catégorie de réparation"
   public SELECT_A_REPAIR_CATEGORY_CONTENT =
@@ -132,9 +135,6 @@ export class LanguageKeysFr extends LanguageKeys {
     "Toutes nos réparations sont couvertes par notre garantie à vie sans tracas. Cette garantie est valable dans tous nos sites dans le monde."
   public WINNIPEG_PROFESSIONAL = "Professionnel de Winnipeg"
   public PHONE_REPAIR = "Réparation de téléphone"
-  public DAY_180_WARRANTY = "GARANTIE DE 180 JOURS"
-  public DAY_180_WARRANTY_CONTENT =
-    "Toutes nos réparations sont couvertes par notre garantie sans tracas de 180 jours. Cette garantie est valable dans tous nos sites dans le monde."
   public MONTH_6_WARRANTY = "GARANTIE 6 MOIS"
   public MONTH_6_WARRANTY_CONTENT =
     "Toutes nos réparations sont couvertes par notre garantie de 6 mois sans tracas. Cette garantie est valable dans tous nos sites dans le monde."
@@ -161,14 +161,14 @@ export class LanguageKeysFr extends LanguageKeys {
   public REPAIR_BUY_PROTECT_ESSENTIAL_MOBILE_DEVICE =
     "Réparez, achetez et protégez vos appareils mobiles essentiels."
   public CITY_MOBILE_DEVICE_SPECIALISTS = (city: string) => {
-    return `Spécialistes des appareils mobiles de la ${city}.`
+    return `Le spécialiste des téléphones cellulaires à ${city}.`
   }
   public ESSENTIAL_MOBILE_DEVICE = "appareils mobiles essentiels."
   public YOUR = "ton"
   public BOOK_APPOINTMENT = "Prendre rendez-vous"
 
   /* service-widget Text */
-  public NEXT = "Prochain"
+  public NEXT = "Suivant"
   public ENTER_KEY = "ou appuyez sur ENTER"
   public YES = "Oui"
   public NO = "Non"
@@ -220,7 +220,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public FIRST_NAME = "Prénom*"
   public LAST_NAME = "Nom de famille*"
   public EMAIL_ADDRESS = "Adresse e-mail*"
-  public PHONE_NUM = "Numéro de téléphone*"
+  public PHONE_NUM = "Numéro de téléphone"
   public STREET_ADDRESS = "Adresse de rue*"
   public ADDRESS_2 = "Adresse 2"
   public COUNTRY = "Pays*"
@@ -426,19 +426,19 @@ export class LanguageKeysFr extends LanguageKeys {
   /* ReparationCellular Website Text */
   public REPARATIONCELL_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
   public WELCOME_REPARATIONCELL = (storeName: string) => {
-    return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+    return `Bienvenue sur ${storeName}, Marché des appareils mobiles au Québec`
   }
   public SEE_WHY_CUSTOMERS_LOVE_REPARATIONCELL = (storeName: string) => {
-    return `See Why Customers Love ${storeName}`
+    return `Découvrez pourquoi les clients aiment ${storeName}`
   }
   public REPARATIONCELL_FOOTER_CONTENT_TWO = (storeName: string) => {
     return `2021 ${storeName}. All Rights Reserved. All trademarks are properties of their respective holders. "${storeName}" does not own or make claim to those trademarks used on this website in which it is not the holder.`
   }
   public REPARATIONCELL_RECEIVE_YOUR_DEVICE_CONTENT = (storeName: string) => {
-    return `${storeName} repairs your device and notifies you of pick up or delivery date.`
+    return `${storeName} répare votre appareil et vous informe de la date de prise en charge ou de livraison.`
   }
   public REPARATIONCELL_FROM_NEW_TO_RECONDITIONED_CONTENT =
-    "Choose your new phone among our 4 grades, with Wireless Rev it's easy to choose for any budget!"
+    "Choisissez votre nouveau téléphone parmi nos 4 grades, avec le Quebec, il est facile de choisir pour tous les budgets!"
 }
 
 export default LanguageKeysFr

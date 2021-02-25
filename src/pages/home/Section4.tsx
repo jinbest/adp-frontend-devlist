@@ -46,7 +46,9 @@ const Section4 = ({ subDomain }: Props) => {
                           content={t(item.content)}
                           key={index}
                           subDomain={subDomain}
-                        />
+                        >
+                          <T id={item.title} data={""} />
+                        </DeviceListComponent>
                       </Box>
                     </Grid>
                   )
@@ -73,7 +75,9 @@ const Section4 = ({ subDomain }: Props) => {
                           content={t(item.content)}
                           key={index}
                           subDomain={subDomain}
-                        />
+                        >
+                          <T id={item.title} data={""} />
+                        </DeviceListComponent>
                       </Box>
                     </Grid>
                   )
@@ -100,7 +104,9 @@ const Section4 = ({ subDomain }: Props) => {
                       content={t(item.content)}
                       key={index}
                       subDomain={subDomain}
-                    />
+                    >
+                      <T id={item.title} data={""} />
+                    </DeviceListComponent>
                   </Box>
                 )
               })}

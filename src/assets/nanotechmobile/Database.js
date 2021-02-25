@@ -79,7 +79,7 @@ import deviceCardImg from "./img/nanotech-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/nanotech-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -127,20 +127,24 @@ const cardFixData = [
 const contentFixData = [
   {
     title: "FREE_DIAGNOSTICS",
+    data: '',
     content: "FREE_DIAGNOSTICS_CONTENT",
   },
   {
     title: "LOW_PRICE_GUARANTEE",
+    data: '',
     content:
       "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
+    data: '',
     content: "QUICK_TURNAROUND_CONTENT",
   },
   {
-    title: "DAY_180_WARRANTY",
-    content: "DAY_180_WARRANTY_CONTENT",
+    title: "DAY_WARRANTY_DYNAMIC",
+    data: '180',
+    content: "DAY_WARRANTY_DYNAMIC_CONTENT",
   },
 ]
 

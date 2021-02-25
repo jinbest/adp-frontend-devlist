@@ -78,7 +78,7 @@ import deviceCardImg from "./img/geebo-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/geebo-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -126,20 +126,24 @@ const cardFixData = [
 const contentFixData = [
   {
     title: "FREE_DIAGNOSTICS",
+    data: '',
     content: "FREE_DIAGNOSTICS_CONTENT",
   },
   {
     title: "LOW_PRICE_GUARANTEE",
+    data: '',
     content:
       "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
+    data: '',
     content: "QUICK_TURNAROUND_CONTENT",
   },
   {
-    title: "DAY_90_WARRANTY",
-    content: "DAY_90_WARRANTY_CONTENT",
+    title: "DAY_WARRANTY_DYNAMIC",
+    data: '90',
+    content: "DAY_WARRANTY_DYNAMIC_CONTENT",
   },
 ]
 
@@ -422,14 +426,14 @@ const homeTextData = {
         days: "6/16/2016",
         content:
           "Great little shop for phone repairs. Very professional service. They replaced my shattered screen in 24 hours. Great value!",
-        reviewer: "Ainsley R.",
+        reviewer: "Paul B.",
       },
       {
         score: 5,
         days: "10/4/2015",
         content:
           "I got a new battery for my iPhone 4 installed by in less than 5 minutes while I waited, for $25. The service was friendly, fast, and convenient. They even offered to take it back with a $20 refund if the phone performance was no better. Well, it works fine and I'm getting much more usage on a charge. Very happy with them, and I would go back.",
-        reviewer: "Ainsley R.",
+        reviewer: "David C.",
       },
     ],
   },

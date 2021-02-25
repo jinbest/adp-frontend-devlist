@@ -49,9 +49,17 @@ const SelectLang = ({ subDomain, color, options }: Props) => {
   }
 
   useEffect(() => {
-    const cntLang = window.localStorage.getItem("cntLang") || "en"
+    const cntLang =
+      window.localStorage.getItem("cntLang") ||
+      (subDomain === "reparationcellularbsl" ? "fr" : "en")
     cntLang === "en" ? setState(options[0]) : setState(options[1])
   }, [])
+
+  useEffect(() => {
+    const cntLang = state === "ENGLISH" ? "en" : "fr"
+    setLang(cntLang)
+    window.localStorage.setItem("cntLang", cntLang)
+  }, [state])
 
   return (
     <div>

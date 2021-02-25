@@ -80,7 +80,7 @@ import deviceCardImg from "./img/mobiletech-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/mobile-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -134,19 +134,23 @@ const cardFixData = [
 const contentFixData = [
   {
     title: "FREE_DIAGNOSTICS",
+    data: '',
     content: "FREE_DIAGNOSTICS_CONTENT",
   },
   {
     title: "LOW_PRICE_GUARANTEE",
+    data: '',
     content:
       "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
+    data: '',
     content: "QUICK_TURNAROUND_CONTENT",
   },
   {
     title: "LIFETIME_WARRANTY",
+    data: '',
     content: "LIFETIME_WARRANTY_CONTENT",
   },
 ]
@@ -595,7 +599,7 @@ const getTabData = (companyName) => {
     scriptTag: `
     var _support = _support || { 'ui': {}, 'user': {} };
     _support['account'] = 'mobiletechlab';
-    _support['ui']['contactMode'] = 'anonymous';
+    _support['ui']['contactMode'] = 'default';
     _support['ui']['enableKb'] = 'true';
     _support['ui']['styles'] = {
       widgetColor: 'rgb(237, 35, 36)',
@@ -604,7 +608,7 @@ const getTabData = (companyName) => {
     _support['ui']['widget'] = {
       displayOn: 'all',
       label: {
-        text: 'Let us know if you have any questions! &#128522;',
+        text: 'Let us know if you have any questions! 😊',
         mode: "notification",
         delay: 3,
         duration: 30,
@@ -613,7 +617,7 @@ const getTabData = (companyName) => {
       position: 'bottom-right',
       size: 50,
       mobilePosition: 'bottom-right',
-      mobileSize: 50 
+      mobileSize: 50
     };
     _support['apps'] = {
       faq: {"enabled":true},

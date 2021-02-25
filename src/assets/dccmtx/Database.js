@@ -78,7 +78,7 @@ import deviceCardImg from "./img/northtech-device-card.png"
 
 // favicon - image
 // import favicon from "./img/favicon.png"
-import favicon from "./img/favicon.ico"
+import favicon from "./img/northtech-favicon.ico"
 
 const fav = {
   img: favicon,
@@ -132,19 +132,23 @@ const cardFixData = [
 const contentFixData = [
   {
     title: "FREE_DIAGNOSTICS",
+    data: '',
     content: "FREE_DIAGNOSTICS_CONTENT",
   },
   {
     title: "LOW_PRICE_GUARANTEE",
+    data: '',
     content:
       "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
     title: "QUICK_TURNAROUND",
+    data: '',
     content: "QUICK_TURNAROUND_CONTENT",
   },
   {
     title: "MONTH_6_WARRANTY",
+    data: '6',
     content: "MONTH_6_WARRANTY_CONTENT",
   },
 ]

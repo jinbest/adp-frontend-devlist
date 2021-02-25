@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Grid, Box, Typography } from "@material-ui/core"
+import { Grid, Box, Typography, Popover } from "@material-ui/core"
 import { Logo } from "../components"
 import { useT, T } from "../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
@@ -15,6 +15,18 @@ const useStyles = makeStyles(() =>
       "&:hover": {
         opacity: 0.5,
       },
+    },
+    popover: {
+      pointerEvents: "none",
+    },
+    paper: {
+      padding: "5px 10px 3px",
+      boxShadow: "none",
+      color: "white",
+      background: "#bdbdbd",
+    },
+    popovertext: {
+      fontSize: "12px !important",
     },
   })
 )
@@ -56,6 +68,17 @@ const Footer = inject("headerStore")(
 
     const [feats, setFeatures] = useState<any[]>([])
     const [initGridMD, setInitGridMD] = useState<GridMDInterface>(12)
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+
+    const handlePopoverOpen = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      setAnchorEl(event.currentTarget)
+    }
+
+    const handlePopoverClose = () => {
+      setAnchorEl(null)
+    }
+
+    const open = Boolean(anchorEl)
 
     useEffect(() => {
       const cntFeatures: any[] = []
@@ -101,9 +124,13 @@ const Footer = inject("headerStore")(
                 {headerStore.allLocations.map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={initGridMD} key={index}>
-                      <div
+                      <Typography
+                        aria-owns={open ? "mouse-over-popover" : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
                         className={subDomain + "-footer-subContent-title"}
-                        style={{ fontWeight: "bold", margin: "20px 0 5px" }}
+                        style={{ width: "fit-content", fontWeight: "bold", margin: "20px 0 5px" }}
                       >
                         <a
                           href={
@@ -119,7 +146,7 @@ const Footer = inject("headerStore")(
                         >
                           {item.location_name}
                         </a>
-                      </div>
+                      </Typography>
                       <div
                         className={subDomain + "-device-list-grid"}
                         style={{ marginTop: "5px", flexWrap: "wrap" }}
@@ -140,7 +167,14 @@ const Footer = inject("headerStore")(
                           {item.email}
                         </a>
                       </div>
-                      <div className={subDomain + "-device-list-grid"} style={{ marginTop: "5px" }}>
+                      <Typography
+                        aria-owns={open ? "mouse-over-popover" : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        style={{ width: "fit-content", marginTop: "5px" }}
+                        className={subDomain + "-device-list-grid"}
+                      >
                         <a
                           href={
                             item.business_page_link ||
@@ -163,7 +197,30 @@ const Footer = inject("headerStore")(
                                 item.postcode.substring(3, item.postcode.length)
                               : "")}
                         </a>
-                      </div>
+                      </Typography>
+                      <Popover
+                        id="mouse-over-popover"
+                        className={classes.popover}
+                        classes={{
+                          paper: classes.paper,
+                        }}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                          vertical: -5,
+                          horizontal: "left",
+                        }}
+                        transformOrigin={{
+                          vertical: "bottom",
+                          horizontal: "left",
+                        }}
+                        onClose={handlePopoverClose}
+                        disableRestoreFocus
+                      >
+                        <Typography className={classes.popovertext}>
+                          Find address on Google maps.
+                        </Typography>
+                      </Popover>
                     </Grid>
                   )
                 })}
