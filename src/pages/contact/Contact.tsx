@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { SectionMap, ContactForm } from "."
+import {
+  SectionMap,
+  // ContactForm
+} from "."
 import { Helmet } from "react-helmet"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
@@ -41,7 +44,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         locations={locations}
         handleStatus={handleStatus}
       />
-      <ContactForm subDomain={subDomain} locations={locations} />
+      {/* <ContactForm subDomain={subDomain} locations={locations} /> */}
     </div>
   )
 }
