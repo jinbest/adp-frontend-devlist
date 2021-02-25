@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { Footer, Header, Chat, Preloader, Badge } from "./components"
 import { Home } from "./pages/home/"
-import { Location } from "./pages/Location"
+import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
 import { Provider } from "mobx-react"
@@ -24,7 +24,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "northtechsolutions", domain: "northtechsolutions.ca" },
 //   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
 //   { name: "pradowireless", domain: "pradowireless.com" },
-//   { name: "reparationcellularbsl", domain: "reparationcellularbsl.ca" },
+//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
 //   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
@@ -161,7 +161,7 @@ function App(): JSX.Element {
           exact
           component={() => (
             <Provider storesDetailsStore={storesDetails}>
-              <Location
+              <Contact
                 storesDetailsStore={storesDetails}
                 subDomain={subDomain}
                 handleStatus={handleFooterStatus}

@@ -215,7 +215,7 @@ export class LanguageKeys {
   public FIRST_NAME = "First Name*"
   public LAST_NAME = "Last Name*"
   public EMAIL_ADDRESS = "E-mail Address*"
-  public PHONE_NUM = "Phone Number*"
+  public PHONE_NUM = "Phone Number"
   public STREET_ADDRESS = "Street Address*"
   public ADDRESS_2 = "Address 2"
   public COUNTRY = "Country*"

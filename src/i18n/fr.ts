@@ -220,7 +220,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public FIRST_NAME = "Prénom*"
   public LAST_NAME = "Nom de famille*"
   public EMAIL_ADDRESS = "Adresse e-mail*"
-  public PHONE_NUM = "Numéro de téléphone*"
+  public PHONE_NUM = "Numéro de téléphone"
   public STREET_ADDRESS = "Adresse de rue*"
   public ADDRESS_2 = "Adresse 2"
   public COUNTRY = "Pays*"
