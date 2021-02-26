@@ -19,6 +19,7 @@ interface Props extends StoreProps {
   subDomain?: string
   locations: any[]
   handleStatus: (status: boolean) => void
+  location_id: string | null
 }
 
 type StoreProps = {
@@ -147,7 +148,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const SectionMap = inject("headerStore")(
-  observer(({ subDomain, locations, headerStore, handleStatus }: Props) => {
+  observer(({ subDomain, locations, headerStore, handleStatus, location_id }: Props) => {
     const data = require(`../../assets/${subDomain}/Database`)
     const t = useT()
     const classes = useStyles()
@@ -172,6 +173,17 @@ const SectionMap = inject("headerStore")(
         setExpanded(0)
         setIsExpanded(true)
         setSelectedLocation(locations[0])
+      }
+      if (!location_id) {
+        return
+      }
+      for (let i = 0; i < locations.length; i++) {
+        if (parseInt(locations[i].id) === parseInt(location_id)) {
+          setExpanded(i)
+          setIsExpanded(true)
+          setSelectedLocation(locations[i])
+          break
+        }
       }
     }, [locations])
 

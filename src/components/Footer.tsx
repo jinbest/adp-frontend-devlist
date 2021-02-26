@@ -140,7 +140,7 @@ const Footer = inject("headerStore")(
                               .join("+")}`
                           }
                           className={classes.hoverEffect}
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ color: "black" }}
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -153,7 +153,7 @@ const Footer = inject("headerStore")(
                       >
                         <a
                           href={`tel:${item.phone}`}
-                          style={{ textDecoration: "none", color: "black", whiteSpace: "nowrap" }}
+                          style={{ color: "black", whiteSpace: "nowrap" }}
                           className={classes.hoverEffect}
                         >
                           {phoneFormatString(item.phone)} |
@@ -161,7 +161,7 @@ const Footer = inject("headerStore")(
                         &nbsp;
                         <a
                           href={`mailto:${item.email}`}
-                          style={{ textDecoration: "none", color: "black", whiteSpace: "nowrap" }}
+                          style={{ color: "black", whiteSpace: "nowrap" }}
                           className={classes.hoverEffect}
                         >
                           {item.email}
@@ -182,7 +182,7 @@ const Footer = inject("headerStore")(
                               .split(" ")
                               .join("+")}`
                           }
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ color: "black" }}
                           className={classes.hoverEffect}
                           target="_blank"
                           rel="noreferrer"
