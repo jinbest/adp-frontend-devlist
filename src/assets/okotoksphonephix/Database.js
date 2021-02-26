@@ -579,6 +579,35 @@ const getTabData = (companyName) => {
     bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3K58Q4"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>
         `,
+    scriptTag: `
+    var _support = _support || { 'ui': {}, 'user': {} };
+    _support['account'] = 'phonephix';
+    _support['ui']['contactMode'] = 'anonymous';
+    _support['ui']['enableKb'] = 'false';
+    _support['ui']['styles'] = {
+    widgetColor: 'rgb(251, 164, 36)',
+    gradient: true,
+    };
+    _support['ui']['widget'] = {
+    displayOn: 'all',
+    label: {
+    text: 'Let us know if you have any questions! 😊',
+    mode: "notification",
+    delay: 3,
+    duration: 30,
+    sound: true,
+    },
+    position: 'bottom-right',
+    size: 50,
+    mobilePosition: 'bottom-right',
+    mobileSize: 50
+    };
+    _support['apps'] = {
+    faq: {"enabled":false},
+    recentConversations: {},
+    orders: {}
+    };
+    `,
   }
 }
 

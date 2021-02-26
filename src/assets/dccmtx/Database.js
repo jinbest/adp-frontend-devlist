@@ -371,7 +371,7 @@ const arrowData = {
 }
 
 const shapeData = {
-  cornerShape: { img: cornerShape, width: "100vw" },
+  cornerShape: { img: cornerShape, width: "100%" },
   mockupShape: "",
 }
 

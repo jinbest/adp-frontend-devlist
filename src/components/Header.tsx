@@ -74,7 +74,7 @@ const NavItemLink = ({
   }
 
   return (
-    <li className={subDomain + "-nav-item"} style={{ textDecoration: "underline" }}>
+    <li className={subDomain + "-nav-item"}>
       {isExternal(href) ? (
         <a className={subDomain + "-nav-link"} href={href} target="_blank" rel="noreferrer">
           {text === "SHOP" ? (

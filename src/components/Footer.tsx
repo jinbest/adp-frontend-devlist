@@ -130,7 +130,11 @@ const Footer = inject("headerStore")(
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
                         className={subDomain + "-footer-subContent-title"}
-                        style={{ width: "fit-content", fontWeight: "bold", margin: "20px 0 5px" }}
+                        style={{
+                          width: "fit-content",
+                          fontWeight: "bold",
+                          margin: "20px auto 5px",
+                        }}
                       >
                         <a
                           href={
@@ -140,7 +144,7 @@ const Footer = inject("headerStore")(
                               .join("+")}`
                           }
                           className={classes.hoverEffect}
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ color: "black" }}
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -153,7 +157,7 @@ const Footer = inject("headerStore")(
                       >
                         <a
                           href={`tel:${item.phone}`}
-                          style={{ textDecoration: "none", color: "black", whiteSpace: "nowrap" }}
+                          style={{ color: "black", whiteSpace: "nowrap" }}
                           className={classes.hoverEffect}
                         >
                           {phoneFormatString(item.phone)} |
@@ -161,7 +165,7 @@ const Footer = inject("headerStore")(
                         &nbsp;
                         <a
                           href={`mailto:${item.email}`}
-                          style={{ textDecoration: "none", color: "black", whiteSpace: "nowrap" }}
+                          style={{ color: "black", whiteSpace: "nowrap" }}
                           className={classes.hoverEffect}
                         >
                           {item.email}
@@ -172,7 +176,7 @@ const Footer = inject("headerStore")(
                         aria-haspopup="true"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
-                        style={{ width: "fit-content", marginTop: "5px" }}
+                        style={{ width: "fit-content", margin: "5px auto 0" }}
                         className={subDomain + "-device-list-grid"}
                       >
                         <a
@@ -182,7 +186,7 @@ const Footer = inject("headerStore")(
                               .split(" ")
                               .join("+")}`
                           }
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ color: "black" }}
                           className={classes.hoverEffect}
                           target="_blank"
                           rel="noreferrer"

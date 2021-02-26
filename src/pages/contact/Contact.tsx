@@ -8,6 +8,11 @@ import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../store/StoresDetails"
 import findLocationAPI from "../../services/api/findLocationAPI"
+import { useLocation } from "react-router-dom"
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search)
+}
 
 type Props = {
   subDomain: string
@@ -17,6 +22,7 @@ type Props = {
 
 const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database`)
+  const query = useQuery()
 
   const [pageTitle] = useState("Contact")
   const [locations, setLocations] = useState<any[]>([])
@@ -47,6 +53,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         subDomain={subDomain}
         locations={locations}
         handleStatus={handleStatus}
+        location_id={query.get("location_id")}
       />
       {/* <ContactForm subDomain={subDomain} locations={locations} /> */}
     </div>

@@ -32,9 +32,9 @@ export class RepairWidgetStore {
   @observable message = ''
   @observable cntStep = 0
   @observable repairWidgetInitialValue: any = {
-    selectDate: '',
-    selected_start_time: '',
-    selected_end_time: ''
+    selectDate: null,
+    selected_start_time: null,
+    selected_end_time: null
   }
   @observable appointResponse: any = {}
 
@@ -171,9 +171,9 @@ export class RepairWidgetStore {
     this.message = '';
     this.cntStep = 0;
     this.repairWidgetInitialValue = {
-      selectDate: '',
-      selected_start_time: '',
-      selected_end_time: ''
+      selectDate: null,
+      selected_start_time: null,
+      selected_end_time: null
     }
     this.appointResponse = {}
     this.save();
