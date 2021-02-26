@@ -130,7 +130,11 @@ const Footer = inject("headerStore")(
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
                         className={subDomain + "-footer-subContent-title"}
-                        style={{ width: "fit-content", fontWeight: "bold", margin: "20px 0 5px" }}
+                        style={{
+                          width: "fit-content",
+                          fontWeight: "bold",
+                          margin: "20px auto 5px",
+                        }}
                       >
                         <a
                           href={
@@ -172,7 +176,7 @@ const Footer = inject("headerStore")(
                         aria-haspopup="true"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
-                        style={{ width: "fit-content", marginTop: "5px" }}
+                        style={{ width: "fit-content", margin: "5px auto 0" }}
                         className={subDomain + "-device-list-grid"}
                       >
                         <a

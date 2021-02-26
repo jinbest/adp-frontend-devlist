@@ -1,7 +1,10 @@
 .#{$folderName}-service-widget {
   /* margin-top: 200px !important; */
   position: relative;
-  top: 160px;
+  top: 130px;
+  @media (max-width: 425px) {
+    top: 145px;
+  }
 }
 
 .#{$folderName}-back-to-top {
