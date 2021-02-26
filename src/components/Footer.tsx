@@ -28,6 +28,21 @@ const useStyles = makeStyles(() =>
     popovertext: {
       fontSize: "12px !important",
     },
+    footerLocName: {
+      width: "fit-content",
+      fontWeight: "bold",
+      margin: "20px 0 5px",
+      ["@media (max-width:600px)"]: {
+        margin: "20px auto 5px",
+      },
+    },
+    footerLocAddress: {
+      width: "fit-content",
+      marginTop: "5px",
+      ["@media (max-width:600px)"]: {
+        margin: "5px auto 0",
+      },
+    },
   })
 )
 
@@ -129,12 +144,7 @@ const Footer = inject("headerStore")(
                         aria-haspopup="true"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
-                        className={subDomain + "-footer-subContent-title"}
-                        style={{
-                          width: "fit-content",
-                          fontWeight: "bold",
-                          margin: "20px auto 5px",
-                        }}
+                        className={subDomain + "-footer-subContent-title " + classes.footerLocName}
                       >
                         <a
                           href={
@@ -176,8 +186,7 @@ const Footer = inject("headerStore")(
                         aria-haspopup="true"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
-                        style={{ width: "fit-content", margin: "5px auto 0" }}
-                        className={subDomain + "-device-list-grid"}
+                        className={subDomain + "-device-list-grid " + classes.footerLocAddress}
                       >
                         <a
                           href={
