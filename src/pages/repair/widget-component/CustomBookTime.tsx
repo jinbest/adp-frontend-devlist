@@ -122,8 +122,8 @@ const CustomBookTime = ({
       week = isWeek(selectYear, selectMonth, selectDay),
       availRange: any[] = availableTimeRange(timesRng[week][0], timesRng[week][1], interval, multi)
 
-    for (let i = 0; i < availRange.length; i++) {
-      if (!availRange.includes("Closed")) {
+    if (!availRange.includes("Closed")) {
+      for (let i = 0; i < availRange.length - 1; i++) {
         const cntbookStamp =
           cntTimeStamp + availRange[i] + (cntTimeStampOffset - defaultOffset) * 3600 * 1000
         const cntbook = new Date(cntbookStamp)
@@ -157,15 +157,15 @@ const CustomBookTime = ({
           bgColor: "white",
           borderCol: past ? "rgba(0,0,0,0.2)" : repairBooktimeCol,
         })
-      } else {
-        booklist.push({
-          book: "Closed",
-          isPast: true,
-          color: "rgba(0,0,0,0.2)",
-          bgColor: "white",
-          borderCol: "rgba(0,0,0,0.2)",
-        })
       }
+    } else {
+      booklist.push({
+        book: "Closed",
+        isPast: true,
+        color: "rgba(0,0,0,0.2)",
+        bgColor: "white",
+        borderCol: "rgba(0,0,0,0.2)",
+      })
     }
     setBookArray([...booklist])
   }, [selectYear, selectMonth, selectDay, val, hoursRange])
