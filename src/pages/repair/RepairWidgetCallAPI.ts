@@ -3,7 +3,8 @@ import { repairWidData, storesDetails } from "../../store/"
 
 function getRepairLookupAPI() {
   const lookupTypes: any[] = ["repair_delivery_method", "repair_contact_method", "warranty_unit"]
-  const locale: string = window.localStorage.getItem("cntLang") || "en"
+  // const locale: string = window.localStorage.getItem("cntLang") || "en"
+  const locale= "en"
 
   repairWidgetAPI
     .getRepairLookup(locale, lookupTypes)
@@ -145,7 +146,8 @@ async function getRepairsOfferedDeviceAPI(
   page: number,
   per_page: number
 ) {
-  const locale: string = window.localStorage.getItem("cntLang") || "en"
+  // const locale: string = window.localStorage.getItem("cntLang") || "en"
+  const locale = "en"
   const store_id: number = storesDetails.store_id
   const included_voided = false
   const name_sort_order = "asc"
@@ -179,7 +181,8 @@ async function addMoreRepairsOfferedDeviceAPI(
   page: number,
   per_page: number
 ) {
-  const locale: string = window.localStorage.getItem("cntLang") || "en"
+  // const locale: string = window.localStorage.getItem("cntLang") || "en"
+  const locale = "en"
   const store_id: number = storesDetails.store_id
   const included_voided = false
   const name_sort_order = "asc"

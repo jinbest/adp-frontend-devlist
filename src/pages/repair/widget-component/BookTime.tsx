@@ -7,6 +7,7 @@ import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { makeLocations } from "../../../components/CustomizedMenus"
+import { LangProps } from "../../../i18n/en"
 
 type Props = {
   data: any
@@ -26,28 +27,28 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
   const brandThemeCol = mainData.brandItemsData.brandThemeCol
-  const DAYS_OF_THE_WEEK = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+  const DAYS_OF_THE_WEEK: LangProps[] = [
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+    "SATURDAY",
+    "SUNDAY",
   ]
-  const MONTHS = [
-    "January",
-    "Febrary",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "Octorber",
-    "November",
-    "December",
+  const MONTHS: LangProps[] = [
+    "JANUARY",
+    "FEBRARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTORBER",
+    "NOVEMBER",
+    "DECEMBER",
   ]
   const publicText = mockData.repairWidget.publicText
 
@@ -212,9 +213,9 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           address: selectVal.name,
           time: time,
           day: day,
-          month: MONTHS[month],
+          month: t(MONTHS[month]),
           year: year,
-          week: DAYS_OF_THE_WEEK[week],
+          week: t(DAYS_OF_THE_WEEK[week]),
           timezone: timeZoneList[tzIndex].offset,
         },
       })
@@ -402,7 +403,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         themeCol={themeCol}
                         brandThemeCol={brandThemeCol}
                         repairBooktimeCol={repairBooktimeCol}
-                        title={DAYS_OF_THE_WEEK[week] + ", " + MONTHS[month] + " " + day}
+                        title={t(DAYS_OF_THE_WEEK[week]) + ", " + t(MONTHS[month]) + " " + day}
                         subDomain={subDomain}
                         timezoneIndex={tzIndex}
                         timeZoneList={timeZoneList}
@@ -432,12 +433,12 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                     >
                       {time ? (
                         <p style={{ textAlign: "center", margin: "0 10px" }}>
-                          {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {DAYS_OF_THE_WEEK[week]},{" "}
-                          {MONTHS[month]} {day}, {year}
+                          {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {t(DAYS_OF_THE_WEEK[week])},{" "}
+                          {t(MONTHS[month])} {day}, {year}
                         </p>
                       ) : (
                         <p style={{ textAlign: "center", margin: "0 10px" }}>
-                          You did not select time yet.
+                          {t("YOU_DID_NOT_SELECT_TIME_YET")}
                         </p>
                       )}
                     </div>

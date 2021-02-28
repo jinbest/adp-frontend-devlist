@@ -95,7 +95,7 @@
 .#{$folderName}-section1-title {
   font-style: normal;
   font-weight: 900 !important;
-  font-size: 65px !important;
+  font-size: 60px !important;
   line-height: 1.2 !important;
   display: flex;
   align-items: center;
@@ -307,6 +307,12 @@ p {
   }
 }
 
+@media (max-width: 850px) {
+  .#{$folderName}-section1-title {
+    font-size: 43px !important;
+  }
+}
+
 @media (max-width: 425px) {
   .#{$folderName}-sec4-background {
     padding-top: 1px;
@@ -341,6 +347,6 @@ p {
     font-size: 4vw !important;
   }
   .#{$folderName}-section1-title {
-    font-size: 6vw !important;
+    font-size: 5vw !important;
   }
 }

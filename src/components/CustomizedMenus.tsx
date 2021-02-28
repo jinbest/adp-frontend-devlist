@@ -255,12 +255,12 @@ const CustomizedMenus = inject("headerStore")(
       }
       headerStore.changeCntUserLocationSelected(locSelStatus)
       if (locations.length <= 1) {
-        setMyStore("Nearest Location")
+        setMyStore(t("NEAREST_LOCATION"))
       } else {
-        setMyStore("All Locations")
+        setMyStore(t("ALL_LOCATIONS"))
       }
       if (locSelStatus) {
-        setMyStore("Selected Location")
+        setMyStore(t("SELECTED_LOCATION"))
       }
     }, [locSelStatus, locations])
 
@@ -316,6 +316,22 @@ const CustomizedMenus = inject("headerStore")(
         document.removeEventListener("keydown", onKeyPress, false)
       }
     }, [])
+
+    // useEffect(() => {
+    //   findLocationAPI
+    //     .findAllLocation(headerStore.store_id)
+    //     .then((res: any) => {
+    //       const locationData = res.data as any[]
+    //       headerStore.changeFindAddLocation(locationData)
+    //       headerStore.changeCntUserLocationSelected(true)
+    //       setLocations(makeLocations([locationData[0]]))
+    //       setLocSelStatus(true)
+    //       headerStore.changeLocationID(locationData[0].id)
+    //     })
+    //     .catch((error) => {
+    //       console.log("Error in get Features", error)
+    //     })
+    // }, [])
 
     const handleGetLocation = (poscode: string) => {
       if (!poscode) return
@@ -399,14 +415,14 @@ const CustomizedMenus = inject("headerStore")(
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
                       value={postCode}
-                      placeholder={"Postal Code*"}
+                      placeholder={t("POSTAL_CODE")}
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
                       subDomain={subDomain}
                     />
                     <Button
-                      title={"Get Location"}
+                      title={t("GET_LOCATION")}
                       bgcolor={themeColor}
                       borderR="20px"
                       width="80%"

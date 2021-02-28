@@ -37,6 +37,19 @@ export class LanguageKeysFr extends LanguageKeys {
   public FRIDAY = "Vendredi"
   public SATURDAY = "Samedi"
   public SUNDAY = "Dimanche"
+  public JANUARY = "Janvier"
+  public FEBRARY = "Février"
+  public MARCH = "Mars"
+  public APRIL = "Avril"
+  public MAY = "Mai"
+  public JUNE = "Juin"
+  public JULY = "Juillet"
+  public AUGUST = "Août"
+  public SEPTEMBER = "Septembre"
+  public OCTORBER = "Octobre"
+  public NOVEMBER = "Novembre"
+  public DECEMBER = "Décembre"
+  public YOU_DID_NOT_SELECT_TIME_YET = 'Vous n\'avez pas encore sélectionné l\'heure.'
   public CLOSED = "Fermée"
   public BOOK_AN_APPOINTMENT = "Prenez rendez-vous"
   public REQUEST_A_QUOTE = "Demander un devis"
@@ -46,7 +59,7 @@ export class LanguageKeysFr extends LanguageKeys {
     "Nous croyons en un processus de réparation transparent - sachez exactement ce que nous allons réparer sur votre appareil et quel est le coût avant de commencer."
   public LOW_PRICE_GUARANTEE = "NOUS TARIFS QUE TOUT LE MONDE"
   public LOW_PRICE_GUARANTEE_CONTENT =
-    "Nous voulons que vous soyez sûr que vous obtenez le meilleur prix. Nous égalerons le prix publié de tout concurrent local de pour la même réparation et le ferons plus rapidement."
+    "Nous voulons que vous ayez la certitude que vous obtenez le meilleur prix. Nous égalerons le prix publié par tout concurrent local pour la même réparation et le réaliserons plus rapidement."
   public QUICK_TURNAROUND = "REVISION RAPIDE"
   public QUICK_TURNAROUND_CONTENT =
     "Nous savons que vous n'avez pas toute la journée, nous vous retournerons votre appareil le plus rapidement possible. La plupart de nos réparations peuvent être effectuées en moins de deux heures."
@@ -166,6 +179,11 @@ export class LanguageKeysFr extends LanguageKeys {
   public ESSENTIAL_MOBILE_DEVICE = "appareils mobiles essentiels."
   public YOUR = "ton"
   public BOOK_APPOINTMENT = "Prendre rendez-vous"
+  public GET_LOCATION = "L'emplacement"
+  public NEAREST_LOCATION = "Emplacement le proche"
+  public SELECTED_LOCATION = "Emplacement sélectionné"
+  public ALL_LOCATIONS = "Tous les emplacements"
+  public DIRECTIONS = "Instructions"
 
   /* service-widget Text */
   public NEXT = "Suivant"
@@ -194,7 +212,7 @@ export class LanguageKeysFr extends LanguageKeys {
     "Le modèle de l'appareil est indiqué dans la section Paramètres / Système / À propos du téléphone ou dans Paramètres / Général / Stockage. Il peut également figurer sur la boîte d'origine et / ou le manuel fourni avec votre appareil."
   public CHOOSE_YOUR_DEVICE_MODEL_APPLE = "Choisissez votre modèle d'appareil"
   public SEARCH_FOR_YOUR_MODEL = "Recherchez votre modèle"
-  public CHOOSE_YOUR_REPAIRS = "Choisissez votre (vos) réparation (s)"
+  public CHOOSE_YOUR_REPAIRS = "Choisissez votre problème"
   public WHAT_IS_BROKEN = "Qu'est-ce qui est cassé?"
   public ESTIMATED_REPAIR_TIME = "Temps de réparation estimé"
   public BACK_GLASS = "Verre arrière"
@@ -392,8 +410,8 @@ export class LanguageKeysFr extends LanguageKeys {
 
   /* Wireless Website Text */
   public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles d’Ottawa"
-  public WELCOME_WIRELESS = (storeName: string) => {
-    return `Bienvenue sur ${storeName}, le marché des appareils mobiles d'Ottowa`
+  public WELCOME_WIRELESS = () => {
+    return `Boutique d'appareils mobiles de confiance d'Ottawa`
   }
   public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = (storeName: string) => {
     return `Découvrez pourquoi les clients aiment la ${storeName}`
