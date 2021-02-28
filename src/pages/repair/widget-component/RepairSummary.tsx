@@ -128,21 +128,31 @@ class RepairSummary extends React.Component<Props, MyState> {
                           </p>
                           {chooseItem.warranty && chooseItem.warranty > 0 ? (
                             <p className={subDomain + "-service-summary-service-child"}>
-                              {"Warranty: " +
-                                chooseItem.warranty +
-                                " " +
-                                ConvertWarrantyUnit(chooseItem.warranty_unit, chooseItem.warranty)}
+                              <T id="WARRANTY" />
+                              {": " + chooseItem.warranty + " "}
+                              <T
+                                id={ConvertWarrantyUnit(
+                                  chooseItem.warranty_unit,
+                                  chooseItem.warranty
+                                )}
+                              />
                             </p>
                           ) : chooseItem.warranty && chooseItem.warranty === -1 ? (
                             <p className={subDomain + "-service-summary-service-child"}>
-                              Warranty: Lifetime
+                              <T id="WARRANTY" />
+                              :&nbsp;
+                              <T id="LIFETIME" />
                             </p>
                           ) : (
                             <p
                               className={subDomain + "-service-summary-service-child"}
                               style={{ color: "grey" }}
                             >
-                              <i>No warranty</i>
+                              <i>
+                                <T id="NO" />
+                                &nbsp;
+                                <T id="WARRANTY" />
+                              </i>
                             </p>
                           )}
                         </div>

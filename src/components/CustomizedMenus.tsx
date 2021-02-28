@@ -63,7 +63,7 @@ export function makeLocations(data: any[]) {
       location_name: data[i].location_name,
       address_1: data[i].address_1,
       address_2: data[i].address_2,
-      distance: (data[i].distance / 1000).toFixed(1) + "km",
+      distance: data[i].distance ? (data[i].distance / 1000).toFixed(1) + "km" : "",
       location_id: data[i].id,
       hours: hours,
       days: weekDays,
@@ -317,21 +317,22 @@ const CustomizedMenus = inject("headerStore")(
       }
     }, [])
 
-    // useEffect(() => {
-    //   findLocationAPI
-    //     .findAllLocation(headerStore.store_id)
-    //     .then((res: any) => {
-    //       const locationData = res.data as any[]
-    //       headerStore.changeFindAddLocation(locationData)
-    //       headerStore.changeCntUserLocationSelected(true)
-    //       setLocations(makeLocations([locationData[0]]))
-    //       setLocSelStatus(true)
-    //       headerStore.changeLocationID(locationData[0].id)
-    //     })
-    //     .catch((error) => {
-    //       console.log("Error in get Features", error)
-    //     })
-    // }, [])
+    useEffect(() => {
+      findLocationAPI
+        .findAllLocation(headerStore.store_id)
+        .then((res: any) => {
+          const locationData = res.data as any[]
+          if (locationData.length > 1 || !locationData.length) return
+          headerStore.changeFindAddLocation(locationData)
+          headerStore.changeCntUserLocationSelected(true)
+          setLocations(makeLocations([locationData[0]]))
+          setLocSelStatus(true)
+          headerStore.changeLocationID(locationData[0].id)
+        })
+        .catch((error) => {
+          console.log("Error in get Features", error)
+        })
+    }, [])
 
     const handleGetLocation = (poscode: string) => {
       if (!poscode) return
@@ -457,7 +458,14 @@ const CustomizedMenus = inject("headerStore")(
                             (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
                           }
                         >
-                          {item.location_name + ", " + item.address_1 + " (" + item.distance + ")"}
+                          {item.distance
+                            ? item.location_name +
+                              ", " +
+                              item.address_1 +
+                              " (" +
+                              item.distance +
+                              ")"
+                            : item.location_name + ", " + item.address_1}
                         </p>
                       </React.Fragment>
                     )

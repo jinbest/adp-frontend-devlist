@@ -32,13 +32,13 @@ type ArrayProps = {
 
 export function ConvertWarrantyUnit(val: string, warnt: number) {
   if (val === "DD" || val === "DAY") {
-    return warnt > 1 ? "Days" : "Day"
+    return warnt > 1 ? "DAYS" : "DAY"
   } else if (val === "YY" || val === "YEAR") {
-    return warnt > 1 ? "Years" : "Year"
+    return warnt > 1 ? "YEARS" : "YEAR"
   } else if (val === "MM" || val === "MONTH") {
-    return warnt > 1 ? "Months" : "Month"
+    return warnt > 1 ? "MONTHS" : "MONTH"
   } else {
-    return "Lifetime"
+    return "LIFETIME"
   }
 }
 
@@ -666,19 +666,22 @@ const ChooseDevice = ({
                           )}
                           {item.warranty && item.warranty > 0 ? (
                             <p className={subDomain + "-estimate-content"}>
-                              {"Warranty: " +
+                              {t("WARRANTY") +
+                                ": " +
                                 item.warranty +
                                 " " +
-                                ConvertWarrantyUnit(item.warranty_unit, item.warranty)}
+                                t(ConvertWarrantyUnit(item.warranty_unit, item.warranty))}
                             </p>
                           ) : item.warranty && item.warranty === -1 ? (
-                            <p className={subDomain + "-estimate-content"}>Warranty: Lifetime</p>
+                            <p className={subDomain + "-estimate-content"}>
+                              {t("WARRANTY") + ": " + t("LIFETIME")}
+                            </p>
                           ) : (
                             <p
                               className={subDomain + "-estimate-content"}
                               style={{ color: "grey" }}
                             >
-                              <i>No warranty</i>
+                              <i>{t("NO") + " " + t("WARRANTY")}</i>
                             </p>
                           )}
                         </div>

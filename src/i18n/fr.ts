@@ -184,6 +184,14 @@ export class LanguageKeysFr extends LanguageKeys {
   public SELECTED_LOCATION = "Emplacement sélectionné"
   public ALL_LOCATIONS = "Tous les emplacements"
   public DIRECTIONS = "Instructions"
+  public WARRANTY = "Garantie"
+  public LIFETIME = "Durée de vie"
+  public DAY = "Jour"
+  public YEAR = "An"
+  public MONTH = "Mois"
+  public DAYS = "Jours"
+  public YEARS = "Années"
+  public MONTHS = "Mois"
 
   /* service-widget Text */
   public NEXT = "Suivant"

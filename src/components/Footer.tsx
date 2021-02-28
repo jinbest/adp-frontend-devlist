@@ -113,9 +113,7 @@ const FooterLinksComponent = ({
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {subDomain === "nanotechmobile" && isMain
-                      ? "NanoTech Mobile"
-                      : item.location_name}
+                    {item.location_name}
                   </a>
                 </Typography>
                 <div

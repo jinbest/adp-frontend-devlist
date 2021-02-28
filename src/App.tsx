@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat, Preloader, Badge } from "./components"
+import { Footer, Header, Chat, Preloader, Badge, Sitemap } from "./components"
 import { Home } from "./pages/home/"
 import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
@@ -29,7 +29,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 0,
+// const siteNum = 2,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -188,6 +188,12 @@ function App(): JSX.Element {
             <Shop subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
           )}
         />
+        {subDomain === "mobiletechlab" && (
+          <Route
+            path="/sitemap.xml"
+            component={() => <Sitemap subDomain={subDomain} handleStatus={handleFooterStatus} />}
+          />
+        )}
       </>
     )
   }
