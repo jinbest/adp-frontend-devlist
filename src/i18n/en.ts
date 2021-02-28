@@ -180,6 +180,14 @@ export class LanguageKeys {
   public SELECTED_LOCATION = "Selected Location"
   public ALL_LOCATIONS = "All Locations"
   public DIRECTIONS = "Directions"
+  public WARRANTY = "Warranty"
+  public LIFETIME = "Lifetime"
+  public DAY = "Day"
+  public YEAR = "Year"
+  public MONTH = "Month"
+  public DAYS = "Days"
+  public YEARS = "Years"
+  public MONTHS = "Months"
 
   /* service-widget Text */
   public NEXT = "Next"
