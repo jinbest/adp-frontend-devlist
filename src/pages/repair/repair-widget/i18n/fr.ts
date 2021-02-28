@@ -350,7 +350,7 @@ export class LanguageKeysFr extends LanguageKeys {
   /* Wireless Website Text */
   public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Spécialistes des appareils mobiles d’Ottawa"
   public WELCOME_WIRELESS =
-    "Bienvenue sur Wireless Revolution, le marché des appareils mobiles d'Ottowa"
+    "Bienvenue sur Wireless Revolution, le marché des appareils mobiles d'Ottawa"
   public SEE_WHY_CUSTOMERS_LOVE_WIRELESS =
     "Découvrez pourquoi les clients aiment la révolution sans fil"
   public WIRELESS_FOOTER_CONTENT_TWO =

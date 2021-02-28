@@ -34,6 +34,19 @@ export class LanguageKeys {
   public FRIDAY = "Friday"
   public SATURDAY = "Saturday"
   public SUNDAY = "Sunday"
+  public JANUARY = "January"
+  public FEBRARY = "Febrary"
+  public MARCH = "March"
+  public APRIL = "April"
+  public MAY = "May"
+  public JUNE = "June"
+  public JULY = "July"
+  public AUGUST = "August"
+  public SEPTEMBER = "September"
+  public OCTORBER = "Octorber"
+  public NOVEMBER = "November"
+  public DECEMBER = "December"
+  public YOU_DID_NOT_SELECT_TIME_YET = 'You did not select time yet.'
   public CLOSED = "Closed"
   public BOOK_AN_APPOINTMENT = "Book Appointment"
   public REQUEST_A_QUOTE = "Request a Quote"
@@ -162,6 +175,11 @@ export class LanguageKeys {
   public ESSENTIAL_MOBILE_DEVICE = "essential mobile devices."
   public YOUR = "your"
   public BOOK_APPOINTMENT = "Book Appointment"
+  public GET_LOCATION = "Get Location"
+  public NEAREST_LOCATION = "Nearest Location"
+  public SELECTED_LOCATION = "Selected Location"
+  public ALL_LOCATIONS = "All Locations"
+  public DIRECTIONS = "Directions"
 
   /* service-widget Text */
   public NEXT = "Next"
@@ -381,8 +399,8 @@ export class LanguageKeys {
 
   /* Wireless Website Text */
   public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
-  public WELCOME_WIRELESS = (storeName: string) => {
-    return `Welcome to ${storeName}, Ottowa's mobile device marketplace`
+  public WELCOME_WIRELESS = () => {
+    return `Ottawa's trusted mobile device shop`
   }
   public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = (storeName: string) => {
     return `See Why Customers Love ${storeName}`

@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme: Theme) =>
     getQuote: {
       width: "170px",
       fontSize: "13px!important" as any,
+      color: "white",
       [theme.breakpoints.down("sm")]: {
         width: "120px",
         fontSize: "12px!important" as any,
@@ -89,6 +90,7 @@ const useStyles = makeStyles((theme: Theme) =>
     getAppoint: {
       width: "170px",
       fontSize: "13px!important" as any,
+      color: "white",
       [theme.breakpoints.down("sm")]: {
         width: "170px",
         fontSize: "12px!important" as any,
@@ -301,7 +303,7 @@ const SectionMap = inject("headerStore")(
                               }}
                             >
                               <CallSplitIcon />
-                              <span className={classes.directions}>Directions</span>
+                              <span className={classes.directions}>{t("DIRECTIONS")}</span>
                             </a>
                           </p>
                         </Grid>

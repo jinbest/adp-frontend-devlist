@@ -333,7 +333,7 @@ export class LanguageKeys {
 
   /* Wireless Website Text */
   public WIRELESS_MOBILE_DEVICE_SPECIALISTS = "Ottawa’s Mobile Device Specialists"
-  public WELCOME_WIRELESS = "Welcome to Wireless Revolution, Ottowa's mobile device marketplace"
+  public WELCOME_WIRELESS = "Welcome to Wireless Revolution, Ottawa's mobile device marketplace"
   public SEE_WHY_CUSTOMERS_LOVE_WIRELESS = "See Why Customers Love Wireless Revolution"
   public WIRELESS_FOOTER_CONTENT_TWO =
     '© 2020 Wireless Revolution 1.0.2. All Rights Reserved. All trademarks are properties of their respective holders. 11253913 Canada Inc. o/a "Wireless Revolution" does not own or make claim to those trademarks used on this website in which it is not the holder.'
