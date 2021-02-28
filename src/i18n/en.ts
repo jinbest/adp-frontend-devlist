@@ -259,7 +259,7 @@ export class LanguageKeys {
   public PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT =
     "Please Enter Your Address for Return Shipment"
   public SELECT_A_PICK_UP_TIME = "Select a Pick-Up Time"
-  public SELECT_CURBSIDE_DROP_OFF_TIME = "Select Curbside Drop-Off Time"
+  public SELECT_CURBSIDE_DROP_OFF_TIME = "Select a day and time"
   public SELECT_VISIT_TIME = "Select Visit Time"
   public MONDAY_FRIDAY = "Monday - Friday"
   public ENTER_A_MESSAGE_OR_USEFUL_INFO =

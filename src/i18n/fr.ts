@@ -265,7 +265,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT =
     "Veuillez saisir votre adresse pour l'envoi de retour"
   public SELECT_A_PICK_UP_TIME = "Sélectionnez une heure de prise en charge"
-  public SELECT_CURBSIDE_DROP_OFF_TIME = "Sélectionnez l'heure de dépose en bordure de rue"
+  public SELECT_CURBSIDE_DROP_OFF_TIME = "Sélectionnez un jour et une heure"
   public SELECT_VISIT_TIME = "Sélectionnez l'heure de la visite"
   public MONDAY_FRIDAY = "Lundi - Vendredi"
   public ENTER_A_MESSAGE_OR_USEFUL_INFO =
