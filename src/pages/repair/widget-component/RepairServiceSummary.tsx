@@ -42,7 +42,8 @@ const RepairServiceSummary = ({
   const handleSubmit = () => {
     setDisableStatus(true)
     setIsSubmitting(true)
-    const tp: string = code === "MAIL_IN" ? "QUOTE" : "APPOINTMENT"
+    // const tp: string = code === "MAIL_IN" ? "QUOTE" : "APPOINTMENT"
+    const tp = "APPOINTMENT"
     const repairs: any[] = []
     for (let i = 0; i < repairWidgetStore.deviceCounter; i++) {
       for (let j = 0; j < repairWidgetStore.chooseRepair[i].length; j++) {
@@ -81,8 +82,10 @@ const RepairServiceSummary = ({
     params.customer_note = repairWidgetStore.message
     params.customer_contact_method = repairWidgetStore.receiveQuote.code
     params.repairs = repairs
-    params.selected_date = repairWidgetStore.repairWidgetInitialValue.selectDate
-    params.selected_start_time = repairWidgetStore.repairWidgetInitialValue.selected_start_time
+    params.selected_date =
+      repairWidgetStore.repairWidgetInitialValue.selectDate || moment().format("YYYY-MM-DD")
+    params.selected_start_time =
+      repairWidgetStore.repairWidgetInitialValue.selected_start_time || moment().format("HH:mm")
     params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
     params.booking_date = moment().format("YYYY-MM-DD")
 
@@ -260,7 +263,7 @@ const RepairServiceSummary = ({
                 subDomain + "-repair-service-summary-flex-container " + subDomain + "-bordered"
               }
             >
-              <Typography className={subDomain + "-topic"}>{t(publicText.device)}</Typography>
+              <Typography className={subDomain + "-topic"}>{t(publicText.device)}:</Typography>
               <Typography className={subDomain + "-topic"}>
                 {t(publicText.repairService)}
               </Typography>
@@ -326,7 +329,7 @@ const RepairServiceSummary = ({
                   inactiveComponent={() => <></>}
                   activeComponent={() => (
                     <Button
-                      title={t(publicText.requestQuote)}
+                      title={t("GET_SHIPPING_LABEL")}
                       bgcolor={mainData.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"

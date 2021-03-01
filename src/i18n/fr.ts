@@ -290,6 +290,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public AT = "à"
   public SHORTLY = "prochainement"
   public TRACKING = "Suivi"
+  public GET_SHIPPING_LABEL = "Obtenir l'étiquette d'expédition"
 
   /* Devicelist Website Text */
   public WINNIPEG_MOBILE_DEVICE_SPECIALISTS = "Les spécialistes des appareils mobiles de Winnipeg"

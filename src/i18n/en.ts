@@ -284,6 +284,7 @@ export class LanguageKeys {
   public AT = "at"
   public SHORTLY = "shortly"
   public TRACKING = "Tracking"
+  public GET_SHIPPING_LABEL = "Get Shipping Label"
 
   /* Devicelist Website Text */
   public WINNIPEG_MOBILE_DEVICE_SPECIALISTS = "Winnipeg's mobile device specialists"
