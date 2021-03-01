@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {
-  SectionMap,
-  // ContactForm
-} from "."
+import { SectionMap, ContactForm } from "."
 import { Helmet } from "react-helmet"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
@@ -46,7 +43,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         <title>{pageTitle}</title>
         <link rel="icon" id="favicon" href={mainData.fav.img} />
         <link rel="apple-touch-icon" href={mainData.fav.img} />
-        {/* <meta name="description" content={""} /> */}
+        <meta name="description" content={""} />
       </Helmet>
       <SectionMap
         headerStore={storesDetailsStore}
@@ -55,7 +52,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         handleStatus={handleStatus}
         location_id={query.get("location_id")}
       />
-      {/* <ContactForm subDomain={subDomain} locations={locations} /> */}
+      <ContactForm subDomain={subDomain} locations={locations} />
     </div>
   )
 }
