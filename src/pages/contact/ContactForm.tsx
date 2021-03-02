@@ -140,11 +140,11 @@ const ContactForm = ({
   }, [firstName, lastName, email, loc, message])
 
   useEffect(() => {
-    if (storesDetailsStore.cntUserLocationSelected) {
-      handleStoreCntLoc(loc.code)
-    }
     if (locations.length) {
       handleLocationID(locations[loc.code].id)
+      if (storesDetailsStore.cntUserLocationSelected) {
+        handleStoreCntLoc(loc.code)
+      }
     }
   }, [loc, storesDetailsStore])
 
@@ -153,16 +153,10 @@ const ContactForm = ({
       for (let i = 0; i < locations.length; i++) {
         if (locationID && parseInt(locationID) === locations[i].id) {
           setLoc({ name: locations[i].address_1, code: i })
-          if (storesDetailsStore.cntUserLocationSelected) {
-            handleStoreCntLoc(i)
-          }
           break
         }
         if (!locationID && locations[i].is_main) {
           setLoc({ name: locations[i].address_1, code: i })
-          if (storesDetailsStore.cntUserLocationSelected) {
-            handleStoreCntLoc(i)
-          }
           break
         }
       }
@@ -260,20 +254,20 @@ const ContactForm = ({
             </Grid>
             <Grid item xs={12}>
               <InputComponent
-                value={email}
-                placeholder={t("EMAIL_ADDRESS")}
+                value={companyName}
+                placeholder={t("COMPANY_NAME")}
                 handleChange={(e) => {
-                  handleChangeEmail(e.target.value)
+                  handleChangeCompanyName(e.target.value)
                 }}
                 subDomain={subDomain}
               />
             </Grid>
             <Grid item xs={12}>
               <InputComponent
-                value={companyName}
-                placeholder={t("COMPANY_NAME")}
+                value={email}
+                placeholder={t("EMAIL_ADDRESS")}
                 handleChange={(e) => {
-                  handleChangeCompanyName(e.target.value)
+                  handleChangeEmail(e.target.value)
                 }}
                 subDomain={subDomain}
               />

@@ -230,27 +230,16 @@ const SectionMap = inject("headerStore")(
         return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
       }
       const handleChange = (panel: number) => (_: React.ChangeEvent<any>, isExpanded: boolean) => {
-        // if (headerStore.cntUserLocationSelected && locations.length) {
-        //   for (let i = 0; i < locations.length; i++) {
-        //     if (headerStore.cntUserLocation[0].location_id === locations[i].id) {
-        //       setSelectedLocation(locations[i])
-        //       handleLocationID(locations[i].id)
-        //       setExpanded(i)
-        //       setIsExpanded(isExpanded)
-        //     }
-        //   }
-        //   return
-        // }
-        setExpanded(isExpanded ? panel : false)
-        setIsExpanded(isExpanded)
+        // setExpanded(isExpanded ? panel : false)
+        // setIsExpanded(isExpanded)
+        setExpanded(panel)
+        setIsExpanded(true)
         if (headerStore.cntUserLocationSelected) {
           handleLocSelect(locations[panel])
         }
         if (isExpanded) {
           setSelectedLocation(locations[panel])
           handleLocationID(locations[panel].id)
-        } else {
-          handleLocationID(null)
         }
       }
 
@@ -261,7 +250,7 @@ const SectionMap = inject("headerStore")(
               setSelectedLocation(locations[i])
               handleLocationID(locations[i].id)
               setExpanded(i)
-              setIsExpanded(isExpanded)
+              setIsExpanded(true)
             }
           }
           return
