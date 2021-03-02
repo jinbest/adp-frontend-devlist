@@ -311,7 +311,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: ["BUSINESS", "FINANCING"],
+  left: [{text: 'BUSINESS', link: '#'}, {text: 'FINANCING', link: '#'}],
   right: { ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#F67500",

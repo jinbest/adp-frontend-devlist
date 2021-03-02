@@ -1,5 +1,7 @@
 import React, { useEffect } from "react"
 import XMLViewer from "react-xml-viewer"
+import { Error } from "../pages/error/"
+// import axios from "axios"
 
 const xml_data = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset
@@ -22,11 +24,26 @@ type Props = {
 const Sitemap = ({ subDomain, handleStatus }: Props) => {
   useEffect(() => {
     handleStatus(false)
+    // if (subDomain === "mobiletechlab") {
+    //   const XMLData = require(`../assets/${subDomain}/sitemap.xml`).default
+    //   axios
+    //     .get(XMLData)
+    //     .then((response) => {
+    //       console.log("Your xml file as string", response.data)
+    //     })
+    //     .catch((error) => {
+    //       console.log("Error to read XML file", error)
+    //     })
+    // }
   }, [])
 
   return (
     <section className={subDomain + "-Container"}>
-      <XMLViewer xml={xml_data} style={{ marginTop: "150px" }} />
+      {subDomain === "mobiletechlab" ? (
+        <XMLViewer xml={xml_data} style={{ marginTop: "150px" }} />
+      ) : (
+        <Error />
+      )}
     </section>
   )
 }

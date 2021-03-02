@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat, Preloader, Badge, Sitemap } from "./components"
+import {
+  Footer,
+  Header,
+  Chat,
+  Preloader,
+  Badge,
+  // Sitemap
+} from "./components"
 import { Home } from "./pages/home/"
+// import { Business } from "./pages/business/"
+// import { Error } from "./pages/error"
 import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
@@ -188,12 +197,20 @@ function App(): JSX.Element {
             <Shop subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
           )}
         />
-        {subDomain === "mobiletechlab" && (
-          <Route
-            path="/sitemap.xml"
-            component={() => <Sitemap subDomain={subDomain} handleStatus={handleFooterStatus} />}
-          />
-        )}
+        {/* <Route
+          path="/business"
+          component={() =>
+            subDomain === "mobiletechlab" ? (
+              <Business subDomain={subDomain} handleStatus={handleFooterStatus} />
+            ) : (
+              <Error />
+            )
+          }
+        /> */}
+        {/* <Route
+          path="/sitemap.xml"
+          component={() => <Sitemap subDomain={subDomain} handleStatus={handleFooterStatus} />}
+        /> */}
       </>
     )
   }

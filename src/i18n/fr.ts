@@ -192,6 +192,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public DAYS = "Jours"
   public YEARS = "Années"
   public MONTHS = "Mois"
+  public COMPANY_NAME = "Nom de la compagnie"
 
   /* service-widget Text */
   public NEXT = "Suivant"
@@ -265,7 +266,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT =
     "Veuillez saisir votre adresse pour l'envoi de retour"
   public SELECT_A_PICK_UP_TIME = "Sélectionnez une heure de prise en charge"
-  public SELECT_CURBSIDE_DROP_OFF_TIME = "Sélectionnez l'heure de dépose en bordure de rue"
+  public SELECT_CURBSIDE_DROP_OFF_TIME = "Sélectionnez un jour et une heure"
   public SELECT_VISIT_TIME = "Sélectionnez l'heure de la visite"
   public MONDAY_FRIDAY = "Lundi - Vendredi"
   public ENTER_A_MESSAGE_OR_USEFUL_INFO =
@@ -290,6 +291,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public AT = "à"
   public SHORTLY = "prochainement"
   public TRACKING = "Suivi"
+  public GET_SHIPPING_LABEL = "Obtenir l'étiquette d'expédition"
 
   /* Devicelist Website Text */
   public WINNIPEG_MOBILE_DEVICE_SPECIALISTS = "Les spécialistes des appareils mobiles de Winnipeg"
