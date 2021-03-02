@@ -74,7 +74,7 @@ const NavItemLink = ({
   }
 
   return (
-    <li className={subDomain + "-nav-item"}>
+    <li className={subDomain + "-nav-item"} style={{ whiteSpace: "nowrap" }}>
       {isExternal(href) ? (
         <a className={subDomain + "-nav-link"} href={href} target="_blank" rel="noreferrer">
           {text === "SHOP" ? (
@@ -108,23 +108,39 @@ type PropsBrand = {
   item: string
   color: string
   phoneNumber?: boolean
+  href: string
 }
 
-const BrandItemLink = ({ item, color, phoneNumber }: PropsBrand) => {
+const BrandItemLink = ({ item, color, phoneNumber, href }: PropsBrand) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <a
-        style={{
-          color: color,
-          padding: "0 5px",
-          fontWeight: 100,
-          fontSize: "15px",
-          textDecoration: "none",
-        }}
-        href={phoneNumber ? `tel:${item}` : "#"}
-      >
-        {phoneNumber ? phoneFormatString(item).toLocaleUpperCase() : item.toLocaleUpperCase()}
-      </a>
+      {phoneNumber ? (
+        <a
+          style={{
+            color: color,
+            padding: "0 5px",
+            fontWeight: 100,
+            fontSize: "15px",
+            textDecoration: "none",
+          }}
+          href={`tel:${item}`}
+        >
+          {phoneFormatString(item).toLocaleUpperCase()}
+        </a>
+      ) : (
+        <Link
+          style={{
+            color: color,
+            padding: "0 5px",
+            fontWeight: 100,
+            fontSize: "15px",
+            textDecoration: "none",
+          }}
+          to={href}
+        >
+          {item.toLocaleUpperCase()}
+        </Link>
+      )}
     </li>
   )
 }
@@ -204,7 +220,14 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           {!mobile && (
             <ul style={{ display: "flex", margin: 0, padding: 0 }}>
               {brandItemLink.left.map((item: any, index: number) => {
-                return <BrandItemLink item={t(item)} key={index} color={brandItemLink.brandCol} />
+                return (
+                  <BrandItemLink
+                    item={t(item.text)}
+                    href={item.link}
+                    key={index}
+                    color={brandItemLink.brandCol}
+                  />
+                )
               })}
             </ul>
           )}
@@ -238,6 +261,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               item={storesDetails.storesDetails.phone}
               color={brandItemLink.brandCol}
               phoneNumber={true}
+              href="#"
             />
             {!mobile && (
               <SelectLang
@@ -258,6 +282,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                       <BrandItemLink
                         item={t(brandItemLink.right.log)}
                         color={brandItemLink.brandCol}
+                        href="#"
                       />
                     )}
                   />

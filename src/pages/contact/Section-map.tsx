@@ -20,6 +20,7 @@ interface Props extends StoreProps {
   locations: any[]
   handleStatus: (status: boolean) => void
   location_id: string | null
+  handleLocationID: (id: string | null) => void
 }
 
 type StoreProps = {
@@ -150,266 +151,307 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const SectionMap = inject("headerStore")(
-  observer(({ subDomain, locations, headerStore, handleStatus, location_id }: Props) => {
-    const data = require(`../../assets/${subDomain}/Database`)
-    const t = useT()
-    const classes = useStyles()
-    const [expanded, setExpanded] = React.useState<number | false>(false)
-    const [selectedLocation, setSelectedLocation] = React.useState<null | any>(null)
-    const [isExpanded, setIsExpanded] = React.useState<boolean>(false)
+  observer(
+    ({ subDomain, locations, headerStore, handleStatus, location_id, handleLocationID }: Props) => {
+      const data = require(`../../assets/${subDomain}/Database`)
+      const t = useT()
+      const classes = useStyles()
+      const [expanded, setExpanded] = React.useState<number | false>(false)
+      const [selectedLocation, setSelectedLocation] = React.useState<null | any>(null)
+      const [isExpanded, setIsExpanded] = React.useState<boolean>(false)
 
-    const handleLocSelect = (location: any) => {
-      headerStore.cntUserLocation = makeLocations([location])
-      headerStore.changeLocationID(location.id)
-      headerStore.changeCntUserLocationSelected(true)
-    }
-    const handleGetQuote = () => {
-      const cntAppointment: any = repairWidgetStore.appointResponse
-      repairWidgetStore.init()
-      repairWidgetStore.changeAppointResponse(cntAppointment)
-      handleStatus(false)
-    }
+      const handleLocSelect = (location: any) => {
+        headerStore.cntUserLocation = makeLocations([location])
+        headerStore.changeLocationID(location.id)
+        headerStore.changeCntUserLocationSelected(true)
+      }
+      const handleGetQuote = () => {
+        const cntAppointment: any = repairWidgetStore.appointResponse
+        repairWidgetStore.init()
+        repairWidgetStore.changeAppointResponse(cntAppointment)
+        handleStatus(false)
+      }
 
-    useEffect(() => {
-      if (locations && locations.length === 1) {
-        setExpanded(0)
-        setIsExpanded(true)
-        setSelectedLocation(locations[0])
-      }
-      if (!location_id) {
-        return
-      }
-      for (let i = 0; i < locations.length; i++) {
-        if (parseInt(locations[i].id) === parseInt(location_id)) {
-          setExpanded(i)
+      useEffect(() => {
+        if (locations && locations.length === 1) {
+          setExpanded(0)
           setIsExpanded(true)
-          setSelectedLocation(locations[i])
-          break
+          setSelectedLocation(locations[0])
         }
+        if (!location_id) {
+          return
+        }
+        for (let i = 0; i < locations.length; i++) {
+          if (parseInt(locations[i].id) === parseInt(location_id)) {
+            setExpanded(i)
+            setIsExpanded(true)
+            setSelectedLocation(locations[i])
+            break
+          }
+        }
+      }, [locations, location_id])
+
+      const getAddress = (location: any) => {
+        return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+          location.city ? location.city + ", " : ""
+        } ${location.state ? location.state + " " : ""} ${
+          location.postcode
+            ? location.postcode.substring(0, 3) +
+              " " +
+              location.postcode.substring(3, location.postcode.length)
+            : ""
+        }`
       }
-    }, [locations])
 
-    const getAddress = (location: any) => {
-      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city ? location.city + ", " : ""
-      } ${location.state ? location.state + " " : ""} ${
-        location.postcode
-          ? location.postcode.substring(0, 3) +
-            " " +
-            location.postcode.substring(3, location.postcode.length)
-          : ""
-      }`
-    }
-
-    const getRegularHours = (hours: any[]) => {
-      return hours
-        .map((v) => v as LocationHour)
-        .filter((p) => {
-          return p.type == "REGULAR"
-        })
-        .sort((d) => d.day)
-    }
-    const getHourType = (hourStr: string) => {
-      const ptr = hourStr.split(":")
-      let hour = 12,
-        minute = "00"
-      let AP = "a.m."
-      if (ptr.length > 0) {
-        hour = parseInt(ptr[0])
-        if (hour >= 12) {
-          AP = "p.m."
+      const getRegularHours = (hours: any[]) => {
+        return hours
+          .map((v) => v as LocationHour)
+          .filter((p) => {
+            return p.type == "REGULAR"
+          })
+          .sort((d) => d.day)
+      }
+      const getHourType = (hourStr: string) => {
+        const ptr = hourStr.split(":")
+        let hour = 12,
+          minute = "00"
+        let AP = "a.m."
+        if (ptr.length > 0) {
+          hour = parseInt(ptr[0])
+          if (hour >= 12) {
+            AP = "p.m."
+          } else {
+            AP = "a.m."
+          }
+        }
+        if (ptr.length > 1) {
+          minute = ptr[1]
+        }
+        return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
+      }
+      const handleChange = (panel: number) => (_: React.ChangeEvent<any>, isExpanded: boolean) => {
+        // if (headerStore.cntUserLocationSelected && locations.length) {
+        //   for (let i = 0; i < locations.length; i++) {
+        //     if (headerStore.cntUserLocation[0].location_id === locations[i].id) {
+        //       setSelectedLocation(locations[i])
+        //       handleLocationID(locations[i].id)
+        //       setExpanded(i)
+        //       setIsExpanded(isExpanded)
+        //     }
+        //   }
+        //   return
+        // }
+        setExpanded(isExpanded ? panel : false)
+        setIsExpanded(isExpanded)
+        if (headerStore.cntUserLocationSelected) {
+          handleLocSelect(locations[panel])
+        }
+        if (isExpanded) {
+          setSelectedLocation(locations[panel])
+          handleLocationID(locations[panel].id)
         } else {
-          AP = "a.m."
+          handleLocationID(null)
         }
       }
-      if (ptr.length > 1) {
-        minute = ptr[1]
-      }
-      return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
-    }
-    const handleChange = (panel: number) => (_: React.ChangeEvent<any>, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false)
-      setIsExpanded(isExpanded)
-      if (isExpanded) {
-        setSelectedLocation(locations[panel])
-      }
-    }
-    return (
-      <section className={subDomain + "-Container " + classes.root}>
-        <Grid container style={{ marginTop: "180px", marginBottom: "100px" }}>
-          <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
-            {locations.map((element, index) => (
-              <Accordion key={index} expanded={expanded === index} onChange={handleChange(index)}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <h2>{getAddress(element)}</h2>
-                </AccordionSummary>
-                <AccordionDetails style={{ display: "block" }}>
-                  <Grid container>
-                    <Grid
-                      item
-                      container
-                      md={4}
-                      sm={12}
-                      xs={12}
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        height: "fit-content",
-                      }}
-                    >
-                      <Grid item container md={12} sm={12} xs={12} style={{ marginBottom: "20px" }}>
-                        <Grid item md={12} sm={6} xs={6} style={{ marginBottom: "20px" }}>
-                          <p
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
-                            <PhoneIcon />
-                            <a href={`tel:${element.phone}`} className={classes.phoneText}>
-                              <span style={{ color: data.colorPalle.repairButtonCol }}>
-                                {phoneFormatString(element.phone)}
-                              </span>
-                            </a>
-                          </p>
-                        </Grid>
-                        <Grid item md={12} sm={6} xs={6}>
-                          <p
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
-                            <a
-                              href={`${
-                                element.business_page_link != null
-                                  ? element.business_page_link
-                                  : `https://www.google.com/maps/search/?api=1&query=${getAddress(
-                                      element
-                                    )
-                                      .split(" ")
-                                      .join("+")}`
-                              }`}
-                              target="_blank"
-                              rel="noreferrer"
-                              style={{
-                                textDecoration: "none",
-                                color: "black",
-                              }}
-                            >
-                              <CallSplitIcon />
-                              <span className={classes.directions}>{t("DIRECTIONS")}</span>
-                            </a>
-                          </p>
-                        </Grid>
-                      </Grid>
-                      <Grid item container md={12} sm={12} xs={12}>
+
+      useEffect(() => {
+        if (headerStore.cntUserLocationSelected && locations.length) {
+          for (let i = 0; i < locations.length; i++) {
+            if (headerStore.cntUserLocation[0].location_id === locations[i].id) {
+              setSelectedLocation(locations[i])
+              handleLocationID(locations[i].id)
+              setExpanded(i)
+              setIsExpanded(isExpanded)
+            }
+          }
+          return
+        }
+      }, [headerStore.cntUserLocation])
+
+      return (
+        <section className={subDomain + "-Container " + classes.root}>
+          <Grid container style={{ marginTop: "180px", marginBottom: "100px" }}>
+            <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
+              {locations.map((element, index) => (
+                <Accordion key={index} expanded={expanded === index} onChange={handleChange(index)}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h2>{getAddress(element)}</h2>
+                  </AccordionSummary>
+                  <AccordionDetails style={{ display: "block" }}>
+                    <Grid container>
+                      <Grid
+                        item
+                        container
+                        md={4}
+                        sm={12}
+                        xs={12}
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          height: "fit-content",
+                        }}
+                      >
                         <Grid
                           item
+                          container
                           md={12}
-                          sm={6}
-                          xs={6}
-                          style={{
-                            marginBottom: "20px",
-                            display: "flex",
-                          }}
+                          sm={12}
+                          xs={12}
+                          style={{ marginBottom: "20px" }}
                         >
-                          <Link
-                            to="/get-quote"
-                            style={{
-                              textDecoration: "none",
-                              width: "60px",
-                            }}
-                            onClick={handleGetQuote}
-                          >
-                            <button
+                          <Grid item md={12} sm={6} xs={6} style={{ marginBottom: "20px" }}>
+                            <p
                               style={{
-                                backgroundColor: data.colorPalle.repairButtonCol,
-                                borderRadius: "20px",
-                              }}
-                              className={subDomain + "-button " + classes.getQuote}
-                              onClick={() => {
-                                handleLocSelect(element)
+                                display: "flex",
+                                alignItems: "center",
                               }}
                             >
-                              {t("GET_QUOTE")}
-                            </button>
-                          </Link>
+                              <PhoneIcon />
+                              <a href={`tel:${element.phone}`} className={classes.phoneText}>
+                                <span style={{ color: data.colorPalle.repairButtonCol }}>
+                                  {phoneFormatString(element.phone)}
+                                </span>
+                              </a>
+                            </p>
+                          </Grid>
+                          <Grid item md={12} sm={6} xs={6}>
+                            <p
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <a
+                                href={`${
+                                  element.business_page_link != null
+                                    ? element.business_page_link
+                                    : `https://www.google.com/maps/search/?api=1&query=${getAddress(
+                                        element
+                                      )
+                                        .split(" ")
+                                        .join("+")}`
+                                }`}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                  textDecoration: "none",
+                                  color: "black",
+                                }}
+                              >
+                                <CallSplitIcon />
+                                <span className={classes.directions}>{t("DIRECTIONS")}</span>
+                              </a>
+                            </p>
+                          </Grid>
                         </Grid>
-                        <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
-                          <Link
-                            to="/get-quote"
-                            style={{ textDecoration: "none" }}
-                            onClick={handleGetQuote}
+                        <Grid item container md={12} sm={12} xs={12}>
+                          <Grid
+                            item
+                            md={12}
+                            sm={6}
+                            xs={6}
+                            style={{
+                              marginBottom: "20px",
+                              display: "flex",
+                            }}
                           >
-                            <button
+                            <Link
+                              to="/get-quote"
                               style={{
-                                backgroundColor: data.colorPalle.repairButtonCol,
-                                borderRadius: "20px",
+                                textDecoration: "none",
+                                width: "60px",
                               }}
-                              className={subDomain + "-button " + classes.getAppoint}
-                              onClick={() => {
-                                handleLocSelect(element)
-                              }}
+                              onClick={handleGetQuote}
                             >
-                              {t("BOOK_APPOINTMENT")}
-                            </button>
-                          </Link>
+                              <button
+                                style={{
+                                  backgroundColor: data.colorPalle.repairButtonCol,
+                                  borderRadius: "20px",
+                                }}
+                                className={subDomain + "-button " + classes.getQuote}
+                                onClick={() => {
+                                  handleLocSelect(element)
+                                }}
+                              >
+                                {t("GET_QUOTE")}
+                              </button>
+                            </Link>
+                          </Grid>
+                          <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
+                            <Link
+                              to="/get-quote"
+                              style={{ textDecoration: "none" }}
+                              onClick={handleGetQuote}
+                            >
+                              <button
+                                style={{
+                                  backgroundColor: data.colorPalle.repairButtonCol,
+                                  borderRadius: "20px",
+                                }}
+                                className={subDomain + "-button " + classes.getAppoint}
+                                onClick={() => {
+                                  handleLocSelect(element)
+                                }}
+                              >
+                                {t("BOOK_APPOINTMENT")}
+                              </button>
+                            </Link>
+                          </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                    <Grid
-                      item
-                      container
-                      md={8}
-                      sm={12}
-                      xs={12}
-                      className={subDomain + "-hours-div " + classes.timePanelWrapp}
-                    >
-                      <div>
-                        <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
-                          {t("HOURS")}
-                        </p>
-                      </div>
+                      <Grid
+                        item
+                        container
+                        md={8}
+                        sm={12}
+                        xs={12}
+                        className={subDomain + "-hours-div " + classes.timePanelWrapp}
+                      >
+                        <div>
+                          <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
+                            {t("HOURS")}
+                          </p>
+                        </div>
 
-                      {getRegularHours(element.location_hours).map((element, index) => (
-                        <Grid key={index} item container md={12} sm={12} xs={12}>
-                          <Grid item md={6} sm={6} xs={6}>
-                            <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
-                              {t(DAYS_OF_THE_WEEK[element.day])}
-                            </p>
+                        {getRegularHours(element.location_hours).map((element, index) => (
+                          <Grid key={index} item container md={12} sm={12} xs={12}>
+                            <Grid item md={6} sm={6} xs={6}>
+                              <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                                {t(DAYS_OF_THE_WEEK[element.day])}
+                              </p>
+                            </Grid>
+                            <Grid item md={6} sm={6} xs={6}>
+                              <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                                {!element.open || !element.close
+                                  ? "Closed"
+                                  : getHourType(element.open) + "-" + getHourType(element.close)}
+                              </p>
+                            </Grid>
                           </Grid>
-                          <Grid item md={6} sm={6} xs={6}>
-                            <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
-                              {!element.open || !element.close
-                                ? "Closed"
-                                : getHourType(element.open) + "-" + getHourType(element.close)}
-                            </p>
-                          </Grid>
-                        </Grid>
-                      ))}
+                        ))}
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-            ))}
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Grid>
+            <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item2}>
+              <CustomMap
+                selectedLocation={selectedLocation}
+                locations={locations}
+                isDetail={isExpanded}
+              />
+            </Grid>
           </Grid>
-          <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item2}>
-            <CustomMap
-              selectedLocation={selectedLocation}
-              locations={locations}
-              isDetail={isExpanded}
-            />
-          </Grid>
-        </Grid>
-      </section>
-    )
-  })
+        </section>
+      )
+    }
+  )
 )
 
 export default SectionMap

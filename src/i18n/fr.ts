@@ -192,6 +192,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public DAYS = "Jours"
   public YEARS = "Années"
   public MONTHS = "Mois"
+  public COMPANY_NAME = "Nom de la compagnie"
 
   /* service-widget Text */
   public NEXT = "Suivant"

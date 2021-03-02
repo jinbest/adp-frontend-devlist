@@ -7,4 +7,5 @@ export interface ContactSubmitParams {
   customer_phone?: string
   customer_note: string
   is_read: boolean
+  company_name?: string | null
 }

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react"
-import {
-  SectionMap,
-  // ContactForm
-} from "."
+import { SectionMap, ContactForm } from "."
 import { Helmet } from "react-helmet"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../store/StoresDetails"
 import findLocationAPI from "../../services/api/findLocationAPI"
 import { useLocation } from "react-router-dom"
+import { Provider } from "mobx-react"
+import { storesDetails } from "../../store"
 
 function useQuery() {
   return new URLSearchParams(useLocation().search)
@@ -26,6 +25,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
 
   const [pageTitle] = useState("Contact")
   const [locations, setLocations] = useState<any[]>([])
+  const [locationID, setLocationID] = useState(query.get("location_id"))
 
   useEffect(() => {
     handleStatus(true)
@@ -40,6 +40,10 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
       })
   }, [])
 
+  useEffect(() => {
+    setLocationID(locationID)
+  }, [locationID])
+
   return (
     <div>
       <Helmet>
@@ -53,9 +57,18 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         subDomain={subDomain}
         locations={locations}
         handleStatus={handleStatus}
-        location_id={query.get("location_id")}
+        location_id={locationID}
+        handleLocationID={setLocationID}
       />
-      {/* <ContactForm subDomain={subDomain} locations={locations} /> */}
+      <Provider storesDetailsStore={storesDetails}>
+        <ContactForm
+          subDomain={subDomain}
+          locations={locations}
+          locationID={locationID}
+          handleLocationID={setLocationID}
+          storesDetailsStore={storesDetailsStore}
+        />
+      </Provider>
     </div>
   )
 }

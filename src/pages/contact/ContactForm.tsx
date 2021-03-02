@@ -9,6 +9,8 @@ import { InputComponent, Button, PhoneInput, CustomSelect } from "../../componen
 import { ContactSubmitParams } from "./model/submit-param"
 import { Card } from "../repair/widget-component"
 import { contactAPI } from "../../services"
+import { StoresDetails } from "../../store/StoresDetails"
+import { makeLocations } from "../../components/CustomizedMenus"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      ["@media (max-width:425px)"]: {
+        marginBottom: "100px",
+      },
     },
     card: {
       padding: "50px 30px",
@@ -76,9 +81,18 @@ type OptionProps = {
 type Props = {
   subDomain?: string
   locations: any[]
+  locationID: string | null
+  handleLocationID: (id: string | null) => void
+  storesDetailsStore: StoresDetails
 }
 
-const ContactForm = ({ subDomain, locations }: Props) => {
+const ContactForm = ({
+  subDomain,
+  locations,
+  locationID,
+  handleLocationID,
+  storesDetailsStore,
+}: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database`)
   const t = useT()
   const classes = useStyles()
@@ -86,6 +100,7 @@ const ContactForm = ({ subDomain, locations }: Props) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
+  const [companyName, setCompanyName] = useState("")
   const [phone, setPhone] = useState("")
   const [option, setOption] = useState<OptionProps[]>([])
   const [loc, setLoc] = useState<OptionProps>({ name: "", code: 0 })
@@ -106,6 +121,16 @@ const ContactForm = ({ subDomain, locations }: Props) => {
     setEmail(val)
   }
 
+  const handleChangeCompanyName = (val: string) => {
+    setCompanyName(val)
+  }
+
+  const handleStoreCntLoc = (index: number) => {
+    if (!locations.length) return
+    storesDetailsStore.changeCntUserLocation(makeLocations([locations[index]]))
+    storesDetailsStore.changeLocationID(locations[index].id)
+  }
+
   useEffect(() => {
     if (firstName && lastName && email && loc && message) {
       setDisableStatus(false)
@@ -115,11 +140,43 @@ const ContactForm = ({ subDomain, locations }: Props) => {
   }, [firstName, lastName, email, loc, message])
 
   useEffect(() => {
-    const cntOptions: OptionProps[] = []
-    for (let i = 0; i < locations.length; i++) {
-      cntOptions.push({ name: locations[i].address_1, code: i })
+    if (storesDetailsStore.cntUserLocationSelected) {
+      handleStoreCntLoc(loc.code)
     }
-    setOption(cntOptions)
+    if (locations.length) {
+      handleLocationID(locations[loc.code].id)
+    }
+  }, [loc, storesDetailsStore])
+
+  useEffect(() => {
+    if (locations.length) {
+      for (let i = 0; i < locations.length; i++) {
+        if (locationID && parseInt(locationID) === locations[i].id) {
+          setLoc({ name: locations[i].address_1, code: i })
+          if (storesDetailsStore.cntUserLocationSelected) {
+            handleStoreCntLoc(i)
+          }
+          break
+        }
+        if (!locationID && locations[i].is_main) {
+          setLoc({ name: locations[i].address_1, code: i })
+          if (storesDetailsStore.cntUserLocationSelected) {
+            handleStoreCntLoc(i)
+          }
+          break
+        }
+      }
+    }
+  }, [locationID, locations, storesDetailsStore])
+
+  useEffect(() => {
+    const cntOptions: OptionProps[] = []
+    if (locations.length) {
+      for (let i = 0; i < locations.length; i++) {
+        cntOptions.push({ name: locations[i].address_1, code: i })
+      }
+      setOption(cntOptions)
+    }
   }, [locations])
 
   const handleSubmit = () => {
@@ -135,6 +192,7 @@ const ContactForm = ({ subDomain, locations }: Props) => {
     params.customer_phone = phone
     params.customer_note = message
     params.is_read = false
+    params.company_name = companyName
 
     contactAPI
       .postContactForm(params)
@@ -151,6 +209,7 @@ const ContactForm = ({ subDomain, locations }: Props) => {
         setLoc({ name: "", code: 0 })
         setMessage("")
         setIsSubmit(false)
+        setCompanyName("")
       })
       .catch((error) => {
         setToastParams({
@@ -205,6 +264,16 @@ const ContactForm = ({ subDomain, locations }: Props) => {
                 placeholder={t("EMAIL_ADDRESS")}
                 handleChange={(e) => {
                   handleChangeEmail(e.target.value)
+                }}
+                subDomain={subDomain}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <InputComponent
+                value={companyName}
+                placeholder={t("COMPANY_NAME")}
+                handleChange={(e) => {
+                  handleChangeCompanyName(e.target.value)
                 }}
                 subDomain={subDomain}
               />

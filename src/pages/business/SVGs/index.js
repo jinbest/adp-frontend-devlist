@@ -1,0 +1,6 @@
+export { default as FreeShipping } from './FreeShipping'
+export { default as ShippingLabel } from './ShippingLabel'
+export { default as CustomerService } from './CustomerService'
+export { default as Pay } from './Pay'
+export { default as Soldering } from './Soldering'
+export { default as QuickTurnaround } from './QuickTurnaround'

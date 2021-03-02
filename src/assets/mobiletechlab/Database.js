@@ -79,8 +79,18 @@ import logoFooterImg from "./img/logo/mobiletech-logo-footer.png"
 import deviceCardImg from "./img/mobiletech-device-card.png"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/mobile-favicon.ico"
+
+// business - images
+import shapeLeftDesktop from "./img/business/mobiletech-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/mobiletech-shape-left-mobile.png"
+import businessCornerShape from "./img/business/mobiletech-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
 
 const fav = {
   img: favicon,
@@ -324,6 +334,7 @@ const navShop = {
 }
 
 const brandItemsData = {
+  // left: [{text: 'BUSINESS', link: '/business'}],
   left: [],
   right: { ip: "204.808.9416", en: "ENGLISH", log: "" },
   brandCol: "white",
@@ -652,4 +663,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }
