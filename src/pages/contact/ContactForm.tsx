@@ -298,7 +298,7 @@ const ContactForm = ({
                   }}
                   minLength={5}
                   maxLength={1000}
-                  placeholder={"Customer Note*"}
+                  placeholder={"Message*"}
                   className={classes.textArea}
                 />
               </div>

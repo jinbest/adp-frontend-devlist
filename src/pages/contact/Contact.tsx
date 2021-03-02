@@ -50,7 +50,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         <title>{pageTitle}</title>
         <link rel="icon" id="favicon" href={mainData.fav.img} />
         <link rel="apple-touch-icon" href={mainData.fav.img} />
-        {/* <meta name="description" content={""} /> */}
+        <meta name="description" content={""} />
       </Helmet>
       <SectionMap
         headerStore={storesDetailsStore}
