@@ -24,14 +24,14 @@ const useStyles = makeStyles(() =>
       padding: "0 2rem",
       display: "block",
       textAlign: "center",
-      ["@media (max-width:768px)"]: {
+      ["@media (max-width:1200px)"]: {
         marginTop: "210px !important",
       },
       ["@media (max-width:500px)"]: {
-        marginTop: "180px !important",
+        margin: "180px auto 50px !important",
       },
       ["@media (max-width:425px)"]: {
-        marginTop: "200px !important",
+        margin: "200px auto 100px !important",
       },
     },
     cardContainer: {
@@ -39,6 +39,9 @@ const useStyles = makeStyles(() =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      ["@media (max-width:500px)"]: {
+        margin: "50px auto 0",
+      },
     },
     card: {
       padding: "50px 30px",
@@ -55,12 +58,35 @@ const useStyles = makeStyles(() =>
       textShadow: "1px 0 black",
       justifyContent: "center",
       letterSpacing: "2px",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "4vw !important",
+        marginBottom: "3vw !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "5vw !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "5.5vw !important",
+        width: "100%",
+      },
     },
     mainContent: {
       color: "black",
       fontSize: "40px !important",
       marginBottom: "40px !important",
       justifyContent: "center",
+      width: "80%",
+      margin: "auto",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "2.5vw !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "3vw !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "3.5vw !important",
+        width: "100%",
+      },
     },
     subTitle: {
       fontSize: "40px !important",
@@ -70,13 +96,26 @@ const useStyles = makeStyles(() =>
       fontWeight: "bold",
       letterSpacing: "1px",
       marginBottom: "50px",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "3vw !important",
+        marginBottom: "3vw !important",
+      },
+      ["@media (max-width:960px)"]: {
+        marginBottom: "50px !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "3.5vw !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "4vw !important",
+        width: "100%",
+      },
     },
     item: {
       display: "flex",
-      // paddingRight: "40px !important",
-      // [theme.breakpoints.down("md")]: {
-      //   paddingRight: "8px !important",
-      // },
+      ["@media (max-width:500px)"]: {
+        padding: "8px !important",
+      },
     },
     SVGContainer: {
       width: "90px",
@@ -96,10 +135,21 @@ const useStyles = makeStyles(() =>
       textAlign: "left",
       alignItems: "center",
       display: "flex",
+      ["@media (max-width:500px)"]: {
+        marginLeft: "10px",
+      },
     },
     itemText: {
       fontSize: "18px !important",
       padding: "0 20px",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "16px !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "3vw !important",
+        width: "100%",
+        padding: "0 10px",
+      },
     },
   })
 )
@@ -129,13 +179,10 @@ const Business = ({ subDomain, handleStatus }: Props) => {
 
       <Shape subDomain={subDomain} />
       <div className={classes.root}>
-        <h1 className={classes.mainTitle}>Business Solutions</h1>
-        <Typography className={classes.mainContent}>
-          We provide reliable device management and repair services so you can focus on running your
-          business.
-        </Typography>
+        <h1 className={classes.mainTitle}>{t("BUSINESS_SOLUTIONS")}</h1>
+        <Typography className={classes.mainContent}>{t("BUSINESS_SOLUTIONS_CONTENT")}</Typography>
         <Button
-          title={t("GET_QUOTE")}
+          title={t("GET_STARTED")}
           bgcolor={data.colorPalle.repairButtonCol}
           borderR="20px"
           subDomain={subDomain}
@@ -144,7 +191,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
         />
         <div className={classes.cardContainer}>
           <Card className={classes.card}>
-            <Typography className={classes.subTitle}>Why Businesses Choose Us?</Typography>
+            <Typography className={classes.subTitle}>{t("WHY_BUSINESSES_CHOOSE_US")}</Typography>
             <Grid container spacing={5}>
               <Grid item xs={12} md={6} className={classes.item}>
                 <div className={classes.SVGContainer}>
@@ -154,7 +201,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    Free shipping and bulk discounts for 5+ devices
+                    {t("FREE_SHIPPING_AND_BULK_DISCOUNTS_FOR_5_DEVICES")}
                   </Typography>
                 </div>
               </Grid>
@@ -166,7 +213,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    Flexible payement options. You choose how and when you pay.
+                    {t("FLEXIBLE_PAYMENT_OPTIONS")}
                   </Typography>
                 </div>
               </Grid>
@@ -178,7 +225,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    Instant shipping label upon request
+                    {t("INSTANT_SHIPPING_LABEL_UPON_REQUEST")}
                   </Typography>
                 </div>
               </Grid>
@@ -190,7 +237,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    Dedicated B2B microsoldering Techs
+                    {t("DEDICATED_B2B_MICROSOLDERING_TECHS")}
                   </Typography>
                 </div>
               </Grid>
@@ -201,7 +248,9 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                   </div>
                 </div>
                 <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>Responsive customer support</Typography>
+                  <Typography className={classes.itemText}>
+                    {t("RESPONSIVE_CUSTOMER_SUPPORT")}
+                  </Typography>
                 </div>
               </Grid>
               <Grid item xs={12} md={6} className={classes.item}>
@@ -211,7 +260,9 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                   </div>
                 </div>
                 <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>Quick turnaround</Typography>
+                  <Typography className={classes.itemText}>
+                    {t("QUICK_TURNAROUND_BUSINESS")}
+                  </Typography>
                 </div>
               </Grid>
             </Grid>
