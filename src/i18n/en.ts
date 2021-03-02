@@ -456,6 +456,18 @@ export class LanguageKeys {
   }
   public REPARATIONCELL_FROM_NEW_TO_RECONDITIONED_CONTENT =
     "Choose your new phone among our 4 grades, with Wireless Rev it's easy to choose for any budget!"
+
+  
+  /* Business page */
+  public BUSINESS_SOLUTIONS_CONTENT = "We provide reliable device management and repair services so you can focus on running your business."
+  public GET_STARTED = "Get Started"
+  public WHY_BUSINESSES_CHOOSE_US = "Why Businesses Choose Us?"
+  public FREE_SHIPPING_AND_BULK_DISCOUNTS_FOR_5_DEVICES = "Free shipping and bulk discounts for 5+ devices."
+  public FLEXIBLE_PAYMENT_OPTIONS = "Flexible payement options. You choose how and when you pay."
+  public INSTANT_SHIPPING_LABEL_UPON_REQUEST = "Instant shipping label upon request."
+  public DEDICATED_B2B_MICROSOLDERING_TECHS = "Dedicated B2B microsoldering Techs."
+  public RESPONSIVE_CUSTOMER_SUPPORT = "Responsive customer support."
+  public QUICK_TURNAROUND_BUSINESS = "Quick turnaround."
 }
 
 export type LangProps = keyof LanguageKeys

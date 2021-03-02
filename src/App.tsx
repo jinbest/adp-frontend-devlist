@@ -9,8 +9,8 @@ import {
   // Sitemap
 } from "./components"
 import { Home } from "./pages/home/"
-// import { Business } from "./pages/business/"
-// import { Error } from "./pages/error"
+import { Business } from "./pages/business/"
+import { Error } from "./pages/error"
 import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Shop } from "./pages/shop/"
@@ -21,26 +21,26 @@ import { appLoadAPI } from "./services/"
 import findLocationAPI from "./services/api/findLocationAPI"
 import { Helmet } from "react-helmet"
 
-const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-const subDomain = apexDomain.split(".")[0]
+// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+// const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
+// const subDomain = apexDomain.split(".")[0]
 
-// const devicelist = [
-//   { name: "bananaservice", domain: "bananaservice.ca" },
-//   { name: "geebodevicerepair", domain: "" },
-//   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
-//   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
-//   { name: "northtechsolutions", domain: "northtechsolutions.ca" },
-//   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
-//   { name: "pradowireless", domain: "pradowireless.com" },
-//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
-//   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
-//   { name: "dccmtx", domain: "dccmtx.com" },
-//   { name: "mtlcmtx", domain: "mtlcmtx.com" },
-// ]
-// const siteNum = 2,
-//   subDomain = devicelist[siteNum].name,
-//   apexDomain = "dccmtx.com"
+const devicelist = [
+  { name: "bananaservice", domain: "bananaservice.ca" },
+  { name: "geebodevicerepair", domain: "" },
+  { name: "mobiletechlab", domain: "mobiletechlab.ca" },
+  { name: "nanotechmobile", domain: "nanotechmobile.ca" },
+  { name: "northtechsolutions", domain: "northtechsolutions.ca" },
+  { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
+  { name: "pradowireless", domain: "pradowireless.com" },
+  { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
+  { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
+  { name: "dccmtx", domain: "dccmtx.com" },
+  { name: "mtlcmtx", domain: "mtlcmtx.com" },
+]
+const siteNum = 2,
+  subDomain = devicelist[siteNum].name,
+  apexDomain = "dccmtx.com"
 
 type FeatureProps = {
   flag: string
@@ -197,7 +197,7 @@ function App(): JSX.Element {
             <Shop subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
           )}
         />
-        {/* <Route
+        <Route
           path="/business"
           component={() =>
             subDomain === "mobiletechlab" ? (
@@ -206,7 +206,7 @@ function App(): JSX.Element {
               <Error />
             )
           }
-        /> */}
+        />
         {/* <Route
           path="/sitemap.xml"
           component={() => <Sitemap subDomain={subDomain} handleStatus={handleFooterStatus} />}

@@ -467,6 +467,18 @@ export class LanguageKeysFr extends LanguageKeys {
   }
   public REPARATIONCELL_FROM_NEW_TO_RECONDITIONED_CONTENT =
     "Choisissez votre nouveau téléphone parmi nos 4 grades, avec le Quebec, il est facile de choisir pour tous les budgets!"
+
+
+  /* Business page */
+  public BUSINESS_SOLUTIONS_CONTENT = "Nous fournissons des services fiables de gestion et de réparation d'appareils afin que vous puissiez vous concentrer sur la gestion de votre entreprise."
+  public GET_STARTED = "Commencer"
+  public WHY_BUSINESSES_CHOOSE_US = "Pourquoi les entreprises choisissent-elles?"
+  public FREE_SHIPPING_AND_BULK_DISCOUNTS_FOR_5_DEVICES = "Livraison gratuite et remises en gros pour plus de 5 appareils."
+  public FLEXIBLE_PAYMENT_OPTIONS = "Options de paiement flexibles. Vous choisissez comment et quand vous payez."
+  public INSTANT_SHIPPING_LABEL_UPON_REQUEST = "Étiquette d'expédition instantanée sur demande."
+  public DEDICATED_B2B_MICROSOLDERING_TECHS = "Techniciens dédiés au microsoudage B2B."
+  public RESPONSIVE_CUSTOMER_SUPPORT = "Support client réactif."
+  public QUICK_TURNAROUND_BUSINESS = "Délai d'exécution rapide."
 }
 
 export default LanguageKeysFr
