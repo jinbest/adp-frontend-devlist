@@ -13,7 +13,11 @@ import { RepairWidgetStore } from "../../store/RepairWidgetStore"
 import { computed } from "mobx"
 import { Error } from "../error"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { getRepairLookupAPI, getDeliveryMethodsAPI } from "./RepairWidgetCallAPI"
+import {
+  getRepairLookupAPI,
+  getDeliveryMethodsAPI,
+  getContactMethodsAPI,
+} from "./RepairWidgetCallAPI"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
 
@@ -97,14 +101,9 @@ class RepairWidget extends React.Component<Props, MyState> {
     }
     this.setState({ feats: cntFeatures })
 
-    // repairWidgetStore.changeRepairWidgetInitialValue({
-    //   selectDate: new Date().toISOString().split("T")[0],
-    //   selected_start_time: new Date().getDay() === 0 ? "10:00" : "09:00",
-    //   selected_end_time: new Date().getDay() === 0 ? "16:00" : "17:30",
-    // })
-
     getRepairLookupAPI()
     getDeliveryMethodsAPI()
+    getContactMethodsAPI()
   }
 
   handleBackStep() {
@@ -224,8 +223,6 @@ class RepairWidget extends React.Component<Props, MyState> {
   }
 
   handleDeviceCounterBack() {
-    // const { repairWidgetStore } = this.props;
-    // repairWidgetStore.changeDeviceCounter(this.computedRepairWidgetData.deviceCounter-1);
     this.handleStep(3)
   }
 
@@ -262,7 +259,6 @@ class RepairWidget extends React.Component<Props, MyState> {
                 )}
                 {this.state.step <= 5 && (
                   <ChooseDevice
-                    // data={this.state.step === 4 ? repairWidData.repairWidgetLookup : mockData.repairWidget[stepList[this.state.step]]}
                     data={mockData.repairWidget[stepList[this.state.step]]}
                     handleStep={this.handleStep.bind(this)}
                     handleChangeChooseData={this.handleChangeChooseData.bind(this)}

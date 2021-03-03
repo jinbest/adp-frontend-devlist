@@ -9,7 +9,6 @@ function getRepairLookupAPI() {
   repairWidgetAPI
     .getRepairLookup(locale, lookupTypes)
     .then((res: any) => {
-      // console.log("api-repairWidgetAPI => service-widget Lookup:", res.data)
       repairWidData.changeRepairWidgetLookup(res.data)
 
       /* repair_delivery_method */
@@ -29,7 +28,7 @@ function getRepairLookupAPI() {
       }
       repairWidData.changeApiDropOffDevices(apiDropOffDevices)
 
-      /* repair_contact_method */
+      /* repair_receive_quote_method */
       const repair_contact_types: any[] = []
       for (let i = 0; i < res.data.repair_contact_method.length; i++) {
         repair_contact_types.push({
@@ -58,11 +57,23 @@ function getDeliveryMethodsAPI() {
   repairWidgetAPI
     .getDeliveryMethods(store_id, include_disabled)
     .then((res: any) => {
-      // console.log("api-repairWidgetAPI => Repair Delivery Method:", res.data)
       repairWidData.changeRepairWidDeliveryMethod(res.data)
     })
     .catch((error) => {
       console.log("Error in get Repair Delivery Method", error)
+    })
+}
+
+function getContactMethodsAPI() {
+  const store_id: number = storesDetails.store_id
+
+  repairWidgetAPI
+    .getContactMethods(store_id)
+    .then((res: any) => {
+      repairWidData.changeRepairContactMethod(res.data)
+    })
+    .catch((error) => {
+      console.log("Error in get Repair Contact Method", error)
     })
 }
 
@@ -223,4 +234,5 @@ export {
   addMoreDeviceBrandsAPI,
   getBrandProductsAPI,
   addMoreBrandProductsAPI,
+  getContactMethodsAPI
 }

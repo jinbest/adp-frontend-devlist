@@ -164,6 +164,26 @@ class RepairWidgetAPI {
                 })
         })
     }
+
+    getContactMethods = (store_id: number) => {
+        const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/store/${store_id}/contact_methods`
+        return new Promise((resolve, reject) => {
+            axios
+                .get(`${apiURL}`)
+                .then((response) => {
+                    if (response) {
+                        resolve(response)
+                    } else {
+                        reject(response)
+                    }
+                })
+                .catch((error) => {
+                    if (error) {
+                        reject(error)
+                    }
+                })
+        })
+    }
 }
 
 const instance = new RepairWidgetAPI()

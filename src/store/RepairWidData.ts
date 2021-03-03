@@ -13,6 +13,7 @@ export class RepairWidData {
   @observable receiveQuote: any = {};
   @observable cntBrandID = 0;
   @observable cntProductID = 0;
+  @observable contactMethod: any[] = [];
 
   constructor() {
     this.load();
@@ -32,6 +33,7 @@ export class RepairWidData {
         receiveQuote: this.receiveQuote,
         cntBrandID: this.cntBrandID,
         cntProductID: this.cntProductID,
+        contactMethod: this.contactMethod
       })
     )
 
@@ -90,6 +92,12 @@ export class RepairWidData {
   @action
   changeCntProductID = (cntProductID: number) => {
     this.cntProductID = cntProductID
+    this.save()
+  }
+
+  @action
+  changeRepairContactMethod = (contactMethod: any[]) => {
+    this.contactMethod = contactMethod
     this.save()
   }
 

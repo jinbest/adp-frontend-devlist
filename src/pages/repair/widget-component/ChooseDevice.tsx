@@ -353,8 +353,14 @@ const ChooseDevice = ({
           cntTypes[i].col = "white"
           cntTypes[i].selected = true
         }
-        if (cntTypes[i].code === "EMAIL") {
-          cntQuote.push(cntTypes[i])
+        for (let j = 0; j < repairWidData.contactMethod.length; j++) {
+          if (
+            cntTypes[i].code === repairWidData.contactMethod[j].code &&
+            repairWidData.contactMethod[j].is_enabled
+          ) {
+            cntQuote.push(cntTypes[i])
+            break
+          }
         }
       }
       setItemTypes([...cntQuote])
