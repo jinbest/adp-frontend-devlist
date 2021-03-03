@@ -217,7 +217,7 @@ const colorPalle = {
 
 const navItemsData = [
   { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "GET_QUOTE", isActive: false, flag: "FRONTEND_REPAIR" },
   {
     href: "http://shop.wirelessrevottawa.ca/",
     text: "SHOP",
@@ -233,6 +233,7 @@ const navItemsData = [
     isActive: false,
     flag: "ALWAYS_TRUE",
   },
+  { href: "/contact", text: "CONTACT", isActive: false, flag: "ALWAYS_TRUE" },
 ]
 
 const navShop = {
@@ -365,7 +366,7 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "GET_QUOTE", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "SHOP", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
     {
       text: "WHOLESALE",
@@ -373,11 +374,11 @@ const mobileNavItemData = {
       flag: "ALWAYS_TRUE",
     },
     { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
-    { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "BUSINESS", href: "/business", flag: "ALWAYS_TRUE" },
     { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
     { text: "INSURANCE", href: "#", flag: "FRONTEND_INSURE" },
     { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
-    { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "CONTACT", href: "/contact", flag: "ALWAYS_TRUE" },
   ],
   right: [
     { text: "Apple", href: "#" },

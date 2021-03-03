@@ -194,6 +194,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public MONTHS = "Mois"
   public COMPANY_NAME = "Nom de la compagnie"
   public CLOSE = "Fermer"
+  public CONTACT = "Contacter"
 
   /* service-widget Text */
   public NEXT = "Suivant"
