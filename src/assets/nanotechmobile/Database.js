@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/nanotech-trade.png"
-import repair from "./img/cardmobile/nanotech-repair.png"
-import buy from "./img/cardmobile/nanotech-buy.png"
-import protect from "./img/cardmobile/nanotech-protect.png"
+import trade from "./img/cardmobile/nanotech-trade.svg"
+import repair from "./img/cardmobile/nanotech-repair.svg"
+import buy from "./img/cardmobile/nanotech-buy.svg"
+import protect from "./img/cardmobile/nanotech-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -38,7 +38,7 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/nanotech-corner-shape.png"
+import cornerShape from "./img/nanotech-corner-shape.svg"
 import mockupShape from "./img/nanotech-mockup-shape.png"
 
 // footer images
@@ -75,7 +75,7 @@ import logoHeaderImg from "./img/logo/nanotech-logo-header.png"
 import logoFooterImg from "./img/logo/nanotech-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/nanotech-device-card.png"
+import deviceCardImg from "./img/nanotech-device-card.svg"
 
 // favicon - image
 import favicon from "./img/nanotech-favicon.ico"
@@ -83,7 +83,7 @@ import favicon from "./img/nanotech-favicon.ico"
 // business - images
 import shapeLeftDesktop from "./img/business/nanotech-shape-left-desktop.png"
 import shapeLeftMobile from "./img/business/nanotech-shape-left-mobile.png"
-import businessCornerShape from "./img/business/nanotech-corner-shape.png"
+import businessCornerShape from "./img/business/nanotech-corner-shape.svg"
 
 const businessData = {
   shapeLeftDesktop: shapeLeftDesktop,
@@ -318,7 +318,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "306.569.6266", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#606163",
   selectOption: ["ENGLISH", "FRENCH"],

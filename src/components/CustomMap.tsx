@@ -14,12 +14,11 @@ export function getAddress(location: any) {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     mapWrapper: {
-      // height: "fit-content",
-      // position: "relative",
       padding: "10px",
     },
     mapContainer: {
       height: "700px",
+      overflow: "hidden !important",
       [theme.breakpoints.down("md")]: {
         height: "1000px",
       },

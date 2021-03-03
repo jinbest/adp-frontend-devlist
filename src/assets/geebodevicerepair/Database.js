@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/geebo-trade.png"
-import repair from "./img/cardmobile/geebo-repair.png"
-import buy from "./img/cardmobile/geebo-buy.png"
-import protect from "./img/cardmobile/geebo-protect.png"
+import trade from "./img/cardmobile/geebo-trade.svg"
+import repair from "./img/cardmobile/geebo-repair.svg"
+import buy from "./img/cardmobile/geebo-buy.svg"
+import protect from "./img/cardmobile/geebo-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -74,10 +74,9 @@ import logoHeaderImg from "./img/logo/geebo-logo-header.png"
 import logoFooterImg from "./img/logo/geebo-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/geebo-device-card.png"
+import deviceCardImg from "./img/geebo-device-card.svg"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/geebo-favicon.ico"
 
 // business - images
@@ -318,7 +317,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "902.270.4349", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#585758",
   selectOption: ["ENGLISH", "FRENCH"],
