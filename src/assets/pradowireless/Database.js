@@ -81,6 +81,17 @@ import deviceCardImg from "./img/prado-device-card.png"
 // import favicon from "./img/favicon.png"
 import favicon from "./img/prado-favicon.ico"
 
+// business - images
+import shapeLeftDesktop from "./img/business/prado-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/prado-shape-left-mobile.png"
+import businessCornerShape from "./img/business/prado-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
+
 const fav = {
   img: favicon,
 }
@@ -306,7 +317,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
+  left: [{text: 'BUSINESS', link: '/business'}],
   right: { ip: "778.440.3130", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#000000",
@@ -598,4 +609,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }

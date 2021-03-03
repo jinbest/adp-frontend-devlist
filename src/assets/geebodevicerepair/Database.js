@@ -80,6 +80,17 @@ import deviceCardImg from "./img/geebo-device-card.png"
 // import favicon from "./img/favicon.png"
 import favicon from "./img/geebo-favicon.ico"
 
+// business - images
+import shapeLeftDesktop from "./img/business/geebo-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/geebo-shape-left-mobile.png"
+import businessCornerShape from "./img/business/geebo-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
+
 const fav = {
   img: favicon,
 }
@@ -305,7 +316,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
+  left: [{text: 'BUSINESS', link: '/business'}],
   right: { ip: "902.270.4349", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#585758",
@@ -599,4 +610,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }

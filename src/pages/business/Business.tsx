@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
-import { Shape } from "./"
+import { Shape, ContactModal } from "./"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { Grid, Typography } from "@material-ui/core"
 import { Button } from "../../components"
@@ -15,6 +15,7 @@ import {
   QuickTurnaround,
   Soldering,
 } from "./SVGs"
+import { Provider } from "mobx-react"
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -39,8 +40,8 @@ const useStyles = makeStyles(() =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      ["@media (max-width:500px)"]: {
-        margin: "50px auto 0",
+      ["@media (max-width:600px)"]: {
+        margin: "50px auto -20px",
       },
     },
     card: {
@@ -165,6 +166,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
   const t = useT()
 
   const [pageTitle, setPageTitle] = useState("Business")
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     setPageTitle(`Business | ${storesDetails.storesDetails.name}`)
@@ -188,6 +190,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
           subDomain={subDomain}
           width="200px"
           margin="auto"
+          onClick={() => setOpenModal(true)}
         />
         <div className={classes.cardContainer}>
           <Card className={classes.card}>
@@ -267,6 +270,14 @@ const Business = ({ subDomain, handleStatus }: Props) => {
               </Grid>
             </Grid>
           </Card>
+          <Provider storesDetailsStore={storesDetails}>
+            <ContactModal
+              openModal={openModal}
+              handleModal={setOpenModal}
+              subDomain={subDomain}
+              storesDetailsStore={storesDetails}
+            />
+          </Provider>
         </div>
       </div>
     </div>

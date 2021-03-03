@@ -78,8 +78,18 @@ import logoFooterImg from "./img/logo/phonephix-logo-footer.png"
 import deviceCardImg from "./img/phonephix-device-card.png"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/phonephix-favicon.ico"
+
+// business - images
+import shapeLeftDesktop from "./img/business/phonephix-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/phonephix-shape-left-mobile.png"
+import businessCornerShape from "./img/business/phonephix-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
 
 const fav = {
   img: favicon,
@@ -312,7 +322,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
+  left: [{text: 'BUSINESS', link: '/business'}],
   right: { ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#6C6C73",
@@ -635,4 +645,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }

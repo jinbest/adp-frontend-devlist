@@ -79,8 +79,18 @@ import logoFooterImg from "./img/logo/wireless-logo-footer.png"
 import deviceCardImg from "./img/wireless-device-card.png"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/wireless-favicon.ico"
+
+// business - images
+import shapeLeftDesktop from "./img/business/wireless-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/wireless-shape-left-mobile.png"
+import businessCornerShape from "./img/business/wireless-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
 
 const fav = {
   img: favicon,
@@ -326,7 +336,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
+  left: [{text: 'BUSINESS', link: '/business'}],
   right: { ip: "613.723.6363", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#4D4D4D",
@@ -625,4 +635,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }

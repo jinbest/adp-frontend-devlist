@@ -35,7 +35,7 @@ const useStyles = makeStyles(() =>
       "& > img": {
         width: "100%",
       },
-      ["@media (max-width:1400px)"]: {
+      ["@media (max-width:1500px)"]: {
         top: 200,
       },
       ["@media (max-width:768px)"]: {

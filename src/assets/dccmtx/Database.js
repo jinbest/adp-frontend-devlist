@@ -77,8 +77,18 @@ import logoFooterImg from "./img/logo/northtech-logo-footer.png"
 import deviceCardImg from "./img/northtech-device-card.png"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/northtech-favicon.ico"
+
+// business - images
+import shapeLeftDesktop from "./img/business/northtech-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/northtech-shape-left-mobile.png"
+import businessCornerShape from "./img/business/northtech-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
 
 const fav = {
   img: favicon,
@@ -311,7 +321,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [{text: 'BUSINESS', link: '#'}, {text: 'FINANCING', link: '#'}],
+  left: [{text: 'BUSINESS', link: '/business'}, {text: 'FINANCING', link: '#'}],
   right: { ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#F67500",
@@ -604,4 +614,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }

@@ -78,8 +78,18 @@ import logoFooterImg from "./img/logo/banana-logo-footer.png"
 import deviceCardImg from "./img/banana-device-card.png"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/banana-favicon.ico"
+
+// business - images
+import shapeLeftDesktop from "./img/business/banana-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/banana-shape-left-mobile.png"
+import businessCornerShape from "./img/business/banana-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
 
 const fav = {
   img: favicon,
@@ -305,7 +315,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
+  left: [{text: 'BUSINESS', link: '/business'}],
   right: { ip: "705.957.2657", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#FEDA00",
@@ -599,4 +609,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }
