@@ -78,8 +78,18 @@ import logoFooterImg from "./img/logo/phonephix-logo-footer.png"
 import deviceCardImg from "./img/phonephix-device-card.png"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/phonephix-favicon.ico"
+
+// business - images
+import shapeLeftDesktop from "./img/business/phonephix-shape-left-desktop.png"
+import shapeLeftMobile from "./img/business/phonephix-shape-left-mobile.png"
+import businessCornerShape from "./img/business/phonephix-corner-shape.png"
+
+const businessData = {
+  shapeLeftDesktop: shapeLeftDesktop,
+  shapeLeftMobile: shapeLeftMobile,
+  businessCornerShape: businessCornerShape
+}
 
 const fav = {
   img: favicon,
@@ -206,9 +216,10 @@ const colorPalle = {
 
 const navItemsData = [
   { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "GET_QUOTE", isActive: false, flag: "FRONTEND_REPAIR" },
   { href: "http://shop.phonephix.ca/", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
   { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
+  { href: "/contact", text: "CONTACT", isActive: false, flag: "ALWAYS_TRUE" },
 ]
 
 const navShop = {
@@ -312,7 +323,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [],
+  left: [{text: 'BUSINESS', link: '/business'}],
   right: { ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#6C6C73",
@@ -341,14 +352,14 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "GET_QUOTE", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "SHOP", href: "http://shop.phonephix.ca/", flag: "FRONTEND_BUY" },
     { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
-    { text: "BUSINESS", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "BUSINESS", href: "/business", flag: "ALWAYS_TRUE" },
     { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
     { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
     { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
-    { text: "CONTACT_US", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "CONTACT", href: "/contact", flag: "ALWAYS_TRUE" },
   ],
   right: [
     { text: "Apple", href: "#" },
@@ -635,4 +646,5 @@ export {
   navShop,
   fav,
   getTabData,
+  businessData
 }

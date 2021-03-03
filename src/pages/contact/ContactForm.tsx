@@ -292,14 +292,14 @@ const ContactForm = ({
                   }}
                   minLength={5}
                   maxLength={1000}
-                  placeholder={"Message*"}
+                  placeholder={`${t("MESSAGE")}*`}
                   className={classes.textArea}
                 />
               </div>
             </Grid>
           </Grid>
           <Button
-            title={"Submit"}
+            title={t("SUBMIT")}
             bgcolor={mainData.colorPalle.nextButtonCol}
             borderR="20px"
             width="120px"

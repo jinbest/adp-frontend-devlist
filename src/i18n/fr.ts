@@ -193,6 +193,8 @@ export class LanguageKeysFr extends LanguageKeys {
   public YEARS = "Années"
   public MONTHS = "Mois"
   public COMPANY_NAME = "Nom de la compagnie"
+  public CLOSE = "Fermer"
+  public CONTACT = "Contacter"
 
   /* service-widget Text */
   public NEXT = "Suivant"
@@ -205,7 +207,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public YOUR_INFO = "Vos informations"
   public DELIVERY_METHOD = "Méthode de Livraison"
   public PREFERRED_CONTACT_METHOD = "Méthode de contact préférée"
-  public MESSAGE = "Message"
+  public MESSAGE = "Un message"
   public DEVICE = "Dispositif"
   public SCHEDULE_APPOINTMENT = "Rendez-vous"
   public REQUEST_QUOTE = "Citation requise"
