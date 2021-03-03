@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/northtech-trade.png"
-import repair from "./img/cardmobile/northtech-repair.png"
-import buy from "./img/cardmobile/northtech-buy.png"
-import protect from "./img/cardmobile/northtech-protect.png"
+import trade from "./img/cardmobile/northtech-trade.svg"
+import repair from "./img/cardmobile/northtech-repair.svg"
+import buy from "./img/cardmobile/northtech-buy.svg"
+import protect from "./img/cardmobile/northtech-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -74,7 +74,7 @@ import logoHeaderImg from "./img/logo/northtech-logo-header.png"
 import logoFooterImg from "./img/logo/northtech-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/northtech-device-card.png"
+import deviceCardImg from "./img/northtech-device-card.svg"
 
 // favicon - image
 import favicon from "./img/northtech-favicon.ico"
@@ -323,7 +323,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}, {text: 'FINANCING', link: '#'}],
-  right: { ip: "819.700.2221", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#F67500",
   selectOption: ["ENGLISH", "FRENCH"],

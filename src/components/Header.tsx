@@ -279,11 +279,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                     name={"FRONTEND_USER_LOGIN"}
                     inactiveComponent={() => <></>}
                     activeComponent={() => (
-                      <BrandItemLink
-                        item={t(brandItemLink.right.log)}
-                        color={brandItemLink.brandCol}
-                        href="#"
-                      />
+                      <BrandItemLink item={t("LOG_IN")} color={brandItemLink.brandCol} href="#" />
                     )}
                   />
                 )}

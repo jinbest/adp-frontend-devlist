@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/banana-trade.png"
-import repair from "./img/cardmobile/banana-repair.png"
-import buy from "./img/cardmobile/banana-buy.png"
-import protect from "./img/cardmobile/banana-protect.png"
+import trade from "./img/cardmobile/banana-trade.svg"
+import repair from "./img/cardmobile/banana-repair.svg"
+import buy from "./img/cardmobile/banana-buy.svg"
+import protect from "./img/cardmobile/banana-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -38,7 +38,7 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/banana-corner-shape.png"
+import cornerShape from "./img/banana-corner-shape.svg"
 import mockupShape from "./img/banana-mockup-shape.png"
 
 // footer images
@@ -75,7 +75,7 @@ import logoHeaderImg from "./img/logo/banana-logo-header.png"
 import logoFooterImg from "./img/logo/banana-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/banana-device-card.png"
+import deviceCardImg from "./img/banana-card.png"
 
 // favicon - image
 import favicon from "./img/banana-favicon.ico"
@@ -317,7 +317,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "705.957.2657", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#FEDA00",
   selectOption: ["ENGLISH", "FRENCH"],

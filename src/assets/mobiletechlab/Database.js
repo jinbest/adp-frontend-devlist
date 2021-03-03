@@ -38,8 +38,6 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-// import cornerShape from "./img/mobiletech-corner-shape.png"
-// import mockupShape from "./img/mobiletech-mockup-shape.png"
 import backMTLImg from "./img/MTLwinnipeg.jpeg"
 
 // footer images
@@ -336,7 +334,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "204.808.9416", en: "ENGLISH", log: "" },
   brandCol: "white",
   brandThemeCol: "#333333",
   selectOption: ["ENGLISH", "FRENCH"],

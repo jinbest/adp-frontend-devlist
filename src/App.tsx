@@ -30,7 +30,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 0,
+// const siteNum = 4,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -92,6 +92,7 @@ function App(): JSX.Element {
           const feats: FeatureProps[] = [
             { flag: "ALWAYS_TRUE", isActive: true },
             { flag: "FRONTEND_INSURE", isActive: false },
+            // { flag: "FRONTEND_ONLINE_PURCHASE", isActive: true },
           ]
           if (
             subDomain === "mobiletechlab" ||
@@ -102,6 +103,7 @@ function App(): JSX.Element {
           ) {
             feats.push({ flag: "FRONTEND_BUY", isActive: true })
           }
+
           for (let i = 0; i < res.data.length; i++) {
             feats.push({
               flag: res.data[i].feature_id,

@@ -280,7 +280,7 @@
   justify-content: center;
   height: auto;
   max-height: 230px;
-  overflow-y: auto;
+  overflow-y: auto !important;
   &::-webkit-scrollbar {
     width: 3px;
     cursor: pointer;
