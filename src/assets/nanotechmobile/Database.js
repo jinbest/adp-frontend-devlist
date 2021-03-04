@@ -394,8 +394,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "SASKATCHEWAN_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Saskatchewan",
   },
@@ -454,18 +452,7 @@ const homeTextData = {
       mainGrid: [7, 5],
       subGrid: [6, 6],
     },
-    subContent: [
-      {
-        title: "REGINA_NORTH",
-        content: "1 (306) 569 6266 | info@nanotechrepair.ca 2743 Avonhurst Drive Regina, SK",
-      },
-      {
-        title: "REGINA_EAST",
-        content: "1 (306) 757 6266 | info@nanotechrepair.ca J2 2095 Prince of Wales Regina, SK",
-      },
-    ],
-    contentSubTitle: "",
-    content: ["2747 Avonhurst Dr, Regina, SK S4R 3J3", "NANOTECH_FOOTER_CONTENT_TWO"],
+    content: "NANOTECH_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",

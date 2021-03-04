@@ -398,8 +398,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "YOUR_AFFORDABLE_SOLUTIONS_FOR_TECHNOLOGY_IN_THE_NORTH",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Nunavut",
   },
@@ -458,12 +456,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["208 Sinaa, Iqaluit, NU", "NORTHTECH_FOOTER_CONTENT_TWO"],
+    content: "NORTHTECH_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",

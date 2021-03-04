@@ -11,7 +11,6 @@ export class LanguageKeysFr extends LanguageKeys {
   public FRENCH = "FRANÇAISE"
   public FIND_YOUR_DEVICE = "Trouvez votre appareil"
   public FIND_ANOTHER_LOCATION = "Trouver un autre emplacement"
-  public TRADE_REPAIR_BUY_OR_SELL = "ou vendez"
   public YOUR_MOBILE_DEVICE = "votre appareil mobile"
   public FIND_A_STORE = "Trouver"
   public TRADE = "Commerce"

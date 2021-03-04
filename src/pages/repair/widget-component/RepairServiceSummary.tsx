@@ -30,9 +30,7 @@ const RepairServiceSummary = ({
   subDomain,
   features,
 }: Props) => {
-  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const publicText = mockData.repairWidget.publicText
   const textThemeCol = mainData.colorPalle.textThemeCol
   const [disableStatus, setDisableStatus] = useState(false)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
@@ -153,7 +151,7 @@ const RepairServiceSummary = ({
       <Card className={subDomain + "-repair-service-summary-card"}>
         <div className={subDomain + "-service-choose-device-container"}>
           <Typography className={subDomain + "-repair-service-summary-title"}>
-            {t(publicText.repairServiceSummary)}
+            {t("REPAIR_SERVICE_SUMMARY")}
           </Typography>
           <Grid
             container
@@ -161,7 +159,7 @@ const RepairServiceSummary = ({
             spacing={3}
           >
             <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-              <Typography className={subDomain + "-topic"}>{t(publicText.yourInfo)}</Typography>
+              <Typography className={subDomain + "-topic"}>{t("YOUR_INFO")}</Typography>
               <Typography className={subDomain + "-details"}>
                 {repairWidgetData.contactDetails.firstName +
                   " " +
@@ -185,7 +183,7 @@ const RepairServiceSummary = ({
             </Grid>
             <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
               <Typography className={subDomain + "-topic"}>
-                {t(publicText.preferredContactMethod)}
+                {t("PREFERRED_CONTACT_METHOD")}
               </Typography>
               <Typography className={subDomain + "-details"}>
                 {t(repairWidgetData.receiveQuote.method)}
@@ -198,9 +196,7 @@ const RepairServiceSummary = ({
             spacing={3}
           >
             <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-              <Typography className={subDomain + "-topic"}>
-                {t(publicText.deliveryMethod)}
-              </Typography>
+              <Typography className={subDomain + "-topic"}>{t("DELIVERY_METHOD")}</Typography>
               <Typography className={subDomain + "-details"} style={{ color: textThemeCol }}>
                 {t(repairWidgetData.deliveryMethod.method)}
               </Typography>
@@ -250,7 +246,7 @@ const RepairServiceSummary = ({
             </Grid>
             {repairWidgetData.message && (
               <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-                <Typography className={subDomain + "-topic"}>{t(publicText.message)}</Typography>
+                <Typography className={subDomain + "-topic"}>{t("MESSAGE")}</Typography>
                 <Typography className={subDomain + "-details"}>
                   {repairWidgetData.message}
                 </Typography>
@@ -263,10 +259,8 @@ const RepairServiceSummary = ({
                 subDomain + "-repair-service-summary-flex-container " + subDomain + "-bordered"
               }
             >
-              <Typography className={subDomain + "-topic"}>{t(publicText.device)}:</Typography>
-              <Typography className={subDomain + "-topic"}>
-                {t(publicText.repairService)}
-              </Typography>
+              <Typography className={subDomain + "-topic"}>{t("DEVICE")}:</Typography>
+              <Typography className={subDomain + "-topic"}>{t("REPAIR_SERVICE")}</Typography>
             </div>
             {repairWidgetData.deviceBrand &&
               repairWidgetData.deviceBrand.map((item: any, index: number) => {
@@ -305,7 +299,7 @@ const RepairServiceSummary = ({
                   inactiveComponent={() => <></>}
                   activeComponent={() => (
                     <Button
-                      title={t(publicText.scheduleAppointment)}
+                      title={t("SCHEDULE_APPOINTMENT")}
                       bgcolor={mainData.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"

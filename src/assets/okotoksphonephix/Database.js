@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/phonephix-trade.png"
-import repair from "./img/cardmobile/phonephix-repair.png"
-import buy from "./img/cardmobile/phonephix-buy.png"
-import protect from "./img/cardmobile/phonephix-protect.png"
+import trade from "./img/cardmobile/phonephix-trade.svg"
+import repair from "./img/cardmobile/phonephix-repair.svg"
+import buy from "./img/cardmobile/phonephix-buy.svg"
+import protect from "./img/cardmobile/phonephix-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -38,7 +38,7 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/phonephix-corner-shape.png"
+import cornerShape from "./img/phonephix-corner-shape.svg"
 import mockupShape from "./img/phonephix-mockup-shape.png"
 
 // footer images
@@ -75,7 +75,7 @@ import logoHeaderImg from "./img/logo/phonephix-logo-header.png"
 import logoFooterImg from "./img/logo/phonephix-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/phonephix-device-card.png"
+import deviceCardImg from "./img/phonephix-device-card.svg"
 
 // favicon - image
 import favicon from "./img/phonephix-favicon.ico"
@@ -83,7 +83,7 @@ import favicon from "./img/phonephix-favicon.ico"
 // business - images
 import shapeLeftDesktop from "./img/business/phonephix-shape-left-desktop.png"
 import shapeLeftMobile from "./img/business/phonephix-shape-left-mobile.png"
-import businessCornerShape from "./img/business/phonephix-corner-shape.png"
+import businessCornerShape from "./img/business/phonephix-corner-shape.svg"
 
 const businessData = {
   shapeLeftDesktop: shapeLeftDesktop,
@@ -324,7 +324,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "403.477.6203", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#6C6C73",
   selectOption: ["ENGLISH", "FRENCH"],
@@ -401,8 +400,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "OKOTOKS_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Okotok",
   },
@@ -461,12 +458,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["11 - 1300 Village Lane, Okotoks, AB", "PHONEPHIX_FOOTER_CONTENT_TWO"],
+    content: "PHONEPHIX_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",

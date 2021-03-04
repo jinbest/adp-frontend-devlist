@@ -271,7 +271,7 @@ const Footer = inject("headerStore")(
                 })}
               </Grid>
               <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
-                <T id={data.homeTextData.footer.content[1]} data={headerStore.storesDetails.name} />
+                <T id={data.homeTextData.footer.content} data={headerStore.storesDetails.name} />
               </div>
               {/* </Grid> */}
             </Grid>

@@ -80,14 +80,12 @@ class RepairSummary extends React.Component<Props, MyState> {
   render() {
     const { themeCol, subDomain, showInfo, repairWidgetStore } = this.props
     // const iPhoneWhole = require(`../../../assets/${subDomain}/mock-data/service-widget/device-model/iPhone-whole.png`);
-    const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
     const code = repairWidgetStore.deliveryMethod.code
-    const publicText = mockData.repairWidget.publicText
 
     return (
       <div className={subDomain + "-service-choose-device-container"}>
         <Typography className={subDomain + "-topic-title"}>
-          <T id={publicText.repairSummary} />
+          <T id={"REPAIR_SUMMARY"} />
         </Typography>
         <div className={subDomain + "-service-summary-content-div"}>
           {this.state.brand &&
@@ -117,7 +115,7 @@ class RepairSummary extends React.Component<Props, MyState> {
                               : item.name + " " + this.state.model[index]["name"]}
                           </Typography>
                           <Typography className={subDomain + "-service-summary-service"}>
-                            <T id={publicText.repairService} />
+                            <T id={"REPAIR_SERVICE"} />
                           </Typography>
                           <p className={subDomain + "-service-summary-service-child"}>
                             <T id={chooseItem.name} />

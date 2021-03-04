@@ -475,12 +475,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["2020 Corydon Ave. Unit F. Winnipeg, MB.", "MOBILE_TECH_FOOTER_CONTENT_TWO"],
+    content: "MOBILE_TECH_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",

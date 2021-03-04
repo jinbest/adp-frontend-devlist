@@ -53,10 +53,8 @@ const ChooseDevice = ({
   features,
 }: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
   const themeCol = mainData.colorPalle.themeColor
   const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol
-  const publicText = mockData.repairWidget.publicText
 
   const [sliceNum, setSliceNum] = useState(10)
   const [plusVisible, setPlusVisible] = useState(false)
@@ -356,7 +354,8 @@ const ChooseDevice = ({
         for (let j = 0; j < repairWidData.contactMethod.length; j++) {
           if (
             cntTypes[i].code === repairWidData.contactMethod[j].code &&
-            repairWidData.contactMethod[j].is_enabled
+            repairWidData.contactMethod[j].is_enabled &&
+            cntTypes[i].code !== "TEXT"
           ) {
             cntQuote.push(cntTypes[i])
             break
@@ -550,7 +549,7 @@ const ChooseDevice = ({
                 {stepName === "repairAnotherDevice" && (
                   <div className={subDomain + "-repair-another-device"}>
                     <Button
-                      title={t(publicText.yes)}
+                      title={t("YES")}
                       bgcolor="white"
                       borderR="20px"
                       width="120px"
@@ -561,7 +560,7 @@ const ChooseDevice = ({
                       subDomain={subDomain}
                     />
                     <Button
-                      title={t(publicText.no)}
+                      title={t("NO")}
                       bgcolor="white"
                       borderR="20px"
                       width="120px"
@@ -601,7 +600,7 @@ const ChooseDevice = ({
             {stepName === "deviceRepairs" && (
               <div className={subDomain + "-service-card-button"}>
                 <Button
-                  title={t(publicText.next)}
+                  title={t("NEXT")}
                   bgcolor={mainData.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
@@ -611,7 +610,7 @@ const ChooseDevice = ({
                   disable={disableStatus}
                   subDomain={subDomain}
                 />
-                <p>{t(publicText.enterKey)}</p>
+                <p>{t("ENTER_KEY")}</p>
               </div>
             )}
           </Card>

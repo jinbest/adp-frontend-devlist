@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/reparationcell-trade.png"
-import repair from "./img/cardmobile/reparationcell-repair.png"
-import buy from "./img/cardmobile/reparationcell-buy.png"
-import protect from "./img/cardmobile/reparationcell-protect.png"
+import trade from "./img/cardmobile/reparationcell-trade.svg"
+import repair from "./img/cardmobile/reparationcell-repair.svg"
+import buy from "./img/cardmobile/reparationcell-buy.svg"
+import protect from "./img/cardmobile/reparationcell-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -38,7 +38,7 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/reparationcellularbsl-corner-shape.png"
+import cornerShape from "./img/reparationcellularbsl-corner-shape.svg"
 import mockupShape from "./img/reparationcellularbsl-mockup-shape.png"
 
 // footer images
@@ -76,7 +76,7 @@ import logoHeaderImg from "./img/logo/reparationcellularbsl-logo-header.png"
 import logoFooterImg from "./img/logo/reparationcellularbsl-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/reparationcellularbsl-device-card.png"
+import deviceCardImg from "./img/reparationcellularbsl-device-card.svg"
 
 // favicon - image
 import favicon from "./img/reparationcell-favicon.ico"
@@ -84,7 +84,7 @@ import favicon from "./img/reparationcell-favicon.ico"
 // business - images
 import shapeLeftDesktop from "./img/business/reparation-shape-left-desktop.png"
 import shapeLeftMobile from "./img/business/reparation-shape-left-mobile.png"
-import businessCornerShape from "./img/business/reparation-corner-shape.png"
+import businessCornerShape from "./img/business/reparation-corner-shape.svg"
 
 const businessData = {
   shapeLeftDesktop: shapeLeftDesktop,
@@ -325,7 +325,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "418.522.6666", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#2A5B95",
   selectOption: ["ENGLISH", "FRENCH"],
@@ -403,8 +402,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "REPARATIONCELL_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Quebec",
   },
@@ -463,12 +460,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [8, 4],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["4 - 1800 Bank Street, Ottawa, ON", "REPARATIONCELL_FOOTER_CONTENT_TWO"],
+    content: "REPARATIONCELL_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",
