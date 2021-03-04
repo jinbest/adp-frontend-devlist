@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/wireless-trade.png"
-import repair from "./img/cardmobile/wireless-repair.png"
-import buy from "./img/cardmobile/wireless-buy.png"
-import protect from "./img/cardmobile/wireless-protect.png"
+import trade from "./img/cardmobile/wireless-trade.svg"
+import repair from "./img/cardmobile/wireless-repair.svg"
+import buy from "./img/cardmobile/wireless-buy.svg"
+import protect from "./img/cardmobile/wireless-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -38,7 +38,7 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/wireless-corner-shape.png"
+import cornerShape from "./img/wireless-corner-shape.svg"
 import mockupShape from "./img/wireless-mockup-shape.png"
 
 // footer images
@@ -76,7 +76,7 @@ import logoHeaderImg from "./img/logo/wireless-logo-header.png"
 import logoFooterImg from "./img/logo/wireless-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/wireless-device-card.png"
+import deviceCardImg from "./img/wireless-device-card.svg"
 
 // favicon - image
 import favicon from "./img/wireless-favicon.ico"
@@ -84,7 +84,7 @@ import favicon from "./img/wireless-favicon.ico"
 // business - images
 import shapeLeftDesktop from "./img/business/wireless-shape-left-desktop.png"
 import shapeLeftMobile from "./img/business/wireless-shape-left-mobile.png"
-import businessCornerShape from "./img/business/wireless-corner-shape.png"
+import businessCornerShape from "./img/business/wireless-corner-shape.svg"
 
 const businessData = {
   shapeLeftDesktop: shapeLeftDesktop,
@@ -338,7 +338,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "613.723.6363", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#4D4D4D",
   selectOption: ["ENGLISH", "FRENCH"],
@@ -420,8 +419,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "WIRELESS_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Ottawa",
   },
@@ -480,12 +477,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [8, 4],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["4 - 1800 Bank Street, Ottawa, ON", "WIRELESS_FOOTER_CONTENT_TWO"],
+    content: "WIRELESS_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",

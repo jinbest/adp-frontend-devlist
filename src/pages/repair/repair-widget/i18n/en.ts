@@ -8,7 +8,6 @@ export class LanguageKeys {
   public FRENCH = "FRENCH"
   public FIND_YOUR_DEVICE = "Find your device"
   public FIND_ANOTHER_LOCATION = "Find another location"
-  public TRADE_REPAIR_BUY_OR_SELL = "or sell"
   public YOUR_MOBILE_DEVICE = "your mobile device"
   public FIND_A_STORE = "Find a Store"
   public TRADE = "Trade"

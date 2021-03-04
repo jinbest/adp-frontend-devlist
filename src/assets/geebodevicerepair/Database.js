@@ -393,8 +393,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Nova Scotia",
   },
@@ -453,12 +451,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["306 Charlotte St., Halifax, NS", "GEEBO_FOOTER_CONTENT_TWO"],
+    content: "GEEBO_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",

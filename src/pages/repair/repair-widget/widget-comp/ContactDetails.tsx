@@ -35,9 +35,7 @@ const ContactDetails = ({
   code,
 }: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
   const themeCol = mainData.colorPalle.themeColor
-  const publicText = mockData.repairWidget.publicText
 
   const t = useT()
 
@@ -456,7 +454,7 @@ const ContactDetails = ({
             {code === "MAIL_IN" && (
               <div className={subDomain + "-service-card-button"}>
                 <Button
-                  title={t(publicText.next)}
+                  title={t("NEXT")}
                   bgcolor={mainData.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
@@ -466,7 +464,7 @@ const ContactDetails = ({
                   disable={disableStatus}
                   subDomain={subDomain}
                 />
-                <p>{t(publicText.enterKey)}</p>
+                <p>{t("ENTER_KEY")}</p>
               </div>
             )}
           </Card>

@@ -75,7 +75,6 @@ type Props = {
 const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
-  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
   const timeZoneList = timezoneData.timezoneOptions
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
@@ -103,7 +102,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     "November",
     "December",
   ]
-  const publicText = mockData.repairWidget.publicText
 
   const [tzIndex, setTZIndex] = useState(0)
   const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
@@ -443,7 +441,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             </div>
             <div className={subDomain + "-service-card-button"}>
               <Button
-                title={t(publicText.next)}
+                title={t("NEXT")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
@@ -453,7 +451,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 disable={disableStatus}
                 subDomain={subDomain}
               />
-              <p>{t(publicText.enterKey)}</p>
+              <p>{t("ENTER_KEY")}</p>
             </div>
           </Card>
         </Grid>

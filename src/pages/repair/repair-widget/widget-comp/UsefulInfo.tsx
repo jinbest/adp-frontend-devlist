@@ -22,9 +22,7 @@ const UsefulInfo = ({
   repairWidgetData,
 }: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
   const themeCol = mainData.colorPalle.themeColor
-  const publicText = mockData.repairWidget.publicText
 
   const [message, setMessage] = useState("")
   const t = useT()
@@ -78,7 +76,7 @@ const UsefulInfo = ({
             </div>
             <div className={subDomain + "-service-card-button"}>
               <Button
-                title={t(publicText.next)}
+                title={t("NEXT")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
@@ -87,7 +85,7 @@ const UsefulInfo = ({
                 onClick={ChooseNextStep}
                 subDomain={subDomain}
               />
-              <p>{t(publicText.enterKey)}</p>
+              <p>{t("ENTER_KEY")}</p>
             </div>
           </Card>
         </Grid>

@@ -22,7 +22,6 @@ type Props = {
 const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const timezoneData = require(`../../../assets/${subDomain}/mock-data/timezoneList.js`)
-  const mockData = require(`../../../assets/${subDomain}/mock-data/mockData.js`)
   const timeZoneList = timezoneData.timezoneOptions
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
@@ -50,7 +49,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     "NOVEMBER",
     "DECEMBER",
   ]
-  const publicText = mockData.repairWidget.publicText
 
   const [tzIndex, setTZIndex] = useState(0)
   const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
@@ -60,9 +58,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const [month, setMonth] = useState(date.getMonth())
   const [year, setYear] = useState(date.getFullYear())
   const [week, setWeek] = useState(date.getDay())
-  // const [time, setTime] = useState(
-  //   date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" })
-  // )
   const [time, setTime] = useState("")
   const [selectVal, setSelectVal] = useState({
     code: storesDetails.cntUserLocation.length ? storesDetails.cntUserLocation[0].location_id : -1,
@@ -153,7 +148,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     setMonth(date.getMonth())
     setYear(date.getFullYear())
     setWeek(date.getDay())
-    // setTime(date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric" }))
     setTime("")
   }, [date])
 
@@ -229,7 +223,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     const ptrVal: any[] = val.split(" ")
     let hr = 9,
       min = ""
-    if (ptrVal[1] === "AM") {
+    if (ptrVal[1] === "AM" || (ptrVal[1] === "PM" && ptrVal[0].split(":")[0] === "12")) {
       hr = ptrVal[0].split(":")[0]
     } else {
       hr = parseInt(ptrVal[0].split(":")[0]) + 12
@@ -448,7 +442,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             </div>
             <div className={subDomain + "-service-card-button"}>
               <Button
-                title={t(publicText.next)}
+                title={t("NEXT")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
@@ -458,7 +452,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 disable={disableStatus}
                 subDomain={subDomain}
               />
-              <p>{t(publicText.enterKey)}</p>
+              <p>{t("ENTER_KEY")}</p>
             </div>
           </Card>
         </Grid>

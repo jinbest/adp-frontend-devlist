@@ -1,8 +1,8 @@
 // card-mobile image
-import trade from "./img/cardmobile/prado-trade.png"
-import repair from "./img/cardmobile/prado-repair.png"
-import buy from "./img/cardmobile/prado-buy.png"
-import protect from "./img/cardmobile/prado-protect.png"
+import trade from "./img/cardmobile/prado-trade.svg"
+import repair from "./img/cardmobile/prado-repair.svg"
+import buy from "./img/cardmobile/prado-buy.svg"
+import protect from "./img/cardmobile/prado-protect.svg"
 import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
@@ -38,7 +38,7 @@ import arrowLeft from "./img/arrow/arrow-left.png"
 import arrowRight from "./img/arrow/arrow-right.png"
 
 // shape images
-import cornerShape from "./img/prado-corner-shape.png"
+import cornerShape from "./img/prado-corner-shape.svg"
 import mockupShape from "./img/prado-mockup-shape.png"
 
 // footer images
@@ -75,16 +75,15 @@ import logoHeaderImg from "./img/logo/prado-logo-header.png"
 import logoFooterImg from "./img/logo/prado-logo-footer.png"
 
 // deviceCard - images
-import deviceCardImg from "./img/prado-device-card.png"
+import deviceCardImg from "./img/prado-device-card.svg"
 
 // favicon - image
-// import favicon from "./img/favicon.png"
 import favicon from "./img/prado-favicon.ico"
 
 // business - images
 import shapeLeftDesktop from "./img/business/prado-shape-left-desktop.png"
 import shapeLeftMobile from "./img/business/prado-shape-left-mobile.png"
-import businessCornerShape from "./img/business/prado-corner-shape.png"
+import businessCornerShape from "./img/business/prado-corner-shape.svg"
 
 const businessData = {
   shapeLeftDesktop: shapeLeftDesktop,
@@ -319,7 +318,6 @@ const navShop = {
 
 const brandItemsData = {
   left: [{text: 'BUSINESS', link: '/business'}],
-  right: { ip: "778.440.3130", en: "ENGLISH", log: "LOG_IN" },
   brandCol: "white",
   brandThemeCol: "#000000",
   selectOption: ["ENGLISH", "FRENCH"],
@@ -396,8 +394,6 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    title: ["TRADE_REPAIR_BUY_OR_SELL", "YOUR_MOBILE_DEVICE"],
-    subtitle: "BRITISH_COLUMBIA_MOBILE_DEVICE_SPECIALISTS",
     searchPlaceholder: "FIND_YOUR_DEVICE",
     city: "Victoria",
   },
@@ -454,12 +450,7 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    subContent: [
-      { title: "", content: "" },
-      { title: "", content: "" },
-    ],
-    contentSubTitle: "",
-    content: ["100-703 Broughton Street, Victoria, BC V8W 1E2", "PRADO_FOOTER_CONTENT_TWO"],
+    content: "PRADO_FOOTER_CONTENT_TWO",
     footerLink: [
       {
         name: "RESOURCES",
