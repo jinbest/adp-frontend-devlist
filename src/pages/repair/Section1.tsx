@@ -95,7 +95,10 @@ class Section1 extends React.Component<Props> {
               </div>
             </Grid>
             <Grid item xs={12} sm={5}>
-              <img src={repair.img} style={{ width: "100%", marginTop: "-80px" }} />
+              <img
+                src={require("../../assets/_common/img/repair/repair-phone.png").default}
+                style={{ width: "100%", marginTop: "-80px" }}
+              />
             </Grid>
           </Grid>
         </section>

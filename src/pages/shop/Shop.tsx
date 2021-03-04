@@ -1,56 +1,62 @@
-import React, { useState, useEffect } from 'react'
-import { Error } from '../error'
-import { FeatureToggles, Feature } from '@paralleldrive/react-feature-toggles'
-import {Shape, ProductList, SortbyDropdown, FilterComponent, RightDrawer} from './'
+import React, { useState, useEffect } from "react"
+import { Error } from "../error"
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { Shape, ProductList, SortbyDropdown, FilterComponent, RightDrawer } from "./"
 
 type Props = {
-  subDomain: string;
-  handleStatus: (status:boolean) => void;
-  features: any[];
+  subDomain: string
+  handleStatus: (status: boolean) => void
+  features: any[]
 }
 
-const Shop = ({subDomain, handleStatus, features}: Props) => {
-  const mockData = require(`../../assets/${subDomain}/mock-data/mockData`);
-  const mainCol = mockData.shopPageData.shopEachItem.color;
+const Shop = ({ subDomain, handleStatus, features }: Props) => {
+  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainCol = mainData.shopPageData.shopEachItem.color
 
-  const [feats, setFeatures] = useState<any[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [feats, setFeatures] = useState<any[]>([])
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen)
   }
 
   useEffect(() => {
-    handleStatus(true);
+    handleStatus(true)
   }, [])
 
   useEffect(() => {
-    const cntFeatures:any[] = [];
+    const cntFeatures: any[] = []
     for (let i = 0; i < features.length; i++) {
       if (features[i].isActive) {
-        cntFeatures.push(features[i].flag);
+        cntFeatures.push(features[i].flag)
       }
     }
-    setFeatures(cntFeatures);
-  }, [features]);
+    setFeatures(cntFeatures)
+  }, [features])
 
   return (
     <FeatureToggles features={feats}>
       <Feature
-        name='FRONTEND_BUY'
-        inactiveComponent={()=><Error />}
-        activeComponent={()=>
-          <div className={subDomain + '-shop-main-page'} id="shop-main-page">
+        name="FRONTEND_BUY"
+        inactiveComponent={() => <Error />}
+        activeComponent={() => (
+          <div className={subDomain + "-shop-main-page"} id="shop-main-page">
             <Shape subDomain={subDomain} />
-            <section className={subDomain + '-Container'}>
-              <div className='shop-mobile-filter-by'>
-                <p onClick={toggle} style={{border: `1px solid ${mainCol}`, color: mainCol}}>Filter By</p>
-                {isOpen && <div className='drawer-cover' onClick={toggle}></div>}
+            <section className={subDomain + "-Container"}>
+              <div className="shop-mobile-filter-by">
+                <p onClick={toggle} style={{ border: `1px solid ${mainCol}`, color: mainCol }}>
+                  Filter By
+                </p>
+                {isOpen && <div className="drawer-cover" onClick={toggle}></div>}
                 <RightDrawer open={isOpen} subDomain={subDomain} />
               </div>
-              <div style={{display: 'flex'}}>
-                <div className='shop-filter-component'>
-                  <SortbyDropdown subDomain={subDomain} options={['First', 'Second', 'Third']} title='Filter By' />
+              <div style={{ display: "flex" }}>
+                <div className="shop-filter-component">
+                  <SortbyDropdown
+                    subDomain={subDomain}
+                    options={["First", "Second", "Third"]}
+                    title="Filter By"
+                  />
                   <FilterComponent subDomain={subDomain} />
                 </div>
                 <div>
@@ -59,7 +65,7 @@ const Shop = ({subDomain, handleStatus, features}: Props) => {
               </div>
             </section>
           </div>
-        }
+        )}
       />
     </FeatureToggles>
   )

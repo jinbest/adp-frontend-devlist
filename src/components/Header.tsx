@@ -464,7 +464,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                 {mobileMenu === "right" && (
                   <img
                     className={subDomain + "-arrow-right"}
-                    src={data.arrowData.arrowLeft}
+                    src={commonData.arrowData.arrowLeft}
                     onClick={toggleMobileMenu}
                   />
                 )}
@@ -505,7 +505,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                                 )}
 
                                 {item.text === 'SHOP' && 
-                                  <img style={{height: '18px'}} src={data.arrowData.arrowRight} />
+                                  <img style={{height: '18px'}} src={commonData.arrowData.arrowRight} />
                                 }
                               </div>
                             )}

@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react"
 
 type Props = {
-  subDomain?: string;
+  subDomain?: string
 }
 
-const Shape = ({subDomain}: Props) => {
-  const data = require(`../../assets/${subDomain}/mock-data/mockData`);
-  const cornerData = data.shopPageData.cornerShape;
+const Shape = ({ subDomain }: Props) => {
+  const data = require(`../../assets/${subDomain}/Database`)
+  const cornerData = data.shopPageData.cornerShape
   return (
-    <div className={subDomain + '-shop-corner-shape'}>
-      <img src={cornerData.img} alt='shop-page-corner-shape' />
+    <div className={subDomain + "-shop-corner-shape"}>
+      <img src={cornerData.img} alt="shop-page-corner-shape" />
     </div>
   )
 }

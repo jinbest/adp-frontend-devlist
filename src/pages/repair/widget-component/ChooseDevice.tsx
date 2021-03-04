@@ -276,11 +276,6 @@ const ChooseDevice = ({
       default:
         break
     }
-    // if (sliceNum < pg * perpg) {
-    //   setPlusVisible(false)
-    // } else {
-    //   setPlusVisible(true)
-    // }
     setImageData(cntImgData)
   }
 
@@ -313,7 +308,7 @@ const ChooseDevice = ({
       const cntTypes: any[] = []
       const cntDeliverySets: any[] = repairWidData.apiDropOffDevices.types.length
         ? repairWidData.apiDropOffDevices.types
-        : data.types
+        : []
       const cntAvailableDeliveryMethod: any[] = repairWidData.repairDeliveryMethod
       for (let i = 0; i < cntDeliverySets.length; i++) {
         for (let j = 0; j < cntAvailableDeliveryMethod.length; j++) {
@@ -341,7 +336,7 @@ const ChooseDevice = ({
       const cntQuote: any[] = [],
         cntTypes: any[] = repairWidData.receiveQuote.types.length
           ? repairWidData.receiveQuote.types
-          : data.types
+          : []
       for (let i = 0; i < cntTypes.length; i++) {
         cntTypes[i].bg = "white"
         cntTypes[i].col = "black"
@@ -458,13 +453,7 @@ const ChooseDevice = ({
     <div>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-service-widget-title"}>
-            {/* {stepName === 'deviceModel' ? 
-              t(data.title) + ' ' + repairWidgetStore.deviceBrand[repairWidgetStore.deviceCounter-1].name : 
-              t(data.title)
-            } */}
-            {t(data.title)}
-          </Typography>
+          <Typography className={subDomain + "-service-widget-title"}>{t(data.title)}</Typography>
         </Grid>
       </Grid>
       <Grid container className="" spacing={3}>
@@ -504,7 +493,6 @@ const ChooseDevice = ({
                           key={index}
                           onClick={() => ChooseNextStep(index)}
                         >
-                          {/* <img src={item.img} style={{ width: "80%" }} alt={item.alt} /> */}
                           <img src={item.img} style={{ width: "80%" }} />
                         </div>
                       )
@@ -532,7 +520,6 @@ const ChooseDevice = ({
                           >
                             <div className={subDomain + "-device-model-item"}>
                               <p className={subDomain + "-device-brand-subtitle"}>{item.name}</p>
-                              {/* <img src={item.img} alt={item.alt} /> */}
                               <img src={item.img} />
                             </div>
                           </div>

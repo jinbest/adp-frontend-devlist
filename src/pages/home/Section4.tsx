@@ -11,6 +11,7 @@ type Props = {
 
 const Section4 = ({ subDomain }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
+  const commonData = require("../../assets/_common/mockData")
   const t = useT()
 
   return (
@@ -36,7 +37,7 @@ const Section4 = ({ subDomain }: Props) => {
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Grid item container xs={12}>
-                {data.devicelistData.slice(0, 2).map((item: any, index: number) => {
+                {commonData.devicelistData.slice(0, 2).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={6} key={index}>
                       <Box className={subDomain + "-cart-device-list"}>
@@ -65,7 +66,7 @@ const Section4 = ({ subDomain }: Props) => {
             <Grid item xs={12} sm={12} md={3}></Grid>
             <Grid item xs={12} sm={12} md={9}>
               <Grid item container xs={12}>
-                {data.devicelistData.slice(2, 5).map((item: any, index: number) => {
+                {commonData.devicelistData.slice(2, 5).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={4} key={index}>
                       <Box className={subDomain + "-cart-device-list"}>
@@ -95,7 +96,7 @@ const Section4 = ({ subDomain }: Props) => {
           </Grid>
           <Grid container item xs={12}>
             <div style={{ display: "flex", margin: "auto" }}>
-              {data.devicelistData.map((item: any, index: number) => {
+              {commonData.devicelistData.map((item: any, index: number) => {
                 return (
                   <Box className={subDomain + "-cart-device-list"} key={index}>
                     <DeviceListComponent

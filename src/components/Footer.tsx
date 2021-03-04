@@ -210,6 +210,7 @@ const Footer = inject("headerStore")(
   observer((props: Props) => {
     const { subDomain, features, headerStore } = props
     const data = require(`../assets/${subDomain}/Database`)
+    const commonData = require("../assets/_common/mockData")
     // const footerLink = data.homeTextData.footer.footerLink
     const gridVal = data.homeTextData.footer.gridVal
     const t = useT()
@@ -298,22 +299,22 @@ const Footer = inject("headerStore")(
                     <div className={subDomain + "-footer-images-div"}>
                       <div>
                         <img
-                          src={data.footerImageData.deviceList}
+                          src={commonData.footerImageData.deviceList}
                           className={subDomain + "-footer-device-response"}
                         />
-                        {data.footerImageData.bell && (
+                        {commonData.footerImageData.bell && (
                           <img
-                            src={data.footerImageData.bell}
+                            src={commonData.footerImageData.bell}
                             className={subDomain + "-footer-device-response"}
                           />
                         )}
                       </div>
                       <div>
                         <img
-                          src={data.footerImageData.buyNow}
+                          src={commonData.footerImageData.buyNow}
                           className={subDomain + "-footer-buynow"}
                         />
-                        {data.footerImageData.others.map((item: any, index: number) => {
+                        {commonData.footerImageData.others.map((item: any, index: number) => {
                           return (
                             <div className={subDomain + "-footer-others"} key={index}>
                               <img src={item} key={index} />
@@ -321,12 +322,12 @@ const Footer = inject("headerStore")(
                           )
                         })}
                         <img
-                          src={data.footerImageData.deviceList}
+                          src={commonData.footerImageData.deviceList}
                           className={subDomain + "-footer-device-list"}
                         />
-                        {data.footerImageData.bell && (
+                        {commonData.footerImageData.bell && (
                           <img
-                            src={data.footerImageData.bell}
+                            src={commonData.footerImageData.bell}
                             className={subDomain + "-footer-device-list"}
                           />
                         )}

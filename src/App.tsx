@@ -5,7 +5,6 @@ import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
 import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
-import { Shop } from "./pages/shop/"
 import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore } from "./store/"
 import { LangProvider } from "./i18n/index"
@@ -186,12 +185,6 @@ function App(): JSX.Element {
           )}
         />
         <Route
-          path="/shop"
-          component={() => (
-            <Shop subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-          )}
-        />
-        <Route
           path="/business"
           component={() => <Business subDomain={subDomain} handleStatus={handleFooterStatus} />}
         />
@@ -223,7 +216,7 @@ function App(): JSX.Element {
             </Provider>
             <BaseRouter />
             <Chat subDomain={subDomain} features={features} />
-            <Badge subDomain={subDomain} />
+            <Badge />
             {footerStatus && (
               <Provider headerStore={storesDetails}>
                 <Footer subDomain={subDomain} features={features} headerStore={storesDetails} />
