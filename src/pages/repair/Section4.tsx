@@ -121,7 +121,10 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
           </Box>
         </Grid>
         <Grid item xs={12} md={6} className={classes.item2}>
-          <img src={repair.img} style={{ width: "100%", maxWidth: "700px" }} />
+          <img
+            src={require("../../assets/_common/img/repair/repair-sec4.png").default}
+            style={{ width: "100%", maxWidth: "700px" }}
+          />
         </Grid>
       </Grid>
     </section>

@@ -228,7 +228,7 @@ class RepairWidget extends React.Component<Props, MyState> {
 
   render() {
     const { subDomain } = this.props
-    const mockData = require(`../../assets/${subDomain}/mock-data/mockData.js`)
+    const mockData = require(`../../assets/_common/mockData.js`)
     const mainData = require(`../../assets/${subDomain}/Database.js`)
     const themeCol = mainData.colorPalle.themeColor
 

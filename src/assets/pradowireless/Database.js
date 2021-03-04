@@ -3,7 +3,6 @@ import trade from "./img/cardmobile/prado-trade.svg"
 import repair from "./img/cardmobile/prado-repair.svg"
 import buy from "./img/cardmobile/prado-buy.svg"
 import protect from "./img/cardmobile/prado-protect.svg"
-import heart from "./img/cardmobile/heart.png"
 
 // card-fix image
 import cellphone from "./img/cardfix/prado-mobile.png"
@@ -11,19 +10,6 @@ import tablet from "./img/cardfix/prado-tablet.png"
 import computer from "./img/cardfix/prado-computer.png"
 import console from "./img/cardfix/prado-game.png"
 import other from "./img/cardfix/prado-other.png"
-
-// card-popular image
-import camera from "./img/popular/camera.png"
-
-// device-list images
-import best from "./img/devicelist/best.png"
-import warranty from "./img/devicelist/warranty.png"
-import positive from "./img/devicelist/positive.png"
-import amazing from "./img/devicelist/amazing.png"
-import proudly from "./img/devicelist/proudly.png"
-
-// bounce image
-import bounce from "./img/bounce.png"
 
 // avatar images
 import userActive from "./img/avatar/prado-user-active.png"
@@ -33,25 +19,9 @@ import store from "./img/avatar/prado-store.png"
 import storeBlue from "./img/avatar/prado-store-blue.png"
 import cancel from "./img/avatar/prado-cancel.png"
 
-// arrow images
-import arrowLeft from "./img/arrow/arrow-left.png"
-import arrowRight from "./img/arrow/arrow-right.png"
-
 // shape images
 import cornerShape from "./img/prado-corner-shape.svg"
 import mockupShape from "./img/prado-mockup-shape.png"
-
-// footer images
-import buyNow from "./img/footer/buy-now.png"
-import visa from "./img/footer/visa.png"
-import round from "./img/footer/round.png"
-import amex from "./img/footer/amex.png"
-import interactive from "./img/footer/interactive.png"
-import paypal from "./img/footer/paypal.png"
-import deviceListImg from "./img/footer/device-list.png"
-
-// repair images
-import repairPhone from "./img/repair/repair-phone.png"
 
 // repair section2 - images
 import selectRepair from "./img/repair/section2/prado-select-repair.png"
@@ -63,12 +33,6 @@ import newImg from "./img/repair/section3/prado-new.png"
 import mintImg from "./img/repair/section3/prado-mint.png"
 import goodImg from "./img/repair/section3/prado-good.png"
 import fairImg from "./img/repair/section3/prado-fair.png"
-
-// repair section4 - images
-import repairSec4 from "./img/repair/repair-sec4.png"
-
-// chat - images
-import chatImg from "./img/chat.png"
 
 // logo - images
 import logoHeaderImg from "./img/logo/prado-logo-header.png"
@@ -95,11 +59,6 @@ const fav = {
   img: favicon,
 }
 
-const chatData = {
-  chatImg: chatImg,
-  logoHeaderImg: logoHeaderImg,
-}
-
 const logoData = {
   logoHeaderImg: logoHeaderImg,
   logoFooterImg: logoFooterImg,
@@ -111,7 +70,6 @@ const deviceCard = {
 
 const cardMobileData = {
   gridMD: 3,
-  heart: heart,
   data: [
     { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: "FRONTEND_TRADE", href: "#" },
     {
@@ -155,41 +113,6 @@ const contentFixData = [
     title: "DAY_WARRANTY_DYNAMIC",
     data: '30',
     content: "DAY_WARRANTY_DYNAMIC_CONTENT",
-  },
-]
-
-const popularCardData = [
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-]
-
-const devicelistData = [
-  {
-    img: best,
-    title: "BEST_OFFER_AVAILABLE",
-    content: "BEST_OFFER_AVAILABLE_CONTENT",
-  },
-  {
-    img: warranty,
-    title: "DAY_30_WARRANTY",
-    content: "YEAR_1_WARRANTY_CONTENT",
-  },
-  {
-    img: amazing,
-    title: "AMAZING_SERVICE",
-    content: "AMAZING_SERVICE_CONTENT",
-  },
-  {
-    img: positive,
-    title: "POSITIVE_IMPACT",
-    content: "POSITIVE_IMPACT_CONTENT",
-  },
-  {
-    img: proudly,
-    title: "PROUDLY_CANADIAN",
-    content: "PROUDLY_CANADIAN_CONTENT",
   },
 ]
 
@@ -371,21 +294,9 @@ const userNavItemData = [
   { text: "TRADE_IN", href: "#", flag: "FRONTEND_TRADE" },
 ]
 
-const arrowData = {
-  arrowLeft: arrowLeft,
-  arrowRight: arrowRight,
-}
-
 const shapeData = {
   cornerShape: { img: cornerShape, width: "" },
   mockupShape: { img: mockupShape, width: "" },
-}
-
-const footerImageData = {
-  buyNow: buyNow,
-  deviceList: deviceListImg,
-  bell: "",
-  others: [visa, round, amex, interactive, paypal],
 }
 
 const homeTextData = {
@@ -411,7 +322,6 @@ const homeTextData = {
     btnTitle: "OUR_QUALITY_CHARTER",
   },
   section5: {
-    img: bounce,
     title: "PROTECT_YOUR_DEVICE_WITH_BOUNCE",
     content: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_CONTENT",
     subtitle: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBTITLE",
@@ -497,7 +407,6 @@ const repairData = {
     title: "FIX_YOUR_DEVICE_FAST",
     content: "FIX_YOUR_DEVICE_FAST_CONTENT",
     btnTitle: "GET_QUOTE",
-    img: repairPhone,
     themeCol: "black",
   },
   section2: {
@@ -553,7 +462,6 @@ const repairData = {
     title: "GET_THE_LATEST",
     content: "SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE",
     btnTitle: "FIND_A_STORE",
-    img: repairSec4,
     themeCol: "black",
     link: "#",
   },
@@ -582,20 +490,15 @@ export {
   colorPalle,
   cardFixData,
   contentFixData,
-  popularCardData,
-  devicelistData,
   navItemsData,
   brandItemsData,
   hoursData,
   avatarData,
   mobileNavItemData,
   userNavItemData,
-  arrowData,
   shapeData,
-  footerImageData,
   homeTextData,
   repairData,
-  chatData,
   logoData,
   deviceCard,
   navShop,

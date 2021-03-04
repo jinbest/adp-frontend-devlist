@@ -12,6 +12,7 @@ type Props = {
 
 const Section3 = ({ subDomain, features }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
+  const commonData = require("../../assets/_common/mockData")
   const deviceCard = data.deviceCard
   const t = useT()
 
@@ -45,7 +46,7 @@ const Section3 = ({ subDomain, features }: Props) => {
             <div className={subDomain + "-section3-back"}>
               <div className={subDomain + "-Container"}>
                 <Grid container item xs={12} spacing={2}>
-                  {data.popularCardData.map((item: any, index: number) => {
+                  {commonData.popularCardData.map((item: any, index: number) => {
                     return (
                       <Grid item xs={6} sm={6} md={3} style={{ paddingTop: "0px" }} key={index}>
                         <CardPopular
