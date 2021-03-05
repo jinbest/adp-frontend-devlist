@@ -42,6 +42,7 @@ interface LocationHour {
   open: string
   store_id: boolean
   type: "REGULAR" | "HOLIDAY"
+  by_appointment_only: boolean
 }
 
 const DAYS_OF_THE_WEEK: LangProps[] = [
@@ -414,18 +415,20 @@ const SectionMap = inject("storesDetailsStore")(
                           </p>
                         </div>
 
-                        {getRegularHours(element.location_hours).map((element, index) => (
+                        {getRegularHours(element.location_hours).map((item, index) => (
                           <Grid key={index} item container md={12} sm={12} xs={12}>
                             <Grid item md={6} sm={6} xs={6}>
                               <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
-                                {t(DAYS_OF_THE_WEEK[element.day])}
+                                {t(DAYS_OF_THE_WEEK[item.day])}
                               </p>
                             </Grid>
                             <Grid item md={6} sm={6} xs={6}>
                               <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
-                                {!element.open || !element.close
-                                  ? "Closed"
-                                  : getHourType(element.open) + "-" + getHourType(element.close)}
+                                {!item.open || !item.close
+                                  ? item.by_appointment_only
+                                    ? t("CALL_TO_BOOK_APPOINTMENT")
+                                    : t("CLOSED")
+                                  : getHourType(item.open) + "-" + getHourType(item.close)}
                               </p>
                             </Grid>
                           </Grid>

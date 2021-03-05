@@ -1,6 +1,6 @@
 import axios from "axios"
 import Config from "../../config/config"
-import { ContactSubmitParams } from "../../pages/contact/model/submit-param"
+import { ContactSubmitParams } from "../../model/contact-submit-param"
 
 class ContactUsAPI {
 

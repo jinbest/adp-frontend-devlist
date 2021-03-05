@@ -190,6 +190,7 @@ export class LanguageKeys {
   public COMPANY_NAME = "Company Name"
   public CLOSE = "Close"
   public CONTACT = "Contact"
+  public CALL_TO_BOOK_APPOINTMENT = "Call to book appointment"
 
   /* service-widget Text */
   public NEXT = "Next"

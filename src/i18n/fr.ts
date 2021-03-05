@@ -194,6 +194,7 @@ export class LanguageKeysFr extends LanguageKeys {
   public COMPANY_NAME = "Nom de la compagnie"
   public CLOSE = "Fermer"
   public CONTACT = "Contacter"
+  public CALL_TO_BOOK_APPOINTMENT = "Appelez pour prendre rendez-vous"
 
   /* service-widget Text */
   public NEXT = "Suivant"

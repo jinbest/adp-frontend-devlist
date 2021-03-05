@@ -15,7 +15,6 @@ import {
   QuickTurnaround,
   Soldering,
 } from "./SVGs"
-import { Provider } from "mobx-react"
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -270,14 +269,12 @@ const Business = ({ subDomain, handleStatus }: Props) => {
               </Grid>
             </Grid>
           </Card>
-          <Provider storesDetailsStore={storesDetails}>
-            <ContactModal
-              openModal={openModal}
-              handleModal={setOpenModal}
-              subDomain={subDomain}
-              storesDetailsStore={storesDetails}
-            />
-          </Provider>
+          <ContactModal
+            openModal={openModal}
+            handleModal={setOpenModal}
+            subDomain={subDomain}
+            storesDetailsStore={storesDetails}
+          />
         </div>
       </div>
     </div>

@@ -1,20 +1,34 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Grid, Typography } from "@material-ui/core"
-import { Card } from "./"
+import { Card, RepairSummary } from "./"
 import { InputComponent, Button, PhoneInput, CustomSelect } from "../../../components"
-import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
-import { repairWidgetAPI } from "../../../services"
-import { PostAppointParams } from "../model/post-appointment-params"
+import { repairWidgetAPI, findLocationAPI } from "../../../services"
+import { PostAppointParams } from "../../../model/post-appointment-params"
 import { countriesData } from "../../../const"
-import { findLocationAPI } from "../../../services"
 import { makeLocations } from "../../../components/CustomizedMenus"
-import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
+import { ToastMsgParams } from "../../../model/toast-msg-param"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
 import Loading from "../../../components/Loading"
+
+export function ValidateEmail(e: string) {
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(e)
+}
+
+export function ValidatePhoneNumber(p: string) {
+  const found = p.search(
+    /^(\+{1}\d{2,3}\s?[(]{1}\d{1,3}[)]{1}\s?\d+|\+\d{2,3}\s{1}\d+|\d+){1}[\s|-]?\d+([\s|-]?\d+){1,2}$/
+  )
+  if (found > -1 && p.length >= 10) {
+    return true
+  } else {
+    return false
+  }
+}
 
 type Props = {
   data: any
@@ -146,17 +160,12 @@ const ContactDetails = ({
     }
   }
 
-  function validateEmail(e: string) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(e)
-  }
-
   const SubmitAvailable = () => {
     if (
       firstName &&
       lastName &&
       email &&
-      validateEmail(email) &&
+      ValidateEmail(email) &&
       ((repairWidgetStore.receiveQuote.code === "PHONE" && phone) ||
         repairWidgetStore.receiveQuote.code !== "PHONE") &&
       ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
@@ -168,48 +177,52 @@ const ContactDetails = ({
       return true
     }
     if (!firstName) {
-      setFnErrTxt("FirstName is required.")
+      setFnErrTxt("Required.")
       setTimeout(() => {
         setFnErrTxt("")
       }, 3000)
     }
     if (!lastName) {
-      setLnErrTxt("LastName is required.")
+      setLnErrTxt("Required.")
       setTimeout(() => {
         setLnErrTxt("")
       }, 3000)
     }
     if (!email) {
-      setEmlErrTxt("Email is required.")
+      setEmlErrTxt("Required.")
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
-    } else if (!validateEmail(email)) {
-      setEmlErrTxt("Email is not valid.")
+    } else if (!ValidateEmail(email)) {
+      setEmlErrTxt("Enter a valid email.")
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     }
-    if (repairWidgetStore.receiveQuote.code === "PHONE" && !phone) {
-      setPhErrTxt("Phone Number is required.")
+    if (repairWidgetStore.receiveQuote.code === "PHONE") {
+      if (!phone) {
+        setPhErrTxt("Required.")
+      } else if (!ValidatePhoneNumber(phone)) {
+        setPhErrTxt("Enter a valid phone number.")
+      }
       setTimeout(() => {
         setPhErrTxt("")
       }, 3000)
     }
     if (!address1) {
-      setAd1ErrTxt("Address1 is required.")
+      setAd1ErrTxt("Required.")
       setTimeout(() => {
         setAd1ErrTxt("")
       }, 3000)
     }
     if (storesDetails.location_id < 0 && !postalCode) {
-      setPsErrTxt("PostalCode is required.")
+      setPsErrTxt("Required.")
       setTimeout(() => {
         setPsErrTxt("")
       }, 3000)
     }
     if (!city) {
-      setCtErrTxt("City is required.")
+      setCtErrTxt("Required.")
       setTimeout(() => {
         setCtErrTxt("")
       }, 3000)
