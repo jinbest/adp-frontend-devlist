@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(4, 5, 3),
       maxWidth: "900px",
       maxHeight: "90%",
-      overflow: "auto",
+      overflow: "auto !important",
       margin: "5px",
     },
     title: {

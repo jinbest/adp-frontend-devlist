@@ -75,7 +75,7 @@ const StyledMenu = withStyles({
   paper: {
     borderRadius: "15px",
     boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
-    overflow: "inherit",
+    overflow: "inherit !important",
     marginTop: "5px",
     border: "1px solid #C4C4C4",
   },
