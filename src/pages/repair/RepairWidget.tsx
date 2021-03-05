@@ -290,6 +290,7 @@ class RepairWidget extends React.Component<Props, MyState> {
                     handleStep={this.handleStep.bind(this)}
                     handleChangeChooseData={this.handleChangeChooseData.bind(this)}
                     repairWidgetData={this.computedRepairWidgetData}
+                    storesDetailsStore={storesDetails}
                   />
                 )}
                 {this.state.step === 8 && (

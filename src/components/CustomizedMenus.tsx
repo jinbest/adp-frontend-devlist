@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
-import {
-  Button,
-  // UserInfoModal,
-  InputComponent,
-} from "./"
+import { Button, InputComponent } from "./"
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
-// import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore } from "../store/"
 import { findLocationAPI } from "../services/"
 import { Link } from "react-router-dom"
-import { GetCurrentLocParams } from "../pages/repair/model/get-current-location"
+import { GetCurrentLocParams } from "../model/get-current-location"
 import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
@@ -76,24 +71,13 @@ export function makeLocations(data: any[]) {
   return locations
 }
 
-// function getNearestLocLink(data: any[]) {
-//   let nearestLoc: any = data[0]
-//   for (let i = 1; i < data.length; i++) {
-//     if (data[i].distance < nearestLoc.distance) {
-//       nearestLoc = data[i]
-//     }
-//   }
-//   return `https://www.google.com/maps/search/?api=1&query=${nearestLoc.latitude},${nearestLoc.longitude}`
-// }
-
 const StyledMenu = withStyles({
   paper: {
     borderRadius: "15px",
     boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
-    overflow: "inherit",
+    overflow: "inherit !important",
     marginTop: "5px",
     border: "1px solid #C4C4C4",
-    // paddingBottom: "15px",
   },
 })((props: MenuProps) => (
   <Menu
@@ -122,7 +106,7 @@ const useStyles = makeStyles(() =>
 )
 
 type StoreProps = {
-  headerStore: StoresDetails
+  storesDetailsStore: StoresDetails
 }
 interface Props extends StoreProps {
   subDomain?: string
@@ -131,10 +115,9 @@ interface Props extends StoreProps {
   features: any[]
 }
 
-// const CustomizedMenus = inject('store')(observer(({subDomain, btnTitle, width, features}: Props) => {
-const CustomizedMenus = inject("headerStore")(
+const CustomizedMenus = inject("storesDetailsStore")(
   observer((props: Props) => {
-    const { subDomain, btnTitle, width, headerStore } = props
+    const { subDomain, btnTitle, width, storesDetailsStore } = props
 
     const data = require(`../assets/${subDomain}/Database`)
     const themeColor = data.colorPalle.themeColor
@@ -142,9 +125,8 @@ const CustomizedMenus = inject("headerStore")(
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const t = useT()
     const [pos, setPos] = useState({ latitude: "", longitude: "" })
-    // const [userInfo, setUserInfo] = useState({ city: "", state: "", postcode: "", country: "" })
-    const [locSelStatus, setLocSelStatus] = useState(headerStore.cntUserLocationSelected)
-    const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
+    const [locSelStatus, setLocSelStatus] = useState(storesDetailsStore.cntUserLocationSelected)
+    const [locations, setLocations] = useState<any[]>(storesDetailsStore.cntUserLocation)
     const [requireUserInfo, setRequireUserInfo] = useState(false)
     const [contentWidth, setContentWidth] = useState("215px")
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
@@ -155,9 +137,9 @@ const CustomizedMenus = inject("headerStore")(
     const classes = useStyles()
 
     const handleLocSelect = (index: number) => {
-      const cntLocation: any = headerStore.cntUserLocation[index]
+      const cntLocation: any = storesDetailsStore.cntUserLocation[index]
       setLocations([cntLocation])
-      headerStore.changeLocationID(cntLocation.location_id)
+      storesDetailsStore.changeLocationID(cntLocation.location_id)
       setLocSelStatus(true)
     }
 
@@ -219,13 +201,12 @@ const CustomizedMenus = inject("headerStore")(
       if (!requireUserInfo && pos.latitude) {
         if (locations.length) return
         findLocationAPI
-          .findGeoLocation(headerStore.store_id, pos)
+          .findGeoLocation(storesDetailsStore.store_id, pos)
           .then((res: any) => {
             if (res.data.length) {
-              headerStore.changeFindAddLocation(res.data)
-              setLocations(makeLocations([headerStore.findAddLocation[0]]))
-              // setLocSelStatus(true)
-              headerStore.changeLocationID(headerStore.findAddLocation[0].id)
+              storesDetailsStore.changeFindAddLocation(res.data)
+              setLocations(makeLocations([storesDetailsStore.findAddLocation[0]]))
+              storesDetailsStore.changeLocationID(storesDetailsStore.findAddLocation[0].id)
             } else {
               setToastParams({
                 msg: "Response is an empty data, please input your infos.",
@@ -253,7 +234,7 @@ const CustomizedMenus = inject("headerStore")(
       } else {
         setContentWidth("500px")
       }
-      headerStore.changeCntUserLocationSelected(locSelStatus)
+      storesDetailsStore.changeCntUserLocationSelected(locSelStatus)
       if (locations.length <= 1) {
         setMyStore(t("NEAREST_LOCATION"))
       } else {
@@ -265,38 +246,11 @@ const CustomizedMenus = inject("headerStore")(
     }, [locSelStatus, locations])
 
     useEffect(() => {
-      headerStore.changeCntUserLocation(locations)
+      storesDetailsStore.changeCntUserLocation(locations)
     }, [locations])
 
-    // useEffect(() => {
-    //   if (userInfo.city) {
-    //     if (locations.length) return
-    //     findLocationAPI
-    //       .findAddLocation(headerStore.store_id, userInfo)
-    //       .then((res: any) => {
-    //         if (res.data.length) {
-    //           headerStore.changeFindAddLocation(res.data)
-    //           setLocations(makeLocations(headerStore.findAddLocation))
-    //           headerStore.changeLocationID(res.data[0].id)
-    //         } else {
-    //           setToastParams({
-    //             msg: "Response is an empty data, please check your infos.",
-    //             isWarning: true,
-    //           })
-    //         }
-    //       })
-    //       .catch((error) => {
-    //         console.log("Error to find location with Address", error)
-    //         setToastParams({
-    //           msg: "Error to find location with Address, please check your infos.",
-    //           isError: true,
-    //         })
-    //       })
-    //   }
-    // }, [userInfo])
-
     const viewMoreStores = () => {
-      setLocations(makeLocations(headerStore.findAddLocation))
+      setLocations(makeLocations(storesDetailsStore.findAddLocation))
       setLocSelStatus(false)
     }
 
@@ -319,15 +273,15 @@ const CustomizedMenus = inject("headerStore")(
 
     useEffect(() => {
       findLocationAPI
-        .findAllLocation(headerStore.store_id)
+        .findAllLocation(storesDetailsStore.store_id)
         .then((res: any) => {
           const locationData = res.data as any[]
           if (locationData.length > 1 || !locationData.length) return
-          headerStore.changeFindAddLocation(locationData)
-          headerStore.changeCntUserLocationSelected(true)
+          storesDetailsStore.changeFindAddLocation(locationData)
+          storesDetailsStore.changeCntUserLocationSelected(true)
           setLocations(makeLocations([locationData[0]]))
           setLocSelStatus(true)
-          headerStore.changeLocationID(locationData[0].id)
+          storesDetailsStore.changeLocationID(locationData[0].id)
         })
         .catch((error) => {
           console.log("Error in get Features", error)
@@ -344,13 +298,12 @@ const CustomizedMenus = inject("headerStore")(
       }
       setIsRequest(true)
       findLocationAPI
-        .findAddLocation(headerStore.store_id, data)
+        .findAddLocation(storesDetailsStore.store_id, data)
         .then((res: any) => {
           if (res.data.length) {
-            headerStore.changeFindAddLocation(res.data)
-            setLocations(makeLocations([headerStore.findAddLocation[0]]))
-            // setLocSelStatus(true)
-            headerStore.changeLocationID(headerStore.findAddLocation[0].id)
+            storesDetailsStore.changeFindAddLocation(res.data)
+            setLocations(makeLocations([storesDetailsStore.findAddLocation[0]]))
+            storesDetailsStore.changeLocationID(storesDetailsStore.findAddLocation[0].id)
           } else {
             setToastParams({
               msg: "Response is an empty data, please check your infos.",
@@ -383,7 +336,8 @@ const CustomizedMenus = inject("headerStore")(
           title={
             !locSelStatus
               ? t(btnTitle)
-              : headerStore.cntUserLocation[0] && headerStore.cntUserLocation[0].address_1
+              : storesDetailsStore.cntUserLocation[0] &&
+                storesDetailsStore.cntUserLocation[0].address_1
           }
           bgcolor={!locSelStatus ? themeColor : "transparent"}
           txcolor={!locSelStatus ? "white" : "black"}
@@ -410,7 +364,7 @@ const CustomizedMenus = inject("headerStore")(
           <div className={subDomain + "-menu-content-div"}>
             <div className={subDomain + "-left-content"} style={{ width: contentWidth }}>
               <div className={subDomain + "-content-block"}>
-                {headerStore.cntUserLocation.length || !requireUserInfo ? (
+                {storesDetailsStore.cntUserLocation.length || !requireUserInfo ? (
                   <p className={subDomain + "-block-title"}>{myStore}</p>
                 ) : (
                   <div style={{ textAlign: "center" }}>
@@ -436,18 +390,10 @@ const CustomizedMenus = inject("headerStore")(
                     >
                       {isRequest && <Loading />}
                     </Button>
-                    {/* <p style={{ fontSize: "12px", color: "darkgray" }}>
-                      {t("INPUT_YOUR_INFO_DESCRIPTION")}
-                    </p>
-                    <UserInfoModal
-                      bgColor={themeColor}
-                      handleUserInfo={setUserInfo}
-                      subDomain={subDomain}
-                    /> */}
                   </div>
                 )}
                 <div className="custom-menu-locations-container">
-                  {headerStore.cntUserLocation.map((item: any, index: number) => {
+                  {storesDetailsStore.cntUserLocation.map((item: any, index: number) => {
                     return (
                       <React.Fragment key={index}>
                         <p
@@ -477,10 +423,9 @@ const CustomizedMenus = inject("headerStore")(
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
-                    // href={getNearestLocLink(headerStore.findAddLocation)}
                     href={
-                      headerStore.cntUserLocation[0].business_page_link
-                        ? headerStore.cntUserLocation[0].business_page_link
+                      storesDetailsStore.cntUserLocation[0].business_page_link
+                        ? storesDetailsStore.cntUserLocation[0].business_page_link
                         : "https://www.google.com/business/"
                     }
                     target="_blank"
@@ -489,8 +434,8 @@ const CustomizedMenus = inject("headerStore")(
                     {t("VIEW_STORE_DETAILS")}
                   </a>
                 )}
-                {headerStore.findAddLocation.length > 1 &&
-                  locations.length < headerStore.findAddLocation.length && (
+                {storesDetailsStore.findAddLocation.length > 1 &&
+                  locations.length < storesDetailsStore.findAddLocation.length && (
                     <a
                       className={subDomain + "-link"}
                       style={{ color: underLineCol }}
@@ -504,10 +449,10 @@ const CustomizedMenus = inject("headerStore")(
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
                     href={`${
-                      headerStore.cntUserLocation[0].business_page_link != null
-                        ? headerStore.cntUserLocation[0].business_page_link
+                      storesDetailsStore.cntUserLocation[0].business_page_link != null
+                        ? storesDetailsStore.cntUserLocation[0].business_page_link
                         : `https://www.google.com/maps/search/?api=1&query=${getAddress(
-                            headerStore.cntUserLocation[0]
+                            storesDetailsStore.cntUserLocation[0]
                           )
                             .split(" ")
                             .join("+")}`
@@ -543,7 +488,7 @@ const CustomizedMenus = inject("headerStore")(
                   }}
                 ></div>
                 <div style={{ width: "390px" }}>
-                  {headerStore.cntUserLocation.map((item: any, id: number) => {
+                  {storesDetailsStore.cntUserLocation.map((item: any, id: number) => {
                     return (
                       <div key={id}>
                         {item.days.map((it: any, index: number) => {

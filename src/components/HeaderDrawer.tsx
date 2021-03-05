@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type Anchor = "top" | "left" | "bottom" | "right"
 
 type StoreProps = {
-  headerStore: StoresDetails
+  storesDetailsStore: StoresDetails
 }
 interface Props extends StoreProps {
   children?: any
@@ -90,7 +90,7 @@ interface Props extends StoreProps {
   themeCol: string
 }
 
-const HeaderDrawer = inject("headerStore")(
+const HeaderDrawer = inject("storesDetailsStore")(
   observer((props: Props) => {
     const {
       children,
@@ -99,7 +99,7 @@ const HeaderDrawer = inject("headerStore")(
       handleStatus,
       features,
       themeCol,
-      headerStore,
+      storesDetailsStore,
     } = props
     const data = require(`../assets/${subDomain}/Database`)
     const t = useT()
@@ -118,19 +118,15 @@ const HeaderDrawer = inject("headerStore")(
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
     const [requireUserInfo, setRequireUserInfo] = useState(false)
     const [pos, setPos] = useState({ latitude: "", longitude: "" })
-    const [locations, setLocations] = useState<any[]>(headerStore.cntUserLocation)
+    const [locations, setLocations] = useState<any[]>(storesDetailsStore.cntUserLocation)
     const [postCode, setPostCode] = useState("")
 
     useEffect(() => {
-      if (headerStore.findAddLocation.length) {
+      if (storesDetailsStore.findAddLocation.length) {
         setStoreStatus(true)
       }
-      setLocSelStatus(headerStore.cntUserLocationSelected)
+      setLocSelStatus(storesDetailsStore.cntUserLocationSelected)
     }, [])
-
-    // useEffect(() => {
-    //   console.log(storeStatus, locSelStatus)
-    // }, [storeStatus, locSelStatus])
 
     const handleFindStore = () => {
       if (!storeStatus) {
@@ -181,12 +177,12 @@ const HeaderDrawer = inject("headerStore")(
         if (locations.length) return
         setLoadingStatus(true)
         findLocationAPI
-          .findGeoLocation(headerStore.store_id, pos)
+          .findGeoLocation(storesDetailsStore.store_id, pos)
           .then((res: any) => {
             if (res.data.length) {
-              headerStore.changeFindAddLocation(res.data)
-              setLocations(makeLocations(headerStore.findAddLocation))
-              headerStore.changeLocationID(res.data[0].id)
+              storesDetailsStore.changeFindAddLocation(res.data)
+              setLocations(makeLocations(storesDetailsStore.findAddLocation))
+              storesDetailsStore.changeLocationID(res.data[0].id)
               setStoreStatus(true)
               setModalStatus(true)
             } else {
@@ -213,11 +209,11 @@ const HeaderDrawer = inject("headerStore")(
     }, [pos, locations])
 
     useEffect(() => {
-      headerStore.changeCntUserLocation(locations)
+      storesDetailsStore.changeCntUserLocation(locations)
     }, [locations])
 
     useEffect(() => {
-      headerStore.changeCntUserLocationSelected(locSelStatus)
+      storesDetailsStore.changeCntUserLocationSelected(locSelStatus)
     }, [locSelStatus])
 
     const onKeyPress = (event: any) => {
@@ -243,12 +239,12 @@ const HeaderDrawer = inject("headerStore")(
       }
       setLoadingStatus(true)
       findLocationAPI
-        .findAddLocation(headerStore.store_id, data)
+        .findAddLocation(storesDetailsStore.store_id, data)
         .then((res: any) => {
           if (res.data.length) {
-            headerStore.changeFindAddLocation(res.data)
-            setLocations(makeLocations(headerStore.findAddLocation))
-            headerStore.changeLocationID(res.data[0].id)
+            storesDetailsStore.changeFindAddLocation(res.data)
+            setLocations(makeLocations(storesDetailsStore.findAddLocation))
+            storesDetailsStore.changeLocationID(res.data[0].id)
           } else {
             setToastParams({
               msg: "Response is an empty data, please check your infos.",
@@ -295,14 +291,14 @@ const HeaderDrawer = inject("headerStore")(
     }
 
     const handleLocSelect = (index: number) => {
-      const cntLocation: any = headerStore.cntUserLocation[index]
+      const cntLocation: any = storesDetailsStore.cntUserLocation[index]
       setLocations([cntLocation])
-      headerStore.changeLocationID(cntLocation.location_id)
+      storesDetailsStore.changeLocationID(cntLocation.location_id)
       setLocSelStatus(true)
     }
 
     const viewMoreStores = () => {
-      setLocations(makeLocations(headerStore.findAddLocation))
+      setLocations(makeLocations(storesDetailsStore.findAddLocation))
       setLocSelStatus(false)
     }
 
@@ -427,7 +423,7 @@ const HeaderDrawer = inject("headerStore")(
                 {storeStatus && (
                   <React.Fragment>
                     <div className="custom-menu-locations-container">
-                      {headerStore.cntUserLocation.map((item: any, index: number) => {
+                      {storesDetailsStore.cntUserLocation.map((item: any, index: number) => {
                         return (
                           <React.Fragment key={index}>
                             <p
@@ -455,7 +451,7 @@ const HeaderDrawer = inject("headerStore")(
                     </div>
                     {locSelStatus && (
                       <React.Fragment>
-                        {headerStore.cntUserLocation.map((item: any, id: number) => {
+                        {storesDetailsStore.cntUserLocation.map((item: any, id: number) => {
                           return (
                             <div key={id}>
                               {item.days.map((it: any, index: number) => {
@@ -519,8 +515,8 @@ const HeaderDrawer = inject("headerStore")(
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={
-                            headerStore.cntUserLocation[0].business_page_link
-                              ? headerStore.cntUserLocation[0].business_page_link
+                            storesDetailsStore.cntUserLocation[0].business_page_link
+                              ? storesDetailsStore.cntUserLocation[0].business_page_link
                               : "https://www.google.com/business/"
                           }
                           target="_blank"
@@ -529,7 +525,7 @@ const HeaderDrawer = inject("headerStore")(
                           {t("VIEW_STORE_DETAILS")}
                         </a>
                       )}
-                      {headerStore.findAddLocation.length > 1 && (
+                      {storesDetailsStore.findAddLocation.length > 1 && (
                         <a
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
@@ -543,10 +539,10 @@ const HeaderDrawer = inject("headerStore")(
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={`${
-                            headerStore.cntUserLocation[0].business_page_link != null
-                              ? headerStore.cntUserLocation[0].business_page_link
+                            storesDetailsStore.cntUserLocation[0].business_page_link != null
+                              ? storesDetailsStore.cntUserLocation[0].business_page_link
                               : `https://www.google.com/maps/search/?api=1&query=${getAddress(
-                                  headerStore.cntUserLocation[0]
+                                  storesDetailsStore.cntUserLocation[0]
                                 )
                                   .split(" ")
                                   .join("+")}`

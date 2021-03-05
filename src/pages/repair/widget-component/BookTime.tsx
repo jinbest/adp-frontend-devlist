@@ -8,6 +8,9 @@ import { useT } from "../../../i18n/index"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { makeLocations } from "../../../components/CustomizedMenus"
 import { LangProps } from "../../../i18n/en"
+import { inject } from "mobx-react"
+import { observer } from "mobx-react-lite"
+import { StoresDetails } from "../../../store/StoresDetails"
 
 type Props = {
   data: any
@@ -17,6 +20,7 @@ type Props = {
   code: string
   handleChangeChooseData: (step: number, chooseData: any) => void
   repairWidgetData: any
+  storesDetailsStore: StoresDetails
 }
 
 const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
@@ -100,6 +104,19 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     }
     setFindLocs(cntFindLoc)
   }, [storesDetails])
+
+  // useEffect(() => {
+  //   console.log(storesDetailsStore.cntUserLocation)
+  //   if (!storesDetailsStore.cntUserLocation.length) return
+  //   setSelectVal({
+  //     code: storesDetailsStore.cntUserLocation[0].location_id,
+  //     name:
+  //       storesDetailsStore.cntUserLocation[0].address_1 +
+  //       (storesDetailsStore.cntUserLocation[0].address_2
+  //         ? ", " + storesDetailsStore.cntUserLocation[0].address_2
+  //         : ""),
+  //   })
+  // }, [storesDetailsStore.cntUserLocation])
 
   useEffect(() => {
     const cntSelHours: SelectHoursProps[] = []
@@ -466,4 +483,4 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   )
 }
 
-export default BookTime
+export default inject("storesDetailsStore")(observer(BookTime))

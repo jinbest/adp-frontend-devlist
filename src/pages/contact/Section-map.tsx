@@ -24,7 +24,7 @@ interface Props extends StoreProps {
 }
 
 type StoreProps = {
-  headerStore: StoresDetails
+  storesDetailsStore: StoresDetails
 }
 
 interface LocationHour {
@@ -150,9 +150,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const SectionMap = inject("headerStore")(
+const SectionMap = inject("storesDetailsStore")(
   observer(
-    ({ subDomain, locations, headerStore, handleStatus, location_id, handleLocationID }: Props) => {
+    ({
+      subDomain,
+      locations,
+      storesDetailsStore,
+      handleStatus,
+      location_id,
+      handleLocationID,
+    }: Props) => {
       const data = require(`../../assets/${subDomain}/Database`)
       const t = useT()
       const classes = useStyles()
@@ -161,9 +168,9 @@ const SectionMap = inject("headerStore")(
       const [isExpanded, setIsExpanded] = React.useState<boolean>(false)
 
       const handleLocSelect = (location: any) => {
-        headerStore.cntUserLocation = makeLocations([location])
-        headerStore.changeLocationID(location.id)
-        headerStore.changeCntUserLocationSelected(true)
+        storesDetailsStore.cntUserLocation = makeLocations([location])
+        storesDetailsStore.changeLocationID(location.id)
+        storesDetailsStore.changeCntUserLocationSelected(true)
       }
       const handleGetQuote = () => {
         const cntAppointment: any = repairWidgetStore.appointResponse
@@ -234,7 +241,7 @@ const SectionMap = inject("headerStore")(
         // setIsExpanded(isExpanded)
         setExpanded(panel)
         setIsExpanded(true)
-        if (headerStore.cntUserLocationSelected) {
+        if (storesDetailsStore.cntUserLocationSelected) {
           handleLocSelect(locations[panel])
         }
         if (isExpanded) {
@@ -244,9 +251,9 @@ const SectionMap = inject("headerStore")(
       }
 
       useEffect(() => {
-        if (headerStore.cntUserLocationSelected && locations.length) {
+        if (storesDetailsStore.cntUserLocationSelected && locations.length) {
           for (let i = 0; i < locations.length; i++) {
-            if (headerStore.cntUserLocation[0].location_id === locations[i].id) {
+            if (storesDetailsStore.cntUserLocation[0].location_id === locations[i].id) {
               setSelectedLocation(locations[i])
               handleLocationID(locations[i].id)
               setExpanded(i)
@@ -255,7 +262,7 @@ const SectionMap = inject("headerStore")(
           }
           return
         }
-      }, [headerStore.cntUserLocation])
+      }, [storesDetailsStore.cntUserLocation])
 
       return (
         <section className={subDomain + "-Container " + classes.root}>

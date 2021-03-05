@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat, Preloader, Badge } from "./components"
-import { Home } from "./pages/home/"
-import { Business } from "./pages/business/"
-import { Contact } from "./pages/contact"
-import { Repair, RepairWidget } from "./pages/repair/"
+import { BrowserRouter as Router } from "react-router-dom"
+import { Footer, Header, Preloader, Badge } from "./components"
 import { Provider } from "mobx-react"
-import { storesDetails, repairWidgetStore } from "./store/"
+import { storesDetails, repairWidgetStore, repairWidData } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 import findLocationAPI from "./services/api/findLocationAPI"
 import { Helmet } from "react-helmet"
+import BaseRouter from "./BaseRouter"
+import { FeaturesParam } from "./model/feature-toggle"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
@@ -33,17 +31,12 @@ const subDomain = apexDomain.split(".")[0]
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
-type FeatureProps = {
-  flag: string
-  isActive: boolean
-}
-
 function App(): JSX.Element {
   require(`./assets/${subDomain}/styles/index.scss`)
   const mainData = require(`./assets/${subDomain}/Database`)
 
   const [footerStatus, setFooterStatus] = useState(true)
-  const [features, setFeatures] = useState<FeatureProps[]>([])
+  const [features, setFeatures] = useState<FeaturesParam[]>([])
   const [storeId, setStoreID] = useState(0)
   const [loadStatus, setLoadStatus] = useState(false)
   const [pageTitle, setPageTitle] = useState("Store")
@@ -88,10 +81,9 @@ function App(): JSX.Element {
       appLoadAPI
         .getFeatures(storeId)
         .then((res: any) => {
-          const feats: FeatureProps[] = [
+          const feats: FeaturesParam[] = [
             { flag: "ALWAYS_TRUE", isActive: true },
             { flag: "FRONTEND_INSURE", isActive: false },
-            // { flag: "FRONTEND_ONLINE_PURCHASE", isActive: true },
           ]
           if (
             subDomain === "mobiletechlab" ||
@@ -115,6 +107,7 @@ function App(): JSX.Element {
         .catch((error) => {
           console.log("Error in get Features", error)
         })
+
       findLocationAPI
         .findAllLocation(storeId)
         .then((res: any) => {
@@ -140,58 +133,6 @@ function App(): JSX.Element {
     }
   }
 
-  const BaseRouter = () => {
-    return (
-      <>
-        <Route
-          path="/"
-          exact
-          component={() => (
-            <Home subDomain={subDomain} features={features} handleStatus={handleFooterStatus} />
-          )}
-        />
-        <Route path="/home" render={() => <Redirect to="/" />} />
-        <Route
-          path="/quote"
-          component={() => (
-            <Provider repairWidgetStore={repairWidgetStore}>
-              <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-            </Provider>
-          )}
-        />
-        <Route
-          path="/contact"
-          exact
-          component={() => (
-            <Provider storesDetailsStore={storesDetails}>
-              <Contact
-                storesDetailsStore={storesDetails}
-                subDomain={subDomain}
-                handleStatus={handleFooterStatus}
-              />
-            </Provider>
-          )}
-        />
-        <Route
-          path="/get-quote"
-          component={() => (
-            <Provider repairWidgetStore={repairWidgetStore}>
-              <RepairWidget
-                subDomain={subDomain}
-                handleStatus={handleFooterStatus}
-                features={features}
-              />
-            </Provider>
-          )}
-        />
-        <Route
-          path="/business"
-          component={() => <Business subDomain={subDomain} handleStatus={handleFooterStatus} />}
-        />
-      </>
-    )
-  }
-
   return (
     <>
       <Helmet>
@@ -209,23 +150,32 @@ function App(): JSX.Element {
       </Helmet>
 
       <LangProvider>
-        {loadStatus ? (
-          <Router>
-            <Provider headerStore={storesDetails}>
+        <Provider
+          storesDetailsStore={storesDetails}
+          repairWidgetStore={repairWidgetStore}
+          repairWidDataStore={repairWidData}
+        >
+          {loadStatus ? (
+            <Router>
               <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-            </Provider>
-            <BaseRouter />
-            <Chat subDomain={subDomain} features={features} />
-            <Badge />
-            {footerStatus && (
-              <Provider headerStore={storesDetails}>
-                <Footer subDomain={subDomain} features={features} headerStore={storesDetails} />
-              </Provider>
-            )}
-          </Router>
-        ) : (
-          <Preloader />
-        )}
+              <BaseRouter
+                subDomain={subDomain}
+                handleStatus={handleFooterStatus}
+                features={features}
+              />
+              <Badge />
+              {footerStatus && (
+                <Footer
+                  subDomain={subDomain}
+                  features={features}
+                  storesDetailsStore={storesDetails}
+                />
+              )}
+            </Router>
+          ) : (
+            <Preloader />
+          )}
+        </Provider>
       </LangProvider>
     </>
   )

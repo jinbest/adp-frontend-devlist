@@ -379,7 +379,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               inactiveComponent={() => <></>}
               activeComponent={() => (
                 <CustomizedMenus
-                  headerStore={storesDetails}
+                  storesDetailsStore={storesDetails}
                   subDomain={subDomain}
                   btnTitle={data.homeTextData.header.buttonTitle}
                   width={data.homeTextData.header.width}
@@ -407,7 +407,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             handleStatus={handleStatus}
             features={feats}
             themeCol={data.colorPalle.repairButtonCol}
-            headerStore={storesDetails}
+            storesDetailsStore={storesDetails}
           >
             {!menuStatus ? (
               <img src={data.avatarData.menu} onClick={toggleMenuStatus} />

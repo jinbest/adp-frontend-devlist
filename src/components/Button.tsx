@@ -1,7 +1,5 @@
 import React from "react"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
-// import { useT } from '../i18n/index';
-// import { LangProps } from '../i18n/en';
 
 type Props = {
   title: string
@@ -42,8 +40,6 @@ const Button = ({
   textDecorator,
   children,
 }: Props) => {
-  // const t = useT();
-
   return (
     <button
       onClick={onClick}
