@@ -78,8 +78,10 @@ const ChooseDevice = ({
         await addMoreDeviceBrandsAPI(searchText, page + 1, perPage)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           setSliceNum(repairWidData.repairDeviceBrands.data.length)
-          if (repairWidData.repairDeviceBrands.data.length < (page + 1) * perPage) {
+          if (repairWidData.repairDeviceBrands.metadata.total <= (page + 1) * perPage) {
             setPlusVisible(false)
+          } else {
+            setPlusVisible(true)
           }
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
@@ -98,8 +100,10 @@ const ChooseDevice = ({
           repairWidData.repairBrandProducts.data.length
         ) {
           setSliceNum(repairWidData.repairBrandProducts.data.length)
-          if (repairWidData.repairBrandProducts.data.length < (page + 1) * perPage) {
+          if (repairWidData.repairBrandProducts.metadata.total <= (page + 1) * perPage) {
             setPlusVisible(false)
+          } else {
+            setPlusVisible(true)
           }
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
@@ -120,8 +124,10 @@ const ChooseDevice = ({
         )
         cntOfferedRepairs = repairWidData.repairsOfferedDevices.data
         setSliceNum(repairWidData.repairsOfferedDevices.data.length)
-        if (repairWidData.repairsOfferedDevices.data.length < (page + 1) * perPage) {
+        if (repairWidData.repairsOfferedDevices.metadata.total <= (page + 1) * perPage) {
           setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
         }
         for (let i = 0; i < cntOfferedRepairs.length; i++) {
           cntTypes.push({
@@ -206,9 +212,6 @@ const ChooseDevice = ({
         await getDeviceBrandsAPI(text, pg, perpg)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           setSliceNum(repairWidData.repairDeviceBrands.data.length)
-          if (repairWidData.repairDeviceBrands.data.length === pg * perpg) {
-            setPlusVisible(true)
-          }
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairDeviceBrands.data[i].name,
@@ -218,6 +221,11 @@ const ChooseDevice = ({
             })
           }
         }
+        if (repairWidData.repairDeviceBrands.metadata.total <= pg * perpg) {
+          setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
+        }
         break
       case "deviceModel":
         await getBrandProductsAPI(repairWidData.cntBrandID, text, pg, perpg)
@@ -226,9 +234,6 @@ const ChooseDevice = ({
           repairWidData.repairBrandProducts.data.length
         ) {
           setSliceNum(repairWidData.repairBrandProducts.data.length)
-          if (repairWidData.repairBrandProducts.data.length === pg * perpg) {
-            setPlusVisible(true)
-          }
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairBrandProducts.data[i].name,
@@ -238,6 +243,11 @@ const ChooseDevice = ({
             })
           }
         }
+        if (repairWidData.repairBrandProducts.metadata.total <= pg * perpg) {
+          setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
+        }
         break
       case "deviceRepairs":
         await getRepairsOfferedDeviceAPI(repairWidData.cntProductID, text, pg, perpg)
@@ -245,9 +255,6 @@ const ChooseDevice = ({
 
         if (cntOfferedRepairs != null) {
           setSliceNum(repairWidData.repairsOfferedDevices.data.length)
-          if (repairWidData.repairsOfferedDevices.data.length === pg * perpg) {
-            setPlusVisible(true)
-          }
           for (let i = 0; i < cntOfferedRepairs.length; i++) {
             cntTypes.push({
               name: cntOfferedRepairs[i].title,
@@ -271,6 +278,11 @@ const ChooseDevice = ({
             }
           }
           setItemTypes([...cntTypes])
+        }
+        if (repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg) {
+          setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
         }
         break
       default:
