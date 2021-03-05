@@ -572,9 +572,32 @@ const ChooseDevice = ({
                   </div>
                 )}
 
-                {(stepName === "deviceRepairs" ||
-                  stepName === "dropOffDevicce" ||
-                  stepName === "receiveQuote") && (
+                {stepName === "deviceRepairs" && (
+                  <>
+                    {itemTypes &&
+                      itemTypes.slice(0, sliceNum).map((item: any, index: number) => {
+                        return (
+                          <div
+                            className={subDomain + "-device-item-container"}
+                            key={index}
+                            style={{ backgroundColor: item.bg }}
+                            onClick={() => toggleItemTypes(index, stepName)}
+                          >
+                            <div className={subDomain + "-device-service-item"}>
+                              <p style={{ color: item.col }}>{t(item.name)}</p>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    {plusVisible && (
+                      <div className="device-item-container" onClick={handlePlus}>
+                        <PlusSVG color="#BDBFC3" />
+                      </div>
+                    )}
+                  </>
+                )}
+
+                {(stepName === "dropOffDevicce" || stepName === "receiveQuote") && (
                   <>
                     {itemTypes &&
                       itemTypes.slice(0, sliceNum).map((item: any, index: number) => {
