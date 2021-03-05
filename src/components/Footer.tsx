@@ -199,16 +199,16 @@ const FooterLinksComponent = ({
 }
 
 type StoreProps = {
-  headerStore: StoresDetails
+  storesDetailsStore: StoresDetails
 }
 interface Props extends StoreProps {
   subDomain?: string
   features: any[]
 }
 
-const Footer = inject("headerStore")(
+const Footer = inject("storesDetailsStore")(
   observer((props: Props) => {
-    const { subDomain, features, headerStore } = props
+    const { subDomain, features, storesDetailsStore } = props
     const data = require(`../assets/${subDomain}/Database`)
     const commonData = require("../assets/_common/mockData")
     // const footerLink = data.homeTextData.footer.footerLink
@@ -229,9 +229,9 @@ const Footer = inject("headerStore")(
     }, [features])
 
     useEffect(() => {
-      if (headerStore.allLocations.length <= 1) {
+      if (storesDetailsStore.allLocations.length <= 1) {
         setInitGridMD(12)
-      } else if (headerStore.allLocations.length == 2) {
+      } else if (storesDetailsStore.allLocations.length == 2) {
         setInitGridMD(6)
       } else {
         setInitGridMD(4)
@@ -263,7 +263,7 @@ const Footer = inject("headerStore")(
                   return (
                     <FooterLinksComponent
                       key={index}
-                      data={headerStore.allLocations}
+                      data={storesDetailsStore.allLocations}
                       isMain={item}
                       subDomain={subDomain}
                       initGridMD={initGridMD}
@@ -272,7 +272,10 @@ const Footer = inject("headerStore")(
                 })}
               </Grid>
               <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
-                <T id={data.homeTextData.footer.content} data={headerStore.storesDetails.name} />
+                <T
+                  id={data.homeTextData.footer.content}
+                  data={storesDetailsStore.storesDetails.name}
+                />
               </div>
               {/* </Grid> */}
             </Grid>

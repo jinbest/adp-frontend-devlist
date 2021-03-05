@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { Footer, Header, Chat, Preloader, Badge } from "./components"
+import { Footer, Header, Preloader, Badge } from "./components"
 import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
 import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { Provider } from "mobx-react"
-import { storesDetails, repairWidgetStore } from "./store/"
+import { storesDetails, repairWidgetStore, repairWidData } from "./store/"
 import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 import findLocationAPI from "./services/api/findLocationAPI"
@@ -91,7 +91,6 @@ function App(): JSX.Element {
           const feats: FeatureProps[] = [
             { flag: "ALWAYS_TRUE", isActive: true },
             { flag: "FRONTEND_INSURE", isActive: false },
-            // { flag: "FRONTEND_ONLINE_PURCHASE", isActive: true },
           ]
           if (
             subDomain === "mobiletechlab" ||
@@ -154,34 +153,27 @@ function App(): JSX.Element {
         <Route
           path="/quote"
           component={() => (
-            <Provider repairWidgetStore={repairWidgetStore}>
-              <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-            </Provider>
+            <Repair subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
           )}
         />
         <Route
           path="/contact"
-          exact
           component={() => (
-            <Provider storesDetailsStore={storesDetails}>
-              <Contact
-                storesDetailsStore={storesDetails}
-                subDomain={subDomain}
-                handleStatus={handleFooterStatus}
-              />
-            </Provider>
+            <Contact
+              storesDetailsStore={storesDetails}
+              subDomain={subDomain}
+              handleStatus={handleFooterStatus}
+            />
           )}
         />
         <Route
           path="/get-quote"
           component={() => (
-            <Provider repairWidgetStore={repairWidgetStore}>
-              <RepairWidget
-                subDomain={subDomain}
-                handleStatus={handleFooterStatus}
-                features={features}
-              />
-            </Provider>
+            <RepairWidget
+              subDomain={subDomain}
+              handleStatus={handleFooterStatus}
+              features={features}
+            />
           )}
         />
         <Route
@@ -209,23 +201,28 @@ function App(): JSX.Element {
       </Helmet>
 
       <LangProvider>
-        {loadStatus ? (
-          <Router>
-            <Provider headerStore={storesDetails}>
+        <Provider
+          storesDetailsStore={storesDetails}
+          repairWidgetStore={repairWidgetStore}
+          repairWidDataStore={repairWidData}
+        >
+          {loadStatus ? (
+            <Router>
               <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-            </Provider>
-            <BaseRouter />
-            <Chat subDomain={subDomain} features={features} />
-            <Badge />
-            {footerStatus && (
-              <Provider headerStore={storesDetails}>
-                <Footer subDomain={subDomain} features={features} headerStore={storesDetails} />
-              </Provider>
-            )}
-          </Router>
-        ) : (
-          <Preloader />
-        )}
+              <BaseRouter />
+              <Badge />
+              {footerStatus && (
+                <Footer
+                  subDomain={subDomain}
+                  features={features}
+                  storesDetailsStore={storesDetails}
+                />
+              )}
+            </Router>
+          ) : (
+            <Preloader />
+          )}
+        </Provider>
       </LangProvider>
     </>
   )

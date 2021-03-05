@@ -53,7 +53,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         <meta name="description" content={""} />
       </Helmet>
       <SectionMap
-        headerStore={storesDetailsStore}
+        storesDetailsStore={storesDetailsStore}
         subDomain={subDomain}
         locations={locations}
         handleStatus={handleStatus}
