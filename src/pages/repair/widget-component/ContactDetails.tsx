@@ -8,10 +8,7 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { repairWidgetAPI } from "../../../services"
 import { PostAppointParams } from "../model/post-appointment-params"
-import {
-  countriesData,
-  // statesData
-} from "../../../const"
+import { countriesData } from "../../../const"
 import { findLocationAPI } from "../../../services"
 import { makeLocations } from "../../../components/CustomizedMenus"
 import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
@@ -45,21 +42,25 @@ const ContactDetails = ({
   const t = useT()
 
   const [firstName, setFirstName] = useState("")
+  const [fnErrTxt, setFnErrTxt] = useState("")
   const [lastName, setLastName] = useState("")
+  const [lnErrTxt, setLnErrTxt] = useState("")
   const [email, setEmail] = useState("")
+  const [emlErrTxt, setEmlErrTxt] = useState("")
   const [phone, setPhone] = useState("")
+  const [phErrTxt, setPhErrTxt] = useState("")
   const [address1, setStreetAddress1] = useState("")
+  const [ad1ErrTxt, setAd1ErrTxt] = useState("")
   const [address2, setStreetAddress2] = useState("")
   const [country, setCountry] = useState({ code: "CA", name: "" })
   const [city, setCity] = useState("")
-  // const [province, setProvince] = useState({ code: "MB", name: "" })
+  const [ctErrTxt, setCtErrTxt] = useState("")
   const [postalCode, setPostalCode] = useState("")
-  const [disableStatus, setDisableStatus] = useState(true)
+  const [psErrTxt, setPsErrTxt] = useState("")
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmiting, setIsSubmiting] = useState<boolean[]>([false, false])
 
   const handleSubmit = (param: string) => {
-    setDisableStatus(true)
     if (param === "appointment") {
       setIsSubmiting([true, false])
     } else {
@@ -94,7 +95,6 @@ const ContactDetails = ({
       params.customer_address_1 = address1
       params.customer_address_2 = address2
       params.customer_city = city
-      // params.customer_state = province.code
       params.customer_postcode = postalCode
       params.customer_country = country.code
       params.customer_note = null
@@ -117,7 +117,6 @@ const ContactDetails = ({
             address2: { name: address2, code: "" },
             country: country,
             city: city,
-            // province: province,
             postalCode: postalCode,
           })
           repairWidgetStore.changeAppointResponse(res.data)
@@ -128,7 +127,6 @@ const ContactDetails = ({
             msg: "Something went wrong, please try again or contact us.",
             isError: true,
           })
-          setDisableStatus(false)
           setIsSubmiting([false, false])
           console.log("Something went wrong, please try again or contact us.", error)
         })
@@ -142,15 +140,87 @@ const ContactDetails = ({
         address2: { name: address2, code: "" },
         country: country,
         city: city,
-        // province: province,
         postalCode: postalCode,
       })
       handleStep(step + 1)
     }
   }
 
+  function validateEmail(e: string) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(e)
+  }
+
+  const SubmitAvailable = () => {
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      validateEmail(email) &&
+      ((repairWidgetStore.receiveQuote.code === "PHONE" && phone) ||
+        repairWidgetStore.receiveQuote.code !== "PHONE") &&
+      ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
+      ((code === "MAIL_IN" && address1 && city) ||
+        (code === "ONSITE" && address1 && city) ||
+        (code === "PICK_UP" && address1 && city) ||
+        (code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP"))
+    ) {
+      return true
+    }
+    if (!firstName) {
+      setFnErrTxt("FirstName is required.")
+      setTimeout(() => {
+        setFnErrTxt("")
+      }, 3000)
+    }
+    if (!lastName) {
+      setLnErrTxt("LastName is required.")
+      setTimeout(() => {
+        setLnErrTxt("")
+      }, 3000)
+    }
+    if (!email) {
+      setEmlErrTxt("Email is required.")
+      setTimeout(() => {
+        setEmlErrTxt("")
+      }, 3000)
+    } else if (!validateEmail(email)) {
+      setEmlErrTxt("Email is not valid.")
+      setTimeout(() => {
+        setEmlErrTxt("")
+      }, 3000)
+    }
+    if (repairWidgetStore.receiveQuote.code === "PHONE" && !phone) {
+      setPhErrTxt("Phone Number is required.")
+      setTimeout(() => {
+        setPhErrTxt("")
+      }, 3000)
+    }
+    if (!address1) {
+      setAd1ErrTxt("Address1 is required.")
+      setTimeout(() => {
+        setAd1ErrTxt("")
+      }, 3000)
+    }
+    if (storesDetails.location_id < 0 && !postalCode) {
+      setPsErrTxt("PostalCode is required.")
+      setTimeout(() => {
+        setPsErrTxt("")
+      }, 3000)
+    }
+    if (!city) {
+      setCtErrTxt("City is required.")
+      setTimeout(() => {
+        setCtErrTxt("")
+      }, 3000)
+    }
+    return false
+  }
+
   const handleButton = (param: string) => {
-    setDisableStatus(true)
+    if (!SubmitAvailable()) {
+      return
+    }
     if (param === "appointment") {
       setIsSubmiting([true, false])
     } else {
@@ -160,7 +230,7 @@ const ContactDetails = ({
       findLocationAPI
         .findAddLocation(storesDetails.store_id, {
           city: city,
-          state: "", // province.code,
+          state: "",
           postcode: postalCode,
           country: country.code,
         })
@@ -175,7 +245,6 @@ const ContactDetails = ({
               msg: "There is not available locations. Please input another Postal Code.",
               isWarning: true,
             })
-            setDisableStatus(false)
             setIsSubmiting([false, false])
           }
         })
@@ -185,7 +254,6 @@ const ContactDetails = ({
             msg: "Error to find location with Postal Code. Please input right Postal Code.",
             isError: true,
           })
-          setDisableStatus(false)
           setIsSubmiting([false, false])
         })
       return
@@ -196,7 +264,7 @@ const ContactDetails = ({
 
   const onKeyPress = useCallback(
     (event) => {
-      if (event.key === "Enter" && !disableStatus && step === 6) {
+      if (event.key === "Enter" && step === 6) {
         if (features.includes("FRONTEND_REPAIR_APPOINTMENT") || code === "MAIL_IN") {
           handleButton("appointment")
         } else if (features.includes("FRONTEND_REPAIR_QUOTE")) {
@@ -204,20 +272,7 @@ const ContactDetails = ({
         }
       }
     },
-    [
-      step,
-      firstName,
-      lastName,
-      email,
-      phone,
-      address1,
-      address2,
-      country,
-      city,
-      // province,
-      postalCode,
-      disableStatus,
-    ]
+    [step, firstName, lastName, email, phone, address1, address2, country, city, postalCode]
   )
 
   useEffect(() => {
@@ -225,36 +280,7 @@ const ContactDetails = ({
     return () => {
       document.removeEventListener("keydown", onKeyPress, false)
     }
-  }, [
-    step,
-    firstName,
-    lastName,
-    email,
-    phone,
-    address1,
-    address2,
-    country,
-    city,
-    // province,
-    postalCode,
-    disableStatus,
-  ])
-
-  useEffect(() => {
-    setDisableStatus(true)
-    if (
-      firstName &&
-      lastName &&
-      email &&
-      ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
-      ((code === "MAIL_IN" && address1) ||
-        (code === "ONSITE" && address1) ||
-        (code === "PICK_UP" && address1) ||
-        (code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP"))
-    ) {
-      setDisableStatus(false)
-    }
-  }, [firstName, lastName, email, address1, code, postalCode, storesDetails])
+  }, [step, firstName, lastName, email, phone, address1, address2, country, city, postalCode])
 
   const handleChangeFirstName = (val: string) => {
     setFirstName(val)
@@ -314,6 +340,8 @@ const ContactDetails = ({
                       handleChangeFirstName(e.target.value)
                     }}
                     subDomain={subDomain}
+                    errorText={fnErrTxt}
+                    border="rgba(0,0,0,0.1)"
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -324,6 +352,8 @@ const ContactDetails = ({
                       handleChangeLastName(e.target.value)
                     }}
                     subDomain={subDomain}
+                    errorText={lnErrTxt}
+                    border="rgba(0,0,0,0.1)"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -334,6 +364,8 @@ const ContactDetails = ({
                       handleChangeEmail(e.target.value)
                     }}
                     subDomain={subDomain}
+                    errorText={emlErrTxt}
+                    border="rgba(0,0,0,0.1)"
                   />
                 </Grid>
                 <Grid
@@ -351,6 +383,7 @@ const ContactDetails = ({
                     handleSetPhone={setPhone}
                     val={phone}
                     placeholder={t(data.placeholder.phoneNum)}
+                    errorText={phErrTxt}
                   />
                 </Grid>
                 {storesDetails.location_id < 0 &&
@@ -365,6 +398,8 @@ const ContactDetails = ({
                           handleChangePostalCode(e.target.value)
                         }}
                         subDomain={subDomain}
+                        errorText={psErrTxt}
+                        border="rgba(0,0,0,0.1)"
                       />
                     </Grid>
                   )}
@@ -381,6 +416,8 @@ const ContactDetails = ({
                         handleChangeAddress1(e.target.value)
                       }}
                       subDomain={subDomain}
+                      errorText={ad1ErrTxt}
+                      border="rgba(0,0,0,0.1)"
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -409,6 +446,8 @@ const ContactDetails = ({
                         handleChangeCity(e.target.value)
                       }}
                       subDomain={subDomain}
+                      errorText={ctErrTxt}
+                      border="rgba(0,0,0,0.1)"
                     />
                   </Grid>
                   <Grid item xs={12} sm={4}>
@@ -419,16 +458,10 @@ const ContactDetails = ({
                         handleChangePostalCode(e.target.value)
                       }}
                       subDomain={subDomain}
+                      errorText={psErrTxt}
+                      border="rgba(0,0,0,0.1)"
                     />
                   </Grid>
-                  {/* <Grid item xs={12} sm={4}>
-                    <CustomSelect
-                      value={province}
-                      handleSetValue={setProvince}
-                      subDomain={subDomain}
-                      options={country.code ? statesData[country.code] : []}
-                    />
-                  </Grid> */}
                 </Grid>
               </div>
             )}
@@ -448,7 +481,6 @@ const ContactDetails = ({
                         fontSize="17px"
                         margin="0 auto 10px"
                         onClick={() => handleButton("appointment")}
-                        disable={disableStatus}
                         subDomain={subDomain}
                       >
                         {isSubmiting[0] && <Loading />}
@@ -470,7 +502,6 @@ const ContactDetails = ({
                         fontSize="17px"
                         margin="0 auto"
                         onClick={() => handleButton("quote")}
-                        disable={disableStatus}
                         subDomain={subDomain}
                       >
                         {isSubmiting[1] && <Loading />}
@@ -490,7 +521,6 @@ const ContactDetails = ({
                   height="30px"
                   fontSize="17px"
                   onClick={() => handleButton("appointment")}
-                  disable={disableStatus}
                   subDomain={subDomain}
                 />
                 <p>{t("ENTER_KEY")}</p>

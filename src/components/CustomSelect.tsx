@@ -21,8 +21,6 @@ type Props = {
 }
 
 const CustomSelect = ({ options, value, handleSetValue, subDomain, variant }: Props) => {
-  // const data = require(`../assets/${subDomain}/Database`);
-
   const classes = useStyles()
 
   const [state, setState] = useState<{ code: string; name: string }>({

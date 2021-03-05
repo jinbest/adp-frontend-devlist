@@ -14,6 +14,7 @@ const bubble = keyframes`
 export default styled.div`
   color: ${props => props.color || "#262626"};
   font-size: ${props => props.size || "10px"};
+  opacity: 0.5;
   margin: 0 auto;
   margin-top: -25px;
   position: relative;

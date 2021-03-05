@@ -128,10 +128,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
       setLocSelStatus(storesDetailsStore.cntUserLocationSelected)
     }, [])
 
-    // useEffect(() => {
-    //   console.log(storeStatus, locSelStatus)
-    // }, [storeStatus, locSelStatus])
-
     const handleFindStore = () => {
       if (!storeStatus) {
         setGeoPos()

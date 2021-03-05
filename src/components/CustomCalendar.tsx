@@ -4,14 +4,12 @@ import styled, { css } from "styled-components"
 import { CustomNumeric } from "../components"
 import { useT } from "../i18n/index"
 import { LangProps } from "../i18n/en"
-// import { repairWidgetStore } from '../store';
 
 const Frame = styled.div`
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   height: 300px;
-  // min-width: 340px;
 `
 
 const InputDate = styled.div`
@@ -153,12 +151,6 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
 
   useEffect(() => {
     setToday(changeTimezone(new Date(), timezone))
-    // if (new Date(year, month, day) > today) {
-    //   setDate(changeTimezone(new Date(year, month, day), timezone))
-    // } else {
-    //   setDate(changeTimezone(new Date(), timezone))
-    // }
-    // setDate(changeTimezone(new Date(repairWidgetStore.repairWidgetInitialValue.selectDate), timezone))
   }, [timezone])
 
   function changeTimezone(date: Date, ianatz: string) {

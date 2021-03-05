@@ -308,9 +308,6 @@ export class LanguageKeysFr extends LanguageKeys {
   /* Geebo Website Text */
   public NOVA_SCOTIA_MOBILE_DEVICE_SPECIALISTS =
     "Spécialistes des appareils mobiles de la Nouvelle-Écosse"
-  // public WELCOME_GEEBO = (storeName: string) => {
-  //   return `Bienvenue sur ${storeName}, le marché des appareils mobiles de la Nouvelle-Écosse`
-  // }
   public WELCOME_GEEBO = "Boutique d'appareils mobiles de confiance de la Nouvelle-Écosse"
   public SEE_WHY_CUSTOMERS_LOVE_GEEBO = (storeName: string) => {
     return `Découvrez pourquoi les clients aiment la ${storeName}`
