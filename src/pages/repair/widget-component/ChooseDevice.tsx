@@ -578,12 +578,12 @@ const ChooseDevice = ({
                       itemTypes.slice(0, sliceNum).map((item: any, index: number) => {
                         return (
                           <div
-                            className={subDomain + "-device-item-container"}
+                            className="device-item-container"
                             key={index}
                             style={{ backgroundColor: item.bg }}
                             onClick={() => toggleItemTypes(index, stepName)}
                           >
-                            <div className={subDomain + "-device-service-item"}>
+                            <div className="device-service-item">
                               <p style={{ color: item.col }}>{t(item.name)}</p>
                             </div>
                           </div>
