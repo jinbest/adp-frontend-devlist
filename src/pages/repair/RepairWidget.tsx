@@ -20,7 +20,6 @@ import {
 } from "./RepairWidgetCallAPI"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
-import "../../assets/_common/style/index.scss"
 
 const stepList: string[] = [
   "deviceBrand",

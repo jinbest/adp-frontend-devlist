@@ -451,7 +451,7 @@ const ChooseDevice = ({
 
   return (
     <div>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={12}>
           <Typography className="service-widget-title">{t(data.title)}</Typography>
         </Grid>
@@ -568,12 +568,12 @@ const ChooseDevice = ({
                       itemTypes.slice(0, sliceNum).map((item: any, index: number) => {
                         return (
                           <div
-                            className={subDomain + "-device-item-container"}
+                            className="device-item-container"
                             key={index}
                             style={{ backgroundColor: item.bg }}
                             onClick={() => toggleItemTypes(index, stepName)}
                           >
-                            <div className={subDomain + "-device-service-item"}>
+                            <div className="device-service-item">
                               <p style={{ color: item.col }}>{t(item.name)}</p>
                             </div>
                           </div>
@@ -585,7 +585,7 @@ const ChooseDevice = ({
             </div>
 
             {stepName === "deviceRepairs" && (
-              <div className={subDomain + "-service-card-button"}>
+              <div className="service-card-button">
                 <Button
                   title={t("NEXT")}
                   bgcolor={mainData.colorPalle.nextButtonCol}
@@ -603,33 +603,25 @@ const ChooseDevice = ({
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-customized-card-height"}>
+          <Card className="customized-card-height">
             {step < 2 && (
-              <div className={subDomain + "-service-choose-device-container"}>
-                <Typography className={subDomain + "-topic-title"}>
-                  {t(data.mainTopic.title)}
-                </Typography>
+              <div className="service-choose-device-container">
+                <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
                 {data.mainTopic.content &&
                   data.mainTopic.content.map((item: LangProps, index: number) => {
                     return (
-                      <Typography className={subDomain + "-topic-content"} key={index}>
+                      <Typography className="topic-content" key={index}>
                         {t(item)}
                       </Typography>
                     )
                   })}
                 {data.disableTopic.title && (
-                  <Typography
-                    className={subDomain + "-topic-title"}
-                    style={{ color: "rgba(0,0,0,0.3)" }}
-                  >
+                  <Typography className="topic-title" style={{ color: "rgba(0,0,0,0.3)" }}>
                     {t(data.disableTopic.title)}
                   </Typography>
                 )}
                 {data.disableTopic.content && (
-                  <Typography
-                    className={subDomain + "-topic-content"}
-                    style={{ color: "rgba(0,0,0,0.3)" }}
-                  >
+                  <Typography className="topic-content" style={{ color: "rgba(0,0,0,0.3)" }}>
                     {t(data.disableTopic.content)}
                   </Typography>
                 )}
@@ -637,27 +629,22 @@ const ChooseDevice = ({
             )}
 
             {step === 2 && (
-              <div className={subDomain + "-service-choose-device-container"}>
-                <Typography className={subDomain + "-topic-title"}>
-                  {t(data.mainTopic.title)}
-                </Typography>
-                <div
-                  className={subDomain + "-service-summary-content-div"}
-                  style={{ display: "block" }}
-                >
+              <div className="service-choose-device-container">
+                <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
+                <div className="service-summary-content-div" style={{ display: "block" }}>
                   {estimatedTimes &&
                     estimatedTimes.map((item: any, index: number) => {
                       return (
-                        <div key={index} className={subDomain + "-estimate-times-div"}>
-                          <p className={subDomain + "-estimate-title"}>{t(item.name)}</p>
-                          <p className={subDomain + "-estimate-content"}>{item.estimate}</p>
+                        <div key={index} className="estimate-times-div">
+                          <p className="estimate-title">{t(item.name)}</p>
+                          <p className="estimate-content">{item.estimate}</p>
                           {storesDetails.storesDetails.settings.display_repair_cost && (
-                            <p className={subDomain + "-estimate-content"}>
+                            <p className="estimate-content">
                               {item.cost + " (Prices are plus tax where applicable.)"}
                             </p>
                           )}
                           {item.warranty && item.warranty > 0 ? (
-                            <p className={subDomain + "-estimate-content"}>
+                            <p className="estimate-content">
                               {t("WARRANTY") +
                                 ": " +
                                 item.warranty +
@@ -665,14 +652,11 @@ const ChooseDevice = ({
                                 t(ConvertWarrantyUnit(item.warranty_unit, item.warranty))}
                             </p>
                           ) : item.warranty && item.warranty === -1 ? (
-                            <p className={subDomain + "-estimate-content"}>
+                            <p className="estimate-content">
                               {t("WARRANTY") + ": " + t("LIFETIME")}
                             </p>
                           ) : (
-                            <p
-                              className={subDomain + "-estimate-content"}
-                              style={{ color: "grey" }}
-                            >
+                            <p className="estimate-content" style={{ color: "grey" }}>
                               <i>{t("NO") + " " + t("WARRANTY")}</i>
                             </p>
                           )}
@@ -684,13 +668,9 @@ const ChooseDevice = ({
             )}
 
             {step === 3 && (
-              <div className={subDomain + "-service-choose-device-container"}>
-                <Typography className={subDomain + "-topic-title"}>
-                  {t(data.mainTopic.title)}
-                </Typography>
-                <Typography className={subDomain + "-topic-content"}>
-                  {t(data.mainTopic.content)}
-                </Typography>
+              <div className="service-choose-device-container">
+                <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
+                <Typography className="topic-content">{t(data.mainTopic.content)}</Typography>
               </div>
             )}
 

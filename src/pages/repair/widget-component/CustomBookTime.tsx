@@ -104,7 +104,6 @@ const CustomBookTime = ({
   defaultTimezone,
   repairBooktimeCol,
   changeBooktime,
-  subDomain,
   hoursRange,
 }: Props) => {
   const interval = 30,
@@ -195,9 +194,9 @@ const CustomBookTime = ({
   }
 
   return (
-    <div className={subDomain + "-custom-book-time"}>
+    <div className="custom-book-time">
       <p>{title}</p>
-      <div className={subDomain + "-booking-list"}>
+      <div className="booking-list">
         {bookArray.map((item: any, index: number) => {
           return (
             <div
@@ -207,7 +206,7 @@ const CustomBookTime = ({
                 color: item.color,
                 backgroundColor: item.bgColor,
               }}
-              className={subDomain + "-booking-item"}
+              className="booking-item"
               onClick={() => {
                 handleBook(index)
               }}
@@ -218,11 +217,7 @@ const CustomBookTime = ({
         })}
       </div>
       <div>
-        <select
-          className={subDomain + "-booking-select-timezone"}
-          value={val}
-          onChange={handleChangeOption}
-        >
+        <select className="booking-select-timezone" value={val} onChange={handleChangeOption}>
           {timeZoneList.map((item: any, index: number) => {
             return (
               <option value={index} key={index}>
