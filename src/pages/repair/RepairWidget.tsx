@@ -20,6 +20,7 @@ import {
 } from "./RepairWidgetCallAPI"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
+import "../../assets/_common/style/index.scss"
 
 const stepList: string[] = [
   "deviceBrand",
@@ -243,17 +244,14 @@ class RepairWidget extends React.Component<Props, MyState> {
             name="FRONTEND_REPAIR"
             inactiveComponent={() => <Error />}
             activeComponent={() => (
-              <div className={subDomain + "-service-widget " + subDomain + "-Container"}>
+              <div className="service-widget Container">
                 {this.computedRepairWidgetData.deviceCounter > 0 && this.state.step < 10 && (
-                  <div
-                    className={subDomain + "-back-to-top"}
-                    onClick={this.handleDeviceCounterBack}
-                  >
+                  <div className="back-to-top" onClick={this.handleDeviceCounterBack}>
                     <BackSVG color="#BDBFC3" />
                   </div>
                 )}
                 {this.state.step > 0 && this.state.step < 10 && (
-                  <div className={subDomain + "-back-to-top"} onClick={this.handleBackStep}>
+                  <div className="back-to-top" onClick={this.handleBackStep}>
                     <BackSVG color="#BDBFC3" />
                   </div>
                 )}

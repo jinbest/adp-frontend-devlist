@@ -453,13 +453,13 @@ const ChooseDevice = ({
     <div>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-service-widget-title"}>{t(data.title)}</Typography>
+          <Typography className="service-widget-title">{t(data.title)}</Typography>
         </Grid>
       </Grid>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className={subDomain + "-service-choose-device-container"}>
+            <div className="service-choose-device-container">
               {step < 3 && (
                 <div style={{ width: "95%" }}>
                   {features.includes("SEARCH") && (
@@ -480,13 +480,13 @@ const ChooseDevice = ({
                   )}
                 </div>
               )}
-              <div className={subDomain + "-widget-main-container"}>
+              <div className="widget-main-container">
                 {stepName === "deviceBrand" && (
                   <>
                     {imageData.slice(0, sliceNum).map((item: any, index: number) => {
                       return (
                         <div
-                          className={subDomain + "-device-item-container"}
+                          className="device-item-container"
                           style={{
                             background: selected === index ? "rgba(0,0,0,0.1)" : "white",
                           }}
@@ -498,7 +498,7 @@ const ChooseDevice = ({
                       )
                     })}
                     {plusVisible && (
-                      <div className={subDomain + "-device-item-container"} onClick={handlePlus}>
+                      <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
@@ -511,22 +511,22 @@ const ChooseDevice = ({
                       imageData.slice(0, sliceNum).map((item: any, index: number) => {
                         return (
                           <div
-                            className={subDomain + "-device-item-container"}
+                            className="device-item-container"
                             key={index}
                             onClick={() => ChooseNextStep(index)}
                             style={{
                               background: selected === index ? "rgba(0,0,0,0.1)" : "white",
                             }}
                           >
-                            <div className={subDomain + "-device-model-item"}>
-                              <p className={subDomain + "-device-brand-subtitle"}>{item.name}</p>
+                            <div className="device-model-item">
+                              <p className="device-brand-subtitle">{item.name}</p>
                               <img src={item.img} />
                             </div>
                           </div>
                         )
                       })}
                     {plusVisible && (
-                      <div className={subDomain + "-device-item-container"} onClick={handlePlus}>
+                      <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
@@ -534,7 +534,7 @@ const ChooseDevice = ({
                 )}
 
                 {stepName === "repairAnotherDevice" && (
-                  <div className={subDomain + "-repair-another-device"}>
+                  <div className="repair-another-device">
                     <Button
                       title={t("YES")}
                       bgcolor="white"
