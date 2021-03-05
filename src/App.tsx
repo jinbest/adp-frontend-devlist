@@ -9,6 +9,7 @@ import findLocationAPI from "./services/api/findLocationAPI"
 import { Helmet } from "react-helmet"
 import BaseRouter from "./BaseRouter"
 import { FeaturesParam } from "./model/feature-toggle"
+import "./assets/_common/style/index.scss"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"

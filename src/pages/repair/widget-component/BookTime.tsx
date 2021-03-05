@@ -105,19 +105,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     setFindLocs(cntFindLoc)
   }, [storesDetails])
 
-  // useEffect(() => {
-  //   console.log(storesDetailsStore.cntUserLocation)
-  //   if (!storesDetailsStore.cntUserLocation.length) return
-  //   setSelectVal({
-  //     code: storesDetailsStore.cntUserLocation[0].location_id,
-  //     name:
-  //       storesDetailsStore.cntUserLocation[0].address_1 +
-  //       (storesDetailsStore.cntUserLocation[0].address_2
-  //         ? ", " + storesDetailsStore.cntUserLocation[0].address_2
-  //         : ""),
-  //   })
-  // }, [storesDetailsStore.cntUserLocation])
-
   useEffect(() => {
     const cntSelHours: SelectHoursProps[] = []
     const days: string[] = [
@@ -328,19 +315,17 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
 
   return (
     <div>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-service-widget-title"}>
-            {t(data.title[code])}
-          </Typography>
+          <Typography className="service-widget-title">{t(data.title[code])}</Typography>
         </Grid>
       </Grid>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={7}>
-          <Card className={subDomain + "-booking-card"}>
-            <div className={subDomain + "-service-choose-device-container"}>
+          <Card className="booking-card">
+            <div className="service-choose-device-container">
               {
-                <Typography className={subDomain + "-service-summary-title"}>
+                <Typography className="service-summary-title">
                   {t(data.select.location.title[code])}
                 </Typography>
               }
@@ -357,7 +342,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                   <div>
                     {findLocs.map((item: any, index: number) => {
                       return (
-                        <div key={index} className={subDomain + "-select-mail-in-radio"}>
+                        <div key={index} className="select-mail-in-radio">
                           <input
                             type="radio"
                             id={"radio" + index}
@@ -372,21 +357,21 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         </div>
                       )
                     })}
-                    <div className={subDomain + "-select-mail-in-container"}>
+                    <div className="select-mail-in-container">
                       <div>
                         <u>
-                          <p className={subDomain + "-select-mail-in-text"}>{t("HOURS")}</p>
+                          <p className="select-mail-in-text">{t("HOURS")}</p>
                         </u>
                       </div>
                     </div>
                     {selHours.map((item: any, index: number) => {
                       return (
-                        <div key={index} className={subDomain + "-select-mail-in-container"}>
+                        <div key={index} className="select-mail-in-container">
                           <div style={{ width: "50%" }}>
-                            <p className={subDomain + "-select-mail-in-text"}>{item.day}</p>
+                            <p className="select-mail-in-text">{item.day}</p>
                           </div>
                           <div style={{ width: "50%" }}>
-                            <p className={subDomain + "-select-mail-in-text"}>{item.hour}</p>
+                            <p className="select-mail-in-text">{item.hour}</p>
                           </div>
                         </div>
                       )
@@ -395,7 +380,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 )}
               </div>
               {code !== "MAIL_IN" && (
-                <Typography className={subDomain + "-service-summary-title"}>
+                <Typography className="service-summary-title">
                   {t(data.select.time.title[code])}
                 </Typography>
               )}
@@ -457,7 +442,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 </Grid>
               )}
             </div>
-            <div className={subDomain + "-service-card-button"}>
+            <div className="service-card-button">
               <Button
                 title={t("NEXT")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
@@ -474,7 +459,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-service-summary-card"}>
+          <Card className="service-summary-card">
             <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} />
           </Card>
         </Grid>

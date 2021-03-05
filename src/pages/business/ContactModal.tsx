@@ -9,12 +9,12 @@ import { ToastMsgParams } from "../../components/toast/toast-msg-params"
 import Toast from "../../components/toast/toast"
 import Loading from "../../components/Loading"
 import { InputComponent, Button, PhoneInput, CustomSelect } from "../../components"
-import { ContactSubmitParams } from "../contact/model/submit-param"
+import { ContactSubmitParams } from "../../model/contact-submit-param"
 import { contactAPI } from "../../services"
 import { StoresDetails } from "../../store/StoresDetails"
-// import { makeLocations } from "../../components/CustomizedMenus"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
+import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -84,14 +84,18 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
   const classes = useStyles()
 
   const [firstName, setFirstName] = useState("")
+  const [fnErrTxt, setFnErrTxt] = useState("")
   const [lastName, setLastName] = useState("")
+  const [lnErrTxt, setLnErrTxt] = useState("")
   const [email, setEmail] = useState("")
+  const [emlErrTxt, setEmlErrTxt] = useState("")
   const [companyName, setCompanyName] = useState("")
   const [phone, setPhone] = useState("")
   const [option, setOption] = useState<OptionProps[]>([])
   const [loc, setLoc] = useState<OptionProps>({ name: "", code: 0 })
   const [message, setMessage] = useState("")
-  const [disableStatus, setDisableStatus] = useState(true)
+  const [msgErrTxt, setMsgErrTxt] = useState("")
+  // const [disableStatus, setDisableStatus] = useState(true)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmit, setIsSubmit] = useState(false)
   const [locations, setLocations] = useState<any[]>([])
@@ -110,13 +114,13 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
     }
   }, [locations])
 
-  useEffect(() => {
-    if (firstName && lastName && email && loc && message) {
-      setDisableStatus(false)
-    } else {
-      setDisableStatus(true)
-    }
-  }, [firstName, lastName, email, loc, message])
+  // useEffect(() => {
+  //   if (firstName && lastName && email && loc && message) {
+  //     setDisableStatus(false)
+  //   } else {
+  //     setDisableStatus(true)
+  //   }
+  // }, [firstName, lastName, email, loc, message])
 
   useEffect(() => {
     if (storesDetailsStore.cntUserLocationSelected && locations.length) {
@@ -149,8 +153,51 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
     setCompanyName(val)
   }
 
+  const SubmitAvailable = () => {
+    if (firstName && lastName && email && ValidateEmail(email) && loc.name && message.length > 5) {
+      return true
+    }
+    if (!firstName) {
+      setFnErrTxt("Required.")
+      setTimeout(() => {
+        setFnErrTxt("")
+      }, 3000)
+    }
+    if (!lastName) {
+      setLnErrTxt("Required.")
+      setTimeout(() => {
+        setLnErrTxt("")
+      }, 3000)
+    }
+    if (!email) {
+      setEmlErrTxt("Required.")
+      setTimeout(() => {
+        setEmlErrTxt("")
+      }, 3000)
+    } else if (!ValidateEmail(email)) {
+      setEmlErrTxt("Enter a valid email.")
+      setTimeout(() => {
+        setEmlErrTxt("")
+      }, 3000)
+    }
+    if (!message) {
+      setMsgErrTxt("Required.")
+      setTimeout(() => {
+        setMsgErrTxt("")
+      }, 3000)
+    } else if (message.length <= 5) {
+      setMsgErrTxt("Text is too less.")
+      setTimeout(() => {
+        setMsgErrTxt("")
+      }, 3000)
+    }
+    return false
+  }
+
   const handleSubmit = () => {
-    setDisableStatus(true)
+    if (!SubmitAvailable()) {
+      return
+    }
     setIsSubmit(true)
 
     const params = {} as ContactSubmitParams
@@ -186,7 +233,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
           msg: "Something went wrong, please try again or contact us.",
           isError: true,
         })
-        setDisableStatus(false)
+        // setDisableStatus(false)
         setIsSubmit(false)
         console.log("Something went wrong, please try again or call for support", error)
       })
@@ -226,6 +273,8 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChangeFirstName(e.target.value)
                   }}
                   subDomain={subDomain}
+                  errorText={fnErrTxt}
+                  border="rgba(0,0,0,0.1)"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -236,6 +285,8 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChangeLastName(e.target.value)
                   }}
                   subDomain={subDomain}
+                  errorText={lnErrTxt}
+                  border="rgba(0,0,0,0.1)"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -256,6 +307,8 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChangeEmail(e.target.value)
                   }}
                   subDomain={subDomain}
+                  errorText={emlErrTxt}
+                  border="rgba(0,0,0,0.1)"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -270,7 +323,10 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 />
               </Grid>
               <Grid item xs={12}>
-                <div className={classes.messageDiv}>
+                <div
+                  className={classes.messageDiv}
+                  style={{ border: msgErrTxt ? "1px solid red" : "1px solid rgba(0,0,0,0.1)" }}
+                >
                   <textarea
                     value={message}
                     onChange={(e) => {
@@ -282,6 +338,11 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     className={classes.textArea}
                   />
                 </div>
+                {msgErrTxt && (
+                  <span style={{ color: "red", fontSize: "13px", marginLeft: "30px" }}>
+                    {msgErrTxt}
+                  </span>
+                )}
               </Grid>
             </Grid>
             <div style={{ display: "flex" }}>
@@ -294,7 +355,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 margin="20px 0 0 auto"
                 fontSize="17px"
                 onClick={handleSubmit}
-                disable={disableStatus}
+                // disable={disableStatus}
                 subDomain={subDomain}
               >
                 {isSubmit && <Loading />}

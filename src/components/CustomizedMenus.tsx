@@ -31,7 +31,7 @@ export function makeLocations(data: any[]) {
         }
         let hour = ""
         if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
-          hour = "Closed"
+          hour = "CLOSED"
         } else {
           const open: string =
             (parseInt(data[i].location_hours[j].open.split(":")[0]) % 12) +

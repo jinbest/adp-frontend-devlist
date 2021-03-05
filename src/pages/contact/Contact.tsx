@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../store/StoresDetails"
-import findLocationAPI from "../../services/api/findLocationAPI"
 import { useLocation } from "react-router-dom"
 import { Provider } from "mobx-react"
 import { storesDetails } from "../../store"
@@ -29,16 +28,8 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
 
   useEffect(() => {
     handleStatus(true)
-    findLocationAPI
-      .findAllLocation(storesDetailsStore.store_id)
-      .then((res: any) => {
-        const locationData = res.data as any[]
-        setLocations([...locationData])
-      })
-      .catch(() => {
-        setLocations([])
-      })
-  }, [])
+    setLocations([...storesDetailsStore.allLocations])
+  }, [storesDetailsStore.allLocations])
 
   useEffect(() => {
     setLocationID(locationID)

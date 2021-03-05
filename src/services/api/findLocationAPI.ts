@@ -58,7 +58,7 @@ class FindLocationAPI {
     //   okotoksphonephix: 9,
     //   bananaservice: 1
     // }
-    // const apiURL = `${prodLink}dc/store/${storeIDs.geebodevicerepair}/locations?page=1&per_page=10000&include_voided=false`;
+    // const apiURL = `${prodLink}dc/store/${storeIDs.pradowireless}/locations?page=1&per_page=10000&include_voided=false`;
 
     return new Promise((resolve, reject) => {
       axios

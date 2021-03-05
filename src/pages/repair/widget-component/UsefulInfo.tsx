@@ -55,27 +55,27 @@ const UsefulInfo = ({
 
   return (
     <div>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-service-widget-title"}>{t(data.title)}</Typography>
+          <Typography className="service-widget-title">{t(data.title)}</Typography>
         </Grid>
       </Grid>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className={subDomain + "-service-choose-device-container"}>
-              <div className={subDomain + "-useful-textarea-div"}>
+            <div className="service-choose-device-container">
+              <div className="useful-textarea-div">
                 <textarea
                   value={message}
                   onChange={(e) => {
                     setMessage(e.target.value)
                   }}
                   placeholder={t(data.placeholder)}
-                  className={subDomain + "-useful-textarea"}
+                  className="useful-textarea"
                 />
               </div>
             </div>
-            <div className={subDomain + "-service-card-button"}>
+            <div className="service-card-button">
               <Button
                 title={t("NEXT")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
@@ -91,7 +91,7 @@ const UsefulInfo = ({
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-service-summary-card"}>
+          <Card className="service-summary-card">
             <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} showInfo={true} />
           </Card>
         </Grid>

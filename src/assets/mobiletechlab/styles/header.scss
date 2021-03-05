@@ -250,7 +250,7 @@
 
 .custom-menu-locations-container {
   max-height: 250px;
-  overflow-y: auto;
+  overflow-y: auto !important;
   &::-webkit-scrollbar {
     width: 3px;
     cursor: pointer;

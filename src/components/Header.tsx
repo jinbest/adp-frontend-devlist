@@ -3,7 +3,7 @@ import { Search, CustomizedMenus, Logo, SelectLang, MegamenuShop, HeaderDrawer }
 import { Link } from "react-router-dom"
 import { useT } from "../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { storesDetails } from "../store"
+import { storesDetails, repairWidgetStore } from "../store"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
 
 type PropsNavItemLink = {
@@ -181,6 +181,13 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
     }
   }
 
+  const handleRepairWidget = () => {
+    const cntAppointment: any = repairWidgetStore.appointResponse
+    repairWidgetStore.init()
+    repairWidgetStore.changeAppointResponse(cntAppointment)
+    handleStatus(false)
+  }
+
   useEffect(() => {
     handleResize()
     window.addEventListener("resize", handleResize)
@@ -291,6 +298,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               to="/get-quote"
               className={subDomain + "-mobile-brand-button"}
               style={{ background: data.colorPalle.repairButtonCol, color: "white" }}
+              onClick={handleRepairWidget}
             >
               {t("GET_QUOTE")}
             </Link>

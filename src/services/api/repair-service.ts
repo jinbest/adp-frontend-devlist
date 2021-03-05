@@ -1,11 +1,11 @@
 import Config from '../../config/config'
 import AuthenticatedApiClient from "../authenticated/authenticated-api-client"
-import { GetManyResponse } from "../../pages/repair/model/get-many-response"
-import { GetBrandsParam } from "../../pages/repair/model/get-brands-params"
-import { GetProductsParam } from "../../pages/repair/model/get-products-params"
-import { GetOfferedRepairs } from "../../pages/repair/model/get-offered-repair-params"
-import { GetDeliveryMethodParams } from "../../pages/repair/model/get-delivery-method-params"
-import { PostAppointParams } from "../../pages/repair/model/post-appointment-params"
+import { GetManyResponse } from "../../model/get-many-response"
+import { GetBrandsParam } from "../../model/get-brands-params"
+import { GetProductsParam } from "../../model/get-products-params"
+import { GetOfferedRepairs } from "../../model/get-offered-repair-params"
+import { GetDeliveryMethodParams } from "../../model/get-delivery-method-params"
+import { PostAppointParams } from "../../model/post-appointment-params"
 
 export class RepairService {
   private static instance: RepairService

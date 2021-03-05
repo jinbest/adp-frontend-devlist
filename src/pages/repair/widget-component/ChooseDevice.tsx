@@ -78,8 +78,10 @@ const ChooseDevice = ({
         await addMoreDeviceBrandsAPI(searchText, page + 1, perPage)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           setSliceNum(repairWidData.repairDeviceBrands.data.length)
-          if (repairWidData.repairDeviceBrands.data.length < (page + 1) * perPage) {
+          if (repairWidData.repairDeviceBrands.metadata.total <= (page + 1) * perPage) {
             setPlusVisible(false)
+          } else {
+            setPlusVisible(true)
           }
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
@@ -98,8 +100,10 @@ const ChooseDevice = ({
           repairWidData.repairBrandProducts.data.length
         ) {
           setSliceNum(repairWidData.repairBrandProducts.data.length)
-          if (repairWidData.repairBrandProducts.data.length < (page + 1) * perPage) {
+          if (repairWidData.repairBrandProducts.metadata.total <= (page + 1) * perPage) {
             setPlusVisible(false)
+          } else {
+            setPlusVisible(true)
           }
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
@@ -120,8 +124,10 @@ const ChooseDevice = ({
         )
         cntOfferedRepairs = repairWidData.repairsOfferedDevices.data
         setSliceNum(repairWidData.repairsOfferedDevices.data.length)
-        if (repairWidData.repairsOfferedDevices.data.length < (page + 1) * perPage) {
+        if (repairWidData.repairsOfferedDevices.metadata.total <= (page + 1) * perPage) {
           setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
         }
         for (let i = 0; i < cntOfferedRepairs.length; i++) {
           cntTypes.push({
@@ -206,9 +212,6 @@ const ChooseDevice = ({
         await getDeviceBrandsAPI(text, pg, perpg)
         if (repairWidData.repairDeviceBrands.data && repairWidData.repairDeviceBrands.data.length) {
           setSliceNum(repairWidData.repairDeviceBrands.data.length)
-          if (repairWidData.repairDeviceBrands.data.length === pg * perpg) {
-            setPlusVisible(true)
-          }
           for (let i = 0; i < repairWidData.repairDeviceBrands.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairDeviceBrands.data[i].name,
@@ -218,6 +221,11 @@ const ChooseDevice = ({
             })
           }
         }
+        if (repairWidData.repairDeviceBrands.metadata.total <= pg * perpg) {
+          setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
+        }
         break
       case "deviceModel":
         await getBrandProductsAPI(repairWidData.cntBrandID, text, pg, perpg)
@@ -226,9 +234,6 @@ const ChooseDevice = ({
           repairWidData.repairBrandProducts.data.length
         ) {
           setSliceNum(repairWidData.repairBrandProducts.data.length)
-          if (repairWidData.repairBrandProducts.data.length === pg * perpg) {
-            setPlusVisible(true)
-          }
           for (let i = 0; i < repairWidData.repairBrandProducts.data.length; i++) {
             cntImgData.push({
               name: repairWidData.repairBrandProducts.data[i].name,
@@ -238,6 +243,11 @@ const ChooseDevice = ({
             })
           }
         }
+        if (repairWidData.repairBrandProducts.metadata.total <= pg * perpg) {
+          setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
+        }
         break
       case "deviceRepairs":
         await getRepairsOfferedDeviceAPI(repairWidData.cntProductID, text, pg, perpg)
@@ -245,9 +255,6 @@ const ChooseDevice = ({
 
         if (cntOfferedRepairs != null) {
           setSliceNum(repairWidData.repairsOfferedDevices.data.length)
-          if (repairWidData.repairsOfferedDevices.data.length === pg * perpg) {
-            setPlusVisible(true)
-          }
           for (let i = 0; i < cntOfferedRepairs.length; i++) {
             cntTypes.push({
               name: cntOfferedRepairs[i].title,
@@ -271,6 +278,11 @@ const ChooseDevice = ({
             }
           }
           setItemTypes([...cntTypes])
+        }
+        if (repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg) {
+          setPlusVisible(false)
+        } else {
+          setPlusVisible(true)
         }
         break
       default:
@@ -451,15 +463,15 @@ const ChooseDevice = ({
 
   return (
     <div>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={12}>
-          <Typography className={subDomain + "-service-widget-title"}>{t(data.title)}</Typography>
+          <Typography className="service-widget-title">{t(data.title)}</Typography>
         </Grid>
       </Grid>
       <Grid container className="" spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
-            <div className={subDomain + "-service-choose-device-container"}>
+            <div className="service-choose-device-container">
               {step < 3 && (
                 <div style={{ width: "95%" }}>
                   {features.includes("SEARCH") && (
@@ -480,13 +492,13 @@ const ChooseDevice = ({
                   )}
                 </div>
               )}
-              <div className={subDomain + "-widget-main-container"}>
+              <div className="widget-main-container">
                 {stepName === "deviceBrand" && (
                   <>
                     {imageData.slice(0, sliceNum).map((item: any, index: number) => {
                       return (
                         <div
-                          className={subDomain + "-device-item-container"}
+                          className="device-item-container"
                           style={{
                             background: selected === index ? "rgba(0,0,0,0.1)" : "white",
                           }}
@@ -498,7 +510,7 @@ const ChooseDevice = ({
                       )
                     })}
                     {plusVisible && (
-                      <div className={subDomain + "-device-item-container"} onClick={handlePlus}>
+                      <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
@@ -511,22 +523,22 @@ const ChooseDevice = ({
                       imageData.slice(0, sliceNum).map((item: any, index: number) => {
                         return (
                           <div
-                            className={subDomain + "-device-item-container"}
+                            className="device-item-container"
                             key={index}
                             onClick={() => ChooseNextStep(index)}
                             style={{
                               background: selected === index ? "rgba(0,0,0,0.1)" : "white",
                             }}
                           >
-                            <div className={subDomain + "-device-model-item"}>
-                              <p className={subDomain + "-device-brand-subtitle"}>{item.name}</p>
+                            <div className="device-model-item">
+                              <p className="device-brand-subtitle">{item.name}</p>
                               <img src={item.img} />
                             </div>
                           </div>
                         )
                       })}
                     {plusVisible && (
-                      <div className={subDomain + "-device-item-container"} onClick={handlePlus}>
+                      <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
@@ -534,7 +546,7 @@ const ChooseDevice = ({
                 )}
 
                 {stepName === "repairAnotherDevice" && (
-                  <div className={subDomain + "-repair-another-device"}>
+                  <div className="repair-another-device">
                     <Button
                       title={t("YES")}
                       bgcolor="white"
@@ -560,20 +572,43 @@ const ChooseDevice = ({
                   </div>
                 )}
 
-                {(stepName === "deviceRepairs" ||
-                  stepName === "dropOffDevicce" ||
-                  stepName === "receiveQuote") && (
+                {stepName === "deviceRepairs" && (
                   <>
                     {itemTypes &&
                       itemTypes.slice(0, sliceNum).map((item: any, index: number) => {
                         return (
                           <div
-                            className={subDomain + "-device-item-container"}
+                            className="device-item-container"
                             key={index}
                             style={{ backgroundColor: item.bg }}
                             onClick={() => toggleItemTypes(index, stepName)}
                           >
-                            <div className={subDomain + "-device-service-item"}>
+                            <div className="device-service-item">
+                              <p style={{ color: item.col }}>{t(item.name)}</p>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    {plusVisible && (
+                      <div className="device-item-container" onClick={handlePlus}>
+                        <PlusSVG color="#BDBFC3" />
+                      </div>
+                    )}
+                  </>
+                )}
+
+                {(stepName === "dropOffDevicce" || stepName === "receiveQuote") && (
+                  <>
+                    {itemTypes &&
+                      itemTypes.slice(0, sliceNum).map((item: any, index: number) => {
+                        return (
+                          <div
+                            className="device-item-container"
+                            key={index}
+                            style={{ backgroundColor: item.bg }}
+                            onClick={() => toggleItemTypes(index, stepName)}
+                          >
+                            <div className="device-service-item">
                               <p style={{ color: item.col }}>{t(item.name)}</p>
                             </div>
                           </div>
@@ -585,7 +620,7 @@ const ChooseDevice = ({
             </div>
 
             {stepName === "deviceRepairs" && (
-              <div className={subDomain + "-service-card-button"}>
+              <div className="service-card-button">
                 <Button
                   title={t("NEXT")}
                   bgcolor={mainData.colorPalle.nextButtonCol}
@@ -603,33 +638,25 @@ const ChooseDevice = ({
           </Card>
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card className={subDomain + "-customized-card-height"}>
+          <Card className="customized-card-height">
             {step < 2 && (
-              <div className={subDomain + "-service-choose-device-container"}>
-                <Typography className={subDomain + "-topic-title"}>
-                  {t(data.mainTopic.title)}
-                </Typography>
+              <div className="service-choose-device-container">
+                <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
                 {data.mainTopic.content &&
                   data.mainTopic.content.map((item: LangProps, index: number) => {
                     return (
-                      <Typography className={subDomain + "-topic-content"} key={index}>
+                      <Typography className="topic-content" key={index}>
                         {t(item)}
                       </Typography>
                     )
                   })}
                 {data.disableTopic.title && (
-                  <Typography
-                    className={subDomain + "-topic-title"}
-                    style={{ color: "rgba(0,0,0,0.3)" }}
-                  >
+                  <Typography className="topic-title" style={{ color: "rgba(0,0,0,0.3)" }}>
                     {t(data.disableTopic.title)}
                   </Typography>
                 )}
                 {data.disableTopic.content && (
-                  <Typography
-                    className={subDomain + "-topic-content"}
-                    style={{ color: "rgba(0,0,0,0.3)" }}
-                  >
+                  <Typography className="topic-content" style={{ color: "rgba(0,0,0,0.3)" }}>
                     {t(data.disableTopic.content)}
                   </Typography>
                 )}
@@ -637,27 +664,22 @@ const ChooseDevice = ({
             )}
 
             {step === 2 && (
-              <div className={subDomain + "-service-choose-device-container"}>
-                <Typography className={subDomain + "-topic-title"}>
-                  {t(data.mainTopic.title)}
-                </Typography>
-                <div
-                  className={subDomain + "-service-summary-content-div"}
-                  style={{ display: "block" }}
-                >
+              <div className="service-choose-device-container">
+                <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
+                <div className="service-summary-content-div" style={{ display: "block" }}>
                   {estimatedTimes &&
                     estimatedTimes.map((item: any, index: number) => {
                       return (
-                        <div key={index} className={subDomain + "-estimate-times-div"}>
-                          <p className={subDomain + "-estimate-title"}>{t(item.name)}</p>
-                          <p className={subDomain + "-estimate-content"}>{item.estimate}</p>
+                        <div key={index} className="estimate-times-div">
+                          <p className="estimate-title">{t(item.name)}</p>
+                          <p className="estimate-content">{item.estimate}</p>
                           {storesDetails.storesDetails.settings.display_repair_cost && (
-                            <p className={subDomain + "-estimate-content"}>
+                            <p className="estimate-content">
                               {item.cost + " (Prices are plus tax where applicable.)"}
                             </p>
                           )}
                           {item.warranty && item.warranty > 0 ? (
-                            <p className={subDomain + "-estimate-content"}>
+                            <p className="estimate-content">
                               {t("WARRANTY") +
                                 ": " +
                                 item.warranty +
@@ -665,14 +687,11 @@ const ChooseDevice = ({
                                 t(ConvertWarrantyUnit(item.warranty_unit, item.warranty))}
                             </p>
                           ) : item.warranty && item.warranty === -1 ? (
-                            <p className={subDomain + "-estimate-content"}>
+                            <p className="estimate-content">
                               {t("WARRANTY") + ": " + t("LIFETIME")}
                             </p>
                           ) : (
-                            <p
-                              className={subDomain + "-estimate-content"}
-                              style={{ color: "grey" }}
-                            >
+                            <p className="estimate-content" style={{ color: "grey" }}>
                               <i>{t("NO") + " " + t("WARRANTY")}</i>
                             </p>
                           )}
@@ -684,13 +703,9 @@ const ChooseDevice = ({
             )}
 
             {step === 3 && (
-              <div className={subDomain + "-service-choose-device-container"}>
-                <Typography className={subDomain + "-topic-title"}>
-                  {t(data.mainTopic.title)}
-                </Typography>
-                <Typography className={subDomain + "-topic-content"}>
-                  {t(data.mainTopic.content)}
-                </Typography>
+              <div className="service-choose-device-container">
+                <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
+                <Typography className="topic-content">{t(data.mainTopic.content)}</Typography>
               </div>
             )}
 

@@ -6,8 +6,8 @@ import { useT } from "../../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { repairWidgetAPI } from "../../../services"
-import { PostAppointParams } from "../model/post-appointment-params"
-import { ToastMsgParams } from "../../../components/toast/toast-msg-params"
+import { PostAppointParams } from "../../../model/post-appointment-params"
+import { ToastMsgParams } from "../../../model/toast-msg-param"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
 import Loading from "../../../components/Loading"
@@ -148,90 +148,71 @@ const RepairServiceSummary = ({
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <Card className={subDomain + "-repair-service-summary-card"}>
-        <div className={subDomain + "-service-choose-device-container"}>
-          <Typography className={subDomain + "-repair-service-summary-title"}>
+      <Card className="repair-service-summary-card">
+        <div className="service-choose-device-container">
+          <Typography className="repair-service-summary-title">
             {t("REPAIR_SERVICE_SUMMARY")}
           </Typography>
-          <Grid
-            container
-            className={subDomain + "-repair-service-summary-detail-container"}
-            spacing={3}
-          >
-            <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-              <Typography className={subDomain + "-topic"}>{t("YOUR_INFO")}</Typography>
-              <Typography className={subDomain + "-details"}>
+          <Grid container className="repair-service-summary-detail-container" spacing={3}>
+            <Grid item xs={12} sm={6} className="every-container">
+              <Typography className="topic">{t("YOUR_INFO")}</Typography>
+              <Typography className="details">
                 {repairWidgetData.contactDetails.firstName +
                   " " +
                   repairWidgetData.contactDetails.lastName}
               </Typography>
               <a
-                className={subDomain + "-details"}
+                className="details"
                 href={`mailto:${repairWidgetData.contactDetails.email}`}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                {repairWidgetData.contactDetails.email}
+                <Typography className="details">{repairWidgetData.contactDetails.email}</Typography>
               </a>
-              <br />
               <a
-                className={subDomain + "-details"}
+                className="details"
                 href={`tel:${repairWidgetData.contactDetails.phone}`}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                {repairWidgetData.contactDetails.phone}
+                <Typography className="details">{repairWidgetData.contactDetails.phone}</Typography>
               </a>
             </Grid>
-            <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-              <Typography className={subDomain + "-topic"}>
-                {t("PREFERRED_CONTACT_METHOD")}
-              </Typography>
-              <Typography className={subDomain + "-details"}>
-                {t(repairWidgetData.receiveQuote.method)}
-              </Typography>
+            <Grid item xs={12} sm={6} className="every-container">
+              <Typography className="topic">{t("PREFERRED_CONTACT_METHOD")}</Typography>
+              <Typography className="details">{t(repairWidgetData.receiveQuote.method)}</Typography>
             </Grid>
           </Grid>
-          <Grid
-            container
-            className={subDomain + "-repair-service-summary-detail-container"}
-            spacing={3}
-          >
-            <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-              <Typography className={subDomain + "-topic"}>{t("DELIVERY_METHOD")}</Typography>
-              <Typography className={subDomain + "-details"} style={{ color: textThemeCol }}>
+          <Grid container className="repair-service-summary-detail-container" spacing={3}>
+            <Grid item xs={12} sm={6} className="every-container">
+              <Typography className="topic">{t("DELIVERY_METHOD")}</Typography>
+              <Typography className="details" style={{ color: textThemeCol }}>
                 {t(repairWidgetData.deliveryMethod.method)}
               </Typography>
               {code === "PICK_UP" && (
-                <Typography className={subDomain + "-details " + subDomain + "-bolder"}>
-                  {t("PICK_UP_FROM")}
-                </Typography>
+                <Typography className="details bolder">{t("PICK_UP_FROM")}</Typography>
               )}
               {code === "MAIL_IN" && (
-                <Typography className={subDomain + "-details " + subDomain + "-bolder"}>
-                  {t("SEND_TO")}
-                </Typography>
+                <Typography className="details bolder">{t("SEND_TO")}</Typography>
               )}
               {code !== "MAIL_IN" && (
-                <Typography className={subDomain + "-details"}>
+                <Typography className="details">
                   {repairWidgetData.bookData[code].address.name}
                 </Typography>
               )}
               {code === "MAIL_IN" && (
-                <Typography className={subDomain + "-details"}>
+                <Typography className="details">
                   {repairWidgetData.bookData[code].sendTo}
                 </Typography>
               )}
               {code === "MAIL_IN" && (
-                <Typography className={subDomain + "-details " + subDomain + "-bolder"}>
-                  {t("RETURN_TO")}
-                </Typography>
+                <Typography className="details bolder">{t("RETURN_TO")}</Typography>
               )}
               {code === "MAIL_IN" && (
-                <Typography className={subDomain + "-details"}>
+                <Typography className="details">
                   {repairWidgetData.contactDetails.address1.name}
                 </Typography>
               )}
               {code !== "MAIL_IN" && (
-                <Typography className={subDomain + "-details"}>
+                <Typography className="details">
                   {repairWidgetData.bookData[code].week +
                     ", " +
                     repairWidgetData.bookData[code].month +
@@ -245,22 +226,16 @@ const RepairServiceSummary = ({
               )}
             </Grid>
             {repairWidgetData.message && (
-              <Grid item xs={12} sm={6} className={subDomain + "-every-container"}>
-                <Typography className={subDomain + "-topic"}>{t("MESSAGE")}</Typography>
-                <Typography className={subDomain + "-details"}>
-                  {repairWidgetData.message}
-                </Typography>
+              <Grid item xs={12} sm={6} className="every-container">
+                <Typography className="topic">{t("MESSAGE")}</Typography>
+                <Typography className="details">{repairWidgetData.message}</Typography>
               </Grid>
             )}
           </Grid>
-          <div className={subDomain + "-repair-service-summary-detail-container"}>
-            <div
-              className={
-                subDomain + "-repair-service-summary-flex-container " + subDomain + "-bordered"
-              }
-            >
-              <Typography className={subDomain + "-topic"}>{t("DEVICE")}:</Typography>
-              <Typography className={subDomain + "-topic"}>{t("REPAIR_SERVICE")}</Typography>
+          <div className="repair-service-summary-detail-container">
+            <div className="repair-service-summary-flex-container bordered">
+              <Typography className="topic">{t("DEVICE")}:</Typography>
+              <Typography className="topic">{t("REPAIR_SERVICE")}</Typography>
             </div>
             {repairWidgetData.deviceBrand &&
               repairWidgetData.deviceBrand.map((item: any, index: number) => {
@@ -269,20 +244,15 @@ const RepairServiceSummary = ({
                     {repairWidgetData.chooseRepair[index].map(
                       (chooseItem: any, chooseIndex: number) => {
                         return (
-                          <div
-                            className={subDomain + "-repair-service-summary-flex-container"}
-                            key={chooseIndex}
-                          >
-                            <Typography className={subDomain + "-details"}>
+                          <div className="repair-service-summary-flex-container" key={chooseIndex}>
+                            <Typography className="details">
                               {repairWidgetData.deviceModel[index].name
                                 .toString()
                                 .includes(item.name.toString())
                                 ? repairWidgetData.deviceModel[index].name
                                 : item.name + " " + repairWidgetData.deviceModel[index].name}
                             </Typography>
-                            <Typography className={subDomain + "-details"}>
-                              {t(chooseItem.name)}
-                            </Typography>
+                            <Typography className="details">{t(chooseItem.name)}</Typography>
                           </div>
                         )
                       }
@@ -291,7 +261,7 @@ const RepairServiceSummary = ({
                 )
               })}
           </div>
-          <div className={subDomain + "-service-choose-device-container"}>
+          <div className="service-choose-device-container">
             {code !== "MAIL_IN" && (
               <FeatureToggles features={features}>
                 <Feature
