@@ -26,7 +26,7 @@ class RepairWidgetAPI {
         })
         .catch((error) => {
           if (error) {
-            reject(error)                        
+            reject(error)
           }
         })
     })
@@ -118,7 +118,7 @@ class RepairWidgetAPI {
     include_cost: boolean,
     text: string
   ) => {
-    const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/${locale}/store/${store_id}/repair?per_page=${per_page}&page=${page}&include_voided=${included_voided}&product_id=${product_id}&name_sort_order=${name_sort_order}&is_active=${is_active}&include_cost=${include_cost}&title=${text}`
+    const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/${locale}/store/${store_id}/repair?per_page=${per_page}&page=${page}&include_voided=${included_voided}&product_id=${product_id}&name_sort_order=${name_sort_order}&is_active=${is_active}&include_cost=${include_cost}&title=${text}&display_order=asc`
     return new Promise((resolve, reject) => {
       axios
         .get(`${apiURL}`)
