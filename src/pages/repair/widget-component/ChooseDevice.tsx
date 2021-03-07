@@ -468,7 +468,7 @@ const ChooseDevice = ({
           <Typography className="service-widget-title">{t(data.title)}</Typography>
         </Grid>
       </Grid>
-      <Grid container className="" spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={7}>
           <Card>
             <div className="service-choose-device-container">

@@ -73,6 +73,7 @@ const ContactDetails = ({
   const [psErrTxt, setPsErrTxt] = useState("")
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmiting, setIsSubmiting] = useState<boolean[]>([false, false])
+  const [disableStatus, setDisableStatus] = useState(true)
 
   const handleSubmit = (param: string) => {
     if (param === "appointment") {
@@ -160,13 +161,32 @@ const ContactDetails = ({
     }
   }
 
+  useEffect(() => {
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      ((repairWidgetStore.receiveQuote.code === "PHONE" && phone) ||
+        repairWidgetStore.receiveQuote.code !== "PHONE") &&
+      ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
+      ((code === "MAIL_IN" && address1 && city) ||
+        (code === "ONSITE" && address1 && city) ||
+        (code === "PICK_UP" && address1 && city) ||
+        (code !== "MAIL_IN" && code !== "ONSITE" && code !== "PICK_UP"))
+    ) {
+      setDisableStatus(false)
+    } else {
+      setDisableStatus(true)
+    }
+  }, [firstName, lastName, email, phone, postalCode, address1, city])
+
   const SubmitAvailable = () => {
     if (
       firstName &&
       lastName &&
       email &&
       ValidateEmail(email) &&
-      ((repairWidgetStore.receiveQuote.code === "PHONE" && phone) ||
+      ((repairWidgetStore.receiveQuote.code === "PHONE" && phone && ValidatePhoneNumber(phone)) ||
         repairWidgetStore.receiveQuote.code !== "PHONE") &&
       ((storesDetails.location_id < 0 && postalCode) || storesDetails.location_id > 0) &&
       ((code === "MAIL_IN" && address1 && city) ||
@@ -234,6 +254,7 @@ const ContactDetails = ({
     if (!SubmitAvailable()) {
       return
     }
+    setDisableStatus(true)
     if (param === "appointment") {
       setIsSubmiting([true, false])
     } else {
@@ -259,6 +280,7 @@ const ContactDetails = ({
               isWarning: true,
             })
             setIsSubmiting([false, false])
+            setDisableStatus(false)
           }
         })
         .catch((error) => {
@@ -268,6 +290,7 @@ const ContactDetails = ({
             isError: true,
           })
           setIsSubmiting([false, false])
+          setDisableStatus(false)
         })
       return
     } else {
@@ -495,6 +518,7 @@ const ContactDetails = ({
                         margin="0 auto 10px"
                         onClick={() => handleButton("appointment")}
                         subDomain={subDomain}
+                        disable={disableStatus}
                       >
                         {isSubmiting[0] && <Loading />}
                       </Button>
@@ -516,6 +540,7 @@ const ContactDetails = ({
                         margin="0 auto"
                         onClick={() => handleButton("quote")}
                         subDomain={subDomain}
+                        disable={disableStatus}
                       >
                         {isSubmiting[1] && <Loading />}
                       </Button>
@@ -535,6 +560,7 @@ const ContactDetails = ({
                   fontSize="17px"
                   onClick={() => handleButton("appointment")}
                   subDomain={subDomain}
+                  disable={disableStatus}
                 />
                 <p>{t("ENTER_KEY")}</p>
               </div>
