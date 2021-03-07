@@ -5,7 +5,7 @@ import { Search, Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
 import { LangProps } from "../../../i18n/en"
-import { repairWidData, storesDetails } from "../../../store/"
+import { repairWidData, storesDetails, repairWidgetStore } from "../../../store/"
 import {
   getDeviceBrandsAPI,
   addMoreDeviceBrandsAPI,
@@ -52,7 +52,7 @@ const ChooseDevice = ({
   repairWidgetData,
   features,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
+  const mainData = require(`../../../assets/${subDomain}/Database`)
   const themeCol = mainData.colorPalle.themeColor
   const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol
 
@@ -710,7 +710,12 @@ const ChooseDevice = ({
             )}
 
             {(stepName === "dropOffDevicce" || stepName === "receiveQuote") && (
-              <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} />
+              <RepairSummary
+                step={step}
+                subDomain={subDomain}
+                themeCol={themeCol}
+                repairWidgetStore={repairWidgetStore}
+              />
             )}
           </Card>
         </Grid>

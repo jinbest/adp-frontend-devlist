@@ -4,6 +4,7 @@ import { Card } from "./"
 import { Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
 import { useT } from "../../../i18n/index"
+import { repairWidgetStore } from "../../../store"
 
 type Props = {
   data: any
@@ -39,8 +40,12 @@ const UsefulInfo = ({
 
   const onKeyPress = useCallback(
     (event) => {
-      if (event.key === "Enter" && step === 8) {
-        ChooseNextStep()
+      if (event.keyCode === 13) {
+        if (event.shiftKey) {
+          return
+        } else {
+          ChooseNextStep()
+        }
       }
     },
     [step, message]
@@ -92,7 +97,13 @@ const UsefulInfo = ({
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className="service-summary-card">
-            <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} showInfo={true} />
+            <RepairSummary
+              step={step}
+              subDomain={subDomain}
+              themeCol={themeCol}
+              showInfo={true}
+              repairWidgetStore={repairWidgetStore}
+            />
           </Card>
         </Grid>
       </Grid>

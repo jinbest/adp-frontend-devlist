@@ -105,14 +105,13 @@ const RepairServiceSummary = ({
           return
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setToastParams({
           msg: "Something went wrong, please try again or contact us.",
           isError: true,
         })
         setDisableStatus(false)
         setIsSubmitting(false)
-        console.log("Something went wrong, please try again or contact us.", error)
       })
   }
 

@@ -569,7 +569,12 @@ const ContactDetails = ({
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className="service-summary-card">
-            <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} />
+            <RepairSummary
+              step={step}
+              subDomain={subDomain}
+              themeCol={themeCol}
+              repairWidgetStore={repairWidgetStore}
+            />
           </Card>
         </Grid>
       </Grid>

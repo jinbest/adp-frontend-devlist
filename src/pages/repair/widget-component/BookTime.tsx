@@ -24,8 +24,8 @@ type Props = {
 }
 
 const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const timezoneData = require(`../../../assets/_common/timezoneList.js`)
+  const mainData = require(`../../../assets/${subDomain}/Database`)
+  const timezoneData = require(`../../../assets/_common/timezoneList`)
   const timeZoneList = timezoneData.timezoneOptions
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
@@ -460,7 +460,12 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className="service-summary-card">
-            <RepairSummary step={step} subDomain={subDomain} themeCol={themeCol} />
+            <RepairSummary
+              step={step}
+              subDomain={subDomain}
+              themeCol={themeCol}
+              repairWidgetStore={repairWidgetStore}
+            />
           </Card>
         </Grid>
       </Grid>

@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
 import { LangProps } from "../../i18n/en"
-import { repairWidgetStore } from "../../store"
+import { repairWidgetStore, storesDetails } from "../../store"
 import CustomMap from "../../components/CustomMap"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import { inject } from "mobx-react"
@@ -164,9 +164,9 @@ const SectionMap = inject("storesDetailsStore")(
       const data = require(`../../assets/${subDomain}/Database`)
       const t = useT()
       const classes = useStyles()
-      const [expanded, setExpanded] = React.useState<number | false>(false)
-      const [selectedLocation, setSelectedLocation] = React.useState<null | any>(null)
-      const [isExpanded, setIsExpanded] = React.useState<boolean>(false)
+      const [expanded, setExpanded] = React.useState<number | false>(0)
+      const [selectedLocation, setSelectedLocation] = React.useState<null | any>(locations[0])
+      const [isExpanded, setIsExpanded] = React.useState<boolean>(true)
 
       const handleLocSelect = (location: any) => {
         storesDetailsStore.cntUserLocation = makeLocations([location])
@@ -181,11 +181,20 @@ const SectionMap = inject("storesDetailsStore")(
       }
 
       useEffect(() => {
-        if (locations && locations.length === 1) {
-          setExpanded(0)
-          setIsExpanded(true)
-          setSelectedLocation(locations[0])
+        if (!storesDetails.cntUserLocationSelected) return
+        const loc_id = storesDetails.cntUserLocation[0].location_id
+        handleLocationID(loc_id.toString())
+        for (let i = 0; i < locations.length; i++) {
+          if (parseInt(locations[i].id) === loc_id) {
+            setExpanded(i)
+            setIsExpanded(true)
+            setSelectedLocation(locations[i])
+            break
+          }
         }
+      }, [])
+
+      useEffect(() => {
         if (!location_id) {
           return
         }
@@ -259,6 +268,7 @@ const SectionMap = inject("storesDetailsStore")(
               handleLocationID(locations[i].id)
               setExpanded(i)
               setIsExpanded(true)
+              break
             }
           }
           return

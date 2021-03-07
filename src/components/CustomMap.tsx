@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core"
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"
+import { MapContainer, Marker, TileLayer, Tooltip } from "react-leaflet"
 import { Map } from "leaflet"
 
 export function getAddress(location: any) {
@@ -30,15 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     popupWrapper: {
-      [theme.breakpoints.down("md")]: {
-        fontSize: "15px!important" as any,
-      },
-      [theme.breakpoints.down("sm")]: {
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        fontSize: "10px!important" as any,
-      },
+      fontSize: "12px !important",
     },
   })
 )
@@ -98,7 +90,7 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
           locations.map((element, index) => {
             return (
               <Marker position={[element.latitude, element.longitude]} key={index}>
-                <Popup>
+                <Tooltip permanent>
                   <a
                     href={`${
                       element.business_page_link != null
@@ -113,7 +105,7 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
                   >
                     <h2 className={classes.popupWrapper}>{getAddress(element)}</h2>
                   </a>
-                </Popup>
+                </Tooltip>
               </Marker>
             )
           })}

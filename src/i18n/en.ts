@@ -275,6 +275,7 @@ export class LanguageKeys {
   }) => {
     return `Thank you for choosing ${storeName}.`
   }
+  public A_REPRESENTATIVE_WILL_CONTACT_YOU = "A representative will contact you shortly in regards to your request."
   public WITH_A_DETAILED_SERVICE_QUOTE = "with a detailed service quote."
   public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT =
     "with a detailed service quote and appointment information."
