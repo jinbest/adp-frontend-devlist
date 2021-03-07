@@ -112,6 +112,7 @@ const ContactForm = ({
   const [msgErrTxt, setMsgErrTxt] = useState("")
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmit, setIsSubmit] = useState(false)
+  const [disableStatus, setDisableStatus] = useState(true)
 
   const handleChangeFirstName = (val: string) => {
     setFirstName(val)
@@ -169,6 +170,14 @@ const ContactForm = ({
     }
   }, [locations])
 
+  useEffect(() => {
+    if (firstName && lastName && email && loc.name && message) {
+      setDisableStatus(false)
+    } else {
+      setDisableStatus(true)
+    }
+  }, [firstName, lastName, email, loc, message])
+
   const SubmitAvailable = () => {
     if (firstName && lastName && email && ValidateEmail(email) && loc.name && message.length > 5) {
       return true
@@ -214,6 +223,7 @@ const ContactForm = ({
     if (!SubmitAvailable()) {
       return
     }
+    setDisableStatus(true)
     setIsSubmit(true)
 
     const params = {} as ContactSubmitParams
@@ -251,6 +261,7 @@ const ContactForm = ({
         })
         setIsSubmit(false)
         console.log("Something went wrong, please try again or call for support", error)
+        setDisableStatus(false)
       })
   }
 
@@ -360,6 +371,7 @@ const ContactForm = ({
             fontSize="17px"
             onClick={handleSubmit}
             subDomain={subDomain}
+            disable={disableStatus}
           >
             {isSubmit && <Loading />}
           </Button>

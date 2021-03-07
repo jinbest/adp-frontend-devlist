@@ -95,7 +95,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
   const [loc, setLoc] = useState<OptionProps>({ name: "", code: 0 })
   const [message, setMessage] = useState("")
   const [msgErrTxt, setMsgErrTxt] = useState("")
-  // const [disableStatus, setDisableStatus] = useState(true)
+  const [disableStatus, setDisableStatus] = useState(true)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmit, setIsSubmit] = useState(false)
   const [locations, setLocations] = useState<any[]>([])
@@ -114,13 +114,13 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
     }
   }, [locations])
 
-  // useEffect(() => {
-  //   if (firstName && lastName && email && loc && message) {
-  //     setDisableStatus(false)
-  //   } else {
-  //     setDisableStatus(true)
-  //   }
-  // }, [firstName, lastName, email, loc, message])
+  useEffect(() => {
+    if (firstName && lastName && email && loc && message) {
+      setDisableStatus(false)
+    } else {
+      setDisableStatus(true)
+    }
+  }, [firstName, lastName, email, loc, message])
 
   useEffect(() => {
     if (storesDetailsStore.cntUserLocationSelected && locations.length) {
@@ -198,6 +198,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
     if (!SubmitAvailable()) {
       return
     }
+    setDisableStatus(true)
     setIsSubmit(true)
 
     const params = {} as ContactSubmitParams
@@ -233,7 +234,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
           msg: "Something went wrong, please try again or contact us.",
           isError: true,
         })
-        // setDisableStatus(false)
+        setDisableStatus(false)
         setIsSubmit(false)
         console.log("Something went wrong, please try again or call for support", error)
       })
@@ -355,7 +356,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 margin="20px 0 0 auto"
                 fontSize="17px"
                 onClick={handleSubmit}
-                // disable={disableStatus}
+                disable={disableStatus}
                 subDomain={subDomain}
               >
                 {isSubmit && <Loading />}

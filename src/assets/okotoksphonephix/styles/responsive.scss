@@ -41,33 +41,10 @@
   .#{$folderName}-service-section2 {
     margin-bottom: -140px;
   }
-  .#{$folderName}-device-brand-subtitle {
-    font-size: 2vw;
-    margin-top: 1vw;
-  }
-  .#{$folderName}-customized-card-height {
-    height: auto !important;
-    min-height: 200px !important;
-  }
-  .#{$folderName}-device-service-item > p {
-    font-size: 2.1vw;
-  }
-  .#{$folderName}-service-card-button p {
-    display: none;
-  }
-  .#{$folderName}-service-summary-content-div {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden !important;
-    height: auto;
-  }
   .#{$folderName}-service-summary-div {
     width: 43%;
     margin-right: 2%;
   }
-  // .service-widget-card {
-  //   height: 80vw;
-  // }
   .#{$folderName}-input-component {
     font-size: 2vw !important;
   }
@@ -81,9 +58,6 @@
   .#{$folderName}-footer {
     background-image: url("../img/footer/phonephix-footer-shape-mobile.png");
     padding: 100px 20px 30px;
-  }
-  .#{$folderName}-back-to-top {
-    left: 10px !important;
   }
 }
 
@@ -153,22 +127,10 @@
   .#{$folderName}-card-repair-sec2-content {
     font-size: 2.5vw;
   }
-  .#{$folderName}-topic-content {
-    font-size: 15px !important;
-  }
-  .#{$folderName}-topic-title {
-    font-size: 18px !important;
-  }
-  .#{$folderName}-service-summary-content-div {
-    display: block;
-  }
   .#{$folderName}-service-summary-div {
     width: 90%;
     margin-right: 2%;
   }
-  // .service-widget-card {
-  //   height: 80vw;
-  // }
 }
 
 @media (max-width: 600px) {
@@ -194,18 +156,6 @@
   .#{$folderName}-device-list-component {
     margin: 20px 0;
   }
-  .service-widget-card {
-    height: auto;
-    min-height: 200px;
-  }
-  .#{$folderName}-service-card-button {
-    position: inherit;
-    padding: 50px 0 0;
-    left: 0;
-  }
-  .#{$folderName}-service-card-button .button {
-    margin: inherit;
-  }
   .#{$folderName}-input-component {
     font-size: 3vw !important;
     padding: 20px 15px;
@@ -230,40 +180,6 @@
   }
   .#{$folderName}-card-repair-sec3-container .#{$folderName}-subtitle {
     font-size: 5vw;
-  }
-  .#{$folderName}-topic-content {
-    font-size: 12px !important;
-    margin-bottom: 8px !important;
-  }
-  .#{$folderName}-topic-title {
-    font-size: 15px !important;
-    margin-bottom: 8px !important;
-  }
-  .#{$folderName}-service-choose-device-container {
-    /* padding: 20px 20px 100px; */
-    padding: 20px;
-  }
-  .#{$folderName}-device-item-container {
-    width: 30%;
-  }
-  .#{$folderName}-device-brand-subtitle {
-    font-size: 3vw;
-  }
-  .#{$folderName}-device-service-item > p {
-    font-size: 3vw;
-  }
-  .#{$folderName}-repair-another-device {
-    display: block;
-  }
-  .#{$folderName}-repair-another-device > button {
-    margin-bottom: 10px;
-  }
-  .#{$folderName}-estimate-title,
-  .#{$folderName}-estimate-content {
-    font-size: 13px;
-  }
-  .#{$folderName}-estimate-times-div {
-    margin-bottom: 10px;
   }
   .#{$folderName}-service-summary-img {
     width: 11vw;
