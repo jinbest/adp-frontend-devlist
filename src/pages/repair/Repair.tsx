@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Section1, Section2, Section4 } from "./"
 import { Error } from "../error"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { storesDetails } from "../../store"
+import { repairWidgetStore, storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
 
 type Props = {
@@ -40,7 +40,11 @@ const Repair = ({ subDomain, handleStatus, features }: Props) => {
           inactiveComponent={() => <Error />}
           activeComponent={() => (
             <div>
-              <Section1 subDomain={subDomain} handleStatus={handleStatus} />
+              <Section1
+                subDomain={subDomain}
+                handleStatus={handleStatus}
+                repairWidgetStore={repairWidgetStore}
+              />
               <Section2 subDomain={subDomain} />
               {/* <Section3 subDomain={subDomain} /> */}
               <Section4 subDomain={subDomain} handleStatus={handleStatus} />

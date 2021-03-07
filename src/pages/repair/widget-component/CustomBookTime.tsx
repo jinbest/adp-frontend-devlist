@@ -14,24 +14,6 @@ function availableTimeRange(min: number, max: number, intv: number, mut: number)
   return timeRange
 }
 
-// function isWeek(
-//   selyear: number,
-//   selmonth: number,
-//   selday: number,
-//   seloff: number,
-//   defaultoff: number
-// ) {
-//   const timeoffset = -new Date().getTimezoneOffset() / 60
-//   const selectedTimeStamp = new Date(
-//     selyear,
-//     selmonth,
-//     selday,
-//     timeoffset - seloff + defaultoff
-//   ).getTime()
-//   console.log(new Date(selectedTimeStamp).getDay(), new Date(selyear, selmonth, selday).getDay())
-//   return new Date(selectedTimeStamp).getDay()
-// }
-
 function isWeek(selyear: number, selmonth: number, selday: number) {
   return new Date(selyear, selmonth, selday).getDay()
 }
@@ -117,7 +99,6 @@ const CustomBookTime = ({
       booklist: any[] = [],
       cntTimeStampOffset = timeZoneList[val].offset,
       defaultOffset = defaultTimezone.offset,
-      // week = isWeek(selectYear, selectMonth, selectDay, timeZoneList[val].offset, defaultOffset),
       week = isWeek(selectYear, selectMonth, selectDay),
       availRange: any[] = availableTimeRange(timesRng[week][0], timesRng[week][1], interval, multi)
 

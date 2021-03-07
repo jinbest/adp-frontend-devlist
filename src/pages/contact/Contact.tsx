@@ -35,6 +35,10 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
     setLocationID(locationID)
   }, [locationID])
 
+  useEffect(() => {
+    storesDetailsStore.changeCntUserLocationSelected(false)
+  }, [])
+
   return (
     <div>
       <Helmet>
@@ -43,14 +47,16 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
         <link rel="apple-touch-icon" href={mainData.fav.img} />
         <meta name="description" content={""} />
       </Helmet>
-      <SectionMap
-        storesDetailsStore={storesDetailsStore}
-        subDomain={subDomain}
-        locations={locations}
-        handleStatus={handleStatus}
-        location_id={locationID}
-        handleLocationID={setLocationID}
-      />
+      {locations.length && (
+        <SectionMap
+          storesDetailsStore={storesDetailsStore}
+          subDomain={subDomain}
+          locations={locations}
+          handleStatus={handleStatus}
+          location_id={locationID}
+          handleLocationID={setLocationID}
+        />
+      )}
       <Provider storesDetailsStore={storesDetails}>
         <ContactForm
           subDomain={subDomain}

@@ -334,24 +334,26 @@ const CustomizedMenus = inject("storesDetailsStore")(
       <div>
         <Button
           title={
-            !locSelStatus
+            !storesDetailsStore.cntUserLocationSelected
               ? t(btnTitle)
               : storesDetailsStore.cntUserLocation[0] &&
                 storesDetailsStore.cntUserLocation[0].address_1
           }
-          bgcolor={!locSelStatus ? themeColor : "transparent"}
-          txcolor={!locSelStatus ? "white" : "black"}
-          border={!locSelStatus ? "1px solid rgba(0,0,0,0.1)" : "none"}
-          textDecorator={!locSelStatus ? "none" : "underline"}
+          bgcolor={!storesDetailsStore.cntUserLocationSelected ? themeColor : "transparent"}
+          txcolor={!storesDetailsStore.cntUserLocationSelected ? "white" : "black"}
+          border={
+            !storesDetailsStore.cntUserLocationSelected ? "1px solid rgba(0,0,0,0.1)" : "none"
+          }
+          textDecorator={!storesDetailsStore.cntUserLocationSelected ? "none" : "underline"}
           borderR="20px"
           aria-controls="customized-menu"
           aria-haspopup="true"
           onClick={handleOpen}
           icon={true}
           fontSize="17px"
-          width={!locSelStatus ? width : "auto"}
+          width={!storesDetailsStore.cntUserLocationSelected ? width : "auto"}
           subDomain={subDomain}
-          hover={!locSelStatus ? true : false}
+          hover={!storesDetailsStore.cntUserLocationSelected ? true : false}
         />
         <StyledMenu
           id="customized-menu"
@@ -401,7 +403,9 @@ const CustomizedMenus = inject("storesDetailsStore")(
                           className={
                             subDomain +
                             "-block-content" +
-                            (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
+                            (storesDetailsStore.cntUserLocationSelected
+                              ? ` ${classes.nonHoverEffect}`
+                              : "")
                           }
                         >
                           {item.distance
@@ -419,7 +423,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 </div>
               </div>
               <div className={subDomain + "-content-block"}>
-                {locSelStatus && (
+                {storesDetailsStore.cntUserLocationSelected && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
@@ -444,7 +448,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                       {t("VIEW_MORE_STORES")}
                     </a>
                   )}
-                {locSelStatus && (
+                {storesDetailsStore.cntUserLocationSelected && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
@@ -464,7 +468,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                   </a>
                 )}
               </div>
-              {locSelStatus && (
+              {storesDetailsStore.cntUserLocationSelected && (
                 <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleBookRepair}>
                   <Button
                     title={t("BOOK_APPOINTMENT")}
@@ -479,7 +483,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 </Link>
               )}
             </div>
-            {locSelStatus && (
+            {storesDetailsStore.cntUserLocationSelected && (
               <React.Fragment>
                 <div
                   style={{

@@ -1,6 +1,6 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
-import { storesDetails } from "./store/"
+import { repairWidgetStore, storesDetails } from "./store/"
 import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
 import { Contact } from "./pages/contact"
@@ -43,7 +43,12 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
       <Route
         path="/get-quote"
         component={() => (
-          <RepairWidget subDomain={subDomain} handleStatus={handleStatus} features={features} />
+          <RepairWidget
+            subDomain={subDomain}
+            handleStatus={handleStatus}
+            features={features}
+            repairWidgetStore={repairWidgetStore}
+          />
         )}
       />
       <Route

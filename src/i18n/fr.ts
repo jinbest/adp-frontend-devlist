@@ -281,6 +281,7 @@ export class LanguageKeysFr extends LanguageKeys {
   }) => {
     return `Merci d'avoir choisi ${storeName}`
   }
+  public A_REPRESENTATIVE_WILL_CONTACT_YOU = "Un représentant vous contactera sous peu au sujet de votre demande."
   public WITH_A_DETAILED_SERVICE_QUOTE = "avec un devis de service détaillé."
   public WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT =
     "avec un devis de service détaillé et des informations de rendez-vous."
