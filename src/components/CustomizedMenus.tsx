@@ -317,6 +317,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
     }
 
     const getAddress = (location: any) => {
+      if (!location) return ""
       return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
         location.city ? location.city + ", " : ""
       } ${location.state ? location.state + " " : ""} ${
@@ -328,26 +329,24 @@ const CustomizedMenus = inject("storesDetailsStore")(
       <div>
         <Button
           title={
-            !storesDetailsStore.cntUserLocationSelected
+            !locSelStatus
               ? t(btnTitle)
               : storesDetailsStore.cntUserLocation[0] &&
                 storesDetailsStore.cntUserLocation[0].address_1
           }
-          bgcolor={!storesDetailsStore.cntUserLocationSelected ? themeColor : "transparent"}
-          txcolor={!storesDetailsStore.cntUserLocationSelected ? "white" : "black"}
-          border={
-            !storesDetailsStore.cntUserLocationSelected ? "1px solid rgba(0,0,0,0.1)" : "none"
-          }
-          textDecorator={!storesDetailsStore.cntUserLocationSelected ? "none" : "underline"}
+          bgcolor={!locSelStatus ? themeColor : "transparent"}
+          txcolor={!locSelStatus ? "white" : "black"}
+          border={!locSelStatus ? "1px solid rgba(0,0,0,0.1)" : "none"}
+          textDecorator={!locSelStatus ? "none" : "underline"}
           borderR="20px"
           aria-controls="customized-menu"
           aria-haspopup="true"
           onClick={handleOpen}
           icon={true}
           fontSize="17px"
-          width={!storesDetailsStore.cntUserLocationSelected ? width : "auto"}
+          width={!locSelStatus ? width : "auto"}
           subDomain={subDomain}
-          hover={!storesDetailsStore.cntUserLocationSelected ? true : false}
+          hover={!locSelStatus ? true : false}
         />
         <StyledMenu
           id="customized-menu"
@@ -361,10 +360,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
             <div
               className={subDomain + "-left-content"}
               style={{
-                width:
-                  storesDetailsStore.cntUserLocationSelected || !locations.length
-                    ? "215px"
-                    : "500px",
+                width: locSelStatus || !locations.length ? "215px" : "500px",
               }}
             >
               <div className={subDomain + "-content-block"}>
@@ -405,9 +401,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                           className={
                             subDomain +
                             "-block-content" +
-                            (storesDetailsStore.cntUserLocationSelected
-                              ? ` ${classes.nonHoverEffect}`
-                              : "")
+                            (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
                           }
                         >
                           {item.distance
@@ -425,7 +419,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 </div>
               </div>
               <div className={subDomain + "-content-block"}>
-                {storesDetailsStore.cntUserLocationSelected && (
+                {locSelStatus && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
@@ -451,7 +445,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                       {t("VIEW_MORE_STORES")}
                     </a>
                   )}
-                {storesDetailsStore.cntUserLocationSelected && (
+                {locSelStatus && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
@@ -472,7 +466,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                   </a>
                 )}
               </div>
-              {storesDetailsStore.cntUserLocationSelected && (
+              {locSelStatus && (
                 <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleBookRepair}>
                   <Button
                     title={t("BOOK_APPOINTMENT")}
@@ -487,7 +481,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 </Link>
               )}
             </div>
-            {storesDetailsStore.cntUserLocationSelected && (
+            {locSelStatus && (
               <React.Fragment>
                 <div
                   style={{
