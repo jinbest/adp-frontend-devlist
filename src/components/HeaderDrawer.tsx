@@ -515,6 +515,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={
+                            storesDetailsStore.cntUserLocation[0] &&
                             storesDetailsStore.cntUserLocation[0].business_page_link
                               ? storesDetailsStore.cntUserLocation[0].business_page_link
                               : "https://www.google.com/business/"
@@ -539,6 +540,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={`${
+                            storesDetailsStore.cntUserLocation[0] &&
                             storesDetailsStore.cntUserLocation[0].business_page_link != null
                               ? storesDetailsStore.cntUserLocation[0].business_page_link
                               : `https://www.google.com/maps/search/?api=1&query=${getAddress(
