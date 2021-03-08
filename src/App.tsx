@@ -16,7 +16,7 @@ import "./assets/_common/style/index.scss"
 // const subDomain = apexDomain.split(".")[0]
 
 const devicelist = [
-  { name: "bananaservice", domain: "bananaservice.ca" },
+  { name: "bananaservices", domain: "bananaservices.ca" },
   { name: "geebodevicerepair", domain: "" },
   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
