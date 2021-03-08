@@ -40,6 +40,7 @@ function App(): JSX.Element {
   const [features, setFeatures] = useState<FeaturesParam[]>([])
   const [storeId, setStoreID] = useState(0)
   const [loadStatus, setLoadStatus] = useState(false)
+  const [loadLocationStatus, setLoadLocationStatus] = useState(false)
   const [pageTitle, setPageTitle] = useState("Store")
   const [metaDescription, setMetaDescription] = useState("")
   const [tagScript, setTagScript] = useState(undefined)
@@ -114,6 +115,7 @@ function App(): JSX.Element {
         .then((res: any) => {
           const locationData = res.data as any[]
           storesDetails.changeAddLocations(locationData)
+          setLoadLocationStatus(true)
         })
         .catch((error) => {
           console.log("Error in get Features", error)
@@ -156,7 +158,7 @@ function App(): JSX.Element {
           repairWidgetStore={repairWidgetStore}
           repairWidDataStore={repairWidData}
         >
-          {loadStatus ? (
+          {loadStatus && loadLocationStatus ? (
             <Router>
               <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
               <BaseRouter
