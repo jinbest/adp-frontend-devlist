@@ -16,7 +16,7 @@ const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
-//   { name: "bananaservice", domain: "bananaservice.ca" },
+//   { name: "bananaservices", domain: "bananaservices.ca" },
 //   { name: "geebodevicerepair", domain: "" },
 //   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
 //   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
@@ -28,7 +28,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 2,
+// const siteNum = 0,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
