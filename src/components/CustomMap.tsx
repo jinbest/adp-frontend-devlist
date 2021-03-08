@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core"
-import { MapContainer, Marker, TileLayer, Tooltip } from "react-leaflet"
+import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet"
 import { Map } from "leaflet"
 
 export function getAddress(location: any) {
@@ -73,6 +73,14 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
     }
   }, [isDetail, selectedLocation, map])
 
+  const openPopup = (marker: any) => {
+    if (marker) {
+      window.setTimeout(() => {
+        marker.openPopup()
+      }, 1000)
+    }
+  }
+
   return (
     <div className={classes.mapWrapper}>
       <MapContainer
@@ -86,11 +94,11 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {locations &&
-          locations.map((element, index) => {
+        {[selectedLocation].length &&
+          [selectedLocation].map((element, index) => {
             return (
-              <Marker position={[element.latitude, element.longitude]} key={index}>
-                <Tooltip permanent>
+              <Marker position={[element.latitude, element.longitude]} key={index} ref={openPopup}>
+                <Popup>
                   <a
                     href={`${
                       element.business_page_link != null
@@ -105,7 +113,7 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
                   >
                     <h2 className={classes.popupWrapper}>{getAddress(element)}</h2>
                   </a>
-                </Tooltip>
+                </Popup>
               </Marker>
             )
           })}

@@ -128,7 +128,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
     const [locSelStatus, setLocSelStatus] = useState(storesDetailsStore.cntUserLocationSelected)
     const [locations, setLocations] = useState<any[]>(storesDetailsStore.cntUserLocation)
     const [requireUserInfo, setRequireUserInfo] = useState(false)
-    const [contentWidth, setContentWidth] = useState("215px")
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
     const [postCode, setPostCode] = useState("")
     const [isRequest, setIsRequest] = useState(false)
@@ -229,11 +228,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
     }, [pos, locations])
 
     useEffect(() => {
-      if (locSelStatus || !locations.length) {
-        setContentWidth("215px")
-      } else {
-        setContentWidth("500px")
-      }
       storesDetailsStore.changeCntUserLocationSelected(locSelStatus)
       if (locations.length <= 1) {
         setMyStore(t("NEAREST_LOCATION"))
@@ -364,7 +358,15 @@ const CustomizedMenus = inject("storesDetailsStore")(
         >
           <div className="triangle" style={{ right: "65px" }}></div>
           <div className={subDomain + "-menu-content-div"}>
-            <div className={subDomain + "-left-content"} style={{ width: contentWidth }}>
+            <div
+              className={subDomain + "-left-content"}
+              style={{
+                width:
+                  storesDetailsStore.cntUserLocationSelected || !locations.length
+                    ? "215px"
+                    : "500px",
+              }}
+            >
               <div className={subDomain + "-content-block"}>
                 {storesDetailsStore.cntUserLocation.length || !requireUserInfo ? (
                   <p className={subDomain + "-block-title"}>{myStore}</p>

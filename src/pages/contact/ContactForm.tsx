@@ -101,8 +101,8 @@ type OptionProps = {
 type Props = {
   subDomain?: string
   locations: any[]
-  locationID: string | null
-  handleLocationID: (id: string | null) => void
+  locationID: number
+  handleLocationID: (id: number) => void
   storesDetailsStore: StoresDetails
 }
 
@@ -158,27 +158,14 @@ const ContactForm = ({
 
   useEffect(() => {
     if (locations.length) {
-      handleLocationID(locations[loc.code].id)
-      if (storesDetailsStore.cntUserLocationSelected) {
-        handleStoreCntLoc(loc.code)
-      }
-    }
-  }, [loc, storesDetailsStore])
-
-  useEffect(() => {
-    if (locations.length) {
       for (let i = 0; i < locations.length; i++) {
-        if (locationID && parseInt(locationID) === locations[i].id) {
-          setLoc({ name: locations[i].address_1, code: i })
-          break
-        }
-        if (!locationID && locations[i].is_main) {
+        if (locationID && locationID === locations[i].id) {
           setLoc({ name: locations[i].address_1, code: i })
           break
         }
       }
     }
-  }, [locationID, locations, storesDetailsStore])
+  }, [locationID])
 
   useEffect(() => {
     const cntOptions: OptionProps[] = []
@@ -294,6 +281,13 @@ const ContactForm = ({
     })
   }
 
+  const handleChangeSelect = (loc: any) => {
+    if (storesDetailsStore.cntUserLocationSelected) {
+      handleStoreCntLoc(loc.code)
+    }
+    handleLocationID(locations[loc.code].id)
+  }
+
   return (
     <section className={subDomain + "-Container"}>
       <div className={classes.root}>
@@ -353,7 +347,9 @@ const ContactForm = ({
               <Grid item xs={12}>
                 <CustomSelect
                   value={loc}
-                  handleSetValue={setLoc}
+                  handleSetValue={(loc) => {
+                    handleChangeSelect(loc)
+                  }}
                   subDomain={subDomain}
                   options={option}
                 />

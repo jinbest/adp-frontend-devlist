@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
 import { LangProps } from "../../i18n/en"
-import { repairWidgetStore, storesDetails } from "../../store"
+import { repairWidgetStore } from "../../store"
 import CustomMap from "../../components/CustomMap"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import { inject } from "mobx-react"
@@ -19,8 +19,8 @@ interface Props extends StoreProps {
   subDomain?: string
   locations: any[]
   handleStatus: (status: boolean) => void
-  location_id: string | null
-  handleLocationID: (id: string | null) => void
+  location_id: number
+  handleLocationID: (id: number) => void
 }
 
 type StoreProps = {
@@ -181,25 +181,8 @@ const SectionMap = inject("storesDetailsStore")(
       }
 
       useEffect(() => {
-        if (!storesDetails.cntUserLocationSelected) return
-        const loc_id = storesDetails.cntUserLocation[0].location_id
-        handleLocationID(loc_id.toString())
         for (let i = 0; i < locations.length; i++) {
-          if (parseInt(locations[i].id) === loc_id) {
-            setExpanded(i)
-            setIsExpanded(true)
-            setSelectedLocation(locations[i])
-            break
-          }
-        }
-      }, [])
-
-      useEffect(() => {
-        if (!location_id) {
-          return
-        }
-        for (let i = 0; i < locations.length; i++) {
-          if (parseInt(locations[i].id) === parseInt(location_id)) {
+          if (parseInt(locations[i].id) === location_id) {
             setExpanded(i)
             setIsExpanded(true)
             setSelectedLocation(locations[i])

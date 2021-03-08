@@ -30,19 +30,17 @@ const CustomSelect = ({ options, value, handleSetValue, subDomain, variant }: Pr
 
   const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
     const name = event.target.name as keyof typeof state
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].code === event.target.value) {
+        handleSetValue({ name: options[i].name, code: options[i].code })
+        break
+      }
+    }
     setState({
       ...state,
       [name]: event.target.value,
     })
   }
-
-  useEffect(() => {
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].code === state.code) {
-        handleSetValue(options[i])
-      }
-    }
-  }, [state])
 
   useEffect(() => {
     setState({ code: value.code, name: value.name })
