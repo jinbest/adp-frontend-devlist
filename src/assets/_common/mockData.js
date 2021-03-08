@@ -26,6 +26,9 @@ import paypal from "./img/online-payment/paypal.png"
 import deviceListImg from "./img/online-payment/device-list.png"
 import bell from "./img/online-payment/bell.png"
 
+// skitter-mobile image
+import skitterMobile from "./img/skitter-mobile.png"
+
 const repairWidget = {
   deviceBrand: {
     title: "CHOOSE_YOUR_DEVICE_BRAND",
@@ -178,4 +181,8 @@ const footerImageData = {
   others: [visa, round, amex, interactive, paypal],
 }
 
-export { repairWidget, popularCardData, arrowData, devicelistData, footerImageData }
+const locationsData = {
+  skitterMobile: skitterMobile
+}
+
+export { repairWidget, popularCardData, arrowData, devicelistData, footerImageData, locationsData }

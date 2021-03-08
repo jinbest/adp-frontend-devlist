@@ -191,6 +191,15 @@ export class LanguageKeys {
   public CLOSE = "Close"
   public CONTACT = "Contact"
   public CALL_TO_BOOK_APPOINTMENT = "Call to book appointment"
+  public LOCATIONS = "Locations"
+  public PROFESSIONAL = "Professional"
+  public TRANSPARENT = "Transparent"
+  public AFFORDABLE_DEVICE_REPAIR = "Appordable Device Repair"
+  public SAME_DAY_ADVANCED_REPAIR_SERVICES = "Same-Day Advanced Repair Services"
+  public ALL_DEVICELIST_LOCATIONS = (storeName: string) => {
+    return `All ${storeName} Locations`
+  }
+  public CALL_NOW = "Call Now"
 
   /* service-widget Text */
   public NEXT = "Next"

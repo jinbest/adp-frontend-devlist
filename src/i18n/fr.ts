@@ -195,6 +195,15 @@ export class LanguageKeysFr extends LanguageKeys {
   public CLOSE = "Fermer"
   public CONTACT = "Contacter"
   public CALL_TO_BOOK_APPOINTMENT = "Appelez pour prendre rendez-vous"
+  public LOCATIONS = "Emplacements"
+  public PROFESSIONAL = "Professionnelle"
+  public TRANSPARENT = "Transparente"
+  public AFFORDABLE_DEVICE_REPAIR = "Réparation d'appareil abordable"
+  public SAME_DAY_ADVANCED_REPAIR_SERVICES = "Services de réparation avancés le jour même"
+  public ALL_DEVICELIST_LOCATIONS = (storeName: string) => {
+    return `Toute ${storeName} Emplacements`
+  }
+  public CALL_NOW = "Appelle maintenant"
 
   /* service-widget Text */
   public NEXT = "Suivant"

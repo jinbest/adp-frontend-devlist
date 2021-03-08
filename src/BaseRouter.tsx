@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "./store/"
 import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
+import { Locations } from "./pages/locations/"
 import { Contact } from "./pages/contact"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { FeaturesParam } from "./model/feature-toggle"
@@ -54,6 +55,10 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
       <Route
         path="/business"
         component={() => <Business subDomain={subDomain} handleStatus={handleStatus} />}
+      />
+      <Route
+        path="/locations"
+        component={() => <Locations subDomain={subDomain} handleStatus={handleStatus} />}
       />
     </>
   )

@@ -47,7 +47,7 @@ import favicon from "./img/banana-favicon.ico"
 // business - images
 import shapeLeftDesktop from "./img/business/banana-shape-left-desktop.png"
 import shapeLeftMobile from "./img/business/banana-shape-left-mobile.png"
-import businessCornerShape from "./img/business/banana-corner-shape.png"
+import businessCornerShape from "./img/business/banana-corner-shape.svg"
 
 const businessData = {
   shapeLeftDesktop: shapeLeftDesktop,
@@ -239,7 +239,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [{text: 'BUSINESS', link: '/business'}],
+  left: [{text: 'BUSINESS', link: '/business'}, {text: 'LOCATIONS', link: '/locations'}],
   brandCol: "white",
   brandThemeCol: "#FEDA00",
   selectOption: ["ENGLISH", "FRENCH"],
