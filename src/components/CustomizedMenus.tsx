@@ -430,6 +430,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
                     href={
+                      storesDetailsStore.cntUserLocation[0] &&
                       storesDetailsStore.cntUserLocation[0].business_page_link
                         ? storesDetailsStore.cntUserLocation[0].business_page_link
                         : "https://www.google.com/business/"
@@ -455,6 +456,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
                     href={`${
+                      storesDetailsStore.cntUserLocation[0] &&
                       storesDetailsStore.cntUserLocation[0].business_page_link != null
                         ? storesDetailsStore.cntUserLocation[0].business_page_link
                         : `https://www.google.com/maps/search/?api=1&query=${getAddress(

@@ -18,5 +18,5 @@ export interface GetCurrentLocParams {
   location_name: string
   latitude?: number
   longitude?: number
-  business_page_link?: string
+  business_page_link?: string | null
 }
