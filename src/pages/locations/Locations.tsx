@@ -5,14 +5,27 @@ import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { Grid, Typography, Box } from "@material-ui/core"
 import { Button } from "../../components"
 import { useT, T } from "../../i18n"
+import { LangProps } from "../../i18n/en"
 import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
+import { getRegularHours, getHourType, getAddress } from "../contact/Section-map"
+import { phoneFormatString } from "../../components/Header"
+
+const DAYS_OF_THE_WEEK: LangProps[] = [
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
+]
 
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxWidth: "1440px",
-      margin: "250px auto 140px !important",
+      margin: "250px auto 0 !important",
       padding: "0 2rem",
       display: "block",
       textAlign: "left",
@@ -20,10 +33,10 @@ const useStyles = makeStyles(() =>
         marginTop: "210px !important",
       },
       ["@media (max-width:500px)"]: {
-        margin: "180px auto 50px !important",
+        margin: "180px auto 0 !important",
       },
       ["@media (max-width:425px)"]: {
-        margin: "200px auto 100px !important",
+        margin: "200px auto 0 !important",
       },
     },
     mainTitle: {
@@ -32,7 +45,6 @@ const useStyles = makeStyles(() =>
       lineHeight: "1 !important",
       textShadow: "1px 0 black",
       justifyContent: "center",
-      // letterSpacing: "2px",
       ["@media (max-width:1400px)"]: {
         fontSize: "4vw !important",
         marginBottom: "3vw !important",
@@ -41,13 +53,15 @@ const useStyles = makeStyles(() =>
         fontSize: "5vw !important",
       },
       ["@media (max-width:500px)"]: {
-        fontSize: "5.5vw !important",
+        fontSize: "4.5vw !important",
         width: "100%",
+        textAlign: "center",
       },
     },
     mainContent: {
       color: "black",
       fontSize: "40px !important",
+      marginTop: "50px !important",
       marginBottom: "40px !important",
       justifyContent: "left",
       width: "80%",
@@ -60,12 +74,92 @@ const useStyles = makeStyles(() =>
       ["@media (max-width:500px)"]: {
         fontSize: "3.5vw !important",
         width: "100%",
+        textAlign: "center",
+        marginTop: "30px !important",
+      },
+    },
+    buttonDiv: {
+      maxWidth: "250px",
+      width: "100%",
+      margin: "initial",
+      ["@media (max-width:500px)"]: {
+        margin: "auto",
+        maxWidth: "180px",
       },
     },
     locationsContainer: {
-      marginTop: "200px",
+      margin: "100px auto",
+      padding: "20px",
+      ["@media (max-width:1000px)"]: {
+        margin: "0px auto 50px",
+      },
     },
-    item: {},
+    subTitle: {
+      color: "black",
+      fontSize: "40px !important",
+      lineHeight: "1 !important",
+      textShadow: "1px 0 black",
+      justifyContent: "center",
+      marginTop: "50px !important",
+      marginBottom: "40px !important",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "3vw !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "4vw !important",
+        textAlign: "center",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "4.5vw !important",
+        marginBottom: "30px !important",
+      },
+    },
+    item: {
+      width: "100%",
+      height: "100%",
+      boxShadow: "-10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4)",
+      borderRadius: "10px",
+      "& > div": {
+        padding: "25px",
+      },
+    },
+    cardTitle: {
+      fontSize: "18px",
+      fontWeight: "bold",
+      marginBottom: "10px",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "15px",
+      },
+      ["@media (max-width:960px)"]: {
+        fontSize: "18px",
+      },
+      ["@media (max-width:700px)"]: {
+        fontSize: "15px",
+        marginBottom: "5px",
+      },
+      ["@media (max-width:400px)"]: {
+        fontSize: "14px",
+      },
+    },
+    cardText: {
+      fontSize: "15px",
+      marginBottom: "5px",
+      color: "black",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "13px",
+      },
+      ["@media (max-width:960px)"]: {
+        fontSize: "15px",
+      },
+      ["@media (max-width:700px)"]: {
+        fontSize: "13px",
+        marginBottom: "3px",
+      },
+      ["@media (max-width:400px)"]: {
+        fontSize: "12px",
+        marginBottom: "2px",
+      },
+    },
   })
 )
 
@@ -83,7 +177,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
 
   useEffect(() => {
     setPageTitle(`Locations | ${storesDetails.storesDetails.name}`)
-    handleStatus(false)
+    handleStatus(true)
   }, [])
 
   const handleGetQuote = () => {
@@ -106,24 +200,137 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
         <Typography className={classes.mainContent}>
           {t("SAME_DAY_ADVANCED_REPAIR_SERVICES")}
         </Typography>
-        <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
+        <Box className={classes.buttonDiv}>
           <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
             <Button
               title={t("GET_QUOTE")}
               bgcolor={data.colorPalle.repairButtonCol}
               borderR="20px"
               subDomain={subDomain}
-              width="70%"
-              margin="0 auto 0 0"
+              width="100%"
+              margin="0 auto"
             />
           </Link>
         </Box>
         <div className={classes.locationsContainer}>
-          <Typography className={classes.mainContent}>
+          <Typography className={classes.subTitle}>
             <T id="ALL_DEVICELIST_LOCATIONS" data={storesDetails.storesDetails.name} />
           </Typography>
           <Grid container spacing={5}>
-            <Grid item xs={12} md={6} className={classes.item}></Grid>
+            {storesDetails.allLocations.map((item: any, index: number) => {
+              return (
+                <Grid item xs={12} md={6} key={index}>
+                  <div className={classes.item}>
+                    <Grid container spacing={1}>
+                      <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <div>
+                          <Typography className={classes.cardTitle}>
+                            {item.location_name}
+                          </Typography>
+                          <Typography className={classes.cardText}>
+                            {`${item.address_1},`}
+                          </Typography>
+                          <Typography className={classes.cardText}>
+                            {`${item.address_2 ? item.address_2 + ", " : ""}${
+                              item.city ? item.city + ", " : ""
+                            } ${item.state ? item.state + " " : ""} ${
+                              item.postcode
+                                ? item.postcode.substring(0, 3) +
+                                  " " +
+                                  item.postcode.substring(3, item.postcode.length)
+                                : ""
+                            }`}
+                          </Typography>
+                          <a
+                            href={`tel:${item.phone}`}
+                            style={{ textDecoration: "none", display: "inline-block" }}
+                          >
+                            <Typography className={classes.cardText}>
+                              {phoneFormatString(item.phone)}
+                            </Typography>
+                          </a>
+                        </div>
+                        <div style={{ display: "flex", margin: "0 0 10px", flexWrap: "wrap" }}>
+                          <a
+                            href={`${
+                              item.business_page_link != null
+                                ? item.business_page_link
+                                : `https://www.google.com/maps/search/?api=1&query=${getAddress(
+                                    item
+                                  )
+                                    .split(" ")
+                                    .join("+")}`
+                            }`}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{
+                              textDecoration: "none",
+                              color: "black",
+                            }}
+                          >
+                            <Button
+                              title={t("GET_DIRECTIONS")}
+                              bgcolor={data.colorPalle.repairButtonCol}
+                              borderR="20px"
+                              subDomain={subDomain}
+                              width="auto"
+                              margin="10px 10px 0 0"
+                              fontSize="12px"
+                              height="25px"
+                            />
+                          </a>
+                          <a href={`tel:${item.phone}`} style={{ textDecoration: "none" }}>
+                            <Button
+                              title={t("CALL_NOW")}
+                              bgcolor={data.colorPalle.repairButtonCol}
+                              borderR="20px"
+                              subDomain={subDomain}
+                              width="auto"
+                              margin="10px 10px 0 0"
+                              fontSize="12px"
+                              height="25px"
+                            />
+                          </a>
+                        </div>
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <Typography className={classes.cardTitle}>{t("HOURS")}</Typography>
+                        {getRegularHours(item.location_hours).map((it, index) => (
+                          <div
+                            key={index}
+                            style={{ display: "flex", width: "100%", marginBottom: "5px" }}
+                          >
+                            <div style={{ width: "40%", margin: 0, padding: 0 }}>
+                              <Typography className={classes.cardText}>
+                                {t(DAYS_OF_THE_WEEK[it.day])}
+                              </Typography>
+                            </div>
+                            <div style={{ width: "60%", margin: 0, padding: 0 }}>
+                              <Typography className={classes.cardText}>
+                                {!it.open || !it.close
+                                  ? it.by_appointment_only
+                                    ? t("CALL_TO_BOOK_APPOINTMENT")
+                                    : t("CLOSED")
+                                  : getHourType(it.open) + "-" + getHourType(it.close)}
+                              </Typography>
+                            </div>
+                          </div>
+                        ))}
+                      </Grid>
+                    </Grid>
+                  </div>
+                </Grid>
+              )
+            })}
           </Grid>
         </div>
       </div>

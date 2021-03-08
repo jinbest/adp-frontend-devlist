@@ -13,6 +13,7 @@ import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import Loading from "./Loading"
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 export function makeLocations(data: any[]) {
   const locations: GetCurrentLocParams[] = []
@@ -117,7 +118,7 @@ interface Props extends StoreProps {
 
 const CustomizedMenus = inject("storesDetailsStore")(
   observer((props: Props) => {
-    const { subDomain, btnTitle, width, storesDetailsStore } = props
+    const { subDomain, btnTitle, width, storesDetailsStore, features } = props
 
     const data = require(`../assets/${subDomain}/Database`)
     const themeColor = data.colorPalle.themeColor
@@ -467,18 +468,30 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 )}
               </div>
               {locSelStatus && (
-                <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleBookRepair}>
-                  <Button
-                    title={t("BOOK_APPOINTMENT")}
-                    bgcolor={themeColor}
-                    borderR="20px"
-                    width="175px"
-                    height="30px"
-                    margin="0"
-                    fontSize="15px"
-                    subDomain={subDomain}
+                <FeatureToggles features={features}>
+                  <Feature
+                    name={"FRONTEND_REPAIR_APPOINTMENT"}
+                    inactiveComponent={() => <></>}
+                    activeComponent={() => (
+                      <Link
+                        to="/get-quote"
+                        style={{ textDecoration: "none" }}
+                        onClick={handleBookRepair}
+                      >
+                        <Button
+                          title={t("BOOK_APPOINTMENT")}
+                          bgcolor={themeColor}
+                          borderR="20px"
+                          width="175px"
+                          height="30px"
+                          margin="0"
+                          fontSize="15px"
+                          subDomain={subDomain}
+                        />
+                      </Link>
+                    )}
                   />
-                </Link>
+                </FeatureToggles>
               )}
             </div>
             {locSelStatus && (

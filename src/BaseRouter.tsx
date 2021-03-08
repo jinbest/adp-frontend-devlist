@@ -38,6 +38,7 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
             storesDetailsStore={storesDetails}
             subDomain={subDomain}
             handleStatus={handleStatus}
+            features={features}
           />
         )}
       />

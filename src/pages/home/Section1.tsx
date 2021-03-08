@@ -17,37 +17,26 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const t = useT()
 
-  // const [feats, setFeatures] = useState<any[]>([])
+  const [feats, setFeatures] = useState<any[]>([])
   const [featSearch, setFeatSearch] = useState<any[]>([])
   // const [gridMD, setGridMD] = useState(data.cardMobileData.gridMD)
-  // const [customeTitle, setCustomTitle] = useState("")
 
   useEffect(() => {
-    const cntCardMobileData: any = data.cardMobileData.data
+    // const cntCardMobileData: any = data.cardMobileData.data
     const cntFeature: any[] = [],
       cntFeatSearch: any[] = []
-    let cntCustomTitle = ""
     for (let j = 0; j < features.length; j++) {
-      if (features[j].flag === "FRONTEND_TRADE" && features[j].isActive) {
-        cntCustomTitle += cntCustomTitle ? ", " + t("TRADE") : t("TRADE")
-      } else if (features[j].flag === "FRONTEND_REPAIR" && features[j].isActive) {
-        cntCustomTitle += cntCustomTitle ? ", " + t("REPAIR") : t("REPAIR")
-      } else if (features[j].flag === "FRONTEND_BUY" && features[j].isActive) {
-        cntCustomTitle += cntCustomTitle ? ", " + t("BUY") : t("BUY")
-      } else if (features[j].flag === "SEARCH" && features[j].isActive) {
+      if (features[j].flag === "SEARCH" && features[j].isActive) {
         cntFeatSearch.push(features[j].flag)
       }
-      for (let i = 0; i < cntCardMobileData.length; i++) {
-        if (cntCardMobileData[i].flag === features[j].flag && features[j].isActive) {
-          cntFeature.push(cntCardMobileData[i].flag)
-        }
+      if (features[j].isActive) {
+        cntFeature.push(features[j].flag)
       }
     }
     // const cntGridMD = Math.round(12 / cntFeature.length)
-    // setFeatures(cntFeature)
+    setFeatures(cntFeature)
     setFeatSearch(cntFeatSearch)
     // setGridMD(cntGridMD)
-    // setCustomTitle(cntCustomTitle)
   }, [data, features, t])
 
   /* -------------------  handleScroll for show/hide Search-bar regarding on pageYOffset ---------------------------
@@ -113,17 +102,28 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
               />
             </Link>
           </Box>
-          <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
-            <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
-              <Button
-                title={t("BOOK_APPOINTMENT")}
-                bgcolor={data.colorPalle.repairButtonCol}
-                borderR="20px"
-                subDomain={subDomain}
-                width="90%"
-              />
-            </Link>
-          </Box>
+          <FeatureToggles features={feats}>
+            <Feature
+              name={"FRONTEND_REPAIR_APPOINTMENT"}
+              inactiveComponent={() => <></>}
+              activeComponent={() => (
+                <Box
+                  className={subDomain + "-service-section-button"}
+                  style={{ margin: "initial" }}
+                >
+                  <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
+                    <Button
+                      title={t("BOOK_APPOINTMENT")}
+                      bgcolor={data.colorPalle.repairButtonCol}
+                      borderR="20px"
+                      subDomain={subDomain}
+                      width="90%"
+                    />
+                  </Link>
+                </Box>
+              )}
+            />
+          </FeatureToggles>
         </div>
 
         <FeatureToggles features={featSearch}>

@@ -18,23 +18,25 @@ const useStyles = makeStyles(() =>
         minWidth: "350px",
       },
       ["@media (max-width:500px)"]: {
-        minWidth: "290px",
-        top: 0,
-      },
-      ["@media (max-width:425px)"]: {
-        top: 30,
+        display: "none",
       },
     },
     skitImg: {
       position: "absolute",
-      right: "16vw",
-      top: "16vw",
-      width: "23vw",
-      minWidth: "300px",
-      maxWidth: "450px",
+      right: "15vw",
+      top: "350px",
+      width: "450px",
       zIndex: -1,
       "& img": {
         width: "100%",
+      },
+      ["@media (max-width:1600px)"]: {
+        right: "7vw",
+      },
+      ["@media (max-width:1200px)"]: {
+        right: "4vw",
+        top: "290px",
+        width: "400px",
       },
       ["@media (max-width:1000px)"]: {
         display: "none",

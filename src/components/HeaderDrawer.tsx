@@ -558,7 +558,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                     </div>
                     <FeatureToggles features={features}>
                       <Feature
-                        name="FRONTEND_REPAIR"
+                        name="FRONTEND_REPAIR_APPOINTMENT"
                         inactiveComponent={() => <></>}
                         activeComponent={() => (
                           <Link

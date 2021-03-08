@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
 import { useT } from "../../i18n/index"
@@ -14,18 +14,7 @@ import PhoneIcon from "@material-ui/icons/Phone"
 import CallSplitIcon from "@material-ui/icons/CallSplit"
 import { makeLocations } from "../../components/CustomizedMenus"
 import { phoneFormatString } from "../../components/Header"
-
-interface Props extends StoreProps {
-  subDomain?: string
-  locations: any[]
-  handleStatus: (status: boolean) => void
-  location_id: number
-  handleLocationID: (id: number) => void
-}
-
-type StoreProps = {
-  storesDetailsStore: StoresDetails
-}
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 interface LocationHour {
   close: string
@@ -54,6 +43,47 @@ const DAYS_OF_THE_WEEK: LangProps[] = [
   "FRIDAY",
   "SATURDAY",
 ]
+
+export function getRegularHours(hours: any[]) {
+  return hours
+    .map((v) => v as LocationHour)
+    .filter((p) => {
+      return p.type == "REGULAR"
+    })
+    .sort((d) => d.day)
+}
+
+export function getHourType(hourStr: string) {
+  const ptr = hourStr.split(":")
+  let hour = 12,
+    minute = "00"
+  let AP = "a.m."
+  if (ptr.length > 0) {
+    hour = parseInt(ptr[0])
+    if (hour >= 12) {
+      AP = "p.m."
+    } else {
+      AP = "a.m."
+    }
+  }
+  if (ptr.length > 1) {
+    minute = ptr[1]
+  }
+  return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
+}
+
+export function getAddress(location: any) {
+  if (!location) return ""
+  return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
+    location.city ? location.city + ", " : ""
+  } ${location.state ? location.state + " " : ""} ${
+    location.postcode
+      ? location.postcode.substring(0, 3) +
+        " " +
+        location.postcode.substring(3, location.postcode.length)
+      : ""
+  }`
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -150,6 +180,18 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
+interface Props extends StoreProps {
+  subDomain?: string
+  locations: any[]
+  handleStatus: (status: boolean) => void
+  location_id: number
+  handleLocationID: (id: number) => void
+  features: any[]
+}
+
+type StoreProps = {
+  storesDetailsStore: StoresDetails
+}
 
 const SectionMap = inject("storesDetailsStore")(
   observer(
@@ -160,13 +202,25 @@ const SectionMap = inject("storesDetailsStore")(
       handleStatus,
       location_id,
       handleLocationID,
+      features,
     }: Props) => {
       const data = require(`../../assets/${subDomain}/Database`)
       const t = useT()
       const classes = useStyles()
-      const [expanded, setExpanded] = React.useState<number | false>(0)
-      const [selectedLocation, setSelectedLocation] = React.useState<null | any>(locations[0])
-      const [isExpanded, setIsExpanded] = React.useState<boolean>(true)
+      const [expanded, setExpanded] = useState<number | false>(0)
+      const [selectedLocation, setSelectedLocation] = useState<null | any>(locations[0])
+      const [isExpanded, setIsExpanded] = useState<boolean>(true)
+      const [feats, setFeatures] = useState<any[]>([])
+
+      useEffect(() => {
+        const cntFeatures: any[] = []
+        for (let i = 0; i < features.length; i++) {
+          if (features[i].isActive) {
+            cntFeatures.push(features[i].flag)
+          }
+        }
+        setFeatures(cntFeatures)
+      }, [features])
 
       const handleLocSelect = (location: any) => {
         storesDetailsStore.cntUserLocation = makeLocations([location])
@@ -191,44 +245,6 @@ const SectionMap = inject("storesDetailsStore")(
         }
       }, [locations, location_id])
 
-      const getAddress = (location: any) => {
-        return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-          location.city ? location.city + ", " : ""
-        } ${location.state ? location.state + " " : ""} ${
-          location.postcode
-            ? location.postcode.substring(0, 3) +
-              " " +
-              location.postcode.substring(3, location.postcode.length)
-            : ""
-        }`
-      }
-
-      const getRegularHours = (hours: any[]) => {
-        return hours
-          .map((v) => v as LocationHour)
-          .filter((p) => {
-            return p.type == "REGULAR"
-          })
-          .sort((d) => d.day)
-      }
-      const getHourType = (hourStr: string) => {
-        const ptr = hourStr.split(":")
-        let hour = 12,
-          minute = "00"
-        let AP = "a.m."
-        if (ptr.length > 0) {
-          hour = parseInt(ptr[0])
-          if (hour >= 12) {
-            AP = "p.m."
-          } else {
-            AP = "a.m."
-          }
-        }
-        if (ptr.length > 1) {
-          minute = ptr[1]
-        }
-        return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
-      }
       const handleChange = (panel: number) => (_: React.ChangeEvent<any>, isExpanded: boolean) => {
         // setExpanded(isExpanded ? panel : false)
         // setIsExpanded(isExpanded)
@@ -372,26 +388,34 @@ const SectionMap = inject("storesDetailsStore")(
                               </button>
                             </Link>
                           </Grid>
-                          <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
-                            <Link
-                              to="/get-quote"
-                              style={{ textDecoration: "none" }}
-                              onClick={handleGetQuote}
-                            >
-                              <button
-                                style={{
-                                  backgroundColor: data.colorPalle.repairButtonCol,
-                                  borderRadius: "20px",
-                                }}
-                                className={subDomain + "-button " + classes.getAppoint}
-                                onClick={() => {
-                                  handleLocSelect(element)
-                                }}
-                              >
-                                {t("BOOK_APPOINTMENT")}
-                              </button>
-                            </Link>
-                          </Grid>
+                          <FeatureToggles features={feats}>
+                            <Feature
+                              name={"FRONTEND_REPAIR_APPOINTMENT"}
+                              inactiveComponent={() => <></>}
+                              activeComponent={() => (
+                                <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
+                                  <Link
+                                    to="/get-quote"
+                                    style={{ textDecoration: "none" }}
+                                    onClick={handleGetQuote}
+                                  >
+                                    <button
+                                      style={{
+                                        backgroundColor: data.colorPalle.repairButtonCol,
+                                        borderRadius: "20px",
+                                      }}
+                                      className={subDomain + "-button " + classes.getAppoint}
+                                      onClick={() => {
+                                        handleLocSelect(element)
+                                      }}
+                                    >
+                                      {t("BOOK_APPOINTMENT")}
+                                    </button>
+                                  </Link>
+                                </Grid>
+                              )}
+                            />
+                          </FeatureToggles>
                         </Grid>
                       </Grid>
                       <Grid

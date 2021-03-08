@@ -44,6 +44,7 @@ const Repair = ({ subDomain, handleStatus, features }: Props) => {
                 subDomain={subDomain}
                 handleStatus={handleStatus}
                 repairWidgetStore={repairWidgetStore}
+                features={feats}
               />
               <Section2 subDomain={subDomain} />
               {/* <Section3 subDomain={subDomain} /> */}

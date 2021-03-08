@@ -16,9 +16,10 @@ type Props = {
   subDomain: string
   storesDetailsStore: StoresDetails
   handleStatus: (status: boolean) => void
+  features: any[]
 }
 
-const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
+const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database`)
   const query = useQuery()
 
@@ -59,6 +60,7 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore }: Props) => {
           handleStatus={handleStatus}
           location_id={locationID}
           handleLocationID={setLocationID}
+          features={features}
         />
       )}
       {locations.length && locationID && (

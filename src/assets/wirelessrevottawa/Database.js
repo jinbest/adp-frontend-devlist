@@ -259,7 +259,7 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [{text: 'BUSINESS', link: '/business'}],
+  left: [{text: 'BUSINESS', link: '/business'}, {text: 'LOCATIONS', link: '/locations'}],
   brandCol: "white",
   brandThemeCol: "#4D4D4D",
   selectOption: ["ENGLISH", "FRENCH"],
@@ -296,6 +296,7 @@ const mobileNavItemData = {
     },
     { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
     { text: "BUSINESS", href: "/business", flag: "ALWAYS_TRUE" },
+    { text: "LOCATIONS", href: "/locations", flag: "ALWAYS_TRUE"},
     { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
     { text: "INSURANCE", href: "#", flag: "FRONTEND_INSURE" },
     { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },

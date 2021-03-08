@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "../../store/RepairWidgetStore"
 import { useT } from "../../i18n/index"
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 type StoreProps = {
   repairWidgetStore: RepairWidgetStore
@@ -12,11 +13,12 @@ type StoreProps = {
 interface Props extends StoreProps {
   subDomain: string
   handleStatus: (status: boolean) => void
+  features: any[]
 }
 
 const Section1 = inject("repairWidgetStore")(
   observer((props: Props) => {
-    const { handleStatus, repairWidgetStore, subDomain } = props
+    const { handleStatus, repairWidgetStore, subDomain, features } = props
     const data = require(`../../assets/${subDomain}/Database`)
     const repair = data.repairData.section1
     const t = useT()
@@ -64,21 +66,29 @@ const Section1 = inject("repairWidgetStore")(
                     />
                   </Link>
                 </Box>
-                <Box className={subDomain + "-service-section-button"}>
-                  <Link
-                    to="/get-quote"
-                    style={{ textDecoration: "none" }}
-                    onClick={handleRepairWidget}
-                  >
-                    <Button
-                      title={t("BOOK_APPOINTMENT")}
-                      bgcolor={data.colorPalle.repairButtonCol}
-                      borderR="20px"
-                      subDomain={subDomain}
-                      width="90%"
-                    />
-                  </Link>
-                </Box>
+                <FeatureToggles features={features}>
+                  <Feature
+                    name={"FRONTEND_REPAIR_APPOINTMENT"}
+                    inactiveComponent={() => <></>}
+                    activeComponent={() => (
+                      <Box className={subDomain + "-service-section-button"}>
+                        <Link
+                          to="/get-quote"
+                          style={{ textDecoration: "none" }}
+                          onClick={handleRepairWidget}
+                        >
+                          <Button
+                            title={t("BOOK_APPOINTMENT")}
+                            bgcolor={data.colorPalle.repairButtonCol}
+                            borderR="20px"
+                            subDomain={subDomain}
+                            width="90%"
+                          />
+                        </Link>
+                      </Box>
+                    )}
+                  />
+                </FeatureToggles>
               </div>
             </Grid>
             <Grid item xs={12} sm={5}>
