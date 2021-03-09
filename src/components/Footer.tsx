@@ -272,11 +272,11 @@ const Footer = inject("storesDetailsStore")(
                 })}
               </Grid>
               <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
-                {`2021 ${storesDetailsStore.storesDetails.name}. ${t(
-                  "All Rights Reserved. All trademarks are properties of their respective holders."
-                )} "${storesDetailsStore.storesDetails.name}" ${t(
-                  "does not own or make claim to those trademarks used on this website in which it is not the holder."
-                )}`}
+                {`${data.homeTextData.footer.copyRight.year} ${
+                  storesDetailsStore.storesDetails.name
+                }. ${t(data.homeTextData.footer.copyRight.text1)} "${
+                  storesDetailsStore.storesDetails.name
+                }" ${t(data.homeTextData.footer.copyRight.text2)}`}
               </div>
               {/* </Grid> */}
             </Grid>

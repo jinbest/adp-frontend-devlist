@@ -74,13 +74,13 @@ const cardMobileData = {
     { img: trade, title: "Trade", btnTitle: "Trade-In", flag: "FRONTEND_TRADE", href: "#" },
     {
       img: repair,
-      title: "REPAIR",
-      btnTitle: "REPAIR",
+      title: "Repair",
+      btnTitle: "Repair",
       flag: "FRONTEND_REPAIR",
       href: "/quote",
     },
-    { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
-    { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
+    { img: buy, title: "Shop", btnTitle: "Shop", flag: "FRONTEND_BUY", href: "#" },
+    { img: protect, title: "Insure", btnTitle: "Insure", flag: "FRONTEND_INSURE", href: "#" },
   ],
 }
 
@@ -231,7 +231,7 @@ const navShop = {
       list: ["Essential PH-1"],
     },
   ],
-  otherList: ["SEE_ALL_PRODUCTS", "SEE_HOME", "HOW_TO_SELL"],
+  otherList: ["See All Products", "See Home", "How to Sell"],
 }
 
 const brandItemsData = {
@@ -239,16 +239,6 @@ const brandItemsData = {
   brandCol: "white",
   brandThemeCol: "#FEDA00",
 }
-
-const hoursData = [
-  { day: "MONDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "TUESDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "WEDNESDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "THURSDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "FRIDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "SATURDAY", time: "11:00 a.m. - 4:00 p.m." },
-  { day: "SUNDAY", time: "CLOSED" },
-]
 
 const avatarData = {
   userActive: userActive,
@@ -282,11 +272,11 @@ const mobileNavItemData = {
 }
 
 const userNavItemData = [
-  { text: "MY_ACCOUNT", href: "#", flag: "FRONTEND_USER_ACCOUNT" },
-  { text: "TRACK_REPAIR", href: "/quote", flag: "FRONTEND_REPAIR" },
-  { text: "FILE_A_CLAIM", href: "#", flag: "ALWAYS_TRUE" },
-  { text: "ORDERS", href: "#", flag: "ALWAYS_TRUE" },
-  { text: "TRADE_IN", href: "#", flag: "FRONTEND_TRADE" },
+  { text: "My Account", href: "#", flag: "FRONTEND_USER_ACCOUNT" },
+  { text: "Track Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
+  { text: "File a Claim", href: "#", flag: "ALWAYS_TRUE" },
+  { text: "Orders", href: "#", flag: "ALWAYS_TRUE" },
+  { text: "Trade-In", href: "#", flag: "FRONTEND_TRADE" },
 ]
 
 const shapeData = {
@@ -300,7 +290,7 @@ const homeTextData = {
     width: "150px",
   },
   section1: {
-    searchPlaceholder: "FIND_YOUR_DEVICE",
+    searchPlaceholder: "Find your device",
     city: "Peterborough",
   },
   section2: {
@@ -355,6 +345,11 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
+    copyRight: {
+      year: 2021,
+      text1: "All Rights Reserved. All trademarks are properties of their respective holders.",
+      text2: "does not own or make claim to those trademarks used on this website in which it is not the holder."
+    },
     footerLink: [
       {
         name: "Resources",
@@ -398,64 +393,64 @@ const homeTextData = {
 
 const repairData = {
   section1: {
-    title: "FIX_YOUR_DEVICE_FAST",
-    content: "FIX_YOUR_DEVICE_FAST_CONTENT",
-    btnTitle: "GET_QUOTE",
+    title: "Fix Your Device Fast!",
+    content: "Answer a few questions about your damaged device and we’ll help repair it.",
+    btnTitle: "Get Quote",
     themeCol: "black",
   },
   section2: {
-    title: "HOW_DOES_REPAIR_WORK",
+    title: "How does repair work?",
     content: [
       {
         img: selectRepair,
-        subtitle: "SELECT_A_REPAIR_CATEGORY",
-        content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+        subtitle: "Select a repair category",
+        content: "Make an account with us and indicate what needs to be repaired.",
         type: "SelectRepair",
       },
       {
         img: sendDevice,
-        subtitle: "GET_YOUR_DEVICE_TO_US",
-        content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+        subtitle: "Get your device to us",
+        content: "Find a location near you for drop off or ship to the store of your choosing.",
         type: "GetDeviceUs",
       },
       {
         img: receiveDevice,
-        subtitle: "RECEIVE_YOUR_DEVICE",
-        content: "BANANA_RECEIVE_YOUR_DEVICE_CONTENT",
+        subtitle: "Receive your device",
+        content: "repairs your device and notifies you of pick up or delivery date.",
         type: "ReceiveDevice",
       },
     ],
   },
   section3: {
-    title: "FROM_NEW_TO_RECONDITIONED",
-    content: "BANANA_FROM_NEW_TO_RECONDITIONED_CONTENT",
+    title: "From New to Reconditioned",
+    content: "Choose your new phone among our 4 grades, with Banana Service it's easy to choose for any budget!",
     children: [
       {
         subtitle: "NEW",
-        subcontent: "NEW_CONTENT",
+        subcontent: "A brand new device with no signs of wear",
         img: newImg,
       },
       {
         subtitle: "MINT",
-        subcontent: "MINT_CONTENT",
+        subcontent: "No scratches or dents",
         img: mintImg,
       },
       {
         subtitle: "GOOD",
-        subcontent: "GOOD_CONTENT",
+        subcontent: "Minor scratches or dents",
         img: goodImg,
       },
       {
         subtitle: "FAIR",
-        subcontent: "FAIR_CONTENT",
+        subcontent: "Visible scratchs and dents",
         img: fairImg,
       },
     ],
   },
   section4: {
-    title: "GET_THE_LATEST",
-    content: "SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE",
-    btnTitle: "FIND_A_STORE",
+    title: "Get the Latest",
+    content: "Shop our selection of new and pre-owned devices!",
+    btnTitle: "Find a Store",
     themeCol: "black",
     link: "#"
   },
@@ -486,7 +481,6 @@ export {
   contentFixData,
   navItemsData,
   brandItemsData,
-  hoursData,
   avatarData,
   mobileNavItemData,
   userNavItemData,

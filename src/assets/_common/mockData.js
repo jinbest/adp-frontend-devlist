@@ -31,105 +31,107 @@ import skitterMobile from "./img/skitter-mobile.png"
 
 const repairWidget = {
   deviceBrand: {
-    title: "CHOOSE_YOUR_DEVICE_BRAND",
-    placeholder: "SEARCH_FOR_YOUR_DEVICE_BRAND",
+    title: "Choose Your Device Brand",
+    placeholder: "Search for your Device Brand",
     mainTopic: {
-      title: "FIND_YOUR_DEVICE_BRAND",
-      content: ["FIND_YOUR_DEVICE_BRAND_CONTENT_1", "FIND_YOUR_DEVICE_BRAND_CONTENT_2"],
+      title: "Find your device’s brand",
+      content: [
+        "Your device brand can usually be found on the back of the handset itself, but if for whatever reason you aren’t sure don’t panic!", 
+        "It is indicated on back of the device, on the front, or in the Settings/System/About phone section if you are on Android or Settings/ IDs if you are on IOS. It may also be shown on the original box and/or manual that came with your device."
+      ],
     },
     disableTopic: {
-      title: "HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE",
-      content: "HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT",
+      title: "How to find the model of your device",
+      content: "The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device.",
     },
   },
   deviceModel: {
-    title: "CHOOSE_YOUR_DEVICE_MODEL_APPLE",
-    placeholder: "SEARCH_FOR_YOUR_MODEL",
+    title: "Choose Your Device Model",
+    placeholder: "Search for your Model",
     mainTopic: {
-      title: "HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE",
-      content: ["HOW_TO_FIND_THE_MODEL_OF_YOUR_DEVICE_CONTENT"],
+      title: "How to find the model of your device",
+      content: ["The device model is indicated in the Settings / System / About phone section or in Settings / General / Storage. It may also be shown on the original box and/or manual that came with your device."],
     },
     disableTopic: { title: "", content: "" },
   },
   deviceRepairs: {
-    title: "CHOOSE_YOUR_REPAIRS",
-    placeholder: "WHAT_IS_BROKEN",
+    title: "Choose Your Issue",
+    placeholder: "What’s broken?",
     mainTopic: {
-      title: "REPAIR_SERVICE_SUMMARY",
-      content: [],
+      title: "Service Summary"
     },
   },
   repairAnotherDevice: {
-    title: "REPAIR_ANOTHER_DEVICE",
+    title: "Add Another Device?",
     mainTopic: {
-      title: "REPAIR_ANOTHER_DEVICE",
-      content: "REPAIR_ANOTHER_DEVICE_CONTENT",
+      title: "Add Another Device?",
+      content: "Get all your devices done at once with us!",
     },
   },
   dropOffDevicce: {
-    title: "HOW_WOULD_YOU_LIKE_TO_DROP_YOUR_DEVICE",
+    title: "How Would You Like to Get Service?",
   },
   receiveQuote: {
-    title: "HOW_WOULD_YOU_LIKE_TO_RECEIVE_YOUR_QUOTE",
+    title: "How Would You Like to Receive Your Quote?",
   },
   contactDetails: {
-    title: "PLEASE_ENTER_YOUR_CONTACT_DETAILS",
+    title: "Please Enter Your Contact Details",
     placeholder: {
-      firstName: "FIRST_NAME",
-      lastName: "LAST_NAME",
-      emailAdd: "EMAIL_ADDRESS",
-      phoneNum: "PHONE_NUM",
-      address1: "STREET_ADDRESS",
-      address2: "ADDRESS_2",
-      country: "COUNTRY",
-      city: "CITY",
-      province: "PROVINCE",
-      postalCode: "POSTAL_CODE",
+      firstName: "First Name*",
+      lastName: "Last Name*",
+      emailAdd: "E-mail Address*",
+      phoneNum: "Phone Number",
+      address1: "Street Address*",
+      address2: "Address 2",
+      country: "Country",
+      city: "City*",
+      province: "Province*",
+      postalCode: "Postal Code*",
     },
   },
   bookTime: {
     title: {
-      MAIL_IN: "SELECT_MAIN_IN_ADDRESS",
-      PICK_UP: "SCHEDULE_A_PICK_UP",
-      CURBSIDE: "BOOK_YOUR_TIME",
-      WALK_IN: "BOOK_YOUR_TIME",
-      ONSITE: "BOOK_YOUR_TIME",
+      MAIL_IN: "Select Mail-In Address",
+      PICK_UP: "Schedule a Pick-Up",
+      CURBSIDE: "Book Your Time",
+      WALK_IN: "Book Your Time",
+      ONSITE: "Book Your Time",
     },
     select: {
       location: {
         title: {
-          MAIL_IN: "PLEASE_SELECT_PREFERRED_SERVICE_LOCATION",
-          PICK_UP: "PLEASE_ENTER_YOUR_ADDRESS",
-          CURBSIDE: "SELECT_PREFERRED_LOCATION",
-          WALK_IN: "SELECT_PREFERRED_LOCATION",
-          ONSITE: "ENTER_YOUR_RESIDENTIAL_ADDRESS",
+          MAIL_IN: "Please Select Preferred Service Location",
+          PICK_UP: "Please Enter Your Address",
+          CURBSIDE: "Select Preferred Location",
+          WALK_IN: "Select Preferred Location",
+          ONSITE: "Enter Your Residential Address",
         },
       },
       time: {
         title: {
-          MAIL_IN: "PLEASE_ENTER_YOUR_ADDRESS_FOR_RETURN_SHIPMENT",
-          PICK_UP: "SELECT_A_PICK_UP_TIME",
-          CURBSIDE: "SELECT_CURBSIDE_DROP_OFF_TIME",
-          WALK_IN: "SELECT_CURBSIDE_DROP_OFF_TIME",
-          ONSITE: "SELECT_VISIT_TIME",
+          MAIL_IN: "Please Enter Your Address for Return Shipment",
+          PICK_UP: "Select a Pick-Up Time",
+          CURBSIDE: "Select a day and time",
+          WALK_IN: "Select a day and time",
+          ONSITE: "Select Visit Time",
         },
       },
     },
   },
   usefulInfo: {
-    title: "ENTER_A_MESSAGE_OR_USEFUL_INFO",
-    placeholder: "TYPE_YOUR_MESSAGE_HERE_OPTIONAL",
+    title: "Let us know if there's anything we should know about your device",
+    placeholder: "Type your message here (optional)",
   },
   quoteData: [
     {
       img: requestQuote,
-      title: "THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR",
-      text: "WITH_A_DETAILED_SERVICE_QUOTE",
+      title: "Thank you for choosing",
+      text: "with a detailed service quote.",
     },
     {
       img: thankQuote,
-      title: "THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR",
-      text: "WITH_A_DETAILED_SERVICE_QUOTE_AND_APPOINTMENT",
+      title: "Thank you for choosing",
+      text: "with a detailed service quote and appointment information.",
     },
   ],
 }

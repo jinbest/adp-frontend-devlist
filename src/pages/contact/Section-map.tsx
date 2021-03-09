@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
-import { useT } from "../../i18n/index"
-import { LangProps } from "../../i18n/en"
+import { useTranslation } from "react-i18next"
 import { repairWidgetStore } from "../../store"
 import CustomMap from "../../components/CustomMap"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
@@ -34,14 +33,14 @@ interface LocationHour {
   by_appointment_only: boolean
 }
 
-const DAYS_OF_THE_WEEK: LangProps[] = [
-  "SUNDAY",
-  "MONDAY",
-  "TUESDAY",
-  "WEDNESDAY",
-  "THURSDAY",
-  "FRIDAY",
-  "SATURDAY",
+const DAYS_OF_THE_WEEK: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ]
 
 export function getRegularHours(hours: any[]) {
@@ -205,7 +204,7 @@ const SectionMap = inject("storesDetailsStore")(
       features,
     }: Props) => {
       const data = require(`../../assets/${subDomain}/Database`)
-      const t = useT()
+      const [t] = useTranslation()
       const classes = useStyles()
       const [expanded, setExpanded] = useState<number | false>(0)
       const [selectedLocation, setSelectedLocation] = useState<null | any>(locations[0])
@@ -350,7 +349,7 @@ const SectionMap = inject("storesDetailsStore")(
                                 }}
                               >
                                 <CallSplitIcon />
-                                <span className={classes.directions}>{t("DIRECTIONS")}</span>
+                                <span className={classes.directions}>{t("Directions")}</span>
                               </a>
                             </p>
                           </Grid>
@@ -384,7 +383,7 @@ const SectionMap = inject("storesDetailsStore")(
                                   handleLocSelect(element)
                                 }}
                               >
-                                {t("GET_QUOTE")}
+                                {t("Get Quote")}
                               </button>
                             </Link>
                           </Grid>
@@ -409,7 +408,7 @@ const SectionMap = inject("storesDetailsStore")(
                                         handleLocSelect(element)
                                       }}
                                     >
-                                      {t("BOOK_APPOINTMENT")}
+                                      {t("Book Appointment")}
                                     </button>
                                   </Link>
                                 </Grid>
@@ -428,7 +427,7 @@ const SectionMap = inject("storesDetailsStore")(
                       >
                         <div>
                           <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
-                            {t("HOURS")}
+                            {t("Hours")}
                           </p>
                         </div>
 
@@ -443,8 +442,8 @@ const SectionMap = inject("storesDetailsStore")(
                               <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
                                 {!item.open || !item.close
                                   ? item.by_appointment_only
-                                    ? t("CALL_TO_BOOK_APPOINTMENT")
-                                    : t("CLOSED")
+                                    ? t("Call to book appointment")
+                                    : t("Closed")
                                   : getHourType(item.open) + "-" + getHourType(item.close)}
                               </p>
                             </Grid>

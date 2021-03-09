@@ -4,7 +4,7 @@ import { Button } from "../../components"
 import { Link } from "react-router-dom"
 import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "../../store/RepairWidgetStore"
-import { useT } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 type StoreProps = {
@@ -21,7 +21,7 @@ const Section1 = inject("repairWidgetStore")(
     const { handleStatus, repairWidgetStore, subDomain, features } = props
     const data = require(`../../assets/${subDomain}/Database`)
     const repair = data.repairData.section1
-    const t = useT()
+    const [t] = useTranslation()
 
     const handleRepairWidget = () => {
       const cntAppointment: any = repairWidgetStore.appointResponse
@@ -58,7 +58,7 @@ const Section1 = inject("repairWidgetStore")(
                     onClick={handleRepairWidget}
                   >
                     <Button
-                      title={t("GET_QUOTE")}
+                      title={t("Get Quote")}
                       bgcolor={data.colorPalle.repairButtonCol}
                       borderR="20px"
                       subDomain={subDomain}
@@ -78,7 +78,7 @@ const Section1 = inject("repairWidgetStore")(
                           onClick={handleRepairWidget}
                         >
                           <Button
-                            title={t("BOOK_APPOINTMENT")}
+                            title={t("Book Appointment")}
                             bgcolor={data.colorPalle.repairButtonCol}
                             borderR="20px"
                             subDomain={subDomain}

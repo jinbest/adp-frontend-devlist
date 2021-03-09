@@ -1,7 +1,7 @@
 import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { CardRepairSec3 } from "../../components"
-import { useT } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 
 type Props = {
   subDomain?: string
@@ -10,7 +10,7 @@ type Props = {
 const Section3 = ({ subDomain }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const repair = data.repairData.section3
-  const t = useT()
+  const [t] = useTranslation()
 
   return (
     <section className={subDomain + "-service-section-3"}>

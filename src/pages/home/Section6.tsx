@@ -15,7 +15,9 @@ const Section6 = ({ subDomain }: Props) => {
   return (
     <section className={subDomain + "-Container center " + subDomain + "-sec6-container"}>
       <Typography className="f40 bold mg-t-1" style={{ color: "black", textShadow: "1px 0 black" }}>
-        {`${t("See Why Customers Love")} ${storesDetails.storesDetails.name}`}
+        {`${t("See Why Customers Love")} ${storesDetails.storesDetails.name
+          .replace(/ Inc/g, "")
+          .replace(/ Inc./g, "")}`}
       </Typography>
       {/* <Typography className="f24">{t("View More")}</Typography> */}
       <Grid container item xs={12} spacing={2} className={subDomain + "-sec6-card"}>

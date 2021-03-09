@@ -1,8 +1,6 @@
 import React from "react"
 import { Button } from "../../components"
 import { Typography, Box } from "@material-ui/core"
-// import { useT } from "../../i18n/index"
-// import { LangProps } from "../../i18n/en"
 import { useTranslation } from "react-i18next"
 
 type Props = {

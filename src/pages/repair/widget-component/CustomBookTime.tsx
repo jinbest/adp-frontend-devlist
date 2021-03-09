@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 function availableTimeRange(min: number, max: number, intv: number, mut: number) {
   if (min === max) return ["Closed"]
@@ -92,6 +93,7 @@ const CustomBookTime = ({
     multi = 60 * 1000
   const [val, setVal] = useState(timezoneIndex)
   const [bookArray, setBookArray] = useState<ArrayProps[]>([])
+  const [t] = useTranslation()
 
   useEffect(() => {
     const timesRng = convertTimeRange(hoursRange)
@@ -192,7 +194,7 @@ const CustomBookTime = ({
                 handleBook(index)
               }}
             >
-              {item.book}
+              {item.book === "Closed" ? t(item.book) : item.book}
             </div>
           )
         })}

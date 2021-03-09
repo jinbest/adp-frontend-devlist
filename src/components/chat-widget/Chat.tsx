@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Widget, addResponseMessage } from "react-chat-widget"
 import "react-chat-widget/lib/styles.css"
 import support_logo from "./resources/support_logo.png"
-import { useT } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 import queryMessage from "./firebase-connection.js"
@@ -17,7 +17,7 @@ const Chat = ({ subDomain, features }: Props) => {
   // const chatData = mainData.chatData;
   // const chatBgCol = mainData.colorPalle.chatBgCol;
 
-  const t = useT()
+  const [t] = useTranslation()
   const [feats, setFeatures] = useState<any[]>([])
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Chat = ({ subDomain, features }: Props) => {
               }
               profileAvatar={support_logo}
               title=""
-              subtitle={t("WE_TYPICALLY_REPLY_IN_FEW_MINS")}
+              subtitle={t("We typically reply in a few minutes")}
               handleNewUserMessage={handleNewUserMessage}
               toggleWidget="true"
               // launcher={(handleToggle:any) => getCustomLauncher(handleToggle)}

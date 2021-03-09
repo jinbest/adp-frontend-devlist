@@ -4,21 +4,20 @@ import { Shape } from "./"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { Grid, Typography, Box } from "@material-ui/core"
 import { Button } from "../../components"
-import { useT, T } from "../../i18n"
-import { LangProps } from "../../i18n/en"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
 import { getRegularHours, getHourType, getAddress } from "../contact/Section-map"
 import { phoneFormatString } from "../../components/Header"
 
-const DAYS_OF_THE_WEEK: LangProps[] = [
-  "SUNDAY",
-  "MONDAY",
-  "TUESDAY",
-  "WEDNESDAY",
-  "THURSDAY",
-  "FRIDAY",
-  "SATURDAY",
+const DAYS_OF_THE_WEEK: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ]
 
 const useStyles = makeStyles(() =>
@@ -171,7 +170,7 @@ type Props = {
 const Locations = ({ subDomain, handleStatus }: Props) => {
   const classes = useStyles()
   const data = require(`../../assets/${subDomain}/Database`)
-  const t = useT()
+  const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Locations")
 
@@ -195,15 +194,15 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
 
       <Shape subDomain={subDomain} />
       <div className={classes.root}>
-        <h1 className={classes.mainTitle}>{t("PROFESSIONAL") + ", " + t("TRANSPARENT") + " &"}</h1>
-        <h1 className={classes.mainTitle}>{t("AFFORDABLE_DEVICE_REPAIR")}</h1>
+        <h1 className={classes.mainTitle}>{t("Professional") + ", " + t("Transparent") + " &"}</h1>
+        <h1 className={classes.mainTitle}>{t("Appordable Device Repair")}</h1>
         <Typography className={classes.mainContent}>
-          {t("SAME_DAY_ADVANCED_REPAIR_SERVICES")}
+          {t("Same-Day Advanced Repair Services")}
         </Typography>
         <Box className={classes.buttonDiv}>
           <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
             <Button
-              title={t("GET_QUOTE")}
+              title={t("Get Quote")}
               bgcolor={data.colorPalle.repairButtonCol}
               borderR="20px"
               subDomain={subDomain}
@@ -214,7 +213,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
         </Box>
         <div className={classes.locationsContainer}>
           <Typography className={classes.subTitle}>
-            <T id="ALL_DEVICELIST_LOCATIONS" data={storesDetails.storesDetails.name} />
+            {`${t("All")} ${storesDetails.storesDetails.name} ${t("Locations")}`}
           </Typography>
           <Grid container spacing={5}>
             {storesDetails.allLocations.map((item: any, index: number) => {
@@ -278,7 +277,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                             }}
                           >
                             <Button
-                              title={t("GET_DIRECTIONS")}
+                              title={t("Get Directions")}
                               bgcolor={data.colorPalle.repairButtonCol}
                               borderR="20px"
                               subDomain={subDomain}
@@ -290,7 +289,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                           </a>
                           <a href={`tel:${item.phone}`} style={{ textDecoration: "none" }}>
                             <Button
-                              title={t("CALL_NOW")}
+                              title={t("Call Now")}
                               bgcolor={data.colorPalle.repairButtonCol}
                               borderR="20px"
                               subDomain={subDomain}
@@ -303,7 +302,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                         </div>
                       </Grid>
                       <Grid item xs={12} sm={6}>
-                        <Typography className={classes.cardTitle}>{t("HOURS")}</Typography>
+                        <Typography className={classes.cardTitle}>{t("Hours")}</Typography>
                         {getRegularHours(item.location_hours).map((it, index) => (
                           <div
                             key={index}
@@ -318,8 +317,8 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                               <Typography className={classes.cardText}>
                                 {!it.open || !it.close
                                   ? it.by_appointment_only
-                                    ? t("CALL_TO_BOOK_APPOINTMENT")
-                                    : t("CLOSED")
+                                    ? t("Call to book appointment")
+                                    : t("Closed")
                                   : getHourType(it.open) + "-" + getHourType(it.close)}
                               </Typography>
                             </div>

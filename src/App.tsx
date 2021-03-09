@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { Footer, Header, Preloader, Badge } from "./components"
 import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore, repairWidData } from "./store/"
-import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 import findLocationAPI from "./services/api/findLocationAPI"
 import { Helmet } from "react-helmet"
@@ -11,26 +10,26 @@ import BaseRouter from "./BaseRouter"
 import { FeaturesParam } from "./model/feature-toggle"
 import "./assets/_common/style/index.scss"
 
-// const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
-// const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-// const subDomain = apexDomain.split(".")[0]
+const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
+const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
+const subDomain = apexDomain.split(".")[0]
 
-const devicelist = [
-  { name: "bananaservices", domain: "bananaservices.ca" },
-  { name: "geebodevicerepair", domain: "" },
-  { name: "mobiletechlab", domain: "mobiletechlab.ca" },
-  { name: "nanotechmobile", domain: "nanotechmobile.ca" },
-  { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca" },
-  { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
-  { name: "pradowireless", domain: "pradowireless.com" },
-  { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
-  { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
-  { name: "dccmtx", domain: "dccmtx.com" },
-  { name: "mtlcmtx", domain: "mtlcmtx.com" },
-]
-const siteNum = 0,
-  subDomain = devicelist[siteNum].name,
-  apexDomain = "dccmtx.com"
+// const devicelist = [
+//   { name: "bananaservices", domain: "bananaservices.ca" },
+//   { name: "geebodevicerepair", domain: "" },
+//   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
+//   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
+//   { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca" },
+//   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
+//   { name: "pradowireless", domain: "pradowireless.com" },
+//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
+//   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
+//   { name: "dccmtx", domain: "dccmtx.com" },
+//   { name: "mtlcmtx", domain: "mtlcmtx.com" },
+// ]
+// const siteNum = 0,
+//   subDomain = devicelist[siteNum].name,
+//   apexDomain = "dccmtx.com"
 
 function App(): JSX.Element {
   require(`./assets/${subDomain}/styles/index.scss`)
@@ -152,34 +151,32 @@ function App(): JSX.Element {
         <script>{tagScript}</script>
       </Helmet>
 
-      <LangProvider>
-        <Provider
-          storesDetailsStore={storesDetails}
-          repairWidgetStore={repairWidgetStore}
-          repairWidDataStore={repairWidData}
-        >
-          {loadStatus && loadLocationStatus ? (
-            <Router>
-              <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-              <BaseRouter
+      <Provider
+        storesDetailsStore={storesDetails}
+        repairWidgetStore={repairWidgetStore}
+        repairWidDataStore={repairWidData}
+      >
+        {loadStatus && loadLocationStatus ? (
+          <Router>
+            <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
+            <BaseRouter
+              subDomain={subDomain}
+              handleStatus={handleFooterStatus}
+              features={features}
+            />
+            <Badge />
+            {footerStatus && (
+              <Footer
                 subDomain={subDomain}
-                handleStatus={handleFooterStatus}
                 features={features}
+                storesDetailsStore={storesDetails}
               />
-              <Badge />
-              {footerStatus && (
-                <Footer
-                  subDomain={subDomain}
-                  features={features}
-                  storesDetailsStore={storesDetails}
-                />
-              )}
-            </Router>
-          ) : (
-            <Preloader />
-          )}
-        </Provider>
-      </LangProvider>
+            )}
+          </Router>
+        ) : (
+          <Preloader />
+        )}
+      </Provider>
     </>
   )
 }

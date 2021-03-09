@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react"
 import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
 import { Button, InputComponent } from "./"
-// import { useT } from "../i18n/index"
 import { useTranslation } from "react-i18next"
-// import { LangProps } from "../i18n/en"
 import { repairWidgetStore } from "../store/"
 import { findLocationAPI } from "../services/"
 import { Link } from "react-router-dom"
@@ -534,7 +532,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                                         }}
                                         key={idx}
                                       >
-                                        {t(itm)}
+                                        {itm === "Closed" ? t(itm) : itm}
                                       </p>
                                     )
                                   })}

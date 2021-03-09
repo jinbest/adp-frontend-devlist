@@ -252,7 +252,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               }}
             >
               <RoomOutlinedIcon />
-              Directions
+              {t("Directions")}
             </Link>
           )}
           <ul
@@ -294,7 +294,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               style={{ background: data.colorPalle.repairButtonCol, color: "white" }}
               onClick={handleRepairWidget}
             >
-              {t("GET_QUOTE")}
+              {t("Get Quote")}
             </Link>
           )}
         </div>
@@ -318,7 +318,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               justifyContent: "center",
             }}
           >
-            {t("GET_QUOTE")}
+            {t("Get Quote")}
           </Link>
         </div>
       </div>

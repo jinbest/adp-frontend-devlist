@@ -5,7 +5,7 @@ import { Shape, ContactModal } from "./"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { Grid, Typography } from "@material-ui/core"
 import { Button } from "../../components"
-import { useT } from "../../i18n"
+import { useTranslation } from "react-i18next"
 import { Card } from "../repair/widget-component"
 import {
   ShippingLabel,
@@ -162,7 +162,7 @@ type Props = {
 const Business = ({ subDomain, handleStatus }: Props) => {
   const classes = useStyles()
   const data = require(`../../assets/${subDomain}/Database`)
-  const t = useT()
+  const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Business")
   const [openModal, setOpenModal] = useState(false)
@@ -180,10 +180,14 @@ const Business = ({ subDomain, handleStatus }: Props) => {
 
       <Shape subDomain={subDomain} />
       <div className={classes.root}>
-        <h1 className={classes.mainTitle}>{t("BUSINESS_SOLUTIONS")}</h1>
-        <Typography className={classes.mainContent}>{t("BUSINESS_SOLUTIONS_CONTENT")}</Typography>
+        <h1 className={classes.mainTitle}>{t("Business Solutions")}</h1>
+        <Typography className={classes.mainContent}>
+          {t(
+            "We provide reliable device management and repair services so you can focus on running your business."
+          )}
+        </Typography>
         <Button
-          title={t("GET_STARTED")}
+          title={t("Get Started")}
           bgcolor={data.colorPalle.repairButtonCol}
           borderR="20px"
           subDomain={subDomain}
@@ -193,7 +197,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
         />
         <div className={classes.cardContainer}>
           <Card className={classes.card}>
-            <Typography className={classes.subTitle}>{t("WHY_BUSINESSES_CHOOSE_US")}</Typography>
+            <Typography className={classes.subTitle}>{t("Why Businesses Choose Us?")}</Typography>
             <Grid container spacing={5}>
               <Grid item xs={12} md={6} className={classes.item}>
                 <div className={classes.SVGContainer}>
@@ -203,7 +207,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("FREE_SHIPPING_AND_BULK_DISCOUNTS_FOR_5_DEVICES")}
+                    {t("Free shipping and bulk discounts for 5+ devices.")}
                   </Typography>
                 </div>
               </Grid>
@@ -215,7 +219,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("FLEXIBLE_PAYMENT_OPTIONS")}
+                    {t("Flexible payement options. You choose how and when you pay.")}
                   </Typography>
                 </div>
               </Grid>
@@ -227,7 +231,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("INSTANT_SHIPPING_LABEL_UPON_REQUEST")}
+                    {t("Instant shipping label upon request.")}
                   </Typography>
                 </div>
               </Grid>
@@ -239,7 +243,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("DEDICATED_B2B_MICROSOLDERING_TECHS")}
+                    {t("Dedicated B2B microsoldering Techs.")}
                   </Typography>
                 </div>
               </Grid>
@@ -251,7 +255,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("RESPONSIVE_CUSTOMER_SUPPORT")}
+                    {t("Responsive customer support.")}
                   </Typography>
                 </div>
               </Grid>
@@ -262,9 +266,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                   </div>
                 </div>
                 <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("QUICK_TURNAROUND_BUSINESS")}
-                  </Typography>
+                  <Typography className={classes.itemText}>{t("Quick turnaround.")}</Typography>
                 </div>
               </Grid>
             </Grid>

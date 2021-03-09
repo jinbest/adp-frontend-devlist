@@ -495,7 +495,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                                               }}
                                               key={idx}
                                             >
-                                              {t(itm)}
+                                              {itm === "Closed" ? t(itm) : itm}
                                             </p>
                                           )
                                         })}

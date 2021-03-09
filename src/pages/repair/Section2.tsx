@@ -1,7 +1,7 @@
 import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { CardRepairSec2 } from "../../components"
-import { useT, T } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const Section2 = ({ subDomain }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const repair = data.repairData.section2
-  const t = useT()
+  const [t] = useTranslation()
 
   return (
     <section className={subDomain + "-service-section2"}>
@@ -27,7 +27,9 @@ const Section2 = ({ subDomain }: Props) => {
             return (
               <Grid item xs={12} md={4} key={index}>
                 <CardRepairSec2 type={item.type} subtitle={t(item.subtitle)} subDomain={subDomain}>
-                  <T id={item.content} data={storesDetails.storesDetails.name} />
+                  {item.type === "ReceiveDevice"
+                    ? `${storesDetails.storesDetails.name} ${t(item.content)}`
+                    : t(item.content)}
                 </CardRepairSec2>
               </Grid>
             )

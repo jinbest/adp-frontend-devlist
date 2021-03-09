@@ -4,10 +4,9 @@ import { Card } from "./"
 import { Button, CustomCalendar, CustomSelect } from "../../../components"
 import CustomBookTime from "./CustomBookTime"
 import RepairSummary from "./RepairSummary"
-import { useT } from "../../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { makeLocations } from "../../../components/CustomizedMenus"
-import { LangProps } from "../../../i18n/en"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../../store/StoresDetails"
@@ -30,28 +29,28 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
   const brandThemeCol = mainData.brandItemsData.brandThemeCol
-  const DAYS_OF_THE_WEEK: LangProps[] = [
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
-    "SUNDAY",
+  const DAYS_OF_THE_WEEK: string[] = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ]
-  const MONTHS: LangProps[] = [
-    "JANUARY",
-    "FEBRARY",
-    "MARCH",
-    "APRIL",
-    "MAY",
-    "JUNE",
-    "JULY",
-    "AUGUST",
-    "SEPTEMBER",
-    "OCTORBER",
-    "NOVEMBER",
-    "DECEMBER",
+  const MONTHS: string[] = [
+    "January",
+    "Febrary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "Octorber",
+    "November",
+    "December",
   ]
 
   const [tzIndex, setTZIndex] = useState(0)
@@ -77,7 +76,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const [disableStatus, setDisableStatus] = useState(true)
   const [hoursRange, setHoursRange] = useState<any[]>([])
 
-  const t = useT()
+  const [t] = useTranslation()
 
   type FindLocProps = {
     code: string
@@ -108,13 +107,13 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   useEffect(() => {
     const cntSelHours: SelectHoursProps[] = []
     const days: string[] = [
-      "SUNDAY",
-      "MONDAY",
-      "TUESDAY",
-      "WEDNESDAY",
-      "THURSDAY",
-      "FRIDAY",
-      "SATURDAY",
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
     ]
     const storeLocs: any[] = storesDetails.findAddLocation
     const i: number = mailInChecked
@@ -360,7 +359,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                     <div className="select-mail-in-container">
                       <div>
                         <u>
-                          <p className="select-mail-in-text">{t("HOURS")}</p>
+                          <p className="select-mail-in-text">{t("Hours")}</p>
                         </u>
                       </div>
                     </div>
@@ -368,10 +367,12 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                       return (
                         <div key={index} className="select-mail-in-container">
                           <div style={{ width: "50%" }}>
-                            <p className="select-mail-in-text">{item.day}</p>
+                            <p className="select-mail-in-text">{t(item.day)}</p>
                           </div>
                           <div style={{ width: "50%" }}>
-                            <p className="select-mail-in-text">{item.hour}</p>
+                            <p className="select-mail-in-text">
+                              {item.hour === "Closed" ? t(item.hour) : item.hour}
+                            </p>
                           </div>
                         </div>
                       )
@@ -429,12 +430,12 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                     >
                       {time ? (
                         <p style={{ textAlign: "center", margin: "0 10px" }}>
-                          {t("YOUR_HAVE_SELECTED")} {time} {t("ON")} {t(DAYS_OF_THE_WEEK[week])},{" "}
+                          {t("You've selected")} {time} {t("on")} {t(DAYS_OF_THE_WEEK[week])},{" "}
                           {t(MONTHS[month])} {day}, {year}
                         </p>
                       ) : (
                         <p style={{ textAlign: "center", margin: "0 10px" }}>
-                          {t("YOU_DID_NOT_SELECT_TIME_YET")}
+                          {t("You did not select time yet.")}
                         </p>
                       )}
                     </div>
@@ -444,7 +445,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             </div>
             <div className="service-card-button">
               <Button
-                title={t("NEXT")}
+                title={t("Next")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
@@ -454,7 +455,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 disable={disableStatus}
                 subDomain={subDomain}
               />
-              <p>{t("ENTER_KEY")}</p>
+              <p>{t("or press ENTER")}</p>
             </div>
           </Card>
         </Grid>
