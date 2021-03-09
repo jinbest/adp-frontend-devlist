@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Grid, Box } from "@material-ui/core"
 import { CardFix, ContentFix } from "../../components"
-import { useT } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore } from "../../store"
@@ -13,7 +13,7 @@ type Props = {
 
 const Section2 = ({ subDomain, features }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
-  const t = useT()
+  const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
 
@@ -112,9 +112,8 @@ const Section2 = ({ subDomain, features }: Props) => {
                   <Grid item xs={12} sm={6} md={3} key={index}>
                     <Box className={subDomain + "-cart-contentfix-container"}>
                       <ContentFix
-                        title={item.title}
-                        data={item.data}
-                        content={item.content}
+                        title={t(item.title)}
+                        content={t(item.content)}
                         themeCol={data.colorPalle.underLineCol}
                         key={index}
                         subDomain={subDomain}

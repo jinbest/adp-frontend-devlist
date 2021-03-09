@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react"
 import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
 import { Button, InputComponent } from "./"
-import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
+// import { useT } from "../i18n/index"
+import { useTranslation } from "react-i18next"
+// import { LangProps } from "../i18n/en"
 import { repairWidgetStore } from "../store/"
 import { findLocationAPI } from "../services/"
 import { Link } from "react-router-dom"
@@ -17,7 +18,7 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 export function makeLocations(data: any[]) {
   const locations: GetCurrentLocParams[] = []
-  const days: any[] = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
+  const days: any[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   for (let i = 0; i < data.length; i++) {
     const hours: any[] = [],
       weekDays: any[] = [],
@@ -32,7 +33,7 @@ export function makeLocations(data: any[]) {
         }
         let hour = ""
         if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
-          hour = "CLOSED"
+          hour = "Closed"
         } else {
           const open: string =
             (parseInt(data[i].location_hours[j].open.split(":")[0]) % 12) +
@@ -111,7 +112,7 @@ type StoreProps = {
 }
 interface Props extends StoreProps {
   subDomain?: string
-  btnTitle: LangProps
+  btnTitle: string
   width: string
   features: any[]
 }
@@ -124,7 +125,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
     const themeColor = data.colorPalle.themeColor
     const underLineCol = data.colorPalle.underLineCol
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const t = useT()
+    const [t] = useTranslation()
     const [pos, setPos] = useState({ latitude: "", longitude: "" })
     const [locSelStatus, setLocSelStatus] = useState(storesDetailsStore.cntUserLocationSelected)
     const [locations, setLocations] = useState<any[]>(storesDetailsStore.cntUserLocation)
@@ -231,12 +232,12 @@ const CustomizedMenus = inject("storesDetailsStore")(
     useEffect(() => {
       storesDetailsStore.changeCntUserLocationSelected(locSelStatus)
       if (locations.length <= 1) {
-        setMyStore(t("NEAREST_LOCATION"))
+        setMyStore(t("Nearest Location"))
       } else {
-        setMyStore(t("ALL_LOCATIONS"))
+        setMyStore(t("All Locations"))
       }
       if (locSelStatus) {
-        setMyStore(t("SELECTED_LOCATION"))
+        setMyStore(t("Selected Location"))
       }
     }, [locSelStatus, locations])
 
@@ -267,20 +268,13 @@ const CustomizedMenus = inject("storesDetailsStore")(
     }, [])
 
     useEffect(() => {
-      findLocationAPI
-        .findAllLocation(storesDetailsStore.store_id)
-        .then((res: any) => {
-          const locationData = res.data as any[]
-          if (locationData.length > 1 || !locationData.length) return
-          storesDetailsStore.changeFindAddLocation(locationData)
-          storesDetailsStore.changeCntUserLocationSelected(true)
-          setLocations(makeLocations([locationData[0]]))
-          setLocSelStatus(true)
-          storesDetailsStore.changeLocationID(locationData[0].id)
-        })
-        .catch((error) => {
-          console.log("Error in get Features", error)
-        })
+      if (storesDetailsStore.allLocations.length > 1 || !storesDetailsStore.allLocations.length)
+        return
+      storesDetailsStore.changeFindAddLocation(storesDetailsStore.allLocations)
+      storesDetailsStore.changeCntUserLocationSelected(true)
+      setLocations(makeLocations(storesDetailsStore.allLocations))
+      setLocSelStatus(true)
+      storesDetailsStore.changeLocationID(storesDetailsStore.allLocations[0].id)
     }, [])
 
     const handleGetLocation = (poscode: string) => {
@@ -371,14 +365,14 @@ const CustomizedMenus = inject("storesDetailsStore")(
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
                       value={postCode}
-                      placeholder={t("POSTAL_CODE")}
+                      placeholder={t("Postal Code*")}
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
                       subDomain={subDomain}
                     />
                     <Button
-                      title={t("GET_LOCATION")}
+                      title={t("Get Location")}
                       bgcolor={themeColor}
                       borderR="20px"
                       width="80%"
@@ -433,7 +427,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {t("VIEW_STORE_DETAILS")}
+                    {t("View Store Details")}
                   </a>
                 )}
                 {storesDetailsStore.findAddLocation.length > 1 &&
@@ -443,7 +437,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                       style={{ color: underLineCol }}
                       onClick={viewMoreStores}
                     >
-                      {t("VIEW_MORE_STORES")}
+                      {t("View More Stores")}
                     </a>
                   )}
                 {locSelStatus && (
@@ -463,7 +457,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {t("GET_DIRECTIONS")}
+                    {t("Get Directions")}
                   </a>
                 )}
               </div>
@@ -479,7 +473,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                         onClick={handleBookRepair}
                       >
                         <Button
-                          title={t("BOOK_APPOINTMENT")}
+                          title={t("Book Appointment")}
                           bgcolor={themeColor}
                           borderR="20px"
                           width="175px"
@@ -509,7 +503,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                         {item.days.map((it: any, index: number) => {
                           return (
                             <div key={index}>
-                              <p className={subDomain + "-block-title"}>{t("HOURS")}</p>
+                              <p className={subDomain + "-block-title"}>{t("Hours")}</p>
                               <div className={subDomain + "-hours-div"}>
                                 <div>
                                   {it.wkDys.map((itm: any, idx: number) => {

@@ -71,7 +71,7 @@ const deviceCard = {
 const cardMobileData = {
   gridMD: 3,
   data: [
-    { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: "FRONTEND_TRADE", href: "#" },
+    { img: trade, title: "Trade", btnTitle: "Trade-In", flag: "FRONTEND_TRADE", href: "#" },
     {
       img: repair,
       title: "REPAIR",
@@ -85,33 +85,29 @@ const cardMobileData = {
 }
 
 const cardFixData = [
-  { img: cellphone, title: "CELLPHONE" },
-  { img: tablet, title: "TABLET" },
-  { img: computer, title: "COMPUTER" },
-  { img: console, title: "CONSOLE" },
-  { img: other, title: "OTHER" },
+  { img: cellphone, title: "Cellphone" },
+  { img: tablet, title: "Tablet" },
+  { img: computer, title: "Computer" },
+  { img: console, title: "Console" },
+  { img: other, title: "Other" },
 ]
 
 const contentFixData = [
   {
-    title: "FREE_DIAGNOSTICS",
-    data: '',
-    content: "FREE_DIAGNOSTICS_CONTENT",
+    title: "TRANSPARENT REPAIRS",
+    content: "We believe in a transparent repair process - know exactly what we’re going to fix on your device and what the cost is before we start.",
   },
   {
-    title: "LOW_PRICE_GUARANTEE",
-    data: '',
-    content: "LOW_PRICE_GUARANTEE_CONTENT",
+    title: "WE PRICE MATCH ANYONE",
+    content: "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
-    title: "QUICK_TURNAROUND",
-    data: '',
-    content: "QUICK_TURNAROUND_CONTENT",
+    title: "QUICK TURNAROUND",
+    content: "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours.",
   },
   {
-    title: "DAY_WARRANTY_DYNAMIC",
-    data: '90',
-    content: "DAY_WARRANTY_DYNAMIC_CONTENT",
+    title: "90 DAYS WARRANTY",
+    content: "All of repairs are backed with our 90-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide.",
   },
 ]
 
@@ -131,11 +127,11 @@ const colorPalle = {
 }
 
 const navItemsData = [
-  { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "GET_QUOTE", isActive: false, flag: "FRONTEND_REPAIR" },
-  { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-  { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
-  { href: "/contact", text: "CONTACT", isActive: false, flag: "ALWAYS_TRUE" },
+  { href: "#", text: "Trade", isActive: false, flag: "FRONTEND_TRADE" },
+  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "#", text: "Shop", isActive: false, flag: "FRONTEND_BUY" },
+  { href: "#", text: "Insure", isActive: false, flag: "FRONTEND_INSURE" },
+  { href: "/contact", text: "Contact", isActive: false, flag: "ALWAYS_TRUE" },
 ]
 
 const navShop = {
@@ -239,10 +235,9 @@ const navShop = {
 }
 
 const brandItemsData = {
-  left: [{text: 'BUSINESS', link: '/business'}, {text: 'LOCATIONS', link: '/locations'}],
+  left: [{text: 'Business', link: '/business'}, {text: 'Locations', link: '/locations'}],
   brandCol: "white",
   brandThemeCol: "#FEDA00",
-  selectOption: ["ENGLISH", "FRENCH"],
 }
 
 const hoursData = [
@@ -266,16 +261,16 @@ const avatarData = {
 
 const mobileNavItemData = {
   left: [
-    { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "GET_QUOTE", href: "/quote", flag: "FRONTEND_REPAIR" },
-    { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
-    { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
-    { text: "BUSINESS", href: "/business", flag: "ALWAYS_TRUE" },
-    { text: "LOCATIONS", href: "/locations", flag: "ALWAYS_TRUE" },
-    { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
-    { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
-    { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
-    { text: "CONTACT", href: "/contact", flag: "ALWAYS_TRUE" },
+    { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
+    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Shop", href: "#", flag: "FRONTEND_MEGA_MENU" },
+    { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
+    { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },
+    { text: "Locations", href: "/locations", flag: "ALWAYS_TRUE" },
+    { text: "Financing", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "Insurance", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "Find a Store", href: "#", flag: "FRONTEND_FIND_A_STORE" },
+    { text: "Contact", href: "/contact", flag: "ALWAYS_TRUE" },
   ],
   right: [
     { text: "Apple", href: "#" },
@@ -301,7 +296,7 @@ const shapeData = {
 
 const homeTextData = {
   header: {
-    buttonTitle: "FIND_A_STORE",
+    buttonTitle: "Find a Store",
     width: "150px",
   },
   section1: {
@@ -309,29 +304,27 @@ const homeTextData = {
     city: "Peterborough",
   },
   section2: {
-    title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
+    title: "What can we fix for you today?",
   },
   section3: {
-    title: "POPULAR_DEVICES",
-    subtitle: ["BUY_NOW_PAY_LATER", "WHATEVER_WORKS_FOR_YOU"],
-    content: "POPULAR_DEVICES_CONTENT",
+    title: "Popular Devices",
+    subtitle: ["Buy now. Pay later.", "Whatever works for you."],
+    content: "We’ve partnered with Flexiti to offer 0% financing on repairs, devices, and accessories.",
     color: "white",
   },
   section4: {
-    title: "WELCOME_BANANA",
-    btnTitle: "OUR_QUALITY_CHARTER",
+    title: "Peterborough’s Trusted Cell Phone & Computer Shop",
+    btnTitle: "Our quality charter",
   },
   section5: {
-    title: "PROTECT_YOUR_DEVICE_WITH_BOUNCE",
-    content: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_CONTENT",
-    subtitle: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBTITLE",
-    subcontent: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBCONTENT",
-    subcontentData: ["NO_DEDUCTIBLE", "COVERS_NEW_AND_USED_PHONES"],
-    btnTitle: "INSURE_MY_DEVICE",
+    title: "Protect Your Device with Bounce",
+    content: "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
+    subtitle: "As low as $39/year!",
+    subcontent: "24 Hour Refunds",
+    subcontentData: ["No Deductible", "Covers New and Used Phones"],
+    btnTitle: "Insure My Device",
   },
   section6: {
-    title: "SEE_WHY_CUSTOMERS_LOVE_BANANA",
-    subtitle: "VIEW_MORE",
     review: [
       {
         score: 5,
@@ -362,42 +355,41 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    content: "BANANA_FOOTER_CONTENT_TWO",
     footerLink: [
       {
-        name: "RESOURCES",
+        name: "Resources",
         lists: [
-          { href: "#", text: "CONTACT_US" },
-          { href: "#", text: "WARRANTY_AND_RETURNS" },
-          { href: "#", text: "SHIPPING" },
-          { href: "#", text: "FAQS" },
+          { href: "#", text: "Contact Us" },
+          { href: "#", text: "Warranty & Returns" },
+          { href: "#", text: "Shipping" },
+          { href: "#", text: "FAQs" },
         ],
       },
       {
-        name: "ABOUT",
+        name: "About",
         lists: [
-          { href: "#", text: "WHO_WE_ARE" },
-          { href: "#", text: "FINANCING" },
-          { href: "#", text: "BLOG" },
-          { href: "#", text: "TERMS_OF_SERVICE" },
+          { href: "#", text: "Who We Are" },
+          { href: "#", text: "Financing" },
+          { href: "#", text: "Blog" },
+          { href: "#", text: "Terms of Service" },
         ],
       },
       {
-        name: "BUSINESS",
+        name: "Business",
         lists: [
-          { href: "#", text: "AUTHORIZED_DEALER_PROGRAM" },
-          { href: "#", text: "SELL_WITH_US" },
-          { href: "#", text: "FIND_A_LOCATION" },
-          { href: "#", text: "BUSINESS_SOLUTIONS" },
+          { href: "#", text: "Authorized Dealer Program" },
+          { href: "#", text: "Sell With Us" },
+          { href: "#", text: "Find a Location" },
+          { href: "#", text: "Business Solutions" },
         ],
       },
       {
-        name: "QUALITY",
+        name: "Quality",
         lists: [
-          { href: "#", text: "DEVICE_GRADING" },
-          { href: "#", text: "QUALITY_CONTROL" },
-          { href: "#", text: "POINT_QUALITY_CHECK_60" },
-          { href: "#", text: "WHAT_IS_PHONECHECK" },
+          { href: "#", text: "Device Grading" },
+          { href: "#", text: "Quality Control" },
+          { href: "#", text: "60 Point Quality Check" },
+          { href: "#", text: "What is PhoneCheck?" },
         ],
       },
     ],

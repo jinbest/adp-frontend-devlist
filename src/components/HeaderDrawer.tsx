@@ -6,7 +6,7 @@ import Backdrop from "@material-ui/core/Backdrop"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { isExternal } from "./Header"
 import { Link } from "react-router-dom"
-import { useT } from "../i18n/index"
+import { useTranslation } from "react-i18next"
 import { Button, InputComponent } from "./"
 import Loading from "./Loading"
 import { inject, observer } from "mobx-react"
@@ -102,7 +102,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
       storesDetailsStore,
     } = props
     const data = require(`../assets/${subDomain}/Database`)
-    const t = useT()
+    const [t] = useTranslation()
 
     const classes = useStyles()
     const [state, setState] = useState({
@@ -367,7 +367,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
             </FeatureToggles>
             <div className={classes.findStoreDiv}>
               <Button
-                title={t("FIND_A_STORE")}
+                title={t("Find a Store")}
                 bgcolor={themeCol}
                 borderR="20px"
                 width="80%"
@@ -398,14 +398,14 @@ const HeaderDrawer = inject("storesDetailsStore")(
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
                       value={postCode}
-                      placeholder={"Postal Code*"}
+                      placeholder={t("Postal Code*")}
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
                       subDomain={subDomain}
                     />
                     <Button
-                      title={"Get Location"}
+                      title={t("Get Location")}
                       bgcolor={themeCol}
                       borderR="20px"
                       width="80%"
@@ -461,7 +461,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                                       className={subDomain + "-block-title"}
                                       style={{ fontSize: "14px" }}
                                     >
-                                      {t("HOURS")}
+                                      {t("Hours")}
                                     </p>
                                     <div className={subDomain + "-hours-div"}>
                                       <div>
@@ -523,7 +523,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           target="_blank"
                           rel="noreferrer"
                         >
-                          {t("VIEW_STORE_DETAILS")}
+                          {t("View Store Details")}
                         </a>
                       )}
                       {storesDetailsStore.findAddLocation.length > 1 && (
@@ -532,7 +532,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           style={{ color: themeCol, fontSize: "12px" }}
                           onClick={viewMoreStores}
                         >
-                          {t("VIEW_MORE_STORES")}
+                          {t("View More Stores")}
                         </a>
                       )}
                       {locSelStatus && (
@@ -552,7 +552,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           target="_blank"
                           rel="noreferrer"
                         >
-                          {t("GET_DIRECTIONS")}
+                          {t("Get Directions")}
                         </a>
                       )}
                     </div>
@@ -567,7 +567,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                             onClick={handleBookRepair}
                           >
                             <Button
-                              title={t("BOOK_APPOINTMENT")}
+                              title={t("Book Appointment")}
                               bgcolor={themeCol}
                               borderR="20px"
                               width="175px"

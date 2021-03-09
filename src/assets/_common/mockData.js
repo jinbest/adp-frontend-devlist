@@ -135,10 +135,10 @@ const repairWidget = {
 }
 
 const popularCardData = [
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
-  { img: camera, title: "iPhone 11 Pro", subtitle: "AS_LOW_AS", price: "$897" },
+  { img: camera, title: "iPhone 11 Pro", subtitle: "As low as", price: "$897" },
+  { img: camera, title: "iPhone 11 Pro", subtitle: "As low as", price: "$897" },
+  { img: camera, title: "iPhone 11 Pro", subtitle: "As low as", price: "$897" },
+  { img: camera, title: "iPhone 11 Pro", subtitle: "As low as", price: "$897" },
 ]
 
 const arrowData = {
@@ -149,28 +149,28 @@ const arrowData = {
 const devicelistData = [
   {
     img: best,
-    title: "BEST_OFFER_AVAILABLE",
-    content: "BEST_OFFER_AVAILABLE_CONTENT",
+    title: "Competitive Pricing",
+    content: "We’re proud to offer the largest selection of fully tested and graded pre-owned devices in Winnipeg. All backed by a one year warranty and lifetime IMEI guarantee",
   },
   {
     img: warranty,
-    title: "YEAR_1_WARRANTY",
-    content: "YEAR_1_WARRANTY_CONTENT",
+    title: "1 Year Warranty",
+    content: "We stand behind all our devices with an iron-clad one year warranty that covers everything except physical or liquid damage.",
   },
   {
     img: amazing,
-    title: "AMAZING_SERVICE",
-    content: "AMAZING_SERVICE_CONTENT",
+    title: "Amazing Service",
+    content: "Secure shopping experience.",
   },
   {
     img: positive,
-    title: "POSITIVE_IMPACT",
-    content: "POSITIVE_IMPACT_CONTENT",
+    title: "Trade-In Your Device",
+    content: "Trade in your existing device - broken or not - for credit towards a repair, product or a newer phone. We buy almost every device, no matter the condition.",
   },
   {
     img: proudly,
-    title: "PROUDLY_CANADIAN",
-    content: "PROUDLY_CANADIAN_CONTENT",
+    title: "Proudly Canadian",
+    content: "Canadian owned and Canadian based.",
   },
 ]
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Typography, Grid, Box } from "@material-ui/core"
 import { CardPopular } from "../../components"
-import { useT } from "../../i18n/index"
-import { LangProps } from "../../i18n/en"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 
 type Props = {
@@ -14,7 +13,7 @@ const Section3 = ({ subDomain, features }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const commonData = require("../../assets/_common/mockData")
   const deviceCard = data.deviceCard
-  const t = useT()
+  const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
 
@@ -69,15 +68,13 @@ const Section3 = ({ subDomain, features }: Props) => {
                         className={subDomain + "-section-title white"}
                         style={{ color: data.homeTextData.section3.color }}
                       >
-                        {data.homeTextData.section3.subtitle.map(
-                          (item: LangProps, index: number) => {
-                            return (
-                              <React.Fragment key={index}>
-                                {t(item)} <br />
-                              </React.Fragment>
-                            )
-                          }
-                        )}
+                        {data.homeTextData.section3.subtitle.map((item: string, index: number) => {
+                          return (
+                            <React.Fragment key={index}>
+                              {t(item)} <br />
+                            </React.Fragment>
+                          )
+                        })}
                       </Typography>
                       <Typography
                         className="white f24"

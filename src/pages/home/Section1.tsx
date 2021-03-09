@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react"
 // import { CardMobile } from "../../components"
 import { Grid, Box, Typography } from "@material-ui/core"
 import { Search, Button } from "../../components"
-import { useT, T } from "../../i18n/index"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore } from "../../store"
+import { useTranslation } from "react-i18next"
 
 type Props = {
   subDomain?: string
@@ -15,7 +15,7 @@ type Props = {
 
 const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
-  const t = useT()
+  const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
   const [featSearch, setFeatSearch] = useState<any[]>([])
@@ -79,22 +79,22 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
           className={subDomain + "-section1-title"}
           style={{ color: "black", textShadow: "1px 0 black" }}
         >
-          {t("REPAIR") + ", " + t("BUY") + " & " + t("PROTECT") + " " + t("YOUR")}
+          {t("Repair") + ", " + t("Buy") + " & " + t("Protect") + " " + t("your")}
         </h1>
         <h1
           className={subDomain + "-section1-title"}
           style={{ color: "black", textShadow: "1px 0 black" }}
         >
-          {t("ESSENTIAL_MOBILE_DEVICE")}
+          {t("essential mobile devices.")}
         </h1>
         <Typography className={subDomain + "-section1-subtitle"}>
-          <T id={"CITY_MOBILE_DEVICE_SPECIALISTS"} data={data.homeTextData.section1.city} />
+          {`${data.homeTextData.section1.city}${t("’s mobile device specialists.")}`}
         </Typography>
         <div style={{ display: "flex" }}>
           <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
             <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
               <Button
-                title={t("GET_QUOTE")}
+                title={t("Get Quote")}
                 bgcolor={data.colorPalle.repairButtonCol}
                 borderR="20px"
                 subDomain={subDomain}
@@ -113,7 +113,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                 >
                   <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
                     <Button
-                      title={t("BOOK_APPOINTMENT")}
+                      title={t("Book Appointment")}
                       bgcolor={data.colorPalle.repairButtonCol}
                       borderR="20px"
                       subDomain={subDomain}

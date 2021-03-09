@@ -1,7 +1,7 @@
 import React from "react"
 import { CardWhyCustomer } from "../../components"
 import { Typography, Grid, Box } from "@material-ui/core"
-import { T } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
 
 type Props = {
@@ -10,16 +10,14 @@ type Props = {
 
 const Section6 = ({ subDomain }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
-  // const t = useT()
+  const [t] = useTranslation()
 
   return (
     <section className={subDomain + "-Container center " + subDomain + "-sec6-container"}>
       <Typography className="f40 bold mg-t-1" style={{ color: "black", textShadow: "1px 0 black" }}>
-        <T id={data.homeTextData.section6.title} data={storesDetails.storesDetails.name} />
+        {`${t("See Why Customers Love")} ${storesDetails.storesDetails.name}`}
       </Typography>
-      {/* <Typography className='f24'>
-        {t(data.homeTextData.section6.subtitle)}
-      </Typography> */}
+      {/* <Typography className="f24">{t("View More")}</Typography> */}
       <Grid container item xs={12} spacing={2} className={subDomain + "-sec6-card"}>
         {data.homeTextData.section6.review.map((item: any, index: number) => {
           return (

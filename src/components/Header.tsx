@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Search, CustomizedMenus, Logo, SelectLang, MegamenuShop, HeaderDrawer } from "./"
+import { Search, CustomizedMenus, Logo, MegamenuShop, HeaderDrawer, LangDropdown } from "./"
 import { Link } from "react-router-dom"
-import { useT } from "../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails, repairWidgetStore } from "../store"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
@@ -62,7 +62,7 @@ const NavItemLink = ({
   subDomain,
   feats,
 }: PropsNavItemLink) => {
-  const t = useT()
+  const [t] = useTranslation()
 
   const handle = () => {
     if (href === "/get-quote") {
@@ -161,7 +161,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
     brandItemLink = data.brandItemsData,
     searchPlaceholder = data.homeTextData.section1.searchPlaceholder
 
-  const t = useT()
+  const [t] = useTranslation()
 
   const [menuStatus, setMenuStatus] = useState(false)
   const [feats, setFeatures] = useState<any[]>([])
@@ -270,13 +270,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               phoneNumber={true}
               href="#"
             />
-            {!mobile && (
-              <SelectLang
-                subDomain={subDomain}
-                color={brandItemLink.brandCol}
-                options={brandItemLink.selectOption}
-              />
-            )}
+            {!mobile && <LangDropdown subDomain={subDomain} color={brandItemLink.brandCol} />}
             <FeatureToggles features={feats}>
               <Feature
                 name={"FRONTEND_USER_ACCOUNT"}

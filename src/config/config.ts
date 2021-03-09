@@ -5,4 +5,5 @@ export default class Config {
     static PRODUCT_SERVICE_API_URL = Config.envSettings.REACT_APP_PRODUCT_SERVICE_API_URL
     static REPAIR_SERVICE_API_URL = Config.envSettings.REACT_APP_REPAIR_SERVICE_API_URL
     static ENVIRONMENT = Config.envSettings.REACT_APP_ENVIRONMENT
+    static TRANSLATION_SERVICE_API_URL = Config.envSettings.REACT_APP_TRANSLATION_SERVICE_API_URL
 }
