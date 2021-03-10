@@ -35,10 +35,7 @@ const Section3 = ({ subDomain, features }: Props) => {
         activeComponent={() => (
           <section className={subDomain + "-sec3-container-parent"}>
             <div className={subDomain + "-Container"}>
-              <Typography
-                className={subDomain + "-section-title"}
-                style={{ color: "black", textShadow: "1px 0 black" }}
-              >
+              <Typography className={subDomain + "-section-title"}>
                 {t(data.homeTextData.section3.title)}
               </Typography>
             </div>

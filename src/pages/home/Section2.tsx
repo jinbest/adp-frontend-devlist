@@ -40,12 +40,7 @@ const Section2 = ({ subDomain, features }: Props) => {
         inactiveComponent={() => <></>}
         activeComponent={() => (
           <section className={subDomain + "-Container"}>
-            <h2
-              className={subDomain + "-section-title"}
-              style={{ color: "black", textShadow: "1px 0 black" }}
-            >
-              {t(data.homeTextData.section2.title)}
-            </h2>
+            <h2 className={subDomain + "-section-title"}>{t(data.homeTextData.section2.title)}</h2>
             <div className={subDomain + "-card-customized-container-desktop"}>
               {data.cardFixData.map((item: any, index: number) => {
                 return (

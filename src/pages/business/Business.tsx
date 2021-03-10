@@ -55,7 +55,8 @@ const useStyles = makeStyles(() =>
       color: "black",
       fontSize: "60px !important",
       marginBottom: "40px !important",
-      textShadow: "1px 0 black",
+      // textShadow: "1px 0 black",
+      fontWeight: "bold",
       justifyContent: "center",
       letterSpacing: "2px",
       ["@media (max-width:1400px)"]: {
@@ -92,7 +93,7 @@ const useStyles = makeStyles(() =>
       fontSize: "40px !important",
       textAlign: "center",
       color: "black",
-      textShadow: "1px 0 black",
+      // textShadow: "1px 0 black",
       fontWeight: "bold",
       letterSpacing: "1px",
       marginBottom: "50px",

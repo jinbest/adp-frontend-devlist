@@ -134,7 +134,7 @@ const colorPalle = {
 
 const navItemsData = [
   { href: "#", text: "Trade", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "Repair", isActive: false, flag: "FRONTEND_REPAIR" },
   {
     href: "http://shop.wirelessrevottawa.ca/",
     text: "Shop",
@@ -142,14 +142,8 @@ const navItemsData = [
     flag: "FRONTEND_BUY",
   },
   { href: "#", text: "Insure", isActive: false, flag: "FRONTEND_INSURE" },
-  // { href: "#", text: "Business", isActive: false, flag: "ALWAYS_TRUE" },
   // { href: "#", text: "Financing", isActive: false, flag: "ALWAYS_TRUE" },
-  {
-    href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/",
-    text: "Wholesale",
-    isActive: false,
-    flag: "ALWAYS_TRUE",
-  },
+  { href: "/business", text: "Business", isActive: false, flag: "ALWAYS_TRUE" },
   { href: "/contact", text: "Contact", isActive: false, flag: "ALWAYS_TRUE" },
 ]
 
@@ -271,13 +265,8 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "Shop", href: "http://shop.wirelessrevottawa.ca/", flag: "FRONTEND_BUY" },
-    {
-      text: "Wholesale",
-      href: "https://wirelessrev.ca/wholesale-cell-phone-parts-ottawa/",
-      flag: "ALWAYS_TRUE",
-    },
     { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
     { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },
     { text: "Locations", href: "/locations", flag: "ALWAYS_TRUE"},

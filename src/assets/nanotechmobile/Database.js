@@ -132,7 +132,7 @@ const colorPalle = {
 
 const navItemsData = [
   { href: "#", text: "Trade", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "Repair", isActive: false, flag: "FRONTEND_REPAIR" },
   { href: "/shop", text: "Shop", isActive: false, flag: "FRONTEND_BUY" },
   { href: "#", text: "Insure", isActive: false, flag: "FRONTEND_INSURE" },
   { href: "/contact", text: "Contact", isActive: false, flag: "ALWAYS_TRUE" },
@@ -256,7 +256,7 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "Shop", href: "#", flag: "FRONTEND_MEGA_MENU" },
     { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
     { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },

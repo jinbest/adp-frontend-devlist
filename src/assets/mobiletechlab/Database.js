@@ -133,7 +133,7 @@ const colorPalle = {
 
 const navItemsData = [
   // { href: "#", text: "Trade", isActive: false, flag: 'FRONTEND_TRADE' },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "Repair", isActive: false, flag: "FRONTEND_REPAIR" },
   {
     href: "https://shop.mobiletechlab.ca/",
     text: "Shop",
@@ -268,7 +268,7 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "Shop", href: "https://shop.mobiletechlab.ca/", flag: "FRONTEND_BUY" },
     { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
     { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },
