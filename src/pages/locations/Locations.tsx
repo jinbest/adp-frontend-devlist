@@ -195,7 +195,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
       <Shape subDomain={subDomain} />
       <div className={classes.root}>
         <h1 className={classes.mainTitle}>{t("Professional") + ", " + t("Transparent") + " &"}</h1>
-        <h1 className={classes.mainTitle}>{t("Appordable Device Repair")}</h1>
+        <h1 className={classes.mainTitle}>{t("Affordable Device Repair")}</h1>
         <Typography className={classes.mainContent}>
           {t("Same-Day Advanced Repair Services")}
         </Typography>
