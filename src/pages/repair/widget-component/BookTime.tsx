@@ -11,6 +11,16 @@ import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../../store/StoresDetails"
 
+type FindLocProps = {
+  code: string
+  name: string
+}
+
+type SelectHoursProps = {
+  day: string
+  hour: string
+}
+
 type Props = {
   data: any
   subDomain?: string
@@ -24,19 +34,17 @@ type Props = {
 
 const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
   const mainData = require(`../../../assets/${subDomain}/Database`)
-  const timezoneData = require(`../../../assets/_common/timezoneList`)
-  const timeZoneList = timezoneData.timezoneOptions
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
   const brandThemeCol = mainData.brandItemsData.brandThemeCol
   const DAYS_OF_THE_WEEK: string[] = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ]
   const MONTHS: string[] = [
     "January",
@@ -52,10 +60,8 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     "November",
     "December",
   ]
+  const today = new Date()
 
-  const [tzIndex, setTZIndex] = useState(0)
-  const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
-  const [today, setToday] = useState(changeTimezone(new Date(), timezone))
   const [date, setDate] = useState(today)
   const [day, setDay] = useState(date.getDate())
   const [month, setMonth] = useState(date.getMonth())
@@ -78,16 +84,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
 
   const [t] = useTranslation()
 
-  type FindLocProps = {
-    code: string
-    name: string
-  }
-
-  type SelectHoursProps = {
-    day: string
-    hour: string
-  }
-
   const [findLocs, setFindLocs] = useState<FindLocProps[]>([])
   const [selHours, setSelHours] = useState<SelectHoursProps[]>([])
 
@@ -106,15 +102,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
 
   useEffect(() => {
     const cntSelHours: SelectHoursProps[] = []
-    const days: string[] = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ]
     const storeLocs: any[] = storesDetails.findAddLocation
     const i: number = mailInChecked
     if (storeLocs.length) {
@@ -137,7 +124,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             hour = open + " - " + close
           }
           cntSelHours.push({
-            day: days[storeLocs[i].location_hours[j].day],
+            day: DAYS_OF_THE_WEEK[storeLocs[i].location_hours[j].day],
             hour: hour,
           })
         }
@@ -153,15 +140,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     setWeek(date.getDay())
     setTime("")
   }, [date])
-
-  useEffect(() => {
-    setToday(changeTimezone(new Date(), timezone))
-    setDate(changeTimezone(new Date(), timezone))
-  }, [timezone])
-
-  useEffect(() => {
-    setTimezone(timeZoneList[tzIndex].timezone)
-  }, [tzIndex])
 
   useEffect(() => {
     if (code === "MAIL_IN" && storesDetails.cntUserLocation.length) {
@@ -190,16 +168,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
     setSendToAddress(val)
   }
 
-  function changeTimezone(date: Date, ianatz: string) {
-    const invdate = new Date(
-      date.toLocaleString("en-US", {
-        timeZone: ianatz,
-      })
-    )
-    const diff = date.getTime() - invdate.getTime()
-    return new Date(date.getTime() - diff)
-  }
-
   const ChooseNextStep = () => {
     if (code === "MAIL_IN") {
       handleChangeChooseData(7, { code: code, data: { sendTo: sendToAddress } })
@@ -213,7 +181,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           month: t(MONTHS[month]),
           year: year,
           week: t(DAYS_OF_THE_WEEK[week]),
-          timezone: timeZoneList[tzIndex].offset,
+          timezone: -(new Date().getTimezoneOffset() / 60),
         },
       })
       handleChangeSelectTime(time)
@@ -388,11 +356,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
               {code !== "MAIL_IN" && (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <CustomCalendar
-                      subDomain={subDomain}
-                      handleParentDate={setDate}
-                      timezone={timezone}
-                    />
+                    <CustomCalendar subDomain={subDomain} handleParentDate={setDate} />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     {hoursRange.length ? (
@@ -402,10 +366,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         repairBooktimeCol={repairBooktimeCol}
                         title={t(DAYS_OF_THE_WEEK[week]) + ", " + t(MONTHS[month]) + " " + day}
                         subDomain={subDomain}
-                        timezoneIndex={tzIndex}
-                        timeZoneList={timeZoneList}
-                        defaultTimezone={timezoneData.defaultTimezone}
-                        changeTimezone={setTZIndex}
                         changeBooktime={setTime}
                         selectYear={year}
                         selectMonth={month}

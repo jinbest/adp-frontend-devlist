@@ -98,10 +98,9 @@ const Day = styled.div<DayProps>`
 type CanlendarProps = {
   subDomain?: string
   handleParentDate: (date: Date) => void
-  timezone: string
 }
 
-const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProps) => {
+const CustomCalendar = ({ subDomain, handleParentDate }: CanlendarProps) => {
   const mainData = require(`../assets/${subDomain}/Database.js`)
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
 
@@ -132,8 +131,7 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
     "November",
     "December",
   ]
-
-  const [today, setToday] = useState(changeTimezone(new Date(), timezone))
+  const today = new Date()
   const [date, setDate] = useState(today)
   const [day, setDay] = useState(date.getDate())
   const [month, setMonth] = useState(date.getMonth())
@@ -147,20 +145,6 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
     setStartDay(getStartDayOfMonth(date))
     handleParentDate(date)
   }, [date])
-
-  useEffect(() => {
-    setToday(changeTimezone(new Date(), timezone))
-  }, [timezone])
-
-  function changeTimezone(date: Date, ianatz: string) {
-    const invdate = new Date(
-      date.toLocaleString("en-US", {
-        timeZone: ianatz,
-      })
-    )
-    const diff = date.getTime() - invdate.getTime()
-    return new Date(date.getTime() - diff)
-  }
 
   function getStartDayOfMonth(date: Date) {
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay()
