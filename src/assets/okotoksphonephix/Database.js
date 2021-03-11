@@ -297,7 +297,7 @@ const homeTextData = {
   },
   section1: {
     searchPlaceholder: "Find your device",
-    city: "Okotok",
+    city: "Okotoks",
   },
   section2: {
     title: "What can we fix for you today?",
@@ -467,6 +467,12 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Okotoks. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'Phonephix - 1300 Village Lane #1',
+    locMetaDes: 'We\'re Okotoks best choice for phone and tablet repair. Whether it\'s a cracked screen, poor battery life or damaged back glass, come see us today!',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Okotoks\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

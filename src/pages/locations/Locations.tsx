@@ -175,9 +175,14 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
   const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Locations")
+  const [metaDescription, setMetaDescription] = useState("")
 
   useEffect(() => {
-    setPageTitle(`Locations | ${storesDetails.storesDetails.name}`)
+    const storeTabData = data.getTabData(storesDetails.storesDetails.name)
+
+    setPageTitle(storeTabData.locTitle)
+    setMetaDescription(storeTabData.locMetaDes)
+
     handleStatus(true)
   }, [])
 
@@ -192,6 +197,9 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="icon" id="favicon" href={data.fav.img} />
+        <link rel="apple-touch-icon" href={data.fav.img} />
       </Helmet>
 
       <Shape subDomain={subDomain} />

@@ -450,7 +450,7 @@ const repairData = {
     content: "Shop our selection of new and pre-owned devices!",
     btnTitle: "Find a Store",
     themeCol: "black",
-    link: "#"
+    link: "/locations"
   },
 }
 
@@ -460,6 +460,12 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Halifax, NS. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'Geebo Device Repair - 2274 Gottingen St',
+    locMetaDes: 'Conveniently located in downtown Halifax, Geebo Device Repair is your source for fast and affordable phone, tablet and laptop repair.',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Nova Scotia\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

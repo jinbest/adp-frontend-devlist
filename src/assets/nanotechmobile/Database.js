@@ -455,7 +455,7 @@ const repairData = {
     content: "Shop our selection of new and pre-owned devices!",
     btnTitle: "Find a Store",
     themeCol: "black",
-    link: "#"
+    link: "/locations"
   },
 }
 
@@ -465,12 +465,18 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Regina, SK. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'Nanotech Mobile - 2747 Avonhurst Dr, Regina SK',
+    locMetaDes: 'Nanotech is your source for fast, efficient and affordable iPhone, Samsung and iPad repair in Regina. Contact us or book an appointment on our site today!',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Saskatchewan\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-5BV2QS9');              
-        `,
+        `,    
     bodyTag: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BV2QS9"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>              
         `,

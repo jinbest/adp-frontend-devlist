@@ -50,7 +50,7 @@ class FindLocationAPI {
     // const prodLink = 'https://prod.pcmtx.com/api/store-service/'
     // const storeIDs = {
     //   mobiletechlab: 4,
-    //   northtechsolutions: 5,
+    //   northtechcellsolutions: 5,
     //   nanotechmobile: 2,
     //   pradowireless: 10,
     //   wirelessrevottawa: 8,

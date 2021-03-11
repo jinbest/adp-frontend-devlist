@@ -165,11 +165,16 @@ const Business = ({ subDomain, handleStatus }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const [t] = useTranslation()
 
-  const [pageTitle, setPageTitle] = useState("Business")
+  const [pageTitle, setPageTitle] = useState("Business Solutions | ")
+  const [metaDescription, setMetaDescription] = useState("")
   const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
-    setPageTitle(`Business | ${storesDetails.storesDetails.name}`)
+    const storeTabData = data.getTabData(storesDetails.storesDetails.name)
+
+    setPageTitle(storeTabData.businessTitle)
+    setMetaDescription(storeTabData.businessMetaDes)
+
     handleStatus(true)
   }, [])
 
@@ -177,6 +182,9 @@ const Business = ({ subDomain, handleStatus }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="icon" id="favicon" href={data.fav.img} />
+        <link rel="apple-touch-icon" href={data.fav.img} />
       </Helmet>
 
       <Shape subDomain={subDomain} />

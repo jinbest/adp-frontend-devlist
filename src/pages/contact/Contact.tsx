@@ -23,12 +23,22 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
   const mainData = require(`../../assets/${subDomain}/Database`)
   const query = useQuery()
 
-  const [pageTitle] = useState("Contact")
   const [locations, setLocations] = useState<any[]>([])
   const [locationID, setLocationID] = useState(0)
 
+  const [pageTitle, setPageTitle] = useState("Contact Us | ")
+  const [metaDescription, setMetaDescription] = useState("")
+
   useEffect(() => {
+    const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
+
+    setPageTitle(storeTabData.contactTitle)
+    setMetaDescription(storeTabData.contactMetaDes)
+
     handleStatus(true)
+  }, [])
+
+  useEffect(() => {
     setLocations([...storesDetailsStore.allLocations])
   }, [storesDetailsStore.allLocations])
 
@@ -48,9 +58,9 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
     <div>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
         <link rel="icon" id="favicon" href={mainData.fav.img} />
         <link rel="apple-touch-icon" href={mainData.fav.img} />
-        <meta name="description" content={""} />
       </Helmet>
       {locations.length && locationID && (
         <SectionMap

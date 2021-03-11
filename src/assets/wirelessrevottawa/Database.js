@@ -474,6 +474,12 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Ottawa, ON. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'WirelessRev - 1800 Bank St. Ottawa, ON',
+    locMetaDes: 'Ottawa\'s fastest and most affordable cell phone, tablet and laptop repair is WirelessRev at 1800 Bank St. Call or book an appointment online today!',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Ottawa\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
