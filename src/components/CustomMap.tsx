@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core"
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet"
 import { Map } from "leaflet"
-
-export function getAddress(location: any) {
-  return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-    location.city ? location.city + ", " : ""
-  } ${location.state ? location.state + " " : ""} ${
-    location.postcode ? location.postcode + ", " : ""
-  } ${location.country ? location.country + ", " : ""}`
-}
+import { getAddress } from "../services/helper"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -10,7 +10,7 @@ import { ContactSubmitParams } from "../../model/contact-submit-param"
 import { Card } from "../repair/widget-component"
 import { contactAPI } from "../../services"
 import { StoresDetails } from "../../store/StoresDetails"
-import { makeLocations } from "../../components/CustomizedMenus"
+import { makeLocations } from "../../services/helper"
 import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
 import { Close } from "@material-ui/icons"
 

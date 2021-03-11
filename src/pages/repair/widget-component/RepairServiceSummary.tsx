@@ -11,6 +11,7 @@ import { ToastMsgParams } from "../../../model/toast-msg-param"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
 import Loading from "../../../components/Loading"
+import { RevertTimeTZ } from "../../../services/helper"
 
 type Props = {
   repairWidgetData: any
@@ -82,9 +83,14 @@ const RepairServiceSummary = ({
     params.repairs = repairs
     params.selected_date =
       repairWidgetStore.repairWidgetInitialValue.selectDate || moment().format("YYYY-MM-DD")
-    params.selected_start_time =
-      repairWidgetStore.repairWidgetInitialValue.selected_start_time || moment().format("HH:mm")
-    params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
+    params.selected_start_time = RevertTimeTZ(
+      repairWidgetStore.repairWidgetInitialValue.selected_start_time || moment().format("HH:mm"),
+      repairWidgetStore.timezone
+    )
+    params.selected_end_time = RevertTimeTZ(
+      repairWidgetStore.repairWidgetInitialValue.selected_end_time,
+      repairWidgetStore.timezone
+    )
     params.booking_date = moment().format("YYYY-MM-DD")
 
     repairWidgetAPI

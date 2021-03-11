@@ -4,7 +4,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Button } from "../../components"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { isExternal } from "../../components/Header"
+import { isExternal } from "../../services/helper"
 
 type Props = {
   subDomain?: string

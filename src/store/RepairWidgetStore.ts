@@ -37,6 +37,7 @@ export class RepairWidgetStore {
     selected_end_time: null
   }
   @observable appointResponse: any = {}
+  @observable timezone: string | undefined = "-06:00"
 
   constructor() {
     this.load();
@@ -59,7 +60,8 @@ export class RepairWidgetStore {
         message: this.message,
         cntStep: this.cntStep,
         repairWidgetInitialValue: this.repairWidgetInitialValue,
-        appointResponse: this.appointResponse
+        appointResponse: this.appointResponse,
+        timezone: this.timezone
       })
     )
 
@@ -142,6 +144,12 @@ export class RepairWidgetStore {
   }
 
   @action
+  changeTimezone = (timezone: string | undefined) => {
+    this.timezone = timezone
+    this.save()
+  }
+
+  @action
   init = () => {
     this.deviceBrand = [];
     this.deviceModel = [];
@@ -176,6 +184,7 @@ export class RepairWidgetStore {
       selected_end_time: null
     }
     this.appointResponse = {}
+    this.timezone = "-06:00"
     this.save();
   }
 

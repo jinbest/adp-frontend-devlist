@@ -7,8 +7,7 @@ import { Button } from "../../components"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
-import { getRegularHours, getHourType, getAddress } from "../contact/Section-map"
-import { phoneFormatString } from "../../components/Header"
+import { getRegularHours, getHourType, getAddress, phoneFormatString } from "../../services/helper"
 
 const DAYS_OF_THE_WEEK: string[] = [
   "Sunday",
@@ -329,7 +328,9 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                                   ? it.by_appointment_only
                                     ? t("Call to book appointment")
                                     : t("Closed")
-                                  : getHourType(it.open) + "-" + getHourType(it.close)}
+                                  : getHourType(it.open, item.timezone) +
+                                    "-" +
+                                    getHourType(it.close, item.timezone)}
                               </Typography>
                             </div>
                           </div>

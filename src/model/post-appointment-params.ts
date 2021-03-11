@@ -20,6 +20,6 @@ export interface PostAppointParams {
     repairs: any[]
     booking_date: string
     selected_date: string
-    selected_start_time: string
-    selected_end_time: string
+    selected_start_time: string | null
+    selected_end_time: string | null
 }

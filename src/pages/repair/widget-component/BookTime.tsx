@@ -6,10 +6,35 @@ import CustomBookTime from "./CustomBookTime"
 import RepairSummary from "./RepairSummary"
 import { useTranslation } from "react-i18next"
 import { repairWidgetStore, storesDetails } from "../../../store"
-import { makeLocations } from "../../../components/CustomizedMenus"
+import { makeLocations } from "../../../services/helper"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../../store/StoresDetails"
+import { getHourType } from "../../../services/helper"
+
+const DAYS_OF_THE_WEEK: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+]
+const MONTHS: string[] = [
+  "January",
+  "Febrary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "Octorber",
+  "November",
+  "December",
+]
 
 type FindLocProps = {
   code: string
@@ -37,31 +62,8 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
   const brandThemeCol = mainData.brandItemsData.brandThemeCol
-  const DAYS_OF_THE_WEEK: string[] = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ]
-  const MONTHS: string[] = [
-    "January",
-    "Febrary",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "Octorber",
-    "November",
-    "December",
-  ]
-  const today = new Date()
 
+  const today = new Date()
   const [date, setDate] = useState(today)
   const [day, setDay] = useState(date.getDate())
   const [month, setMonth] = useState(date.getMonth())
@@ -111,16 +113,8 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           if (!storeLocs[i].location_hours[j].open || !storeLocs[i].location_hours[j].close) {
             hour = "Closed"
           } else {
-            const open: string =
-              (parseInt(storeLocs[i].location_hours[j].open.split(":")[0]) % 12) +
-              ":" +
-              storeLocs[i].location_hours[j].open.split(":")[1] +
-              " a.m."
-            const close: string =
-              (parseInt(storeLocs[i].location_hours[j].close.split(":")[0]) % 12) +
-              ":" +
-              storeLocs[i].location_hours[j].close.split(":")[1] +
-              " p.m."
+            const open = getHourType(storeLocs[i].location_hours[j].open, storeLocs[i].timezone),
+              close = getHourType(storeLocs[i].location_hours[j].close, storeLocs[i].timezone)
             hour = open + " - " + close
           }
           cntSelHours.push({
@@ -181,7 +175,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
           month: t(MONTHS[month]),
           year: year,
           week: t(DAYS_OF_THE_WEEK[week]),
-          timezone: -(new Date().getTimezoneOffset() / 60),
+          timezone: storesDetails.cntUserLocation[0].timezone,
         },
       })
       handleChangeSelectTime(time)
@@ -206,6 +200,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
       selected_end_time: null,
     }
     repairWidgetStore.changeRepairWidgetInitialValue(repairSelectedTime)
+    repairWidgetStore.changeTimezone(storesDetails.cntUserLocation[0].timezone)
   }
 
   const onKeyPress = useCallback(
