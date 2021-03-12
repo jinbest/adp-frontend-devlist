@@ -16,6 +16,7 @@ import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
 import { Close } from "@material-ui/icons"
+import { isEmpty } from "lodash"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -145,7 +146,10 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
   useEffect(() => {
     if (storesDetailsStore.cntUserLocationSelected && locations.length) {
       for (let i = 0; i < locations.length; i++) {
-        if (storesDetailsStore.cntUserLocation[0].location_id === locations[i].id) {
+        if (
+          !isEmpty(storesDetailsStore.cntUserLocation) &&
+          storesDetailsStore.cntUserLocation[0].location_id === locations[i].id
+        ) {
           setLoc({ name: locations[i].address_1, code: i })
         }
       }

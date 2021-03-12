@@ -14,6 +14,7 @@ import CallSplitIcon from "@material-ui/icons/CallSplit"
 import { makeLocations } from "../../components/CustomizedMenus"
 import { phoneFormatString } from "../../components/Header"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { isEmpty } from "lodash"
 
 interface LocationHour {
   close: string
@@ -261,7 +262,10 @@ const SectionMap = inject("storesDetailsStore")(
       useEffect(() => {
         if (storesDetailsStore.cntUserLocationSelected && locations.length) {
           for (let i = 0; i < locations.length; i++) {
-            if (storesDetailsStore.cntUserLocation[0].location_id === locations[i].id) {
+            if (
+              !isEmpty(storesDetailsStore.cntUserLocation) &&
+              storesDetailsStore.cntUserLocation[0].location_id === locations[i].id
+            ) {
               setSelectedLocation(locations[i])
               handleLocationID(locations[i].id)
               setExpanded(i)
