@@ -128,7 +128,7 @@ const colorPalle = {
 
 const navItemsData = [
   { href: "#", text: "Trade", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "Repair", isActive: false, flag: "FRONTEND_REPAIR" },
   { href: "http://shop.pradowireless.com/", text: "Shop", isActive: false, flag: "FRONTEND_BUY" },
   { href: "#", text: "Insure", isActive: false, flag: "FRONTEND_INSURE" },
   { href: "/contact", text: "Contact", isActive: false, flag: "ALWAYS_TRUE" },
@@ -252,7 +252,7 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "Shop", href: "http://shop.pradowireless.com/", flag: "FRONTEND_BUY" },
     { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
     { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },
@@ -448,9 +448,9 @@ const repairData = {
   section4: {
     title: "Get the Latest",
     content: "Shop our selection of new and pre-owned devices!",
-    btnTitle: "Find a Store",
+    btnTitle: "Shop Now",
     themeCol: "black",
-    link: "#"
+    link: "http://shop.pradowireless.com/"
   },
 }
 
@@ -460,6 +460,12 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Victoria, BC. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'Locations | Prado Wireless',
+    locMetaDes: 'Prado Wireless is Victoria BC\'s best choice for fast, efficient and affordable phone, tablet and laptop repair. Call or request a quote online ',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Victoria\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

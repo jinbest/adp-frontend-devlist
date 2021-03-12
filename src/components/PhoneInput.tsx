@@ -29,6 +29,7 @@ const PhoneInput = ({ placeholder, handleSetPhone, val, errorText }: Props) => {
           required: true,
         }}
         country={"ca"}
+        onlyCountries={["ca", "us"]}
         placeholder={placeholder}
         value={phone}
         onChange={handleOnChange}

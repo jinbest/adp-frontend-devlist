@@ -132,7 +132,7 @@ const colorPalle = {
 
 const navItemsData = [
   { href: "#", text: "Trade", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "Get Quote", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "/quote", text: "Repair", isActive: false, flag: "FRONTEND_REPAIR" },
   { href: "/shop", text: "Shop", isActive: false, flag: "FRONTEND_BUY" },
   { href: "#", text: "Insure", isActive: false, flag: "FRONTEND_INSURE" },
   { href: "/contact", text: "Contact", isActive: false, flag: "ALWAYS_TRUE" },
@@ -256,7 +256,7 @@ const avatarData = {
 const mobileNavItemData = {
   left: [
     { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "Get Quote", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
     { text: "Shop", href: "#", flag: "FRONTEND_MEGA_MENU" },
     { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
     { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },
@@ -456,7 +456,7 @@ const repairData = {
     content: "Shop our selection of new and pre-owned devices!",
     btnTitle: "Find a Store",
     themeCol: "black",
-    link: "#"
+    link: "/locations"
   },
 }
 
@@ -466,6 +466,12 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Regina, SK. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'Nanotech Mobile - 2747 Avonhurst Dr, Regina SK',
+    locMetaDes: 'Nanotech is your source for fast, efficient and affordable iPhone, Samsung and iPad repair in Regina. Contact us or book an appointment on our site today!',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Saskatchewan\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

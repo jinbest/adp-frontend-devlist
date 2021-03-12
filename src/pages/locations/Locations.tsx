@@ -42,7 +42,8 @@ const useStyles = makeStyles(() =>
       color: "black",
       fontSize: "55px !important",
       lineHeight: "1 !important",
-      textShadow: "1px 0 black",
+      // textShadow: "1px 0 black",
+      fontWeight: "bold",
       justifyContent: "center",
       ["@media (max-width:1400px)"]: {
         fontSize: "4vw !important",
@@ -97,7 +98,8 @@ const useStyles = makeStyles(() =>
       color: "black",
       fontSize: "40px !important",
       lineHeight: "1 !important",
-      textShadow: "1px 0 black",
+      // textShadow: "1px 0 black",
+      fontWeight: "bold",
       justifyContent: "center",
       marginTop: "50px !important",
       marginBottom: "40px !important",
@@ -173,9 +175,14 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
   const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Locations")
+  const [metaDescription, setMetaDescription] = useState("")
 
   useEffect(() => {
-    setPageTitle(`Locations | ${storesDetails.storesDetails.name}`)
+    const storeTabData = data.getTabData(storesDetails.storesDetails.name)
+
+    setPageTitle(storeTabData.locTitle)
+    setMetaDescription(storeTabData.locMetaDes)
+
     handleStatus(true)
   }, [])
 
@@ -190,6 +197,9 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="icon" id="favicon" href={data.fav.img} />
+        <link rel="apple-touch-icon" href={data.fav.img} />
       </Helmet>
 
       <Shape subDomain={subDomain} />

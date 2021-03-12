@@ -55,7 +55,8 @@ const useStyles = makeStyles(() =>
       color: "black",
       fontSize: "60px !important",
       marginBottom: "40px !important",
-      textShadow: "1px 0 black",
+      // textShadow: "1px 0 black",
+      fontWeight: "bold",
       justifyContent: "center",
       letterSpacing: "2px",
       ["@media (max-width:1400px)"]: {
@@ -92,7 +93,7 @@ const useStyles = makeStyles(() =>
       fontSize: "40px !important",
       textAlign: "center",
       color: "black",
-      textShadow: "1px 0 black",
+      // textShadow: "1px 0 black",
       fontWeight: "bold",
       letterSpacing: "1px",
       marginBottom: "50px",
@@ -164,11 +165,16 @@ const Business = ({ subDomain, handleStatus }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const [t] = useTranslation()
 
-  const [pageTitle, setPageTitle] = useState("Business")
+  const [pageTitle, setPageTitle] = useState("Business Solutions | ")
+  const [metaDescription, setMetaDescription] = useState("")
   const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
-    setPageTitle(`Business | ${storesDetails.storesDetails.name}`)
+    const storeTabData = data.getTabData(storesDetails.storesDetails.name)
+
+    setPageTitle(storeTabData.businessTitle)
+    setMetaDescription(storeTabData.businessMetaDes)
+
     handleStatus(true)
   }, [])
 
@@ -176,6 +182,9 @@ const Business = ({ subDomain, handleStatus }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="icon" id="favicon" href={data.fav.img} />
+        <link rel="apple-touch-icon" href={data.fav.img} />
       </Helmet>
 
       <Shape subDomain={subDomain} />

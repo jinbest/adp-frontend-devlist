@@ -42,7 +42,7 @@ const Section2 = ({ subDomain, features }: Props) => {
           <section className={subDomain + "-Container"}>
             <h2
               className={subDomain + "-section-title"}
-              style={{ color: "black", textShadow: "1px 0 black" }}
+              // style={{ color: "black", textShadow: "1px 0 black" }}
             >
               {t(data.homeTextData.section2.title)}
             </h2>

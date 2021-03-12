@@ -21,7 +21,7 @@ const Section4 = ({ subDomain }: Props) => {
             <Grid item xs={12} sm={12} md={6}>
               <Typography
                 className={"f40 bold " + subDomain + "-section4-title"}
-                style={{ color: "black", textShadow: "1px 0 black" }}
+                // style={{ color: "black", textShadow: "1px 0 black" }}
               >
                 {t(data.homeTextData.section4.title)}
               </Typography>

@@ -39,7 +39,7 @@ const Section1 = inject("repairWidgetStore")(
                 className={subDomain + "-service-section-title-1"}
                 style={{
                   color: repair.themeCol,
-                  textShadow: `1px 0 ${repair.themeCol}`,
+                  // textShadow: `1px 0 ${repair.themeCol}`,
                 }}
               >
                 {t(repair.title)}

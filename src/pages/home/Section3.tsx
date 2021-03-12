@@ -37,7 +37,7 @@ const Section3 = ({ subDomain, features }: Props) => {
             <div className={subDomain + "-Container"}>
               <Typography
                 className={subDomain + "-section-title"}
-                style={{ color: "black", textShadow: "1px 0 black" }}
+                // style={{ color: "black", textShadow: "1px 0 black" }}
               >
                 {t(data.homeTextData.section3.title)}
               </Typography>

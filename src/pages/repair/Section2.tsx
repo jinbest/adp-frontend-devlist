@@ -18,7 +18,7 @@ const Section2 = ({ subDomain }: Props) => {
       <div className={subDomain + "-Container " + subDomain + "-service-section2-text-field"}>
         <Typography
           className={subDomain + "-service-section-title-1"}
-          style={{ color: repair.themeCol, textShadow: `1px 0 ${repair.themeCol}` }}
+          style={{ color: repair.themeCol }}
         >
           {t(repair.title)}
         </Typography>
