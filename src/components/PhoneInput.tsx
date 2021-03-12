@@ -10,13 +10,21 @@ type Props = {
 }
 
 const PhoneInput = ({ placeholder, handleSetPhone, val, errorText }: Props) => {
-  const [phone, setPhone] = useState("")
+  const [phone, setPhone] = useState("+1")
 
   useEffect(() => {
+    if (val.length < 2) {
+      setPhone("+1")
+      handleSetPhone("+1")
+    }
     setPhone(val)
   }, [val])
 
   const handleOnChange = (value: string) => {
+    if (value.length < 2) {
+      setPhone("+1")
+      handleSetPhone("+1")
+    }
     setPhone(value)
     handleSetPhone(value)
   }
@@ -30,6 +38,7 @@ const PhoneInput = ({ placeholder, handleSetPhone, val, errorText }: Props) => {
         }}
         country={"ca"}
         onlyCountries={["ca", "us"]}
+        // enableAreaCodes={true}
         placeholder={placeholder}
         value={phone}
         onChange={handleOnChange}
