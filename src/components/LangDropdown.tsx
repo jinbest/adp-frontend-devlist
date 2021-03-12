@@ -45,6 +45,12 @@ const LangDropdown = ({ subDomain, color }: Props) => {
   }
 
   useEffect(() => {
+    if (subDomain === "reparationcellulairebsl") {
+      setState(options[1])
+      i18n.changeLanguage("fr")
+      window.localStorage.setItem("cntLang", "fr")
+      return
+    }
     const cntLang = window.localStorage.getItem("cntLang") || "en"
     cntLang === "en" ? setState(options[0]) : setState(options[1])
     i18n.changeLanguage(cntLang)
