@@ -9,24 +9,20 @@ type Props = {
   errorText?: string
 }
 
-const PhoneInput = ({ placeholder, handleSetPhone, val, errorText }: Props) => {
-  const [phone, setPhone] = useState("+1")
-
-  useEffect(() => {
-    if (val.length < 2) {
-      setPhone("+1")
-      handleSetPhone("+1")
-    }
-    setPhone(val)
-  }, [val])
+const PhoneInput = ({ placeholder, handleSetPhone, errorText }: Props) => {
+  const [phone, setPhone] = useState("1")
 
   const handleOnChange = (value: string) => {
-    if (value.length < 2) {
-      setPhone("+1")
-      handleSetPhone("+1")
+    if (value.length < 1) {
+      setPhone("1")
+      handleSetPhone("1")
+    } else if (value.substring(0, 1) !== "1") {
+      setPhone(`1${value}`)
+      handleSetPhone(`1${value}`)
+    } else {
+      setPhone(value)
+      handleSetPhone(value)
     }
-    setPhone(value)
-    handleSetPhone(value)
   }
 
   return (
