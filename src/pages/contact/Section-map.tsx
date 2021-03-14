@@ -394,9 +394,7 @@ const SectionMap = inject("storesDetailsStore")(
                                   ? item.by_appointment_only
                                     ? t("Call to book appointment")
                                     : t("Closed")
-                                  : getHourType(item.open, element.timezone) +
-                                    "-" +
-                                    getHourType(item.close, element.timezone)}
+                                  : getHourType(item.open) + "-" + getHourType(item.close)}
                               </p>
                             </Grid>
                           </Grid>

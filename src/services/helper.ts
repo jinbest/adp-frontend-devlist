@@ -44,25 +44,43 @@ export function RevertTimeTZ(time: string, timezone: string | undefined) {
   return hour + ":" + min
 }
 
-export function getHourType(hourStr: string, timezone: string) {
+// export function getHourType(hourStr: string, timezone: string) {
+//   if (!hourStr) return "12:00 a.m"
+//   const tz = ConvertTZToNum(timezone),
+//     cntTzOfset = -(new Date().getTimezoneOffset() / 60)
+//   const ptr = hourStr.split(":")
+//   let hour = 12, minute = "00", stamp = 0
+//   let AP = "a.m."
+//   stamp = (Number(ptr[0]) + (cntTzOfset-tz)) * 60 + Number(ptr[1])
+//   hour = Math.floor(stamp / 60)
+//   if (hour >= 36) {
+//     AP = "p.m."
+//   } else if (hour >= 24) {
+//     AP = "a.m."
+//   } else if (hour >= 12) {
+//     AP = "p.m."
+//   } else {
+//     AP = "a.m."
+//   }
+//   minute = stamp % 60 > 9 ? (stamp % 60).toString() : "0" + stamp % 60
+//   return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
+// }
+
+export function getHourType(hourStr: string) {
   if (!hourStr) return "12:00 a.m"
-  const tz = ConvertTZToNum(timezone),
-    cntTzOfset = -(new Date().getTimezoneOffset() / 60)
   const ptr = hourStr.split(":")
-  let hour = 12, minute = "00", stamp = 0
-  let AP = "a.m."
-  stamp = (Number(ptr[0]) + (cntTzOfset-tz)) * 60 + Number(ptr[1])
-  hour = Math.floor(stamp / 60)
-  if (hour >= 36) {
-    AP = "p.m."
-  } else if (hour >= 24) {
-    AP = "a.m."
-  } else if (hour >= 12) {
-    AP = "p.m."
-  } else {
-    AP = "a.m."
+  let hour = 12, minute = "00", AP = "a.m."
+  if (ptr.length > 0) {
+    hour = parseInt(ptr[0])
+    if (hour >= 12) {
+      AP = "p.m."
+    } else {
+      AP = "a.m."
+    }
   }
-  minute = stamp % 60 > 9 ? (stamp % 60).toString() : "0" + stamp % 60
+  if (ptr.length > 1) {
+    minute = ptr[1]
+  }
   return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
 }
 
@@ -111,8 +129,8 @@ export function makeLocations(data: any[]) {
         if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
           hour = "Closed"
         } else {
-          const open = getHourType(data[i].location_hours[j].open, data[i].timezone), 
-            close = getHourType(data[i].location_hours[j].close, data[i].timezone)
+          const open = getHourType(data[i].location_hours[j].open), 
+            close = getHourType(data[i].location_hours[j].close)
           hour = open + " - " + close
         }
         for (let k = 0; k < hours.length; k++) {

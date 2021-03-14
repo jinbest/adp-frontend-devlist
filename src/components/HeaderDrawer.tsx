@@ -6,7 +6,7 @@ import Backdrop from "@material-ui/core/Backdrop"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { Button, InputComponent } from "./"
+import { Button, InputComponent, LangDropdown } from "./"
 import Loading from "./Loading"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
@@ -373,6 +373,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                 {loadingStatus && <Loading />}
               </Button>
             </div>
+            <LangDropdown subDomain={subDomain} />
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"

@@ -10,6 +10,9 @@ const useStyles = makeStyles(() =>
     formControl: {
       margin: "0 5px",
       marginTop: "-3px",
+      ["@media (max-width:768px)"]: {
+        display: "none",
+      },
     },
     selectOption: {
       color: "black",
@@ -17,12 +20,25 @@ const useStyles = makeStyles(() =>
       marginLeft: "10px",
       fontSize: "14px",
     },
+    mobileSelector: {
+      outline: "none",
+      border: "none",
+      position: "absolute",
+      bottom: "70px",
+      right: "85px",
+      margin: "auto",
+      fontSize: "12px",
+      display: "none",
+      ["@media (max-width:768px)"]: {
+        display: "block",
+      },
+    },
   })
 )
 
 type Props = {
   subDomain?: string
-  color: string
+  color?: string
 }
 
 const LangDropdown = ({ subDomain, color }: Props) => {
@@ -74,6 +90,15 @@ const LangDropdown = ({ subDomain, color }: Props) => {
           })}
         </NativeSelect>
       </FormControl>
+      <select className={classes.mobileSelector} value={state} onChange={handleChange}>
+        {options.map((item: any, index: number) => {
+          return (
+            <option value={item} key={index}>
+              {t(item)}
+            </option>
+          )
+        })}
+      </select>
     </div>
   )
 }

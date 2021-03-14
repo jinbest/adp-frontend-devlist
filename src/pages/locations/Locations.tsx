@@ -328,9 +328,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                                   ? it.by_appointment_only
                                     ? t("Call to book appointment")
                                     : t("Closed")
-                                  : getHourType(it.open, item.timezone) +
-                                    "-" +
-                                    getHourType(it.close, item.timezone)}
+                                  : getHourType(it.open) + "-" + getHourType(it.close)}
                               </Typography>
                             </div>
                           </div>
