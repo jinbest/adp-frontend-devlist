@@ -2,7 +2,7 @@ import React from "react"
 import Button from "./Button"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
-import { isExternal } from "../components/Header"
+import { isExternal } from "../services/helper"
 
 type Props = {
   title: string

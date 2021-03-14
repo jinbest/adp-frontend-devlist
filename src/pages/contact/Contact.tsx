@@ -4,13 +4,9 @@ import { Helmet } from "react-helmet"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../store/StoresDetails"
-import { useLocation } from "react-router-dom"
+import { useQuery } from "../../services/helper"
 import { Provider } from "mobx-react"
 import { storesDetails } from "../../store"
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search)
-}
 
 type Props = {
   subDomain: string

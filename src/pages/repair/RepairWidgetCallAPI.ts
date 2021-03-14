@@ -1,5 +1,6 @@
 import { repairWidgetAPI } from "../../services/"
 import { repairWidData, storesDetails } from "../../store/"
+import { setQuotesStore } from "../../services/helper"
 
 function getRepairLookupAPI() {
   const lookupTypes: any[] = ["repair_delivery_method", "repair_contact_method", "warranty_unit"]
@@ -221,6 +222,22 @@ async function addMoreRepairsOfferedDeviceAPI(
     })
 }
 
+async function getQuotesByLocAppointmentID(
+  location_id: number,
+  appointment_id: number
+) {
+  const store_id: number = storesDetails.store_id
+
+  await repairWidgetAPI
+    .getQuotesByID(store_id, location_id, appointment_id)
+    .then(async (res: any) => {
+      await setQuotesStore(res.data)
+    })
+    .catch((error) => {
+      console.log("Error in get Quotes", error)
+    })
+}
+
 export {
   getRepairLookupAPI,
   getDeliveryMethodsAPI,
@@ -231,4 +248,5 @@ export {
   getBrandProductsAPI,
   addMoreBrandProductsAPI,
   getContactMethodsAPI,
+  getQuotesByLocAppointmentID
 }

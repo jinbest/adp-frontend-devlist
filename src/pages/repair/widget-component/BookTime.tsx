@@ -6,7 +6,7 @@ import CustomBookTime from "./CustomBookTime"
 import RepairSummary from "./RepairSummary"
 import { useTranslation } from "react-i18next"
 import { repairWidgetStore, storesDetails } from "../../../store"
-import { makeLocations } from "../../../components/CustomizedMenus"
+import { makeLocations } from "../../../services/helper"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../../store/StoresDetails"
@@ -238,6 +238,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
       selected_end_time: null,
     }
     repairWidgetStore.changeRepairWidgetInitialValue(repairSelectedTime)
+    repairWidgetStore.changeTimezone(storesDetails.cntUserLocation[0].timezone)
   }
 
   const onKeyPress = useCallback(

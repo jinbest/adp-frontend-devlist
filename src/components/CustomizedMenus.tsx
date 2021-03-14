@@ -6,70 +6,13 @@ import { useTranslation } from "react-i18next"
 import { repairWidgetStore } from "../store/"
 import { findLocationAPI } from "../services/"
 import { Link } from "react-router-dom"
-import { GetCurrentLocParams } from "../model/get-current-location"
 import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import Loading from "./Loading"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-
-export function makeLocations(data: any[]) {
-  const locations: GetCurrentLocParams[] = []
-  const days: any[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  for (let i = 0; i < data.length; i++) {
-    const hours: any[] = [],
-      weekDays: any[] = [],
-      storeGroup: any[] = []
-    for (let j = 0; j < data[i].location_hours.length; j++) {
-      if (data[i].location_hours[j].type === "REGULAR") {
-        const cntStoreID = data[i].location_hours[j].store_id
-        if (!storeGroup.includes(cntStoreID)) {
-          storeGroup.push(cntStoreID)
-          hours.push({ store_id: cntStoreID, hrs: [] })
-          weekDays.push({ store_id: cntStoreID, wkDys: [] })
-        }
-        let hour = ""
-        if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
-          hour = "Closed"
-        } else {
-          const open: string =
-            (parseInt(data[i].location_hours[j].open.split(":")[0]) % 12) +
-            ":" +
-            data[i].location_hours[j].open.split(":")[1] +
-            " a.m."
-          const close: string =
-            (parseInt(data[i].location_hours[j].close.split(":")[0]) % 12) +
-            ":" +
-            data[i].location_hours[j].close.split(":")[1] +
-            " p.m."
-          hour = open + " - " + close
-        }
-        for (let k = 0; k < hours.length; k++) {
-          if (cntStoreID === hours[k].store_id) {
-            hours[k].hrs.push(hour)
-            weekDays[k].wkDys.push(days[data[i].location_hours[j].day])
-            break
-          }
-        }
-      }
-    }
-    const cntItem: GetCurrentLocParams = {
-      location_name: data[i].location_name,
-      address_1: data[i].address_1,
-      address_2: data[i].address_2,
-      distance: data[i].distance ? (data[i].distance / 1000).toFixed(1) + "km" : "",
-      location_id: data[i].id,
-      hours: hours,
-      days: weekDays,
-      latitude: data[i].latitude,
-      longitude: data[i].longitude,
-      business_page_link: data[i].business_page_link,
-    }
-    locations.push(cntItem)
-  }
-  return locations
-}
+import { makeLocations, getAddress } from "../services/helper"
 
 const StyledMenu = withStyles({
   paper: {
@@ -307,15 +250,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
           })
           setIsRequest(false)
         })
-    }
-
-    const getAddress = (location: any) => {
-      if (!location) return ""
-      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city ? location.city + ", " : ""
-      } ${location.state ? location.state + " " : ""} ${
-        location.postcode ? location.postcode + ", " : ""
-      } ${location.country ? location.country + ", " : ""}`
     }
 
     return (

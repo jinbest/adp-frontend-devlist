@@ -11,28 +11,15 @@ import { StoresDetails } from "../../store/StoresDetails"
 import { Link } from "react-router-dom"
 import PhoneIcon from "@material-ui/icons/Phone"
 import CallSplitIcon from "@material-ui/icons/CallSplit"
-import { makeLocations } from "../../components/CustomizedMenus"
-import { phoneFormatString } from "../../components/Header"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { isEmpty } from "lodash"
-
-interface LocationHour {
-  close: string
-  created_by: string
-  created_date: string
-  day: number
-  deleted_by: string | null
-  deleted_date: string | null
-  id: number
-  is_voided: boolean
-  location_id: number
-  modified_by: string | null
-  modified_date: string | null
-  open: string
-  store_id: boolean
-  type: "REGULAR" | "HOLIDAY"
-  by_appointment_only: boolean
-}
+import {
+  getRegularHours,
+  getHourType,
+  getAddress,
+  makeLocations,
+  phoneFormatString,
+} from "../../services/helper"
 
 const DAYS_OF_THE_WEEK: string[] = [
   "Sunday",
@@ -43,47 +30,6 @@ const DAYS_OF_THE_WEEK: string[] = [
   "Friday",
   "Saturday",
 ]
-
-export function getRegularHours(hours: any[]) {
-  return hours
-    .map((v) => v as LocationHour)
-    .filter((p) => {
-      return p.type == "REGULAR"
-    })
-    .sort((d) => d.day)
-}
-
-export function getHourType(hourStr: string) {
-  const ptr = hourStr.split(":")
-  let hour = 12,
-    minute = "00"
-  let AP = "a.m."
-  if (ptr.length > 0) {
-    hour = parseInt(ptr[0])
-    if (hour >= 12) {
-      AP = "p.m."
-    } else {
-      AP = "a.m."
-    }
-  }
-  if (ptr.length > 1) {
-    minute = ptr[1]
-  }
-  return `${hour % 12 === 0 ? 12 : hour % 12}:${minute} ${AP}`
-}
-
-export function getAddress(location: any) {
-  if (!location) return ""
-  return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-    location.city ? location.city + ", " : ""
-  } ${location.state ? location.state + " " : ""} ${
-    location.postcode
-      ? location.postcode.substring(0, 3) +
-        " " +
-        location.postcode.substring(3, location.postcode.length)
-      : ""
-  }`
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -448,7 +394,9 @@ const SectionMap = inject("storesDetailsStore")(
                                   ? item.by_appointment_only
                                     ? t("Call to book appointment")
                                     : t("Closed")
-                                  : getHourType(item.open) + "-" + getHourType(item.close)}
+                                  : getHourType(item.open, element.timezone) +
+                                    "-" +
+                                    getHourType(item.close, element.timezone)}
                               </p>
                             </Grid>
                           </Grid>

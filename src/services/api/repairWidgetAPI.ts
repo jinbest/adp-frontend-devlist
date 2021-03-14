@@ -180,6 +180,52 @@ class RepairWidgetAPI {
         })
     })
   }
+
+  getQuotesByID = (store_id: number, loc_id: number, quote_id: number) => {
+    const apiURL = `${Config.REPAIR_SERVICE_API_URL}dc/store/${store_id}/repair/location/${loc_id}/appointment/${quote_id}`
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${apiURL}`)
+        .then((response) => {
+          if (response) {
+            resolve(response)
+          } else {
+            reject(response)
+          }
+        })
+        .catch((error) => {
+          if (error) {
+            reject(error)
+          }
+        })
+    })
+  }
+
+  getBrandsProducts = (store_id: number, prod_ids: number[]) => {
+    let prodsID = "";
+    for (let i = 0; i < prod_ids.length-1; i++) {
+      prodsID += prod_ids[i] + ","
+    }
+    prodsID += prod_ids[prod_ids.length-1]
+    const apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?product_ids=${prodsID}&include_voided=true&include_children=true`
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${apiURL}`)
+        .then((response) => {
+          if (response) {
+            resolve(response)
+          } else {
+            reject(response)
+          }
+        })
+        .catch((error) => {
+          if (error) {
+            reject(error)
+          }
+        })
+    })
+  }
+  
 }
 
 const instance = new RepairWidgetAPI()

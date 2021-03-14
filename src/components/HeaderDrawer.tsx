@@ -4,7 +4,6 @@ import Drawer from "@material-ui/core/Drawer"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { isExternal } from "./Header"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { Button, InputComponent } from "./"
@@ -13,9 +12,10 @@ import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import { StoresDetails } from "../store/StoresDetails"
-import { makeLocations } from "./CustomizedMenus"
+import { makeLocations } from "../services/helper"
 import { findLocationAPI } from "../services/"
 import { repairWidgetStore } from "../store/"
+import { getAddress, isExternal } from "../services/helper"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -300,14 +300,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
     const viewMoreStores = () => {
       setLocations(makeLocations(storesDetailsStore.findAddLocation))
       setLocSelStatus(false)
-    }
-
-    const getAddress = (location: any) => {
-      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city ? location.city + ", " : ""
-      } ${location.state ? location.state + " " : ""} ${
-        location.postcode ? location.postcode + ", " : ""
-      } ${location.country ? location.country + ", " : ""}`
     }
 
     const handleBookRepair = () => {
