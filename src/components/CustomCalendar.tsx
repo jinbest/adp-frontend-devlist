@@ -2,8 +2,7 @@ import * as React from "react"
 import { useState, useEffect } from "react"
 import styled, { css } from "styled-components"
 import { CustomNumeric } from "../components"
-import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
+import { useTranslation } from "react-i18next"
 
 const Frame = styled.div`
   width: 100%;
@@ -106,32 +105,32 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
   const mainData = require(`../assets/${subDomain}/Database.js`)
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
 
-  const t = useT()
+  const [t] = useTranslation()
 
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-  const DAYS_OF_THE_WEEK: LangProps[] = [
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
-    "SUNDAY",
+  const DAYS_OF_THE_WEEK: string[] = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ]
-  const MONTHS: LangProps[] = [
-    "JANUARY",
-    "FEBRARY",
-    "MARCH",
-    "APRIL",
-    "MAY",
-    "JUNE",
-    "JULY",
-    "AUGUST",
-    "SEPTEMBER",
-    "OCTORBER",
-    "NOVEMBER",
-    "DECEMBER",
+  const MONTHS: string[] = [
+    "January",
+    "Febrary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "Octorber",
+    "November",
+    "December",
   ]
 
   const [today, setToday] = useState(changeTimezone(new Date(), timezone))
@@ -233,7 +232,7 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
       </Numeric>
       <Body>
         <Weekdiv>
-          {DAYS_OF_THE_WEEK.map((d: LangProps) => (
+          {DAYS_OF_THE_WEEK.map((d: string) => (
             <Day key={d} color="white" bg="#BDBFC3" margin="0 0 10px">
               <strong>{t(d).substring(0, 3)}</strong>
             </Day>

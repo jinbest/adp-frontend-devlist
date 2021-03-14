@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { Card, RepairSummary } from "./"
 import { InputComponent, Button, PhoneInput, CustomSelect } from "../../../components"
-import { useT } from "../../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { repairWidgetAPI, findLocationAPI } from "../../../services"
 import { PostAppointParams } from "../../../model/post-appointment-params"
 import { countriesData } from "../../../const"
-import { makeLocations } from "../../../components/CustomizedMenus"
+import { makeLocations } from "../../../services/helper"
 import { ToastMsgParams } from "../../../model/toast-msg-param"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
@@ -53,7 +53,7 @@ const ContactDetails = ({
   const mainData = require(`../../../assets/${subDomain}/Database.js`)
   const themeCol = mainData.colorPalle.themeColor
 
-  const t = useT()
+  const [t] = useTranslation()
 
   const [firstName, setFirstName] = useState("")
   const [fnErrTxt, setFnErrTxt] = useState("")
@@ -137,13 +137,12 @@ const ContactDetails = ({
           repairWidgetStore.changeAppointResponse(res.data)
           handleStep(11)
         })
-        .catch((error) => {
+        .catch(() => {
           setToastParams({
-            msg: "Something went wrong, please try again or contact us.",
+            msg: t("Something went wrong, please try again or contact us."),
             isError: true,
           })
           setIsSubmiting([false, false])
-          console.log("Something went wrong, please try again or contact us.", error)
         })
     } else {
       handleChangeChooseData(6, {
@@ -197,52 +196,52 @@ const ContactDetails = ({
       return true
     }
     if (!firstName) {
-      setFnErrTxt("Required.")
+      setFnErrTxt(t("Required."))
       setTimeout(() => {
         setFnErrTxt("")
       }, 3000)
     }
     if (!lastName) {
-      setLnErrTxt("Required.")
+      setLnErrTxt(t("Required."))
       setTimeout(() => {
         setLnErrTxt("")
       }, 3000)
     }
     if (!email) {
-      setEmlErrTxt("Required.")
+      setEmlErrTxt(t("Required."))
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     } else if (!ValidateEmail(email)) {
-      setEmlErrTxt("Enter a valid email.")
+      setEmlErrTxt(t("Enter a valid email."))
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     }
     if (repairWidgetStore.receiveQuote.code === "PHONE") {
       if (!phone) {
-        setPhErrTxt("Required.")
+        setPhErrTxt(t("Required."))
       } else if (!ValidatePhoneNumber(phone)) {
-        setPhErrTxt("Enter a valid phone number.")
+        setPhErrTxt(t("Enter a valid phone number."))
       }
       setTimeout(() => {
         setPhErrTxt("")
       }, 3000)
     }
     if (!address1) {
-      setAd1ErrTxt("Required.")
+      setAd1ErrTxt(t("Required."))
       setTimeout(() => {
         setAd1ErrTxt("")
       }, 3000)
     }
     if (storesDetails.location_id < 0 && !postalCode) {
-      setPsErrTxt("Required.")
+      setPsErrTxt(t("Required."))
       setTimeout(() => {
         setPsErrTxt("")
       }, 3000)
     }
     if (!city) {
-      setCtErrTxt("Required.")
+      setCtErrTxt(t("Required."))
       setTimeout(() => {
         setCtErrTxt("")
       }, 3000)
@@ -276,17 +275,16 @@ const ContactDetails = ({
             handleSubmit(param)
           } else {
             setToastParams({
-              msg: "There is not available locations. Please input another Postal Code.",
+              msg: t("There is not available locations. Please input another Postal Code."),
               isWarning: true,
             })
             setIsSubmiting([false, false])
             setDisableStatus(false)
           }
         })
-        .catch((error) => {
-          console.log("Error to find location with Postal Code", error)
+        .catch(() => {
           setToastParams({
-            msg: "Error to find location with Postal Code. Please input right Postal Code.",
+            msg: t("Error to find location with Postal Code. Please input right Postal Code."),
             isError: true,
           })
           setIsSubmiting([false, false])
@@ -509,7 +507,7 @@ const ContactDetails = ({
                     inactiveComponent={() => <></>}
                     activeComponent={() => (
                       <Button
-                        title={t("BOOK_APPOINTMENT")}
+                        title={t("Book Appointment")}
                         bgcolor={mainData.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"
@@ -531,7 +529,7 @@ const ContactDetails = ({
                     inactiveComponent={() => <></>}
                     activeComponent={() => (
                       <Button
-                        title={t("REQUEST_A_QUOTE")}
+                        title={t("Request a Quote")}
                         bgcolor={mainData.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"
@@ -552,7 +550,7 @@ const ContactDetails = ({
             {(code === "MAIL_IN" || code === "ONSITE" || code === "PICK_UP") && (
               <div className="service-card-button">
                 <Button
-                  title={t("NEXT")}
+                  title={t("Next")}
                   bgcolor={mainData.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
@@ -562,7 +560,7 @@ const ContactDetails = ({
                   subDomain={subDomain}
                   disable={disableStatus}
                 />
-                <p>{t("ENTER_KEY")}</p>
+                <p>{t("or press ENTER")}</p>
               </div>
             )}
           </Card>

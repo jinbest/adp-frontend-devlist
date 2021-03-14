@@ -3,7 +3,7 @@ import { Grid, Typography } from "@material-ui/core"
 import { Card } from "./"
 import { Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
-import { useT } from "../../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { repairWidgetStore } from "../../../store"
 
 type Props = {
@@ -27,7 +27,7 @@ const UsefulInfo = ({
   const themeCol = mainData.colorPalle.themeColor
 
   const [message, setMessage] = useState("")
-  const t = useT()
+  const [t] = useTranslation()
 
   const ChooseNextStep = () => {
     handleChangeChooseData(8, message)
@@ -82,7 +82,7 @@ const UsefulInfo = ({
             </div>
             <div className="service-card-button">
               <Button
-                title={t("NEXT")}
+                title={t("Next")}
                 bgcolor={mainData.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
@@ -91,7 +91,7 @@ const UsefulInfo = ({
                 onClick={ChooseNextStep}
                 subDomain={subDomain}
               />
-              <p>{t("ENTER_KEY")}</p>
+              <p>{t("or press ENTER")}</p>
             </div>
           </Card>
         </Grid>

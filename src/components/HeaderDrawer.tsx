@@ -4,18 +4,18 @@ import Drawer from "@material-ui/core/Drawer"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { isExternal } from "./Header"
 import { Link } from "react-router-dom"
-import { useT } from "../i18n/index"
-import { Button, InputComponent } from "./"
+import { useTranslation } from "react-i18next"
+import { Button, InputComponent, LangDropdown } from "./"
 import Loading from "./Loading"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import { StoresDetails } from "../store/StoresDetails"
-import { makeLocations } from "./CustomizedMenus"
+import { makeLocations } from "../services/helper"
 import { findLocationAPI } from "../services/"
 import { repairWidgetStore } from "../store/"
+import { getAddress, isExternal } from "../services/helper"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -102,7 +102,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
       storesDetailsStore,
     } = props
     const data = require(`../assets/${subDomain}/Database`)
-    const t = useT()
+    const [t] = useTranslation()
 
     const classes = useStyles()
     const [state, setState] = useState({
@@ -302,14 +302,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
       setLocSelStatus(false)
     }
 
-    const getAddress = (location: any) => {
-      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city ? location.city + ", " : ""
-      } ${location.state ? location.state + " " : ""} ${
-        location.postcode ? location.postcode + ", " : ""
-      } ${location.country ? location.country + ", " : ""}`
-    }
-
     const handleBookRepair = () => {
       setModalStatus(false)
       setState({ ...state, ["left"]: false })
@@ -367,7 +359,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
             </FeatureToggles>
             <div className={classes.findStoreDiv}>
               <Button
-                title={t("FIND_A_STORE")}
+                title={t("Find a Store")}
                 bgcolor={themeCol}
                 borderR="20px"
                 width="80%"
@@ -381,6 +373,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                 {loadingStatus && <Loading />}
               </Button>
             </div>
+            <LangDropdown subDomain={subDomain} />
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
@@ -398,14 +391,14 @@ const HeaderDrawer = inject("storesDetailsStore")(
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
                       value={postCode}
-                      placeholder={"Postal Code*"}
+                      placeholder={t("Postal Code*")}
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
                       subDomain={subDomain}
                     />
                     <Button
-                      title={"Get Location"}
+                      title={t("Get Location")}
                       bgcolor={themeCol}
                       borderR="20px"
                       width="80%"
@@ -461,7 +454,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                                       className={subDomain + "-block-title"}
                                       style={{ fontSize: "14px" }}
                                     >
-                                      {t("HOURS")}
+                                      {t("Hours")}
                                     </p>
                                     <div className={subDomain + "-hours-div"}>
                                       <div>
@@ -495,7 +488,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                                               }}
                                               key={idx}
                                             >
-                                              {t(itm)}
+                                              {itm === "Closed" ? t(itm) : itm}
                                             </p>
                                           )
                                         })}
@@ -515,6 +508,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={
+                            storesDetailsStore.cntUserLocation[0] &&
                             storesDetailsStore.cntUserLocation[0].business_page_link
                               ? storesDetailsStore.cntUserLocation[0].business_page_link
                               : "https://www.google.com/business/"
@@ -522,7 +516,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           target="_blank"
                           rel="noreferrer"
                         >
-                          {t("VIEW_STORE_DETAILS")}
+                          {t("View Store Details")}
                         </a>
                       )}
                       {storesDetailsStore.findAddLocation.length > 1 && (
@@ -531,7 +525,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           style={{ color: themeCol, fontSize: "12px" }}
                           onClick={viewMoreStores}
                         >
-                          {t("VIEW_MORE_STORES")}
+                          {t("View More Stores")}
                         </a>
                       )}
                       {locSelStatus && (
@@ -539,6 +533,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           className={subDomain + "-link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={`${
+                            storesDetailsStore.cntUserLocation[0] &&
                             storesDetailsStore.cntUserLocation[0].business_page_link != null
                               ? storesDetailsStore.cntUserLocation[0].business_page_link
                               : `https://www.google.com/maps/search/?api=1&query=${getAddress(
@@ -550,13 +545,13 @@ const HeaderDrawer = inject("storesDetailsStore")(
                           target="_blank"
                           rel="noreferrer"
                         >
-                          {t("GET_DIRECTIONS")}
+                          {t("Get Directions")}
                         </a>
                       )}
                     </div>
                     <FeatureToggles features={features}>
                       <Feature
-                        name="FRONTEND_REPAIR"
+                        name="FRONTEND_REPAIR_APPOINTMENT"
                         inactiveComponent={() => <></>}
                         activeComponent={() => (
                           <Link
@@ -565,7 +560,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                             onClick={handleBookRepair}
                           >
                             <Button
-                              title={t("BOOK_APPOINTMENT")}
+                              title={t("Book Appointment")}
                               bgcolor={themeCol}
                               borderR="20px"
                               width="175px"

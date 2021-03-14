@@ -3,8 +3,7 @@ import { Card, PlusSVG } from "./"
 import { Grid, Typography } from "@material-ui/core"
 import { Search, Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
-import { useT } from "../../../i18n/index"
-import { LangProps } from "../../../i18n/en"
+import { useTranslation } from "react-i18next"
 import { repairWidData, storesDetails, repairWidgetStore } from "../../../store/"
 import {
   getDeviceBrandsAPI,
@@ -32,13 +31,13 @@ type ArrayProps = {
 
 export function ConvertWarrantyUnit(val: string, warnt: number) {
   if (val === "DD" || val === "DAY") {
-    return warnt > 1 ? "DAYS" : "DAY"
+    return warnt > 1 ? "Days" : "Day"
   } else if (val === "YY" || val === "YEAR") {
-    return warnt > 1 ? "YEARS" : "YEAR"
+    return warnt > 1 ? "Years" : "Year"
   } else if (val === "MM" || val === "MONTH") {
-    return warnt > 1 ? "MONTHS" : "MONTH"
+    return warnt > 1 ? "Months" : "Month"
   } else {
-    return "LIFETIME"
+    return "Lifetime"
   }
 }
 
@@ -67,7 +66,7 @@ const ChooseDevice = ({
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
 
-  const t = useT()
+  const [t] = useTranslation()
 
   const handlePlus = async () => {
     const cntImgData: any[] = [],
@@ -479,7 +478,7 @@ const ChooseDevice = ({
                       color="rgba(0,0,0,0.8)"
                       bgcolor="white"
                       border="rgba(0,0,0,0.2)"
-                      placeholder={data.placeholder}
+                      placeholder={t(data.placeholder)}
                       subDomain={subDomain}
                       value={searchText}
                       handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -548,7 +547,7 @@ const ChooseDevice = ({
                 {stepName === "repairAnotherDevice" && (
                   <div className="repair-another-device">
                     <Button
-                      title={t("YES")}
+                      title={t("Yes")}
                       bgcolor="white"
                       borderR="20px"
                       width="120px"
@@ -559,7 +558,7 @@ const ChooseDevice = ({
                       subDomain={subDomain}
                     />
                     <Button
-                      title={t("NO")}
+                      title={t("No")}
                       bgcolor="white"
                       borderR="20px"
                       width="120px"
@@ -622,7 +621,7 @@ const ChooseDevice = ({
             {stepName === "deviceRepairs" && (
               <div className="service-card-button">
                 <Button
-                  title={t("NEXT")}
+                  title={t("Next")}
                   bgcolor={mainData.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
@@ -632,7 +631,7 @@ const ChooseDevice = ({
                   disable={disableStatus}
                   subDomain={subDomain}
                 />
-                <p>{t("ENTER_KEY")}</p>
+                <p>{t("or press ENTER")}</p>
               </div>
             )}
           </Card>
@@ -643,7 +642,7 @@ const ChooseDevice = ({
               <div className="service-choose-device-container">
                 <Typography className="topic-title">{t(data.mainTopic.title)}</Typography>
                 {data.mainTopic.content &&
-                  data.mainTopic.content.map((item: LangProps, index: number) => {
+                  data.mainTopic.content.map((item: string, index: number) => {
                     return (
                       <Typography className="topic-content" key={index}>
                         {t(item)}
@@ -675,12 +674,12 @@ const ChooseDevice = ({
                           <p className="estimate-content">{item.estimate}</p>
                           {storesDetails.storesDetails.settings.display_repair_cost && (
                             <p className="estimate-content">
-                              {item.cost + " (Prices are plus tax where applicable.)"}
+                              {`${t(item.cost)} (${t("Prices are plus tax where applicable.")})`}
                             </p>
                           )}
                           {item.warranty && item.warranty > 0 ? (
                             <p className="estimate-content">
-                              {t("WARRANTY") +
+                              {t("Warranty") +
                                 ": " +
                                 item.warranty +
                                 " " +
@@ -688,11 +687,11 @@ const ChooseDevice = ({
                             </p>
                           ) : item.warranty && item.warranty === -1 ? (
                             <p className="estimate-content">
-                              {t("WARRANTY") + ": " + t("LIFETIME")}
+                              {t("Warranty") + ": " + t("Lifetime")}
                             </p>
                           ) : (
                             <p className="estimate-content" style={{ color: "grey" }}>
-                              <i>{t("NO") + " " + t("WARRANTY")}</i>
+                              <i>{t("No") + " " + t("Warranty")}</i>
                             </p>
                           )}
                         </div>

@@ -1,7 +1,7 @@
 import React from "react"
 import { Typography } from "@material-ui/core"
 import { Card } from "."
-import { useT, T } from "../../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../../store"
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 const QuoteComponent = ({ data, quoteKey, repairWidgetData }: Props) => {
   const storeName = storesDetails.storesDetails.name
 
-  const t = useT()
+  const [t] = useTranslation()
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -24,11 +24,11 @@ const QuoteComponent = ({ data, quoteKey, repairWidgetData }: Props) => {
             <img src={data[quoteKey].img} alt="quote-img" />
           </div>
           <Typography className="repair-service-summary-title">
-            <T id={data[quoteKey].title} data={{ storeName: storeName }} />
+            {`${t(data[quoteKey].title)} ${storeName}`}
           </Typography>
           <Typography className="quote-component-content">
-            {t("YOU_WILL_RECEIVE_AN")} <b>{t("EMAIL").toLocaleLowerCase()}</b> {t("AT")}{" "}
-            <b>{repairWidgetData.contactDetails.email}</b> {t("SHORTLY")}, {t(data[quoteKey].text)}
+            {t("You will receive an")} <b>{t("Email").toLocaleLowerCase()}</b> {t("at")}{" "}
+            <b>{repairWidgetData.contactDetails.email}</b> {t("shortly")}, {t(data[quoteKey].text)}
           </Typography>
         </div>
       </Card>

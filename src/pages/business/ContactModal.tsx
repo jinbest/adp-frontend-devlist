@@ -4,7 +4,7 @@ import { Grid, Typography, IconButton } from "@material-ui/core"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
-import { useT, T } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { ToastMsgParams } from "../../components/toast/toast-msg-params"
 import Toast from "../../components/toast/toast"
 import Loading from "../../components/Loading"
@@ -16,6 +16,7 @@ import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
 import { Close } from "@material-ui/icons"
+import { isEmpty } from "lodash"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -99,7 +100,7 @@ type Props = {
 
 const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database`)
-  const t = useT()
+  const [t] = useTranslation()
   const classes = useStyles()
 
   const [firstName, setFirstName] = useState("")
@@ -145,7 +146,10 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
   useEffect(() => {
     if (storesDetailsStore.cntUserLocationSelected && locations.length) {
       for (let i = 0; i < locations.length; i++) {
-        if (storesDetailsStore.cntUserLocation[0].location_id === locations[i].id) {
+        if (
+          !isEmpty(storesDetailsStore.cntUserLocation) &&
+          storesDetailsStore.cntUserLocation[0].location_id === locations[i].id
+        ) {
           setLoc({ name: locations[i].address_1, code: i })
         }
       }
@@ -178,35 +182,35 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
       return true
     }
     if (!firstName) {
-      setFnErrTxt("Required.")
+      setFnErrTxt(t("Required."))
       setTimeout(() => {
         setFnErrTxt("")
       }, 3000)
     }
     if (!lastName) {
-      setLnErrTxt("Required.")
+      setLnErrTxt(t("Required."))
       setTimeout(() => {
         setLnErrTxt("")
       }, 3000)
     }
     if (!email) {
-      setEmlErrTxt("Required.")
+      setEmlErrTxt(t("Required."))
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     } else if (!ValidateEmail(email)) {
-      setEmlErrTxt("Enter a valid email.")
+      setEmlErrTxt(t("Enter a valid email."))
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     }
     if (!message) {
-      setMsgErrTxt("Required.")
+      setMsgErrTxt(t("Required."))
       setTimeout(() => {
         setMsgErrTxt("")
       }, 3000)
     } else if (message.length <= 5) {
-      setMsgErrTxt("Text is too less.")
+      setMsgErrTxt(t("Text is too less."))
       setTimeout(() => {
         setMsgErrTxt("")
       }, 3000)
@@ -251,7 +255,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
       })
       .catch(() => {
         setToastParams({
-          msg: "Something went wrong, please try again or contact us.",
+          msg: t("Something went wrong, please try again or contact us."),
           isError: true,
         })
         setDisableStatus(false)
@@ -284,12 +288,12 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
         <Fade in={openModal}>
           {!contacted ? (
             <div className={classes.paper}>
-              <Typography className={classes.title}>{t("CONTACT_US")}</Typography>
+              <Typography className={classes.title}>{t("Contact Us")}</Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <InputComponent
                     value={firstName}
-                    placeholder={t("FIRST_NAME")}
+                    placeholder={t("First Name*")}
                     handleChange={(e) => {
                       handleChangeFirstName(e.target.value)
                     }}
@@ -301,7 +305,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Grid item xs={12} sm={6}>
                   <InputComponent
                     value={lastName}
-                    placeholder={t("LAST_NAME")}
+                    placeholder={t("Last Name*")}
                     handleChange={(e) => {
                       handleChangeLastName(e.target.value)
                     }}
@@ -313,7 +317,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Grid item xs={12}>
                   <InputComponent
                     value={companyName}
-                    placeholder={t("COMPANY_NAME")}
+                    placeholder={t("Company Name")}
                     handleChange={(e) => {
                       handleChangeCompanyName(e.target.value)
                     }}
@@ -323,7 +327,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Grid item xs={12}>
                   <InputComponent
                     value={email}
-                    placeholder={t("EMAIL_ADDRESS")}
+                    placeholder={t("E-mail Address*")}
                     handleChange={(e) => {
                       handleChangeEmail(e.target.value)
                     }}
@@ -333,7 +337,11 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t("PHONE_NUM")} />
+                  <PhoneInput
+                    handleSetPhone={setPhone}
+                    val={phone}
+                    placeholder={t("Phone Number")}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <CustomSelect
@@ -355,7 +363,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                       }}
                       minLength={5}
                       maxLength={1000}
-                      placeholder={`${t("MESSAGE")}*`}
+                      placeholder={`${t("Message")}*`}
                       className={classes.textArea}
                     />
                   </div>
@@ -368,7 +376,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
               </Grid>
               <div style={{ display: "flex" }}>
                 <Button
-                  title={t("SUBMIT")}
+                  title={t("Submit")}
                   bgcolor={mainData.colorPalle.repairButtonCol}
                   borderR="20px"
                   width="120px"
@@ -382,7 +390,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                   {isSubmit && <Loading />}
                 </Button>
                 <Button
-                  title={t("CLOSE")}
+                  title={t("Close")}
                   bgcolor={mainData.colorPalle.repairButtonCol}
                   borderR="20px"
                   width="120px"
@@ -406,13 +414,10 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Close />
               </IconButton>
               <Typography className={classes.title}>
-                <T
-                  id="THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR"
-                  data={{ storeName: storesDetailsStore.storesDetails.name }}
-                />
+                {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
               </Typography>
               <Typography className={classes.content}>
-                {t("A_REPRESENTATIVE_WILL_CONTACT_YOU")}
+                {t("A representative will contact you shortly in regards to your request.")}
               </Typography>
             </div>
           )}

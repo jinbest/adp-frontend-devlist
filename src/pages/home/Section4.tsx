@@ -2,8 +2,7 @@ import React from "react"
 import { DeviceListComponent } from "../../components"
 // import {Button} from '../../components'
 import { Typography, Grid, Box } from "@material-ui/core"
-import { useT, T } from "../../i18n/index"
-import { storesDetails } from "../../store"
+import { useTranslation } from "react-i18next"
 
 type Props = {
   subDomain?: string
@@ -12,7 +11,7 @@ type Props = {
 const Section4 = ({ subDomain }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const commonData = require("../../assets/_common/mockData")
-  const t = useT()
+  const [t] = useTranslation()
 
   return (
     <div className={subDomain + "-sec4-background"}>
@@ -22,9 +21,9 @@ const Section4 = ({ subDomain }: Props) => {
             <Grid item xs={12} sm={12} md={6}>
               <Typography
                 className={"f40 bold " + subDomain + "-section4-title"}
-                style={{ color: "black", textShadow: "1px 0 black" }}
+                // style={{ color: "black", textShadow: "1px 0 black" }}
               >
-                <T id={data.homeTextData.section4.title} data={storesDetails.storesDetails.name} />
+                {t(data.homeTextData.section4.title)}
               </Typography>
               {/* <Box className={subDomain + '-section4-button mobile'}>
                 <Button 
@@ -48,7 +47,7 @@ const Section4 = ({ subDomain }: Props) => {
                           key={index}
                           subDomain={subDomain}
                         >
-                          <T id={item.title} data={""} />
+                          {t(item.title)}
                         </DeviceListComponent>
                       </Box>
                     </Grid>
@@ -77,7 +76,7 @@ const Section4 = ({ subDomain }: Props) => {
                           key={index}
                           subDomain={subDomain}
                         >
-                          <T id={item.title} data={""} />
+                          {t(item.title)}
                         </DeviceListComponent>
                       </Box>
                     </Grid>
@@ -91,7 +90,7 @@ const Section4 = ({ subDomain }: Props) => {
         <Box className={subDomain + "-sec4-container-special-box"}>
           <Grid container item xs={12}>
             <Typography className={"f40 bold " + subDomain + "-section-title"}>
-              <T id={data.homeTextData.section4.title} data={storesDetails.storesDetails.name} />
+              {t(data.homeTextData.section4.title)}
             </Typography>
           </Grid>
           <Grid container item xs={12}>
@@ -106,7 +105,7 @@ const Section4 = ({ subDomain }: Props) => {
                       key={index}
                       subDomain={subDomain}
                     >
-                      <T id={item.title} data={""} />
+                      {t(item.title)}
                     </DeviceListComponent>
                   </Box>
                 )

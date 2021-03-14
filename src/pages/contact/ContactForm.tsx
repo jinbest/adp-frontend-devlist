@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid, Typography, IconButton } from "@material-ui/core"
-import { useT, T } from "../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { ToastMsgParams } from "../../components/toast/toast-msg-params"
 import Toast from "../../components/toast/toast"
 import Loading from "../../components/Loading"
@@ -10,7 +10,7 @@ import { ContactSubmitParams } from "../../model/contact-submit-param"
 import { Card } from "../repair/widget-component"
 import { contactAPI } from "../../services"
 import { StoresDetails } from "../../store/StoresDetails"
-import { makeLocations } from "../../components/CustomizedMenus"
+import { makeLocations } from "../../services/helper"
 import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
 import { Close } from "@material-ui/icons"
 
@@ -101,8 +101,8 @@ type OptionProps = {
 type Props = {
   subDomain?: string
   locations: any[]
-  locationID: string | null
-  handleLocationID: (id: string | null) => void
+  locationID: number
+  handleLocationID: (id: number) => void
   storesDetailsStore: StoresDetails
 }
 
@@ -114,7 +114,7 @@ const ContactForm = ({
   storesDetailsStore,
 }: Props) => {
   const mainData = require(`../../assets/${subDomain}/Database`)
-  const t = useT()
+  const [t] = useTranslation()
   const classes = useStyles()
 
   const [firstName, setFirstName] = useState("")
@@ -158,27 +158,14 @@ const ContactForm = ({
 
   useEffect(() => {
     if (locations.length) {
-      handleLocationID(locations[loc.code].id)
-      if (storesDetailsStore.cntUserLocationSelected) {
-        handleStoreCntLoc(loc.code)
-      }
-    }
-  }, [loc, storesDetailsStore])
-
-  useEffect(() => {
-    if (locations.length) {
       for (let i = 0; i < locations.length; i++) {
-        if (locationID && parseInt(locationID) === locations[i].id) {
-          setLoc({ name: locations[i].address_1, code: i })
-          break
-        }
-        if (!locationID && locations[i].is_main) {
+        if (locationID && locationID === locations[i].id) {
           setLoc({ name: locations[i].address_1, code: i })
           break
         }
       }
     }
-  }, [locationID, locations, storesDetailsStore])
+  }, [locationID])
 
   useEffect(() => {
     const cntOptions: OptionProps[] = []
@@ -203,35 +190,35 @@ const ContactForm = ({
       return true
     }
     if (!firstName) {
-      setFnErrTxt("Required.")
+      setFnErrTxt(t("Required."))
       setTimeout(() => {
         setFnErrTxt("")
       }, 3000)
     }
     if (!lastName) {
-      setLnErrTxt("Required.")
+      setLnErrTxt(t("Required."))
       setTimeout(() => {
         setLnErrTxt("")
       }, 3000)
     }
     if (!email) {
-      setEmlErrTxt("Required.")
+      setEmlErrTxt(t("Required."))
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     } else if (!ValidateEmail(email)) {
-      setEmlErrTxt("Enter a valid email.")
+      setEmlErrTxt(t("Enter a valid email."))
       setTimeout(() => {
         setEmlErrTxt("")
       }, 3000)
     }
     if (!message) {
-      setMsgErrTxt("Required.")
+      setMsgErrTxt(t("Required."))
       setTimeout(() => {
         setMsgErrTxt("")
       }, 3000)
     } else if (message.length <= 5) {
-      setMsgErrTxt("Text is too less.")
+      setMsgErrTxt(t("Text is too less."))
       setTimeout(() => {
         setMsgErrTxt("")
       }, 3000)
@@ -276,7 +263,7 @@ const ContactForm = ({
       })
       .catch(() => {
         setToastParams({
-          msg: "Something went wrong, please try again or contact us.",
+          msg: t("Something went wrong, please try again or contact us."),
           isError: true,
         })
         setIsSubmit(false)
@@ -294,17 +281,24 @@ const ContactForm = ({
     })
   }
 
+  const handleChangeSelect = (loc: any) => {
+    if (storesDetailsStore.cntUserLocationSelected) {
+      handleStoreCntLoc(loc.code)
+    }
+    handleLocationID(locations[loc.code].id)
+  }
+
   return (
     <section className={subDomain + "-Container"}>
       <div className={classes.root}>
         {!contacted ? (
           <Card className={classes.card}>
-            <Typography className={classes.title}>{t("CONTACT_US")}</Typography>
+            <Typography className={classes.title}>{t("Contact Us")}</Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <InputComponent
                   value={firstName}
-                  placeholder={t("FIRST_NAME")}
+                  placeholder={t("First Name*")}
                   handleChange={(e) => {
                     handleChangeFirstName(e.target.value)
                   }}
@@ -316,7 +310,7 @@ const ContactForm = ({
               <Grid item xs={12} sm={6}>
                 <InputComponent
                   value={lastName}
-                  placeholder={t("LAST_NAME")}
+                  placeholder={t("Last Name*")}
                   handleChange={(e) => {
                     handleChangeLastName(e.target.value)
                   }}
@@ -328,7 +322,7 @@ const ContactForm = ({
               <Grid item xs={12}>
                 <InputComponent
                   value={companyName}
-                  placeholder={t("COMPANY_NAME")}
+                  placeholder={t("Company Name")}
                   handleChange={(e) => {
                     handleChangeCompanyName(e.target.value)
                   }}
@@ -338,7 +332,7 @@ const ContactForm = ({
               <Grid item xs={12}>
                 <InputComponent
                   value={email}
-                  placeholder={t("EMAIL_ADDRESS")}
+                  placeholder={t("E-mail Address*")}
                   handleChange={(e) => {
                     handleChangeEmail(e.target.value)
                   }}
@@ -348,12 +342,14 @@ const ContactForm = ({
                 />
               </Grid>
               <Grid item xs={12}>
-                <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t("PHONE_NUM")} />
+                <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t("Phone Number")} />
               </Grid>
               <Grid item xs={12}>
                 <CustomSelect
                   value={loc}
-                  handleSetValue={setLoc}
+                  handleSetValue={(loc) => {
+                    handleChangeSelect(loc)
+                  }}
                   subDomain={subDomain}
                   options={option}
                 />
@@ -370,7 +366,7 @@ const ContactForm = ({
                     }}
                     minLength={5}
                     maxLength={1000}
-                    placeholder={`${t("MESSAGE")}*`}
+                    placeholder={`${t("Message")}*`}
                     className={classes.textArea}
                   />
                 </div>
@@ -382,7 +378,7 @@ const ContactForm = ({
               </Grid>
             </Grid>
             <Button
-              title={t("SUBMIT")}
+              title={t("Submit")}
               bgcolor={mainData.colorPalle.nextButtonCol}
               borderR="20px"
               width="120px"
@@ -408,13 +404,10 @@ const ContactForm = ({
               <Close />
             </IconButton>
             <Typography className={classes.title}>
-              <T
-                id="THANK_YOU_FOR_CHOOSING_DEVICELIST_FOR_YOUR_REPAIR"
-                data={{ storeName: storesDetailsStore.storesDetails.name }}
-              />
+              {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
             </Typography>
             <Typography className={classes.content}>
-              {t("A_REPRESENTATIVE_WILL_CONTACT_YOU")}
+              {t("A representative will contact you shortly in regards to your request.")}
             </Typography>
           </Card>
         )}

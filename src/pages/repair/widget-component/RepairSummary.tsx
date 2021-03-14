@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core"
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined"
 import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "../../../store/RepairWidgetStore"
-import { useT } from "../../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { ConvertWarrantyUnit } from "./ChooseDevice"
 
 type StoreProps = {
@@ -20,7 +20,7 @@ const RepairSummary = inject("repairWidgetStore")(
   observer((props: Props) => {
     const { themeCol, showInfo, repairWidgetStore } = props
     const code = repairWidgetStore.deliveryMethod.code
-    const t = useT()
+    const [t] = useTranslation()
 
     const [brand, setBrand] = useState<any[]>([])
     const [model, setModel] = useState<any[]>([])
@@ -60,7 +60,7 @@ const RepairSummary = inject("repairWidgetStore")(
 
     return (
       <div className="service-choose-device-container">
-        <Typography className="topic-title">{t("REPAIR_SERVICE_SUMMARY")}</Typography>
+        <Typography className="topic-title">{t("Service Summary")}</Typography>
         <div className="service-summary-content-div">
           {brand &&
             brand.map((item: any, index: number) => {
@@ -87,17 +87,17 @@ const RepairSummary = inject("repairWidgetStore")(
                           <p className="service-summary-service-child">{t(chooseItem.estimate)}</p>
                           {chooseItem.warranty && chooseItem.warranty > 0 ? (
                             <p className="service-summary-service-child">
-                              {`${t("WARRANTY")}: ${chooseItem.warranty} ${t(
+                              {`${t("Warranty")}: ${chooseItem.warranty} ${t(
                                 ConvertWarrantyUnit(chooseItem.warranty_unit, chooseItem.warranty)
                               )}`}
                             </p>
                           ) : chooseItem.warranty && chooseItem.warranty === -1 ? (
                             <p className="service-summary-service-child">
-                              {`${t("WARRANTY")}: ${t("LIFETIME")}`}
+                              {`${t("Warranty")}: ${t("Lifetime")}`}
                             </p>
                           ) : (
                             <p className="service-summary-service-child" style={{ color: "grey" }}>
-                              <i>{`${t("NO")} ${t("WARRANTY")}`}</i>
+                              <i>{`${t("No")} ${t("Warranty")}`}</i>
                             </p>
                           )}
                         </div>
@@ -113,10 +113,10 @@ const RepairSummary = inject("repairWidgetStore")(
                   {t(repairWidgetStore.deliveryMethod.method)}
                 </Typography>
                 {code === "PICK_UP" && (
-                  <Typography className="service-summary-service">{t("PICK_UP_FROM")}</Typography>
+                  <Typography className="service-summary-service">{t("Pick Up From")}</Typography>
                 )}
                 {code === "MAIL_IN" && (
-                  <Typography className="service-summary-service">{t("SEND_TO")}</Typography>
+                  <Typography className="service-summary-service">{t("Send To")}</Typography>
                 )}
                 {code !== "MAIL_IN" && (
                   <p className="service-summary-service-child">
@@ -129,7 +129,7 @@ const RepairSummary = inject("repairWidgetStore")(
                   </p>
                 )}
                 {code === "MAIL_IN" && (
-                  <Typography className="service-summary-service">{t("RETURN_TO")}</Typography>
+                  <Typography className="service-summary-service">{t("Return To")}</Typography>
                 )}
                 {code === "MAIL_IN" && (
                   <p className="service-summary-service-child">

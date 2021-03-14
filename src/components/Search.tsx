@@ -2,15 +2,13 @@ import React from "react"
 import { Box, InputBase } from "@material-ui/core"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 import SearchIcon from "@material-ui/icons/Search"
-import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
 
 type Props = {
   color?: string
   bgcolor?: string
   border?: string
   height?: string
-  placeholder: LangProps
+  placeholder: string
   subDomain?: string
   value?: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -41,8 +39,7 @@ const Search = ({
   handleChange,
   handleIconClick,
 }: Props) => {
-  const t = useT()
-  const tPlaceholder = t(placeholder || "FIND_YOUR_DEVICE")
+  const tPlaceholder = placeholder || "Find your device"
   const classes = useStyles()
 
   return (

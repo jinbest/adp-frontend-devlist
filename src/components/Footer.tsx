@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Grid, Box, Typography, Popover } from "@material-ui/core"
 import { Logo } from "../components"
-import { useT, T } from "../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { phoneFormatString } from "./Header"
-import { getAddress } from "../components/CustomMap"
+import { getAddress, phoneFormatString } from "../services/helper"
 import { inject, observer } from "mobx-react"
 import { StoresDetails } from "../store/StoresDetails"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
@@ -213,7 +212,7 @@ const Footer = inject("storesDetailsStore")(
     const commonData = require("../assets/_common/mockData")
     // const footerLink = data.homeTextData.footer.footerLink
     const gridVal = data.homeTextData.footer.gridVal
-    const t = useT()
+    const [t] = useTranslation()
 
     const [feats, setFeatures] = useState<any[]>([])
     const [initGridMD, setInitGridMD] = useState<GridMDInterface>(12)
@@ -272,10 +271,11 @@ const Footer = inject("storesDetailsStore")(
                 })}
               </Grid>
               <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
-                <T
-                  id={data.homeTextData.footer.content}
-                  data={storesDetailsStore.storesDetails.name}
-                />
+                {`${data.homeTextData.footer.copyRight.year} ${
+                  storesDetailsStore.storesDetails.name
+                }. ${t(data.homeTextData.footer.copyRight.text1)} "${
+                  storesDetailsStore.storesDetails.name
+                }" ${t(data.homeTextData.footer.copyRight.text2)}`}
               </div>
               {/* </Grid> */}
             </Grid>

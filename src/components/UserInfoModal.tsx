@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
-import { useT } from "../i18n/index"
+import { useTranslation } from "react-i18next"
 import { CustomSelect } from "./"
 import { countriesData, statesData } from "../const"
 
@@ -62,7 +62,7 @@ type Props = {
 const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
-  const t = useT()
+  const [t] = useTranslation()
   const [city, setCity] = useState("")
   const [state, setState] = useState({ name: "", code: "MB" })
   const [postcode, setPostCode] = useState("")
@@ -92,7 +92,7 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
   return (
     <div>
       <button className={classes.button} style={{ background: bgColor }} onClick={handleOpen}>
-        {t("INPUT_YOUR_INFO")}
+        {t("Input Your Info")}
       </button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -108,7 +108,7 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Input Your Info</h2>
+            <h2 id="transition-modal-title">{t("Input Your Info")}</h2>
             <form className={classes.formRoot} noValidate autoComplete="off">
               <CustomSelect
                 value={country}
@@ -126,7 +126,7 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
               />
               <TextField
                 id="city"
-                label={t("CITY")}
+                label={t("City")}
                 variant="filled"
                 color="secondary"
                 value={city}
@@ -136,7 +136,7 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
               />
               <TextField
                 id="postcode"
-                label={t("POSTAL_CODE")}
+                label={t("Postal Code")}
                 variant="filled"
                 color="secondary"
                 value={postcode}
@@ -150,7 +150,7 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
               style={{ width: "100px", background: bgColor }}
               onClick={handleSubmit}
             >
-              {t("SUBMIT")}
+              {t("Submit")}
             </button>
           </div>
         </Fade>

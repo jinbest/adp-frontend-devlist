@@ -1,14 +1,13 @@
 import React from "react"
-import { LangProps } from "../i18n/en"
 import Button from "./Button"
-import { useT } from "../i18n/index"
+import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
-import { isExternal } from "../components/Header"
+import { isExternal } from "../services/helper"
 
 type Props = {
   title: string
   img: string
-  btnTitle: LangProps
+  btnTitle: string
   color?: string
   heart?: string
   heartCol?: string
@@ -17,7 +16,7 @@ type Props = {
 }
 
 const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, subDomain, href }: Props) => {
-  const t = useT()
+  const [t] = useTranslation()
 
   return (
     <div className={subDomain + "-card-mobile"}>
@@ -56,7 +55,7 @@ const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, subDomain, h
 }
 
 CardMobile.defaultProps = {
-  title: "TRADE",
+  title: "Trade",
   img: "",
   btnTitle: "Trade my Device",
   heart: "",

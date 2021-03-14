@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react"
 import { Typography, Grid } from "@material-ui/core"
 import { Card } from "./"
 import { Button } from "../../../components"
-import { useT } from "../../../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../../store"
 import { repairWidgetAPI } from "../../../services"
@@ -11,6 +11,7 @@ import { ToastMsgParams } from "../../../model/toast-msg-param"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
 import Loading from "../../../components/Loading"
+// import { RevertTimeTZ } from "../../../services/helper"
 
 type Props = {
   repairWidgetData: any
@@ -35,7 +36,7 @@ const RepairServiceSummary = ({
   const [disableStatus, setDisableStatus] = useState(false)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const t = useT()
+  const [t] = useTranslation()
 
   const handleSubmit = () => {
     setDisableStatus(true)
@@ -82,6 +83,14 @@ const RepairServiceSummary = ({
     params.repairs = repairs
     params.selected_date =
       repairWidgetStore.repairWidgetInitialValue.selectDate || moment().format("YYYY-MM-DD")
+    // params.selected_start_time = RevertTimeTZ(
+    //   repairWidgetStore.repairWidgetInitialValue.selected_start_time || moment().format("HH:mm"),
+    //   repairWidgetStore.timezone
+    // )
+    // params.selected_end_time = RevertTimeTZ(
+    //   repairWidgetStore.repairWidgetInitialValue.selected_end_time,
+    //   repairWidgetStore.timezone
+    // )
     params.selected_start_time =
       repairWidgetStore.repairWidgetInitialValue.selected_start_time || moment().format("HH:mm")
     params.selected_end_time = repairWidgetStore.repairWidgetInitialValue.selected_end_time
@@ -97,7 +106,7 @@ const RepairServiceSummary = ({
           ChooseNextStep()
         } else {
           setToastParams({
-            msg: "Something went wrong, please try again or contact us.",
+            msg: t("Something went wrong, please try again or contact us."),
             isWarning: true,
           })
           setDisableStatus(false)
@@ -107,7 +116,7 @@ const RepairServiceSummary = ({
       })
       .catch(() => {
         setToastParams({
-          msg: "Something went wrong, please try again or contact us.",
+          msg: t("Something went wrong, please try again or contact us."),
           isError: true,
         })
         setDisableStatus(false)
@@ -149,12 +158,10 @@ const RepairServiceSummary = ({
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Card className="repair-service-summary-card">
         <div className="service-choose-device-container">
-          <Typography className="repair-service-summary-title">
-            {t("REPAIR_SERVICE_SUMMARY")}
-          </Typography>
+          <Typography className="repair-service-summary-title">{t("Service Summary")}</Typography>
           <Grid container className="repair-service-summary-detail-container" spacing={3}>
             <Grid item xs={12} sm={6} className="every-container">
-              <Typography className="topic">{t("YOUR_INFO")}</Typography>
+              <Typography className="topic">{t("Your Information")}</Typography>
               <Typography className="details">
                 {repairWidgetData.contactDetails.firstName +
                   " " +
@@ -176,21 +183,21 @@ const RepairServiceSummary = ({
               </a>
             </Grid>
             <Grid item xs={12} sm={6} className="every-container">
-              <Typography className="topic">{t("PREFERRED_CONTACT_METHOD")}</Typography>
+              <Typography className="topic">{t("Preferred Contact Method")}</Typography>
               <Typography className="details">{t(repairWidgetData.receiveQuote.method)}</Typography>
             </Grid>
           </Grid>
           <Grid container className="repair-service-summary-detail-container" spacing={3}>
             <Grid item xs={12} sm={6} className="every-container">
-              <Typography className="topic">{t("DELIVERY_METHOD")}</Typography>
+              <Typography className="topic">{t("Delivery Method")}</Typography>
               <Typography className="details" style={{ color: textThemeCol }}>
                 {t(repairWidgetData.deliveryMethod.method)}
               </Typography>
               {code === "PICK_UP" && (
-                <Typography className="details bolder">{t("PICK_UP_FROM")}</Typography>
+                <Typography className="details bolder">{t("Pick Up From")}</Typography>
               )}
               {code === "MAIL_IN" && (
-                <Typography className="details bolder">{t("SEND_TO")}</Typography>
+                <Typography className="details bolder">{t("Send To")}</Typography>
               )}
               {code !== "MAIL_IN" && (
                 <Typography className="details">
@@ -203,7 +210,7 @@ const RepairServiceSummary = ({
                 </Typography>
               )}
               {code === "MAIL_IN" && (
-                <Typography className="details bolder">{t("RETURN_TO")}</Typography>
+                <Typography className="details bolder">{t("Return To")}</Typography>
               )}
               {code === "MAIL_IN" && (
                 <Typography className="details">
@@ -226,15 +233,15 @@ const RepairServiceSummary = ({
             </Grid>
             {repairWidgetData.message && (
               <Grid item xs={12} sm={6} className="every-container">
-                <Typography className="topic">{t("MESSAGE")}</Typography>
+                <Typography className="topic">{t("Message")}</Typography>
                 <Typography className="details">{repairWidgetData.message}</Typography>
               </Grid>
             )}
           </Grid>
           <div className="repair-service-summary-detail-container">
             <div className="repair-service-summary-flex-container bordered">
-              <Typography className="topic">{t("DEVICE")}:</Typography>
-              <Typography className="topic">{t("REPAIR_SERVICE")}</Typography>
+              <Typography className="topic">{t("Device")}:</Typography>
+              <Typography className="topic">{t("Service")}:</Typography>
             </div>
             {repairWidgetData.deviceBrand &&
               repairWidgetData.deviceBrand.map((item: any, index: number) => {
@@ -268,7 +275,7 @@ const RepairServiceSummary = ({
                   inactiveComponent={() => <></>}
                   activeComponent={() => (
                     <Button
-                      title={t("SCHEDULE_APPOINTMENT")}
+                      title={t("Schedule Appointment")}
                       bgcolor={mainData.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"
@@ -292,7 +299,7 @@ const RepairServiceSummary = ({
                   inactiveComponent={() => <></>}
                   activeComponent={() => (
                     <Button
-                      title={t("GET_SHIPPING_LABEL")}
+                      title={t("Get Shipping Label")}
                       bgcolor={mainData.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"

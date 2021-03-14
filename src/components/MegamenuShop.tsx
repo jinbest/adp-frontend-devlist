@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
-import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
+import { useTranslation } from "react-i18next"
 
 const StyledMenu = withStyles({
   paper: {
@@ -45,7 +44,7 @@ const useStyles = makeStyles(() =>
 
 type Props = {
   subDomain?: string
-  text: LangProps
+  text: string
   disableMenu: boolean
 }
 
@@ -54,7 +53,7 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
   const megaShopData = data.navShop
   const textThemeCol = data.colorPalle.textThemeCol
   const [anchEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const t = useT()
+  const [t] = useTranslation()
   const classes = useStyles()
 
   const [shopSelect, setShopSelect] = useState(0)

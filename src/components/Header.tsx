@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { Search, CustomizedMenus, Logo, SelectLang, MegamenuShop, HeaderDrawer } from "./"
+import { Search, CustomizedMenus, Logo, MegamenuShop, HeaderDrawer, LangDropdown } from "./"
 import { Link } from "react-router-dom"
-import { useT } from "../i18n/index"
+import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails, repairWidgetStore } from "../store"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
+import { phoneFormatString, isExternal } from "../services/helper"
 
 type PropsNavItemLink = {
   item: any
@@ -13,56 +14,13 @@ type PropsNavItemLink = {
   feats: any[]
 }
 
-export function phoneFormatString(phnumber: string) {
-  let formatPhnumber: string = phnumber,
-    countrycode = "",
-    Areacode = "",
-    number = ""
-  if (phnumber.length <= 10 && phnumber.length > 6) {
-    countrycode = phnumber.substring(0, 3)
-    Areacode = phnumber.substring(3, 6)
-    number = phnumber.substring(6, phnumber.length)
-    formatPhnumber = "(" + countrycode + ") " + Areacode + "-" + number
-  } else if (phnumber.length > 10) {
-    countrycode = phnumber.substring(phnumber.length - 10, phnumber.length - 7)
-    Areacode = phnumber.substring(phnumber.length - 7, phnumber.length - 4)
-    number = phnumber.substring(phnumber.length - 4, phnumber.length)
-    formatPhnumber =
-      phnumber.substring(0, phnumber.length - 10) +
-      " (" +
-      countrycode +
-      ") " +
-      Areacode +
-      "-" +
-      number
-  }
-  return formatPhnumber
-}
-
-export function checkDomain(url: string) {
-  if (url.indexOf("//") === 0) {
-    url = location.protocol + url
-  }
-  return url
-    .toLowerCase()
-    .replace(/([a-z])?:\/\//, "$1")
-    .split("/")[0]
-}
-
-export function isExternal(url: string) {
-  return (
-    (url.indexOf(":") > -1 || url.indexOf("//") > -1) &&
-    checkDomain(location.href) !== checkDomain(url)
-  )
-}
-
 const NavItemLink = ({
   item: { href, text },
   handleStatus,
   subDomain,
   feats,
 }: PropsNavItemLink) => {
-  const t = useT()
+  const [t] = useTranslation()
 
   const handle = () => {
     if (href === "/get-quote") {
@@ -161,7 +119,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
     brandItemLink = data.brandItemsData,
     searchPlaceholder = data.homeTextData.section1.searchPlaceholder
 
-  const t = useT()
+  const [t] = useTranslation()
 
   const [menuStatus, setMenuStatus] = useState(false)
   const [feats, setFeatures] = useState<any[]>([])
@@ -252,7 +210,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               }}
             >
               <RoomOutlinedIcon />
-              Directions
+              {t("Directions")}
             </Link>
           )}
           <ul
@@ -270,13 +228,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               phoneNumber={true}
               href="#"
             />
-            {!mobile && (
-              <SelectLang
-                subDomain={subDomain}
-                color={brandItemLink.brandCol}
-                options={brandItemLink.selectOption}
-              />
-            )}
+            {!mobile && <LangDropdown subDomain={subDomain} color={brandItemLink.brandCol} />}
             <FeatureToggles features={feats}>
               <Feature
                 name={"FRONTEND_USER_ACCOUNT"}
@@ -300,7 +252,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               style={{ background: data.colorPalle.repairButtonCol, color: "white" }}
               onClick={handleRepairWidget}
             >
-              {t("GET_QUOTE")}
+              {t("Get Quote")}
             </Link>
           )}
         </div>
@@ -324,7 +276,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               justifyContent: "center",
             }}
           >
-            {t("GET_QUOTE")}
+            {t("Get Quote")}
           </Link>
         </div>
       </div>

@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { Footer, Header, Preloader, Badge } from "./components"
 import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore, repairWidData } from "./store/"
-import { LangProvider } from "./i18n/index"
 import { appLoadAPI } from "./services/"
 import findLocationAPI from "./services/api/findLocationAPI"
 import { Helmet } from "react-helmet"
@@ -16,7 +15,7 @@ const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
-//   { name: "bananaservice", domain: "bananaservice.ca" },
+//   { name: "bananaservices", domain: "bananaservices.ca" },
 //   { name: "geebodevicerepair", domain: "" },
 //   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
 //   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
@@ -28,7 +27,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 2,
+// const siteNum = 7,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -40,6 +39,7 @@ function App(): JSX.Element {
   const [features, setFeatures] = useState<FeaturesParam[]>([])
   const [storeId, setStoreID] = useState(0)
   const [loadStatus, setLoadStatus] = useState(false)
+  const [loadLocationStatus, setLoadLocationStatus] = useState(false)
   const [pageTitle, setPageTitle] = useState("Store")
   const [metaDescription, setMetaDescription] = useState("")
   const [tagScript, setTagScript] = useState(undefined)
@@ -91,7 +91,8 @@ function App(): JSX.Element {
             subDomain === "wirelessrevottawa" ||
             subDomain === "northtechsolutions" ||
             subDomain === "okotoksphonephix" ||
-            subDomain === "pradowireless"
+            subDomain === "pradowireless" ||
+            subDomain === "dccmtx"
           ) {
             feats.push({ flag: "FRONTEND_BUY", isActive: true })
           }
@@ -114,6 +115,7 @@ function App(): JSX.Element {
         .then((res: any) => {
           const locationData = res.data as any[]
           storesDetails.changeAddLocations(locationData)
+          setLoadLocationStatus(true)
         })
         .catch((error) => {
           console.log("Error in get Features", error)
@@ -150,34 +152,32 @@ function App(): JSX.Element {
         <script>{tagScript}</script>
       </Helmet>
 
-      <LangProvider>
-        <Provider
-          storesDetailsStore={storesDetails}
-          repairWidgetStore={repairWidgetStore}
-          repairWidDataStore={repairWidData}
-        >
-          {loadStatus ? (
-            <Router>
-              <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-              <BaseRouter
+      <Provider
+        storesDetailsStore={storesDetails}
+        repairWidgetStore={repairWidgetStore}
+        repairWidDataStore={repairWidData}
+      >
+        {loadStatus && loadLocationStatus ? (
+          <Router>
+            <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
+            <BaseRouter
+              subDomain={subDomain}
+              handleStatus={handleFooterStatus}
+              features={features}
+            />
+            <Badge />
+            {footerStatus && (
+              <Footer
                 subDomain={subDomain}
-                handleStatus={handleFooterStatus}
                 features={features}
+                storesDetailsStore={storesDetails}
               />
-              <Badge />
-              {footerStatus && (
-                <Footer
-                  subDomain={subDomain}
-                  features={features}
-                  storesDetailsStore={storesDetails}
-                />
-              )}
-            </Router>
-          ) : (
-            <Preloader />
-          )}
-        </Provider>
-      </LangProvider>
+            )}
+          </Router>
+        ) : (
+          <Preloader />
+        )}
+      </Provider>
     </>
   )
 }

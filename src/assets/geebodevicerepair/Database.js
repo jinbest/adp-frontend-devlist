@@ -70,48 +70,43 @@ const deviceCard = {
 const cardMobileData = {
   gridMD: 3,
   data: [
-    { img: trade, title: "TRADE", btnTitle: "TRADE_IN", flag: "FRONTEND_TRADE", href: "#" },
+    { img: trade, title: "Trade", btnTitle: "Trade-In", flag: "FRONTEND_TRADE", href: "#" },
     {
       img: repair,
-      title: "REPAIR",
-      btnTitle: "REPAIR",
+      title: "Repair",
+      btnTitle: "Repair",
       flag: "FRONTEND_REPAIR",
       href: "/quote",
     },
-    { img: buy, title: "SHOP", btnTitle: "SHOP", flag: "FRONTEND_BUY", href: "#" },
-    { img: protect, title: "INSURE", btnTitle: "INSURE", flag: "FRONTEND_INSURE", href: "#" },
+    { img: buy, title: "Shop", btnTitle: "Shop", flag: "FRONTEND_BUY", href: "#" },
+    { img: protect, title: "Insure", btnTitle: "Insure", flag: "FRONTEND_INSURE", href: "#" },
   ],
 }
 
 const cardFixData = [
-  { img: cellphone, title: "CELLPHONE" },
-  { img: tablet, title: "TABLET" },
-  { img: computer, title: "COMPUTER" },
-  { img: console, title: "CONSOLE" },
-  { img: other, title: "OTHER" },
+  { img: cellphone, title: "Cellphone" },
+  { img: tablet, title: "Tablet" },
+  { img: computer, title: "Computer" },
+  { img: console, title: "Console" },
+  { img: other, title: "Other" },
 ]
 
 const contentFixData = [
   {
-    title: "FREE_DIAGNOSTICS",
-    data: '',
-    content: "FREE_DIAGNOSTICS_CONTENT",
+    title: "TRANSPARENT REPAIRS",
+    content: "We believe in a transparent repair process - know exactly what we’re going to fix on your device and what the cost is before we start.",
   },
   {
-    title: "LOW_PRICE_GUARANTEE",
-    data: '',
-    content:
-      "LOW_PRICE_GUARANTEE_CONTENT",
+    title: "WE PRICE MATCH ANYONE",
+    content: "We want you to be confident that you're getting the best price. We'll price match any local competitor's published price for the same repair and get it done faster.",
   },
   {
-    title: "QUICK_TURNAROUND",
-    data: '',
-    content: "QUICK_TURNAROUND_CONTENT",
+    title: "QUICK TURNAROUND",
+    content: "We know you don't have all day so we'll return your device as quickly as possible. Most of our repairs can be performed in under two hours.",
   },
   {
-    title: "DAY_WARRANTY_DYNAMIC",
-    data: '90',
-    content: "DAY_WARRANTY_DYNAMIC_CONTENT",
+    title: "90 DAYS WARRANTY",
+    content: "All of repairs are backed with our 90-days, hassle-free warranty. This warranty. This warranty is valid at all of our locations worldwide.",
   },
 ]
 
@@ -131,11 +126,11 @@ const colorPalle = {
 }
 
 const navItemsData = [
-  { href: "#", text: "TRADE", isActive: false, flag: "FRONTEND_TRADE" },
-  { href: "/quote", text: "GET_QUOTE", isActive: false, flag: "FRONTEND_REPAIR" },
-  { href: "#", text: "SHOP", isActive: false, flag: "FRONTEND_BUY" },
-  { href: "#", text: "INSURE", isActive: false, flag: "FRONTEND_INSURE" },
-  { href: "/contact", text: "CONTACT", isActive: false, flag: "ALWAYS_TRUE" },
+  { href: "#", text: "Trade", isActive: false, flag: "FRONTEND_TRADE" },
+  { href: "/quote", text: "Repair", isActive: false, flag: "FRONTEND_REPAIR" },
+  { href: "#", text: "Shop", isActive: false, flag: "FRONTEND_BUY" },
+  { href: "#", text: "Insure", isActive: false, flag: "FRONTEND_INSURE" },
+  { href: "/contact", text: "Contact", isActive: false, flag: "ALWAYS_TRUE" },
 ]
 
 const navShop = {
@@ -235,25 +230,14 @@ const navShop = {
       list: ["Essential PH-1"],
     },
   ],
-  otherList: ["SEE_ALL_PRODUCTS", "SEE_HOME", "HOW_TO_SELL"],
+  otherList: ["See All Products", "See Home", "How to Sell"],
 }
 
 const brandItemsData = {
-  left: [{text: 'BUSINESS', link: '/business'}],
+  left: [{text: 'Business', link: '/business'}, {text: 'Locations', link: '/locations'}],
   brandCol: "white",
   brandThemeCol: "#585758",
-  selectOption: ["ENGLISH", "FRENCH"],
 }
-
-const hoursData = [
-  { day: "MONDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "TUESDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "WEDNESDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "THURSDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "FRIDAY", time: "9:00 a.m. - 5:00 p.m." },
-  { day: "SATURDAY", time: "11:00 a.m. - 4:00 p.m." },
-  { day: "SUNDAY", time: "CLOSED" },
-]
 
 const avatarData = {
   userActive: userActive,
@@ -266,15 +250,16 @@ const avatarData = {
 
 const mobileNavItemData = {
   left: [
-    { text: "TRADE", href: "#", flag: "FRONTEND_TRADE" },
-    { text: "GET_QUOTE", href: "/quote", flag: "FRONTEND_REPAIR" },
-    { text: "SHOP", href: "#", flag: "FRONTEND_MEGA_MENU" },
-    { text: "INSURE", href: "#", flag: "FRONTEND_INSURE" },
-    { text: "BUSINESS", href: "/business", flag: "ALWAYS_TRUE" },
-    { text: "FINANCING", href: "#", flag: "ALWAYS_TRUE" },
-    { text: "INSURANCE", href: "#", flag: "ALWAYS_TRUE" },
-    { text: "FIND_A_STORE", href: "#", flag: "FRONTEND_FIND_A_STORE" },
-    { text: "CONTACT", href: "/contact", flag: "ALWAYS_TRUE" },
+    { text: "Trade", href: "#", flag: "FRONTEND_TRADE" },
+    { text: "Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
+    { text: "Shop", href: "#", flag: "FRONTEND_MEGA_MENU" },
+    { text: "Insure", href: "#", flag: "FRONTEND_INSURE" },
+    { text: "Business", href: "/business", flag: "ALWAYS_TRUE" },
+    { text: "Locations", href: "/locations", flag: "ALWAYS_TRUE"},
+    { text: "Financing", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "Insurance", href: "#", flag: "ALWAYS_TRUE" },
+    { text: "Find a Store", href: "#", flag: "FRONTEND_FIND_A_STORE" },
+    { text: "Contact", href: "/contact", flag: "ALWAYS_TRUE" },
   ],
   right: [
     { text: "Apple", href: "#" },
@@ -286,11 +271,11 @@ const mobileNavItemData = {
 }
 
 const userNavItemData = [
-  { text: "MY_ACCOUNT", href: "#", flag: "FRONTEND_USER_ACCOUNT" },
-  { text: "TRACK_REPAIR", href: "/quote", flag: "FRONTEND_REPAIR" },
-  { text: "FILE_A_CLAIM", href: "#", flag: "ALWAYS_TRUE" },
-  { text: "ORDERS", href: "#", flag: "ALWAYS_TRUE" },
-  { text: "TRADE_IN", href: "#", flag: "FRONTEND_TRADE" },
+  { text: "My Account", href: "#", flag: "FRONTEND_USER_ACCOUNT" },
+  { text: "Track Repair", href: "/quote", flag: "FRONTEND_REPAIR" },
+  { text: "File a Claim", href: "#", flag: "ALWAYS_TRUE" },
+  { text: "Orders", href: "#", flag: "ALWAYS_TRUE" },
+  { text: "Trade-In", href: "#", flag: "FRONTEND_TRADE" },
 ]
 
 const shapeData = {
@@ -300,37 +285,35 @@ const shapeData = {
 
 const homeTextData = {
   header: {
-    buttonTitle: "FIND_A_STORE",
+    buttonTitle: "Find a Store",
     width: "150px",
   },
   section1: {
-    searchPlaceholder: "FIND_YOUR_DEVICE",
+    searchPlaceholder: "Find your device",
     city: "Nova Scotia",
   },
   section2: {
-    title: "WHAT_CAN_WE_FIX_FOR_YOU_TODAY",
+    title: "What can we fix for you today?",
   },
   section3: {
-    title: "POPULAR_DEVICES",
-    subtitle: ["BUY_NOW_PAY_LATER", "WHATEVER_WORKS_FOR_YOU"],
-    content: "POPULAR_DEVICES_CONTENT",
+    title: "Popular Devices",
+    subtitle: ["Buy now. Pay later.", "Whatever works for you."],
+    content: "We’ve partnered with Flexiti to offer 0% financing on repairs, devices, and accessories.",
     color: "white",
   },
   section4: {
-    title: "WELCOME_GEEBO",
-    btnTitle: "OUR_QUALITY_CHARTER",
+    title: "Nova Scotia's trusted mobile device shop",
+    btnTitle: "Our quality charter",
   },
   section5: {
-    title: "PROTECT_YOUR_DEVICE_WITH_BOUNCE",
-    content: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_CONTENT",
-    subtitle: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBTITLE",
-    subcontent: "PROTECT_YOUR_DEVICE_WITH_BOUNCE_SUBCONTENT",
-    subcontentData: ["NO_DEDUCTIBLE", "COVERS_NEW_AND_USED_PHONES"],
-    btnTitle: "INSURE_MY_DEVICE",
+    title: "Protect Your Device with Bounce",
+    content: "We've partnered with Bounce to offer you a low cost high value protection plan for your new and used devices.",
+    subtitle: "As low as $39/year!",
+    subcontent: "24 Hour Refunds",
+    subcontentData: ["No Deductible", "Covers New and Used Phones"],
+    btnTitle: "Insure My Device",
   },
   section6: {
-    title: "SEE_WHY_CUSTOMERS_LOVE_GEEBO",
-    subtitle: "VIEW_MORE",
     review: [
       {
         score: 5,
@@ -361,42 +344,46 @@ const homeTextData = {
       mainGrid: [4, 8],
       subGrid: [11, 1],
     },
-    content: "GEEBO_FOOTER_CONTENT_TWO",
+    copyRight: {
+      year: 2021,
+      text1: "All Rights Reserved. All trademarks are properties of their respective holders.",
+      text2: "does not own or make claim to those trademarks used on this website in which it is not the holder."
+    },
     footerLink: [
       {
-        name: "RESOURCES",
+        name: "Resources",
         lists: [
-          { href: "#", text: "CONTACT_US" },
-          { href: "#", text: "WARRANTY_AND_RETURNS" },
-          { href: "#", text: "SHIPPING" },
-          { href: "#", text: "FAQS" },
+          { href: "#", text: "Contact Us" },
+          { href: "#", text: "Warranty & Returns" },
+          { href: "#", text: "Shipping" },
+          { href: "#", text: "FAQs" },
         ],
       },
       {
-        name: "ABOUT",
+        name: "About",
         lists: [
-          { href: "#", text: "WHO_WE_ARE" },
-          { href: "#", text: "FINANCING" },
-          { href: "#", text: "BLOG" },
-          { href: "#", text: "TERMS_OF_SERVICE" },
+          { href: "#", text: "Who We Are" },
+          { href: "#", text: "Financing" },
+          { href: "#", text: "Blog" },
+          { href: "#", text: "Terms of Service" },
         ],
       },
       {
-        name: "BUSINESS",
+        name: "Business",
         lists: [
-          { href: "#", text: "AUTHORIZED_DEALER_PROGRAM" },
-          { href: "#", text: "SELL_WITH_US" },
-          { href: "#", text: "FIND_A_LOCATION" },
-          { href: "#", text: "BUSINESS_SOLUTIONS" },
+          { href: "#", text: "Authorized Dealer Program" },
+          { href: "#", text: "Sell With Us" },
+          { href: "#", text: "Find a Location" },
+          { href: "#", text: "Business Solutions" },
         ],
       },
       {
-        name: "QUALITY",
+        name: "Quality",
         lists: [
-          { href: "#", text: "DEVICE_GRADING" },
-          { href: "#", text: "QUALITY_CONTROL" },
-          { href: "#", text: "POINT_QUALITY_CHECK_60" },
-          { href: "#", text: "WHAT_IS_PHONECHECK" },
+          { href: "#", text: "Device Grading" },
+          { href: "#", text: "Quality Control" },
+          { href: "#", text: "60 Point Quality Check" },
+          { href: "#", text: "What is PhoneCheck?" },
         ],
       },
     ],
@@ -405,66 +392,66 @@ const homeTextData = {
 
 const repairData = {
   section1: {
-    title: "FIX_YOUR_DEVICE_FAST",
-    content: "FIX_YOUR_DEVICE_FAST_CONTENT",
-    btnTitle: "GET_QUOTE",
+    title: "Fix Your Device Fast!",
+    content: "Answer a few questions about your damaged device and we’ll help repair it.",
+    btnTitle: "Get Quote",
     themeCol: "black",
   },
   section2: {
-    title: "HOW_DOES_REPAIR_WORK",
+    title: "How does repair work?",
     content: [
       {
         img: selectRepair,
-        subtitle: "SELECT_A_REPAIR_CATEGORY",
-        content: "SELECT_A_REPAIR_CATEGORY_CONTENT",
+        subtitle: "Select a repair category",
+        content: "Make an account with us and indicate what needs to be repaired.",
         type: "SelectRepair",
       },
       {
         img: sendDevice,
-        subtitle: "GET_YOUR_DEVICE_TO_US",
-        content: "GET_YOUR_DEVICE_TO_US_CONTENT",
+        subtitle: "Get your device to us",
+        content: "Find a location near you for drop off or ship to the store of your choosing.",
         type: "GetDeviceUs",
       },
       {
         img: receiveDevice,
-        subtitle: "RECEIVE_YOUR_DEVICE",
-        content: "GEEBO_RECEIVE_YOUR_DEVICE_CONTENT",
+        subtitle: "Receive your device",
+        content: "repairs your device and notifies you of pick up or delivery date.",
         type: "ReceiveDevice",
       },
     ],
   },
   section3: {
-    title: "FROM_NEW_TO_RECONDITIONED",
-    content: "GEEBO_FROM_NEW_TO_RECONDITIONED_CONTENT",
+    title: "From New to Reconditioned",
+    content: "Choose your new phone among our 4 grades, with Geebo it's easy to choose for any budget!",
     children: [
       {
         subtitle: "NEW",
-        subcontent: "NEW_CONTENT",
+        subcontent: "A brand new device with no signs of wear",
         img: newImg,
       },
       {
         subtitle: "MINT",
-        subcontent: "MINT_CONTENT",
+        subcontent: "No scratches or dents",
         img: mintImg,
       },
       {
         subtitle: "GOOD",
-        subcontent: "GOOD_CONTENT",
+        subcontent: "Minor scratches or dents",
         img: goodImg,
       },
       {
         subtitle: "FAIR",
-        subcontent: "FAIR_CONTENT",
+        subcontent: "Visible scratchs and dents",
         img: fairImg,
       },
     ],
   },
   section4: {
-    title: "GET_THE_LATEST",
-    content: "SHOP_SELECTION_OF_NEW_AND_PREOWNED_DEVICE",
-    btnTitle: "FIND_A_STORE",
+    title: "Get the Latest",
+    content: "Shop our selection of new and pre-owned devices!",
+    btnTitle: "Find a Store",
     themeCol: "black",
-    link: "#"
+    link: "/locations"
   },
 }
 
@@ -474,6 +461,12 @@ const getTabData = (companyName) => {
     metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Halifax, NS. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
+    locTitle: 'Geebo Device Repair - 2274 Gottingen St',
+    locMetaDes: 'Conveniently located in downtown Halifax, Geebo Device Repair is your source for fast and affordable phone, tablet and laptop repair.',
+    contactTitle: `Contact Us | ${companyName ? companyName : ''}`,
+    contactMetaDes: 'Request a quote, book an appointment online or give us a call - we\'re Nova Scotia\'s fastest and most professional phone, tablet, laptop and game console repair destination.',
+    businessTitle: `Business Solutions | ${companyName ? companyName : ''}`,
+    businessMetaDes: `We provide reliable device management and repair services so you can focus on running your business. Contact ${companyName ? companyName : ''} today for bulk or ongoing repair services.`,
     headTag: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -493,7 +486,6 @@ export {
   contentFixData,
   navItemsData,
   brandItemsData,
-  hoursData,
   avatarData,
   mobileNavItemData,
   userNavItemData,

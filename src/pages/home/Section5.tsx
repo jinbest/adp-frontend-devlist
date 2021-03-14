@@ -1,8 +1,7 @@
 import React from "react"
 import { Button } from "../../components"
 import { Typography, Box } from "@material-ui/core"
-import { useT } from "../../i18n/index"
-import { LangProps } from "../../i18n/en"
+import { useTranslation } from "react-i18next"
 
 type Props = {
   subDomain?: string
@@ -11,7 +10,7 @@ type Props = {
 const Section5 = ({ subDomain }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const bounceData = data.homeTextData.section5
-  const t = useT()
+  const [t] = useTranslation()
 
   return (
     <section className={subDomain + "-sec5-Back"} style={{ display: "none" }}>
@@ -28,7 +27,7 @@ const Section5 = ({ subDomain }: Props) => {
             <Typography className={subDomain + "-protect-content"}>
               {t(bounceData.subcontent)}
             </Typography>
-            {bounceData.subcontentData.map((item: LangProps, index: number) => {
+            {bounceData.subcontentData.map((item: string, index: number) => {
               return (
                 <li key={index} className={subDomain + "-protect-content"}>
                   <span className="dot">&nbsp;&bull;&nbsp;</span>

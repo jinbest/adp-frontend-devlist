@@ -2,74 +2,17 @@ import React, { useState, useEffect } from "react"
 import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
 import { Button, InputComponent } from "./"
-import { useT } from "../i18n/index"
-import { LangProps } from "../i18n/en"
+import { useTranslation } from "react-i18next"
 import { repairWidgetStore } from "../store/"
 import { findLocationAPI } from "../services/"
 import { Link } from "react-router-dom"
-import { GetCurrentLocParams } from "../model/get-current-location"
 import { StoresDetails } from "../store/StoresDetails"
 import { inject, observer } from "mobx-react"
 import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import Loading from "./Loading"
-
-export function makeLocations(data: any[]) {
-  const locations: GetCurrentLocParams[] = []
-  const days: any[] = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
-  for (let i = 0; i < data.length; i++) {
-    const hours: any[] = [],
-      weekDays: any[] = [],
-      storeGroup: any[] = []
-    for (let j = 0; j < data[i].location_hours.length; j++) {
-      if (data[i].location_hours[j].type === "REGULAR") {
-        const cntStoreID = data[i].location_hours[j].store_id
-        if (!storeGroup.includes(cntStoreID)) {
-          storeGroup.push(cntStoreID)
-          hours.push({ store_id: cntStoreID, hrs: [] })
-          weekDays.push({ store_id: cntStoreID, wkDys: [] })
-        }
-        let hour = ""
-        if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
-          hour = "CLOSED"
-        } else {
-          const open: string =
-            (parseInt(data[i].location_hours[j].open.split(":")[0]) % 12) +
-            ":" +
-            data[i].location_hours[j].open.split(":")[1] +
-            " a.m."
-          const close: string =
-            (parseInt(data[i].location_hours[j].close.split(":")[0]) % 12) +
-            ":" +
-            data[i].location_hours[j].close.split(":")[1] +
-            " p.m."
-          hour = open + " - " + close
-        }
-        for (let k = 0; k < hours.length; k++) {
-          if (cntStoreID === hours[k].store_id) {
-            hours[k].hrs.push(hour)
-            weekDays[k].wkDys.push(days[data[i].location_hours[j].day])
-            break
-          }
-        }
-      }
-    }
-    const cntItem: GetCurrentLocParams = {
-      location_name: data[i].location_name,
-      address_1: data[i].address_1,
-      address_2: data[i].address_2,
-      distance: data[i].distance ? (data[i].distance / 1000).toFixed(1) + "km" : "",
-      location_id: data[i].id,
-      hours: hours,
-      days: weekDays,
-      latitude: data[i].latitude,
-      longitude: data[i].longitude,
-      business_page_link: data[i].business_page_link,
-    }
-    locations.push(cntItem)
-  }
-  return locations
-}
+import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { makeLocations, getAddress } from "../services/helper"
 
 const StyledMenu = withStyles({
   paper: {
@@ -110,25 +53,24 @@ type StoreProps = {
 }
 interface Props extends StoreProps {
   subDomain?: string
-  btnTitle: LangProps
+  btnTitle: string
   width: string
   features: any[]
 }
 
 const CustomizedMenus = inject("storesDetailsStore")(
   observer((props: Props) => {
-    const { subDomain, btnTitle, width, storesDetailsStore } = props
+    const { subDomain, btnTitle, width, storesDetailsStore, features } = props
 
     const data = require(`../assets/${subDomain}/Database`)
     const themeColor = data.colorPalle.themeColor
     const underLineCol = data.colorPalle.underLineCol
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const t = useT()
+    const [t] = useTranslation()
     const [pos, setPos] = useState({ latitude: "", longitude: "" })
     const [locSelStatus, setLocSelStatus] = useState(storesDetailsStore.cntUserLocationSelected)
     const [locations, setLocations] = useState<any[]>(storesDetailsStore.cntUserLocation)
     const [requireUserInfo, setRequireUserInfo] = useState(false)
-    const [contentWidth, setContentWidth] = useState("215px")
     const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
     const [postCode, setPostCode] = useState("")
     const [isRequest, setIsRequest] = useState(false)
@@ -229,19 +171,14 @@ const CustomizedMenus = inject("storesDetailsStore")(
     }, [pos, locations])
 
     useEffect(() => {
-      if (locSelStatus || !locations.length) {
-        setContentWidth("215px")
-      } else {
-        setContentWidth("500px")
-      }
       storesDetailsStore.changeCntUserLocationSelected(locSelStatus)
       if (locations.length <= 1) {
-        setMyStore(t("NEAREST_LOCATION"))
+        setMyStore(t("Nearest Location"))
       } else {
-        setMyStore(t("ALL_LOCATIONS"))
+        setMyStore(t("All Locations"))
       }
       if (locSelStatus) {
-        setMyStore(t("SELECTED_LOCATION"))
+        setMyStore(t("Selected Location"))
       }
     }, [locSelStatus, locations])
 
@@ -272,20 +209,13 @@ const CustomizedMenus = inject("storesDetailsStore")(
     }, [])
 
     useEffect(() => {
-      findLocationAPI
-        .findAllLocation(storesDetailsStore.store_id)
-        .then((res: any) => {
-          const locationData = res.data as any[]
-          if (locationData.length > 1 || !locationData.length) return
-          storesDetailsStore.changeFindAddLocation(locationData)
-          storesDetailsStore.changeCntUserLocationSelected(true)
-          setLocations(makeLocations([locationData[0]]))
-          setLocSelStatus(true)
-          storesDetailsStore.changeLocationID(locationData[0].id)
-        })
-        .catch((error) => {
-          console.log("Error in get Features", error)
-        })
+      if (storesDetailsStore.allLocations.length > 1 || !storesDetailsStore.allLocations.length)
+        return
+      storesDetailsStore.changeFindAddLocation(storesDetailsStore.allLocations)
+      storesDetailsStore.changeCntUserLocationSelected(true)
+      setLocations(makeLocations(storesDetailsStore.allLocations))
+      setLocSelStatus(true)
+      storesDetailsStore.changeLocationID(storesDetailsStore.allLocations[0].id)
     }, [])
 
     const handleGetLocation = (poscode: string) => {
@@ -322,38 +252,28 @@ const CustomizedMenus = inject("storesDetailsStore")(
         })
     }
 
-    const getAddress = (location: any) => {
-      return `${location.address_1}, ${location.address_2 ? location.address_2 + ", " : ""}${
-        location.city ? location.city + ", " : ""
-      } ${location.state ? location.state + " " : ""} ${
-        location.postcode ? location.postcode + ", " : ""
-      } ${location.country ? location.country + ", " : ""}`
-    }
-
     return (
       <div>
         <Button
           title={
-            !storesDetailsStore.cntUserLocationSelected
+            !locSelStatus
               ? t(btnTitle)
               : storesDetailsStore.cntUserLocation[0] &&
                 storesDetailsStore.cntUserLocation[0].address_1
           }
-          bgcolor={!storesDetailsStore.cntUserLocationSelected ? themeColor : "transparent"}
-          txcolor={!storesDetailsStore.cntUserLocationSelected ? "white" : "black"}
-          border={
-            !storesDetailsStore.cntUserLocationSelected ? "1px solid rgba(0,0,0,0.1)" : "none"
-          }
-          textDecorator={!storesDetailsStore.cntUserLocationSelected ? "none" : "underline"}
+          bgcolor={!locSelStatus ? themeColor : "transparent"}
+          txcolor={!locSelStatus ? "white" : "black"}
+          border={!locSelStatus ? "1px solid rgba(0,0,0,0.1)" : "none"}
+          textDecorator={!locSelStatus ? "none" : "underline"}
           borderR="20px"
           aria-controls="customized-menu"
           aria-haspopup="true"
           onClick={handleOpen}
           icon={true}
           fontSize="17px"
-          width={!storesDetailsStore.cntUserLocationSelected ? width : "auto"}
+          width={!locSelStatus ? width : "auto"}
           subDomain={subDomain}
-          hover={!storesDetailsStore.cntUserLocationSelected ? true : false}
+          hover={!locSelStatus ? true : false}
         />
         <StyledMenu
           id="customized-menu"
@@ -364,7 +284,12 @@ const CustomizedMenus = inject("storesDetailsStore")(
         >
           <div className="triangle" style={{ right: "65px" }}></div>
           <div className={subDomain + "-menu-content-div"}>
-            <div className={subDomain + "-left-content"} style={{ width: contentWidth }}>
+            <div
+              className={subDomain + "-left-content"}
+              style={{
+                width: locSelStatus || !locations.length ? "215px" : "500px",
+              }}
+            >
               <div className={subDomain + "-content-block"}>
                 {storesDetailsStore.cntUserLocation.length || !requireUserInfo ? (
                   <p className={subDomain + "-block-title"}>{myStore}</p>
@@ -372,14 +297,14 @@ const CustomizedMenus = inject("storesDetailsStore")(
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
                       value={postCode}
-                      placeholder={t("POSTAL_CODE")}
+                      placeholder={t("Postal Code*")}
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
                       subDomain={subDomain}
                     />
                     <Button
-                      title={t("GET_LOCATION")}
+                      title={t("Get Location")}
                       bgcolor={themeColor}
                       borderR="20px"
                       width="80%"
@@ -403,9 +328,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                           className={
                             subDomain +
                             "-block-content" +
-                            (storesDetailsStore.cntUserLocationSelected
-                              ? ` ${classes.nonHoverEffect}`
-                              : "")
+                            (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
                           }
                         >
                           {item.distance
@@ -423,11 +346,12 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 </div>
               </div>
               <div className={subDomain + "-content-block"}>
-                {storesDetailsStore.cntUserLocationSelected && (
+                {locSelStatus && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
                     href={
+                      storesDetailsStore.cntUserLocation[0] &&
                       storesDetailsStore.cntUserLocation[0].business_page_link
                         ? storesDetailsStore.cntUserLocation[0].business_page_link
                         : "https://www.google.com/business/"
@@ -435,7 +359,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {t("VIEW_STORE_DETAILS")}
+                    {t("View Store Details")}
                   </a>
                 )}
                 {storesDetailsStore.findAddLocation.length > 1 &&
@@ -445,14 +369,15 @@ const CustomizedMenus = inject("storesDetailsStore")(
                       style={{ color: underLineCol }}
                       onClick={viewMoreStores}
                     >
-                      {t("VIEW_MORE_STORES")}
+                      {t("View More Stores")}
                     </a>
                   )}
-                {storesDetailsStore.cntUserLocationSelected && (
+                {locSelStatus && (
                   <a
                     className={subDomain + "-link"}
                     style={{ color: underLineCol }}
                     href={`${
+                      storesDetailsStore.cntUserLocation[0] &&
                       storesDetailsStore.cntUserLocation[0].business_page_link != null
                         ? storesDetailsStore.cntUserLocation[0].business_page_link
                         : `https://www.google.com/maps/search/?api=1&query=${getAddress(
@@ -464,26 +389,38 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {t("GET_DIRECTIONS")}
+                    {t("Get Directions")}
                   </a>
                 )}
               </div>
-              {storesDetailsStore.cntUserLocationSelected && (
-                <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleBookRepair}>
-                  <Button
-                    title={t("BOOK_APPOINTMENT")}
-                    bgcolor={themeColor}
-                    borderR="20px"
-                    width="175px"
-                    height="30px"
-                    margin="0"
-                    fontSize="15px"
-                    subDomain={subDomain}
+              {locSelStatus && (
+                <FeatureToggles features={features}>
+                  <Feature
+                    name={"FRONTEND_REPAIR_APPOINTMENT"}
+                    inactiveComponent={() => <></>}
+                    activeComponent={() => (
+                      <Link
+                        to="/get-quote"
+                        style={{ textDecoration: "none" }}
+                        onClick={handleBookRepair}
+                      >
+                        <Button
+                          title={t("Book Appointment")}
+                          bgcolor={themeColor}
+                          borderR="20px"
+                          width="175px"
+                          height="30px"
+                          margin="0"
+                          fontSize="15px"
+                          subDomain={subDomain}
+                        />
+                      </Link>
+                    )}
                   />
-                </Link>
+                </FeatureToggles>
               )}
             </div>
-            {storesDetailsStore.cntUserLocationSelected && (
+            {locSelStatus && (
               <React.Fragment>
                 <div
                   style={{
@@ -498,7 +435,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                         {item.days.map((it: any, index: number) => {
                           return (
                             <div key={index}>
-                              <p className={subDomain + "-block-title"}>{t("HOURS")}</p>
+                              <p className={subDomain + "-block-title"}>{t("Hours")}</p>
                               <div className={subDomain + "-hours-div"}>
                                 <div>
                                   {it.wkDys.map((itm: any, idx: number) => {
@@ -529,7 +466,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                                         }}
                                         key={idx}
                                       >
-                                        {t(itm)}
+                                        {itm === "Closed" ? t(itm) : itm}
                                       </p>
                                     )
                                   })}

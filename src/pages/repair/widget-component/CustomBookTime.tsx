@@ -1,58 +1,6 @@
 import React, { useEffect, useState } from "react"
-
-function availableTimeRange(min: number, max: number, intv: number, mut: number) {
-  if (min === max) return ["Closed"]
-  const timeRange: any[] = []
-  let cntMin = min
-  while (1) {
-    timeRange.push(cntMin * mut)
-    cntMin = cntMin + intv
-    if (cntMin > max) {
-      break
-    }
-  }
-  return timeRange
-}
-
-function isWeek(selyear: number, selmonth: number, selday: number) {
-  return new Date(selyear, selmonth, selday).getDay()
-}
-
-function isPast(
-  selyear: number,
-  selmonth: number,
-  selday: number,
-  seloff: number,
-  hrs: number,
-  mins: number
-) {
-  const timeoffset = -new Date().getTimezoneOffset() / 60
-  const selectedTiemStamp = new Date(
-    selyear,
-    selmonth,
-    selday,
-    hrs + (timeoffset - seloff),
-    mins
-  ).getTime()
-  const standTimeStamp = new Date().getTime()
-  return selectedTiemStamp < standTimeStamp
-}
-
-function convertTimeRange(hoursRange: any[]) {
-  const timesRange = []
-  for (let i = 0; i < hoursRange.length; i++) {
-    if (parseInt(hoursRange[i].split("-")[0])) {
-      const startTime =
-        parseInt(hoursRange[i].split("-")[0]) + (hoursRange[i].split("-")[0].includes("a") ? 0 : 12)
-      const endTime =
-        parseInt(hoursRange[i].split("-")[1]) + (hoursRange[i].split("-")[1].includes("a") ? 0 : 12)
-      timesRange.push([startTime * 60, endTime * 60])
-    } else {
-      timesRange.push([0, 0])
-    }
-  }
-  return timesRange
-}
+import { useTranslation } from "react-i18next"
+import { availableTimeRange, isWeek, isPast, convertTimeRange } from "../../../services/helper"
 
 type Props = {
   themeCol?: string
@@ -92,6 +40,7 @@ const CustomBookTime = ({
     multi = 60 * 1000
   const [val, setVal] = useState(timezoneIndex)
   const [bookArray, setBookArray] = useState<ArrayProps[]>([])
+  const [t] = useTranslation()
 
   useEffect(() => {
     const timesRng = convertTimeRange(hoursRange)
@@ -192,7 +141,7 @@ const CustomBookTime = ({
                 handleBook(index)
               }}
             >
-              {item.book}
+              {item.book === "Closed" ? t(item.book) : item.book}
             </div>
           )
         })}

@@ -3,8 +3,8 @@ import { Grid, Box, Typography } from "@material-ui/core"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Button } from "../../components"
 import { Link } from "react-router-dom"
-import { useT } from "../../i18n/index"
-import { isExternal } from "../../components/Header"
+import { useTranslation } from "react-i18next"
+import { isExternal } from "../../services/helper"
 
 type Props = {
   subDomain?: string
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Section4 = ({ subDomain, handleStatus }: Props) => {
   const data = require(`../../assets/${subDomain}/Database`)
   const repair = data.repairData.section4
-  const t = useT()
+  const [t] = useTranslation()
   const classes = useStyles()
 
   return (
@@ -77,7 +77,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
         <Grid item xs={12} md={6} className={classes.item1}>
           <Typography
             className={subDomain + "-service-section-title-1"}
-            style={{ color: repair.themeCol, textShadow: `1px 0 ${repair.themeCol}` }}
+            style={{ color: repair.themeCol }}
           >
             {t(repair.title)}
           </Typography>
