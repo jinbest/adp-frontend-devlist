@@ -1,7 +1,7 @@
 import { GetCurrentLocParams } from "../model/get-current-location"
 import { useLocation } from "react-router-dom"
 import { GetQuotesParams } from "../model/get-quote-params"
-import { repairWidgetStore, storesDetails } from "../store"
+import { repairWidgetStore, storesDetails, repairWidData } from "../store"
 import { repairWidgetAPI } from "./"
 
 interface LocationHour {
@@ -334,14 +334,24 @@ function setRepairWidgetStore(res: any[], data: GetQuotesParams) {
   repairWidgetStore.changeChooseRepair(chooseRepair)
   repairWidgetStore.changeDeviceCounter(res.length)
   repairWidgetStore.changeCntStep(7)
-  repairWidgetStore.changeReceiveQuote({
-    method: data.customer_contact_method, 
-    code: data.customer_contact_method
-  })
-  repairWidgetStore.changeDeliveryMethod({
-    method: data.delivery_method, 
-    code: data.delivery_method
-  })
+  for (let i = 0; i < repairWidData.repairWidgetLookup.repair_delivery_method.length; i++) {
+    if (data.delivery_method === repairWidData.repairWidgetLookup.repair_delivery_method[i].code) {
+      repairWidgetStore.changeDeliveryMethod({
+        method: repairWidData.repairWidgetLookup.repair_delivery_method[i].code_text, 
+        code: data.delivery_method
+      })
+      break
+    }
+  }
+  for (let i = 0; i < repairWidData.repairWidgetLookup.repair_contact_method.length; i++) {
+    if (data.customer_contact_method === repairWidData.repairWidgetLookup.repair_contact_method[i].code) {
+      repairWidgetStore.changeReceiveQuote({
+        method: repairWidData.repairWidgetLookup.repair_contact_method[i].code_text, 
+        code: data.customer_contact_method
+      })
+      break
+    }
+  }
   repairWidgetStore.changeContactDetails({
     firstName: data.customer_first_name, 
     lastName: data.customer_last_name, 
