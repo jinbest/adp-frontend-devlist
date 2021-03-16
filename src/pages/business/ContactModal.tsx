@@ -416,7 +416,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
               <Typography className={classes.title}>
                 {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
               </Typography>
-              <Typography className={classes.content}>
+              <Typography className={classes.content} id="contact-tracking-modal">
                 {t("A representative will contact you shortly in regards to your request.")}
               </Typography>
             </div>

@@ -406,7 +406,7 @@ const ContactForm = ({
             <Typography className={classes.title}>
               {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
             </Typography>
-            <Typography className={classes.content}>
+            <Typography className={classes.content} id="contact-tracking-form">
               {t("A representative will contact you shortly in regards to your request.")}
             </Typography>
           </Card>
