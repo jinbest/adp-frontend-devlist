@@ -26,7 +26,7 @@ const QuoteComponent = ({ data, quoteKey, repairWidgetData }: Props) => {
           <Typography className="repair-service-summary-title">
             {`${t(data[quoteKey].title)} ${storeName}`}
           </Typography>
-          <Typography className="quote-component-content">
+          <Typography className="quote-component-content" id="service-widget-success-page">
             {t("You will receive an")} <b>{t("Email").toLocaleLowerCase()}</b> {t("at")}{" "}
             <b>{repairWidgetData.contactDetails.email}</b> {t("shortly")}, {t(data[quoteKey].text)}
           </Typography>
