@@ -55,7 +55,7 @@ class FindLocationAPI {
     //   pradowireless: 10,
     //   wirelessrevottawa: 8,
     //   geebodevicerepair: 3,
-    //   okotoksphonephix: 9,
+    //   phonephix: 9,
     //   bananaservice: 1
     // }
     // const apiURL = `${prodLink}dc/store/${storeIDs.pradowireless}/locations?page=1&per_page=10000&include_voided=false`;

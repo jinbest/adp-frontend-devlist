@@ -20,14 +20,14 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
 //   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
 //   { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca" },
-//   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
+//   { name: "phonephix", domain: "phonephix.ca" },
 //   { name: "pradowireless", domain: "pradowireless.com" },
 //   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
 //   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
 //   { name: "dccmtx", domain: "dccmtx.com" },
 //   { name: "mtlcmtx", domain: "mtlcmtx.com" },
 // ]
-// const siteNum = 4,
+// const siteNum = 0,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -90,7 +90,7 @@ function App(): JSX.Element {
             subDomain === "mobiletechlab" ||
             subDomain === "wirelessrevottawa" ||
             subDomain === "northtechsolutions" ||
-            subDomain === "okotoksphonephix" ||
+            subDomain === "phonephix" ||
             subDomain === "pradowireless" ||
             subDomain === "dccmtx"
           ) {
