@@ -79,7 +79,7 @@ const cardMobileData = {
       flag: "FRONTEND_REPAIR",
       href: "/quote",
     },
-    { img: buy, title: "Shop", btnTitle: "Shop", flag: "FRONTEND_BUY", href: "#" },
+    { img: buy, title: "Shop", btnTitle: "Shop", flag: "FRONTEND_BUY", href: "http://shop.pradowireless.com/" },
     { img: protect, title: "Insure", btnTitle: "Insure", flag: "FRONTEND_INSURE", href: "#" },
   ],
 }

@@ -464,7 +464,7 @@ const repairData = {
 const getTabData = (companyName) => {
   return {
     title: `Get Quote`,
-    metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Ottawa, ON. Call ${
+    metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Quebec. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
     locTitle: '',
