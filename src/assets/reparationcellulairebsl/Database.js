@@ -352,7 +352,6 @@ const homeTextData = {
       subGrid: [8, 4],
     },
     copyRight: {
-      year: 2021,
       text1: "All Rights Reserved. All trademarks are properties of their respective holders.",
       text2: "does not own or make claim to those trademarks used on this website in which it is not the holder."
     },
@@ -465,7 +464,7 @@ const repairData = {
 const getTabData = (companyName) => {
   return {
     title: `Get Quote`,
-    metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Ottawa, ON. Call ${
+    metaDescription: `Same day repair of your broken, cracked, smashed or water damaged iPhone, iPad or cell phone in Quebec. Call ${
       companyName ? companyName : ""
     } or book your repair online today!`,
     locTitle: '',

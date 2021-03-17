@@ -110,7 +110,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
       })
     }
 
-    navigator.geolocation.getCurrentPosition(() => {})
+    // navigator.geolocation.getCurrentPosition(() => {})
 
     useEffect(() => {
       if (Boolean(anchorEl)) {
@@ -130,6 +130,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 }
               } else if (PermissionStatus.state == "prompt") {
                 console.log("not yet grated or denied")
+                setRequireUserInfo(true)
               } else {
                 setRequireUserInfo(true)
                 setPos({ latitude: "", longitude: "" })
@@ -223,7 +224,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
       const data: any = {
         city: "",
         state: "",
-        postcode: poscode, // R3P0N2
+        postcode: poscode,
         country: "",
       }
       setIsRequest(true)

@@ -79,7 +79,7 @@ const cardMobileData = {
       flag: "FRONTEND_REPAIR",
       href: "/quote",
     },
-    { img: buy, title: "Shop", btnTitle: "Shop", flag: "FRONTEND_BUY", href: "#" },
+    { img: buy, title: "Shop", btnTitle: "Shop", flag: "FRONTEND_BUY", href: "http://shop.pradowireless.com/" },
     { img: protect, title: "Insure", btnTitle: "Insure", flag: "FRONTEND_INSURE", href: "#" },
   ],
 }
@@ -344,7 +344,6 @@ const homeTextData = {
       subGrid: [11, 1],
     },
     copyRight: {
-      year: 2021,
       text1: "All Rights Reserved. All trademarks are properties of their respective holders.",
       text2: "does not own or make claim to those trademarks used on this website in which it is not the holder."
     },

@@ -350,7 +350,6 @@ const homeTextData = {
       subGrid: [6, 6],
     },
     copyRight: {
-      year: 2021,
       text1: "All Rights Reserved. All trademarks are properties of their respective holders.",
       text2: "does not own or make claim to those trademarks used on this website in which it is not the holder."
     },
