@@ -152,7 +152,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
       })
     }
 
-    navigator.geolocation.getCurrentPosition(() => {})
+    // navigator.geolocation.getCurrentPosition(() => {})
 
     const setGeoPos = () => {
       if (navigator.platform.includes("Mac")) {

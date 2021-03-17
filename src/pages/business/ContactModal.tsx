@@ -178,7 +178,14 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
   }
 
   const SubmitAvailable = () => {
-    if (firstName && lastName && email && ValidateEmail(email) && loc.name && message.length > 5) {
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      ValidateEmail(email) &&
+      locations[loc.code].address_1 &&
+      message.length > 5
+    ) {
       return true
     }
     if (!firstName) {
