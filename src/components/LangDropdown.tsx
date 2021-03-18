@@ -31,6 +31,7 @@ const useStyles = makeStyles(() =>
       display: "none",
       ["@media (max-width:768px)"]: {
         display: "block",
+        color: "black",
       },
     },
   })

@@ -178,7 +178,14 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
   }
 
   const SubmitAvailable = () => {
-    if (firstName && lastName && email && ValidateEmail(email) && loc.name && message.length > 5) {
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      ValidateEmail(email) &&
+      locations[loc.code].address_1 &&
+      message.length > 5
+    ) {
       return true
     }
     if (!firstName) {
@@ -416,7 +423,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
               <Typography className={classes.title}>
                 {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
               </Typography>
-              <Typography className={classes.content}>
+              <Typography className={classes.content} id="contact-tracking-modal">
                 {t("A representative will contact you shortly in regards to your request.")}
               </Typography>
             </div>

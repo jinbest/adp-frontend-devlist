@@ -15,19 +15,19 @@ const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
-//   { name: "bananaservices", domain: "bananaservices.ca" },
-//   { name: "geebodevicerepair", domain: "" },
-//   { name: "mobiletechlab", domain: "mobiletechlab.ca" },
-//   { name: "nanotechmobile", domain: "nanotechmobile.ca" },
-//   { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca" },
-//   { name: "okotoksphonephix", domain: "okotoksphonephix.ca" },
-//   { name: "pradowireless", domain: "pradowireless.com" },
-//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca" },
-//   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca" },
-//   { name: "dccmtx", domain: "dccmtx.com" },
-//   { name: "mtlcmtx", domain: "mtlcmtx.com" },
+//   { name: "bananaservices", domain: "https://bananaservices.ca/", storeID: 1 },
+//   { name: "geebodevicerepair", domain: "https://geebodevicerepair.ca/", storeID: 3 },
+//   { name: "mobiletechlab", domain: "https://mobiletechlab.ca/", storeID: 4 },
+//   { name: "nanotechmobile", domain: "https://nanotechmobile.ca/", storeID: 2 },
+//   { name: "northtechcellsolutions", domain: "https://northtechcellsolutions.ca/", storeID: 5 },
+//   { name: "phonephix", domain: "https://phonephix.ca/", storeID: 9 },
+//   { name: "pradowireless", domain: "https://pradowireless.com/", storeID: 10 },
+//   { name: "reparationcellulairebsl", domain: "https://reparationcellulairebsl.ca/", storeID: 7 },
+//   { name: "wirelessrevottawa", domain: "https://wirelessrevottawa.ca/", storeID: 8 },
+//   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
+//   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 7,
+// const siteNum = 0,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -90,7 +90,7 @@ function App(): JSX.Element {
             subDomain === "mobiletechlab" ||
             subDomain === "wirelessrevottawa" ||
             subDomain === "northtechsolutions" ||
-            subDomain === "okotoksphonephix" ||
+            subDomain === "phonephix" ||
             subDomain === "pradowireless" ||
             subDomain === "dccmtx"
           ) {

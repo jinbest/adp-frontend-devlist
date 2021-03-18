@@ -19,7 +19,7 @@ const Logo = ({ subDomain, type, handleStatus }: Props) => {
     <Link to="/home" onClick={handleLogoClick}>
       {subDomain === "geebodevicerepair" ||
       subDomain === "nanotechmobile" ||
-      subDomain === "okotoksphonephix" ||
+      subDomain === "phonephix" ||
       subDomain === "wirelessrevottawa" ||
       subDomain === "dccmtx" ||
       subDomain === "mtlcmtx" ? (

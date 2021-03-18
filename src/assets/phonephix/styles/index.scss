@@ -1,0 +1,10 @@
+@import "../../../config/variable.adplist.scss";
+
+$folderName: $phonephix;
+
+@import "./header.scss";
+@import "./pages/home.scss";
+@import "./pages/repair.scss";
+@import "./components/index.scss";
+@import "./footer.scss";
+@import "./responsive.scss";
