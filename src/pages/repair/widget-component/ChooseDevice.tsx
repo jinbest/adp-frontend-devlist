@@ -13,6 +13,8 @@ import {
   getRepairsOfferedDeviceAPI,
   addMoreRepairsOfferedDeviceAPI,
 } from "../RepairWidgetCallAPI"
+import { ContactModal } from "../../business"
+import { ConvertWarrantyUnit } from "../../../services/helper"
 
 type Props = {
   data: any
@@ -27,18 +29,6 @@ type Props = {
 
 type ArrayProps = {
   array: any[]
-}
-
-export function ConvertWarrantyUnit(val: string, warnt: number) {
-  if (val === "DD" || val === "DAY") {
-    return warnt > 1 ? "Days" : "Day"
-  } else if (val === "YY" || val === "YEAR") {
-    return warnt > 1 ? "Years" : "Year"
-  } else if (val === "MM" || val === "MONTH") {
-    return warnt > 1 ? "Months" : "Month"
-  } else {
-    return "Lifetime"
-  }
 }
 
 const ChooseDevice = ({
@@ -65,6 +55,7 @@ const ChooseDevice = ({
   const [searchText, setSearchText] = useState("")
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
+  const [openContactModal, setOpenContactModal] = useState(false)
 
   const [t] = useTranslation()
 
@@ -541,6 +532,20 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
+                    {!imageData.length && (
+                      <p className="non-products-text">
+                        {t("Didn't find what you are looking for, ")}
+                        <span
+                          style={{
+                            color: mainData.colorPalle.textThemeCol,
+                          }}
+                          onClick={() => setOpenContactModal(true)}
+                        >
+                          {t("contact us ")}
+                        </span>
+                        {t("with details of the issue affecting your device please.")}
+                      </p>
+                    )}
                   </>
                 )}
 
@@ -592,6 +597,20 @@ const ChooseDevice = ({
                       <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
+                    )}
+                    {!itemTypes.length && (
+                      <p className="non-products-text">
+                        {t("Didn't find what you are looking for, ")}
+                        <span
+                          style={{
+                            color: mainData.colorPalle.textThemeCol,
+                          }}
+                          onClick={() => setOpenContactModal(true)}
+                        >
+                          {t("contact us ")}
+                        </span>
+                        {t("with details of the issue affecting your device please.")}
+                      </p>
                     )}
                   </>
                 )}
@@ -719,6 +738,12 @@ const ChooseDevice = ({
           </Card>
         </Grid>
       </Grid>
+      <ContactModal
+        openModal={openContactModal}
+        handleModal={setOpenContactModal}
+        subDomain={subDomain}
+        storesDetailsStore={storesDetails}
+      />
     </div>
   )
 }

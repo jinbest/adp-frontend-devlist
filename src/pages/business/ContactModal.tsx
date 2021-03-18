@@ -14,9 +14,9 @@ import { contactAPI } from "../../services"
 import { StoresDetails } from "../../store/StoresDetails"
 import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
-import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
 import { Close } from "@material-ui/icons"
 import { isEmpty } from "lodash"
+import { makeLocations, ValidateEmail } from "../../services/helper"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -133,17 +133,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
       }
       setOption(cntOptions)
     }
-  }, [locations])
-
-  useEffect(() => {
-    if (firstName && lastName && email && loc && message) {
-      setDisableStatus(false)
-    } else {
-      setDisableStatus(true)
-    }
-  }, [firstName, lastName, email, loc, message])
-
-  useEffect(() => {
     if (storesDetailsStore.cntUserLocationSelected && locations.length) {
       for (let i = 0; i < locations.length; i++) {
         if (
@@ -155,7 +144,15 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
       }
       return
     }
-  }, [storesDetailsStore.cntUserLocation])
+  }, [locations, storesDetailsStore.cntUserLocation])
+
+  useEffect(() => {
+    if (firstName && lastName && email && loc && message) {
+      setDisableStatus(false)
+    } else {
+      setDisableStatus(true)
+    }
+  }, [firstName, lastName, email, loc, message])
 
   const handleClose = () => {
     handleModal(false)
@@ -280,6 +277,13 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
     })
   }
 
+  const handleChangeSelect = (locVal: any) => {
+    if (storesDetailsStore.cntUserLocationSelected) {
+      storesDetailsStore.changeCntUserLocation(makeLocations([locations[locVal.code]]))
+    }
+    setLoc({ name: locations[locVal.code].address_1, code: locVal.code })
+  }
+
   return (
     <div>
       <Modal
@@ -353,7 +357,9 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Grid item xs={12}>
                   <CustomSelect
                     value={loc}
-                    handleSetValue={setLoc}
+                    handleSetValue={(locVal) => {
+                      handleChangeSelect(locVal)
+                    }}
                     subDomain={subDomain}
                     options={option}
                   />

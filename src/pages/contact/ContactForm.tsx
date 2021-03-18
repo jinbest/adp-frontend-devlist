@@ -10,8 +10,7 @@ import { ContactSubmitParams } from "../../model/contact-submit-param"
 import { Card } from "../repair/widget-component"
 import { contactAPI } from "../../services"
 import { StoresDetails } from "../../store/StoresDetails"
-import { makeLocations } from "../../services/helper"
-import { ValidateEmail } from "../../pages/repair/widget-component/ContactDetails"
+import { makeLocations, ValidateEmail } from "../../services/helper"
 import { Close } from "@material-ui/icons"
 
 const useStyles = makeStyles((theme: Theme) =>
