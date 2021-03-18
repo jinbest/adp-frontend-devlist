@@ -374,3 +374,31 @@ function setRepairWidgetStore(res: any[], data: GetQuotesParams) {
     }
   }
 }
+
+export function ConvertWarrantyUnit(val: string, warnt: number) {
+  if (val === "DD" || val === "DAY") {
+    return warnt > 1 ? "Days" : "Day"
+  } else if (val === "YY" || val === "YEAR") {
+    return warnt > 1 ? "Years" : "Year"
+  } else if (val === "MM" || val === "MONTH") {
+    return warnt > 1 ? "Months" : "Month"
+  } else {
+    return "Lifetime"
+  }
+}
+
+export function ValidateEmail(e: string) {
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(e)
+}
+
+export function ValidatePhoneNumber(p: string) {
+  const found = p.search(
+    /^(\+{1}\d{2,3}\s?[(]{1}\d{1,3}[)]{1}\s?\d+|\+\d{2,3}\s{1}\d+|\d+){1}[\s|-]?\d+([\s|-]?\d+){1,2}$/
+  )
+  if (found > -1 && p.length >= 10) {
+    return true
+  } else {
+    return false
+  }
+}

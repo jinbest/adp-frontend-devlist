@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Card, PlusSVG } from "./"
+import { Card, PlusSVG, LazyImg } from "./"
 import { Grid, Typography } from "@material-ui/core"
 import { Search, Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
@@ -13,6 +13,8 @@ import {
   getRepairsOfferedDeviceAPI,
   addMoreRepairsOfferedDeviceAPI,
 } from "../RepairWidgetCallAPI"
+import { ContactModal } from "../../business"
+import { ConvertWarrantyUnit } from "../../../services/helper"
 
 type Props = {
   data: any
@@ -27,18 +29,6 @@ type Props = {
 
 type ArrayProps = {
   array: any[]
-}
-
-export function ConvertWarrantyUnit(val: string, warnt: number) {
-  if (val === "DD" || val === "DAY") {
-    return warnt > 1 ? "Days" : "Day"
-  } else if (val === "YY" || val === "YEAR") {
-    return warnt > 1 ? "Years" : "Year"
-  } else if (val === "MM" || val === "MONTH") {
-    return warnt > 1 ? "Months" : "Month"
-  } else {
-    return "Lifetime"
-  }
 }
 
 const ChooseDevice = ({
@@ -65,6 +55,7 @@ const ChooseDevice = ({
   const [searchText, setSearchText] = useState("")
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
+  const [openContactModal, setOpenContactModal] = useState(false)
 
   const [t] = useTranslation()
 
@@ -460,6 +451,23 @@ const ChooseDevice = ({
     }
   }, [step, estimatedTimes, itemTypes])
 
+  const NoDataComponent = () => {
+    return (
+      <p className="non-products-text">
+        {t("Didn't find what you are looking for, ")}
+        <span
+          style={{
+            color: mainData.colorPalle.textThemeCol,
+          }}
+          onClick={() => setOpenContactModal(true)}
+        >
+          {t("contact us ")}
+        </span>
+        {t("with details of the issue affecting your device please.")}
+      </p>
+    )
+  }
+
   return (
     <div>
       <Grid container spacing={3}>
@@ -494,25 +502,27 @@ const ChooseDevice = ({
               <div className="widget-main-container">
                 {stepName === "deviceBrand" && (
                   <>
-                    {imageData.slice(0, sliceNum).map((item: any, index: number) => {
-                      return (
-                        <div
-                          className="device-item-container"
-                          style={{
-                            background: selected === index ? "rgba(0,0,0,0.1)" : "white",
-                          }}
-                          key={index}
-                          onClick={() => ChooseNextStep(index)}
-                        >
-                          <img src={item.img} style={{ width: "80%" }} />
-                        </div>
-                      )
-                    })}
+                    {imageData &&
+                      imageData.slice(0, sliceNum).map((item: any, index: number) => {
+                        return (
+                          <div
+                            className="device-item-container"
+                            style={{
+                              background: selected === index ? "rgba(0,0,0,0.1)" : "white",
+                            }}
+                            key={index}
+                            onClick={() => ChooseNextStep(index)}
+                          >
+                            <LazyImg src={item.img} style={{ width: "80%" }} alt={item.alt} />
+                          </div>
+                        )
+                      })}
                     {plusVisible && (
                       <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
+                    {!imageData.length && <NoDataComponent />}
                   </>
                 )}
 
@@ -531,7 +541,7 @@ const ChooseDevice = ({
                           >
                             <div className="device-model-item">
                               <p className="device-brand-subtitle">{item.name}</p>
-                              <img src={item.img} />
+                              <LazyImg src={item.img} alt={item.alt} />
                             </div>
                           </div>
                         )
@@ -541,6 +551,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
+                    {!imageData.length && <NoDataComponent />}
                   </>
                 )}
 
@@ -593,6 +604,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
+                    {!itemTypes.length && <NoDataComponent />}
                   </>
                 )}
 
@@ -719,6 +731,12 @@ const ChooseDevice = ({
           </Card>
         </Grid>
       </Grid>
+      <ContactModal
+        openModal={openContactModal}
+        handleModal={setOpenContactModal}
+        subDomain={subDomain}
+        storesDetailsStore={storesDetails}
+      />
     </div>
   )
 }

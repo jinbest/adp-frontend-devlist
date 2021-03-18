@@ -13,22 +13,7 @@ import { ToastMsgParams } from "../../../model/toast-msg-param"
 import Toast from "../../../components/toast/toast"
 import moment from "moment"
 import Loading from "../../../components/Loading"
-
-export function ValidateEmail(e: string) {
-  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(e)
-}
-
-export function ValidatePhoneNumber(p: string) {
-  const found = p.search(
-    /^(\+{1}\d{2,3}\s?[(]{1}\d{1,3}[)]{1}\s?\d+|\+\d{2,3}\s{1}\d+|\d+){1}[\s|-]?\d+([\s|-]?\d+){1,2}$/
-  )
-  if (found > -1 && p.length >= 10) {
-    return true
-  } else {
-    return false
-  }
-}
+import { ValidateEmail, ValidatePhoneNumber } from "../../../services/helper"
 
 type Props = {
   data: any

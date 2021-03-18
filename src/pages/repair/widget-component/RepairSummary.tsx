@@ -4,7 +4,7 @@ import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined"
 import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "../../../store/RepairWidgetStore"
 import { useTranslation } from "react-i18next"
-import { ConvertWarrantyUnit } from "./ChooseDevice"
+import { ConvertWarrantyUnit } from "../../../services/helper"
 
 type StoreProps = {
   repairWidgetStore: RepairWidgetStore
