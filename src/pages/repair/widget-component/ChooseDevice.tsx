@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Card, PlusSVG } from "./"
+import { Card, PlusSVG, LazyImg } from "./"
 import { Grid, Typography } from "@material-ui/core"
 import { Search, Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
@@ -485,24 +485,39 @@ const ChooseDevice = ({
               <div className="widget-main-container">
                 {stepName === "deviceBrand" && (
                   <>
-                    {imageData.slice(0, sliceNum).map((item: any, index: number) => {
-                      return (
-                        <div
-                          className="device-item-container"
-                          style={{
-                            background: selected === index ? "rgba(0,0,0,0.1)" : "white",
-                          }}
-                          key={index}
-                          onClick={() => ChooseNextStep(index)}
-                        >
-                          <img src={item.img} style={{ width: "80%" }} />
-                        </div>
-                      )
-                    })}
+                    {imageData &&
+                      imageData.slice(0, sliceNum).map((item: any, index: number) => {
+                        return (
+                          <div
+                            className="device-item-container"
+                            style={{
+                              background: selected === index ? "rgba(0,0,0,0.1)" : "white",
+                            }}
+                            key={index}
+                            onClick={() => ChooseNextStep(index)}
+                          >
+                            <LazyImg src={item.img} style={{ width: "80%" }} alt={item.alt} />
+                          </div>
+                        )
+                      })}
                     {plusVisible && (
                       <div className="device-item-container" onClick={handlePlus}>
                         <PlusSVG color="#BDBFC3" />
                       </div>
+                    )}
+                    {!imageData.length && (
+                      <p className="non-products-text">
+                        {t("Didn't find what you are looking for, ")}
+                        <span
+                          style={{
+                            color: mainData.colorPalle.textThemeCol,
+                          }}
+                          onClick={() => setOpenContactModal(true)}
+                        >
+                          {t("contact us ")}
+                        </span>
+                        {t("with details of the issue affecting your device please.")}
+                      </p>
                     )}
                   </>
                 )}
@@ -522,7 +537,7 @@ const ChooseDevice = ({
                           >
                             <div className="device-model-item">
                               <p className="device-brand-subtitle">{item.name}</p>
-                              <img src={item.img} />
+                              <LazyImg src={item.img} alt={item.alt} />
                             </div>
                           </div>
                         )
