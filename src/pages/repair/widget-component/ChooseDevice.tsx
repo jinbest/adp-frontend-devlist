@@ -451,6 +451,23 @@ const ChooseDevice = ({
     }
   }, [step, estimatedTimes, itemTypes])
 
+  const NoDataComponent = () => {
+    return (
+      <p className="non-products-text">
+        {t("Didn't find what you are looking for, ")}
+        <span
+          style={{
+            color: mainData.colorPalle.textThemeCol,
+          }}
+          onClick={() => setOpenContactModal(true)}
+        >
+          {t("contact us ")}
+        </span>
+        {t("with details of the issue affecting your device please.")}
+      </p>
+    )
+  }
+
   return (
     <div>
       <Grid container spacing={3}>
@@ -505,20 +522,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!imageData.length && (
-                      <p className="non-products-text">
-                        {t("Didn't find what you are looking for, ")}
-                        <span
-                          style={{
-                            color: mainData.colorPalle.textThemeCol,
-                          }}
-                          onClick={() => setOpenContactModal(true)}
-                        >
-                          {t("contact us ")}
-                        </span>
-                        {t("with details of the issue affecting your device please.")}
-                      </p>
-                    )}
+                    {!imageData.length && <NoDataComponent />}
                   </>
                 )}
 
@@ -547,20 +551,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!imageData.length && (
-                      <p className="non-products-text">
-                        {t("Didn't find what you are looking for, ")}
-                        <span
-                          style={{
-                            color: mainData.colorPalle.textThemeCol,
-                          }}
-                          onClick={() => setOpenContactModal(true)}
-                        >
-                          {t("contact us ")}
-                        </span>
-                        {t("with details of the issue affecting your device please.")}
-                      </p>
-                    )}
+                    {!imageData.length && <NoDataComponent />}
                   </>
                 )}
 
@@ -613,20 +604,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!itemTypes.length && (
-                      <p className="non-products-text">
-                        {t("Didn't find what you are looking for, ")}
-                        <span
-                          style={{
-                            color: mainData.colorPalle.textThemeCol,
-                          }}
-                          onClick={() => setOpenContactModal(true)}
-                        >
-                          {t("contact us ")}
-                        </span>
-                        {t("with details of the issue affecting your device please.")}
-                      </p>
-                    )}
+                    {!itemTypes.length && <NoDataComponent />}
                   </>
                 )}
 
