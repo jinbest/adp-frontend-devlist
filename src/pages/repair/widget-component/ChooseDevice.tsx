@@ -56,6 +56,7 @@ const ChooseDevice = ({
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
   const [openContactModal, setOpenContactModal] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const [t] = useTranslation()
 
@@ -194,6 +195,7 @@ const ChooseDevice = ({
   }
 
   const loadStepData = async (name: string, text: string, pg: number, perpg: number) => {
+    setLoading(true)
     const cntImgData: any[] = [],
       cntTypes: any[] = []
     let cntOfferedRepairs: any[] = []
@@ -279,6 +281,7 @@ const ChooseDevice = ({
         break
     }
     setImageData(cntImgData)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -522,7 +525,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!imageData.length && <NoDataComponent />}
+                    {!imageData.length && !loading && <NoDataComponent />}
                   </>
                 )}
 
@@ -551,7 +554,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!imageData.length && <NoDataComponent />}
+                    {!imageData.length && !loading && <NoDataComponent />}
                   </>
                 )}
 
@@ -604,7 +607,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!itemTypes.length && <NoDataComponent />}
+                    {!itemTypes.length && !loading && <NoDataComponent />}
                   </>
                 )}
 
