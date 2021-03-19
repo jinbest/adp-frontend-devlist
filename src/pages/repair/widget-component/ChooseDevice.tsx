@@ -464,16 +464,16 @@ const ChooseDevice = ({
   const NoDataComponent = () => {
     return (
       <p className="non-products-text">
-        {t("Didn't find what you are looking for, you can ")}
+        {t("Didn't find what you are looking for? ")}
         <span
           style={{
             color: mainData.colorPalle.textThemeCol,
           }}
           onClick={() => setOpenContactModal(true)}
         >
-          {t("contact us ")}
+          {t("Contact us ")}
         </span>
-        {t("with details of the issue affecting your device.")}
+        {t("with the details of the issue(s) affecting your device.")}
       </p>
     )
   }
