@@ -271,9 +271,16 @@ const ChooseDevice = ({
           }
           setItemTypes([...cntTypes])
         }
-        if (repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg) {
+        if (
+          repairWidData.repairsOfferedDevices != null &&
+          repairWidData.repairsOfferedDevices.metadata != null &&
+          repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg
+        ) {
           setPlusVisible(false)
-        } else {
+        } else if (
+          repairWidData.repairsOfferedDevices != null &&
+          repairWidData.repairsOfferedDevices.metadata != null
+        ) {
           setPlusVisible(true)
         }
         break
@@ -457,16 +464,16 @@ const ChooseDevice = ({
   const NoDataComponent = () => {
     return (
       <p className="non-products-text">
-        {t("Didn't find what you are looking for, ")}
+        {t("Didn't find what you are looking for? ")}
         <span
           style={{
             color: mainData.colorPalle.textThemeCol,
           }}
           onClick={() => setOpenContactModal(true)}
         >
-          {t("contact us ")}
+          {t("Contact us ")}
         </span>
-        {t("with details of the issue affecting your device please.")}
+        {t("with the details of the issue(s) affecting your device.")}
       </p>
     )
   }
