@@ -18,39 +18,11 @@ const Logo = ({ subDomain, type, handleStatus }: Props) => {
 
   return type === "header" ? (
     <Link to="/home" onClick={handleLogoClick}>
-      {subDomain === "geebodevicerepair" ||
-      subDomain === "nanotechmobile" ||
-      subDomain === "phonephix" ||
-      subDomain === "wirelessrevottawa" ||
-      subDomain === "mtlcmtx" ? (
-        <img
-          className={subDomain + "-logo-header"}
-          src={logoData.logoHeaderImg}
-          alt="header-logo"
-        />
-      ) : (
-        <img
-          className={subDomain + "-logo-header"}
-          src={mainData.logoData.logoHeaderSVG}
-          alt="header-logo"
-        />
-      )}
+      <img className={subDomain + "-logo-header"} src={logoData.logoHeaderImg} alt="header-logo" />
     </Link>
   ) : (
     <Link to="/" onClick={handleLogoClick}>
-      {subDomain === "mobiletechlab" ? (
-        <img
-          className={subDomain + "-logo-header"}
-          src={mainData.logoData.logoFooterSVG}
-          alt="footer-logo"
-        />
-      ) : (
-        <img
-          className={subDomain + "-logo-footer"}
-          src={logoData.logoFooterImg}
-          alt="footer-logo"
-        />
-      )}
+      <img className={subDomain + "-logo-footer"} src={logoData.logoFooterImg} alt="footer-logo" />
     </Link>
   )
 }
