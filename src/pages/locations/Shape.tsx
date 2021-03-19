@@ -1,5 +1,24 @@
 import React from "react"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
+import { storesDetails } from "../../store"
+
+const Shape = () => {
+  const data = storesDetails.storeCnts
+  const classes = useStyles()
+
+  return (
+    <div>
+      <div className={classes.corner}>
+        <img src={data.businessData.businessCornerShape} />
+      </div>
+      <div className={classes.skitImg}>
+        <img src={storesDetails.commonCnts.locationsData.skitterMobile} />
+      </div>
+    </div>
+  )
+}
+
+export default Shape
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -44,25 +63,3 @@ const useStyles = makeStyles(() =>
     },
   })
 )
-
-type Props = {
-  subDomain?: string
-}
-
-const Shape = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const classes = useStyles()
-
-  return (
-    <div>
-      <div className={classes.corner}>
-        <img src={data.businessData.businessCornerShape} />
-      </div>
-      <div className={classes.skitImg}>
-        <img src={require("../../assets/_common/mockData").locationsData.skitterMobile} />
-      </div>
-    </div>
-  )
-}
-
-export default Shape

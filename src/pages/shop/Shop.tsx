@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Error } from "../error"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Shape, ProductList, SortbyDropdown, FilterComponent, RightDrawer } from "./"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain: string
@@ -10,7 +11,7 @@ type Props = {
 }
 
 const Shop = ({ subDomain, handleStatus, features }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainData = storesDetails.storeCnts
   const mainCol = mainData.shopPageData.shopEachItem.color
 
   const [feats, setFeatures] = useState<any[]>([])
@@ -60,7 +61,7 @@ const Shop = ({ subDomain, handleStatus, features }: Props) => {
                   <FilterComponent subDomain={subDomain} />
                 </div>
                 <div>
-                  <ProductList subDomain={subDomain} />
+                  <ProductList />
                 </div>
               </div>
             </section>

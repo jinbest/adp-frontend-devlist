@@ -62,7 +62,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
   observer((props: Props) => {
     const { subDomain, btnTitle, width, storesDetailsStore, features } = props
 
-    const data = require(`../assets/${subDomain}/Database`)
+    const data = storesDetailsStore.storeCnts
     const themeColor = data.colorPalle.themeColor
     const underLineCol = data.colorPalle.underLineCol
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)

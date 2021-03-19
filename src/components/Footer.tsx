@@ -8,43 +8,6 @@ import { inject, observer } from "mobx-react"
 import { StoresDetails } from "../store/StoresDetails"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    hoverEffect: {
-      "&:hover": {
-        opacity: 0.5,
-      },
-    },
-    popover: {
-      pointerEvents: "none",
-    },
-    paper: {
-      padding: "5px 10px 3px",
-      boxShadow: "none",
-      color: "white",
-      background: "#bdbdbd",
-    },
-    popovertext: {
-      fontSize: "12px !important",
-    },
-    footerLocName: {
-      width: "fit-content",
-      fontWeight: "bold",
-      margin: "20px 0 5px",
-      ["@media (max-width:600px)"]: {
-        margin: "20px auto 5px",
-      },
-    },
-    footerLocAddress: {
-      width: "fit-content",
-      marginTop: "5px",
-      ["@media (max-width:600px)"]: {
-        margin: "5px auto 0",
-      },
-    },
-  })
-)
-
 type GridMDInterface =
   | boolean
   | 2
@@ -61,6 +24,9 @@ type GridMDInterface =
   | 11
   | 12
   | undefined
+
+const getWidth = () =>
+  window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
 
 type FooterLinksComponentProps = {
   data: any[]
@@ -208,14 +174,15 @@ interface Props extends StoreProps {
 const Footer = inject("storesDetailsStore")(
   observer((props: Props) => {
     const { subDomain, features, storesDetailsStore } = props
-    const data = require(`../assets/${subDomain}/Database`)
-    const commonData = require("../assets/_common/mockData")
+    const data = storesDetailsStore.storeCnts
+    const commonData = storesDetailsStore.commonCnts
     // const footerLink = data.homeTextData.footer.footerLink
     const gridVal = data.homeTextData.footer.gridVal
     const [t] = useTranslation()
 
     const [feats, setFeatures] = useState<any[]>([])
     const [initGridMD, setInitGridMD] = useState<GridMDInterface>(12)
+    const [mobile, setMobile] = useState(false)
 
     useEffect(() => {
       const cntFeatures: any[] = []
@@ -237,8 +204,31 @@ const Footer = inject("storesDetailsStore")(
       }
     })
 
+    useEffect(() => {
+      handleResize()
+      window.addEventListener("resize", handleResize)
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }, [])
+
+    const handleResize = () => {
+      if (getWidth() < 960) {
+        setMobile(true)
+      } else {
+        setMobile(false)
+      }
+    }
+
     return (
-      <footer className={subDomain + "-footer"}>
+      <footer
+        className={subDomain + "-footer"}
+        style={{
+          backgroundImage: mobile
+            ? "url(" + data.homeTextData.footer.images.mobile + ")"
+            : "url(" + data.homeTextData.footer.images.desktop + ")",
+        }}
+      >
         <Typography
           className={subDomain + "-footer-title"}
           style={{ color: data.homeTextData.footer.title.color }}
@@ -348,3 +338,40 @@ const Footer = inject("storesDetailsStore")(
 )
 
 export default Footer
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    hoverEffect: {
+      "&:hover": {
+        opacity: 0.5,
+      },
+    },
+    popover: {
+      pointerEvents: "none",
+    },
+    paper: {
+      padding: "5px 10px 3px",
+      boxShadow: "none",
+      color: "white",
+      background: "#bdbdbd",
+    },
+    popovertext: {
+      fontSize: "12px !important",
+    },
+    footerLocName: {
+      width: "fit-content",
+      fontWeight: "bold",
+      margin: "20px 0 5px",
+      ["@media (max-width:600px)"]: {
+        margin: "20px auto 5px",
+      },
+    },
+    footerLocAddress: {
+      width: "fit-content",
+      marginTop: "5px",
+      ["@media (max-width:600px)"]: {
+        margin: "5px auto 0",
+      },
+    },
+  })
+)

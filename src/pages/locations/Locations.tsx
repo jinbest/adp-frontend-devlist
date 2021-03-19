@@ -19,150 +19,6 @@ const DAYS_OF_THE_WEEK: string[] = [
   "Saturday",
 ]
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      maxWidth: "1440px",
-      margin: "250px auto 0 !important",
-      padding: "0 2rem",
-      display: "block",
-      textAlign: "left",
-      ["@media (max-width:1200px)"]: {
-        marginTop: "210px !important",
-      },
-      ["@media (max-width:500px)"]: {
-        margin: "180px auto 0 !important",
-      },
-      ["@media (max-width:425px)"]: {
-        margin: "200px auto 0 !important",
-      },
-    },
-    mainTitle: {
-      color: "black",
-      fontSize: "55px !important",
-      lineHeight: "1 !important",
-      // textShadow: "1px 0 black",
-      fontWeight: "bold",
-      justifyContent: "center",
-      ["@media (max-width:1400px)"]: {
-        fontSize: "4vw !important",
-        marginBottom: "3vw !important",
-      },
-      ["@media (max-width:768px)"]: {
-        fontSize: "5vw !important",
-      },
-      ["@media (max-width:500px)"]: {
-        fontSize: "4.5vw !important",
-        width: "100%",
-        textAlign: "center",
-      },
-    },
-    mainContent: {
-      color: "black",
-      fontSize: "40px !important",
-      marginTop: "50px !important",
-      marginBottom: "40px !important",
-      justifyContent: "left",
-      width: "80%",
-      ["@media (max-width:1400px)"]: {
-        fontSize: "2.5vw !important",
-      },
-      ["@media (max-width:768px)"]: {
-        fontSize: "3vw !important",
-      },
-      ["@media (max-width:500px)"]: {
-        fontSize: "3.5vw !important",
-        width: "100%",
-        textAlign: "center",
-        marginTop: "30px !important",
-      },
-    },
-    buttonDiv: {
-      maxWidth: "250px",
-      width: "100%",
-      margin: "initial",
-      ["@media (max-width:500px)"]: {
-        margin: "auto",
-        maxWidth: "180px",
-      },
-    },
-    locationsContainer: {
-      margin: "100px auto",
-      padding: "20px",
-      ["@media (max-width:1000px)"]: {
-        margin: "0px auto 50px",
-      },
-    },
-    subTitle: {
-      color: "black",
-      fontSize: "40px !important",
-      lineHeight: "1 !important",
-      // textShadow: "1px 0 black",
-      fontWeight: "bold",
-      justifyContent: "center",
-      marginTop: "50px !important",
-      marginBottom: "40px !important",
-      ["@media (max-width:1400px)"]: {
-        fontSize: "3vw !important",
-      },
-      ["@media (max-width:768px)"]: {
-        fontSize: "4vw !important",
-        textAlign: "center",
-      },
-      ["@media (max-width:500px)"]: {
-        fontSize: "4.5vw !important",
-        marginBottom: "30px !important",
-      },
-    },
-    item: {
-      width: "100%",
-      height: "100%",
-      boxShadow: "-10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4)",
-      borderRadius: "10px",
-      "& > div": {
-        padding: "25px",
-      },
-    },
-    cardTitle: {
-      fontSize: "18px",
-      fontWeight: "bold",
-      marginBottom: "10px",
-      ["@media (max-width:1400px)"]: {
-        fontSize: "15px",
-      },
-      ["@media (max-width:960px)"]: {
-        fontSize: "18px",
-      },
-      ["@media (max-width:700px)"]: {
-        fontSize: "15px",
-        marginBottom: "5px",
-      },
-      ["@media (max-width:400px)"]: {
-        fontSize: "14px",
-      },
-    },
-    cardText: {
-      fontSize: "15px",
-      marginBottom: "5px",
-      color: "black",
-      ["@media (max-width:1400px)"]: {
-        fontSize: "13px",
-      },
-      ["@media (max-width:960px)"]: {
-        fontSize: "15px",
-      },
-      ["@media (max-width:700px)"]: {
-        fontSize: "13px",
-        marginBottom: "3px",
-      },
-      ["@media (max-width:400px)"]: {
-        fontSize: "12px",
-        marginBottom: "2px",
-      },
-    },
-  })
-)
-
 type Props = {
   subDomain: string
   handleStatus: (status: boolean) => void
@@ -170,18 +26,16 @@ type Props = {
 
 const Locations = ({ subDomain, handleStatus }: Props) => {
   const classes = useStyles()
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Locations")
   const [metaDescription, setMetaDescription] = useState("")
 
   useEffect(() => {
-    const storeTabData = data.getTabData(storesDetails.storesDetails.name)
-
+    const storeTabData = data.getTabData
     setPageTitle(storeTabData.locTitle)
     setMetaDescription(storeTabData.locMetaDes)
-
     handleStatus(true)
   }, [])
 
@@ -201,7 +55,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
         <link rel="apple-touch-icon" href={data.fav.img} />
       </Helmet>
 
-      <Shape subDomain={subDomain} />
+      <Shape />
       <div className={classes.root}>
         <h1 className={classes.mainTitle}>{t("Professional") + ", " + t("Transparent") + " &"}</h1>
         <h1 className={classes.mainTitle}>{t("Affordable Device Repair")}</h1>
@@ -347,3 +201,147 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
 }
 
 export default Locations
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      maxWidth: "1440px",
+      margin: "250px auto 0 !important",
+      padding: "0 2rem",
+      display: "block",
+      textAlign: "left",
+      ["@media (max-width:1200px)"]: {
+        marginTop: "210px !important",
+      },
+      ["@media (max-width:500px)"]: {
+        margin: "180px auto 0 !important",
+      },
+      ["@media (max-width:425px)"]: {
+        margin: "200px auto 0 !important",
+      },
+    },
+    mainTitle: {
+      color: "black",
+      fontSize: "55px !important",
+      lineHeight: "1 !important",
+      // textShadow: "1px 0 black",
+      fontWeight: "bold",
+      justifyContent: "center",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "4vw !important",
+        marginBottom: "3vw !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "5vw !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "4.5vw !important",
+        width: "100%",
+        textAlign: "center",
+      },
+    },
+    mainContent: {
+      color: "black",
+      fontSize: "40px !important",
+      marginTop: "50px !important",
+      marginBottom: "40px !important",
+      justifyContent: "left",
+      width: "80%",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "2.5vw !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "3vw !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "3.5vw !important",
+        width: "100%",
+        textAlign: "center",
+        marginTop: "30px !important",
+      },
+    },
+    buttonDiv: {
+      maxWidth: "250px",
+      width: "100%",
+      margin: "initial",
+      ["@media (max-width:500px)"]: {
+        margin: "auto",
+        maxWidth: "180px",
+      },
+    },
+    locationsContainer: {
+      margin: "100px auto",
+      padding: "20px",
+      ["@media (max-width:1000px)"]: {
+        margin: "0px auto 50px",
+      },
+    },
+    subTitle: {
+      color: "black",
+      fontSize: "40px !important",
+      lineHeight: "1 !important",
+      // textShadow: "1px 0 black",
+      fontWeight: "bold",
+      justifyContent: "center",
+      marginTop: "50px !important",
+      marginBottom: "40px !important",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "3vw !important",
+      },
+      ["@media (max-width:768px)"]: {
+        fontSize: "4vw !important",
+        textAlign: "center",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "4.5vw !important",
+        marginBottom: "30px !important",
+      },
+    },
+    item: {
+      width: "100%",
+      height: "100%",
+      boxShadow: "-10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4)",
+      borderRadius: "10px",
+      "& > div": {
+        padding: "25px",
+      },
+    },
+    cardTitle: {
+      fontSize: "18px",
+      fontWeight: "bold",
+      marginBottom: "10px",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "15px",
+      },
+      ["@media (max-width:960px)"]: {
+        fontSize: "18px",
+      },
+      ["@media (max-width:700px)"]: {
+        fontSize: "15px",
+        marginBottom: "5px",
+      },
+      ["@media (max-width:400px)"]: {
+        fontSize: "14px",
+      },
+    },
+    cardText: {
+      fontSize: "15px",
+      marginBottom: "5px",
+      color: "black",
+      ["@media (max-width:1400px)"]: {
+        fontSize: "13px",
+      },
+      ["@media (max-width:960px)"]: {
+        fontSize: "15px",
+      },
+      ["@media (max-width:700px)"]: {
+        fontSize: "13px",
+        marginBottom: "3px",
+      },
+      ["@media (max-width:400px)"]: {
+        fontSize: "12px",
+        marginBottom: "2px",
+      },
+    },
+  })
+)

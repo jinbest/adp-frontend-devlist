@@ -6,6 +6,7 @@ import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "../../store/RepairWidgetStore"
 import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { storesDetails } from "../../store"
 
 type StoreProps = {
   repairWidgetStore: RepairWidgetStore
@@ -19,7 +20,7 @@ interface Props extends StoreProps {
 const Section1 = inject("repairWidgetStore")(
   observer((props: Props) => {
     const { handleStatus, repairWidgetStore, subDomain, features } = props
-    const data = require(`../../assets/${subDomain}/Database`)
+    const data = storesDetails.storeCnts
     const repair = data.repairData.section1
     const [t] = useTranslation()
 
@@ -31,7 +32,14 @@ const Section1 = inject("repairWidgetStore")(
     }
 
     return (
-      <div className={subDomain + "-service-section1-special-bg"}>
+      <div
+        className={subDomain + "-service-section1-special-bg"}
+        style={{
+          backgroundImage: data.repairData.section1.bgImg
+            ? "url(" + data.repairData.section1.bgImg + ")"
+            : "",
+        }}
+      >
         <section className={subDomain + "-Container"}>
           <Grid container className={subDomain + "-service-section1"}>
             <Grid item xs={12} sm={7}>
@@ -93,7 +101,8 @@ const Section1 = inject("repairWidgetStore")(
             </Grid>
             <Grid item xs={12} sm={5}>
               <img
-                src={require("../../assets/_common/img/repair/repair-phone.png").default}
+                src={storesDetails.commonCnts.repairPhoneImg}
+                alt="repair-phone"
                 style={{ width: "100%", marginTop: "-80px" }}
               />
             </Grid>

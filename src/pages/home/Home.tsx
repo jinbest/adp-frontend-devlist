@@ -10,15 +10,14 @@ type Props = {
 }
 
 const Home = ({ subDomain, features, handleStatus }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainData = storesDetails.storeCnts
 
   const SectionItemComponents = [Section4, Section5, Section6]
   const [pageTitle, setPageTitle] = useState("Store")
   const [metaDescription, setMetaDescription] = useState("")
 
   useEffect(() => {
-    const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
-
+    const storeTabData = mainData.getTabData
     setPageTitle(storeTabData.title)
     setMetaDescription(storeTabData.metaDescription)
   }, [])

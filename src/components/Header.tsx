@@ -113,7 +113,7 @@ type PropsHeader = {
 }
 
 const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
-  const data = require(`../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
 
   const navItemsLink = data.navItemsData,
     brandItemLink = data.brandItemsData,

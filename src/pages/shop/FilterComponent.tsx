@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import { CustomCheckBox, CustomSlider, ColorSelector, TabButton } from "./"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
 }
 
 const FilterComponent = ({ subDomain }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainData = storesDetails.storeCnts
   const mainCol = mainData.shopPageData.shopEachItem.color
 
   const [swit, setSwit] = useState(false)

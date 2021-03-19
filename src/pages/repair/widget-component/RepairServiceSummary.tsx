@@ -31,7 +31,7 @@ const RepairServiceSummary = ({
   subDomain,
   features,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
+  const mainData = storesDetails.storeCnts
   const textThemeCol = mainData.colorPalle.textThemeCol
   const [disableStatus, setDisableStatus] = useState(false)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)

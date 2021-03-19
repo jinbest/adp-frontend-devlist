@@ -17,65 +17,6 @@ import { findLocationAPI } from "../services/"
 import { repairWidgetStore } from "../store/"
 import { getAddress, isExternal } from "../services/helper"
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 200,
-      padding: "30px 20px",
-    },
-    itemDiv: {
-      padding: "10px 0",
-      borderBottom: "1px solid rgba(0,0,0,0.1)",
-      "& > a": {
-        textDecoration: "none",
-        color: "black",
-        fontSize: "14px",
-      },
-      "&:hover": {
-        opacity: 0.5,
-      },
-    },
-    findStoreDiv: {
-      position: "absolute",
-      bottom: "100px",
-      width: 200,
-      ["@media (max-width:425px)"]: {
-        "& button": {
-          height: "40px !important",
-          fontSize: "15px !important",
-        },
-      },
-    },
-    drawerLogo: {
-      width: 150,
-      margin: "0 auto 10px",
-      "& img": {
-        width: "100%",
-      },
-    },
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      outline: "none",
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: "2px solid rgba(0,0,0,0.1)",
-      borderRadius: "10px",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 1),
-      outline: "none",
-      maxWidth: 300,
-    },
-    nonHoverEffect: {
-      textDecoration: "none !important",
-      opacity: "1 !important",
-      cursor: "default !important",
-    },
-  })
-)
-
 type Anchor = "top" | "left" | "bottom" | "right"
 
 type StoreProps = {
@@ -101,7 +42,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
       themeCol,
       storesDetailsStore,
     } = props
-    const data = require(`../assets/${subDomain}/Database`)
+    const data = storesDetailsStore.storeCnts
     const [t] = useTranslation()
 
     const classes = useStyles()
@@ -586,3 +527,62 @@ const HeaderDrawer = inject("storesDetailsStore")(
 )
 
 export default HeaderDrawer
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 200,
+      padding: "30px 20px",
+    },
+    itemDiv: {
+      padding: "10px 0",
+      borderBottom: "1px solid rgba(0,0,0,0.1)",
+      "& > a": {
+        textDecoration: "none",
+        color: "black",
+        fontSize: "14px",
+      },
+      "&:hover": {
+        opacity: 0.5,
+      },
+    },
+    findStoreDiv: {
+      position: "absolute",
+      bottom: "100px",
+      width: 200,
+      ["@media (max-width:425px)"]: {
+        "& button": {
+          height: "40px !important",
+          fontSize: "15px !important",
+        },
+      },
+    },
+    drawerLogo: {
+      width: 150,
+      margin: "0 auto 10px",
+      "& img": {
+        width: "100%",
+      },
+    },
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      outline: "none",
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: "2px solid rgba(0,0,0,0.1)",
+      borderRadius: "10px",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 1),
+      outline: "none",
+      maxWidth: 300,
+    },
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
+    },
+  })
+)

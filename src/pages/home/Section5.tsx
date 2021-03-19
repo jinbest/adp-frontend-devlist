@@ -2,13 +2,14 @@ import React from "react"
 import { Button } from "../../components"
 import { Typography, Box } from "@material-ui/core"
 import { useTranslation } from "react-i18next"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
 }
 
 const Section5 = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const bounceData = data.homeTextData.section5
   const [t] = useTranslation()
 
@@ -19,7 +20,7 @@ const Section5 = ({ subDomain }: Props) => {
         <Typography className="f18">{t(bounceData.content)}</Typography>
         <img
           className={"mg-t-1 " + subDomain + "-section5-img"}
-          src={require("../../assets/_common/img/bounce.png").default}
+          src={storesDetails.commonCnts.bounceImg}
         />
         <Typography className="f24 bold">{t(bounceData.subtitle)}</Typography>
         <Box className="col_center">

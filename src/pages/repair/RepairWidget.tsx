@@ -48,8 +48,8 @@ interface Props extends StoreProps {
 const RepairWidget = inject("repairWidgetStore")(
   observer((props: Props) => {
     const { subDomain, handleStatus, features, repairWidgetStore } = props
-    const mockData = require("../../assets/_common/mockData")
-    const mainData = require(`../../assets/${subDomain}/Database`)
+    const mainData = storesDetails.storeCnts
+    const mockData = storesDetails.commonCnts
     const themeCol = mainData.colorPalle.themeColor
 
     const [step, setStep] = useState(0)

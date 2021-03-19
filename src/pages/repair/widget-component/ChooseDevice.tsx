@@ -41,7 +41,7 @@ const ChooseDevice = ({
   repairWidgetData,
   features,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database`)
+  const mainData = storesDetails.storeCnts
   const themeCol = mainData.colorPalle.themeColor
   const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol
 

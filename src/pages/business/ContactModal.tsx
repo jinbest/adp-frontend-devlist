@@ -99,7 +99,7 @@ type Props = {
 }
 
 const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainData = storesDetailsStore.storeCnts
   const [t] = useTranslation()
   const classes = useStyles()
 

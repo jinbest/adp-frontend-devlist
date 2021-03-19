@@ -4,7 +4,7 @@ import { Card } from "./"
 import { Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
 import { useTranslation } from "react-i18next"
-import { repairWidgetStore } from "../../../store"
+import { repairWidgetStore, storesDetails } from "../../../store"
 
 type Props = {
   data: any
@@ -23,7 +23,7 @@ const UsefulInfo = ({
   handleChangeChooseData,
   repairWidgetData,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
+  const mainData = storesDetails.storeCnts
   const themeCol = mainData.colorPalle.themeColor
 
   const [message, setMessage] = useState("")

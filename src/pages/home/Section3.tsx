@@ -3,6 +3,7 @@ import { Typography, Grid, Box } from "@material-ui/core"
 import { CardPopular } from "../../components"
 import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
@@ -10,8 +11,8 @@ type Props = {
 }
 
 const Section3 = ({ subDomain, features }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const commonData = require("../../assets/_common/mockData")
+  const data = storesDetails.storeCnts
+  const commonData = storesDetails.commonCnts
   const deviceCard = data.deviceCard
   const [t] = useTranslation()
 
@@ -42,7 +43,12 @@ const Section3 = ({ subDomain, features }: Props) => {
                 {t(data.homeTextData.section3.title)}
               </Typography>
             </div>
-            <div className={subDomain + "-section3-back"}>
+            <div
+              className={subDomain + "-section3-back"}
+              style={{
+                backgroundImage: "url(" + data.homeTextData.section3.bgImg + ")",
+              }}
+            >
               <div className={subDomain + "-Container"}>
                 <Grid container item xs={12} spacing={2}>
                   {commonData.popularCardData.map((item: any, index: number) => {

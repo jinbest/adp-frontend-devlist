@@ -4,7 +4,7 @@ import { CardFix, ContentFix } from "../../components"
 import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
-import { repairWidgetStore } from "../../store"
+import { repairWidgetStore, storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
@@ -12,7 +12,7 @@ type Props = {
 }
 
 const Section2 = ({ subDomain, features }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])

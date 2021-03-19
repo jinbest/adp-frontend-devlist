@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import { storesDetails } from "../../../store"
 
 type Props = {
   src: string
@@ -32,7 +33,7 @@ const LazyImg = ({ src, style, alt }: Props) => {
       <img src={src} style={style} alt={alt} ref={imgRef} onLoad={VisibleImg} />
       {loader && (
         <img
-          src={require("../../../assets/_common/img/loading.gif").default}
+          src={storesDetails.commonCnts.loaderGif}
           style={{ opacity: 0.1, position: "absolute", top: "0%", maxWidth: "100%" }}
           alt="img-loader"
         />

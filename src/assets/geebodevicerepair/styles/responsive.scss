@@ -56,7 +56,7 @@
     display: block;
   }
   .#{$folderName}-footer {
-    background-image: url("../img/footer/geebo-footer-shape-mobile.png");
+    // background-image: url("../img/footer/geebo-footer-shape-mobile.png");
     padding: 80px 20px 30px;
   }
 }
@@ -98,9 +98,9 @@
   .#{$folderName}-corner-shape {
     width: 60vw;
   }
-  .#{$folderName}-footer {
-    background-image: url("../img/footer/geebo-footer-shape-mobile.png");
-  }
+  // .#{$folderName}-footer {
+  //   background-image: url("../img/footer/geebo-footer-shape-mobile.png");
+  // }
   .#{$folderName}-service-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
     max-width: 100% !important;

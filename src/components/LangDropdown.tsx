@@ -4,38 +4,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles"
 import NativeSelect from "@material-ui/core/NativeSelect"
 import i18n from "../i18-next/i18n"
 import { useTranslation } from "react-i18next"
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    formControl: {
-      margin: "0 5px",
-      marginTop: "-3px",
-      ["@media (max-width:768px)"]: {
-        display: "none",
-      },
-    },
-    selectOption: {
-      color: "black",
-      padding: "10px",
-      marginLeft: "10px",
-      fontSize: "14px",
-    },
-    mobileSelector: {
-      outline: "none",
-      border: "none",
-      position: "absolute",
-      bottom: "70px",
-      right: "85px",
-      margin: "auto",
-      fontSize: "12px",
-      display: "none",
-      ["@media (max-width:768px)"]: {
-        display: "block",
-        color: "black",
-      },
-    },
-  })
-)
+import { storesDetails } from "../store"
 
 type Props = {
   subDomain?: string
@@ -43,7 +12,7 @@ type Props = {
 }
 
 const LangDropdown = ({ subDomain, color }: Props) => {
-  const data = require(`../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const themeCol = data.colorPalle.themeColor
   const classes = useStyles()
   const [t] = useTranslation()
@@ -105,3 +74,35 @@ const LangDropdown = ({ subDomain, color }: Props) => {
 }
 
 export default LangDropdown
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    formControl: {
+      margin: "0 5px",
+      marginTop: "-3px",
+      ["@media (max-width:768px)"]: {
+        display: "none",
+      },
+    },
+    selectOption: {
+      color: "black",
+      padding: "10px",
+      marginLeft: "10px",
+      fontSize: "14px",
+    },
+    mobileSelector: {
+      outline: "none",
+      border: "none",
+      position: "absolute",
+      bottom: "70px",
+      right: "85px",
+      margin: "auto",
+      fontSize: "12px",
+      display: "none",
+      ["@media (max-width:768px)"]: {
+        display: "block",
+        color: "black",
+      },
+    },
+  })
+)

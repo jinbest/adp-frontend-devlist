@@ -8,51 +8,6 @@ import { useTranslation } from "react-i18next"
 import { CustomSelect } from "./"
 import { countriesData, statesData } from "../const"
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      outline: "none",
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: "1px solid rgba(0,0,0,0.1)",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      textAlign: "center",
-      outline: "none",
-      borderRadius: "10px",
-      "& .MuiFilledInput-root": {
-        background: "white",
-      },
-    },
-    button: {
-      borderRadius: "20px",
-      width: "200px",
-      cursor: "pointer",
-      fontSize: "15px",
-      color: "white",
-      border: "none",
-      outline: "none",
-      marginTop: "10px",
-      "&:hover": {
-        opacity: 0.8,
-        boxShadow: "0 5px 15px rgba(145, 92, 182, .4)",
-      },
-    },
-    formRoot: {
-      "& > *": {
-        margin: theme.spacing(1),
-        display: "flex",
-        flexWrap: "wrap",
-      },
-      marginBottom: "20px",
-    },
-  })
-)
-
 type Props = {
   bgColor: string
   handleUserInfo: (data: any) => void
@@ -160,3 +115,48 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
 }
 
 export default UserInfoModal
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      outline: "none",
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: "1px solid rgba(0,0,0,0.1)",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      textAlign: "center",
+      outline: "none",
+      borderRadius: "10px",
+      "& .MuiFilledInput-root": {
+        background: "white",
+      },
+    },
+    button: {
+      borderRadius: "20px",
+      width: "200px",
+      cursor: "pointer",
+      fontSize: "15px",
+      color: "white",
+      border: "none",
+      outline: "none",
+      marginTop: "10px",
+      "&:hover": {
+        opacity: 0.8,
+        boxShadow: "0 5px 15px rgba(145, 92, 182, .4)",
+      },
+    },
+    formRoot: {
+      "& > *": {
+        margin: theme.spacing(1),
+        display: "flex",
+        flexWrap: "wrap",
+      },
+      marginBottom: "20px",
+    },
+  })
+)

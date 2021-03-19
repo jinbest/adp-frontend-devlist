@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import styled, { css } from "styled-components"
 import { CustomNumeric } from "../components"
 import { useTranslation } from "react-i18next"
+import { storesDetails } from "../store"
 
 const Frame = styled.div`
   width: 100%;
@@ -102,7 +103,7 @@ type CanlendarProps = {
 }
 
 const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProps) => {
-  const mainData = require(`../assets/${subDomain}/Database.js`)
+  const mainData = storesDetails.storeCnts
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
 
   const [t] = useTranslation()

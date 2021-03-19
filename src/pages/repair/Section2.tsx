@@ -9,12 +9,17 @@ type Props = {
 }
 
 const Section2 = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const repair = data.repairData.section2
   const [t] = useTranslation()
 
   return (
-    <section className={subDomain + "-service-section2"}>
+    <section
+      className={subDomain + "-service-section2"}
+      style={{
+        backgroundImage: "url(" + data.repairData.section2.bgImg + ")",
+      }}
+    >
       <div className={subDomain + "-Container " + subDomain + "-service-section2-text-field"}>
         <Typography
           className={subDomain + "-service-section-title-1"}

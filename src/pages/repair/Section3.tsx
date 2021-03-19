@@ -2,13 +2,14 @@ import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { CardRepairSec3 } from "../../components"
 import { useTranslation } from "react-i18next"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
 }
 
 const Section3 = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const repair = data.repairData.section3
   const [t] = useTranslation()
 

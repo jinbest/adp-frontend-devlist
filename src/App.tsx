@@ -15,33 +15,34 @@ const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
 const subDomain = apexDomain.split(".")[0]
 
 // const devicelist = [
-//   { name: "bananaservices", domain: "https://bananaservices.ca/", storeID: 1 },
-//   { name: "geebodevicerepair", domain: "https://geebodevicerepair.ca/", storeID: 3 },
-//   { name: "mobiletechlab", domain: "https://mobiletechlab.ca/", storeID: 4 },
-//   { name: "nanotechmobile", domain: "https://nanotechmobile.ca/", storeID: 2 },
-//   { name: "northtechcellsolutions", domain: "https://northtechcellsolutions.ca/", storeID: 5 },
-//   { name: "phonephix", domain: "https://phonephix.ca/", storeID: 9 },
-//   { name: "pradowireless", domain: "https://pradowireless.com/", storeID: 10 },
-//   { name: "reparationcellulairebsl", domain: "https://reparationcellulairebsl.ca/", storeID: 7 },
-//   { name: "wirelessrevottawa", domain: "https://wirelessrevottawa.ca/", storeID: 8 },
+//   { name: "bananaservices", domain: "bananaservices.ca", storeID: 1 },
+//   { name: "geebodevicerepair", domain: "geebodevicerepair.ca", storeID: 3 },
+//   { name: "mobiletechlab", domain: "mobiletechlab.ca", storeID: 4 },
+//   { name: "nanotechmobile", domain: "nanotechmobile.ca", storeID: 2 },
+//   { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca", storeID: 5 },
+//   { name: "phonephix", domain: "phonephix.ca", storeID: 9 },
+//   { name: "pradowireless", domain: "pradowireless.com", storeID: 10 },
+//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca", storeID: 7 },
+//   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca", storeID: 8 },
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 0,
+// const siteNum = 2,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
 function App(): JSX.Element {
   require(`./assets/${subDomain}/styles/index.scss`)
-  const mainData = require(`./assets/${subDomain}/Database`)
 
   const [footerStatus, setFooterStatus] = useState(true)
   const [features, setFeatures] = useState<FeaturesParam[]>([])
   const [storeId, setStoreID] = useState(0)
   const [loadStatus, setLoadStatus] = useState(false)
   const [loadLocationStatus, setLoadLocationStatus] = useState(false)
+  const [loadStoreConfig, setLoadStoreConfig] = useState(false)
   const [pageTitle, setPageTitle] = useState("Store")
   const [metaDescription, setMetaDescription] = useState("")
+  const [favIcon, setFavIcon] = useState("")
   const [tagScript, setTagScript] = useState(undefined)
   const parser = new DOMParser()
 
@@ -49,13 +50,14 @@ function App(): JSX.Element {
     setFooterStatus(status)
   }
 
-  useEffect(() => {
-    const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
+  const handleTabData = (mainData: any) => {
+    const storeTabData = mainData.getTabData
 
     setPageTitle(storeTabData.title)
     setMetaDescription(storeTabData.metaDescription)
     setTagScript(storeTabData.headTag)
     loadScript(storeTabData.bodyTag)
+    setFavIcon(mainData.fav.img)
 
     if (storeTabData.scriptTag) {
       const script = document.createElement("script")
@@ -63,7 +65,9 @@ function App(): JSX.Element {
       script.prepend(storeTabData.scriptTag)
       document.body.prepend(script)
     }
+  }
 
+  useEffect(() => {
     appLoadAPI
       .getStoresDetail(apexDomain, false)
       .then((res: any) => {
@@ -113,7 +117,10 @@ function App(): JSX.Element {
       appLoadAPI
         .getStoreConfig(storeId)
         .then((res: any) => {
-          console.log("getStoreConfig: ", res)
+          storesDetails.changeStoreCnts(res[0].data)
+          storesDetails.changeCommonCnts(res[1].data)
+          handleTabData(res[0].data)
+          setLoadStoreConfig(true)
         })
         .catch((err) => {
           console.log("Error in get Store Config", err)
@@ -149,8 +156,8 @@ function App(): JSX.Element {
     <>
       <Helmet>
         <title>{pageTitle}</title>
-        <link rel="icon" id="favicon" href={mainData.fav.img} />
-        <link rel="apple-touch-icon" href={mainData.fav.img} />
+        <link rel="icon" id="favicon" href={favIcon} />
+        <link rel="apple-touch-icon" href={favIcon} />
         <meta name="description" content={metaDescription} />
         {subDomain === "mobiletechlab" && (
           <meta
@@ -166,7 +173,7 @@ function App(): JSX.Element {
         repairWidgetStore={repairWidgetStore}
         repairWidDataStore={repairWidData}
       >
-        {loadStatus && loadLocationStatus ? (
+        {loadStatus && loadLocationStatus && loadStoreConfig ? (
           <Router>
             <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
             <BaseRouter

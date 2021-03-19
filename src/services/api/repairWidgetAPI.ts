@@ -67,7 +67,7 @@ class RepairWidgetAPI {
     for (let i = 0; i < types.length; i++) {
       i === 0 ? (type += `types=${types[i]}`) : (type += `&types=${types[i]}`)
     }
-    const apiURL = `${Config.TRANSLATION_SERVICE_API_URL}dc/translation/${locale}/repair/lookups?${type}`
+    const apiURL = `${Config.TRANSLATION_SERVICE_API_URL}/dc/translation/${locale}/repair/lookups?${type}`
     return new Promise((resolve, reject) => {
       axios
         .get(`${apiURL}`)

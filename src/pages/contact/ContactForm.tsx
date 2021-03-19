@@ -13,85 +13,6 @@ import { StoresDetails } from "../../store/StoresDetails"
 import { makeLocations, ValidateEmail } from "../../services/helper"
 import { Close } from "@material-ui/icons"
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      margin: "auto",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      ["@media (max-width:425px)"]: {
-        marginBottom: "100px",
-      },
-    },
-    card: {
-      padding: "50px 30px",
-      height: "auto",
-      minHeight: "300px",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      position: "relative",
-      ["@media (max-width:600px)"]: {
-        padding: "40px 20px",
-      },
-    },
-    closeButtonDiv: {
-      position: "absolute",
-      right: "15px",
-      top: "15px",
-    },
-    title: {
-      fontSize: "25px",
-      fontWeight: "bold",
-      textAlign: "center",
-      paddingBottom: "20px",
-      ["@media (max-width:400px)"]: {
-        fontSize: "20px",
-      },
-    },
-    content: {
-      fontSize: "18px",
-      textAlign: "center",
-      marginTop: "20px",
-      ["@media (max-width:400px)"]: {
-        fontSize: "15px",
-      },
-    },
-    messageDiv: {
-      border: "1px solid rgba(0, 0, 0, 0.1)",
-      borderRadius: "20px",
-      width: "100%",
-      height: "300px",
-      overflow: "hidden",
-    },
-    textArea: {
-      border: "none",
-      margin: "20px",
-      fontSize: "15px",
-      fontFamily: "POPPINS",
-      width: "87%",
-      outline: "none",
-      height: "250px",
-      ["@media (max-width:600px)"]: {
-        fontSize: "3vw",
-      },
-    },
-    getQuote: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      [theme.breakpoints.down("sm")]: {
-        width: "120px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "80px",
-        fontSize: "10px!important" as any,
-      },
-    },
-  })
-)
-
 type OptionProps = {
   name: string
   code: number
@@ -112,7 +33,7 @@ const ContactForm = ({
   handleLocationID,
   storesDetailsStore,
 }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainData = storesDetailsStore.storeCnts
   const [t] = useTranslation()
   const classes = useStyles()
 
@@ -417,3 +338,82 @@ const ContactForm = ({
 }
 
 export default ContactForm
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: "auto",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      ["@media (max-width:425px)"]: {
+        marginBottom: "100px",
+      },
+    },
+    card: {
+      padding: "50px 30px",
+      height: "auto",
+      minHeight: "300px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      position: "relative",
+      ["@media (max-width:600px)"]: {
+        padding: "40px 20px",
+      },
+    },
+    closeButtonDiv: {
+      position: "absolute",
+      right: "15px",
+      top: "15px",
+    },
+    title: {
+      fontSize: "25px",
+      fontWeight: "bold",
+      textAlign: "center",
+      paddingBottom: "20px",
+      ["@media (max-width:400px)"]: {
+        fontSize: "20px",
+      },
+    },
+    content: {
+      fontSize: "18px",
+      textAlign: "center",
+      marginTop: "20px",
+      ["@media (max-width:400px)"]: {
+        fontSize: "15px",
+      },
+    },
+    messageDiv: {
+      border: "1px solid rgba(0, 0, 0, 0.1)",
+      borderRadius: "20px",
+      width: "100%",
+      height: "300px",
+      overflow: "hidden",
+    },
+    textArea: {
+      border: "none",
+      margin: "20px",
+      fontSize: "15px",
+      fontFamily: "POPPINS",
+      width: "87%",
+      outline: "none",
+      height: "250px",
+      ["@media (max-width:600px)"]: {
+        fontSize: "3vw",
+      },
+    },
+    getQuote: {
+      width: "170px",
+      fontSize: "13px!important" as any,
+      [theme.breakpoints.down("sm")]: {
+        width: "120px",
+        fontSize: "12px!important" as any,
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "80px",
+        fontSize: "10px!important" as any,
+      },
+    },
+  })
+)

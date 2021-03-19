@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react"
 import { ProductCard } from "./"
 import { ProductModel } from "./product-model"
 import { Grid } from "@material-ui/core"
+import { storesDetails } from "../../store"
 
 const getWidth = () =>
   window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-
-type Props = {
-  subDomain?: string
-}
 
 type GridMDInterface =
   | boolean
@@ -27,8 +24,8 @@ type GridMDInterface =
   | 12
   | undefined
 
-const ProductList = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+const ProductList = () => {
+  const data = storesDetails.storeCnts
   const [initGridMD, setInitGridMD] = useState<GridMDInterface>(3)
 
   const handleResize = () => {

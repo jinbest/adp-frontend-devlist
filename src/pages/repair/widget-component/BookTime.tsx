@@ -23,7 +23,7 @@ type Props = {
 }
 
 const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database`)
+  const mainData = storesDetails.storeCnts
   const timezoneData = require(`../../../assets/_common/timezoneList`)
   const timeZoneList = timezoneData.timezoneOptions
   const themeCol = mainData.colorPalle.themeColor

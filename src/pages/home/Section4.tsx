@@ -3,14 +3,15 @@ import { DeviceListComponent } from "../../components"
 // import {Button} from '../../components'
 import { Typography, Grid, Box } from "@material-ui/core"
 import { useTranslation } from "react-i18next"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
 }
 
 const Section4 = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const commonData = require("../../assets/_common/mockData")
+  const data = storesDetails.storeCnts
+  const commonData = storesDetails.commonCnts
   const [t] = useTranslation()
 
   return (

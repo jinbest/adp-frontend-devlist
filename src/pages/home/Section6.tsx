@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Section6 = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const [t] = useTranslation()
 
   return (

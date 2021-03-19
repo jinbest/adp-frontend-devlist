@@ -2,45 +2,7 @@ import React, { useState } from "react"
 import { withStyles, createStyles, makeStyles } from "@material-ui/core/styles"
 import Menu, { MenuProps } from "@material-ui/core/Menu"
 import { useTranslation } from "react-i18next"
-
-const StyledMenu = withStyles({
-  paper: {
-    borderRadius: "10px",
-    boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
-    overflow: "inherit",
-    marginTop: "15px",
-    width: "700px",
-    paddingBottom: "15px",
-    border: "1px solid #C4C4C4",
-    height: "480px",
-    zIndex: -1,
-  },
-})((props: MenuProps) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-))
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    megaMenuContainer: {
-      display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "column",
-      width: "180px !important",
-    },
-  })
-)
+import { storesDetails } from "../store"
 
 type Props = {
   subDomain?: string
@@ -49,7 +11,7 @@ type Props = {
 }
 
 const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
-  const data = require(`../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const megaShopData = data.navShop
   const textThemeCol = data.colorPalle.textThemeCol
   const [anchEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -190,3 +152,42 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
 }
 
 export default MegamenuShop
+
+const StyledMenu = withStyles({
+  paper: {
+    borderRadius: "10px",
+    boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
+    overflow: "inherit",
+    marginTop: "15px",
+    width: "700px",
+    paddingBottom: "15px",
+    border: "1px solid #C4C4C4",
+    height: "480px",
+    zIndex: -1,
+  },
+})((props: MenuProps) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "center",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center",
+    }}
+    {...props}
+  />
+))
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    megaMenuContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "column",
+      width: "180px !important",
+    },
+  })
+)

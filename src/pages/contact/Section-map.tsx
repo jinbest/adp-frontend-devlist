@@ -30,102 +30,6 @@ const DAYS_OF_THE_WEEK: string[] = [
   "Friday",
   "Saturday",
 ]
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      [theme.breakpoints.down("sm")]: {
-        justifyContent: "space-between",
-        "& h2": {
-          fontSize: " 18px",
-        },
-        "& span": {
-          fontSize: "12px",
-        },
-      },
-      [theme.breakpoints.down("xs")]: {
-        "& h2": {
-          fontSize: " 18px",
-        },
-        "& span": {
-          fontSize: "12px",
-        },
-      },
-    },
-    getQuote: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      color: "white",
-      [theme.breakpoints.down("sm")]: {
-        width: "120px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "80px",
-        fontSize: "10px!important" as any,
-      },
-    },
-    getAppoint: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      color: "white",
-      [theme.breakpoints.down("sm")]: {
-        width: "170px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "130px",
-        fontSize: "10px!important" as any,
-      },
-    },
-    timePanelWrapp: {
-      // justifyContent: "space-around",
-      [theme.breakpoints.down("sm")]: {
-        justifyContent: "flex-start",
-        "& p": {
-          fontSize: "16px",
-        },
-      },
-      [theme.breakpoints.down("xs")]: {
-        "& p": {
-          fontSize: "12px",
-        },
-      },
-    },
-    item1: {
-      order: 1,
-      [theme.breakpoints.up("lg")]: {
-        order: 1,
-      },
-    },
-    item2: {
-      order: 2,
-      [theme.breakpoints.up("lg")]: {
-        order: 2,
-      },
-    },
-    directions: {
-      color: "black",
-      marginLeft: "10px",
-      fontWeight: "bold",
-      "&:hover": {
-        color: "rgba(0,0,0,0.4)",
-      },
-    },
-    nonHoverEffect: {
-      textDecoration: "none !important",
-      opacity: "1 !important",
-      cursor: "default !important",
-    },
-    phoneText: {
-      marginLeft: "10px",
-      textDecoration: "none",
-      "&:hover": {
-        opacity: 0.6,
-      },
-    },
-  })
-)
 interface Props extends StoreProps {
   subDomain?: string
   locations: any[]
@@ -150,7 +54,7 @@ const SectionMap = inject("storesDetailsStore")(
       handleLocationID,
       features,
     }: Props) => {
-      const data = require(`../../assets/${subDomain}/Database`)
+      const data = storesDetailsStore.storeCnts
       const [t] = useTranslation()
       const classes = useStyles()
       const [expanded, setExpanded] = useState<number | false>(0)
@@ -420,3 +324,99 @@ const SectionMap = inject("storesDetailsStore")(
 )
 
 export default SectionMap
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      [theme.breakpoints.down("sm")]: {
+        justifyContent: "space-between",
+        "& h2": {
+          fontSize: " 18px",
+        },
+        "& span": {
+          fontSize: "12px",
+        },
+      },
+      [theme.breakpoints.down("xs")]: {
+        "& h2": {
+          fontSize: " 18px",
+        },
+        "& span": {
+          fontSize: "12px",
+        },
+      },
+    },
+    getQuote: {
+      width: "170px",
+      fontSize: "13px!important" as any,
+      color: "white",
+      [theme.breakpoints.down("sm")]: {
+        width: "120px",
+        fontSize: "12px!important" as any,
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "80px",
+        fontSize: "10px!important" as any,
+      },
+    },
+    getAppoint: {
+      width: "170px",
+      fontSize: "13px!important" as any,
+      color: "white",
+      [theme.breakpoints.down("sm")]: {
+        width: "170px",
+        fontSize: "12px!important" as any,
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "130px",
+        fontSize: "10px!important" as any,
+      },
+    },
+    timePanelWrapp: {
+      // justifyContent: "space-around",
+      [theme.breakpoints.down("sm")]: {
+        justifyContent: "flex-start",
+        "& p": {
+          fontSize: "16px",
+        },
+      },
+      [theme.breakpoints.down("xs")]: {
+        "& p": {
+          fontSize: "12px",
+        },
+      },
+    },
+    item1: {
+      order: 1,
+      [theme.breakpoints.up("lg")]: {
+        order: 1,
+      },
+    },
+    item2: {
+      order: 2,
+      [theme.breakpoints.up("lg")]: {
+        order: 2,
+      },
+    },
+    directions: {
+      color: "black",
+      marginLeft: "10px",
+      fontWeight: "bold",
+      "&:hover": {
+        color: "rgba(0,0,0,0.4)",
+      },
+    },
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
+    },
+    phoneText: {
+      marginLeft: "10px",
+      textDecoration: "none",
+      "&:hover": {
+        opacity: 0.6,
+      },
+    },
+  })
+)

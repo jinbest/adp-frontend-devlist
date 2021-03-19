@@ -35,7 +35,7 @@ const ContactDetails = ({
   features,
   code,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
+  const mainData = storesDetails.storeCnts
   const themeCol = mainData.colorPalle.themeColor
 
   const [t] = useTranslation()

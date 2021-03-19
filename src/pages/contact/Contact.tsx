@@ -16,7 +16,7 @@ type Props = {
 }
 
 const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+  const mainData = storesDetailsStore.storeCnts
   const query = useQuery()
 
   const [locations, setLocations] = useState<any[]>([])
@@ -26,11 +26,9 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
   const [metaDescription, setMetaDescription] = useState("")
 
   useEffect(() => {
-    const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
-
+    const storeTabData = mainData.getTabData
     setPageTitle(storeTabData.contactTitle)
     setMetaDescription(storeTabData.contactMetaDes)
-
     handleStatus(true)
   }, [])
 

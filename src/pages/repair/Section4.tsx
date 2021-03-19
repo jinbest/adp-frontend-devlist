@@ -5,64 +5,15 @@ import { Button } from "../../components"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { isExternal } from "../../services/helper"
+import { storesDetails } from "../../store"
 
 type Props = {
   subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      textAlign: "center",
-      marginTop: "70px !important",
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        margin: "150px 0 !important",
-        alignItems: "center",
-        display: "flex",
-        textAlign: "left",
-      },
-    },
-    mobileTechRoot: {
-      textAlign: "center",
-      marginTop: "0px !important",
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        margin: "0 0 200px !important",
-        alignItems: "center",
-        display: "flex",
-        textAlign: "left",
-      },
-      ["@media (max-width:425px)"]: {
-        margin: "-250px 0 100px !important",
-      },
-    },
-    item1: {
-      order: 2,
-      "& > div": {
-        margin: "auto !important",
-      },
-      [theme.breakpoints.up("md")]: {
-        order: 1,
-        marginTop: "0px",
-        "& > div": {
-          margin: "inherit !important",
-        },
-      },
-      marginTop: "50px",
-    },
-    item2: {
-      order: 1,
-      [theme.breakpoints.up("md")]: {
-        order: 2,
-      },
-    },
-  })
-)
-
 const Section4 = ({ subDomain, handleStatus }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const repair = data.repairData.section4
   const [t] = useTranslation()
   const classes = useStyles()
@@ -122,7 +73,8 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
         </Grid>
         <Grid item xs={12} md={6} className={classes.item2}>
           <img
-            src={require("../../assets/_common/img/repair/repair-sec4.png").default}
+            src={storesDetails.commonCnts.repairSec4Img}
+            alt="repair-sec4-img"
             style={{ width: "100%", maxWidth: "700px" }}
           />
         </Grid>
@@ -132,3 +84,53 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
 }
 
 export default Section4
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      textAlign: "center",
+      marginTop: "70px !important",
+      display: "flex",
+      [theme.breakpoints.up("md")]: {
+        margin: "150px 0 !important",
+        alignItems: "center",
+        display: "flex",
+        textAlign: "left",
+      },
+    },
+    mobileTechRoot: {
+      textAlign: "center",
+      marginTop: "0px !important",
+      display: "flex",
+      [theme.breakpoints.up("md")]: {
+        margin: "0 0 200px !important",
+        alignItems: "center",
+        display: "flex",
+        textAlign: "left",
+      },
+      ["@media (max-width:425px)"]: {
+        margin: "-250px 0 100px !important",
+      },
+    },
+    item1: {
+      order: 2,
+      "& > div": {
+        margin: "auto !important",
+      },
+      [theme.breakpoints.up("md")]: {
+        order: 1,
+        marginTop: "0px",
+        "& > div": {
+          margin: "inherit !important",
+        },
+      },
+      marginTop: "50px",
+    },
+    item2: {
+      order: 1,
+      [theme.breakpoints.up("md")]: {
+        order: 2,
+      },
+    },
+  })
+)

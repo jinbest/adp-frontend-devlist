@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { storesDetails } from "../store"
 
 type Props = {
   subDomain?: string
@@ -8,7 +9,7 @@ type Props = {
 }
 
 const Logo = ({ subDomain, type, handleStatus }: Props) => {
-  const mainData = require(`../assets/${subDomain}/Database.js`)
+  const mainData = storesDetails.storeCnts
   const logoData = mainData.logoData
 
   const handleLogoClick = () => {
@@ -21,7 +22,6 @@ const Logo = ({ subDomain, type, handleStatus }: Props) => {
       subDomain === "nanotechmobile" ||
       subDomain === "phonephix" ||
       subDomain === "wirelessrevottawa" ||
-      subDomain === "dccmtx" ||
       subDomain === "mtlcmtx" ? (
         <img
           className={subDomain + "-logo-header"}
@@ -31,7 +31,7 @@ const Logo = ({ subDomain, type, handleStatus }: Props) => {
       ) : (
         <img
           className={subDomain + "-logo-header"}
-          src={require(`../assets/${subDomain}/img/logo/logo-header.svg`).default}
+          src={mainData.logoData.logoHeaderSVG}
           alt="header-logo"
         />
       )}
@@ -41,7 +41,7 @@ const Logo = ({ subDomain, type, handleStatus }: Props) => {
       {subDomain === "mobiletechlab" ? (
         <img
           className={subDomain + "-logo-header"}
-          src={require(`../assets/${subDomain}/img/logo/logo-footer.svg`).default}
+          src={mainData.logoData.logoFooterSVG}
           alt="footer-logo"
         />
       ) : (

@@ -4,7 +4,7 @@ import { Grid, Box, Typography } from "@material-ui/core"
 import { Search, Button } from "../../components"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
-import { repairWidgetStore } from "../../store"
+import { repairWidgetStore, storesDetails } from "../../store"
 import { useTranslation } from "react-i18next"
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const Section1 = ({ subDomain, features, handleStatus }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+  const data = storesDetails.storeCnts
   const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
