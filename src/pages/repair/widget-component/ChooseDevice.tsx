@@ -464,7 +464,7 @@ const ChooseDevice = ({
   const NoDataComponent = () => {
     return (
       <p className="non-products-text">
-        {t("Didn't find what you are looking for, ")}
+        {t("Didn't find what you are looking for, you can ")}
         <span
           style={{
             color: mainData.colorPalle.textThemeCol,
@@ -473,7 +473,7 @@ const ChooseDevice = ({
         >
           {t("contact us ")}
         </span>
-        {t("with details of the issue affecting your device please.")}
+        {t("with details of the issue affecting your device.")}
       </p>
     )
   }
