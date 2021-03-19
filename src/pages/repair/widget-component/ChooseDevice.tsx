@@ -271,9 +271,16 @@ const ChooseDevice = ({
           }
           setItemTypes([...cntTypes])
         }
-        if (repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg) {
+        if (
+          repairWidData.repairsOfferedDevices != null &&
+          repairWidData.repairsOfferedDevices.metadata != null &&
+          repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg
+        ) {
           setPlusVisible(false)
-        } else {
+        } else if (
+          repairWidData.repairsOfferedDevices != null &&
+          repairWidData.repairsOfferedDevices.metadata != null
+        ) {
           setPlusVisible(true)
         }
         break
