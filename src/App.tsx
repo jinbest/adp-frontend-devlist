@@ -110,6 +110,15 @@ function App(): JSX.Element {
           console.log("Error in get Features", error)
         })
 
+      appLoadAPI
+        .getStoreConfig(storeId)
+        .then((res: any) => {
+          console.log("getStoreConfig: ", res)
+        })
+        .catch((err) => {
+          console.log("Error in get Store Config", err)
+        })
+
       findLocationAPI
         .findAllLocation(storeId)
         .then((res: any) => {
