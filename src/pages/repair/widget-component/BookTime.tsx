@@ -11,6 +11,30 @@ import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../../store/StoresDetails"
 
+const DAYS_OF_THE_WEEK: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+]
+const MONTHS: string[] = [
+  "January",
+  "Febrary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "Octorber",
+  "November",
+  "December",
+]
+
 type Props = {
   data: any
   subDomain?: string
@@ -29,29 +53,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const themeCol = mainData.colorPalle.themeColor
   const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
   const brandThemeCol = mainData.brandItemsData.brandThemeCol
-  const DAYS_OF_THE_WEEK: string[] = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ]
-  const MONTHS: string[] = [
-    "January",
-    "Febrary",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "Octorber",
-    "November",
-    "December",
-  ]
 
   const [tzIndex, setTZIndex] = useState(0)
   const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
@@ -106,15 +107,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
 
   useEffect(() => {
     const cntSelHours: SelectHoursProps[] = []
-    const days: string[] = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ]
     const storeLocs: any[] = storesDetails.findAddLocation
     const i: number = mailInChecked
     if (storeLocs.length) {
@@ -137,7 +129,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             hour = open + " - " + close
           }
           cntSelHours.push({
-            day: days[storeLocs[i].location_hours[j].day],
+            day: DAYS_OF_THE_WEEK[storeLocs[i].location_hours[j].day],
             hour: hour,
           })
         }
