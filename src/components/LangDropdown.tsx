@@ -44,7 +44,13 @@ const LangDropdown = ({ subDomain, color }: Props) => {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl
+        className={
+          subDomain === "bananaservices"
+            ? `${classes.formControl} ${classes.blackSVG}`
+            : classes.formControl
+        }
+      >
         <NativeSelect value={state} onChange={handleChange} style={{ color: color }}>
           {options.map((item: any, index: number) => {
             return (
@@ -82,6 +88,11 @@ const useStyles = makeStyles(() =>
       marginTop: "-3px",
       ["@media (max-width:768px)"]: {
         display: "none",
+      },
+    },
+    blackSVG: {
+      "& .MuiSvgIcon-root": {
+        fill: "black",
       },
     },
     selectOption: {
