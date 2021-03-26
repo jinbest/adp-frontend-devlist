@@ -67,7 +67,7 @@ class RepairWidgetAPI {
     for (let i = 0; i < types.length; i++) {
       i === 0 ? (type += `types=${types[i]}`) : (type += `&types=${types[i]}`)
     }
-    const apiURL = `${Config.TRANSLATION_SERVICE_API_URL}/dc/translation/${locale}/repair/lookups?${type}`
+    const apiURL = `${Config.TRANSLATION_SERVICE_API_URL}dc/translation/${locale}/repair/lookups?${type}`
     return new Promise((resolve, reject) => {
       axios
         .get(`${apiURL}`)
@@ -202,11 +202,11 @@ class RepairWidgetAPI {
   }
 
   getBrandsProducts = (store_id: number, prod_ids: number[]) => {
-    let prodsID = "";
-    for (let i = 0; i < prod_ids.length-1; i++) {
+    let prodsID = ""
+    for (let i = 0; i < prod_ids.length - 1; i++) {
       prodsID += prod_ids[i] + ","
     }
-    prodsID += prod_ids[prod_ids.length-1]
+    prodsID += prod_ids[prod_ids.length - 1]
     const apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?product_ids=${prodsID}&include_voided=true&include_children=true`
     return new Promise((resolve, reject) => {
       axios
@@ -225,7 +225,6 @@ class RepairWidgetAPI {
         })
     })
   }
-  
 }
 
 const instance = new RepairWidgetAPI()
