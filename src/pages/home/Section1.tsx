@@ -94,7 +94,9 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
           <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
             <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
               <Button
-                title={t("Get Quote")}
+                title={
+                  subDomain === "northtechcellsolutions" ? t("Get Repair Quote") : t("Get Quote")
+                }
                 bgcolor={data.colorPalle.repairButtonCol}
                 borderR="20px"
                 subDomain={subDomain}
@@ -113,7 +115,11 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                 >
                   <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
                     <Button
-                      title={t("Book Appointment")}
+                      title={
+                        subDomain === "northtechcellsolutions"
+                          ? t("Shop Devices")
+                          : t("Book Appointment")
+                      }
                       bgcolor={data.colorPalle.repairButtonCol}
                       borderR="20px"
                       subDomain={subDomain}

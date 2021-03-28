@@ -76,7 +76,9 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
         </Box>
         <div className={classes.locationsContainer}>
           <Typography className={classes.subTitle}>
-            {`${t("All")} ${storesDetails.storesDetails.name} ${t("Locations")}`}
+            {subDomain === "northtechcellsolutions"
+              ? t("All NorthTech Solutions Locations")
+              : `${t("All")} ${storesDetails.storesDetails.name} ${t("Locations")}`}
           </Typography>
           <Grid container spacing={5}>
             {storesDetails.allLocations.map((item: any, index: number) => {

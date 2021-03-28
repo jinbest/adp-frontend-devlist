@@ -93,7 +93,7 @@ function App(): JSX.Element {
           if (
             subDomain === "mobiletechlab" ||
             subDomain === "wirelessrevottawa" ||
-            subDomain === "northtechsolutions" ||
+            subDomain === "northtechcellsolutions" ||
             subDomain === "phonephix" ||
             subDomain === "pradowireless" ||
             subDomain === "dccmtx"
