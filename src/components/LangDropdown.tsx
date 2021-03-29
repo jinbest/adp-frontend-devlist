@@ -46,9 +46,7 @@ const LangDropdown = ({ subDomain, color }: Props) => {
     <div>
       <FormControl
         className={
-          subDomain === "bananaservices"
-            ? `${classes.formControl} ${classes.blackSVG}`
-            : classes.formControl
+          color === "black" ? `${classes.formControl} ${classes.blackSVG}` : classes.formControl
         }
       >
         <NativeSelect value={state} onChange={handleChange} style={{ color: color }}>

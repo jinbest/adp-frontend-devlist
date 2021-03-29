@@ -17,7 +17,8 @@ const Section2 = ({ subDomain }: Props) => {
     <section
       className={subDomain + "-service-section2"}
       style={{
-        backgroundImage: "url(" + data.repairData.section2.bgImg + ")",
+        backgroundImage:
+          subDomain === "mobiletechlab" ? "" : "url(" + data.repairData.section2.bgImg + ")",
       }}
     >
       <div className={subDomain + "-Container " + subDomain + "-service-section2-text-field"}>

@@ -120,3 +120,18 @@
     padding-bottom: 0px;
   }
 }
+
+.#{$folderName}-repair-sec4-grid-root {
+  text-align: left;
+  margin-top: 0px !important;
+  display: flex;
+  @media (max-width: 960px) {
+    margin: 0 0 200px !important;
+    align-items: center;
+    display: flex;
+    text-align: center;
+  }
+  @media (max-width: 425px) {
+    margin: -250px 0 100px !important;
+  }
+}

@@ -20,11 +20,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
 
   return (
     <section className={subDomain + "-Container"}>
-      <Grid
-        container
-        className={subDomain === "mobiletechlab" ? classes.mobileTechRoot : classes.root}
-        spacing={2}
-      >
+      <Grid container className={subDomain + "-repair-sec4-grid-root"} spacing={2}>
         <Grid item xs={12} md={6} className={classes.item1}>
           <Typography
             className={subDomain + "-service-section-title-1"}
@@ -87,31 +83,6 @@ export default Section4
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      textAlign: "center",
-      marginTop: "70px !important",
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        margin: "150px 0 !important",
-        alignItems: "center",
-        display: "flex",
-        textAlign: "left",
-      },
-    },
-    mobileTechRoot: {
-      textAlign: "center",
-      marginTop: "0px !important",
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        margin: "0 0 200px !important",
-        alignItems: "center",
-        display: "flex",
-        textAlign: "left",
-      },
-      ["@media (max-width:425px)"]: {
-        margin: "-250px 0 100px !important",
-      },
-    },
     item1: {
       order: 2,
       "& > div": {
