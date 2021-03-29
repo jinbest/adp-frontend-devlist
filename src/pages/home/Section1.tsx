@@ -92,11 +92,13 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
         </Typography>
         <div style={{ display: "flex" }}>
           <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
-            <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
+            <Link
+              to={data.homeTextData.section1.quoteBtn.link}
+              style={{ textDecoration: "none" }}
+              onClick={handleGetQuote}
+            >
               <Button
-                title={
-                  subDomain === "northtechcellsolutions" ? t("Get Repair Quote") : t("Get Quote")
-                }
+                title={t(data.homeTextData.section1.quoteBtn.title)}
                 bgcolor={data.colorPalle.repairButtonCol}
                 borderR="20px"
                 subDomain={subDomain}
@@ -113,13 +115,13 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                   className={subDomain + "-service-section-button"}
                   style={{ margin: "initial" }}
                 >
-                  <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
+                  <Link
+                    to={data.homeTextData.section1.appointmentBtn.link}
+                    style={{ textDecoration: "none" }}
+                    onClick={handleGetQuote}
+                  >
                     <Button
-                      title={
-                        subDomain === "northtechcellsolutions"
-                          ? t("Shop Devices")
-                          : t("Book Appointment")
-                      }
+                      title={t(data.homeTextData.section1.appointmentBtn.title)}
                       bgcolor={data.colorPalle.repairButtonCol}
                       borderR="20px"
                       subDomain={subDomain}

@@ -11,7 +11,7 @@ type Props = {
   color?: string
 }
 
-const LangDropdown = ({ subDomain, color }: Props) => {
+const LangDropdown = ({ color }: Props) => {
   const data = storesDetails.storeCnts
   const themeCol = data.colorPalle.themeColor
   const classes = useStyles()
@@ -31,7 +31,7 @@ const LangDropdown = ({ subDomain, color }: Props) => {
   }
 
   useEffect(() => {
-    if (subDomain === "reparationcellulairebsl") {
+    if (data.condition.defaultLang === "fr") {
       setState(options[1])
       i18n.changeLanguage("fr")
       window.localStorage.setItem("cntLang", "fr")

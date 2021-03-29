@@ -35,7 +35,7 @@ const Section1 = inject("repairWidgetStore")(
       <div
         className={subDomain + "-service-section1-special-bg"}
         style={{
-          backgroundImage: data.repairData.section1.bgImg
+          backgroundImage: data.repairData.section1.hasBackground
             ? "url(" + data.repairData.section1.bgImg + ")"
             : "",
         }}

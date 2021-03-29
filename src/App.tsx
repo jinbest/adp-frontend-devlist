@@ -90,17 +90,6 @@ function App(): JSX.Element {
             { flag: "ALWAYS_TRUE", isActive: true },
             { flag: "FRONTEND_INSURE", isActive: false },
           ]
-          if (
-            subDomain === "mobiletechlab" ||
-            subDomain === "wirelessrevottawa" ||
-            subDomain === "northtechcellsolutions" ||
-            subDomain === "phonephix" ||
-            subDomain === "pradowireless" ||
-            subDomain === "dccmtx"
-          ) {
-            feats.push({ flag: "FRONTEND_BUY", isActive: true })
-          }
-
           for (let i = 0; i < res.data.length; i++) {
             feats.push({
               flag: res.data[i].feature_id,
@@ -152,28 +141,35 @@ function App(): JSX.Element {
     }
   }
 
-  return (
-    <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <link rel="icon" id="favicon" href={favIcon} />
-        <link rel="apple-touch-icon" href={favIcon} />
-        <meta name="description" content={metaDescription} />
-        {subDomain === "mobiletechlab" && (
-          <meta
-            name="google-site-verification"
-            content="-7lYFKjpeZOXhFE35pTA-GfcaY9PRNOlrNm-SdgQMlI"
-          />
-        )}
-        <script>{tagScript}</script>
-      </Helmet>
+  useEffect(() => {
+    if (loadStatus && loadStoreConfig) {
+      if (storesDetails.storeCnts.condition.hasShopLink) {
+        setFeatures([...features, { flag: "FRONTEND_BUY", isActive: true }])
+      }
+    }
+  }, [loadStatus, loadStoreConfig])
 
-      <Provider
-        storesDetailsStore={storesDetails}
-        repairWidgetStore={repairWidgetStore}
-        repairWidDataStore={repairWidData}
-      >
-        {loadStatus && loadLocationStatus && loadStoreConfig ? (
+  return (
+    <Provider
+      storesDetailsStore={storesDetails}
+      repairWidgetStore={repairWidgetStore}
+      repairWidDataStore={repairWidData}
+    >
+      {loadStatus && loadLocationStatus && loadStoreConfig ? (
+        <>
+          <Helmet>
+            <title>{pageTitle}</title>
+            <link rel="icon" id="favicon" href={favIcon} />
+            <link rel="apple-touch-icon" href={favIcon} />
+            <meta name="description" content={metaDescription} />
+            {storesDetails.storeCnts.condition.googleVerification.status && (
+              <meta
+                name={storesDetails.storeCnts.condition.googleVerification.metaData.name}
+                content={storesDetails.storeCnts.condition.googleVerification.metaData.content}
+              />
+            )}
+            <script>{tagScript}</script>
+          </Helmet>
           <Router>
             <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
             <BaseRouter
@@ -190,11 +186,11 @@ function App(): JSX.Element {
               />
             )}
           </Router>
-        ) : (
-          <Preloader />
-        )}
-      </Provider>
-    </>
+        </>
+      ) : (
+        <Preloader />
+      )}
+    </Provider>
   )
 }
 

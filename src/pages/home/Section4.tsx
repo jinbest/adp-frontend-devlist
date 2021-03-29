@@ -47,6 +47,7 @@ const Section4 = ({ subDomain }: Props) => {
                           content={t(item.content)}
                           key={index}
                           subDomain={subDomain}
+                          contentVisible={data.homeTextData.section4.contentVisible}
                         >
                           {t(item.title)}
                         </DeviceListComponent>
@@ -76,6 +77,7 @@ const Section4 = ({ subDomain }: Props) => {
                           content={t(item.content)}
                           key={index}
                           subDomain={subDomain}
+                          contentVisible={data.homeTextData.section4.contentVisible}
                         >
                           {t(item.title)}
                         </DeviceListComponent>
@@ -105,6 +107,7 @@ const Section4 = ({ subDomain }: Props) => {
                       content={t(item.content)}
                       key={index}
                       subDomain={subDomain}
+                      contentVisible={data.homeTextData.section4.contentVisible}
                     >
                       {t(item.title)}
                     </DeviceListComponent>
