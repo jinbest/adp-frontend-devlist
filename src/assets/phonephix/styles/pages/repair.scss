@@ -88,12 +88,11 @@
 
 .#{$folderName}-repair-sec4-grid-root {
   text-align: left;
-  margin-top: 150px !important;
+  margin: 150px 0 !important;
   display: flex;
+  align-items: center;
   @media (max-width: 960px) {
     margin: 70px 0 !important;
-    align-items: center;
-    display: flex;
     text-align: center;
   }
 }

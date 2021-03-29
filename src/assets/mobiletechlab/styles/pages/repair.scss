@@ -123,11 +123,11 @@
 
 .#{$folderName}-repair-sec4-grid-root {
   text-align: left;
-  margin-top: 0px !important;
+  margin: 0 0 200px !important;
+  align-items: center;
   display: flex;
   @media (max-width: 960px) {
-    margin: 0 0 200px !important;
-    align-items: center;
+    margin-top: 0px !important;
     display: flex;
     text-align: center;
   }
