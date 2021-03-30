@@ -27,7 +27,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 0,
+// const siteNum = 2,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 
@@ -62,8 +62,13 @@ function App(): JSX.Element {
     if (storeTabData.scriptTag) {
       const script = document.createElement("script")
       script.type = "text/javascript"
-      script.prepend(storeTabData.scriptTag)
-      document.body.prepend(script)
+      script.append(storeTabData.scriptTag)
+      document.body.appendChild(script)
+      const scriptReamaze = document.createElement("script")
+      scriptReamaze.type = "text/javascript"
+      scriptReamaze.src = "https://cdn.reamaze.com/assets/reamaze.js"
+      scriptReamaze.async = true
+      document.body.appendChild(scriptReamaze)
     }
   }
 
