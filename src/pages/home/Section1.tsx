@@ -75,11 +75,9 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   return (
     <section className={subDomain + "-Container"}>
       <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-        <h1 className={subDomain + "-section1-title"}>
-          {t("Repair, Buy & Protect your essential mobile devices.")}
-        </h1>
+        <h1 className={subDomain + "-section1-title"}>{t(data.homeTextData.section1.title)}</h1>
         <Typography className={subDomain + "-section1-subtitle"}>
-          {`${data.homeTextData.section1.city}${t("’s mobile device specialists.")}`}
+          {t(data.homeTextData.section1.subtitle)}
         </Typography>
         <div style={{ display: "flex" }}>
           <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>

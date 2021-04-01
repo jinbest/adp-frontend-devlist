@@ -47,7 +47,6 @@ const Section1 = inject("repairWidgetStore")(
                 className={subDomain + "-service-section-title-1"}
                 style={{
                   color: repair.themeCol,
-                  // textShadow: `1px 0 ${repair.themeCol}`,
                 }}
               >
                 {t(repair.title)}
@@ -61,12 +60,12 @@ const Section1 = inject("repairWidgetStore")(
               <div style={{ display: "flex" }}>
                 <Box className={subDomain + "-service-section-button"}>
                   <Link
-                    to="/get-quote"
+                    to={repair.quoteBtn.link}
                     style={{ textDecoration: "none" }}
                     onClick={handleRepairWidget}
                   >
                     <Button
-                      title={t("Get Quote")}
+                      title={t(repair.quoteBtn.title)}
                       bgcolor={data.colorPalle.repairButtonCol}
                       borderR="20px"
                       subDomain={subDomain}
@@ -81,12 +80,12 @@ const Section1 = inject("repairWidgetStore")(
                     activeComponent={() => (
                       <Box className={subDomain + "-service-section-button"}>
                         <Link
-                          to="/get-quote"
+                          to={repair.appointmentBtn.link}
                           style={{ textDecoration: "none" }}
                           onClick={handleRepairWidget}
                         >
                           <Button
-                            title={t("Book Appointment")}
+                            title={t(repair.appointmentBtn.title)}
                             bgcolor={data.colorPalle.repairButtonCol}
                             borderR="20px"
                             subDomain={subDomain}

@@ -24,6 +24,7 @@ type Props = {
 const Business = ({ subDomain, handleStatus }: Props) => {
   const classes = useStyles()
   const data = storesDetails.storeCnts
+  const thisPage = data.businessPage
   const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Business Solutions | ")
@@ -48,14 +49,10 @@ const Business = ({ subDomain, handleStatus }: Props) => {
 
       <Shape />
       <div className={classes.root}>
-        <h1 className={classes.mainTitle}>{t("Business Solutions")}</h1>
-        <Typography className={classes.mainContent}>
-          {t(
-            "We provide reliable device management and repair services so you can focus on running your business."
-          )}
-        </Typography>
+        <h1 className={classes.mainTitle}>{t(thisPage.title)}</h1>
+        <Typography className={classes.mainContent}>{t(thisPage.content)}</Typography>
         <Button
-          title={t("Get Started")}
+          title={t(thisPage.btnTitle)}
           bgcolor={data.colorPalle.repairButtonCol}
           borderR="20px"
           subDomain={subDomain}
@@ -65,7 +62,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
         />
         <div className={classes.cardContainer}>
           <Card className={classes.card}>
-            <Typography className={classes.subTitle}>{t("Why Businesses Choose Us?")}</Typography>
+            <Typography className={classes.subTitle}>{t(thisPage.subTitle)}</Typography>
             <Grid container spacing={5}>
               <Grid item xs={12} md={6} className={classes.item}>
                 <div className={classes.SVGContainer}>
@@ -75,7 +72,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("Free shipping and bulk discounts for 5+ devices.")}
+                    {t(thisPage.data.freeShipping)}
                   </Typography>
                 </div>
               </Grid>
@@ -86,9 +83,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                   </div>
                 </div>
                 <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Flexible payement options. You choose how and when you pay.")}
-                  </Typography>
+                  <Typography className={classes.itemText}>{t(thisPage.data.pay)}</Typography>
                 </div>
               </Grid>
               <Grid item xs={12} md={6} className={classes.item}>
@@ -99,7 +94,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("Instant shipping label upon request.")}
+                    {t(thisPage.data.shippingLabel)}
                   </Typography>
                 </div>
               </Grid>
@@ -110,9 +105,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                   </div>
                 </div>
                 <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Dedicated B2B microsoldering Techs.")}
-                  </Typography>
+                  <Typography className={classes.itemText}>{t(thisPage.data.soldering)}</Typography>
                 </div>
               </Grid>
               <Grid item xs={12} md={6} className={classes.item}>
@@ -123,7 +116,7 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                 </div>
                 <div className={classes.textContainer}>
                   <Typography className={classes.itemText}>
-                    {t("Responsive customer support.")}
+                    {t(thisPage.data.customerService)}
                   </Typography>
                 </div>
               </Grid>
@@ -134,7 +127,9 @@ const Business = ({ subDomain, handleStatus }: Props) => {
                   </div>
                 </div>
                 <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>{t("Quick turnaround.")}</Typography>
+                  <Typography className={classes.itemText}>
+                    {t(thisPage.data.quickTurnaround)}
+                  </Typography>
                 </div>
               </Grid>
             </Grid>

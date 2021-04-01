@@ -27,6 +27,7 @@ type Props = {
 const Locations = ({ subDomain, handleStatus }: Props) => {
   const classes = useStyles()
   const data = storesDetails.storeCnts
+  const thisPage = data.locationPage
   const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Locations")
@@ -57,15 +58,16 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
 
       <Shape />
       <div className={classes.root}>
-        <h1 className={classes.mainTitle}>{t("Professional") + ", " + t("Transparent") + " &"}</h1>
-        <h1 className={classes.mainTitle}>{t("Affordable Device Repair")}</h1>
-        <Typography className={classes.mainContent}>
-          {t("Same-Day Advanced Repair Services")}
-        </Typography>
+        <h1 className={classes.mainTitle}>{t(thisPage.title)}</h1>
+        <Typography className={classes.mainContent}>{t(thisPage.content)}</Typography>
         <Box className={classes.buttonDiv}>
-          <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
+          <Link
+            to={thisPage.button.link}
+            style={{ textDecoration: "none" }}
+            onClick={handleGetQuote}
+          >
             <Button
-              title={t("Get Quote")}
+              title={t(thisPage.button.title)}
               bgcolor={data.colorPalle.repairButtonCol}
               borderR="20px"
               subDomain={subDomain}
@@ -223,16 +225,22 @@ const useStyles = makeStyles(() =>
     mainTitle: {
       color: "black",
       fontSize: "55px !important",
-      lineHeight: "1 !important",
+      lineHeight: "70px !important",
       // textShadow: "1px 0 black",
       fontWeight: "bold",
       justifyContent: "center",
+      width: "1000px",
+      maxWidth: "100%",
       ["@media (max-width:1400px)"]: {
         fontSize: "4vw !important",
         marginBottom: "3vw !important",
+        width: "75vw",
+        lineHeight: "5vw !important",
       },
       ["@media (max-width:768px)"]: {
         fontSize: "5vw !important",
+        width: "85vw",
+        lineHeight: "6vw !important",
       },
       ["@media (max-width:500px)"]: {
         fontSize: "4.5vw !important",
