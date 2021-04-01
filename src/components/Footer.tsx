@@ -261,11 +261,11 @@ const Footer = inject("storesDetailsStore")(
                 })}
               </Grid>
               <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
-                {`${new Date().getFullYear()} ${storesDetailsStore.storesDetails.name}. ${t(
-                  data.homeTextData.footer.copyRight.text1
-                )} "${storesDetailsStore.storesDetails.name}" ${t(
-                  data.homeTextData.footer.copyRight.text2
-                )}`}
+                {`${new Date().getFullYear()} ${
+                  storesDetailsStore.storesDetails.business_name
+                }. ${t(data.homeTextData.footer.copyRight.text1)} "${
+                  storesDetailsStore.storesDetails.business_name
+                }" ${t(data.homeTextData.footer.copyRight.text2)}`}
               </div>
               {/* </Grid> */}
             </Grid>

@@ -12,7 +12,7 @@ import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import Loading from "./Loading"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { makeLocations, getAddress } from "../services/helper"
+import { makeLocations, getAddress, AddFormat12 } from "../services/helper"
 
 const StyledMenu = withStyles({
   paper: {
@@ -260,7 +260,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
             !locSelStatus
               ? t(btnTitle)
               : storesDetailsStore.cntUserLocation[0] &&
-                storesDetailsStore.cntUserLocation[0].address_1
+                AddFormat12(storesDetailsStore.cntUserLocation[0])
           }
           bgcolor={!locSelStatus ? themeColor : "transparent"}
           txcolor={!locSelStatus ? "white" : "black"}
@@ -335,11 +335,11 @@ const CustomizedMenus = inject("storesDetailsStore")(
                           {item.distance
                             ? item.location_name +
                               ", " +
-                              item.address_1 +
+                              AddFormat12(item) +
                               " (" +
                               item.distance +
                               ")"
-                            : item.location_name + ", " + item.address_1}
+                            : item.location_name + ", " + AddFormat12(item)}
                         </p>
                       </React.Fragment>
                     )

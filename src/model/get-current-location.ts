@@ -11,6 +11,7 @@ type hourProps = {
 export interface GetCurrentLocParams {
   address_1?: string
   address_2?: string
+  address_3?: string
   days?: dayProps[]
   distance?: string
   hours?: hourProps[]
