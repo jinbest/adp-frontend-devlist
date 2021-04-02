@@ -6,6 +6,7 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
 import { useTranslation } from "react-i18next"
+import { isExternal } from "../../services/helper"
 
 type Props = {
   subDomain?: string
@@ -15,6 +16,7 @@ type Props = {
 
 const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   const data = storesDetails.storeCnts
+  const thisPage = data.homeTextData.section1
   const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
@@ -75,25 +77,40 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   return (
     <section className={subDomain + "-Container"}>
       <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-        <h1 className={subDomain + "-section1-title"}>{t(data.homeTextData.section1.title)}</h1>
-        <Typography className={subDomain + "-section1-subtitle"}>
-          {t(data.homeTextData.section1.subtitle)}
-        </Typography>
+        <h1 className={subDomain + "-section1-title"}>{t(thisPage.title)}</h1>
+        <Typography className={subDomain + "-section1-subtitle"}>{t(thisPage.subtitle)}</Typography>
         <div style={{ display: "flex" }}>
           <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
-            <Link
-              to={data.homeTextData.section1.quoteBtn.link}
-              style={{ textDecoration: "none" }}
-              onClick={handleGetQuote}
-            >
-              <Button
-                title={t(data.homeTextData.section1.quoteBtn.title)}
-                bgcolor={data.colorPalle.repairButtonCol}
-                borderR="20px"
-                subDomain={subDomain}
-                width="90%"
-              />
-            </Link>
+            {isExternal(thisPage.quoteBtn.link) ? (
+              <a
+                href={thisPage.quoteBtn.link}
+                style={{ textDecoration: "none" }}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Button
+                  title={t(thisPage.quoteBtn.title)}
+                  bgcolor={data.colorPalle.repairButtonCol}
+                  borderR="20px"
+                  subDomain={subDomain}
+                  width="90%"
+                />
+              </a>
+            ) : (
+              <Link
+                to={thisPage.quoteBtn.link}
+                style={{ textDecoration: "none" }}
+                onClick={handleGetQuote}
+              >
+                <Button
+                  title={t(thisPage.quoteBtn.title)}
+                  bgcolor={data.colorPalle.repairButtonCol}
+                  borderR="20px"
+                  subDomain={subDomain}
+                  width="90%"
+                />
+              </Link>
+            )}
           </Box>
           <FeatureToggles features={feats}>
             <Feature
@@ -104,19 +121,36 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                   className={subDomain + "-service-section-button"}
                   style={{ margin: "initial" }}
                 >
-                  <Link
-                    to={data.homeTextData.section1.appointmentBtn.link}
-                    style={{ textDecoration: "none" }}
-                    onClick={handleGetQuote}
-                  >
-                    <Button
-                      title={t(data.homeTextData.section1.appointmentBtn.title)}
-                      bgcolor={data.colorPalle.repairButtonCol}
-                      borderR="20px"
-                      subDomain={subDomain}
-                      width="90%"
-                    />
-                  </Link>
+                  {isExternal(thisPage.appointmentBtn.link) ? (
+                    <a
+                      href={thisPage.appointmentBtn.link}
+                      style={{ textDecoration: "none" }}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Button
+                        title={t(thisPage.appointmentBtn.title)}
+                        bgcolor={data.colorPalle.repairButtonCol}
+                        borderR="20px"
+                        subDomain={subDomain}
+                        width="90%"
+                      />
+                    </a>
+                  ) : (
+                    <Link
+                      to={thisPage.appointmentBtn.link}
+                      style={{ textDecoration: "none" }}
+                      onClick={handleGetQuote}
+                    >
+                      <Button
+                        title={t(thisPage.appointmentBtn.title)}
+                        bgcolor={data.colorPalle.repairButtonCol}
+                        borderR="20px"
+                        subDomain={subDomain}
+                        width="90%"
+                      />
+                    </Link>
+                  )}
                 </Box>
               )}
             />
@@ -130,7 +164,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
             activeComponent={() => (
               <Box className={subDomain + "-sec1-search_input"}>
                 <Search
-                  placeholder={data.homeTextData.section1.searchPlaceholder}
+                  placeholder={thisPage.searchPlaceholder}
                   color="white"
                   bgcolor={data.colorPalle.themeColor}
                   height="60px"
