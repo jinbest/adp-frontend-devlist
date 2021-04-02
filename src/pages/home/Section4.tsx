@@ -11,7 +11,7 @@ type Props = {
 
 const Section4 = ({ subDomain }: Props) => {
   const data = storesDetails.storeCnts
-  const commonData = storesDetails.commonCnts
+  const thisPage = data.homeTextData.section4
   const [t] = useTranslation()
 
   return (
@@ -21,11 +21,11 @@ const Section4 = ({ subDomain }: Props) => {
           <Grid container item xs={12}>
             <Grid item xs={12} sm={12} md={6}>
               <Typography className={"f40 bold " + subDomain + "-section4-title"}>
-                {t(data.homeTextData.section4.title)}
+                {t(thisPage.title)}
               </Typography>
               {/* <Box className={subDomain + '-section4-button mobile'}>
                 <Button 
-                  title={t(data.homeTextData.section4.btnTitle)} 
+                  title={t(thisPage.btnTitle)} 
                   bgcolor={data.colorPalle.themeColor} 
                   borderR='20px'
                   subDomain={subDomain}
@@ -34,7 +34,7 @@ const Section4 = ({ subDomain }: Props) => {
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Grid item container xs={12}>
-                {commonData.devicelistData.slice(0, 2).map((item: any, index: number) => {
+                {thisPage.data.slice(0, 2).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={6} key={index}>
                       <Box className={subDomain + "-cart-device-list"}>
@@ -44,7 +44,7 @@ const Section4 = ({ subDomain }: Props) => {
                           content={t(item.content)}
                           key={index}
                           subDomain={subDomain}
-                          contentVisible={data.homeTextData.section4.contentVisible}
+                          contentVisible={thisPage.contentVisible}
                         >
                           {t(item.title)}
                         </DeviceListComponent>
@@ -56,7 +56,7 @@ const Section4 = ({ subDomain }: Props) => {
             </Grid>
             {/* <Grid item xs={12}>
               <Box className={subDomain + '-section4-button desktop'}>
-                <Button title={t(data.homeTextData.section4.btnTitle)} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
+                <Button title={t(thisPage.btnTitle)} bgcolor={data.colorPalle.themeColor} borderR='20px' subDomain={subDomain} />
               </Box>
             </Grid> */}
           </Grid>
@@ -64,7 +64,7 @@ const Section4 = ({ subDomain }: Props) => {
             <Grid item xs={12} sm={12} md={3}></Grid>
             <Grid item xs={12} sm={12} md={9}>
               <Grid item container xs={12}>
-                {commonData.devicelistData.slice(2, 5).map((item: any, index: number) => {
+                {thisPage.data.slice(2, 5).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={4} key={index}>
                       <Box className={subDomain + "-cart-device-list"}>
@@ -74,7 +74,7 @@ const Section4 = ({ subDomain }: Props) => {
                           content={t(item.content)}
                           key={index}
                           subDomain={subDomain}
-                          contentVisible={data.homeTextData.section4.contentVisible}
+                          contentVisible={thisPage.contentVisible}
                         >
                           {t(item.title)}
                         </DeviceListComponent>
@@ -90,12 +90,12 @@ const Section4 = ({ subDomain }: Props) => {
         <Box className={subDomain + "-sec4-container-special-box"}>
           <Grid container item xs={12}>
             <Typography className={"f40 bold " + subDomain + "-section-title"}>
-              {t(data.homeTextData.section4.title)}
+              {t(thisPage.title)}
             </Typography>
           </Grid>
           <Grid container item xs={12}>
             <div style={{ display: "flex", margin: "auto" }}>
-              {commonData.devicelistData.map((item: any, index: number) => {
+              {thisPage.data.map((item: any, index: number) => {
                 return (
                   <Box className={subDomain + "-cart-device-list"} key={index}>
                     <DeviceListComponent
@@ -104,7 +104,7 @@ const Section4 = ({ subDomain }: Props) => {
                       content={t(item.content)}
                       key={index}
                       subDomain={subDomain}
-                      contentVisible={data.homeTextData.section4.contentVisible}
+                      contentVisible={thisPage.contentVisible}
                     >
                       {t(item.title)}
                     </DeviceListComponent>
