@@ -15,3 +15,23 @@
     background: #666;
   }
 }
+
+.scroll-viewer {
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  &::-webkit-scrollbar {
+    width: 10px;
+    cursor: pointer;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+}

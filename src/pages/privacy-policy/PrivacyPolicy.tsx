@@ -3,9 +3,8 @@ import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { Helmet } from "react-helmet"
 import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
-// import { jsPDF } from "jspdf"
-// import jsPDF from "jspdf"
-// import html2canvas from "html2canvas"
+import axios from "axios"
+import html2pdf from "html2pdf.js"
 
 type Props = {
   subDomain?: string
@@ -19,22 +18,44 @@ const PrivacyPolicy = ({ handleStatus }: Props) => {
   const htmlLink = data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink
 
   const [pageTitle, setPageTitle] = useState("Privacy Statement")
+  const [loading, setLoading] = useState(false)
+  const [template, setTemplate] = useState("")
 
   useEffect(() => {
-    handleStatus(false)
+    handleStatus(true)
     setPageTitle(`${storesDetails.storesDetails.name} Privacy Statement`)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get(htmlLink)
+      .then((res) => {
+        setTemplate(res.data.template)
+        setLoading(true)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
   const handlePDFDownload = async () => {
-    // const doc = new jsPDF()
-    // await doc.html(document.getElementById("content") as HTMLDivElement, {
-    //   margin: 1,
-    //   x: 0.1,
-    //   y: 0.1,
-    // })
-    // doc.save("download.pdf")
-    console.log("download pdf")
+    const element = document.getElementsByClassName("container")[0] as HTMLDivElement
+    html2pdf().from(element).save(`${storesDetails.storesDetails.name}-privacy-policy.pdf`)
   }
+
+  useEffect(() => {
+    if (loading) {
+      const contents = document.getElementsByClassName("content")
+      for (let i = 0; i < contents.length; i++) {
+        const content = contents[i] as HTMLElement
+        content.style.margin = "20px 0"
+      }
+    }
+  }, [loading])
 
   return (
     <div>
@@ -43,14 +64,20 @@ const PrivacyPolicy = ({ handleStatus }: Props) => {
       </Helmet>
       <div className={classes.root}>
         <h1 className={classes.mainTitle}>{t(pageTitle)}</h1>
-        <div className={classes.download}>
-          <a style={{ color: data.colorPalle.textThemeCol }} onClick={handlePDFDownload}>
-            {t("Download PDF")}
-          </a>
-        </div>
-        <div className={`${classes.scrollViewer} custom-scroll-bar`}>
-          <iframe src={htmlLink} id="content"></iframe>
-        </div>
+        {loading && (
+          <React.Fragment>
+            <div className={classes.download}>
+              <a style={{ color: data.colorPalle.textThemeCol }} onClick={handlePDFDownload}>
+                {t("Download PDF")}
+              </a>
+            </div>
+            <div
+              className={`${classes.scrollViewer} scroll-viewer`}
+              style={{ scrollBehavior: "smooth" }}
+              dangerouslySetInnerHTML={{ __html: template }}
+            ></div>
+          </React.Fragment>
+        )}
       </div>
     </div>
   )
@@ -116,7 +143,7 @@ const useStyles = makeStyles(() =>
     },
     mainTitle: {
       color: "black",
-      fontSize: "55px !important",
+      fontSize: "50px !important",
       lineHeight: "0px !important",
       fontWeight: "bold",
       justifyContent: "center",
