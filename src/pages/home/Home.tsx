@@ -20,6 +20,7 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
     const storeTabData = mainData.getTabData
     setPageTitle(storeTabData.title)
     setMetaDescription(storeTabData.metaDescription)
+    handleStatus(true)
   }, [])
 
   return (

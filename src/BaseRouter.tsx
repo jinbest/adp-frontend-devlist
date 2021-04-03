@@ -16,6 +16,8 @@ type Props = {
 }
 
 const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
+  const data = storesDetails.storeCnts
+
   return (
     <>
       <Route
@@ -63,9 +65,16 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
         component={() => <Locations subDomain={subDomain} handleStatus={handleStatus} />}
       />
       <Route
-        path="/privacy_policy"
-        component={() => <PrivacyPolicy subDomain={subDomain} handleStatus={handleStatus} />}
+        path={data.homeTextData.footer.bottomLinks.privacyPolicy.link}
+        component={() =>
+          data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink ? (
+            <PrivacyPolicy subDomain={subDomain} handleStatus={handleStatus} />
+          ) : (
+            <Redirect to="/" />
+          )
+        }
       />
+      <Redirect to="/" />
     </>
   )
 }

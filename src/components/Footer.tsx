@@ -7,6 +7,7 @@ import { getAddress, phoneFormatString } from "../services/helper"
 import { inject, observer } from "mobx-react"
 import { StoresDetails } from "../store/StoresDetails"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
+import { Link } from "react-router-dom"
 
 type GridMDInterface =
   | boolean
@@ -173,6 +174,7 @@ interface Props extends StoreProps {
 
 const Footer = inject("storesDetailsStore")(
   observer((props: Props) => {
+    const classes = useStyles()
     const { subDomain, features, storesDetailsStore } = props
     const data = storesDetailsStore.storeCnts
     const commonData = storesDetailsStore.commonCnts
@@ -266,6 +268,13 @@ const Footer = inject("storesDetailsStore")(
                 }. ${t(data.homeTextData.footer.copyRight.text1)} "${
                   storesDetailsStore.storesDetails.business_name
                 }" ${t(data.homeTextData.footer.copyRight.text2)}`}
+              </div>
+              <div className={classes.bottomLink}>
+                {data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink && (
+                  <Link to={data.homeTextData.footer.bottomLinks.privacyPolicy.link}>
+                    {t(data.homeTextData.footer.bottomLinks.privacyPolicy.text)}
+                  </Link>
+                )}
               </div>
               {/* </Grid> */}
             </Grid>
@@ -371,6 +380,18 @@ const useStyles = makeStyles(() =>
       marginTop: "5px",
       ["@media (max-width:600px)"]: {
         margin: "5px auto 0",
+      },
+    },
+    bottomLink: {
+      textAlign: "right",
+      paddingRight: "30px",
+      "& a": {
+        textDecoration: "none",
+        color: "gray",
+        fontSize: "13px",
+        "&:hover": {
+          opacity: 0.7,
+        },
       },
     },
   })
