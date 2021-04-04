@@ -74,7 +74,7 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
           )
         }
       />
-      <Redirect to="/" />
+      {/* <Redirect to="/" /> */}
     </>
   )
 }

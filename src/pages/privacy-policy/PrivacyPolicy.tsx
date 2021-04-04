@@ -5,13 +5,14 @@ import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
 import axios from "axios"
 import html2pdf from "html2pdf.js"
+// import { jsPDF } from "jspdf"
 
 type Props = {
   subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const PrivacyPolicy = ({ handleStatus }: Props) => {
+const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
   const classes = useStyles()
   const [t] = useTranslation()
   const data = storesDetails.storeCnts
@@ -45,6 +46,9 @@ const PrivacyPolicy = ({ handleStatus }: Props) => {
   const handlePDFDownload = async () => {
     const element = document.getElementsByClassName("container")[0] as HTMLDivElement
     html2pdf().from(element).save(`${storesDetails.storesDetails.name}-privacy-policy.pdf`)
+    // const doc = new jsPDF()
+    // await doc.html(element)
+    // doc.save("test.pdf")
   }
 
   useEffect(() => {
@@ -62,7 +66,7 @@ const PrivacyPolicy = ({ handleStatus }: Props) => {
       <Helmet>
         <title>{pageTitle}</title>
       </Helmet>
-      <div className={classes.root}>
+      <div className={`${classes.root} ${subDomain}-privacy-policy`}>
         <h1 className={classes.mainTitle}>{t(pageTitle)}</h1>
         {loading && (
           <React.Fragment>
@@ -89,19 +93,9 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxWidth: "1440px",
-      margin: "200px auto 0px !important",
       padding: "0 2rem",
       display: "block",
       textAlign: "left",
-      ["@media (max-width:768px)"]: {
-        margin: "180px auto 0 !important",
-      },
-      ["@media (max-width:600px)"]: {
-        margin: "160px auto 0 !important",
-      },
-      ["@media (max-width:425px)"]: {
-        margin: "185px auto 0 !important",
-      },
     },
     download: {
       textAlign: "right",
