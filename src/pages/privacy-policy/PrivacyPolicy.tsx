@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
 import axios from "axios"
+import ReactToPrint from "react-to-print"
 
 type Props = {
   subDomain?: string
@@ -58,6 +59,12 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
       </Helmet>
       <div className={`${classes.root} ${subDomain}-privacy-policy`}>
         <h1 className={classes.mainTitle}>{t(pageTitle)}</h1>
+        <div className={classes.download}>
+          <ReactToPrint
+            trigger={() => <a href="#">{t("Download ad PDF")}</a>}
+            content={() => document.getElementsByClassName("container")[0] as HTMLDivElement}
+          />
+        </div>
         {loading && (
           <React.Fragment>
             <div
@@ -128,7 +135,7 @@ const useStyles = makeStyles(() =>
       justifyContent: "center",
       textAlign: "center",
       maxWidth: "100%",
-      marginBottom: "40px",
+      // marginBottom: "40px",
       whiteSpace: "nowrap",
       ["@media (max-width:1400px)"]: {
         fontSize: "3.5vw !important",
