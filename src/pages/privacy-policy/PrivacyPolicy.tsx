@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet"
 import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
 import axios from "axios"
-import html2pdf from "html2pdf.js"
 
 type Props = {
   subDomain?: string
@@ -42,11 +41,6 @@ const PrivacyPolicy = ({ handleStatus }: Props) => {
       })
   }, [])
 
-  const handlePDFDownload = async () => {
-    const element = document.getElementsByClassName("container")[0] as HTMLDivElement
-    html2pdf().from(element).save(`${storesDetails.storesDetails.name}-privacy-policy.pdf`)
-  }
-
   useEffect(() => {
     if (loading) {
       const contents = document.getElementsByClassName("content")
@@ -66,11 +60,6 @@ const PrivacyPolicy = ({ handleStatus }: Props) => {
         <h1 className={classes.mainTitle}>{t(pageTitle)}</h1>
         {loading && (
           <React.Fragment>
-            <div className={classes.download}>
-              <a style={{ color: data.colorPalle.textThemeCol }} onClick={handlePDFDownload}>
-                {t("Download PDF")}
-              </a>
-            </div>
             <div
               className={`${classes.scrollViewer} scroll-viewer`}
               style={{ scrollBehavior: "smooth" }}
@@ -126,7 +115,7 @@ const useStyles = makeStyles(() =>
     scrollViewer: {
       width: "100%",
       boxShadow: "0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%)",
-      height: "calc(100vh - 300px)",
+      height: "calc(100vh - 290px)",
       marginTop: "10px",
       "& iframe": {
         width: "100%",
@@ -149,6 +138,7 @@ const useStyles = makeStyles(() =>
       justifyContent: "center",
       textAlign: "center",
       maxWidth: "100%",
+      marginBottom: "40px",
       whiteSpace: "nowrap",
       ["@media (max-width:1400px)"]: {
         fontSize: "3.5vw !important",
