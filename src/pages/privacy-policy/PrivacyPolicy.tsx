@@ -71,11 +71,7 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
             ></div>
             <div className={classes.download}>
               <ReactToPrint
-                trigger={() => (
-                  <a href="#" style={{ color: data.colorPalle.textThemeCol }}>
-                    {t("Print")}
-                  </a>
-                )}
+                trigger={() => <p style={{ color: data.colorPalle.textThemeCol }}>{t("Print")}</p>}
                 content={() => document.getElementById("privacy-container") as HTMLDivElement}
               />
             </div>
@@ -98,13 +94,12 @@ const useStyles = makeStyles(() =>
     download: {
       textAlign: "right",
       padding: "0 50px",
-      "& a": {
+      "& p": {
         cursor: "pointer",
         fontWeight: "bold",
         fontSize: "16px",
         width: "fit-content",
         marginLeft: "auto",
-        textDecoration: "none",
         "&:hover": {
           opacity: 0.7,
         },
