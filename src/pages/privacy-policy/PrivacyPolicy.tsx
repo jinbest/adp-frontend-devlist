@@ -34,7 +34,7 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
     axios
       .get(htmlLink)
       .then((res) => {
-        setTemplate(res.data.template)
+        setTemplate(res.data)
         setLoading(true)
       })
       .catch((err) => {
@@ -44,10 +44,15 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
 
   useEffect(() => {
     if (loading) {
-      const contents = document.getElementsByClassName("content")
+      const contents = document.getElementsByClassName("content"),
+        fillDots = document.getElementsByClassName("fill-dot")
       for (let i = 0; i < contents.length; i++) {
         const content = contents[i] as HTMLElement
         content.style.margin = "20px 0"
+      }
+      for (let i = 0; i < fillDots.length; i++) {
+        const fillDot = fillDots[i] as HTMLSpanElement
+        fillDot.style.marginBottom = "-40px"
       }
     }
   }, [loading])
@@ -58,20 +63,22 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
         <title>{pageTitle}</title>
       </Helmet>
       <div className={`${classes.root} ${subDomain}-privacy-policy`}>
-        <h1 className={classes.mainTitle}>{t(pageTitle)}</h1>
-        <div className={classes.download}>
-          <ReactToPrint
-            trigger={() => <a href="#">{t("Download ad PDF")}</a>}
-            content={() => document.getElementsByClassName("container")[0] as HTMLDivElement}
-          />
-        </div>
         {loading && (
           <React.Fragment>
             <div
-              className={`${classes.scrollViewer} scroll-viewer`}
               style={{ scrollBehavior: "smooth" }}
               dangerouslySetInnerHTML={{ __html: template }}
             ></div>
+            <div className={classes.download}>
+              <ReactToPrint
+                trigger={() => (
+                  <a href="#" style={{ color: data.colorPalle.textThemeCol }}>
+                    {t("Print")}
+                  </a>
+                )}
+                content={() => document.getElementById("privacy-container") as HTMLDivElement}
+              />
+            </div>
           </React.Fragment>
         )}
       </div>
@@ -85,12 +92,12 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxWidth: "1440px",
-      padding: "0 2rem",
       display: "block",
       textAlign: "left",
     },
     download: {
       textAlign: "right",
+      padding: "0 50px",
       "& a": {
         cursor: "pointer",
         fontWeight: "bold",
@@ -102,48 +109,11 @@ const useStyles = makeStyles(() =>
           opacity: 0.7,
         },
       },
-      ["@media (max-width:600px)"]: {
-        marginTop: "-10px",
-        "& a": {
-          fontSize: "2.8vw",
-        },
+      ["@media (max-width:500px)"]: {
+        padding: "0 30px",
       },
-    },
-    scrollViewer: {
-      width: "100%",
-      boxShadow: "0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%)",
-      height: "calc(100vh - 290px)",
-      marginTop: "10px",
-      "& iframe": {
-        width: "100%",
-        height: "100%",
-        outline: "none",
-        border: "none",
-      },
-      ["@media (max-width:768px)"]: {
-        height: "calc(100vh - 270px)",
-      },
-      ["@media (max-width:600px)"]: {
-        height: "calc(100vh - 300px)",
-      },
-    },
-    mainTitle: {
-      color: "black",
-      fontSize: "50px !important",
-      lineHeight: "0px !important",
-      fontWeight: "bold",
-      justifyContent: "center",
-      textAlign: "center",
-      maxWidth: "100%",
-      // marginBottom: "40px",
-      whiteSpace: "nowrap",
-      ["@media (max-width:1400px)"]: {
-        fontSize: "3.5vw !important",
-      },
-      ["@media (max-width:600px)"]: {
-        fontSize: "5vw !important",
-        whiteSpace: "inherit",
-        lineHeight: "6.5vw !important",
+      ["@media (max-width:425px)"]: {
+        padding: "0 20px",
       },
     },
   })
