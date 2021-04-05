@@ -114,6 +114,9 @@ const CustomizedMenus = inject("storesDetailsStore")(
 
     useEffect(() => {
       if (Boolean(anchorEl)) {
+        if (storesDetailsStore.cntUserLocation.length) {
+          return
+        }
         if (navigator.platform.includes("Mac")) {
           setRequireUserInfo(true)
           return
