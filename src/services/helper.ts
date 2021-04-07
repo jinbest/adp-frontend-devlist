@@ -143,6 +143,7 @@ export function makeLocations(data: any[]) {
               break
             }
           }
+          break;
         }
       }
       cntDay += 1
