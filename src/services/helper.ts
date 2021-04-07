@@ -4,6 +4,7 @@ import { GetQuotesParams } from "../model/get-quote-params"
 import { repairWidgetStore, storesDetails, repairWidData } from "../store"
 import { repairWidgetAPI } from "./"
 import { GetAddressFormat } from "../model/get-address-format"
+import _ from "lodash"
 
 interface LocationHour {
   close: string
@@ -118,35 +119,31 @@ export function makeLocations(data: any[]) {
     const hours: any[] = [],
       weekDays: any[] = [],
       storeGroup: any[] = []
-    let cntDay = 0
-    while(cntDay < 7) {
-      for (let j = 0; j < data[i].location_hours.length; j++) {
-        if (data[i].location_hours[j].type === "REGULAR" && data[i].location_hours[j].day === cntDay) {
-          const cntStoreID = data[i].location_hours[j].store_id
-          if (!storeGroup.includes(cntStoreID)) {
-            storeGroup.push(cntStoreID)
-            hours.push({ store_id: cntStoreID, hrs: [] })
-            weekDays.push({ store_id: cntStoreID, wkDys: [] })
+    const cntLocationHours = _.sortBy(data[i].location_hours, o => o.day)
+    for (let j = 0; j < cntLocationHours.length; j++) {
+      if (cntLocationHours[j].type === "REGULAR") {
+        const cntStoreID = cntLocationHours[j].store_id
+        if (!storeGroup.includes(cntStoreID)) {
+          storeGroup.push(cntStoreID)
+          hours.push({ store_id: cntStoreID, hrs: [] })
+          weekDays.push({ store_id: cntStoreID, wkDys: [] })
+        }
+        let hour = ""
+        if (!cntLocationHours[j].open || !cntLocationHours[j].close) {
+          hour = "Closed"
+        } else {
+          const open = getHourType(cntLocationHours[j].open), 
+            close = getHourType(cntLocationHours[j].close)
+          hour = open + " - " + close
+        }
+        for (let k = 0; k < hours.length; k++) {
+          if (cntStoreID === hours[k].store_id) {
+            hours[k].hrs.push(hour)
+            weekDays[k].wkDys.push(days[cntLocationHours[j].day])
+            break
           }
-          let hour = ""
-          if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
-            hour = "Closed"
-          } else {
-            const open = getHourType(data[i].location_hours[j].open), 
-              close = getHourType(data[i].location_hours[j].close)
-            hour = open + " - " + close
-          }
-          for (let k = 0; k < hours.length; k++) {
-            if (cntStoreID === hours[k].store_id) {
-              hours[k].hrs.push(hour)
-              weekDays[k].wkDys.push(days[data[i].location_hours[j].day])
-              break
-            }
-          }
-          break;
         }
       }
-      cntDay += 1
     }
     const cntItem: GetCurrentLocParams = {
       location_name: data[i].location_name,
