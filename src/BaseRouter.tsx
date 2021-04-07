@@ -66,13 +66,7 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
       />
       <Route
         path={data.homeTextData.footer.bottomLinks.privacyPolicy.link}
-        component={() =>
-          data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink ? (
-            <PrivacyPolicy subDomain={subDomain} handleStatus={handleStatus} />
-          ) : (
-            <Redirect to="/" />
-          )
-        }
+        component={() => <PrivacyPolicy subDomain={subDomain} handleStatus={handleStatus} />}
       />
       {/* <Redirect to="/" /> */}
     </>
