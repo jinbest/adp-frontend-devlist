@@ -46,7 +46,6 @@ function App(): JSX.Element {
   const [favIcon, setFavIcon] = useState("")
   const [metaList, setMetaList] = useState<MetaParams[]>([])
   const [scriptList, setScriptList] = useState<ScriptParams[]>([])
-  const [condition, setCondition] = useState<any>({})
   const parser = new DOMParser()
 
   const handleFooterStatus = (status: boolean) => {
@@ -157,7 +156,6 @@ function App(): JSX.Element {
 
   useEffect(() => {
     if (loadStatus && loadStoreConfig) {
-      setCondition({ ...storesDetails.storeCnts.general.condition })
       if (storesDetails.storeCnts.general.condition.hasShopLink) {
         setFeatures([...features, { flag: "FRONTEND_BUY", isActive: true }])
       }
@@ -179,10 +177,12 @@ function App(): JSX.Element {
             {metaList.map((item: MetaParams, index: number) => {
               return <meta name={item.name} content={item.content} key={index} />
             })}
-            {condition.googleVerification.status && (
+            {storesDetails.storeCnts.general.condition.googleVerification.status && (
               <meta
-                name={condition.googleVerification.metaData.name}
-                content={condition.googleVerification.metaData.content}
+                name={storesDetails.storeCnts.general.condition.googleVerification.metaData.name}
+                content={
+                  storesDetails.storeCnts.general.condition.googleVerification.metaData.content
+                }
               />
             )}
             {scriptList.map((item: ScriptParams, index: number) => {
