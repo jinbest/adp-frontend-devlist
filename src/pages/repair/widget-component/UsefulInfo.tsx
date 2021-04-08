@@ -24,7 +24,7 @@ const UsefulInfo = ({
   repairWidgetData,
 }: Props) => {
   const mainData = storesDetails.storeCnts
-  const themeCol = mainData.colorPalle.themeColor
+  const themeCol = mainData.general.colorPalle.themeColor
 
   const [message, setMessage] = useState("")
   const [t] = useTranslation()
@@ -83,7 +83,7 @@ const UsefulInfo = ({
             <div className="service-card-button">
               <Button
                 title={t("Next")}
-                bgcolor={mainData.colorPalle.nextButtonCol}
+                bgcolor={mainData.general.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
                 height="30px"

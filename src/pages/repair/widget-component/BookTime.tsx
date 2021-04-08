@@ -50,9 +50,9 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
   const mainData = storesDetails.storeCnts
   const timezoneData = require(`../../../assets/_common/timezoneList`)
   const timeZoneList = timezoneData.timezoneOptions
-  const themeCol = mainData.colorPalle.themeColor
-  const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
-  const brandThemeCol = mainData.brandItemsData.brandThemeCol
+  const themeCol = mainData.general.colorPalle.themeColor
+  const repairBooktimeCol = mainData.general.colorPalle.repairBooktimeCol
+  const brandThemeCol = mainData.homepage.header.brandData.brandThemeCol
 
   const [tzIndex, setTZIndex] = useState(0)
   const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
@@ -439,7 +439,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             <div className="service-card-button">
               <Button
                 title={t("Next")}
-                bgcolor={mainData.colorPalle.nextButtonCol}
+                bgcolor={mainData.general.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
                 height="30px"

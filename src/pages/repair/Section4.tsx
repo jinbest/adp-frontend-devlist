@@ -14,7 +14,7 @@ type Props = {
 
 const Section4 = ({ subDomain, handleStatus }: Props) => {
   const data = storesDetails.storeCnts
-  const repair = data.repairData.section4
+  const repair = data.repairPage.section4
   const [t] = useTranslation()
   const classes = useStyles()
 
@@ -32,7 +32,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
             className={subDomain + "-service-section-content"}
             style={{ color: repair.themeCol }}
           >
-            {t(repair.content)}
+            {t(repair.subtitle)}
           </Typography>
           <Box className={subDomain + "-service-section-button"}>
             {isExternal(repair.link) ? (
@@ -44,7 +44,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
               >
                 <Button
                   title={t(repair.btnTitle)}
-                  bgcolor={data.colorPalle.repairButtonCol}
+                  bgcolor={data.general.colorPalle.repairButtonCol}
                   borderR="20px"
                   subDomain={subDomain}
                 />
@@ -59,7 +59,7 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
               >
                 <Button
                   title={t(repair.btnTitle)}
-                  bgcolor={data.colorPalle.repairButtonCol}
+                  bgcolor={data.general.colorPalle.repairButtonCol}
                   borderR="20px"
                   subDomain={subDomain}
                 />

@@ -50,7 +50,7 @@ const RepairWidget = inject("repairWidgetStore")(
     const { subDomain, handleStatus, features, repairWidgetStore } = props
     const mainData = storesDetails.storeCnts
     const mockData = storesDetails.commonCnts
-    const themeCol = mainData.colorPalle.themeColor
+    const themeCol = mainData.general.colorPalle.themeColor
 
     const [step, setStep] = useState(0)
     const [feats, setFeats] = useState<any[]>([])

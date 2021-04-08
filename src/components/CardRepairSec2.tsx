@@ -12,7 +12,7 @@ type Props = {
 
 const CardRepairSec2 = ({ subtitle, content, subDomain, type, children }: Props) => {
   const data = storesDetails.storeCnts
-  const sec2SvgCol = data.colorPalle.sec2SvgCol
+  const sec2SvgCol = data.general.colorPalle.sec2SvgCol
 
   return (
     <div className={subDomain + "-card-repair-sec2"}>

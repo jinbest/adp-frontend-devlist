@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 import { inject, observer } from "mobx-react"
 import { RepairWidgetStore } from "../../store/RepairWidgetStore"
 import { useTranslation } from "react-i18next"
-import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails } from "../../store"
+import { isExternal } from "../../services/helper"
 
 type StoreProps = {
   repairWidgetStore: RepairWidgetStore
@@ -19,9 +19,9 @@ interface Props extends StoreProps {
 
 const Section1 = inject("repairWidgetStore")(
   observer((props: Props) => {
-    const { handleStatus, repairWidgetStore, subDomain, features } = props
+    const { handleStatus, repairWidgetStore, subDomain } = props
     const data = storesDetails.storeCnts
-    const repair = data.repairData.section1
+    const repair = data.repairPage.section1
     const [t] = useTranslation()
 
     const handleRepairWidget = () => {
@@ -35,9 +35,7 @@ const Section1 = inject("repairWidgetStore")(
       <div
         className={subDomain + "-service-section1-special-bg"}
         style={{
-          backgroundImage: data.repairData.section1.hasBackground
-            ? "url(" + data.repairData.section1.bgImg + ")"
-            : "",
+          backgroundImage: repair.hasBackground ? "url(" + repair.bgImg + ")" : "",
         }}
       >
         <section className={subDomain + "-Container"}>
@@ -55,47 +53,51 @@ const Section1 = inject("repairWidgetStore")(
                 className={subDomain + "-service-section-content"}
                 style={{ color: repair.themeCol }}
               >
-                {t(repair.content)}
+                {t(repair.subtitle)}
               </Typography>
               <div style={{ display: "flex" }}>
-                <Box className={subDomain + "-service-section-button"}>
-                  <Link
-                    to={repair.quoteBtn.link}
-                    style={{ textDecoration: "none" }}
-                    onClick={handleRepairWidget}
-                  >
-                    <Button
-                      title={t(repair.quoteBtn.title)}
-                      bgcolor={data.colorPalle.repairButtonCol}
-                      borderR="20px"
-                      subDomain={subDomain}
-                      width="90%"
-                    />
-                  </Link>
-                </Box>
-                <FeatureToggles features={features}>
-                  <Feature
-                    name={"FRONTEND_REPAIR_APPOINTMENT"}
-                    inactiveComponent={() => <></>}
-                    activeComponent={() => (
-                      <Box className={subDomain + "-service-section-button"}>
-                        <Link
-                          to={repair.appointmentBtn.link}
-                          style={{ textDecoration: "none" }}
-                          onClick={handleRepairWidget}
-                        >
-                          <Button
-                            title={t(repair.appointmentBtn.title)}
-                            bgcolor={data.colorPalle.repairButtonCol}
-                            borderR="20px"
-                            subDomain={subDomain}
-                            width="90%"
-                          />
-                        </Link>
-                      </Box>
-                    )}
-                  />
-                </FeatureToggles>
+                {repair.buttons.map((item: any, index: number) => {
+                  return (
+                    <React.Fragment key={index}>
+                      {item.visible ? (
+                        <Box className={subDomain + "-service-section-button"}>
+                          {isExternal(item.link) ? (
+                            <a
+                              href={item.link}
+                              style={{ textDecoration: "none" }}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Button
+                                title={t(item.title)}
+                                bgcolor={data.general.colorPalle.repairButtonCol}
+                                borderR="20px"
+                                subDomain={subDomain}
+                                width="90%"
+                              />
+                            </a>
+                          ) : (
+                            <Link
+                              to={item.link}
+                              style={{ textDecoration: "none" }}
+                              onClick={handleRepairWidget}
+                            >
+                              <Button
+                                title={t(item.title)}
+                                bgcolor={data.general.colorPalle.repairButtonCol}
+                                borderR="20px"
+                                subDomain={subDomain}
+                                width="90%"
+                              />
+                            </Link>
+                          )}
+                        </Box>
+                      ) : (
+                        <></>
+                      )}
+                    </React.Fragment>
+                  )
+                })}
               </div>
             </Grid>
             <Grid item xs={12} sm={5}>

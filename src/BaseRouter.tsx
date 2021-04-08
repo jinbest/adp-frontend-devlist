@@ -64,13 +64,12 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
         path="/locations"
         component={() => <Locations subDomain={subDomain} handleStatus={handleStatus} />}
       />
-      {data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink && (
+      {data.homepage.footer.bottomLinks.privacyPolicy.externalLink && (
         <Route
-          path={data.homeTextData.footer.bottomLinks.privacyPolicy.link}
+          path={data.homepage.footer.bottomLinks.privacyPolicy.href}
           component={() => <PrivacyPolicy subDomain={subDomain} handleStatus={handleStatus} />}
         />
       )}
-      {/* <Redirect to="/" /> */}
     </>
   )
 }

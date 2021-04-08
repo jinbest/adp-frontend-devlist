@@ -7,6 +7,7 @@ import { StoresDetails } from "../../store/StoresDetails"
 import { useQuery } from "../../services/helper"
 import { Provider } from "mobx-react"
 import { storesDetails } from "../../store"
+import { MetaParams } from "../../model/meta-params"
 
 type Props = {
   subDomain: string
@@ -17,18 +18,18 @@ type Props = {
 
 const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Props) => {
   const mainData = storesDetailsStore.storeCnts
+  const thisPage = mainData.contactPage
   const query = useQuery()
 
   const [locations, setLocations] = useState<any[]>([])
   const [locationID, setLocationID] = useState(0)
 
   const [pageTitle, setPageTitle] = useState("Contact Us | ")
-  const [metaDescription, setMetaDescription] = useState("")
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
 
   useEffect(() => {
-    const storeTabData = mainData.getTabData
-    setPageTitle(storeTabData.contactTitle)
-    setMetaDescription(storeTabData.contactMetaDes)
+    setPageTitle(thisPage.headData.title)
+    setMetaList(thisPage.headData.metaList)
     handleStatus(true)
   }, [])
 
@@ -52,9 +53,11 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
     <div>
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <link rel="icon" id="favicon" href={mainData.fav.img} />
-        <link rel="apple-touch-icon" href={mainData.fav.img} />
+        {metaList.map((item: MetaParams, index: number) => {
+          return <meta name={item.name} content={item.content} key={index} />
+        })}
+        <link rel="icon" id="favicon" href={mainData.homepage.headData.fav.img} />
+        <link rel="apple-touch-icon" href={mainData.homepage.headData.fav.img} />
       </Helmet>
       {locations.length && locationID && (
         <SectionMap

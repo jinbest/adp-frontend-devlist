@@ -6,6 +6,7 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails, repairWidgetStore } from "../store"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
 import { phoneFormatString, isExternal } from "../services/helper"
+import _ from "lodash"
 
 type PropsNavItemLink = {
   item: any
@@ -114,10 +115,12 @@ type PropsHeader = {
 
 const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
   const data = storesDetails.storeCnts
+  const thisPage = data.homepage.header
 
-  const navItemsLink = data.navItemsData,
-    brandItemLink = data.brandItemsData,
-    searchPlaceholder = data.homeTextData.section1.searchPlaceholder
+  const navItemsLink = _.sortBy(thisPage.navItems, (o) => o.order),
+    brandItemLink = _.sortBy(thisPage.brandItems, (o) => o.order),
+    brandData = thisPage.brandData,
+    searchPlaceholder = data.homepage.section1.searchPlaceholder
 
   const [t] = useTranslation()
 
@@ -172,7 +175,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
     <header className={subDomain + "-header"}>
       <div
         className={subDomain + "-header-brand"}
-        style={{ backgroundColor: data.brandItemsData.brandThemeCol }}
+        style={{ backgroundColor: brandData.brandThemeCol }}
       >
         <div
           style={{
@@ -184,14 +187,19 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
         >
           {!mobile && (
             <ul style={{ display: "flex", margin: 0, padding: 0 }}>
-              {brandItemLink.left.map((item: any, index: number) => {
+              {brandItemLink.map((item: any, index: number) => {
                 return (
-                  <BrandItemLink
-                    item={t(item.text)}
-                    href={item.link}
-                    key={index}
-                    color={brandItemLink.brandCol}
-                  />
+                  <React.Fragment key={index}>
+                    {item.visible ? (
+                      <BrandItemLink
+                        item={t(item.text)}
+                        href={item.href}
+                        color={brandData.brandCol}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </React.Fragment>
                 )
               })}
             </ul>
@@ -200,7 +208,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             <Link
               to="/contact"
               style={{
-                color: brandItemLink.brandCol,
+                color: brandData.brandCol,
                 height: "25px",
                 padding: "5px 0",
                 marginTop: "-5px",
@@ -222,13 +230,17 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               marginRight: mobile && getQuteStatus ? 0 : "40px",
             }}
           >
-            <BrandItemLink
-              item={storesDetails.storesDetails.phone}
-              color={brandItemLink.brandCol}
-              phoneNumber={true}
-              href="#"
-            />
-            {!mobile && <LangDropdown subDomain={subDomain} color={brandItemLink.brandCol} />}
+            {thisPage.visibility.phone && (
+              <BrandItemLink
+                item={storesDetails.storesDetails.phone}
+                color={brandData.brandCol}
+                phoneNumber={true}
+                href="#"
+              />
+            )}
+            {!mobile && thisPage.visibility.lang && (
+              <LangDropdown subDomain={subDomain} color={brandData.brandCol} />
+            )}
             <FeatureToggles features={feats}>
               <Feature
                 name={"FRONTEND_USER_ACCOUNT"}
@@ -238,7 +250,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                     name={"FRONTEND_USER_LOGIN"}
                     inactiveComponent={() => <></>}
                     activeComponent={() => (
-                      <BrandItemLink item={t("LOG_IN")} color={brandItemLink.brandCol} href="#" />
+                      <BrandItemLink item={t("LOG_IN")} color={brandData.brandCol} href="#" />
                     )}
                   />
                 )}
@@ -249,7 +261,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             <Link
               to="/get-quote"
               className={subDomain + "-mobile-brand-button"}
-              style={{ background: data.colorPalle.repairButtonCol, color: "white" }}
+              style={{ background: data.general.colorPalle.repairButtonCol, color: "white" }}
               onClick={handleRepairWidget}
             >
               {t("Get Quote")}
@@ -260,7 +272,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           style={{
             width: "100%",
             height: "30px",
-            background: data.colorPalle.repairButtonCol,
+            background: data.general.colorPalle.repairButtonCol,
             textAlign: "center",
             padding: "2px 0",
             marginLeft: "-20px",
@@ -316,20 +328,26 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           <ul className={subDomain + "-navlink-parent"}>
             {navItemsLink.map((item: any, index: number) => {
               return (
-                <FeatureToggles features={feats} key={index}>
-                  <Feature
-                    name={item.flag}
-                    inactiveComponent={() => <></>}
-                    activeComponent={() => (
-                      <NavItemLink
-                        item={item}
-                        handleStatus={handleStatus}
-                        subDomain={subDomain}
-                        feats={feats}
+                <React.Fragment key={index}>
+                  {item.visible ? (
+                    <FeatureToggles features={feats}>
+                      <Feature
+                        name={item.flag}
+                        inactiveComponent={() => <></>}
+                        activeComponent={() => (
+                          <NavItemLink
+                            item={item}
+                            handleStatus={handleStatus}
+                            subDomain={subDomain}
+                            feats={feats}
+                          />
+                        )}
                       />
-                    )}
-                  />
-                </FeatureToggles>
+                    </FeatureToggles>
+                  ) : (
+                    <></>
+                  )}
+                </React.Fragment>
               )
             })}
           </ul>
@@ -341,8 +359,8 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                 <CustomizedMenus
                   storesDetailsStore={storesDetails}
                   subDomain={subDomain}
-                  btnTitle={data.homeTextData.header.buttonTitle}
-                  width={data.homeTextData.header.width}
+                  btnTitle={thisPage.button.title}
+                  width={thisPage.button.width}
                   features={feats}
                 />
               )}
@@ -353,8 +371,8 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               name='FRONTEND_BUY'
               inactiveComponent={()=><></>}
               activeComponent={()=>
-                <a href={data.avatarData.store.link} className={subDomain + '-navlink-avatar-store'} target='_blank' rel='noreferrer'>
-                  <img src={data.avatarData.store.img} alt='shop-img' />
+                <a href={thisPage.mobileNavData.avatarData.store.link} className={subDomain + '-navlink-avatar-store'} target='_blank' rel='noreferrer'>
+                  <img src={thisPage.mobileNavData.avatarData.store.img} alt='shop-img' />
                 </a>
               }
             />
@@ -366,13 +384,13 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             toggleMenuStatus={toggleMenuStatus}
             handleStatus={handleStatus}
             features={feats}
-            themeCol={data.colorPalle.repairButtonCol}
+            themeCol={data.general.colorPalle.repairButtonCol}
             storesDetailsStore={storesDetails}
           >
             {!menuStatus ? (
-              <img src={data.avatarData.menu} onClick={toggleMenuStatus} />
+              <img src={thisPage.mobileNavData.avatarData.menu} onClick={toggleMenuStatus} />
             ) : (
-              <img src={data.avatarData.cancel} onClick={toggleMenuStatus} />
+              <img src={thisPage.mobileNavData.avatarData.cancel} onClick={toggleMenuStatus} />
             )}
           </HeaderDrawer>
           {/* <FeatureToggles features={feats}>
@@ -381,12 +399,12 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               inactiveComponent={() => <></>}
               activeComponent={() => (
                 <a
-                  href={data.avatarData.store.link}
+                  href={thisPage.mobileNavData.avatarData.store.link}
                   target="_blank"
                   rel="noreferrer"
                   style={{ height: "35px" }}
                 >
-                  <img src={data.avatarData.storeBlue} style={{ height: "35px" }} />
+                  <img src={thisPage.mobileNavData.avatarData.storeBlue} style={{ height: "35px" }} />
                 </a>
               )}
             />
@@ -434,7 +452,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               <div>
                 {mobileMenu === "left" ? (
                   <div>
-                    {data.mobileNavItemData.left.map((item: any, index: number) => {
+                    {navItemsLink.map((item: any, index: number) => {
                       return (
                         <FeatureToggles features={feats} key={index}>
                           <Feature
@@ -485,12 +503,12 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                         className={subDomain + "-arrow-back"}
                         onClick={() => setMobileShopType(999)}
                       >
-                        {data.navShop.mainList[mobileShopType].type}
+                        {thisPage.megaMenu.mainList[mobileShopType].type}
                       </p>
                     )}
                     <div className="mobile-scroll-nav-div">
                       {mobileShopType === 999
-                        ? data.navShop.mainList.map((item: any, index: number) => {
+                        ? thisPage.megaMenu.mainList.map((item: any, index: number) => {
                             return (
                               <a
                                 key={index}
@@ -502,7 +520,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                               </a>
                             )
                           })
-                        : data.navShop.mainList[mobileShopType].list.map(
+                        : thisPage.megaMenu.mainList[mobileShopType].list.map(
                             (item: any, index: number) => {
                               return (
                                 <a key={index} className={subDomain + "-mobile-item"} href="#">
@@ -517,7 +535,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
               </div>
             ) : (
               <div>
-                {data.userNavItemData.map((item: any, index: number) => {
+                {thisPage.mobileNavData.userNavItems.map((item: any, index: number) => {
                   return (
                     <FeatureToggles features={feats} key={index}>
                       <Feature
@@ -541,7 +559,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
                         name={"FRONTEND_USER_SIGNUP"}
                         inactiveComponent={() => <></>}
                         activeComponent={() => (
-                          <a href="#" style={{ color: data.colorPalle.textThemeCol }}>
+                          <a href="#" style={{ color: data.general.colorPalle.textThemeCol }}>
                             {t("SIGN_OUT")}
                           </a>
                         )}

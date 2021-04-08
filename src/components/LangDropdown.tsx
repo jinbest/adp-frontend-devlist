@@ -13,7 +13,7 @@ type Props = {
 
 const LangDropdown = ({ color }: Props) => {
   const data = storesDetails.storeCnts
-  const themeCol = data.colorPalle.themeColor
+  const themeCol = data.general.colorPalle.themeColor
   const classes = useStyles()
   const [t] = useTranslation()
 
@@ -31,7 +31,7 @@ const LangDropdown = ({ color }: Props) => {
   }
 
   useEffect(() => {
-    if (data.condition.defaultLang === "fr") {
+    if (data.general.condition.defaultLang === "fr") {
       setState(options[1])
       i18n.changeLanguage("fr")
       window.localStorage.setItem("cntLang", "fr")

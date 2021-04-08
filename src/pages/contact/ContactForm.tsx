@@ -34,7 +34,7 @@ const ContactForm = ({
   storesDetailsStore,
 }: Props) => {
   const mainData = storesDetailsStore.storeCnts
-  const thisPage = mainData.contactForm
+  const thisPage = mainData.contactPage.contactForm
   const [t] = useTranslation()
   const classes = useStyles()
 
@@ -304,7 +304,7 @@ const ContactForm = ({
             </Grid>
             <Button
               title={t(thisPage.button.submit)}
-              bgcolor={mainData.colorPalle.nextButtonCol}
+              bgcolor={mainData.general.colorPalle.nextButtonCol}
               borderR="20px"
               width="120px"
               height="30px"

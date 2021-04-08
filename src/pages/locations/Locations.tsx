@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
 import { getRegularHours, getHourType, getAddress, phoneFormatString } from "../../services/helper"
+import { MetaParams } from "../../model/meta-params"
 
 const DAYS_OF_THE_WEEK: string[] = [
   "Sunday",
@@ -31,12 +32,11 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
   const [t] = useTranslation()
 
   const [pageTitle, setPageTitle] = useState("Locations")
-  const [metaDescription, setMetaDescription] = useState("")
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
 
   useEffect(() => {
-    const storeTabData = data.getTabData
-    setPageTitle(storeTabData.locTitle)
-    setMetaDescription(storeTabData.locMetaDes)
+    setPageTitle(thisPage.headData.title)
+    setMetaList(thisPage.headData.metaList)
     handleStatus(true)
   }, [])
 
@@ -51,31 +51,37 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <link rel="icon" id="favicon" href={data.fav.img} />
-        <link rel="apple-touch-icon" href={data.fav.img} />
+        {metaList.map((item: MetaParams, index: number) => {
+          return <meta name={item.name} content={item.content} key={index} />
+        })}
+        <link rel="icon" id="favicon" href={data.homepage.headData.fav.img} />
+        <link rel="apple-touch-icon" href={data.homepage.headData.fav.img} />
       </Helmet>
 
       <Shape />
       <div className={classes.root}>
-        <h1 className={classes.mainTitle}>{t(thisPage.title)}</h1>
-        <Typography className={classes.mainContent}>{t(thisPage.content)}</Typography>
-        <Box className={classes.buttonDiv}>
-          <Link
-            to={thisPage.button.link}
-            style={{ textDecoration: "none" }}
-            onClick={handleGetQuote}
-          >
-            <Button
-              title={t(thisPage.button.title)}
-              bgcolor={data.colorPalle.repairButtonCol}
-              borderR="20px"
-              subDomain={subDomain}
-              width="100%"
-              margin="0 auto"
-            />
-          </Link>
-        </Box>
+        <h1 className={classes.mainTitle}>{t(thisPage.section1.title)}</h1>
+        <Typography className={classes.mainContent}>{t(thisPage.section1.subtitle)}</Typography>
+        {thisPage.section1.button.visible ? (
+          <Box className={classes.buttonDiv}>
+            <Link
+              to={thisPage.section1.button.link}
+              style={{ textDecoration: "none" }}
+              onClick={handleGetQuote}
+            >
+              <Button
+                title={t(thisPage.section1.button.title)}
+                bgcolor={data.general.colorPalle.repairButtonCol}
+                borderR="20px"
+                subDomain={subDomain}
+                width="100%"
+                margin="0 auto"
+              />
+            </Link>
+          </Box>
+        ) : (
+          <></>
+        )}
         <div className={classes.locationsContainer}>
           <Typography className={classes.subTitle}>
             {`${t("All")} ${storesDetails.storesDetails.name} ${t("Locations")}`}
@@ -143,7 +149,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                           >
                             <Button
                               title={t("Get Directions")}
-                              bgcolor={data.colorPalle.repairButtonCol}
+                              bgcolor={data.general.colorPalle.repairButtonCol}
                               borderR="20px"
                               subDomain={subDomain}
                               width="auto"
@@ -155,7 +161,7 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                           <a href={`tel:${item.phone}`} style={{ textDecoration: "none" }}>
                             <Button
                               title={t("Call Now")}
-                              bgcolor={data.colorPalle.repairButtonCol}
+                              bgcolor={data.general.colorPalle.repairButtonCol}
                               borderR="20px"
                               subDomain={subDomain}
                               width="auto"

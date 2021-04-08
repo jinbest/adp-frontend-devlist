@@ -4,6 +4,7 @@ import { DeviceListComponent } from "../../components"
 import { Typography, Grid, Box } from "@material-ui/core"
 import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
+import _ from "lodash"
 
 type Props = {
   subDomain?: string
@@ -11,7 +12,8 @@ type Props = {
 
 const Section4 = ({ subDomain }: Props) => {
   const data = storesDetails.storeCnts
-  const thisPage = data.homeTextData.section4
+  const thisPage = data.homepage.section4
+  const imageData = _.sortBy(thisPage.data, (o) => o.order)
   const [t] = useTranslation()
 
   return (
@@ -34,7 +36,7 @@ const Section4 = ({ subDomain }: Props) => {
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Grid item container xs={12}>
-                {thisPage.data.slice(0, 2).map((item: any, index: number) => {
+                {imageData.slice(0, 2).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={6} key={index}>
                       <Box className={subDomain + "-cart-device-list"}>
@@ -64,7 +66,7 @@ const Section4 = ({ subDomain }: Props) => {
             <Grid item xs={12} sm={12} md={3}></Grid>
             <Grid item xs={12} sm={12} md={9}>
               <Grid item container xs={12}>
-                {thisPage.data.slice(2, 5).map((item: any, index: number) => {
+                {imageData.slice(2, 5).map((item: any, index: number) => {
                   return (
                     <Grid item xs={12} sm={4} key={index}>
                       <Box className={subDomain + "-cart-device-list"}>
@@ -95,7 +97,7 @@ const Section4 = ({ subDomain }: Props) => {
           </Grid>
           <Grid container item xs={12}>
             <div style={{ display: "flex", margin: "auto" }}>
-              {thisPage.data.map((item: any, index: number) => {
+              {imageData.map((item: any, index: number) => {
                 return (
                   <Box className={subDomain + "-cart-device-list"} key={index}>
                     <DeviceListComponent

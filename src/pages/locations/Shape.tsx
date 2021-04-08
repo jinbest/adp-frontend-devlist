@@ -4,12 +4,13 @@ import { storesDetails } from "../../store"
 
 const Shape = () => {
   const data = storesDetails.storeCnts
+  const shapeData = data.businessPage.shapeData
   const classes = useStyles()
 
   return (
     <div>
       <div className={classes.corner}>
-        <img src={data.businessData.businessCornerShape} />
+        <img src={shapeData.businessCornerShape} />
       </div>
       <div className={classes.skitImg}>
         <img src={storesDetails.commonCnts.locationsData.skitterMobile} />

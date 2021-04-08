@@ -15,7 +15,7 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
   const classes = useStyles()
   const [t] = useTranslation()
   const data = storesDetails.storeCnts
-  const htmlLink = data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink
+  const htmlLink = data.homepage.footer.bottomLinks.privacyPolicy.externalLink
 
   const [pageTitle, setPageTitle] = useState("Privacy Statement")
   const [loading, setLoading] = useState(false)
@@ -71,7 +71,9 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
             ></div>
             <div className={classes.download}>
               <ReactToPrint
-                trigger={() => <p style={{ color: data.colorPalle.textThemeCol }}>{t("Print")}</p>}
+                trigger={() => (
+                  <p style={{ color: data.general.colorPalle.textThemeCol }}>{t("Print")}</p>
+                )}
                 content={() => document.getElementById("privacy-container") as HTMLDivElement}
               />
             </div>

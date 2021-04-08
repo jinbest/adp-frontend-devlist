@@ -42,8 +42,8 @@ const ChooseDevice = ({
   features,
 }: Props) => {
   const mainData = storesDetails.storeCnts
-  const themeCol = mainData.colorPalle.themeColor
-  const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol
+  const themeCol = mainData.general.colorPalle.themeColor
+  const repairChooseItemCol = mainData.general.colorPalle.repairChooseItemCol
 
   const [sliceNum, setSliceNum] = useState(10)
   const [plusVisible, setPlusVisible] = useState(false)
@@ -467,7 +467,7 @@ const ChooseDevice = ({
         {t("Didn't find what you are looking for? ")}
         <span
           style={{
-            color: mainData.colorPalle.textThemeCol,
+            color: mainData.general.colorPalle.textThemeCol,
           }}
           onClick={() => setOpenContactModal(true)}
         >
@@ -644,7 +644,7 @@ const ChooseDevice = ({
               <div className="service-card-button">
                 <Button
                   title={t("Next")}
-                  bgcolor={mainData.colorPalle.nextButtonCol}
+                  bgcolor={mainData.general.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"

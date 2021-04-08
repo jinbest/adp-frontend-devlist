@@ -12,8 +12,8 @@ type Props = {
 
 const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
   const data = storesDetails.storeCnts
-  const megaShopData = data.navShop
-  const textThemeCol = data.colorPalle.textThemeCol
+  const megaShopData = data.homepage.header.megaMenu
+  const textThemeCol = data.general.colorPalle.textThemeCol
   const [anchEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [t] = useTranslation()
   const classes = useStyles()

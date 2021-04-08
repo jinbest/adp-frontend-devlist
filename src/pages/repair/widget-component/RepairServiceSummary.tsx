@@ -32,7 +32,7 @@ const RepairServiceSummary = ({
   features,
 }: Props) => {
   const mainData = storesDetails.storeCnts
-  const textThemeCol = mainData.colorPalle.textThemeCol
+  const textThemeCol = mainData.general.colorPalle.textThemeCol
   const [disableStatus, setDisableStatus] = useState(false)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -276,7 +276,7 @@ const RepairServiceSummary = ({
                   activeComponent={() => (
                     <Button
                       title={t("Schedule Appointment")}
-                      bgcolor={mainData.colorPalle.nextButtonCol}
+                      bgcolor={mainData.general.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"
                       height="30px"
@@ -300,7 +300,7 @@ const RepairServiceSummary = ({
                   activeComponent={() => (
                     <Button
                       title={t("Get Shipping Label")}
-                      bgcolor={mainData.colorPalle.nextButtonCol}
+                      bgcolor={mainData.general.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"
                       height="30px"

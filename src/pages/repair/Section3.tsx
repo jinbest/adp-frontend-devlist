@@ -10,22 +10,16 @@ type Props = {
 
 const Section3 = ({ subDomain }: Props) => {
   const data = storesDetails.storeCnts
-  const repair = data.repairData.section3
+  const repair = data.repairPage.section3
   const [t] = useTranslation()
 
   return (
     <section className={subDomain + "-service-section-3"}>
       <div className={subDomain + "-Container"}>
-        <Typography
-          className={subDomain + "-service-section-title-2"}
-          style={{ color: repair.themeCol }}
-        >
+        <Typography className={subDomain + "-service-section-title-2"}>
           {t(repair.title)}
         </Typography>
-        <Typography
-          className={subDomain + "-service-section-content"}
-          style={{ color: repair.themeCol }}
-        >
+        <Typography className={subDomain + "-service-section-content"}>
           {t(repair.content)}
         </Typography>
         <Grid container item xs={12} spacing={2}>

@@ -7,16 +7,14 @@ type Props = {
 
 const Shape = ({ subDomain }: Props) => {
   const data = storesDetails.storeCnts
+  const shapeData = data.homepage.section1.shapeData
   return (
     <div>
-      <div
-        className={subDomain + "-corner-shape"}
-        style={{ width: data.shapeData.cornerShape.width }}
-      >
-        <img src={data.shapeData.cornerShape.img} />
+      <div className={subDomain + "-corner-shape"} style={{ width: shapeData.cornerShape.width }}>
+        <img src={shapeData.cornerShape.img} />
       </div>
       <div className={subDomain + "-mockup-shape"}>
-        {data.shapeData.mockupShape && <img src={data.shapeData.mockupShape.img} />}
+        {shapeData.mockupShape && <img src={shapeData.mockupShape.img} />}
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Shape, Section1, Section2, Section3, Section4, Section5, Section6 } from "./"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
+import { MetaParams } from "../../model/meta-params"
 
 type Props = {
   subDomain: string
@@ -10,16 +11,16 @@ type Props = {
 }
 
 const Home = ({ subDomain, features, handleStatus }: Props) => {
-  const mainData = storesDetails.storeCnts
+  const mainData = storesDetails.storeCnts.homepage
 
   const SectionItemComponents = [Section4, Section5, Section6]
   const [pageTitle, setPageTitle] = useState("Store")
-  const [metaDescription, setMetaDescription] = useState("")
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
 
   useEffect(() => {
-    const storeTabData = mainData.getTabData
+    const storeTabData = mainData.headData
     setPageTitle(storeTabData.title)
-    setMetaDescription(storeTabData.metaDescription)
+    setMetaList(storeTabData.metaList)
     handleStatus(true)
   }, [])
 
@@ -27,9 +28,11 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
     <div>
       <Helmet>
         <title>{pageTitle}</title>
-        <link rel="icon" id="favicon" href={mainData.fav.img} />
-        <link rel="apple-touch-icon" href={mainData.fav.img} />
-        <meta name="description" content={metaDescription} />
+        <link rel="icon" id="favicon" href={mainData.headData.fav.img} />
+        <link rel="apple-touch-icon" href={mainData.headData.fav.img} />
+        {metaList.map((item: MetaParams, index: number) => {
+          return <meta name={item.name} content={item.content} key={index} />
+        })}
       </Helmet>
 
       <Shape subDomain={subDomain} />

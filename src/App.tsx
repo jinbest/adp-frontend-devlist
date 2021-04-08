@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react"
+import { Provider } from "mobx-react"
+import { Helmet } from "react-helmet"
 import { BrowserRouter as Router } from "react-router-dom"
 import { Footer, Header, Preloader, Badge } from "./components"
-import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore, repairWidData } from "./store/"
-import { appLoadAPI } from "./services/"
-import findLocationAPI from "./services/api/findLocationAPI"
-import { Helmet } from "react-helmet"
+import { appLoadAPI, findLocationAPI } from "./services/"
 import BaseRouter from "./BaseRouter"
 import { FeaturesParam } from "./model/feature-toggle"
+import { MetaParams } from "./model/meta-params"
+import { ScriptParams } from "./model/script-params"
+import { TagParams } from "./model/tag-params"
 import "./assets/_common/style/index.scss"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
@@ -41,35 +43,55 @@ function App(): JSX.Element {
   const [loadLocationStatus, setLoadLocationStatus] = useState(false)
   const [loadStoreConfig, setLoadStoreConfig] = useState(false)
   const [pageTitle, setPageTitle] = useState("Store")
-  const [metaDescription, setMetaDescription] = useState("")
   const [favIcon, setFavIcon] = useState("")
-  const [tagScript, setTagScript] = useState(undefined)
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
+  const [scriptList, setScriptList] = useState<ScriptParams[]>([])
+  const [condition, setCondition] = useState<any>({})
   const parser = new DOMParser()
 
   const handleFooterStatus = (status: boolean) => {
     setFooterStatus(status)
   }
 
-  const handleTabData = (mainData: any) => {
-    const storeTabData = mainData.getTabData
-
-    setPageTitle(storeTabData.title)
-    setMetaDescription(storeTabData.metaDescription)
-    setTagScript(storeTabData.headTag)
-    loadScript(storeTabData.bodyTag)
-    setFavIcon(mainData.fav.img)
-
-    if (storeTabData.scriptTag) {
-      const script = document.createElement("script")
-      script.type = "text/javascript"
-      script.append(storeTabData.scriptTag)
-      document.body.appendChild(script)
-      const scriptReamaze = document.createElement("script")
-      scriptReamaze.type = "text/javascript"
-      scriptReamaze.src = "https://cdn.reamaze.com/assets/reamaze.js"
-      scriptReamaze.async = true
-      document.body.appendChild(scriptReamaze)
+  const loadBodyTag = (tag: string) => {
+    if (tag != null) {
+      const noScript = document.createElement("noscript")
+      const htmlDoc = parser.parseFromString(tag, "text/html")
+      const iframeNode = htmlDoc.getElementsByTagName("iframe")[0]
+      if (iframeNode != null) {
+        noScript.prepend(iframeNode)
+        document.body.prepend(noScript)
+      }
     }
+  }
+
+  const handleTabData = (mainData: any) => {
+    const homepage = mainData.homepage,
+      scripts: ScriptParams[] = []
+
+    setPageTitle(homepage.headData.title)
+    setMetaList(homepage.headData.metaList)
+    setFavIcon(homepage.headData.fav.img)
+
+    homepage.bodyData.tags.forEach((item: TagParams) => {
+      loadBodyTag(item.content)
+    })
+    homepage.headData.scripts.forEach((item: ScriptParams) => {
+      if (item.type === "reamaze" && item.content) {
+        const script = document.createElement("script")
+        script.type = "text/javascript"
+        script.append(item.content)
+        document.body.appendChild(script)
+        const scriptReamaze = document.createElement("script")
+        scriptReamaze.type = "text/javascript"
+        scriptReamaze.src = "https://cdn.reamaze.com/assets/reamaze.js"
+        scriptReamaze.async = true
+        document.body.appendChild(scriptReamaze)
+      } else if (item.type !== "reamaze") {
+        scripts.push(item)
+      }
+    })
+    setScriptList(scripts)
   }
 
   useEffect(() => {
@@ -133,22 +155,10 @@ function App(): JSX.Element {
     }
   }, [storeId])
 
-  const loadScript = (tag: string) => {
-    if (tag != null) {
-      const noScript = document.createElement("noscript")
-      const htmlDoc = parser.parseFromString(tag, "text/html")
-      const iframeNode = htmlDoc.getElementsByTagName("iframe")[0]
-
-      if (iframeNode != null) {
-        noScript.prepend(iframeNode)
-        document.body.prepend(noScript)
-      }
-    }
-  }
-
   useEffect(() => {
     if (loadStatus && loadStoreConfig) {
-      if (storesDetails.storeCnts.condition.hasShopLink) {
+      setCondition({ ...storesDetails.storeCnts.general.condition })
+      if (storesDetails.storeCnts.general.condition.hasShopLink) {
         setFeatures([...features, { flag: "FRONTEND_BUY", isActive: true }])
       }
     }
@@ -166,14 +176,18 @@ function App(): JSX.Element {
             <title>{pageTitle}</title>
             <link rel="icon" id="favicon" href={favIcon} />
             <link rel="apple-touch-icon" href={favIcon} />
-            <meta name="description" content={metaDescription} />
-            {storesDetails.storeCnts.condition.googleVerification.status && (
+            {metaList.map((item: MetaParams, index: number) => {
+              return <meta name={item.name} content={item.content} key={index} />
+            })}
+            {condition.googleVerification.status && (
               <meta
-                name={storesDetails.storeCnts.condition.googleVerification.metaData.name}
-                content={storesDetails.storeCnts.condition.googleVerification.metaData.content}
+                name={condition.googleVerification.metaData.name}
+                content={condition.googleVerification.metaData.content}
               />
             )}
-            <script>{tagScript}</script>
+            {scriptList.map((item: ScriptParams, index: number) => {
+              return <script key={index}>{item.content}</script>
+            })}
           </Helmet>
           <Router>
             <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />

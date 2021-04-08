@@ -100,7 +100,7 @@ type Props = {
 
 const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }: Props) => {
   const mainData = storesDetailsStore.storeCnts
-  const thisPage = mainData.contactForm
+  const thisPage = mainData.contactPage.contactForm
   const [t] = useTranslation()
   const classes = useStyles()
 
@@ -391,7 +391,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
               <div style={{ display: "flex" }}>
                 <Button
                   title={t(thisPage.button.submit)}
-                  bgcolor={mainData.colorPalle.repairButtonCol}
+                  bgcolor={mainData.general.colorPalle.repairButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"
@@ -405,7 +405,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 </Button>
                 <Button
                   title={t(thisPage.button.close)}
-                  bgcolor={mainData.colorPalle.repairButtonCol}
+                  bgcolor={mainData.general.colorPalle.repairButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"

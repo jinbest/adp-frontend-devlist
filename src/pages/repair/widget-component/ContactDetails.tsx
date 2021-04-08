@@ -36,7 +36,7 @@ const ContactDetails = ({
   code,
 }: Props) => {
   const mainData = storesDetails.storeCnts
-  const themeCol = mainData.colorPalle.themeColor
+  const themeCol = mainData.general.colorPalle.themeColor
 
   const [t] = useTranslation()
 
@@ -493,7 +493,7 @@ const ContactDetails = ({
                     activeComponent={() => (
                       <Button
                         title={t("Book Appointment")}
-                        bgcolor={mainData.colorPalle.nextButtonCol}
+                        bgcolor={mainData.general.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"
                         height="30px"
@@ -515,7 +515,7 @@ const ContactDetails = ({
                     activeComponent={() => (
                       <Button
                         title={t("Request a Quote")}
-                        bgcolor={mainData.colorPalle.nextButtonCol}
+                        bgcolor={mainData.general.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"
                         height="30px"
@@ -536,7 +536,7 @@ const ContactDetails = ({
               <div className="service-card-button">
                 <Button
                   title={t("Next")}
-                  bgcolor={mainData.colorPalle.nextButtonCol}
+                  bgcolor={mainData.general.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"

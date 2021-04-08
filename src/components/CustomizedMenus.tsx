@@ -63,8 +63,8 @@ const CustomizedMenus = inject("storesDetailsStore")(
     const { subDomain, btnTitle, width, storesDetailsStore, features } = props
 
     const data = storesDetailsStore.storeCnts
-    const themeColor = data.colorPalle.themeColor
-    const underLineCol = data.colorPalle.underLineCol
+    const themeColor = data.general.colorPalle.themeColor
+    const underLineCol = data.general.colorPalle.underLineCol
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const [t] = useTranslation()
     const [pos, setPos] = useState({ latitude: "", longitude: "" })
@@ -224,7 +224,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
 
     const handleGetLocation = (poscode: string) => {
       if (!poscode) return
-      const data: any = {
+      const infoData: any = {
         city: "",
         state: "",
         postcode: poscode,
@@ -232,7 +232,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
       }
       setIsRequest(true)
       findLocationAPI
-        .findAddLocation(storesDetailsStore.store_id, data)
+        .findAddLocation(storesDetailsStore.store_id, infoData)
         .then((res: any) => {
           if (res.data.length) {
             storesDetailsStore.changeFindAddLocation(res.data)

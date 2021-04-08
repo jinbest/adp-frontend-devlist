@@ -13,6 +13,7 @@ type Props = {
 
 const Section2 = ({ subDomain, features }: Props) => {
   const data = storesDetails.storeCnts
+  const thisPage = data.homepage.section2
   const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
@@ -40,9 +41,9 @@ const Section2 = ({ subDomain, features }: Props) => {
         inactiveComponent={() => <></>}
         activeComponent={() => (
           <section className={subDomain + "-Container"}>
-            <h2 className={subDomain + "-section-title"}>{t(data.homeTextData.section2.title)}</h2>
+            <h2 className={subDomain + "-section-title"}>{t(thisPage.title)}</h2>
             <div className={subDomain + "-card-customized-container-desktop"}>
-              {data.cardFixData.map((item: any, index: number) => {
+              {thisPage.cards.map((item: any, index: number) => {
                 return (
                   <Link
                     to="/get-quote"
@@ -62,7 +63,7 @@ const Section2 = ({ subDomain, features }: Props) => {
               })}
             </div>
             <div className={subDomain + "-card-customized-container-mobile"}>
-              {data.cardFixData.slice(0, 3).map((item: any, index: number) => {
+              {thisPage.cards.slice(0, 3).map((item: any, index: number) => {
                 return (
                   <Link
                     to="/get-quote"
@@ -82,7 +83,7 @@ const Section2 = ({ subDomain, features }: Props) => {
               })}
             </div>
             <div className={subDomain + "-card-customized-container-mobile"}>
-              {data.cardFixData.slice(3, 5).map((item: any, index: number) => {
+              {thisPage.cards.slice(3, 5).map((item: any, index: number) => {
                 return (
                   <Link
                     to="/get-quote"
@@ -102,14 +103,14 @@ const Section2 = ({ subDomain, features }: Props) => {
               })}
             </div>
             <Grid container item xs={12} spacing={2}>
-              {data.contentFixData.map((item: any, index: number) => {
+              {thisPage.contents.map((item: any, index: number) => {
                 return (
                   <Grid item xs={12} sm={6} md={3} key={index}>
                     <Box className={subDomain + "-cart-contentfix-container"}>
                       <ContentFix
                         title={t(item.title)}
                         content={t(item.content)}
-                        themeCol={data.colorPalle.underLineCol}
+                        themeCol={data.general.colorPalle.underLineCol}
                         key={index}
                         subDomain={subDomain}
                       />

@@ -16,8 +16,17 @@ import { makeLocations } from "../services/helper"
 import { findLocationAPI } from "../services/"
 import { repairWidgetStore } from "../store/"
 import { getAddress, isExternal } from "../services/helper"
+import _ from "lodash"
 
 type Anchor = "top" | "left" | "bottom" | "right"
+
+type NavItemProps = {
+  href: string
+  text: string
+  flag: string
+  order: number
+  visible: boolean
+}
 
 type StoreProps = {
   storesDetailsStore: StoresDetails
@@ -43,6 +52,8 @@ const HeaderDrawer = inject("storesDetailsStore")(
       storesDetailsStore,
     } = props
     const data = storesDetailsStore.storeCnts
+    const thisPage = data.homepage.header
+    const navItemLinks: NavItemProps[] = _.sortBy(data.homepage.header.navItems, (o) => o.order)
     const [t] = useTranslation()
 
     const classes = useStyles()
@@ -258,46 +269,52 @@ const HeaderDrawer = inject("storesDetailsStore")(
             <div className={classes.drawerLogo}>
               <img src={data.logoData.logoHeaderImg} alt="drawer-logo" />
             </div>
-            <FeatureToggles features={features}>
-              {data.mobileNavItemData.left.map((item: any, index: number) => {
-                return (
-                  <Feature
-                    key={index}
-                    name={item.flag}
-                    inactiveComponent={() => <></>}
-                    activeComponent={() => (
-                      <React.Fragment>
-                        {item.href && item.href !== "#" && (
-                          <div
-                            className={classes.itemDiv}
-                            onClick={() => {
-                              setState({ ...state, ["left"]: false })
-                              toggleMenuStatus(false)
-                              handleStatus(true)
-                            }}
-                          >
-                            {isExternal(item.href) ? (
-                              <a
-                                href={item.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                style={{ display: "flex" }}
+            {navItemLinks.map((item: NavItemProps, index: number) => {
+              return (
+                <React.Fragment key={index}>
+                  {item.visible ? (
+                    <FeatureToggles features={features}>
+                      <Feature
+                        key={index}
+                        name={item.flag}
+                        inactiveComponent={() => <></>}
+                        activeComponent={() => (
+                          <React.Fragment>
+                            {item.href && item.href !== "#" && (
+                              <div
+                                className={classes.itemDiv}
+                                onClick={() => {
+                                  setState({ ...state, ["left"]: false })
+                                  toggleMenuStatus(false)
+                                  handleStatus(true)
+                                }}
                               >
-                                {t(item.text)}
-                              </a>
-                            ) : (
-                              <Link to={item.href} style={{ display: "flex" }}>
-                                {t(item.text)}
-                              </Link>
+                                {isExternal(item.href) ? (
+                                  <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ display: "flex" }}
+                                  >
+                                    {t(item.text)}
+                                  </a>
+                                ) : (
+                                  <Link to={item.href} style={{ display: "flex" }}>
+                                    {t(item.text)}
+                                  </Link>
+                                )}
+                              </div>
                             )}
-                          </div>
+                          </React.Fragment>
                         )}
-                      </React.Fragment>
-                    )}
-                  />
-                )
-              })}
-            </FeatureToggles>
+                      />
+                    </FeatureToggles>
+                  ) : (
+                    <></>
+                  )}
+                </React.Fragment>
+              )
+            })}
             <div className={classes.findStoreDiv}>
               <Button
                 title={t("Find a Store")}
@@ -314,7 +331,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                 {loadingStatus && <Loading />}
               </Button>
             </div>
-            <LangDropdown subDomain={subDomain} />
+            {thisPage.visibility.lang && <LangDropdown subDomain={subDomain} />}
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"

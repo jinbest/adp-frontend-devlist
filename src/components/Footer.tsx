@@ -8,23 +8,7 @@ import { inject, observer } from "mobx-react"
 import { StoresDetails } from "../store/StoresDetails"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { Link } from "react-router-dom"
-
-type GridMDInterface =
-  | boolean
-  | 2
-  | 3
-  | 1
-  | 4
-  | "auto"
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | undefined
+import { GridMDInterface } from "../model/grid-params"
 
 const getWidth = () =>
   window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
@@ -177,9 +161,10 @@ const Footer = inject("storesDetailsStore")(
     const classes = useStyles()
     const { subDomain, features, storesDetailsStore } = props
     const data = storesDetailsStore.storeCnts
+    const thisPage = data.homepage.footer
     const commonData = storesDetailsStore.commonCnts
-    // const footerLink = data.homeTextData.footer.footerLink
-    const gridVal = data.homeTextData.footer.gridVal
+    // const footerLink = thisPage.footerLink
+    // const gridVal = thisPage.gridVal
     const [t] = useTranslation()
 
     const [feats, setFeatures] = useState<any[]>([])
@@ -227,15 +212,12 @@ const Footer = inject("storesDetailsStore")(
         className={subDomain + "-footer"}
         style={{
           backgroundImage: mobile
-            ? "url(" + data.homeTextData.footer.images.mobile + ")"
-            : "url(" + data.homeTextData.footer.images.desktop + ")",
+            ? "url(" + thisPage.images.mobile + ")"
+            : "url(" + thisPage.images.desktop + ")",
         }}
       >
-        <Typography
-          className={subDomain + "-footer-title"}
-          style={{ color: data.homeTextData.footer.title.color }}
-        >
-          {t(data.homeTextData.footer.title.text)}
+        <Typography className={subDomain + "-footer-title"} style={{ color: thisPage.title.color }}>
+          {t(thisPage.title.text)}
         </Typography>
         <Box className={subDomain + "-footer-container"}>
           <Grid item container xs={12}>
@@ -263,22 +245,18 @@ const Footer = inject("storesDetailsStore")(
                 })}
               </Grid>
               <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
-                {`${new Date().getFullYear()} ${
-                  storesDetailsStore.storesDetails.business_name
-                }. ${t(data.homeTextData.footer.copyRight.text1)} "${
-                  storesDetailsStore.storesDetails.business_name
-                }" ${t(data.homeTextData.footer.copyRight.text2)}`}
+                {t(thisPage.copyRight)}
               </div>
               <div className={classes.bottomLink}>
-                {data.homeTextData.footer.bottomLinks.privacyPolicy.externalLink && (
-                  <Link to={data.homeTextData.footer.bottomLinks.privacyPolicy.link}>
-                    {t(data.homeTextData.footer.bottomLinks.privacyPolicy.text)}
+                {thisPage.bottomLinks.privacyPolicy.externalLink && (
+                  <Link to={thisPage.bottomLinks.privacyPolicy.href}>
+                    {t(thisPage.bottomLinks.privacyPolicy.text)}
                   </Link>
                 )}
               </div>
               {/* </Grid> */}
             </Grid>
-            <Grid item xs={12} md={gridVal.mainGrid[1]}>
+            <Grid item xs={12} md={12}>
               {/* <Grid item container xs={12}>
               {footerLink.map((links: any, index: number) => (
                 <Grid item xs={12} sm={3} key={index}>

@@ -104,7 +104,7 @@ type CanlendarProps = {
 
 const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProps) => {
   const mainData = storesDetails.storeCnts
-  const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
+  const repairBooktimeCol = mainData.general.colorPalle.repairBooktimeCol
 
   const [t] = useTranslation()
 

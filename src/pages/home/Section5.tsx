@@ -10,25 +10,25 @@ type Props = {
 
 const Section5 = ({ subDomain }: Props) => {
   const data = storesDetails.storeCnts
-  const bounceData = data.homeTextData.section5
+  const thisPage = data.homepage.section5
   const [t] = useTranslation()
 
   return (
     <section className={subDomain + "-sec5-Back"} style={{ display: "none" }}>
       <Box className={subDomain + "-Container " + subDomain + "-sec5-container"}>
-        <Typography className="f40 bold mg-t-1">{t(bounceData.title)}</Typography>
-        <Typography className="f18">{t(bounceData.content)}</Typography>
+        <Typography className="f40 bold mg-t-1">{t(thisPage.title)}</Typography>
+        <Typography className="f18">{t(thisPage.content)}</Typography>
         <img
           className={"mg-t-1 " + subDomain + "-section5-img"}
           src={storesDetails.commonCnts.bounceImg}
         />
-        <Typography className="f24 bold">{t(bounceData.subtitle)}</Typography>
+        <Typography className="f24 bold">{t(thisPage.subtitle)}</Typography>
         <Box className="col_center">
           <ul>
             <Typography className={subDomain + "-protect-content"}>
-              {t(bounceData.subcontent)}
+              {t(thisPage.subcontent)}
             </Typography>
-            {bounceData.subcontentData.map((item: string, index: number) => {
+            {thisPage.subcontentData.map((item: string, index: number) => {
               return (
                 <li key={index} className={subDomain + "-protect-content"}>
                   <span className="dot">&nbsp;&bull;&nbsp;</span>
@@ -40,8 +40,8 @@ const Section5 = ({ subDomain }: Props) => {
         </Box>
         <Box className={subDomain + "-sec5-button"}>
           <Button
-            title={t(bounceData.btnTitle)}
-            bgcolor={data.colorPalle.themeColor}
+            title={t(thisPage.btnTitle)}
+            bgcolor={data.general.colorPalle.themeColor}
             borderR="20px"
             subDomain={subDomain}
           />

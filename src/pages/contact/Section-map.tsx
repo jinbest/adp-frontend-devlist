@@ -172,7 +172,7 @@ const SectionMap = inject("storesDetailsStore")(
                             >
                               <PhoneIcon />
                               <a href={`tel:${element.phone}`} className={classes.phoneText}>
-                                <span style={{ color: data.colorPalle.repairButtonCol }}>
+                                <span style={{ color: data.general.colorPalle.repairButtonCol }}>
                                   {phoneFormatString(element.phone)}
                                 </span>
                               </a>
@@ -229,7 +229,7 @@ const SectionMap = inject("storesDetailsStore")(
                             >
                               <button
                                 style={{
-                                  backgroundColor: data.colorPalle.repairButtonCol,
+                                  backgroundColor: data.general.colorPalle.repairButtonCol,
                                   borderRadius: "20px",
                                 }}
                                 className={subDomain + "-button " + classes.getQuote}
@@ -254,7 +254,7 @@ const SectionMap = inject("storesDetailsStore")(
                                   >
                                     <button
                                       style={{
-                                        backgroundColor: data.colorPalle.repairButtonCol,
+                                        backgroundColor: data.general.colorPalle.repairButtonCol,
                                         borderRadius: "20px",
                                       }}
                                       className={subDomain + "-button " + classes.getAppoint}

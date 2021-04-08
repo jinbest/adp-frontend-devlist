@@ -12,7 +12,7 @@ type Props = {
 
 const Shop = ({ subDomain, handleStatus, features }: Props) => {
   const mainData = storesDetails.storeCnts
-  const mainCol = mainData.shopPageData.shopEachItem.color
+  const mainCol = mainData.general.colorPalle.themeCol
 
   const [feats, setFeatures] = useState<any[]>([])
   const [isOpen, setIsOpen] = useState(false)

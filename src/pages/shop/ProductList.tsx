@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { ProductCard } from "./"
 import { ProductModel } from "./product-model"
 import { Grid } from "@material-ui/core"
-import { storesDetails } from "../../store"
+// import { storesDetails } from "../../store"
 
 const getWidth = () =>
   window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
@@ -25,7 +25,6 @@ type GridMDInterface =
   | undefined
 
 const ProductList = () => {
-  const data = storesDetails.storeCnts
   const [initGridMD, setInitGridMD] = useState<GridMDInterface>(3)
 
   const handleResize = () => {
@@ -44,7 +43,19 @@ const ProductList = () => {
     }
   }, [])
 
-  const shopEachItem = data.shopPageData.shopEachItem
+  const shopEachItem = {
+    title: "iPhone 11 Pro",
+    capacity: "128 GB",
+    color: "#00B0F0",
+    midCol: "Midnight Green",
+    availableStore: "Available in Store",
+    availableOnline: "Not available Online",
+    price: "$897",
+    asLow: "As low as $50 / mo",
+    warranty: "12 months",
+    img: "https://storage.googleapis.com/adp_assets/images/2/shop-iPhone.png",
+    type: "New",
+  }
   const propsData: ProductModel = shopEachItem
   const products: any[] = []
   for (let i = 0; i < 20; i++) {

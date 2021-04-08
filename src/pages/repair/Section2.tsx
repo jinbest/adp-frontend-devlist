@@ -10,30 +10,25 @@ type Props = {
 
 const Section2 = ({ subDomain }: Props) => {
   const data = storesDetails.storeCnts
-  const repair = data.repairData.section2
+  const repair = data.repairPage.section2
   const [t] = useTranslation()
 
   return (
     <section
       className={subDomain + "-service-section2"}
       style={{
-        backgroundImage: data.repairData.section2.hasBackground
-          ? "url(" + data.repairData.section2.bgImg + ")"
-          : "",
+        backgroundImage: repair.hasBackground ? "url(" + repair.bgImg + ")" : "",
       }}
     >
       <div className={subDomain + "-Container " + subDomain + "-service-section2-text-field"}>
-        <Typography
-          className={subDomain + "-service-section-title-1"}
-          style={{ color: repair.themeCol }}
-        >
+        <Typography className={subDomain + "-service-section-title-1"}>
           {t(repair.title)}
         </Typography>
         <Grid container item xs={12} spacing={2} className={subDomain + "-repair-sec-content-div"}>
-          {repair.content.map((item: any, index: number) => {
+          {repair.contents.map((item: any, index: number) => {
             return (
               <Grid item xs={12} md={4} key={index}>
-                <CardRepairSec2 type={item.type} subtitle={t(item.subtitle)} subDomain={subDomain}>
+                <CardRepairSec2 type={item.type} subtitle={t(item.title)} subDomain={subDomain}>
                   {item.type === "ReceiveDevice"
                     ? `${storesDetails.storesDetails.name} ${t(item.content)}`
                     : t(item.content)}

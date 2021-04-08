@@ -4,6 +4,7 @@ import { Error } from "../error"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { repairWidgetStore, storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
+import { MetaParams } from "../../model/meta-params"
 
 type Props = {
   subDomain: string
@@ -12,8 +13,12 @@ type Props = {
 }
 
 const Repair = ({ subDomain, handleStatus, features }: Props) => {
+  const data = storesDetails.storeCnts
+  const thisPage = data.repairPage
+
   const [feats, setFeatures] = useState<any[]>([])
   const [pageTitle, setPageTitle] = useState("Quotes | ")
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
 
   useEffect(() => {
     const cntFeatures: any[] = []
@@ -26,13 +31,17 @@ const Repair = ({ subDomain, handleStatus, features }: Props) => {
   }, [features])
 
   useEffect(() => {
-    setPageTitle("Quotes | " + storesDetails.storesDetails.name)
+    setPageTitle(thisPage.headData.title)
+    setMetaList(thisPage.headData.metaList)
   }, [])
 
   return (
     <>
       <Helmet>
         <title>{pageTitle}</title>
+        {metaList.map((item: MetaParams, index: number) => {
+          return <meta name={item.name} content={item.content} key={index} />
+        })}
       </Helmet>
       <FeatureToggles features={feats}>
         <Feature
