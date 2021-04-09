@@ -1,6 +1,13 @@
 .#{$folderName}-service-section-title-1 {
   font-weight: 800 !important;
   font-size: 60px !important;
+  font-family: "Poppins Bold" !important;
+  @media (max-width: 960px) {
+    font-size: 45px !important;
+  }
+  @media (max-width: 768px) {
+    font-size: 6.5vw !important;
+  }
 }
 
 .#{$folderName}-service-section-title-2 {
@@ -15,7 +22,7 @@
 }
 
 .#{$folderName}-service-section-button {
-  max-width: 330px !important;
+  max-width: 270px !important;
   width: 100% !important;
   padding-bottom: 2rem !important;
 }

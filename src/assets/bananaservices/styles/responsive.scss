@@ -14,9 +14,6 @@
   .#{$folderName}-footer-device-list {
     display: none;
   }
-  .#{$folderName}-service-section-title-1 {
-    font-size: 45px !important;
-  }
   .#{$folderName}-service-section-content {
     font-size: 25px !important;
   }
@@ -76,13 +73,6 @@
   .#{$folderName}-service-section1 img {
     display: none;
   }
-  .#{$folderName}-section1-top {
-    // margin-top: 210px !important;
-    margin-bottom: 50px !important;
-  }
-  // .#{$folderName}-container-header {
-  //   margin-top: 0;
-  // }
   .#{$folderName}-avatar-div,
   .#{$folderName}-mobile-search-div,
   .#{$folderName}-card-customized-container-mobile {
@@ -96,17 +86,6 @@
   .#{$folderName}-container-mobile {
     display: block;
   }
-  .#{$folderName}-section1-title,
-  .#{$folderName}-section1-subtitle {
-    text-align: left;
-    display: block;
-  }
-  .#{$folderName}-corner-shape {
-    width: 60vw;
-  }
-  // .#{$folderName}-footer {
-  //   background-image: url("../img/footer/banana-footer-shape-mobile.png");
-  // }
   .#{$folderName}-service-section1 .MuiGrid-grid-sm-7 {
     flex-grow: 0;
     max-width: 100% !important;
@@ -117,9 +96,6 @@
     text-align: center !important;
     align-items: center;
     margin: auto;
-  }
-  .#{$folderName}-service-section-title-1 {
-    font-size: 6.5vw !important;
   }
   .#{$folderName}-service-section-title-2 {
     font-size: 5.5vw !important;
@@ -200,14 +176,9 @@
 }
 
 @media (max-width: 425px) {
-  .#{$folderName}-section1-title {
-    font-size: 5vw !important;
-  }
-  .#{$folderName}-section-title,
   .f40 {
     font-size: 4.3vw !important;
   }
-  .#{$folderName}-section1-subtitle,
   .#{$folderName}-card-mobile > p,
   .#{$folderName}-card-fix p,
   .#{$folderName}-card-why-customer > p,
@@ -228,16 +199,6 @@
   }
   .#{$folderName}-content-fix .#{$folderName}-content {
     font-size: 3.5vw;
-  }
-  /* .card-why-customer {
-    height: 175px;
-  } */
-  .#{$folderName}-section1-top {
-    margin-bottom: 25px !important;
-    margin-top: 200px !important;
-  }
-  .#{$folderName}-section-title {
-    margin: 1rem 0 !important;
   }
   .pd-t-5 {
     padding: 1.5rem 0 !important;

@@ -51,9 +51,11 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   return (
     <section className={subDomain + "-Container"}>
       <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-        <h1 className={subDomain + "-section1-title"}>{t(thisPage.title)}</h1>
-        <Typography className={subDomain + "-section1-subtitle"}>{t(thisPage.subtitle)}</Typography>
-        <div style={{ display: "flex" }}>
+        <h1 className={subDomain + "-section1-title align-center"}>{t(thisPage.title)}</h1>
+        <Typography className={subDomain + "-section1-subtitle align-center"}>
+          {t(thisPage.subtitle)}
+        </Typography>
+        <div className="align-center d-flex">
           {thisPage.buttons.map((item: any, index: number) => {
             return (
               <React.Fragment key={index}>
@@ -74,7 +76,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                           bgcolor={data.general.colorPalle.repairButtonCol}
                           borderR="20px"
                           subDomain={subDomain}
-                          width="90%"
+                          width="95%"
                         />
                       </a>
                     ) : (
@@ -88,7 +90,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                           bgcolor={data.general.colorPalle.repairButtonCol}
                           borderR="20px"
                           subDomain={subDomain}
-                          width="90%"
+                          width="95%"
                         />
                       </Link>
                     )}

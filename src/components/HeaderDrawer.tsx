@@ -54,6 +54,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
     const data = storesDetailsStore.storeCnts
     const thisPage = data.homepage.header
     const navItemLinks: NavItemProps[] = _.sortBy(data.homepage.header.navItems, (o) => o.order)
+    const brandItemLinks = _.sortBy(data.homepage.header.brandItems, (o) => o.order)
     const [t] = useTranslation()
 
     const classes = useStyles()
@@ -309,6 +310,43 @@ const HeaderDrawer = inject("storesDetailsStore")(
                         )}
                       />
                     </FeatureToggles>
+                  ) : (
+                    <></>
+                  )}
+                </React.Fragment>
+              )
+            })}
+            {brandItemLinks.map((item: any, index: number) => {
+              return (
+                <React.Fragment key={index}>
+                  {item.visible ? (
+                    <React.Fragment>
+                      {item.href && item.href !== "#" && (
+                        <div
+                          className={classes.itemDiv}
+                          onClick={() => {
+                            setState({ ...state, ["left"]: false })
+                            toggleMenuStatus(false)
+                            handleStatus(true)
+                          }}
+                        >
+                          {isExternal(item.href) ? (
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              style={{ display: "flex" }}
+                            >
+                              {t(item.text)}
+                            </a>
+                          ) : (
+                            <Link to={item.href} style={{ display: "flex" }}>
+                              {t(item.text)}
+                            </Link>
+                          )}
+                        </div>
+                      )}
+                    </React.Fragment>
                   ) : (
                     <></>
                   )}

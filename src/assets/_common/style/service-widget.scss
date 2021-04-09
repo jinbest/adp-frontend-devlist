@@ -45,6 +45,7 @@
 .service-widget-title {
   font-weight: bold !important;
   font-size: 35px !important;
+  font-family: "Poppins Bold" !important;
   @media (max-width: 600px) {
     text-align: center !important;
     font-size: 5.5vw !important;
@@ -219,6 +220,7 @@
   font-size: 20px !important;
   font-style: normal !important;
   margin-bottom: 20px !important;
+  font-family: "Poppins Bold" !important;
   @media (max-width: 768px) {
     font-size: 18px !important;
   }
@@ -350,7 +352,6 @@
   border: none;
   margin: 20px;
   font-size: 15px;
-  font-family: "POPPINS";
   width: 87%;
   outline: none;
   height: 250px;
@@ -373,6 +374,7 @@
   font-size: 25px !important;
   font-weight: bold !important;
   margin-bottom: 5px !important;
+  font-family: "Poppins Bold" !important;
   @media (max-width: 600px) {
     font-size: 4.3vw !important;
     margin-bottom: 15px !important;

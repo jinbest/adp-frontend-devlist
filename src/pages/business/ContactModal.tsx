@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme: Theme) =>
       border: "none",
       margin: "20px",
       fontSize: "15px",
-      fontFamily: "POPPINS",
       width: "87%",
       outline: "none",
       height: "150px",
