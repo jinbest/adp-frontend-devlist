@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Shape, Section1, Section2, Section4, Section6 } from "./"
+import { Shape, Section1, Section2, SectionWave, Section6 } from "./"
 import { storesDetails } from "../../store"
 import { Helmet } from "react-helmet"
 import { MetaParams } from "../../model/meta-params"
@@ -37,7 +37,7 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
       <Shape subDomain={subDomain} />
       <Section1 subDomain={subDomain} features={features} handleStatus={handleStatus} />
       <Section2 subDomain={subDomain} features={features} />
-      <Section4 subDomain={subDomain} />
+      <SectionWave subDomain={subDomain} />
       <Section6 subDomain={subDomain} />
     </div>
   )

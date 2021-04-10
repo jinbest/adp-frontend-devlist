@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  box-shadow: -10.1842px -10.1842px 30.5526px #FFFFFF, 10.1842px 10.1842px 30.5526px rgba(174, 174, 192, 0.4);
+  box-shadow: -10.1842px -10.1842px 30.5526px #ffffff,
+    10.1842px 10.1842px 30.5526px rgba(174, 174, 192, 0.4);
 }
 
 .#{$folderName}-card-why-customer .#{$folderName}-score-div {
@@ -33,5 +34,5 @@
 }
 
 .MuiRating-root {
-  color:#F36B26 !important;
+  color: #f67500 !important;
 }
