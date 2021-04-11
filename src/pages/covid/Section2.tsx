@@ -19,7 +19,7 @@ const Section2 = () => {
       <div className={classes.cardContainer}>
         <Card className={classes.card}>
           <Typography className={classes.mainTitle}>
-            {t(thisPage.title.replace(/[^a-zA-Z ]/g, ""))}:
+            {t("What we’re doing to keep our customers and staff safe")}:
           </Typography>
           <Grid container spacing={3}>
             {logoData.map((item: any, index: number) => {
