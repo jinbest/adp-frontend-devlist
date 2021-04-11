@@ -19,7 +19,9 @@ const Section2 = () => {
       <div className={classes.cardContainer}>
         <Card className={classes.card}>
           <Typography className={classes.mainTitle}>
-            {t("What we’re doing to keep our customers and staff safe")}:
+            {thisPage.title.includes(":")
+              ? `${t(thisPage.title.replace(/:/g, ""))}:`
+              : t(thisPage.title)}
           </Typography>
           <Grid container spacing={3}>
             {logoData.map((item: any, index: number) => {
