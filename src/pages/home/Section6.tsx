@@ -15,20 +15,22 @@ const Section6 = ({ subDomain }: Props) => {
   const thisPage = data.homepage.section6
   const [t] = useTranslation()
   const classes = useStyles()
-  const averScore = 4.9,
-    Score = 5,
-    totalReviewes = 250
+  const overAllRating = thisPage.overAllRating
 
   return (
     <section className={subDomain + "-Container center " + subDomain + "-sec6-container"}>
       <Typography className="f40 bold mg-t-1 section-review-title">{t(thisPage.title)}</Typography>
-      <Rating name="read-only" value={5} max={5} readOnly style={{ transform: "scale(1.2)" }} />
-      <Typography className={classes.subTitle}>{`${averScore} ${t("of")} ${Score} ${t(
-        "stars"
-      )}`}</Typography>
-      <Typography className={classes.subContent}>{`${t("Based on")} ${totalReviewes}+ ${t(
-        "Reviews"
-      )}`}</Typography>
+      {overAllRating.visible && (
+        <>
+          <Rating name="read-only" value={5} max={5} readOnly style={{ transform: "scale(1.2)" }} />
+          <Typography className={classes.subTitle}>{`${overAllRating.averScore} ${t("of")} ${
+            overAllRating.score
+          } ${t("stars")}`}</Typography>
+          <Typography className={classes.subContent}>{`${t("Based on")} ${
+            overAllRating.totalReviews
+          }+ ${t("Reviews")}`}</Typography>
+        </>
+      )}
       <Grid container item xs={12} spacing={2} className={subDomain + "-sec6-card"}>
         {thisPage.reviews.map((item: any, index: number) => {
           return (

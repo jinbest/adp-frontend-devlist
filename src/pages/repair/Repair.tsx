@@ -33,6 +33,10 @@ const Repair = ({ subDomain, handleStatus, features }: Props) => {
   useEffect(() => {
     setPageTitle(thisPage.headData.title)
     setMetaList(thisPage.headData.metaList)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }, [])
 
   return (

@@ -29,7 +29,7 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 1,
+// const siteNum = 8,
 //   subDomain = devicelist[siteNum].name,
 //   apexDomain = "dccmtx.com"
 

@@ -353,6 +353,23 @@ const HeaderDrawer = inject("storesDetailsStore")(
                 </React.Fragment>
               )
             })}
+            {data.homepage.header.visibility.covidPage && (
+              <div
+                className={classes.itemDiv}
+                onClick={() => {
+                  setState({ ...state, ["left"]: false })
+                  toggleMenuStatus(false)
+                  handleStatus(true)
+                }}
+              >
+                <Link
+                  to={data.homepage.footer.bottomLinks.covidPage.link}
+                  style={{ display: "flex" }}
+                >
+                  {t(data.homepage.footer.bottomLinks.covidPage.text)}
+                </Link>
+              </div>
+            )}
             <div className={classes.findStoreDiv}>
               <Button
                 title={t("Find a Store")}

@@ -241,6 +241,14 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
             {!mobile && thisPage.visibility.lang && (
               <LangDropdown subDomain={subDomain} color={brandData.brandCol} />
             )}
+            {!mobile && thisPage.visibility.covidPage && (
+              <BrandItemLink
+                item={data.homepage.footer.bottomLinks.covidPage.text}
+                color={brandData.brandCol}
+                phoneNumber={false}
+                href={data.homepage.footer.bottomLinks.covidPage.link}
+              />
+            )}
             <FeatureToggles features={feats}>
               <Feature
                 name={"FRONTEND_USER_ACCOUNT"}

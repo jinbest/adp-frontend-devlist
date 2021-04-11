@@ -32,38 +32,45 @@ const Section1 = ({ subDomain, handleStatus }: Props) => {
       <div className="align-center d-flex">
         {thisPage.buttons.map((item: any, index: number) => {
           return (
-            <Box
-              key={index}
-              className={subDomain + "-service-section-button"}
-              style={{ margin: "initial" }}
-            >
-              {isExternal(item.link) ? (
-                <a
-                  href={item.link}
-                  style={{ textDecoration: "none" }}
-                  target="_blank"
-                  rel="noreferrer"
+            <React.Fragment key={index}>
+              {item.visible && (
+                <Box
+                  className={subDomain + "-service-section-button"}
+                  style={{ margin: "initial" }}
                 >
-                  <Button
-                    title={t(item.title)}
-                    bgcolor={data.general.colorPalle.repairButtonCol}
-                    borderR="20px"
-                    subDomain={subDomain}
-                    width="95%"
-                  />
-                </a>
-              ) : (
-                <Link to={item.link} style={{ textDecoration: "none" }} onClick={handleGetQuote}>
-                  <Button
-                    title={t(item.title)}
-                    bgcolor={data.general.colorPalle.repairButtonCol}
-                    borderR="20px"
-                    subDomain={subDomain}
-                    width="95%"
-                  />
-                </Link>
+                  {isExternal(item.link) ? (
+                    <a
+                      href={item.link}
+                      style={{ textDecoration: "none" }}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Button
+                        title={t(item.title)}
+                        bgcolor={data.general.colorPalle.repairButtonCol}
+                        borderR="20px"
+                        subDomain={subDomain}
+                        width="95%"
+                      />
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.link}
+                      style={{ textDecoration: "none" }}
+                      onClick={handleGetQuote}
+                    >
+                      <Button
+                        title={t(item.title)}
+                        bgcolor={data.general.colorPalle.repairButtonCol}
+                        borderR="20px"
+                        subDomain={subDomain}
+                        width="95%"
+                      />
+                    </Link>
+                  )}
+                </Box>
               )}
-            </Box>
+            </React.Fragment>
           )
         })}
       </div>

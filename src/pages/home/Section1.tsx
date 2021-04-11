@@ -41,7 +41,8 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
     // setGridMD(cntGridMD)
   }, [data, features, t])
 
-  const handleGetQuote = () => {
+  const handleGetQuote = (link: string) => {
+    if (link !== "/get-quote") return
     const cntAppointment: any = repairWidgetStore.appointResponse
     repairWidgetStore.init()
     repairWidgetStore.changeAppointResponse(cntAppointment)
@@ -83,7 +84,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                       <Link
                         to={item.link}
                         style={{ textDecoration: "none" }}
-                        onClick={handleGetQuote}
+                        onClick={() => handleGetQuote(item.link)}
                       >
                         <Button
                           title={t(item.title)}

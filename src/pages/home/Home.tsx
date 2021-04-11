@@ -21,6 +21,10 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
     setPageTitle(storeTabData.title)
     setMetaList(storeTabData.metaList)
     handleStatus(true)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }, [])
 
   return (
@@ -37,7 +41,7 @@ const Home = ({ subDomain, features, handleStatus }: Props) => {
       <Shape subDomain={subDomain} />
       <Section1 subDomain={subDomain} features={features} handleStatus={handleStatus} />
       <Section2 subDomain={subDomain} features={features} />
-      <SectionWave subDomain={subDomain} />
+      <SectionWave subDomain={subDomain} handleStatus={handleStatus} />
       <Section6 subDomain={subDomain} />
     </div>
   )

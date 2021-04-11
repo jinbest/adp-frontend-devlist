@@ -1,7 +1,7 @@
 import React from "react"
 import { Grid, Typography, Box } from "@material-ui/core"
 import { useTranslation } from "react-i18next"
-import { storesDetails } from "../../store"
+import { storesDetails, repairWidgetStore } from "../../store"
 import { Button } from "../../components"
 import { isExternal } from "../../services/helper"
 import { Link } from "react-router-dom"
@@ -10,14 +10,23 @@ import _ from "lodash"
 
 type Props = {
   subDomain?: string
+  handleStatus: (status: boolean) => void
 }
 
-const SectionWave = ({ subDomain }: Props) => {
+const SectionWave = ({ subDomain, handleStatus }: Props) => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.sectionWave
   const [t] = useTranslation()
   const classes = useStyles()
   const childData = _.sortBy(thisPage.data, (o) => o.order)
+
+  const handleGetQuote = (link: string) => {
+    if (link !== "/get-quote") return
+    const cntAppointment: any = repairWidgetStore.appointResponse
+    repairWidgetStore.init()
+    repairWidgetStore.changeAppointResponse(cntAppointment)
+    handleStatus(false)
+  }
 
   return (
     <div className={classes.root}>
@@ -29,47 +38,66 @@ const SectionWave = ({ subDomain }: Props) => {
               <h2 className={classes.mainTitle} style={{ marginTop: "0px !important" }}>
                 {t(thisPage.title)}
               </h2>
-              {thisPage.button.link && thisPage.button.link !== "#" && (
-                <Box className={classes.buttonContainer}>
-                  {isExternal(thisPage.button.link) ? (
-                    <a
-                      href={thisPage.button.link}
-                      style={{ textDecoration: "none" }}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <Button
-                        title={t(thisPage.button.title)}
-                        bgcolor={data.general.colorPalle.repairButtonCol}
-                        borderR="20px"
-                        subDomain={subDomain}
-                        width="100%"
-                      />
-                    </a>
-                  ) : (
-                    <Link to={thisPage.button.link} style={{ textDecoration: "none" }}>
-                      <Button
-                        title={t(thisPage.button.title)}
-                        bgcolor={data.general.colorPalle.repairButtonCol}
-                        borderR="20px"
-                        subDomain={subDomain}
-                        width="100%"
-                      />
-                    </Link>
-                  )}
-                </Box>
-              )}
+              <div className={classes.buttonContainer}>
+                {thisPage.buttons.map((item: any, index: number) => {
+                  return (
+                    <React.Fragment key={index}>
+                      {item.visible && item.link && item.link !== "#" ? (
+                        <Box
+                          className={subDomain + "-service-section-button"}
+                          style={{ margin: "initial" }}
+                        >
+                          {isExternal(item.link) ? (
+                            <a
+                              href={item.link}
+                              style={{ textDecoration: "none" }}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Button
+                                title={t(item.title)}
+                                bgcolor={data.general.colorPalle.repairButtonCol}
+                                borderR="20px"
+                                subDomain={subDomain}
+                                width="95%"
+                              />
+                            </a>
+                          ) : (
+                            <Link
+                              to={item.link}
+                              style={{ textDecoration: "none" }}
+                              onClick={() => handleGetQuote(item.link)}
+                            >
+                              <Button
+                                title={t(item.title)}
+                                bgcolor={data.general.colorPalle.repairButtonCol}
+                                borderR="20px"
+                                subDomain={subDomain}
+                                width="95%"
+                              />
+                            </Link>
+                          )}
+                        </Box>
+                      ) : (
+                        <></>
+                      )}
+                    </React.Fragment>
+                  )
+                })}
+              </div>
             </div>
           </Grid>
           <Grid item xs={12} md={6} container spacing={2}>
             {childData.map((item: any, index: number) => {
               return (
                 <Grid item xs={12} sm={6} key={index}>
-                  <div className={classes.item}>
-                    <img src={item.img} alt={`sec-wave-img-${index}`} />
-                    <Typography className={classes.subTitle}>{t(item.title)}</Typography>
-                    <Typography className={classes.subContent}>{t(item.content)}</Typography>
-                  </div>
+                  {item.visible && (
+                    <div className={classes.item}>
+                      <img src={item.img} alt={`sec-wave-img-${index}`} />
+                      <Typography className={classes.subTitle}>{t(item.title)}</Typography>
+                      <Typography className={classes.subContent}>{t(item.content)}</Typography>
+                    </div>
+                  )}
                 </Grid>
               )
             })}
@@ -159,13 +187,12 @@ const useStyles = makeStyles(() =>
       },
     },
     buttonContainer: {
-      maxWidth: "200px !important",
+      display: "flex",
       ["@media (max-width:960px)"]: {
-        margin: "auto",
-      },
-      ["@media (max-width:600px)"]: {
-        minWidth: "50%",
-        maxWidth: "50% !important",
+        textAlign: "center !important",
+        margin: "auto !important",
+        alignItems: "center !important",
+        justifyContent: "center !important",
       },
     },
     item: {

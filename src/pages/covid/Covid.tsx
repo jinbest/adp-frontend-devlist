@@ -20,6 +20,10 @@ const Covid = ({ handleStatus, subDomain }: Props) => {
     setPageTitle(storeTabData.title)
     setMetaList(storeTabData.metaList)
     handleStatus(true)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }, [])
 
   return (

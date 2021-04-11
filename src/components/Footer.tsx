@@ -253,6 +253,11 @@ const Footer = inject("storesDetailsStore")(
                     {t(thisPage.bottomLinks.privacyPolicy.text)}
                   </Link>
                 )}
+                {thisPage.bottomLinks.covidPage.visible && (
+                  <Link to={thisPage.bottomLinks.covidPage.link} style={{ marginLeft: "15px" }}>
+                    {t(thisPage.bottomLinks.covidPage.text)}
+                  </Link>
+                )}
               </div>
               {/* </Grid> */}
             </Grid>

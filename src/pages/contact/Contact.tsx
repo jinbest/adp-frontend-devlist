@@ -31,6 +31,10 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
     setPageTitle(thisPage.headData.title)
     setMetaList(thisPage.headData.metaList)
     handleStatus(true)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }, [])
 
   useEffect(() => {

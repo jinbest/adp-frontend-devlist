@@ -58,7 +58,7 @@ const LangDropdown = ({ color }: Props) => {
                 style={{ color: themeCol }}
                 key={index}
               >
-                {t(item)}
+                {t(item).toUpperCase()}
               </option>
             )
           })}

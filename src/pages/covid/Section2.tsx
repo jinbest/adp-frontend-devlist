@@ -23,11 +23,15 @@ const Section2 = () => {
             {logoData.map((item: any, index: number) => {
               return (
                 <Grid item xs={12} md={6} key={index} className={classes.item}>
-                  <img src={item.img} alt={`covid-logo-${index}`} />
-                  <div>
-                    <Typography className={classes.subTitle}>{t(item.title)}</Typography>
-                    <Typography className={classes.itemText}>{t(item.content)}</Typography>
-                  </div>
+                  {item.visible && (
+                    <>
+                      <img src={item.img} alt={`covid-logo-${index}`} />
+                      <div>
+                        <Typography className={classes.subTitle}>{t(item.title)}</Typography>
+                        <Typography className={classes.itemText}>{t(item.content)}</Typography>
+                      </div>
+                    </>
+                  )}
                 </Grid>
               )
             })}
