@@ -29,34 +29,36 @@ const SectionWave = ({ subDomain }: Props) => {
               <h2 className={classes.mainTitle} style={{ marginTop: "0px !important" }}>
                 {t(thisPage.title)}
               </h2>
-              <Box className={classes.buttonContainer}>
-                {isExternal(thisPage.button.link) ? (
-                  <a
-                    href={thisPage.button.link}
-                    style={{ textDecoration: "none" }}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <Button
-                      title={t(thisPage.button.title)}
-                      bgcolor={data.general.colorPalle.repairButtonCol}
-                      borderR="20px"
-                      subDomain={subDomain}
-                      width="100%"
-                    />
-                  </a>
-                ) : (
-                  <Link to={thisPage.button.link} style={{ textDecoration: "none" }}>
-                    <Button
-                      title={t(thisPage.button.title)}
-                      bgcolor={data.general.colorPalle.repairButtonCol}
-                      borderR="20px"
-                      subDomain={subDomain}
-                      width="100%"
-                    />
-                  </Link>
-                )}
-              </Box>
+              {thisPage.button.link && thisPage.button.link !== "#" && (
+                <Box className={classes.buttonContainer}>
+                  {isExternal(thisPage.button.link) ? (
+                    <a
+                      href={thisPage.button.link}
+                      style={{ textDecoration: "none" }}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Button
+                        title={t(thisPage.button.title)}
+                        bgcolor={data.general.colorPalle.repairButtonCol}
+                        borderR="20px"
+                        subDomain={subDomain}
+                        width="100%"
+                      />
+                    </a>
+                  ) : (
+                    <Link to={thisPage.button.link} style={{ textDecoration: "none" }}>
+                      <Button
+                        title={t(thisPage.button.title)}
+                        bgcolor={data.general.colorPalle.repairButtonCol}
+                        borderR="20px"
+                        subDomain={subDomain}
+                        width="100%"
+                      />
+                    </Link>
+                  )}
+                </Box>
+              )}
             </div>
           </Grid>
           <Grid item xs={12} md={6} container spacing={2}>
@@ -65,8 +67,8 @@ const SectionWave = ({ subDomain }: Props) => {
                 <Grid item xs={12} sm={6} key={index}>
                   <div className={classes.item}>
                     <img src={item.img} alt={`sec-wave-img-${index}`} />
-                    <Typography className={classes.subTitle}>{item.title}</Typography>
-                    <Typography className={classes.subContent}>{item.content}</Typography>
+                    <Typography className={classes.subTitle}>{t(item.title)}</Typography>
+                    <Typography className={classes.subContent}>{t(item.content)}</Typography>
                   </div>
                 </Grid>
               )

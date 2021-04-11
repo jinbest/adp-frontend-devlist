@@ -58,7 +58,7 @@ class AppLoadAPI {
     //   bananaservice: 1,
     //   reparation: 7
     // }
-    // const apiStoreURL = `${prodLink}dc/store/${storeIDs.geebodevicerepair}/config`
+    // const apiStoreURL = `${prodLink}dc/store/${storeIDs.phonephix}/config`
     // const apiCommonURL = `${prodLink}dc/store/config/common`
 
     const apiStoreURL = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/config`

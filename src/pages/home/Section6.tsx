@@ -15,7 +15,7 @@ const Section6 = ({ subDomain }: Props) => {
   const thisPage = data.homepage.section6
   const [t] = useTranslation()
   const classes = useStyles()
-  const aveScore = 4.9,
+  const averScore = 4.9,
     Score = 5,
     totalReviewes = 250
 
@@ -23,7 +23,7 @@ const Section6 = ({ subDomain }: Props) => {
     <section className={subDomain + "-Container center " + subDomain + "-sec6-container"}>
       <Typography className="f40 bold mg-t-1 section-review-title">{t(thisPage.title)}</Typography>
       <Rating name="read-only" value={5} max={5} readOnly style={{ transform: "scale(1.2)" }} />
-      <Typography className={classes.subTitle}>{`${aveScore} ${t("of")} ${Score} ${t(
+      <Typography className={classes.subTitle}>{`${averScore} ${t("of")} ${Score} ${t(
         "stars"
       )}`}</Typography>
       <Typography className={classes.subContent}>{`${t("Based on")} ${totalReviewes}+ ${t(

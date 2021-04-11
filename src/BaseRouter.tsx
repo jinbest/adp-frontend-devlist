@@ -5,6 +5,7 @@ import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
 import { Locations } from "./pages/locations/"
 import { Contact } from "./pages/contact"
+import { Covid } from "./pages/covid"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { FeaturesParam } from "./model/feature-toggle"
 import { PrivacyPolicy } from "./pages/privacy-policy"
@@ -63,6 +64,10 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
       <Route
         path="/locations"
         component={() => <Locations subDomain={subDomain} handleStatus={handleStatus} />}
+      />
+      <Route
+        path="/coronavirus"
+        component={() => <Covid subDomain={subDomain} handleStatus={handleStatus} />}
       />
       {data.homepage.footer.bottomLinks.privacyPolicy.externalLink && (
         <Route
