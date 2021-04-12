@@ -14,7 +14,6 @@ type Props = {
   fontSize?: string
   icon?: boolean
   disable?: boolean
-  subDomain?: string
   border?: string
   textDecorator?: string
   hover?: boolean
@@ -35,7 +34,6 @@ const Button = ({
   fontSize,
   icon,
   disable,
-  subDomain,
   border,
   textDecorator,
   children,
@@ -43,7 +41,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={hover ? subDomain + "-button" : subDomain + "-button no-hover"}
+      className={hover ? "button" : "button no-hover"}
       style={{
         backgroundColor: bgcolor,
         color: txcolor,

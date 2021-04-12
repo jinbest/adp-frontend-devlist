@@ -5,12 +5,11 @@ import { useTranslation } from "react-i18next"
 import { storesDetails } from "../store"
 
 type Props = {
-  subDomain?: string
   text: string
   disableMenu: boolean
 }
 
-const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
+const MegamenuShop = ({ text, disableMenu }: Props) => {
   const data = storesDetails.storeCnts
   const megaShopData = data.homepage.header.megaMenu
   const textThemeCol = data.general.colorPalle.textThemeCol
@@ -39,7 +38,7 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
         aria-haspopup="true"
         onClick={handleClick}
         // onMouseOver={handleClick}
-        className={subDomain + "-nav-link"}
+        className={"nav-link"}
         style={{ cursor: "pointer" }}
       >
         {t(text)}
@@ -53,9 +52,9 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
         // MenuListProps={{ onMouseLeave: handleClose }}
       >
         <div className="triangle"></div>
-        <div className={subDomain + "-menu-content-div"} style={{ height: "100%" }}>
-          <div className={subDomain + "-left-content " + classes.megaMenuContainer}>
-            <div className={subDomain + "-content-block"}>
+        <div className={"menu-content-div"} style={{ height: "100%" }}>
+          <div className={"left-content " + classes.megaMenuContainer}>
+            <div className={"content-block"}>
               {megaShopData.mainList.map((item: any, index: number) => {
                 return (
                   <div
@@ -68,7 +67,7 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
                     key={index}
                   >
                     <p
-                      className={subDomain + "-block-content"}
+                      className={"block-content"}
                       style={{
                         color: shopSelect === index ? textThemeCol : "",
                       }}
@@ -96,11 +95,11 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
                 )
               })}
             </div>
-            <div className={subDomain + "-content-block"}>
+            <div className={"content-block"}>
               {megaShopData.otherList.map((item: any, index: number) => {
                 return (
                   <p
-                    className={subDomain + "-block-content"}
+                    className={"block-content"}
                     key={index}
                     style={{
                       color: otherListSel === index ? textThemeCol : "",
@@ -119,12 +118,12 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
               margin: "30px 10px",
             }}
           ></div>
-          <div className={subDomain + "-left-content"}>
-            <div className={subDomain + "-content-block"}>
+          <div className={"left-content"}>
+            <div className={"content-block"}>
               {megaShopData.mainList[shopSelect].list.map((item: any, index: number) => {
                 return (
                   index < Math.round(megaShopData.mainList[shopSelect].list.length / 2) && (
-                    <p className={subDomain + "-block-content"} key={index}>
+                    <p className={"block-content"} key={index}>
                       {item}
                     </p>
                   )
@@ -132,12 +131,12 @@ const MegamenuShop = ({ subDomain, text, disableMenu }: Props) => {
               })}
             </div>
           </div>
-          <div className={subDomain + "-left-content"}>
-            <div className={subDomain + "-content-block"}>
+          <div className={"left-content"}>
+            <div className={"content-block"}>
               {megaShopData.mainList[shopSelect].list.map((item: any, index: number) => {
                 return (
                   index >= Math.round(megaShopData.mainList[shopSelect].list.length / 2) && (
-                    <p className={subDomain + "-block-content"} key={index}>
+                    <p className={"block-content"} key={index}>
                       {item}
                     </p>
                   )

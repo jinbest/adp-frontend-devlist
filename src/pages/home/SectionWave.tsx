@@ -9,11 +9,10 @@ import { createStyles, makeStyles } from "@material-ui/core/styles"
 import _ from "lodash"
 
 type Props = {
-  subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const SectionWave = ({ subDomain, handleStatus }: Props) => {
+const SectionWave = ({ handleStatus }: Props) => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.sectionWave
   const [t] = useTranslation()
@@ -43,10 +42,7 @@ const SectionWave = ({ subDomain, handleStatus }: Props) => {
                   return (
                     <React.Fragment key={index}>
                       {item.visible && item.link && item.link !== "#" ? (
-                        <Box
-                          className={subDomain + "-service-section-button"}
-                          style={{ margin: "initial" }}
-                        >
+                        <Box className={"service-section-button"} style={{ margin: "initial" }}>
                           {isExternal(item.link) ? (
                             <a
                               href={item.link}
@@ -58,7 +54,6 @@ const SectionWave = ({ subDomain, handleStatus }: Props) => {
                                 title={t(item.title)}
                                 bgcolor={data.general.colorPalle.repairButtonCol}
                                 borderR="20px"
-                                subDomain={subDomain}
                                 width="95%"
                               />
                             </a>
@@ -72,7 +67,6 @@ const SectionWave = ({ subDomain, handleStatus }: Props) => {
                                 title={t(item.title)}
                                 bgcolor={data.general.colorPalle.repairButtonCol}
                                 borderR="20px"
-                                subDomain={subDomain}
                                 width="95%"
                               />
                             </Link>
@@ -135,6 +129,7 @@ const useStyles = makeStyles(() =>
       },
       ["@media (max-width:768px)"]: {
         height: "130vw",
+        minHeight: "850px",
       },
       ["@media (max-width:600px)"]: {
         height: "280vw",
@@ -148,6 +143,7 @@ const useStyles = makeStyles(() =>
       },
       ["@media (max-width:425px)"]: {
         height: "315vw",
+        minHeight: "1150px",
         "& > img": {
           objectPosition: "30%",
         },

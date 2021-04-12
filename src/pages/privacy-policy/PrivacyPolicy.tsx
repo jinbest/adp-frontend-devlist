@@ -7,11 +7,10 @@ import axios from "axios"
 import ReactToPrint from "react-to-print"
 
 type Props = {
-  subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
+const PrivacyPolicy = ({ handleStatus }: Props) => {
   const classes = useStyles()
   const [t] = useTranslation()
   const data = storesDetails.storeCnts
@@ -62,7 +61,7 @@ const PrivacyPolicy = ({ handleStatus, subDomain }: Props) => {
       <Helmet>
         <title>{pageTitle}</title>
       </Helmet>
-      <div className={`${classes.root} ${subDomain}-privacy-policy`}>
+      <div className={`${classes.root} privacy-policy`}>
         {loading && (
           <React.Fragment>
             <div

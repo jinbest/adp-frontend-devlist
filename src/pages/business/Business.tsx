@@ -18,11 +18,10 @@ import {
 import { MetaParams } from "../../model/meta-params"
 
 type Props = {
-  subDomain: string
   handleStatus: (status: boolean) => void
 }
 
-const Business = ({ subDomain, handleStatus }: Props) => {
+const Business = ({ handleStatus }: Props) => {
   const classes = useStyles()
   const data = storesDetails.storeCnts
   const thisPage = data.businessPage
@@ -61,7 +60,6 @@ const Business = ({ subDomain, handleStatus }: Props) => {
           title={t(thisPage.section1.btnTitle)}
           bgcolor={data.general.colorPalle.repairButtonCol}
           borderR="20px"
-          subDomain={subDomain}
           width="200px"
           margin="auto"
           onClick={() => setOpenModal(true)}
@@ -134,7 +132,6 @@ const Business = ({ subDomain, handleStatus }: Props) => {
           <ContactModal
             openModal={openModal}
             handleModal={setOpenModal}
-            subDomain={subDomain}
             storesDetailsStore={storesDetails}
           />
         </div>

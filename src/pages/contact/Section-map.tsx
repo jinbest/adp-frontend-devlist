@@ -31,7 +31,6 @@ const DAYS_OF_THE_WEEK: string[] = [
   "Saturday",
 ]
 interface Props extends StoreProps {
-  subDomain?: string
   locations: any[]
   handleStatus: (status: boolean) => void
   location_id: number
@@ -46,7 +45,6 @@ type StoreProps = {
 const SectionMap = inject("storesDetailsStore")(
   observer(
     ({
-      subDomain,
       locations,
       storesDetailsStore,
       handleStatus,
@@ -128,7 +126,7 @@ const SectionMap = inject("storesDetailsStore")(
       }, [storesDetailsStore.cntUserLocation])
 
       return (
-        <section className={subDomain + "-Container " + classes.root}>
+        <section className={"Container " + classes.root}>
           <Grid container style={{ marginTop: "180px", marginBottom: "100px" }}>
             <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
               {locations.map((element, index) => (
@@ -232,7 +230,7 @@ const SectionMap = inject("storesDetailsStore")(
                                   backgroundColor: data.general.colorPalle.repairButtonCol,
                                   borderRadius: "20px",
                                 }}
-                                className={subDomain + "-button " + classes.getQuote}
+                                className={"button " + classes.getQuote}
                                 onClick={() => {
                                   handleLocSelect(element)
                                 }}
@@ -257,7 +255,7 @@ const SectionMap = inject("storesDetailsStore")(
                                         backgroundColor: data.general.colorPalle.repairButtonCol,
                                         borderRadius: "20px",
                                       }}
-                                      className={subDomain + "-button " + classes.getAppoint}
+                                      className={"button " + classes.getAppoint}
                                       onClick={() => {
                                         handleLocSelect(element)
                                       }}
@@ -277,10 +275,10 @@ const SectionMap = inject("storesDetailsStore")(
                         md={8}
                         sm={12}
                         xs={12}
-                        className={subDomain + "-hours-div " + classes.timePanelWrapp}
+                        className={"hours-div " + classes.timePanelWrapp}
                       >
                         <div>
-                          <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
+                          <p className={"block-title"} style={{ textAlign: "start" }}>
                             {t("Hours")}
                           </p>
                         </div>
@@ -288,12 +286,12 @@ const SectionMap = inject("storesDetailsStore")(
                         {getRegularHours(element.location_hours).map((item, index) => (
                           <Grid key={index} item container md={12} sm={12} xs={12}>
                             <Grid item md={6} sm={6} xs={6}>
-                              <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                              <p className={"block-content " + classes.nonHoverEffect}>
                                 {t(DAYS_OF_THE_WEEK[item.day])}
                               </p>
                             </Grid>
                             <Grid item md={6} sm={6} xs={6}>
-                              <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                              <p className={"block-content " + classes.nonHoverEffect}>
                                 {!item.open || !item.close
                                   ? item.by_appointment_only
                                     ? t("Call to book appointment")

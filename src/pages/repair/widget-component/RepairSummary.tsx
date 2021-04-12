@@ -12,7 +12,6 @@ type StoreProps = {
 interface Props extends StoreProps {
   step: number
   themeCol: string
-  subDomain?: string
   showInfo?: boolean
 }
 

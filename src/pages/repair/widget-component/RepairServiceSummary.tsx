@@ -19,18 +19,10 @@ type Props = {
   themeCol: string
   step: number
   handleStep: (step: number) => void
-  subDomain?: string
   features: any[]
 }
 
-const RepairServiceSummary = ({
-  repairWidgetData,
-  code,
-  step,
-  handleStep,
-  subDomain,
-  features,
-}: Props) => {
+const RepairServiceSummary = ({ repairWidgetData, code, step, handleStep, features }: Props) => {
   const mainData = storesDetails.storeCnts
   const textThemeCol = mainData.general.colorPalle.textThemeCol
   const [disableStatus, setDisableStatus] = useState(false)
@@ -283,7 +275,6 @@ const RepairServiceSummary = ({
                       fontSize="17px"
                       margin="0 auto"
                       onClick={handleSubmit}
-                      subDomain={subDomain}
                       disable={disableStatus}
                     >
                       {isSubmitting && <Loading />}
@@ -307,7 +298,6 @@ const RepairServiceSummary = ({
                       fontSize="17px"
                       margin="0 auto"
                       onClick={handleSubmit}
-                      subDomain={subDomain}
                       disable={disableStatus}
                     >
                       {isSubmitting && <Loading />}

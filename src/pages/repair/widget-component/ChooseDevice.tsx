@@ -20,7 +20,6 @@ type Props = {
   data: any
   stepName: string
   step: number
-  subDomain?: string
   handleStep: (step: number) => void
   handleChangeChooseData: (step: number, chooseData: any) => void
   repairWidgetData: any
@@ -35,7 +34,6 @@ const ChooseDevice = ({
   data,
   stepName,
   step,
-  subDomain,
   handleStep,
   handleChangeChooseData,
   repairWidgetData,
@@ -497,7 +495,6 @@ const ChooseDevice = ({
                       bgcolor="white"
                       border="rgba(0,0,0,0.2)"
                       placeholder={t(data.placeholder)}
-                      subDomain={subDomain}
                       value={searchText}
                       handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         handleChangeSearch(e)
@@ -576,7 +573,6 @@ const ChooseDevice = ({
                       fontSize="17px"
                       txcolor="black"
                       onClick={GobackFirst}
-                      subDomain={subDomain}
                     />
                     <Button
                       title={t("No")}
@@ -587,7 +583,6 @@ const ChooseDevice = ({
                       fontSize="17px"
                       txcolor="black"
                       onClick={GotoNextStep}
-                      subDomain={subDomain}
                     />
                   </div>
                 )}
@@ -651,7 +646,6 @@ const ChooseDevice = ({
                   fontSize="17px"
                   onClick={() => ChooseNextStep(999)}
                   disable={disableStatus}
-                  subDomain={subDomain}
                 />
                 <p>{t("or press ENTER")}</p>
               </div>
@@ -733,7 +727,6 @@ const ChooseDevice = ({
             {(stepName === "dropOffDevicce" || stepName === "receiveQuote") && (
               <RepairSummary
                 step={step}
-                subDomain={subDomain}
                 themeCol={themeCol}
                 repairWidgetStore={repairWidgetStore}
               />
@@ -744,7 +737,6 @@ const ChooseDevice = ({
       <ContactModal
         openModal={openContactModal}
         handleModal={setOpenContactModal}
-        subDomain={subDomain}
         storesDetailsStore={storesDetails}
       />
     </div>

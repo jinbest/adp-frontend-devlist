@@ -11,10 +11,9 @@ import { countriesData, statesData } from "../const"
 type Props = {
   bgColor: string
   handleUserInfo: (data: any) => void
-  subDomain?: string
 }
 
-const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
+const UserInfoModal = ({ bgColor, handleUserInfo }: Props) => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const [t] = useTranslation()
@@ -68,14 +67,12 @@ const UserInfoModal = ({ bgColor, handleUserInfo, subDomain }: Props) => {
               <CustomSelect
                 value={country}
                 handleSetValue={setCountry}
-                subDomain={subDomain}
                 options={countriesData}
                 variant="filled"
               />
               <CustomSelect
                 value={state}
                 handleSetValue={setState}
-                subDomain={subDomain}
                 options={country.code ? statesData[country.code] : []}
                 variant="filled"
               />

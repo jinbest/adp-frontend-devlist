@@ -37,7 +37,6 @@ const MONTHS: string[] = [
 
 type Props = {
   data: any
-  subDomain?: string
   step: number
   handleStep: (step: number) => void
   code: string
@@ -46,7 +45,7 @@ type Props = {
   storesDetailsStore: StoresDetails
 }
 
-const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
+const BookTime = ({ data, step, code, handleStep, handleChangeChooseData }: Props) => {
   const mainData = storesDetails.storeCnts
   const timezoneData = require(`../../../assets/_common/timezoneList`)
   const timeZoneList = timezoneData.timezoneOptions
@@ -326,7 +325,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                   <CustomSelect
                     value={selectVal}
                     handleSetValue={setSelectVal}
-                    subDomain={subDomain}
                     options={findLocs}
                   />
                 )}
@@ -381,11 +379,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
               {code !== "MAIL_IN" && (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <CustomCalendar
-                      subDomain={subDomain}
-                      handleParentDate={setDate}
-                      timezone={timezone}
-                    />
+                    <CustomCalendar handleParentDate={setDate} timezone={timezone} />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     {hoursRange.length ? (
@@ -394,7 +388,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         brandThemeCol={brandThemeCol}
                         repairBooktimeCol={repairBooktimeCol}
                         title={t(DAYS_OF_THE_WEEK[week]) + ", " + t(MONTHS[month]) + " " + day}
-                        subDomain={subDomain}
                         timezoneIndex={tzIndex}
                         timeZoneList={timeZoneList}
                         defaultTimezone={timezoneData.defaultTimezone}
@@ -446,7 +439,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                 fontSize="17px"
                 onClick={ChooseNextStep}
                 disable={disableStatus}
-                subDomain={subDomain}
               />
               <p>{t("or press ENTER")}</p>
             </div>
@@ -454,12 +446,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className="service-summary-card">
-            <RepairSummary
-              step={step}
-              subDomain={subDomain}
-              themeCol={themeCol}
-              repairWidgetStore={repairWidgetStore}
-            />
+            <RepairSummary step={step} themeCol={themeCol} repairWidgetStore={repairWidgetStore} />
           </Card>
         </Grid>
       </Grid>

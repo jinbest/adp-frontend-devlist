@@ -13,14 +13,13 @@ const useStyles = makeStyles(() =>
 )
 
 type Props = {
-  subDomain?: string
   options: any[]
   value: any
   handleSetValue: (val: any) => void
   variant?: "filled" | "outlined" | "standard" | undefined
 }
 
-const CustomSelect = ({ options, value, handleSetValue, subDomain, variant }: Props) => {
+const CustomSelect = ({ options, value, handleSetValue, variant }: Props) => {
   const classes = useStyles()
 
   const [state, setState] = useState<{ code: string; name: string }>({
@@ -59,11 +58,11 @@ const CustomSelect = ({ options, value, handleSetValue, subDomain, variant }: Pr
           inputProps={{
             name: "code",
           }}
-          className={subDomain + "-custom-select"}
+          className={"custom-select"}
         >
           {options.map((item: any, index: number) => {
             return (
-              <MenuItem className={subDomain + "-custom-select"} value={item.code} key={index}>
+              <MenuItem className={"custom-select"} value={item.code} key={index}>
                 {item.name}
               </MenuItem>
             )

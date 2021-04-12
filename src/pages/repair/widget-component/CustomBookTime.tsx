@@ -7,7 +7,6 @@ type Props = {
   brandThemeCol?: string
   repairBooktimeCol?: string
   title: string
-  subDomain?: string
   timezoneIndex: number
   timeZoneList: any[]
   defaultTimezone: any

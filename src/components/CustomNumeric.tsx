@@ -36,7 +36,6 @@ type Props = {
   content: string
   handlePrevState: () => void
   handleNextState: () => void
-  subDomain?: string
 }
 
 const CustomNumeric = ({ content, handlePrevState, handleNextState }: Props) => {

@@ -21,11 +21,10 @@ const DAYS_OF_THE_WEEK: string[] = [
 ]
 
 type Props = {
-  subDomain: string
   handleStatus: (status: boolean) => void
 }
 
-const Locations = ({ subDomain, handleStatus }: Props) => {
+const Locations = ({ handleStatus }: Props) => {
   const classes = useStyles()
   const data = storesDetails.storeCnts
   const thisPage = data.locationPage
@@ -77,7 +76,6 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                 title={t(thisPage.section1.button.title)}
                 bgcolor={data.general.colorPalle.repairButtonCol}
                 borderR="20px"
-                subDomain={subDomain}
                 width="100%"
                 margin="0 auto"
               />
@@ -155,7 +153,6 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                               title={t("Get Directions")}
                               bgcolor={data.general.colorPalle.repairButtonCol}
                               borderR="20px"
-                              subDomain={subDomain}
                               width="auto"
                               margin="10px 10px 0 0"
                               fontSize="12px"
@@ -167,7 +164,6 @@ const Locations = ({ subDomain, handleStatus }: Props) => {
                               title={t("Call Now")}
                               bgcolor={data.general.colorPalle.repairButtonCol}
                               borderR="20px"
-                              subDomain={subDomain}
                               width="auto"
                               margin="10px 10px 0 0"
                               fontSize="12px"

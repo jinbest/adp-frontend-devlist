@@ -11,10 +11,12 @@ import { MetaParams } from "./model/meta-params"
 import { ScriptParams } from "./model/script-params"
 import { TagParams } from "./model/tag-params"
 import "./assets/_common/style/index.scss"
+// import "./assets/styles/index.scss"
+// import "./assets/styles/theme.css"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-const subDomain = apexDomain.split(".")[0]
+const subDomainID = -1
 
 // const devicelist = [
 //   { name: "bananaservices", domain: "bananaservices.ca", storeID: 1 },
@@ -29,13 +31,10 @@ const subDomain = apexDomain.split(".")[0]
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 8,
-//   subDomain = devicelist[siteNum].name,
-//   apexDomain = "dccmtx.com"
+// const siteNum = 1,
+//   subDomainID = devicelist[siteNum].storeID
 
 function App(): JSX.Element {
-  require(`./assets/${subDomain}/styles/index.scss`)
-
   const [footerStatus, setFooterStatus] = useState(true)
   const [features, setFeatures] = useState<FeaturesParam[]>([])
   const [storeId, setStoreID] = useState(0)
@@ -130,7 +129,7 @@ function App(): JSX.Element {
         })
 
       appLoadAPI
-        .getStoreConfig(storeId)
+        .getStoreConfig(storeId, subDomainID)
         .then((res: any) => {
           storesDetails.changeStoreCnts(res[0].data)
           storesDetails.changeCommonCnts(res[1].data)
@@ -190,20 +189,10 @@ function App(): JSX.Element {
             })}
           </Helmet>
           <Router>
-            <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-            <BaseRouter
-              subDomain={subDomain}
-              handleStatus={handleFooterStatus}
-              features={features}
-            />
+            <Header handleStatus={handleFooterStatus} features={features} />
+            <BaseRouter handleStatus={handleFooterStatus} features={features} />
             <Badge />
-            {footerStatus && (
-              <Footer
-                subDomain={subDomain}
-                features={features}
-                storesDetailsStore={storesDetails}
-              />
-            )}
+            {footerStatus && <Footer features={features} storesDetailsStore={storesDetails} />}
           </Router>
         </>
       ) : (

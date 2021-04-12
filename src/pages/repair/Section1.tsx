@@ -12,14 +12,13 @@ type StoreProps = {
   repairWidgetStore: RepairWidgetStore
 }
 interface Props extends StoreProps {
-  subDomain: string
   handleStatus: (status: boolean) => void
   features: any[]
 }
 
 const Section1 = inject("repairWidgetStore")(
   observer((props: Props) => {
-    const { handleStatus, repairWidgetStore, subDomain } = props
+    const { handleStatus, repairWidgetStore } = props
     const data = storesDetails.storeCnts
     const repair = data.repairPage.section1
     const [t] = useTranslation()
@@ -33,26 +32,23 @@ const Section1 = inject("repairWidgetStore")(
 
     return (
       <div
-        className={subDomain + "-service-section1-special-bg"}
+        className={"service-section1-special-bg"}
         style={{
           backgroundImage: repair.hasBackground ? "url(" + repair.bgImg + ")" : "",
         }}
       >
-        <section className={subDomain + "-Container"}>
-          <Grid container className={subDomain + "-service-section1"}>
+        <section className={"Container"}>
+          <Grid container className={"service-section1"}>
             <Grid item xs={12} sm={7}>
               <Typography
-                className={subDomain + "-service-section-title-1"}
+                className={"service-section-title-1"}
                 style={{
                   color: repair.themeCol,
                 }}
               >
                 {t(repair.title)}
               </Typography>
-              <Typography
-                className={subDomain + "-service-section-content"}
-                style={{ color: repair.themeCol }}
-              >
+              <Typography className={"service-section-content"} style={{ color: repair.themeCol }}>
                 {t(repair.subtitle)}
               </Typography>
               <div style={{ display: "flex" }}>
@@ -60,7 +56,7 @@ const Section1 = inject("repairWidgetStore")(
                   return (
                     <React.Fragment key={index}>
                       {item.visible ? (
-                        <Box className={subDomain + "-service-section-button"}>
+                        <Box className={"service-section-button"}>
                           {isExternal(item.link) ? (
                             <a
                               href={item.link}
@@ -72,7 +68,6 @@ const Section1 = inject("repairWidgetStore")(
                                 title={t(item.title)}
                                 bgcolor={data.general.colorPalle.repairButtonCol}
                                 borderR="20px"
-                                subDomain={subDomain}
                                 width="90%"
                               />
                             </a>
@@ -86,7 +81,6 @@ const Section1 = inject("repairWidgetStore")(
                                 title={t(item.title)}
                                 bgcolor={data.general.colorPalle.repairButtonCol}
                                 borderR="20px"
-                                subDomain={subDomain}
                                 width="90%"
                               />
                             </Link>

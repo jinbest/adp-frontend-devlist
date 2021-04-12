@@ -9,12 +9,11 @@ import { useTranslation } from "react-i18next"
 import { isExternal } from "../../services/helper"
 
 type Props = {
-  subDomain?: string
   features: any[]
   handleStatus: (status: boolean) => void
 }
 
-const Section1 = ({ subDomain, features, handleStatus }: Props) => {
+const Section1 = ({ features, handleStatus }: Props) => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.section1
   const [t] = useTranslation()
@@ -50,21 +49,16 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   }
 
   return (
-    <section className={subDomain + "-Container"}>
-      <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-        <h1 className={subDomain + "-section1-title align-center"}>{t(thisPage.title)}</h1>
-        <Typography className={subDomain + "-section1-subtitle align-center"}>
-          {t(thisPage.subtitle)}
-        </Typography>
+    <section className={"Container"}>
+      <Grid item xs={12} sm={12} className={"section1-top"}>
+        <h1 className={"section1-title align-center"}>{t(thisPage.title)}</h1>
+        <Typography className={"section1-subtitle align-center"}>{t(thisPage.subtitle)}</Typography>
         <div className="align-center d-flex">
           {thisPage.buttons.map((item: any, index: number) => {
             return (
               <React.Fragment key={index}>
                 {item.visible ? (
-                  <Box
-                    className={subDomain + "-service-section-button"}
-                    style={{ margin: "initial" }}
-                  >
+                  <Box className={"service-section-button"} style={{ margin: "initial" }}>
                     {isExternal(item.link) ? (
                       <a
                         href={item.link}
@@ -76,7 +70,6 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                           title={t(item.title)}
                           bgcolor={data.general.colorPalle.repairButtonCol}
                           borderR="20px"
-                          subDomain={subDomain}
                           width="95%"
                         />
                       </a>
@@ -90,7 +83,6 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                           title={t(item.title)}
                           bgcolor={data.general.colorPalle.repairButtonCol}
                           borderR="20px"
-                          subDomain={subDomain}
                           width="95%"
                         />
                       </Link>
@@ -109,13 +101,12 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
             name={"FRONTEND_GLOBAL_SEARCH"}
             inactiveComponent={() => <></>}
             activeComponent={() => (
-              <Box className={subDomain + "-sec1-search_input"}>
+              <Box className={"sec1-search_input"}>
                 <Search
                   placeholder={thisPage.searchPlaceholder}
                   color="white"
                   bgcolor={storesDetails.storeCnts.general.colorPalle.themeColor}
                   height="60px"
-                  subDomain={subDomain}
                   handleChange={() => {}}
                   handleIconClick={() => {}}
                 />
@@ -125,7 +116,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
         </FeatureToggles>
       </Grid>
 
-      {/* <Grid container item xs={12} spacing={3} className={subDomain + "-sec1-card-mobile-data"}>
+      {/* <Grid container item xs={12} spacing={3} className={"sec1-card-mobile-data"}>
         {thisPage.cards.data.map((item: any, index: number) => {
           return (
             <FeatureToggles features={feats} key={index}>
@@ -152,7 +143,6 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                       key={index}
                       heart={index === 0 ? require('../../assets/_common/img/heart.png').default : ""}
                       heartCol={data.colorPalle.heartCol}
-                      subDomain={subDomain}
                       href={item.href}
                     />
                   </Grid>

@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next"
 import { storesDetails } from "../store"
 
 type Props = {
-  subDomain?: string
   color?: string
 }
 

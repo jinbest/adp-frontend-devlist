@@ -8,11 +8,10 @@ import { isExternal } from "../../services/helper"
 import { Link } from "react-router-dom"
 
 type Props = {
-  subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const Section1 = ({ subDomain, handleStatus }: Props) => {
+const Section1 = ({ handleStatus }: Props) => {
   const classes = useStyles()
   const data = storesDetails.storeCnts
   const thisPage = data.covidPage.section1
@@ -34,10 +33,7 @@ const Section1 = ({ subDomain, handleStatus }: Props) => {
           return (
             <React.Fragment key={index}>
               {item.visible && (
-                <Box
-                  className={subDomain + "-service-section-button"}
-                  style={{ margin: "initial" }}
-                >
+                <Box className={"service-section-button"} style={{ margin: "initial" }}>
                   {isExternal(item.link) ? (
                     <a
                       href={item.link}
@@ -49,7 +45,6 @@ const Section1 = ({ subDomain, handleStatus }: Props) => {
                         title={t(item.title)}
                         bgcolor={data.general.colorPalle.repairButtonCol}
                         borderR="20px"
-                        subDomain={subDomain}
                         width="95%"
                       />
                     </a>
@@ -63,7 +58,6 @@ const Section1 = ({ subDomain, handleStatus }: Props) => {
                         title={t(item.title)}
                         bgcolor={data.general.colorPalle.repairButtonCol}
                         borderR="20px"
-                        subDomain={subDomain}
                         width="95%"
                       />
                     </Link>

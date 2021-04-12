@@ -6,20 +6,19 @@ type Props = {
   days: string
   content: string
   reviewer: string
-  subDomain?: string
 }
 
-const CardWhyCustomer = ({ score, content, reviewer, subDomain }: Props) => {
+const CardWhyCustomer = ({ score, content, reviewer }: Props) => {
   return (
-    <div className={subDomain + "-card-why-customer"}>
-      <div className={subDomain + "-score-div"}>
-        <div className={subDomain + "-rating"}>
+    <div className={"card-why-customer"}>
+      <div className={"score-div"}>
+        <div className={"rating"}>
           <Rating name="read-only" value={score} max={score} readOnly />
         </div>
         {/* <p>{days}</p> */}
       </div>
-      <p className={subDomain + "-content"}>{content}</p>
-      <p className={subDomain + "-reviewer"}>{reviewer}</p>
+      <p className={"content"}>{content}</p>
+      <p className={"reviewer"}>{reviewer}</p>
     </div>
   )
 }
@@ -30,7 +29,6 @@ CardWhyCustomer.defaultProps = {
   content:
     "This was by far the easiest way to sell your old cell phone. Simple fast and got a very good price for my phone.",
   reviewer: "Philip Sizemore",
-  subDomain: "geebo",
 }
 
 export default CardWhyCustomer

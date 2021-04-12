@@ -44,25 +44,18 @@ class AppLoadAPI {
     })
   }
 
-  getStoreConfig = (store_id: number) => {
-    // console.log(store_id)
-    // const prodLink = 'https://prod.pcmtx.com/api/store-service/'
-    // const storeIDs = {
-    //   mobiletechlab: 4,
-    //   northtechcellsolutions: 5,
-    //   nanotechmobile: 2,
-    //   pradowireless: 10,
-    //   wirelessrevottawa: 8,
-    //   geebodevicerepair: 3,
-    //   phonephix: 9,
-    //   bananaservice: 1,
-    //   reparation: 7
-    // }
-    // const apiStoreURL = `${prodLink}dc/store/${storeIDs.reparation}/config`
-    // const apiCommonURL = `${prodLink}dc/store/config/common`
+  getStoreConfig = (store_id: number, subDomainID: number) => {
 
-    const apiStoreURL = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/config`
-    const apiCommonURL = `${Config.STORE_SERVICE_API_URL}dc/store/config/common`
+    const prodLink = 'https://prod.pcmtx.com/api/store-service/'
+    let apiStoreURL = "", apiCommonURL = ""
+
+    if (subDomainID > 0) {
+      apiStoreURL = `${prodLink}dc/store/${subDomainID}/config`
+      apiCommonURL = `${prodLink}dc/store/config/common`
+    } else {
+      apiStoreURL = `${Config.STORE_SERVICE_API_URL}dc/store/${store_id}/config`
+      apiCommonURL = `${Config.STORE_SERVICE_API_URL}dc/store/config/common`
+    }
 
     const storeData = new Promise((resolve, reject) => {
       axios

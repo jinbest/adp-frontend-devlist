@@ -93,11 +93,10 @@ type OptionProps = {
 type Props = {
   openModal: boolean
   handleModal: (val: boolean) => void
-  subDomain?: string
   storesDetailsStore: StoresDetails
 }
 
-const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }: Props) => {
+const ContactModal = ({ openModal, handleModal, storesDetailsStore }: Props) => {
   const mainData = storesDetailsStore.storeCnts
   const thisPage = mainData.contactPage.contactForm
   const [t] = useTranslation()
@@ -308,7 +307,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChange={(e) => {
                       handleChangeFirstName(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={fnErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -320,7 +318,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChange={(e) => {
                       handleChangeLastName(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={lnErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -332,7 +329,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChange={(e) => {
                       handleChangeCompanyName(e.target.value)
                     }}
-                    subDomain={subDomain}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -342,7 +338,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleChange={(e) => {
                       handleChangeEmail(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={emlErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -360,7 +355,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleSetValue={(locVal) => {
                       handleChangeSelect(locVal)
                     }}
-                    subDomain={subDomain}
                     options={option}
                   />
                 </Grid>
@@ -398,7 +392,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                   fontSize="17px"
                   onClick={handleSubmit}
                   disable={disableStatus}
-                  subDomain={subDomain}
                 >
                   {isSubmit && <Loading />}
                 </Button>
@@ -411,7 +404,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                   margin="20px 10px 0"
                   fontSize="17px"
                   onClick={handleClose}
-                  subDomain={subDomain}
                 />
               </div>
             </div>

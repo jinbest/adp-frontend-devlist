@@ -6,7 +6,6 @@ import { storesDetails } from "../../../store"
 
 type Props = {
   data: any
-  subDomain?: string
   quoteKey: number
   repairWidgetData: any
 }

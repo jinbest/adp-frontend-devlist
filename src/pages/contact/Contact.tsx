@@ -10,13 +10,12 @@ import { storesDetails } from "../../store"
 import { MetaParams } from "../../model/meta-params"
 
 type Props = {
-  subDomain: string
   storesDetailsStore: StoresDetails
   handleStatus: (status: boolean) => void
   features: any[]
 }
 
-const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Props) => {
+const Contact = ({ handleStatus, storesDetailsStore, features }: Props) => {
   const mainData = storesDetailsStore.storeCnts
   const thisPage = mainData.contactPage
   const query = useQuery()
@@ -66,7 +65,6 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
       {locations.length && locationID && (
         <SectionMap
           storesDetailsStore={storesDetailsStore}
-          subDomain={subDomain}
           locations={locations}
           handleStatus={handleStatus}
           location_id={locationID}
@@ -77,7 +75,6 @@ const Contact = ({ subDomain, handleStatus, storesDetailsStore, features }: Prop
       {locations.length && locationID && (
         <Provider storesDetailsStore={storesDetails}>
           <ContactForm
-            subDomain={subDomain}
             locations={locations}
             locationID={locationID}
             handleLocationID={setLocationID}

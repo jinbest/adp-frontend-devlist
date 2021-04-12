@@ -33,7 +33,6 @@ type StoreProps = {
 }
 interface Props extends StoreProps {
   children?: any
-  subDomain?: string
   toggleMenuStatus: (val: boolean) => void
   handleStatus: (status: boolean) => void
   features: any[]
@@ -44,7 +43,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
   observer((props: Props) => {
     const {
       children,
-      subDomain,
       toggleMenuStatus,
       handleStatus,
       features,
@@ -379,14 +377,13 @@ const HeaderDrawer = inject("storesDetailsStore")(
                 height="40px"
                 margin="10px auto"
                 fontSize="17px"
-                subDomain={subDomain}
                 disable={loadingStatus}
                 onClick={handleFindStore}
               >
                 {loadingStatus && <Loading />}
               </Button>
             </div>
-            {thisPage.visibility.lang && <LangDropdown subDomain={subDomain} />}
+            {thisPage.visibility.lang && <LangDropdown />}
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
@@ -408,7 +405,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
-                      subDomain={subDomain}
                     />
                     <Button
                       title={t("Get Location")}
@@ -418,7 +414,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       height="30px"
                       margin="10px auto"
                       fontSize="15px"
-                      subDomain={subDomain}
                       disable={loadingStatus}
                       onClick={() => handleGetLocation(postCode)}
                     >
@@ -435,9 +430,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                             <p
                               onClick={() => handleLocSelect(index)}
                               className={
-                                subDomain +
-                                "-block-content" +
-                                (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
+                                "block-content" + (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
                               }
                               style={{
                                 fontSize: locSelStatus ? "15px" : "12px",
@@ -463,18 +456,15 @@ const HeaderDrawer = inject("storesDetailsStore")(
                               {item.days.map((it: any, index: number) => {
                                 return (
                                   <div key={index}>
-                                    <p
-                                      className={subDomain + "-block-title"}
-                                      style={{ fontSize: "14px" }}
-                                    >
+                                    <p className={"block-title"} style={{ fontSize: "14px" }}>
                                       {t("Hours")}
                                     </p>
-                                    <div className={subDomain + "-hours-div"}>
+                                    <div className={"hours-div"}>
                                       <div>
                                         {it.wkDys.map((itm: any, idx: number) => {
                                           return (
                                             <p
-                                              className={subDomain + "-block-content"}
+                                              className={"block-content"}
                                               style={{
                                                 textDecoration: "none",
                                                 opacity: 1,
@@ -492,7 +482,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                                         {item.hours[index].hrs.map((itm: any, idx: number) => {
                                           return (
                                             <p
-                                              className={subDomain + "-block-content"}
+                                              className={"block-content"}
                                               style={{
                                                 textDecoration: "none",
                                                 opacity: 1,
@@ -515,10 +505,10 @@ const HeaderDrawer = inject("storesDetailsStore")(
                         })}
                       </React.Fragment>
                     )}
-                    <div className={subDomain + "-content-block"}>
+                    <div className={"content-block"}>
                       {locSelStatus && (
                         <a
-                          className={subDomain + "-link"}
+                          className={"link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={
                             storesDetailsStore.cntUserLocation[0] &&
@@ -534,7 +524,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       )}
                       {storesDetailsStore.findAddLocation.length > 1 && (
                         <a
-                          className={subDomain + "-link"}
+                          className={"link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           onClick={viewMoreStores}
                         >
@@ -543,7 +533,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       )}
                       {locSelStatus && (
                         <a
-                          className={subDomain + "-link"}
+                          className={"link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={`${
                             storesDetailsStore.cntUserLocation[0] &&
@@ -580,7 +570,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
                               height="30px"
                               margin="0px 0 10px"
                               fontSize="15px"
-                              subDomain={subDomain}
                             />
                           </Link>
                         )}

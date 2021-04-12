@@ -7,12 +7,11 @@ import { Helmet } from "react-helmet"
 import { MetaParams } from "../../model/meta-params"
 
 type Props = {
-  subDomain: string
   handleStatus: (status: boolean) => void
   features: any[]
 }
 
-const Repair = ({ subDomain, handleStatus, features }: Props) => {
+const Repair = ({ handleStatus, features }: Props) => {
   const data = storesDetails.storeCnts
   const thisPage = data.repairPage
 
@@ -54,14 +53,13 @@ const Repair = ({ subDomain, handleStatus, features }: Props) => {
           activeComponent={() => (
             <div>
               <Section1
-                subDomain={subDomain}
                 handleStatus={handleStatus}
                 repairWidgetStore={repairWidgetStore}
                 features={feats}
               />
-              <Section2 subDomain={subDomain} />
-              {/* <Section3 subDomain={subDomain} /> */}
-              <Section4 subDomain={subDomain} handleStatus={handleStatus} />
+              <Section2 />
+              {/* <Section3 /> */}
+              <Section4 handleStatus={handleStatus} />
             </div>
           )}
         />

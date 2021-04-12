@@ -8,33 +8,26 @@ import { isExternal } from "../../services/helper"
 import { storesDetails } from "../../store"
 
 type Props = {
-  subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const Section4 = ({ subDomain, handleStatus }: Props) => {
+const Section4 = ({ handleStatus }: Props) => {
   const data = storesDetails.storeCnts
   const repair = data.repairPage.section4
   const [t] = useTranslation()
   const classes = useStyles()
 
   return (
-    <section className={subDomain + "-Container"}>
-      <Grid container className={subDomain + "-repair-sec4-grid-root"} spacing={2}>
+    <section className={"Container"}>
+      <Grid container className={"repair-sec4-grid-root"} spacing={2}>
         <Grid item xs={12} md={6} className={classes.item1}>
-          <Typography
-            className={subDomain + "-service-section-title-1"}
-            style={{ color: repair.themeCol }}
-          >
+          <Typography className={"service-section-title-1"} style={{ color: repair.themeCol }}>
             {t(repair.title)}
           </Typography>
-          <Typography
-            className={subDomain + "-service-section-content"}
-            style={{ color: repair.themeCol }}
-          >
+          <Typography className={"service-section-content"} style={{ color: repair.themeCol }}>
             {t(repair.subtitle)}
           </Typography>
-          <Box className={subDomain + "-service-section-button"}>
+          <Box className={"service-section-button"}>
             {isExternal(repair.link) ? (
               <a
                 href={repair.link}
@@ -46,7 +39,6 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
                   title={t(repair.btnTitle)}
                   bgcolor={data.general.colorPalle.repairButtonCol}
                   borderR="20px"
-                  subDomain={subDomain}
                 />
               </a>
             ) : (
@@ -61,7 +53,6 @@ const Section4 = ({ subDomain, handleStatus }: Props) => {
                   title={t(repair.btnTitle)}
                   bgcolor={data.general.colorPalle.repairButtonCol}
                   borderR="20px"
-                  subDomain={subDomain}
                 />
               </Link>
             )}

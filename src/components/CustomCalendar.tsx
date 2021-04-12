@@ -97,12 +97,11 @@ const Day = styled.div<DayProps>`
 `
 
 type CanlendarProps = {
-  subDomain?: string
   handleParentDate: (date: Date) => void
   timezone: string
 }
 
-const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProps) => {
+const CustomCalendar = ({ handleParentDate, timezone }: CanlendarProps) => {
   const mainData = storesDetails.storeCnts
   const repairBooktimeCol = mainData.general.colorPalle.repairBooktimeCol
 
@@ -222,13 +221,11 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
           content={t(MONTHS[month])}
           handlePrevState={handlePrevMonth}
           handleNextState={handleNextMonth}
-          subDomain={subDomain}
         />
         <CustomNumeric
           content={year.toString()}
           handlePrevState={handlePrevYear}
           handleNextState={handleNextYear}
-          subDomain={subDomain}
         />
       </Numeric>
       <Body>

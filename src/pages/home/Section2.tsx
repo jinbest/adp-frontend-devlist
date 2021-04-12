@@ -7,11 +7,10 @@ import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
 
 type Props = {
-  subDomain?: string
   features: any[]
 }
 
-const Section2 = ({ subDomain, features }: Props) => {
+const Section2 = ({ features }: Props) => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.section2
   const [t] = useTranslation()
@@ -40,64 +39,49 @@ const Section2 = ({ subDomain, features }: Props) => {
         name="FRONTEND_REPAIR"
         inactiveComponent={() => <></>}
         activeComponent={() => (
-          <section className={subDomain + "-Container"}>
-            <h2 className={subDomain + "-section-title"}>{t(thisPage.title)}</h2>
-            <div className={subDomain + "-card-customized-container-desktop"}>
+          <section className={"Container"}>
+            <h2 className={"section-title"}>{t(thisPage.title)}</h2>
+            <div className={"card-customized-container-desktop"}>
               {thisPage.cards.map((item: any, index: number) => {
                 return (
                   <Link
                     to={data.general.routes.repairWidgetPage}
-                    className={subDomain + "-card-customized-item"}
+                    className={"card-customized-item"}
                     key={index}
                     style={{ textDecoration: "none" }}
                     onClick={handleRepairWidget}
                   >
-                    <CardFix
-                      title={t(item.title)}
-                      img={item.img}
-                      key={index}
-                      subDomain={subDomain}
-                    />
+                    <CardFix title={t(item.title)} img={item.img} key={index} />
                   </Link>
                 )
               })}
             </div>
-            <div className={subDomain + "-card-customized-container-mobile"}>
+            <div className={"card-customized-container-mobile"}>
               {thisPage.cards.slice(0, 3).map((item: any, index: number) => {
                 return (
                   <Link
                     to={data.general.routes.repairWidgetPage}
-                    className={subDomain + "-card-customized-item"}
+                    className={"card-customized-item"}
                     key={index}
                     style={{ textDecoration: "none" }}
                     onClick={handleRepairWidget}
                   >
-                    <CardFix
-                      title={t(item.title)}
-                      img={item.img}
-                      key={index}
-                      subDomain={subDomain}
-                    />
+                    <CardFix title={t(item.title)} img={item.img} key={index} />
                   </Link>
                 )
               })}
             </div>
-            <div className={subDomain + "-card-customized-container-mobile"}>
+            <div className={"card-customized-container-mobile"}>
               {thisPage.cards.slice(3, 5).map((item: any, index: number) => {
                 return (
                   <Link
                     to={data.general.routes.repairWidgetPage}
-                    className={subDomain + "-card-customized-item"}
+                    className={"card-customized-item"}
                     key={index}
                     style={{ textDecoration: "none" }}
                     onClick={handleRepairWidget}
                   >
-                    <CardFix
-                      title={t(item.title)}
-                      img={item.img}
-                      key={index}
-                      subDomain={subDomain}
-                    />
+                    <CardFix title={t(item.title)} img={item.img} key={index} />
                   </Link>
                 )
               })}
@@ -106,13 +90,12 @@ const Section2 = ({ subDomain, features }: Props) => {
               {thisPage.contents.map((item: any, index: number) => {
                 return (
                   <Grid item xs={12} sm={6} md={3} key={index}>
-                    <Box className={subDomain + "-cart-contentfix-container"}>
+                    <Box className={"cart-contentfix-container"}>
                       <ContentFix
                         title={t(item.title)}
                         content={t(item.content)}
                         themeCol={data.general.colorPalle.underLineCol}
                         key={index}
-                        subDomain={subDomain}
                       />
                     </Box>
                   </Grid>

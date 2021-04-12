@@ -17,15 +17,9 @@ type FooterLinksComponentProps = {
   data: any[]
   isMain: boolean
   initGridMD: GridMDInterface
-  subDomain?: string
 }
 
-const FooterLinksComponent = ({
-  data,
-  isMain,
-  initGridMD,
-  subDomain,
-}: FooterLinksComponentProps) => {
+const FooterLinksComponent = ({ data, isMain, initGridMD }: FooterLinksComponentProps) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
@@ -49,7 +43,7 @@ const FooterLinksComponent = ({
                   aria-haspopup="true"
                   onMouseEnter={handlePopoverOpen}
                   onMouseLeave={handlePopoverClose}
-                  className={subDomain + "-footer-subContent-title " + classes.footerLocName}
+                  className={"footer-subContent-title " + classes.footerLocName}
                 >
                   <a
                     href={
@@ -66,10 +60,7 @@ const FooterLinksComponent = ({
                     {item.location_name}
                   </a>
                 </Typography>
-                <div
-                  className={subDomain + "-device-list-grid"}
-                  style={{ marginTop: "5px", flexWrap: "wrap" }}
-                >
+                <div className={"device-list-grid"} style={{ marginTop: "5px", flexWrap: "wrap" }}>
                   <a
                     href={`tel:${item.phone}`}
                     style={{ color: "black", whiteSpace: "nowrap" }}
@@ -91,7 +82,7 @@ const FooterLinksComponent = ({
                   aria-haspopup="true"
                   onMouseEnter={handlePopoverOpen}
                   onMouseLeave={handlePopoverClose}
-                  className={subDomain + "-device-list-grid " + classes.footerLocAddress}
+                  className={"device-list-grid " + classes.footerLocAddress}
                 >
                   <a
                     href={
@@ -152,14 +143,13 @@ type StoreProps = {
   storesDetailsStore: StoresDetails
 }
 interface Props extends StoreProps {
-  subDomain?: string
   features: any[]
 }
 
 const Footer = inject("storesDetailsStore")(
   observer((props: Props) => {
     const classes = useStyles()
-    const { subDomain, features, storesDetailsStore } = props
+    const { features, storesDetailsStore } = props
     const data = storesDetailsStore.storeCnts
     const thisPage = data.homepage.footer
     const commonData = storesDetailsStore.commonCnts
@@ -209,23 +199,22 @@ const Footer = inject("storesDetailsStore")(
 
     return (
       <footer
-        className={subDomain + "-footer"}
+        className={"footer"}
         style={{
           backgroundImage: mobile
             ? "url(" + thisPage.images.mobile + ")"
             : "url(" + thisPage.images.desktop + ")",
         }}
       >
-        <Typography className={subDomain + "-footer-title"} style={{ color: thisPage.title.color }}>
+        <Typography className={"footer-title"} style={{ color: thisPage.title.color }}>
           {t(thisPage.title.text)}
         </Typography>
-        <Box className={subDomain + "-footer-container"}>
+        <Box className={"footer-container"}>
           <Grid item container xs={12}>
             {/* <Grid item xs={12} md={gridVal.mainGrid[0]}> */}
             <Grid item xs={12} md={12}>
               {/* <Grid item xs={12} md={gridVal.subGrid[0]}> */}
               <Logo
-                subDomain={subDomain}
                 type="footer"
                 handleStatus={() => {
                   console.log("logo clicked")
@@ -238,13 +227,12 @@ const Footer = inject("storesDetailsStore")(
                       key={index}
                       data={storesDetailsStore.allLocations}
                       isMain={item}
-                      subDomain={subDomain}
                       initGridMD={initGridMD}
                     />
                   )
                 })}
               </Grid>
-              <div className={subDomain + "-device-list-grid copyright"} style={{ color: "grey" }}>
+              <div className={"device-list-grid copyright"} style={{ color: "grey" }}>
                 {t(thisPage.copyRight)}
               </div>
               <div className={classes.bottomLink}>
@@ -265,10 +253,10 @@ const Footer = inject("storesDetailsStore")(
               {/* <Grid item container xs={12}>
               {footerLink.map((links: any, index: number) => (
                 <Grid item xs={12} sm={3} key={index}>
-                  <ul className={subDomain + "-footer_link"}>
-                    <li className={subDomain + "-link_name"}>{t(links.name)}</li>
+                  <ul className={"footer_link"}>
+                    <li className={"link_name"}>{t(links.name)}</li>
                     {links.lists.map((link: any, i: number) => (
-                      <li key={i} className={subDomain + "-links"}>
+                      <li key={i} className={"links"}>
                         <a href={link.href}>{t(link.text)}</a>
                       </li>
                     ))}
@@ -281,39 +269,36 @@ const Footer = inject("storesDetailsStore")(
                   name={"FRONTEND_ONLINE_PURCHASE"}
                   inactiveComponent={() => <></>}
                   activeComponent={() => (
-                    <div className={subDomain + "-footer-images-div"}>
+                    <div className={"footer-images-div"}>
                       <div>
                         <img
                           src={commonData.footerImageData.deviceList}
-                          className={subDomain + "-footer-device-response"}
+                          className={"footer-device-response"}
                         />
                         {commonData.footerImageData.bell && (
                           <img
                             src={commonData.footerImageData.bell}
-                            className={subDomain + "-footer-device-response"}
+                            className={"footer-device-response"}
                           />
                         )}
                       </div>
                       <div>
-                        <img
-                          src={commonData.footerImageData.buyNow}
-                          className={subDomain + "-footer-buynow"}
-                        />
+                        <img src={commonData.footerImageData.buyNow} className={"footer-buynow"} />
                         {commonData.footerImageData.others.map((item: any, index: number) => {
                           return (
-                            <div className={subDomain + "-footer-others"} key={index}>
+                            <div className={"footer-others"} key={index}>
                               <img src={item} key={index} />
                             </div>
                           )
                         })}
                         <img
                           src={commonData.footerImageData.deviceList}
-                          className={subDomain + "-footer-device-list"}
+                          className={"-footer-device-list"}
                         />
                         {commonData.footerImageData.bell && (
                           <img
                             src={commonData.footerImageData.bell}
-                            className={subDomain + "-footer-device-list"}
+                            className={"footer-device-list"}
                           />
                         )}
                       </div>

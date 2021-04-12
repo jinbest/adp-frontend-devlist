@@ -19,20 +19,13 @@ type OptionProps = {
 }
 
 type Props = {
-  subDomain?: string
   locations: any[]
   locationID: number
   handleLocationID: (id: number) => void
   storesDetailsStore: StoresDetails
 }
 
-const ContactForm = ({
-  subDomain,
-  locations,
-  locationID,
-  handleLocationID,
-  storesDetailsStore,
-}: Props) => {
+const ContactForm = ({ locations, locationID, handleLocationID, storesDetailsStore }: Props) => {
   const mainData = storesDetailsStore.storeCnts
   const thisPage = mainData.contactPage.contactForm
   const [t] = useTranslation()
@@ -210,7 +203,7 @@ const ContactForm = ({
   }
 
   return (
-    <section className={subDomain + "-Container"}>
+    <section className={"Container"}>
       <div className={classes.root}>
         {!contacted ? (
           <Card className={classes.card}>
@@ -223,7 +216,6 @@ const ContactForm = ({
                   handleChange={(e) => {
                     handleChangeFirstName(e.target.value)
                   }}
-                  subDomain={subDomain}
                   errorText={fnErrTxt}
                   border="rgba(0,0,0,0.1)"
                 />
@@ -235,7 +227,6 @@ const ContactForm = ({
                   handleChange={(e) => {
                     handleChangeLastName(e.target.value)
                   }}
-                  subDomain={subDomain}
                   errorText={lnErrTxt}
                   border="rgba(0,0,0,0.1)"
                 />
@@ -247,7 +238,6 @@ const ContactForm = ({
                   handleChange={(e) => {
                     handleChangeCompanyName(e.target.value)
                   }}
-                  subDomain={subDomain}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -257,7 +247,6 @@ const ContactForm = ({
                   handleChange={(e) => {
                     handleChangeEmail(e.target.value)
                   }}
-                  subDomain={subDomain}
                   errorText={emlErrTxt}
                   border="rgba(0,0,0,0.1)"
                 />
@@ -275,7 +264,6 @@ const ContactForm = ({
                   handleSetValue={(loc) => {
                     handleChangeSelect(loc)
                   }}
-                  subDomain={subDomain}
                   options={option}
                 />
               </Grid>
@@ -311,7 +299,6 @@ const ContactForm = ({
               margin="20px 0 0"
               fontSize="17px"
               onClick={handleSubmit}
-              subDomain={subDomain}
               disable={disableStatus}
             >
               {isSubmit && <Loading />}

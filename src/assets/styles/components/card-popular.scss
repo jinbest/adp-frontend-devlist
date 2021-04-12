@@ -1,0 +1,67 @@
+.card-popular {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10.313px;
+  box-shadow: 0px 10.3131px 12.3758px rgba(0, 0, 0, 0.25);
+  margin-bottom: 15px;
+}
+
+.card-popular > img {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.card-popular .title {
+  color: black;
+  text-align: left;
+  margin: 20px 20px 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-popular .price-div {
+  display: flex;
+  margin: 0 20px;
+}
+
+.card-popular .subtitle {
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 5px 10px 0 0;
+}
+
+.card-popular .price {
+  color: #054dfa;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 5px 0 20px;
+}
+
+@media (max-width: 1024px) {
+  .card-popular .title {
+    font-size: 14px;
+  }
+  .card-popular .subtitle {
+    font-size: 14px;
+  }
+  .card-popular .price {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-popular .title {
+    font-size: 2vw;
+  }
+  .card-popular .subtitle {
+    font-size: 2vw;
+  }
+  .card-popular .price {
+    font-size: 2vw;
+  }
+}

@@ -6,11 +6,10 @@ import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails } from "../../store"
 
 type Props = {
-  subDomain?: string
   features: any[]
 }
 
-const Section3 = ({ subDomain, features }: Props) => {
+const Section3 = ({ features }: Props) => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.section3
   const commonData = storesDetails.commonCnts
@@ -35,17 +34,17 @@ const Section3 = ({ subDomain, features }: Props) => {
         name={"FRONTEND_ONLINE_PURCHASE"}
         inactiveComponent={() => <></>}
         activeComponent={() => (
-          <section className={subDomain + "-sec3-container-parent"}>
-            <div className={subDomain + "-Container"}>
-              <Typography className={subDomain + "-section-title"}>{t(thisPage.title)}</Typography>
+          <section className={"sec3-container-parent"}>
+            <div className={"Container"}>
+              <Typography className={"section-title"}>{t(thisPage.title)}</Typography>
             </div>
             <div
-              className={subDomain + "-section3-back"}
+              className={"section3-back"}
               style={{
                 backgroundImage: "url(" + thisPage.bgImg + ")",
               }}
             >
-              <div className={subDomain + "-Container"}>
+              <div className={"Container"}>
                 <Grid container item xs={12} spacing={2}>
                   {commonData.popularCardData.map((item: any, index: number) => {
                     return (
@@ -57,7 +56,6 @@ const Section3 = ({ subDomain, features }: Props) => {
                           priceCol={data.colorPalle.priceCol}
                           img={item.img}
                           key={index}
-                          subDomain={subDomain}
                         />
                       </Grid>
                     )
@@ -67,7 +65,7 @@ const Section3 = ({ subDomain, features }: Props) => {
                   <Grid container item xs={12} spacing={2}>
                     <Grid item sm={12} md={7}>
                       <Typography
-                        className={subDomain + "-section-title white"}
+                        className={"section-title white"}
                         style={{ color: thisPage.color }}
                       >
                         {thisPage.subtitle.map((item: string, index: number) => {
@@ -83,11 +81,7 @@ const Section3 = ({ subDomain, features }: Props) => {
                       </Typography>
                     </Grid>
                     <Grid item sm={12} md={5}>
-                      <img
-                        src={deviceCard.img}
-                        alt="device-list"
-                        className={subDomain + "-card-img"}
-                      />
+                      <img src={deviceCard.img} alt="device-list" className={"card-img"} />
                     </Grid>
                   </Grid>
                 </Box>

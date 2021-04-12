@@ -5,11 +5,10 @@ import { MetaParams } from "../../model/meta-params"
 import { Helmet } from "react-helmet"
 
 type Props = {
-  subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
-const Covid = ({ handleStatus, subDomain }: Props) => {
+const Covid = ({ handleStatus }: Props) => {
   const mainData = storesDetails.storeCnts.covidPage
 
   const [pageTitle, setPageTitle] = useState("Store")
@@ -35,7 +34,7 @@ const Covid = ({ handleStatus, subDomain }: Props) => {
         })}
       </Helmet>
       <Shape />
-      <Section1 subDomain={subDomain} handleStatus={handleStatus} />
+      <Section1 handleStatus={handleStatus} />
       <Section2 />
     </div>
   )

@@ -8,7 +8,6 @@ import { repairWidgetStore, storesDetails } from "../../../store"
 
 type Props = {
   data: any
-  subDomain?: string
   step: number
   handleStep: (step: number) => void
   handleChangeChooseData: (step: number, chooseData: any) => void
@@ -17,7 +16,6 @@ type Props = {
 
 const UsefulInfo = ({
   data,
-  subDomain,
   step,
   handleStep,
   handleChangeChooseData,
@@ -89,7 +87,6 @@ const UsefulInfo = ({
                 height="30px"
                 fontSize="17px"
                 onClick={ChooseNextStep}
-                subDomain={subDomain}
               />
               <p>{t("or press ENTER")}</p>
             </div>
@@ -99,7 +96,6 @@ const UsefulInfo = ({
           <Card className="service-summary-card">
             <RepairSummary
               step={step}
-              subDomain={subDomain}
               themeCol={themeCol}
               showInfo={true}
               repairWidgetStore={repairWidgetStore}
