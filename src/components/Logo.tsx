@@ -17,7 +17,7 @@ const Logo = ({ subDomain, type, handleStatus }: Props) => {
   }
 
   return type === "header" ? (
-    <Link to="/home" onClick={handleLogoClick}>
+    <Link to="/" onClick={handleLogoClick}>
       <img className={subDomain + "-logo-header"} src={logoData.logoHeaderImg} alt="header-logo" />
     </Link>
   ) : (

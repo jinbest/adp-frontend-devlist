@@ -44,7 +44,7 @@ const Section2 = () => {
             style={{ marginTop: "20px", fontWeight: "bold" }}
           >
             {`${t(thisPage.bottomText)} `}
-            <Link to="/contact" className={classes.itemText}>
+            <Link to={data.general.routes.contactPage} className={classes.itemText}>
               {t("Contact Us")}.
             </Link>
           </Typography>

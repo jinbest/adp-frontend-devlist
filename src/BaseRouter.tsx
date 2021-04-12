@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "./store/"
 import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
@@ -18,6 +18,7 @@ type Props = {
 
 const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
   const data = storesDetails.storeCnts
+  const routes = data.general.routes
 
   return (
     <>
@@ -28,15 +29,14 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
           <Home subDomain={subDomain} features={features} handleStatus={handleStatus} />
         )}
       />
-      <Route path="/home" render={() => <Redirect to="/" />} />
       <Route
-        path="/quote"
+        path={routes.repairPage}
         component={() => (
           <Repair subDomain={subDomain} handleStatus={handleStatus} features={features} />
         )}
       />
       <Route
-        path="/contact"
+        path={routes.contactPage}
         component={() => (
           <Contact
             storesDetailsStore={storesDetails}
@@ -47,7 +47,7 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
         )}
       />
       <Route
-        path="/get-quote"
+        path={routes.repairWidgetPage}
         component={() => (
           <RepairWidget
             subDomain={subDomain}
@@ -58,20 +58,20 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
         )}
       />
       <Route
-        path="/business"
+        path={routes.businessPage}
         component={() => <Business subDomain={subDomain} handleStatus={handleStatus} />}
       />
       <Route
-        path="/locations"
+        path={routes.locationsPage}
         component={() => <Locations subDomain={subDomain} handleStatus={handleStatus} />}
       />
       <Route
-        path="/coronavirus"
+        path={routes.covidPage}
         component={() => <Covid subDomain={subDomain} handleStatus={handleStatus} />}
       />
       {data.homepage.footer.bottomLinks.privacyPolicy.externalLink && (
         <Route
-          path={data.homepage.footer.bottomLinks.privacyPolicy.href}
+          path={routes.privacyPolicy}
           component={() => <PrivacyPolicy subDomain={subDomain} handleStatus={handleStatus} />}
         />
       )}

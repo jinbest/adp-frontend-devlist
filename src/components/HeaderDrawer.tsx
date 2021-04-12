@@ -568,7 +568,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                         inactiveComponent={() => <></>}
                         activeComponent={() => (
                           <Link
-                            to="/get-quote"
+                            to={data.general.routes.repairWidgetPage}
                             style={{ textDecoration: "none" }}
                             onClick={handleBookRepair}
                           >

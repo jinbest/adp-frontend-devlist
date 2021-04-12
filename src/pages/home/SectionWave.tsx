@@ -21,7 +21,7 @@ const SectionWave = ({ subDomain, handleStatus }: Props) => {
   const childData = _.sortBy(thisPage.data, (o) => o.order)
 
   const handleGetQuote = (link: string) => {
-    if (link !== "/get-quote") return
+    if (link !== data.general.routes.repairWidgetPage) return
     const cntAppointment: any = repairWidgetStore.appointResponse
     repairWidgetStore.init()
     repairWidgetStore.changeAppointResponse(cntAppointment)

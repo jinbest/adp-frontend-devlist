@@ -220,7 +220,7 @@ const SectionMap = inject("storesDetailsStore")(
                             }}
                           >
                             <Link
-                              to="/get-quote"
+                              to={data.general.routes.repairWidgetPage}
                               style={{
                                 textDecoration: "none",
                                 width: "60px",
@@ -248,7 +248,7 @@ const SectionMap = inject("storesDetailsStore")(
                               activeComponent={() => (
                                 <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
                                   <Link
-                                    to="/get-quote"
+                                    to={data.general.routes.repairWidgetPage}
                                     style={{ textDecoration: "none" }}
                                     onClick={handleGetQuote}
                                   >

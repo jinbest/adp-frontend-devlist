@@ -46,7 +46,7 @@ const Section2 = ({ subDomain, features }: Props) => {
               {thisPage.cards.map((item: any, index: number) => {
                 return (
                   <Link
-                    to="/get-quote"
+                    to={data.general.routes.repairWidgetPage}
                     className={subDomain + "-card-customized-item"}
                     key={index}
                     style={{ textDecoration: "none" }}
@@ -66,7 +66,7 @@ const Section2 = ({ subDomain, features }: Props) => {
               {thisPage.cards.slice(0, 3).map((item: any, index: number) => {
                 return (
                   <Link
-                    to="/get-quote"
+                    to={data.general.routes.repairWidgetPage}
                     className={subDomain + "-card-customized-item"}
                     key={index}
                     style={{ textDecoration: "none" }}
@@ -86,7 +86,7 @@ const Section2 = ({ subDomain, features }: Props) => {
               {thisPage.cards.slice(3, 5).map((item: any, index: number) => {
                 return (
                   <Link
-                    to="/get-quote"
+                    to={data.general.routes.repairWidgetPage}
                     className={subDomain + "-card-customized-item"}
                     key={index}
                     style={{ textDecoration: "none" }}

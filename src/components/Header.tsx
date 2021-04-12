@@ -22,9 +22,10 @@ const NavItemLink = ({
   feats,
 }: PropsNavItemLink) => {
   const [t] = useTranslation()
+  const data = storesDetails.storeCnts
 
   const handle = () => {
-    if (href === "/get-quote") {
+    if (href === data.general.routes.repairWidgetPage) {
       handleStatus(false)
     } else {
       handleStatus(true)
@@ -206,7 +207,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           )}
           {mobile && (
             <Link
-              to="/contact"
+              to={data.general.routes.contactPage}
               style={{
                 color: brandData.brandCol,
                 height: "25px",
@@ -267,7 +268,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           </ul>
           {mobile && getQuteStatus && (
             <Link
-              to="/get-quote"
+              to={data.general.routes.repairWidgetPage}
               className={subDomain + "-mobile-brand-button"}
               style={{ background: data.general.colorPalle.repairButtonCol, color: "white" }}
               onClick={handleRepairWidget}
@@ -288,7 +289,7 @@ const Header = ({ subDomain, handleStatus, features }: PropsHeader) => {
           }}
         >
           <Link
-            to="/get-quote"
+            to={data.general.routes.repairWidgetPage}
             style={{
               color: "white",
               textDecoration: "none",

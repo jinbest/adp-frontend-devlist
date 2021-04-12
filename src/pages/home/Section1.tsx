@@ -42,7 +42,7 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   }, [data, features, t])
 
   const handleGetQuote = (link: string) => {
-    if (link !== "/get-quote") return
+    if (link !== data.general.routes.repairWidgetPage) return
     const cntAppointment: any = repairWidgetStore.appointResponse
     repairWidgetStore.init()
     repairWidgetStore.changeAppointResponse(cntAppointment)
