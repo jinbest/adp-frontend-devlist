@@ -47,7 +47,7 @@ type Props = {
 
 const BookTime = ({ data, step, code, handleStep, handleChangeChooseData }: Props) => {
   const mainData = storesDetails.storeCnts
-  const timezoneData = require(`../../../assets/_common/timezoneList`)
+  const timezoneData = require(`../../../assets/timezoneList`)
   const timeZoneList = timezoneData.timezoneOptions
   const themeCol = mainData.general.colorPalle.themeColor
   const repairBooktimeCol = mainData.general.colorPalle.repairBooktimeCol

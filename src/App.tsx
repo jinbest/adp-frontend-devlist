@@ -10,9 +10,7 @@ import { FeaturesParam } from "./model/feature-toggle"
 import { MetaParams } from "./model/meta-params"
 import { ScriptParams } from "./model/script-params"
 import { TagParams } from "./model/tag-params"
-import "./assets/_common/style/index.scss"
-// import "./assets/styles/index.scss"
-// import "./assets/styles/theme.css"
+import "./assets/style/index.scss"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
@@ -31,7 +29,7 @@ const subDomainID = -1
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 1,
+// const siteNum = 8,
 //   subDomainID = devicelist[siteNum].storeID
 
 function App(): JSX.Element {
@@ -45,6 +43,7 @@ function App(): JSX.Element {
   const [favIcon, setFavIcon] = useState("")
   const [metaList, setMetaList] = useState<MetaParams[]>([])
   const [scriptList, setScriptList] = useState<ScriptParams[]>([])
+  const [theme, setTheme] = useState("")
   const parser = new DOMParser()
 
   const handleFooterStatus = (status: boolean) => {
@@ -70,6 +69,7 @@ function App(): JSX.Element {
     setPageTitle(homepage.headData.title)
     setMetaList(homepage.headData.metaList)
     setFavIcon(homepage.headData.fav.img)
+    setTheme(mainData.general.themes.minified)
 
     homepage.bodyData.tags.forEach((item: TagParams) => {
       loadBodyTag(item.content)
@@ -173,6 +173,7 @@ function App(): JSX.Element {
             <title>{pageTitle}</title>
             <link rel="icon" id="favicon" href={favIcon} />
             <link rel="apple-touch-icon" href={favIcon} />
+            <link rel="stylesheet" href={theme} />
             {metaList.map((item: MetaParams, index: number) => {
               return <meta name={item.name} content={item.content} key={index} />
             })}

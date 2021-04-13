@@ -1,3 +1,32 @@
+.align-center {
+  text-align: center !important;
+  margin: auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.section-review-title {
+  font-size: 45px !important;
+  font-weight: 800 !important;
+  line-height: 115% !important;
+  font-family: "Poppins Bold" !important;
+  @media (max-width: 768px) {
+    font-size: 5vw !important;
+  }
+  @media (max-width: 425px) {
+    font-size: 4.3vw !important;
+  }
+}
+
+.error-phone-input {
+  border: 1px solid red !important;
+}
+
+/* Privacy-Policy */
 .custom-scroll-bar {
   &::-webkit-scrollbar {
     width: 3px;

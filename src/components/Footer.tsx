@@ -43,7 +43,7 @@ const FooterLinksComponent = ({ data, isMain, initGridMD }: FooterLinksComponent
                   aria-haspopup="true"
                   onMouseEnter={handlePopoverOpen}
                   onMouseLeave={handlePopoverClose}
-                  className={"footer-subContent-title " + classes.footerLocName}
+                  className={classes.footerLocName}
                 >
                   <a
                     href={
@@ -60,18 +60,18 @@ const FooterLinksComponent = ({ data, isMain, initGridMD }: FooterLinksComponent
                     {item.location_name}
                   </a>
                 </Typography>
-                <div className={"device-list-grid"} style={{ marginTop: "5px", flexWrap: "wrap" }}>
+                <div className={classes.emailPhoneContainer}>
                   <a
                     href={`tel:${item.phone}`}
-                    style={{ color: "black", whiteSpace: "nowrap" }}
+                    style={{ color: "black" }}
                     className={classes.hoverEffect}
                   >
-                    {phoneFormatString(item.phone)} |
+                    {`${phoneFormatString(item.phone)} `}
                   </a>
                   &nbsp;
                   <a
                     href={`mailto:${item.email}`}
-                    style={{ color: "black", whiteSpace: "nowrap" }}
+                    style={{ color: "black" }}
                     className={classes.hoverEffect}
                   >
                     {item.email}
@@ -82,7 +82,7 @@ const FooterLinksComponent = ({ data, isMain, initGridMD }: FooterLinksComponent
                   aria-haspopup="true"
                   onMouseEnter={handlePopoverOpen}
                   onMouseLeave={handlePopoverClose}
-                  className={"device-list-grid " + classes.footerLocAddress}
+                  className={classes.footerLocAddress}
                 >
                   <a
                     href={
@@ -153,8 +153,7 @@ const Footer = inject("storesDetailsStore")(
     const data = storesDetailsStore.storeCnts
     const thisPage = data.homepage.footer
     const commonData = storesDetailsStore.commonCnts
-    // const footerLink = thisPage.footerLink
-    // const gridVal = thisPage.gridVal
+    // const footerLink = thisPage.footerLinks
     const [t] = useTranslation()
 
     const [feats, setFeatures] = useState<any[]>([])
@@ -209,7 +208,7 @@ const Footer = inject("storesDetailsStore")(
         <Typography className={"footer-title"} style={{ color: thisPage.title.color }}>
           {t(thisPage.title.text)}
         </Typography>
-        <Box className={"footer-container"}>
+        <Box className={classes.footerContainer}>
           <Grid item container xs={12}>
             {/* <Grid item xs={12} md={gridVal.mainGrid[0]}> */}
             <Grid item xs={12} md={12}>
@@ -339,15 +338,27 @@ const useStyles = makeStyles(() =>
       width: "fit-content",
       fontWeight: "bold",
       margin: "20px 0 5px",
+      ["@media (max-width:768px)"]: {
+        fontSize: "14px",
+      },
       ["@media (max-width:600px)"]: {
         margin: "20px auto 5px",
       },
     },
     footerLocAddress: {
       width: "fit-content",
-      marginTop: "5px",
+      ["@media (max-width:768px)"]: {
+        fontSize: "14px",
+      },
       ["@media (max-width:600px)"]: {
         margin: "5px auto 0",
+      },
+    },
+    emailPhoneContainer: {
+      marginTop: "5px",
+      flexWrap: "wrap",
+      ["@media (max-width:768px)"]: {
+        fontSize: "14px",
       },
     },
     bottomLink: {
@@ -360,6 +371,13 @@ const useStyles = makeStyles(() =>
         "&:hover": {
           opacity: 0.7,
         },
+      },
+    },
+    footerContainer: {
+      maxWidth: "1440px",
+      margin: "auto",
+      ["@media (max-width:600px)"]: {
+        textAlign: "center",
       },
     },
   })

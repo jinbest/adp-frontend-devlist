@@ -423,3 +423,14 @@ export function AddFormat12(address: GetCurrentLocParams) {
     `${address.address_2 ? " " + address.address_2 : ""} `
   )
 }
+
+export function DuplicatedNavItem(navItems: any[], brandItem:any) {
+  let ans = false
+  for (let i = 0; i < navItems.length; i++) {
+    if (navItems[i].text === brandItem.text) {
+      ans = true
+      break
+    }
+  }
+  return ans
+}

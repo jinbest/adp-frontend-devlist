@@ -27,7 +27,14 @@ const Section6 = () => {
           }+ ${t("Reviews")}`}</Typography>
         </>
       )}
-      <Grid container item xs={12} spacing={2} className={"sec6-card"}>
+      <Grid
+        container
+        item
+        xs={12}
+        spacing={2}
+        className={"sec6-card"}
+        style={{ maxWidth: "inherit" }}
+      >
         {thisPage.reviews.map((item: any, index: number) => {
           return (
             <Grid item xs={12} md={4} key={index}>

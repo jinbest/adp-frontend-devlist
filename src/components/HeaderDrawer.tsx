@@ -15,7 +15,7 @@ import { StoresDetails } from "../store/StoresDetails"
 import { makeLocations } from "../services/helper"
 import { findLocationAPI } from "../services/"
 import { repairWidgetStore } from "../store/"
-import { getAddress, isExternal } from "../services/helper"
+import { getAddress, isExternal, DuplicatedNavItem } from "../services/helper"
 import _ from "lodash"
 
 type Anchor = "top" | "left" | "bottom" | "right"
@@ -317,7 +317,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
             {brandItemLinks.map((item: any, index: number) => {
               return (
                 <React.Fragment key={index}>
-                  {item.visible ? (
+                  {item.visible && !DuplicatedNavItem(navItemLinks, item) ? (
                     <React.Fragment>
                       {item.href && item.href !== "#" && (
                         <div
