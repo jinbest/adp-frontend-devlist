@@ -10,10 +10,20 @@ const Shape = () => {
   return (
     <div>
       <div className={classes.corner}>
-        <img src={shapeData.businessCornerShape} />
+        <img
+          src={shapeData.businessCornerShape}
+          width="1"
+          height="auto"
+          alt="location-corner-shape"
+        />
       </div>
       <div className={classes.skitImg}>
-        <img src={storesDetails.commonCnts.locationsData.skitterMobile} />
+        <img
+          src={storesDetails.commonCnts.locationsData.skitterMobile}
+          width="1"
+          height="auto"
+          alt="skitter-mobile"
+        />
       </div>
     </div>
   )

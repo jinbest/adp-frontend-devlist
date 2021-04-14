@@ -11,7 +11,7 @@ type Props = {
 const DeviceListComponent = ({ img, content, children, contentVisible }: Props) => {
   return (
     <div className={"device-list-component"}>
-      <img src={img} />
+      <img src={img} width="1" height="auto" alt="device-list-img" />
       <p className={"title"} style={{ fontWeight: "bold" }}>
         {children}
       </p>

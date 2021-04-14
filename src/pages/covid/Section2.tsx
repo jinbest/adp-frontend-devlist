@@ -25,7 +25,7 @@ const Section2 = () => {
                 <Grid item xs={12} md={6} key={index} className={classes.item}>
                   {item.visible && (
                     <>
-                      <img src={item.img} alt={`covid-logo-${index}`} />
+                      <img src={item.img} alt={`covid-logo-${index}`} width="1" height="auto" />
                       <div>
                         <Typography className={classes.subTitle}>{t(item.title)}</Typography>
                         <Typography className={classes.itemText}>{t(item.content)}</Typography>

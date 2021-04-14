@@ -8,7 +8,13 @@ const Badge = () => {
   return (
     <div className={classes.root}>
       <a href="https://www.devicelist.ca/" target="_blank" rel="noreferrer">
-        <img src={storesDetails.commonCnts.badgeImg} alt="badge-img" className={classes.badgeImg} />
+        <img
+          src={storesDetails.commonCnts.badgeImg}
+          alt="badge-img"
+          className={classes.badgeImg}
+          width="1"
+          height="auto"
+        />
       </a>
     </div>
   )

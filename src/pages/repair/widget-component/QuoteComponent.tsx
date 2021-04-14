@@ -20,7 +20,7 @@ const QuoteComponent = ({ data, quoteKey, repairWidgetData }: Props) => {
       <Card className="repair-service-summary-card">
         <div className="quote-container">
           <div className="quote-image">
-            <img src={data[quoteKey].img} alt="quote-img" />
+            <img src={data[quoteKey].img} alt="quote-img" width="1" height="auto" />
           </div>
           <Typography className="repair-service-summary-title">
             {`${t(data[quoteKey].title)} ${storeName}`}

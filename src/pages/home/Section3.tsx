@@ -81,7 +81,13 @@ const Section3 = ({ features }: Props) => {
                       </Typography>
                     </Grid>
                     <Grid item sm={12} md={5}>
-                      <img src={deviceCard.img} alt="device-list" className={"card-img"} />
+                      <img
+                        src={deviceCard.img}
+                        alt="device-list"
+                        className={"card-img"}
+                        width="1"
+                        height="auto"
+                      />
                     </Grid>
                   </Grid>
                 </Box>

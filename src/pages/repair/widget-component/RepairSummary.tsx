@@ -76,7 +76,7 @@ const RepairSummary = inject("repairWidgetStore")(
                           }}
                         />
                         <div className="service-summary-img">
-                          <img src={item.img} />
+                          <img src={item.img} width="1" height="auto" alt={item.alt} />
                         </div>
                         <div>
                           <Typography className="service-summary-title">

@@ -22,10 +22,10 @@ const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, href }: Prop
       <p style={{ color: color }}>{title.toLocaleUpperCase()}</p>
       {heart && (
         <div className={"card-mobile-heart"} style={{ background: heartCol }}>
-          <img src={heart} alt="heart" />
+          <img src={heart} alt="heart" width="1" height="auto" />
         </div>
       )}
-      <img src={img} alt="mobile-img" />
+      <img src={img} alt="card-mobile-img" width="1" height="auto" />
       {isExternal(href) ? (
         <a href={href} style={{ textDecoration: "none" }} target="_blank" rel="noreferrer">
           <Button

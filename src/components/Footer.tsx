@@ -273,31 +273,55 @@ const Footer = inject("storesDetailsStore")(
                         <img
                           src={commonData.footerImageData.deviceList}
                           className={"footer-device-response"}
+                          width="1"
+                          height="auto"
+                          alt="footer-device-list"
                         />
                         {commonData.footerImageData.bell && (
                           <img
                             src={commonData.footerImageData.bell}
                             className={"footer-device-response"}
+                            width="1"
+                            height="auto"
+                            alt="footer-bell"
                           />
                         )}
                       </div>
                       <div>
-                        <img src={commonData.footerImageData.buyNow} className={"footer-buynow"} />
+                        <img
+                          src={commonData.footerImageData.buyNow}
+                          className={"footer-buynow"}
+                          width="1"
+                          height="auto"
+                          alt="footer-buynow"
+                        />
                         {commonData.footerImageData.others.map((item: any, index: number) => {
                           return (
                             <div className={"footer-others"} key={index}>
-                              <img src={item} key={index} />
+                              <img
+                                src={item}
+                                key={index}
+                                width="1"
+                                height="auto"
+                                alt={`footer-${index}-img`}
+                              />
                             </div>
                           )
                         })}
                         <img
                           src={commonData.footerImageData.deviceList}
                           className={"-footer-device-list"}
+                          width="1"
+                          height="auto"
+                          alt="footer-device-list-img"
                         />
                         {commonData.footerImageData.bell && (
                           <img
                             src={commonData.footerImageData.bell}
                             className={"footer-device-list"}
+                            width="1"
+                            height="auto"
+                            alt="footer-bell-img"
                           />
                         )}
                       </div>

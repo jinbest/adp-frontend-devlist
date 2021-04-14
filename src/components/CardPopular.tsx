@@ -11,7 +11,7 @@ type Props = {
 const CardPopular = ({ title, img, price, subtitle, priceCol }: Props) => {
   return (
     <div className={"card-popular"}>
-      <img src={img} />
+      <img src={img} width="1" height="auto" alt={`${title}-card-popular-img`} />
       <p className={"title"}>{title}</p>
       <div className={"price-div"}>
         <p className={"subtitle"}>{subtitle + " /"}</p>

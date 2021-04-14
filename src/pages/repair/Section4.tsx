@@ -63,6 +63,8 @@ const Section4 = ({ handleStatus }: Props) => {
             src={storesDetails.commonCnts.repairSec4Img}
             alt="repair-sec4-img"
             style={{ width: "100%", maxWidth: "700px" }}
+            width="1"
+            height="auto"
           />
         </Grid>
       </Grid>

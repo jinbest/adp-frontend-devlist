@@ -392,9 +392,17 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
             storesDetailsStore={storesDetails}
           >
             {!menuStatus ? (
-              <img src={thisPage.mobileNavData.avatarData.menu} onClick={toggleMenuStatus} />
+              <img
+                src={thisPage.mobileNavData.avatarData.menu}
+                onClick={toggleMenuStatus}
+                alt="menu-img"
+              />
             ) : (
-              <img src={thisPage.mobileNavData.avatarData.cancel} onClick={toggleMenuStatus} />
+              <img
+                src={thisPage.mobileNavData.avatarData.cancel}
+                onClick={toggleMenuStatus}
+                alt="cancel-img"
+              />
             )}
           </HeaderDrawer>
           {/* <FeatureToggles features={feats}>

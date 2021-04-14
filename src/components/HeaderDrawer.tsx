@@ -266,7 +266,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
         <Drawer anchor={"left"} open={state["left"]} onClose={toggleDrawer("left", false)}>
           <div className={classes.root}>
             <div className={classes.drawerLogo}>
-              <img src={data.logoData.logoHeaderImg} alt="drawer-logo" />
+              <img src={data.logoData.logoHeaderImg} alt="drawer-logo" width="1" height="auto" />
             </div>
             {navItemLinks.map((item: NavItemProps, index: number) => {
               return (

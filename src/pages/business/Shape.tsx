@@ -10,13 +10,28 @@ const Shape = () => {
   return (
     <div>
       <div className={classes.corner}>
-        <img src={shapeData.businessCornerShape} />
+        <img
+          src={shapeData.businessCornerShape}
+          width="1"
+          height="auto"
+          alt="business-corner-shape"
+        />
       </div>
       <div className={classes.leftDesktop}>
-        <img src={shapeData.shapeLeftDesktop} />
+        <img
+          src={shapeData.shapeLeftDesktop}
+          width="1"
+          height="auto"
+          alt="business-left-shape-desktop"
+        />
       </div>
       <div className={classes.leftMobile}>
-        <img src={shapeData.shapeLeftMobile} />
+        <img
+          src={shapeData.shapeLeftMobile}
+          width="1"
+          height="auto"
+          alt="business-left-shape-mobile"
+        />
       </div>
     </div>
   )

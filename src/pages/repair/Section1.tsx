@@ -99,6 +99,8 @@ const Section1 = inject("repairWidgetStore")(
                 src={storesDetails.commonCnts.repairPhoneImg}
                 alt="repair-phone"
                 style={{ width: "100%", marginTop: "-80px" }}
+                width="1"
+                height="auto"
               />
             </Grid>
           </Grid>

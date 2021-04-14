@@ -9,7 +9,13 @@ const Shape = () => {
   return (
     <div>
       <div className={classes.shape}>
-        <img className={classes.shapeImg} src={data.covidBannerImg} />
+        <img
+          className={classes.shapeImg}
+          src={data.covidBannerImg}
+          width="1"
+          height="auto"
+          alt="covid-banner"
+        />
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ const CardRepairSec3 = ({ subtitle, img, content }: Props) => {
   return (
     <div className={"card-repair-sec3-container"}>
       <p className={"subtitle"}>{subtitle}</p>
-      <img src={img} />
+      <img src={img} width="1" height="auto" alt={`repair-sec3-${subtitle}-img`} />
       <p className={"content"}>{content}</p>
     </div>
   )

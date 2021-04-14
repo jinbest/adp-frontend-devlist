@@ -14,7 +14,13 @@ const Section5 = () => {
       <Box className={"Container sec5-container"}>
         <Typography className="f40 bold mg-t-1">{t(thisPage.title)}</Typography>
         <Typography className="f18">{t(thisPage.content)}</Typography>
-        <img className={"mg-t-1 section5-img"} src={storesDetails.commonCnts.bounceImg} />
+        <img
+          className={"mg-t-1 section5-img"}
+          src={storesDetails.commonCnts.bounceImg}
+          width="1"
+          height="auto"
+          alt="bounce-img"
+        />
         <Typography className="f24 bold">{t(thisPage.subtitle)}</Typography>
         <Box className="col_center">
           <ul>

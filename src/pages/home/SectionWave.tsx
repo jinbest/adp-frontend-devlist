@@ -29,7 +29,7 @@ const SectionWave = ({ handleStatus }: Props) => {
 
   return (
     <div className={classes.root}>
-      <img src={thisPage.bgImg} alt="section-wave-bg" />
+      <img src={thisPage.bgImg} alt="section-wave-bg" width="1" height="auto" />
       <div className={classes.container}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} style={{ display: "flex" }}>
@@ -87,7 +87,12 @@ const SectionWave = ({ handleStatus }: Props) => {
                 <Grid item xs={12} sm={6} key={index}>
                   {item.visible && (
                     <div className={classes.item}>
-                      <img src={item.img} alt={`sec-wave-img-${index}`} />
+                      <img
+                        src={item.img}
+                        alt={`sec-wave-img-${item.order}`}
+                        width="1"
+                        height="auto"
+                      />
                       <Typography className={classes.subTitle}>{t(item.title)}</Typography>
                       <Typography className={classes.subContent}>{t(item.content)}</Typography>
                     </div>
