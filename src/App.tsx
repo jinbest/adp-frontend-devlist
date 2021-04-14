@@ -11,26 +11,27 @@ import { MetaParams } from "./model/meta-params"
 import { ScriptParams } from "./model/script-params"
 import { TagParams } from "./model/tag-params"
 import "./assets/style/index.scss"
+import "./assets/style/theme.css"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-const subDomainID = -1
+// const subDomainID = -1
 
-// const devicelist = [
-//   { name: "bananaservices", domain: "bananaservices.ca", storeID: 1 },
-//   { name: "geebodevicerepair", domain: "geebodevicerepair.ca", storeID: 3 },
-//   { name: "mobiletechlab", domain: "mobiletechlab.ca", storeID: 4 },
-//   { name: "nanotechmobile", domain: "nanotechmobile.ca", storeID: 2 },
-//   { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca", storeID: 5 },
-//   { name: "phonephix", domain: "phonephix.ca", storeID: 9 },
-//   { name: "pradowireless", domain: "pradowireless.com", storeID: 10 },
-//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca", storeID: 7 },
-//   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca", storeID: 8 },
-//   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
-//   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
-// ]
-// const siteNum = 0,
-//   subDomainID = devicelist[siteNum].storeID
+const devicelist = [
+  { name: "bananaservices", domain: "bananaservices.ca", storeID: 1 },
+  { name: "geebodevicerepair", domain: "geebodevicerepair.ca", storeID: 3 },
+  { name: "mobiletechlab", domain: "mobiletechlab.ca", storeID: 4 },
+  { name: "nanotechmobile", domain: "nanotechmobile.ca", storeID: 2 },
+  { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca", storeID: 5 },
+  { name: "phonephix", domain: "phonephix.ca", storeID: 9 },
+  { name: "pradowireless", domain: "pradowireless.com", storeID: 10 },
+  { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca", storeID: 7 },
+  { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca", storeID: 8 },
+  { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
+  { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
+]
+const siteNum = 2,
+  subDomainID = devicelist[siteNum].storeID
 
 function App(): JSX.Element {
   const [footerStatus, setFooterStatus] = useState(true)
