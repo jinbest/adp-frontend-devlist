@@ -210,7 +210,7 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
                 </a>
               ) : (
                 <Link
-                  to={data.general.routes.businessPage}
+                  to={data.general.routes.contactPage}
                   style={{
                     color: brandData.brandCol,
                     height: "25px",
