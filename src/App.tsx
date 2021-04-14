@@ -29,7 +29,7 @@ const subDomainID = -1
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
-// const siteNum = 8,
+// const siteNum = 0,
 //   subDomainID = devicelist[siteNum].storeID
 
 function App(): JSX.Element {
