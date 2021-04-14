@@ -44,7 +44,7 @@ const Section6 = () => {
             </a>
           ) : (
             <Link
-              to={data.general.routes.contactPage}
+              to={data.general.routes.businessPage}
               style={{ textDecoration: "none", width: "fit-content", color: "black" }}
             >
               <Rating
