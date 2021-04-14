@@ -5,10 +5,13 @@ import { useTranslation } from "react-i18next"
 import { storesDetails } from "../../store"
 import Rating from "@material-ui/lab/Rating"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
+import { getBusinessLink } from "../../services/helper"
+import { Link } from "react-router-dom"
 
 const Section6 = () => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.section6
+  const businessLink = getBusinessLink(storesDetails.allLocations)
   const [t] = useTranslation()
   const classes = useStyles()
   const overAllRating = thisPage.overAllRating
@@ -18,13 +21,47 @@ const Section6 = () => {
       <Typography className="f40 bold mg-t-1 section-review-title">{t(thisPage.title)}</Typography>
       {overAllRating.visible && (
         <>
-          <Rating name="read-only" value={5} max={5} readOnly style={{ transform: "scale(1.2)" }} />
-          <Typography className={classes.subTitle}>{`${overAllRating.averScore} ${t("of")} ${
-            overAllRating.score
-          } ${t("stars")}`}</Typography>
-          <Typography className={classes.subContent}>{`${t("Based on")} ${
-            overAllRating.totalReviews
-          }+ ${t("Reviews")}`}</Typography>
+          {businessLink ? (
+            <a
+              href={businessLink}
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "none", width: "fit-content", color: "black" }}
+            >
+              <Rating
+                name="read-only"
+                value={5}
+                max={5}
+                readOnly
+                style={{ transform: "scale(1.2)" }}
+              />
+              <Typography className={classes.subTitle}>{`${overAllRating.averScore} ${t("of")} ${
+                overAllRating.score
+              } ${t("stars")}`}</Typography>
+              <Typography className={classes.subContent}>{`${t("Based on")} ${
+                overAllRating.totalReviews
+              }+ ${t("Reviews")}`}</Typography>
+            </a>
+          ) : (
+            <Link
+              to={data.general.routes.contactPage}
+              style={{ textDecoration: "none", width: "fit-content", color: "black" }}
+            >
+              <Rating
+                name="read-only"
+                value={5}
+                max={5}
+                readOnly
+                style={{ transform: "scale(1.2)" }}
+              />
+              <Typography className={classes.subTitle}>{`${overAllRating.averScore} ${t("of")} ${
+                overAllRating.score
+              } ${t("stars")}`}</Typography>
+              <Typography className={classes.subContent}>{`${t("Based on")} ${
+                overAllRating.totalReviews
+              }+ ${t("Reviews")}`}</Typography>
+            </Link>
+          )}
         </>
       )}
       <Grid

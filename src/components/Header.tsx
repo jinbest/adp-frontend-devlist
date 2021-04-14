@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { storesDetails, repairWidgetStore } from "../store"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
-import { phoneFormatString, isExternal } from "../services/helper"
+import { phoneFormatString, isExternal, getBusinessLink } from "../services/helper"
 import _ from "lodash"
 
 type PropsNavItemLink = {
@@ -102,6 +102,7 @@ type PropsHeader = {
 const Header = ({ handleStatus, features }: PropsHeader) => {
   const data = storesDetails.storeCnts
   const thisPage = data.homepage.header
+  const businessLink = getBusinessLink(storesDetails.allLocations)
 
   const navItemsLink = _.sortBy(thisPage.navItems, (o) => o.order),
     brandItemLink = _.sortBy(thisPage.brandItems, (o) => o.order),
@@ -188,21 +189,43 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
             </ul>
           )}
           {mobile && (
-            <Link
-              to={data.general.routes.contactPage}
-              style={{
-                color: brandData.brandCol,
-                height: "25px",
-                padding: "5px 0",
-                marginTop: "-5px",
-                display: "flex",
-                textDecoration: "none",
-                alignItems: "center",
-              }}
-            >
-              <RoomOutlinedIcon />
-              {t("Directions")}
-            </Link>
+            <>
+              {businessLink ? (
+                <a
+                  href={businessLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    color: brandData.brandCol,
+                    height: "25px",
+                    padding: "5px 0",
+                    marginTop: "-5px",
+                    display: "flex",
+                    textDecoration: "none",
+                    alignItems: "center",
+                  }}
+                >
+                  <RoomOutlinedIcon />
+                  {t("Directions")}
+                </a>
+              ) : (
+                <Link
+                  to={data.general.routes.contactPage}
+                  style={{
+                    color: brandData.brandCol,
+                    height: "25px",
+                    padding: "5px 0",
+                    marginTop: "-5px",
+                    display: "flex",
+                    textDecoration: "none",
+                    alignItems: "center",
+                  }}
+                >
+                  <RoomOutlinedIcon />
+                  {t("Directions")}
+                </Link>
+              )}
+            </>
           )}
           <ul
             style={{

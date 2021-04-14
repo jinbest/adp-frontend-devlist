@@ -153,9 +153,9 @@ const useStyles = makeStyles(() =>
       maxWidth: "1440px",
       display: "block !important",
       margin: "2rem auto !important",
-      padding: "300px 2rem",
+      padding: "300px 2rem 0",
       ["@media (max-width:960px)"]: {
-        padding: "350px 2rem",
+        padding: "350px 2rem 0",
       },
     },
     mainTitle: {

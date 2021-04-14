@@ -434,3 +434,14 @@ export function DuplicatedNavItem(navItems: any[], brandItem:any) {
   }
   return ans
 }
+
+export function getBusinessLink(locs: any[]) {
+  let businessLink = null
+  for (let i = 0; i < locs.length; i++) {
+    if (locs[i].is_main) {
+      businessLink = locs[i].business_page_link
+      break
+    }
+  }
+  return businessLink
+}

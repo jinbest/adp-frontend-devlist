@@ -206,7 +206,7 @@ const SectionMap = inject("storesDetailsStore")(
                             </p>
                           </Grid>
                         </Grid>
-                        <Grid item container md={12} sm={12} xs={12}>
+                        <Grid item container>
                           <Grid
                             item
                             md={12}
@@ -219,18 +219,14 @@ const SectionMap = inject("storesDetailsStore")(
                           >
                             <Link
                               to={data.general.routes.repairWidgetPage}
-                              style={{
-                                textDecoration: "none",
-                                width: "60px",
-                              }}
+                              style={{ textDecoration: "none", display: "flex" }}
                               onClick={handleGetQuote}
                             >
                               <button
+                                className={classes.getAppoint}
                                 style={{
                                   backgroundColor: data.general.colorPalle.repairButtonCol,
-                                  borderRadius: "20px",
                                 }}
-                                className={"button " + classes.getQuote}
                                 onClick={() => {
                                   handleLocSelect(element)
                                 }}
@@ -244,18 +240,23 @@ const SectionMap = inject("storesDetailsStore")(
                               name={"FRONTEND_REPAIR_APPOINTMENT"}
                               inactiveComponent={() => <></>}
                               activeComponent={() => (
-                                <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
+                                <Grid
+                                  item
+                                  md={12}
+                                  sm={6}
+                                  xs={6}
+                                  style={{ marginBottom: "20px", display: "flex" }}
+                                >
                                   <Link
                                     to={data.general.routes.repairWidgetPage}
-                                    style={{ textDecoration: "none" }}
+                                    style={{ textDecoration: "none", display: "flex" }}
                                     onClick={handleGetQuote}
                                   >
                                     <button
+                                      className={classes.getAppoint}
                                       style={{
                                         backgroundColor: data.general.colorPalle.repairButtonCol,
-                                        borderRadius: "20px",
                                       }}
-                                      className={"button " + classes.getAppoint}
                                       onClick={() => {
                                         handleLocSelect(element)
                                       }}
@@ -344,30 +345,37 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
     },
-    getQuote: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      color: "white",
-      [theme.breakpoints.down("sm")]: {
-        width: "120px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "80px",
-        fontSize: "10px!important" as any,
-      },
-    },
     getAppoint: {
       width: "170px",
-      fontSize: "13px!important" as any,
+      fontSize: "13px !important",
+      lineHeight: "15px",
       color: "white",
+      borderRadius: "20px",
+      height: "40px",
+      outline: "none",
+      cursor: "pointer",
+      minWidth: "115px",
+      margin: "auto",
+      border: "none",
       [theme.breakpoints.down("sm")]: {
         width: "170px",
-        fontSize: "12px!important" as any,
+        fontSize: "12px !important",
       },
       [theme.breakpoints.down("xs")]: {
         width: "130px",
-        fontSize: "10px!important" as any,
+        fontSize: "10px !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "10px !important",
+        lineHeight: "12px",
+        height: "30px",
+      },
+      ["@media (max-width:375px)"]: {
+        width: "100px",
+        minWidth: "100px",
+      },
+      "&:hover": {
+        opacity: 0.8,
       },
     },
     timePanelWrapp: {
