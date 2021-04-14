@@ -11,6 +11,7 @@ import { MetaParams } from "./model/meta-params"
 import { ScriptParams } from "./model/script-params"
 import { TagParams } from "./model/tag-params"
 import "./assets/style/index.scss"
+import "./assets/style/theme.css"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
