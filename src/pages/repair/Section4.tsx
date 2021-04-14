@@ -58,7 +58,7 @@ const Section4 = ({ handleStatus }: Props) => {
             )}
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} className={classes.item2}>
+        <Grid item xs={12} md={6} className={`${classes.item2} repair-sec4-img`}>
           <img
             src={storesDetails.commonCnts.repairSec4Img}
             alt="repair-sec4-img"

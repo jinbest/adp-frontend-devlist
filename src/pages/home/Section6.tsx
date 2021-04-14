@@ -6,7 +6,6 @@ import { storesDetails } from "../../store"
 import Rating from "@material-ui/lab/Rating"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
 import { getBusinessLink } from "../../services/helper"
-import { Link } from "react-router-dom"
 
 const Section6 = () => {
   const data = storesDetails.storeCnts

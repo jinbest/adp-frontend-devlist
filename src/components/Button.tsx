@@ -1,6 +1,7 @@
 import React from "react"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
 import EllipsisText from "react-ellipsis-text"
+import ReactTooltip from "react-tooltip"
 
 type Props = {
   title: string
@@ -40,28 +41,37 @@ const Button = ({
   children,
 }: Props) => {
   return (
-    <button
-      onClick={onClick}
-      className={hover ? "button" : "button no-hover"}
-      style={{
-        backgroundColor: bgcolor,
-        color: txcolor,
-        borderRadius: borderR,
-        width: width,
-        border: border,
-        textDecoration: textDecorator,
-        height: height,
-        margin: margin,
-        fontSize: fontSize,
-        maxWidth: maxWidth,
-        opacity: disable ? 0.5 : 1,
-        lineHeight: "10px",
-      }}
-      disabled={disable}
-    >
-      {icon && <RoomOutlinedIcon />}
-      <EllipsisText text={children ? children : title} length={"20"} />
-    </button>
+    <>
+      <button
+        data-tip
+        data-for={title}
+        onClick={onClick}
+        className={hover ? "button" : "button no-hover"}
+        style={{
+          backgroundColor: bgcolor,
+          color: txcolor,
+          borderRadius: borderR,
+          width: width,
+          border: border,
+          textDecoration: textDecorator,
+          height: height,
+          margin: margin,
+          fontSize: fontSize,
+          maxWidth: maxWidth,
+          opacity: disable ? 0.5 : 1,
+          lineHeight: "10px",
+        }}
+        disabled={disable}
+      >
+        {icon && <RoomOutlinedIcon />}
+        <EllipsisText text={children ? children : title} length={"20"} />
+      </button>
+      {title.length > 20 && (
+        <ReactTooltip id={title} place="top" effect="solid">
+          {title}
+        </ReactTooltip>
+      )}
+    </>
   )
 }
 
