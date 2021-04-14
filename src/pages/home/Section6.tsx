@@ -43,10 +43,7 @@ const Section6 = () => {
               }+ ${t("Reviews")}`}</Typography>
             </a>
           ) : (
-            <Link
-              to={data.general.routes.businessPage}
-              style={{ textDecoration: "none", width: "fit-content", color: "black" }}
-            >
+            <>
               <Rating
                 name="read-only"
                 value={5}
@@ -60,7 +57,7 @@ const Section6 = () => {
               <Typography className={classes.subContent}>{`${t("Based on")} ${
                 overAllRating.totalReviews
               }+ ${t("Reviews")}`}</Typography>
-            </Link>
+            </>
           )}
         </>
       )}

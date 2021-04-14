@@ -1,5 +1,6 @@
 import React from "react"
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined"
+import EllipsisText from "react-ellipsis-text"
 
 type Props = {
   title: string
@@ -54,11 +55,12 @@ const Button = ({
         fontSize: fontSize,
         maxWidth: maxWidth,
         opacity: disable ? 0.5 : 1,
+        lineHeight: "10px",
       }}
       disabled={disable}
     >
       {icon && <RoomOutlinedIcon />}
-      {children ? children : title}
+      <EllipsisText text={children ? children : title} length={"20"} />
     </button>
   )
 }
