@@ -117,7 +117,7 @@ async function getBrandProductsAPI(
   per_page: number
 ) {
   const store_id: number = storesDetails.store_id
-  const included_voided = true
+  const included_voided = false
 
   await repairWidgetAPI
     .getBrandProducts(store_id, per_page, page, included_voided, brand_id, searchText)
@@ -136,7 +136,7 @@ async function addMoreBrandProductsAPI(
   per_page: number
 ) {
   const store_id: number = storesDetails.store_id
-  const included_voided = true
+  const included_voided = false
 
   await repairWidgetAPI
     .getBrandProducts(store_id, per_page, page, included_voided, brand_id, searchText)
@@ -222,10 +222,7 @@ async function addMoreRepairsOfferedDeviceAPI(
     })
 }
 
-async function getQuotesByLocAppointmentID(
-  location_id: number,
-  appointment_id: number
-) {
+async function getQuotesByLocAppointmentID(location_id: number, appointment_id: number) {
   const store_id: number = storesDetails.store_id
 
   await repairWidgetAPI
@@ -248,5 +245,5 @@ export {
   getBrandProductsAPI,
   addMoreBrandProductsAPI,
   getContactMethodsAPI,
-  getQuotesByLocAppointmentID
+  getQuotesByLocAppointmentID,
 }
