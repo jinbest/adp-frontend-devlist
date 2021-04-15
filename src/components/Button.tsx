@@ -38,8 +38,8 @@ const Button = ({
   disable,
   border,
   textDecorator,
-  children,
-}: Props) => {
+}: // children,
+Props) => {
   return (
     <>
       <button
@@ -64,7 +64,7 @@ const Button = ({
         disabled={disable}
       >
         {icon && <RoomOutlinedIcon />}
-        <EllipsisText text={children ? children : title} length={"20"} />
+        <EllipsisText text={title} length={"20"} />
       </button>
       {title.length > 20 && (
         <ReactTooltip id={title} place="top" effect="solid">
