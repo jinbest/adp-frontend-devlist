@@ -165,8 +165,8 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            height: "30px",
-            marginTop: "5px",
+            height: "35px",
+            alignItems: "center",
           }}
         >
           {!mobile && (
@@ -197,9 +197,8 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
                   rel="noreferrer"
                   style={{
                     color: brandData.brandCol,
-                    height: "25px",
-                    padding: "5px 0",
-                    marginTop: "-5px",
+                    height: "35px",
+                    padding: "0",
                     display: "flex",
                     textDecoration: "none",
                     alignItems: "center",
@@ -213,9 +212,8 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
                   to={data.general.routes.contactPage}
                   style={{
                     color: brandData.brandCol,
-                    height: "25px",
-                    padding: "5px 0",
-                    marginTop: "-5px",
+                    height: "35px",
+                    padding: "0",
                     display: "flex",
                     textDecoration: "none",
                     alignItems: "center",
@@ -234,6 +232,7 @@ const Header = ({ handleStatus, features }: PropsHeader) => {
               margin: 0,
               padding: 0,
               marginRight: mobile && getQuteStatus ? 0 : "40px",
+              alignItems: "center",
             }}
           >
             {thisPage.visibility.phone && (

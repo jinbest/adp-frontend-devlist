@@ -203,7 +203,7 @@ const ContactForm = ({ locations, locationID, handleLocationID, storesDetailsSto
   }
 
   return (
-    <section className={"Container"}>
+    <section className={"Container contact-form"}>
       <div className={classes.root}>
         {!contacted ? (
           <Card className={classes.card}>

@@ -1,8 +1,8 @@
 .service-widget {
   position: relative;
-  top: 130px;
+  top: 170px;
   @media (max-width: 425px) {
-    top: 145px;
+    top: 180px;
   }
 }
 
@@ -23,8 +23,8 @@
 .Container {
   max-width: 1440px;
   display: block !important;
-  margin: 2rem auto !important;
-  padding: 0 2rem;
+  padding: 0 32px;
+  margin: auto !important;
 }
 
 .back-to-top {

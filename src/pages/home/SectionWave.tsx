@@ -113,7 +113,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       position: "relative",
-      marginTop: "-100px",
+      // marginTop: "-100px",
       height: "800px",
       "& > img": {
         position: "absolute",
@@ -157,10 +157,10 @@ const useStyles = makeStyles(() =>
     container: {
       maxWidth: "1440px",
       display: "block !important",
-      margin: "2rem auto !important",
-      padding: "300px 2rem 0",
+      margin: "auto !important",
+      padding: "300px 30px 0",
       ["@media (max-width:960px)"]: {
-        padding: "350px 2rem 0",
+        padding: "350px 30px 0",
       },
     },
     mainTitle: {
@@ -169,8 +169,8 @@ const useStyles = makeStyles(() =>
       fontWeight: 800,
       lineHeight: "115% !important",
       fontFamily: "Poppins Bold !important",
-      padding: "1rem 0 0 !important",
-      margin: "0 auto 2rem !important",
+      padding: "30px 0 !important",
+      margin: "0 auto !important",
       ["@media (max-width:1200px)"]: {
         fontSize: "3.5vw !important",
       },

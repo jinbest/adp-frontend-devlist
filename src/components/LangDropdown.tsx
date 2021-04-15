@@ -82,7 +82,6 @@ const useStyles = makeStyles(() =>
   createStyles({
     formControl: {
       margin: "0 5px",
-      marginTop: "-3px",
       ["@media (max-width:768px)"]: {
         display: "none",
       },

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react"
 // import { CardMobile } from "../../components"
-import { Grid, Box, Typography } from "@material-ui/core"
+import { Grid, Box } from "@material-ui/core"
 import { Search, Button } from "../../components"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "../../store"
 import { useTranslation } from "react-i18next"
 import { isExternal } from "../../services/helper"
+import { observer } from "mobx-react"
 
 type Props = {
   features: any[]
@@ -49,10 +50,10 @@ const Section1 = ({ features, handleStatus }: Props) => {
   }
 
   return (
-    <section className={"Container"}>
-      <Grid item xs={12} sm={12} className={"section1-top"}>
+    <section className="Container">
+      <Grid item xs={12} sm={12} className="section1-top">
         <h1 className={"section1-title align-center"}>{t(thisPage.title)}</h1>
-        <Typography className={"section1-subtitle align-center"}>{t(thisPage.subtitle)}</Typography>
+        <p className="section1-subtitle align-center">{t(thisPage.subtitle)}</p>
         <div className="align-center d-flex">
           {thisPage.buttons.map((item: any, index: number) => {
             return (
@@ -156,4 +157,4 @@ const Section1 = ({ features, handleStatus }: Props) => {
   )
 }
 
-export default Section1
+export default observer(Section1)

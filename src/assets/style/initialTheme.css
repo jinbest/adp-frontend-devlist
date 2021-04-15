@@ -302,6 +302,10 @@
   padding: 10px 25px !important;
 }
 
+.custom-select {
+  font-size: 15px !important;
+}
+
 .device-list-component {
   text-align: center;
   width: 100%;
@@ -551,6 +555,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   outline: none;
   background-color: white;
+  font-size: 15px !important;
 }
 
 .MuiNativeSelect-icon {
@@ -604,13 +609,6 @@
   text-align: center;
 }
 
-.Container {
-  max-width: 1440px;
-  display: block !important;
-  margin: 2rem auto !important;
-  padding: 0 2rem;
-}
-
 .corner-shape {
   position: absolute;
   margin: auto;
@@ -661,20 +659,19 @@
 }
 
 .section1-top {
-  margin-top: 250px !important;
-  margin-bottom: 100px !important;
+  padding: 250px 0 100px !important;
 }
 @media (max-width: 768px) {
   .section1-top {
-    margin-bottom: 50px !important;
+    padding: 250px 0 50px !important;
   }
 }
 @media (max-width: 425px) {
   .section1-top {
-    margin-bottom: 25px !important;
-    margin-top: 200px !important;
+    padding: 200px 0 25px !important;
   }
 }
+
 .section1-title {
   font-style: normal;
   font-weight: 800 !important;
@@ -682,9 +679,7 @@
   font-family: "Poppins Bold" !important;
   line-height: 117% !important;
   display: flex;
-  align-items: center;
   color: #000000;
-  margin: 0;
   width: 1400px;
   max-width: 100%;
 }
@@ -709,9 +704,8 @@
 .section1-subtitle {
   color: black;
   font-size: 45px !important;
-  line-height: 115% !important;
-  padding: 1.5rem 0 !important;
-  margin-bottom: 10px !important;
+  padding: 20px 0 30px !important;
+  margin: 0;
 }
 @media (max-width: 1440px) {
   .section1-subtitle {
@@ -728,14 +722,20 @@
     font-size: 3.3vw !important;
   }
 }
+
 .section-title {
   font-size: 45px !important;
   font-weight: 800 !important;
   line-height: 115% !important;
   font-family: "Poppins Bold" !important;
-  padding: 1rem 0 0 !important;
-  margin: 4rem auto 2rem !important;
+  padding: 15px 0 !important;
+  margin: 0 !important;
   text-align: center;
+}
+@media (max-width: 960px) {
+  .section-title {
+    font-size: 35px !important;
+  }
 }
 @media (max-width: 768px) {
   .section-title {
@@ -745,13 +745,12 @@
 @media (max-width: 425px) {
   .section-title {
     font-size: 4.3vw !important;
-    margin: 1rem 0 !important;
   }
 }
+
 .sec1-search_input {
   max-width: 800px;
   width: 100%;
-  display: none;
 }
 
 .sec1-card-mobile-data {
@@ -759,17 +758,17 @@
 }
 
 .cartfix-container {
-  margin-top: 1rem !important;
+  margin-top: 15px !important;
   justify-content: center;
   display: flex !important;
   margin: auto;
 }
 .cart-fix-container {
-  margin: 1rem;
+  margin: 15px;
   min-width: 100px;
 }
 .cart-contentfix-container {
-  margin-top: 2rem;
+  margin-top: 30px;
   max-width: 300px !important;
   width: 100%;
 }
@@ -911,10 +910,6 @@ p {
   padding-top: 1rem;
   display: none;
 }
-.sec6-container {
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
 .sec6-card {
   margin: auto;
   padding-top: 1rem;
@@ -968,7 +963,7 @@ p {
   .cart-contentfix-container {
     width: fit-content;
     max-width: 600px !important;
-    margin-top: 2rem;
+    margin-top: 30px;
   }
 }
 
@@ -1318,9 +1313,8 @@ p {
 
 .mobile-brand-button {
   color: white;
-  height: 25px;
-  padding: 5px 20px;
-  margin-top: -5px;
+  height: 35px;
+  padding: 0px 20px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -1453,9 +1447,6 @@ p {
   .input-component {
     font-size: 3vw !important;
     padding: 20px 15px;
-  }
-  .sec6-container {
-    padding-bottom: 0px;
   }
 }
 

@@ -184,9 +184,9 @@ const Footer = inject("storesDetailsStore")(
               )
             })}
           </Grid>
-          <div className={"device-list-grid copyright"} style={{ color: "grey" }}>
+          <p className={"device-list-grid copyright"} style={{ color: "grey" }}>
             {t(thisPage.copyRight)}
-          </div>
+          </p>
           <div className={classes.bottomLink}>
             {thisPage.bottomLinks.privacyPolicy.externalLink && (
               <Link to={thisPage.bottomLinks.privacyPolicy.href}>

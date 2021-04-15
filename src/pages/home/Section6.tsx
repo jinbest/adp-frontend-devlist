@@ -17,7 +17,7 @@ const Section6 = () => {
 
   return (
     <section className={"Container center sec6-container"}>
-      <Typography className="f40 bold mg-t-1 section-review-title">{t(thisPage.title)}</Typography>
+      <Typography className="section-review-title">{t(thisPage.title)}</Typography>
       {overAllRating.visible && (
         <>
           {businessLink ? (
