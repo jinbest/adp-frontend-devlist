@@ -30,104 +30,7 @@ const DAYS_OF_THE_WEEK: string[] = [
   "Friday",
   "Saturday",
 ]
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      [theme.breakpoints.down("sm")]: {
-        justifyContent: "space-between",
-        "& h2": {
-          fontSize: " 18px",
-        },
-        "& span": {
-          fontSize: "12px",
-        },
-      },
-      [theme.breakpoints.down("xs")]: {
-        "& h2": {
-          fontSize: " 18px",
-        },
-        "& span": {
-          fontSize: "12px",
-        },
-      },
-    },
-    getQuote: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      color: "white",
-      [theme.breakpoints.down("sm")]: {
-        width: "120px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "80px",
-        fontSize: "10px!important" as any,
-      },
-    },
-    getAppoint: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      color: "white",
-      [theme.breakpoints.down("sm")]: {
-        width: "170px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "130px",
-        fontSize: "10px!important" as any,
-      },
-    },
-    timePanelWrapp: {
-      // justifyContent: "space-around",
-      [theme.breakpoints.down("sm")]: {
-        justifyContent: "flex-start",
-        "& p": {
-          fontSize: "16px",
-        },
-      },
-      [theme.breakpoints.down("xs")]: {
-        "& p": {
-          fontSize: "12px",
-        },
-      },
-    },
-    item1: {
-      order: 1,
-      [theme.breakpoints.up("lg")]: {
-        order: 1,
-      },
-    },
-    item2: {
-      order: 2,
-      [theme.breakpoints.up("lg")]: {
-        order: 2,
-      },
-    },
-    directions: {
-      color: "black",
-      marginLeft: "10px",
-      fontWeight: "bold",
-      "&:hover": {
-        color: "rgba(0,0,0,0.4)",
-      },
-    },
-    nonHoverEffect: {
-      textDecoration: "none !important",
-      opacity: "1 !important",
-      cursor: "default !important",
-    },
-    phoneText: {
-      marginLeft: "10px",
-      textDecoration: "none",
-      "&:hover": {
-        opacity: 0.6,
-      },
-    },
-  })
-)
 interface Props extends StoreProps {
-  subDomain?: string
   locations: any[]
   handleStatus: (status: boolean) => void
   location_id: number
@@ -142,7 +45,6 @@ type StoreProps = {
 const SectionMap = inject("storesDetailsStore")(
   observer(
     ({
-      subDomain,
       locations,
       storesDetailsStore,
       handleStatus,
@@ -150,7 +52,7 @@ const SectionMap = inject("storesDetailsStore")(
       handleLocationID,
       features,
     }: Props) => {
-      const data = require(`../../assets/${subDomain}/Database`)
+      const data = storesDetailsStore.storeCnts
       const [t] = useTranslation()
       const classes = useStyles()
       const [expanded, setExpanded] = useState<number | false>(0)
@@ -224,7 +126,7 @@ const SectionMap = inject("storesDetailsStore")(
       }, [storesDetailsStore.cntUserLocation])
 
       return (
-        <section className={subDomain + "-Container " + classes.root}>
+        <section className={"Container " + classes.root}>
           <Grid container style={{ marginTop: "180px", marginBottom: "100px" }}>
             <Grid item lg={6} md={12} sm={12} xs={12} className={classes.item1}>
               {locations.map((element, index) => (
@@ -268,7 +170,7 @@ const SectionMap = inject("storesDetailsStore")(
                             >
                               <PhoneIcon />
                               <a href={`tel:${element.phone}`} className={classes.phoneText}>
-                                <span style={{ color: data.colorPalle.repairButtonCol }}>
+                                <span style={{ color: data.general.colorPalle.repairButtonCol }}>
                                   {phoneFormatString(element.phone)}
                                 </span>
                               </a>
@@ -304,7 +206,7 @@ const SectionMap = inject("storesDetailsStore")(
                             </p>
                           </Grid>
                         </Grid>
-                        <Grid item container md={12} sm={12} xs={12}>
+                        <Grid item container>
                           <Grid
                             item
                             md={12}
@@ -316,19 +218,15 @@ const SectionMap = inject("storesDetailsStore")(
                             }}
                           >
                             <Link
-                              to="/get-quote"
-                              style={{
-                                textDecoration: "none",
-                                width: "60px",
-                              }}
+                              to={data.general.routes.repairWidgetPage}
+                              style={{ textDecoration: "none", display: "flex" }}
                               onClick={handleGetQuote}
                             >
                               <button
+                                className={classes.getAppoint}
                                 style={{
-                                  backgroundColor: data.colorPalle.repairButtonCol,
-                                  borderRadius: "20px",
+                                  backgroundColor: data.general.colorPalle.repairButtonCol,
                                 }}
-                                className={subDomain + "-button " + classes.getQuote}
                                 onClick={() => {
                                   handleLocSelect(element)
                                 }}
@@ -342,18 +240,23 @@ const SectionMap = inject("storesDetailsStore")(
                               name={"FRONTEND_REPAIR_APPOINTMENT"}
                               inactiveComponent={() => <></>}
                               activeComponent={() => (
-                                <Grid item md={12} sm={6} xs={6} style={{ display: "flex" }}>
+                                <Grid
+                                  item
+                                  md={12}
+                                  sm={6}
+                                  xs={6}
+                                  style={{ marginBottom: "20px", display: "flex" }}
+                                >
                                   <Link
-                                    to="/get-quote"
-                                    style={{ textDecoration: "none" }}
+                                    to={data.general.routes.repairWidgetPage}
+                                    style={{ textDecoration: "none", display: "flex" }}
                                     onClick={handleGetQuote}
                                   >
                                     <button
+                                      className={classes.getAppoint}
                                       style={{
-                                        backgroundColor: data.colorPalle.repairButtonCol,
-                                        borderRadius: "20px",
+                                        backgroundColor: data.general.colorPalle.repairButtonCol,
                                       }}
-                                      className={subDomain + "-button " + classes.getAppoint}
                                       onClick={() => {
                                         handleLocSelect(element)
                                       }}
@@ -373,10 +276,10 @@ const SectionMap = inject("storesDetailsStore")(
                         md={8}
                         sm={12}
                         xs={12}
-                        className={subDomain + "-hours-div " + classes.timePanelWrapp}
+                        className={"hours-div " + classes.timePanelWrapp}
                       >
                         <div>
-                          <p className={subDomain + "-block-title"} style={{ textAlign: "start" }}>
+                          <p className={"block-title"} style={{ textAlign: "start" }}>
                             {t("Hours")}
                           </p>
                         </div>
@@ -384,12 +287,12 @@ const SectionMap = inject("storesDetailsStore")(
                         {getRegularHours(element.location_hours).map((item, index) => (
                           <Grid key={index} item container md={12} sm={12} xs={12}>
                             <Grid item md={6} sm={6} xs={6}>
-                              <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                              <p className={"block-content " + classes.nonHoverEffect}>
                                 {t(DAYS_OF_THE_WEEK[item.day])}
                               </p>
                             </Grid>
                             <Grid item md={6} sm={6} xs={6}>
-                              <p className={subDomain + "-block-content " + classes.nonHoverEffect}>
+                              <p className={"block-content " + classes.nonHoverEffect}>
                                 {!item.open || !item.close
                                   ? item.by_appointment_only
                                     ? t("Call to book appointment")
@@ -420,3 +323,106 @@ const SectionMap = inject("storesDetailsStore")(
 )
 
 export default SectionMap
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      [theme.breakpoints.down("sm")]: {
+        justifyContent: "space-between",
+        "& h2": {
+          fontSize: " 18px",
+        },
+        "& span": {
+          fontSize: "12px",
+        },
+      },
+      [theme.breakpoints.down("xs")]: {
+        "& h2": {
+          fontSize: " 18px",
+        },
+        "& span": {
+          fontSize: "12px",
+        },
+      },
+    },
+    getAppoint: {
+      width: "170px",
+      fontSize: "13px !important",
+      lineHeight: "15px",
+      color: "white",
+      borderRadius: "20px",
+      height: "40px",
+      outline: "none",
+      cursor: "pointer",
+      minWidth: "115px",
+      margin: "auto",
+      border: "none",
+      [theme.breakpoints.down("sm")]: {
+        width: "170px",
+        fontSize: "12px !important",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "130px",
+        fontSize: "10px !important",
+      },
+      ["@media (max-width:500px)"]: {
+        fontSize: "10px !important",
+        lineHeight: "12px",
+        height: "30px",
+      },
+      ["@media (max-width:375px)"]: {
+        width: "100px",
+        minWidth: "100px",
+      },
+      "&:hover": {
+        opacity: 0.8,
+      },
+    },
+    timePanelWrapp: {
+      // justifyContent: "space-around",
+      [theme.breakpoints.down("sm")]: {
+        justifyContent: "flex-start",
+        "& p": {
+          fontSize: "16px",
+        },
+      },
+      [theme.breakpoints.down("xs")]: {
+        "& p": {
+          fontSize: "12px",
+        },
+      },
+    },
+    item1: {
+      order: 1,
+      [theme.breakpoints.up("lg")]: {
+        order: 1,
+      },
+    },
+    item2: {
+      order: 2,
+      [theme.breakpoints.up("lg")]: {
+        order: 2,
+      },
+    },
+    directions: {
+      color: "black",
+      marginLeft: "10px",
+      fontWeight: "bold",
+      "&:hover": {
+        color: "rgba(0,0,0,0.4)",
+      },
+    },
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
+    },
+    phoneText: {
+      marginLeft: "10px",
+      textDecoration: "none",
+      "&:hover": {
+        opacity: 0.6,
+      },
+    },
+  })
+)

@@ -4,18 +4,18 @@ type Props = {
   img: string
   title: string
   content: string
-  subDomain?: string
   children?: any
+  contentVisible?: boolean
 }
 
-const DeviceListComponent = ({ img, content, subDomain, children }: Props) => {
+const DeviceListComponent = ({ img, content, children, contentVisible }: Props) => {
   return (
-    <div className={subDomain + "-device-list-component"}>
-      <img src={img} />
-      <p className={subDomain + "-title"} style={{ fontWeight: "bold" }}>
+    <div className={"device-list-component"}>
+      <img src={img} width="1" height="auto" alt="device-list-img" />
+      <p className={"title"} style={{ fontWeight: "bold" }}>
         {children}
       </p>
-      {subDomain === "mobiletechlab" && <p className={subDomain + "-content"}>{content}</p>}
+      {contentVisible && <p className={"content"}>{content}</p>}
     </div>
   )
 }
@@ -25,7 +25,6 @@ DeviceListComponent.defaultProps = {
   title: "Competitive Pricing",
   content:
     "We’re proud to offer the largest selection of fully tested and graded pre-owned devices in Winnipeg. All backed by a one year warranty and lifetime IMEI guarantee",
-  subDomain: "geebo",
 }
 
 export default DeviceListComponent

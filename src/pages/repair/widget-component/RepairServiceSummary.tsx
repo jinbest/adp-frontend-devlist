@@ -19,20 +19,12 @@ type Props = {
   themeCol: string
   step: number
   handleStep: (step: number) => void
-  subDomain?: string
   features: any[]
 }
 
-const RepairServiceSummary = ({
-  repairWidgetData,
-  code,
-  step,
-  handleStep,
-  subDomain,
-  features,
-}: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const textThemeCol = mainData.colorPalle.textThemeCol
+const RepairServiceSummary = ({ repairWidgetData, code, step, handleStep, features }: Props) => {
+  const mainData = storesDetails.storeCnts
+  const textThemeCol = mainData.general.colorPalle.textThemeCol
   const [disableStatus, setDisableStatus] = useState(false)
   const [toastParams, setToastParams] = useState<ToastMsgParams>({} as ToastMsgParams)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -276,14 +268,13 @@ const RepairServiceSummary = ({
                   activeComponent={() => (
                     <Button
                       title={t("Schedule Appointment")}
-                      bgcolor={mainData.colorPalle.nextButtonCol}
+                      bgcolor={mainData.general.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"
                       height="30px"
                       fontSize="17px"
                       margin="0 auto"
                       onClick={handleSubmit}
-                      subDomain={subDomain}
                       disable={disableStatus}
                     >
                       {isSubmitting && <Loading />}
@@ -300,14 +291,13 @@ const RepairServiceSummary = ({
                   activeComponent={() => (
                     <Button
                       title={t("Get Shipping Label")}
-                      bgcolor={mainData.colorPalle.nextButtonCol}
+                      bgcolor={mainData.general.colorPalle.nextButtonCol}
                       borderR="20px"
                       maxWidth="400px"
                       height="30px"
                       fontSize="17px"
                       margin="0 auto"
                       onClick={handleSubmit}
-                      subDomain={subDomain}
                       disable={disableStatus}
                     >
                       {isSubmitting && <Loading />}

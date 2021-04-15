@@ -5,13 +5,10 @@ a,
 button {
   margin: 0;
   overflow: visible !important;
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins Regular" !important;
+  font-display: optional;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /* Custom reamaze chat-widget */

@@ -1,52 +1,49 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { repairWidgetStore, storesDetails } from "./store/"
 import { Home } from "./pages/home/"
 import { Business } from "./pages/business/"
 import { Locations } from "./pages/locations/"
 import { Contact } from "./pages/contact"
+import { Covid } from "./pages/covid"
 import { Repair, RepairWidget } from "./pages/repair/"
 import { FeaturesParam } from "./model/feature-toggle"
+import { PrivacyPolicy } from "./pages/privacy-policy"
 
 type Props = {
-  subDomain: string
   features: FeaturesParam[]
   handleStatus: (status: boolean) => void
 }
 
-const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
+const BaseRouter = ({ features, handleStatus }: Props) => {
+  const data = storesDetails.storeCnts
+  const routes = data.general.routes
+
   return (
     <>
       <Route
         path="/"
         exact
-        component={() => (
-          <Home subDomain={subDomain} features={features} handleStatus={handleStatus} />
-        )}
-      />
-      <Route path="/home" render={() => <Redirect to="/" />} />
-      <Route
-        path="/quote"
-        component={() => (
-          <Repair subDomain={subDomain} handleStatus={handleStatus} features={features} />
-        )}
+        component={() => <Home features={features} handleStatus={handleStatus} />}
       />
       <Route
-        path="/contact"
+        path={routes.repairPage}
+        component={() => <Repair handleStatus={handleStatus} features={features} />}
+      />
+      <Route
+        path={routes.contactPage}
         component={() => (
           <Contact
             storesDetailsStore={storesDetails}
-            subDomain={subDomain}
             handleStatus={handleStatus}
             features={features}
           />
         )}
       />
       <Route
-        path="/get-quote"
+        path={routes.repairWidgetPage}
         component={() => (
           <RepairWidget
-            subDomain={subDomain}
             handleStatus={handleStatus}
             features={features}
             repairWidgetStore={repairWidgetStore}
@@ -54,13 +51,20 @@ const BaseRouter = ({ subDomain, features, handleStatus }: Props) => {
         )}
       />
       <Route
-        path="/business"
-        component={() => <Business subDomain={subDomain} handleStatus={handleStatus} />}
+        path={routes.businessPage}
+        component={() => <Business handleStatus={handleStatus} />}
       />
       <Route
-        path="/locations"
-        component={() => <Locations subDomain={subDomain} handleStatus={handleStatus} />}
+        path={routes.locationsPage}
+        component={() => <Locations handleStatus={handleStatus} />}
       />
+      <Route path={routes.covidPage} component={() => <Covid handleStatus={handleStatus} />} />
+      {data.homepage.footer.bottomLinks.privacyPolicy.externalLink && (
+        <Route
+          path={routes.privacyPolicy}
+          component={() => <PrivacyPolicy handleStatus={handleStatus} />}
+        />
+      )}
     </>
   )
 }

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import styled, { css } from "styled-components"
 import { CustomNumeric } from "../components"
 import { useTranslation } from "react-i18next"
+import { storesDetails } from "../store"
 
 const Frame = styled.div`
   width: 100%;
@@ -96,14 +97,13 @@ const Day = styled.div<DayProps>`
 `
 
 type CanlendarProps = {
-  subDomain?: string
   handleParentDate: (date: Date) => void
   timezone: string
 }
 
-const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProps) => {
-  const mainData = require(`../assets/${subDomain}/Database.js`)
-  const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
+const CustomCalendar = ({ handleParentDate, timezone }: CanlendarProps) => {
+  const mainData = storesDetails.storeCnts
+  const repairBooktimeCol = mainData.general.colorPalle.repairBooktimeCol
 
   const [t] = useTranslation()
 
@@ -221,13 +221,11 @@ const CustomCalendar = ({ subDomain, handleParentDate, timezone }: CanlendarProp
           content={t(MONTHS[month])}
           handlePrevState={handlePrevMonth}
           handleNextState={handleNextMonth}
-          subDomain={subDomain}
         />
         <CustomNumeric
           content={year.toString()}
           handlePrevState={handlePrevYear}
           handleNextState={handleNextYear}
-          subDomain={subDomain}
         />
       </Numeric>
       <Body>

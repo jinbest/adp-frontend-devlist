@@ -11,9 +11,32 @@ import { inject } from "mobx-react"
 import { observer } from "mobx-react-lite"
 import { StoresDetails } from "../../../store/StoresDetails"
 
+const DAYS_OF_THE_WEEK: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+]
+const MONTHS: string[] = [
+  "January",
+  "Febrary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "Octorber",
+  "November",
+  "December",
+]
+
 type Props = {
   data: any
-  subDomain?: string
   step: number
   handleStep: (step: number) => void
   code: string
@@ -22,36 +45,13 @@ type Props = {
   storesDetailsStore: StoresDetails
 }
 
-const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseData }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database`)
-  const timezoneData = require(`../../../assets/_common/timezoneList`)
+const BookTime = ({ data, step, code, handleStep, handleChangeChooseData }: Props) => {
+  const mainData = storesDetails.storeCnts
+  const timezoneData = require(`../../../assets/timezoneList`)
   const timeZoneList = timezoneData.timezoneOptions
-  const themeCol = mainData.colorPalle.themeColor
-  const repairBooktimeCol = mainData.colorPalle.repairBooktimeCol
-  const brandThemeCol = mainData.brandItemsData.brandThemeCol
-  const DAYS_OF_THE_WEEK: string[] = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ]
-  const MONTHS: string[] = [
-    "January",
-    "Febrary",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "Octorber",
-    "November",
-    "December",
-  ]
+  const themeCol = mainData.general.colorPalle.themeColor
+  const repairBooktimeCol = mainData.general.colorPalle.repairBooktimeCol
+  const brandThemeCol = mainData.homepage.header.brandData.brandThemeCol
 
   const [tzIndex, setTZIndex] = useState(0)
   const [timezone, setTimezone] = useState(timeZoneList[tzIndex].timezone)
@@ -106,15 +106,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
 
   useEffect(() => {
     const cntSelHours: SelectHoursProps[] = []
-    const days: string[] = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ]
     const storeLocs: any[] = storesDetails.findAddLocation
     const i: number = mailInChecked
     if (storeLocs.length) {
@@ -137,7 +128,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             hour = open + " - " + close
           }
           cntSelHours.push({
-            day: days[storeLocs[i].location_hours[j].day],
+            day: DAYS_OF_THE_WEEK[storeLocs[i].location_hours[j].day],
             hour: hour,
           })
         }
@@ -334,7 +325,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                   <CustomSelect
                     value={selectVal}
                     handleSetValue={setSelectVal}
-                    subDomain={subDomain}
                     options={findLocs}
                   />
                 )}
@@ -389,11 +379,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
               {code !== "MAIL_IN" && (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <CustomCalendar
-                      subDomain={subDomain}
-                      handleParentDate={setDate}
-                      timezone={timezone}
-                    />
+                    <CustomCalendar handleParentDate={setDate} timezone={timezone} />
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     {hoursRange.length ? (
@@ -402,7 +388,6 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
                         brandThemeCol={brandThemeCol}
                         repairBooktimeCol={repairBooktimeCol}
                         title={t(DAYS_OF_THE_WEEK[week]) + ", " + t(MONTHS[month]) + " " + day}
-                        subDomain={subDomain}
                         timezoneIndex={tzIndex}
                         timeZoneList={timeZoneList}
                         defaultTimezone={timezoneData.defaultTimezone}
@@ -447,14 +432,13 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
             <div className="service-card-button">
               <Button
                 title={t("Next")}
-                bgcolor={mainData.colorPalle.nextButtonCol}
+                bgcolor={mainData.general.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
                 height="30px"
                 fontSize="17px"
                 onClick={ChooseNextStep}
                 disable={disableStatus}
-                subDomain={subDomain}
               />
               <p>{t("or press ENTER")}</p>
             </div>
@@ -462,12 +446,7 @@ const BookTime = ({ data, subDomain, step, code, handleStep, handleChangeChooseD
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className="service-summary-card">
-            <RepairSummary
-              step={step}
-              subDomain={subDomain}
-              themeCol={themeCol}
-              repairWidgetStore={repairWidgetStore}
-            />
+            <RepairSummary step={step} themeCol={themeCol} repairWidgetStore={repairWidgetStore} />
           </Card>
         </Grid>
       </Grid>

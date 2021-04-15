@@ -2,31 +2,18 @@ import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { CardRepairSec3 } from "../../components"
 import { useTranslation } from "react-i18next"
+import { storesDetails } from "../../store"
 
-type Props = {
-  subDomain?: string
-}
-
-const Section3 = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const repair = data.repairData.section3
+const Section3 = () => {
+  const data = storesDetails.storeCnts
+  const repair = data.repairPage.section3
   const [t] = useTranslation()
 
   return (
-    <section className={subDomain + "-service-section-3"}>
-      <div className={subDomain + "-Container"}>
-        <Typography
-          className={subDomain + "-service-section-title-2"}
-          style={{ color: repair.themeCol }}
-        >
-          {t(repair.title)}
-        </Typography>
-        <Typography
-          className={subDomain + "-service-section-content"}
-          style={{ color: repair.themeCol }}
-        >
-          {t(repair.content)}
-        </Typography>
+    <section className={"service-section-3"}>
+      <div className={"Container"}>
+        <Typography className={"service-section-title-2"}>{t(repair.title)}</Typography>
+        <Typography className={"service-section-content"}>{t(repair.content)}</Typography>
         <Grid container item xs={12} spacing={2}>
           {repair.children.map((item: any, index: number) => {
             return (
@@ -35,7 +22,6 @@ const Section3 = ({ subDomain }: Props) => {
                   img={item.img}
                   subtitle={t(item.subtitle)}
                   content={t(item.subcontent)}
-                  subDomain={subDomain}
                 />
               </Grid>
             )

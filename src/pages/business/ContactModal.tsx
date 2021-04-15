@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme: Theme) =>
       border: "none",
       margin: "20px",
       fontSize: "15px",
-      fontFamily: "POPPINS",
       width: "87%",
       outline: "none",
       height: "150px",
@@ -94,12 +93,12 @@ type OptionProps = {
 type Props = {
   openModal: boolean
   handleModal: (val: boolean) => void
-  subDomain?: string
   storesDetailsStore: StoresDetails
 }
 
-const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+const ContactModal = ({ openModal, handleModal, storesDetailsStore }: Props) => {
+  const mainData = storesDetailsStore.storeCnts
+  const thisPage = mainData.contactPage.contactForm
   const [t] = useTranslation()
   const classes = useStyles()
 
@@ -299,16 +298,15 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
         <Fade in={openModal}>
           {!contacted ? (
             <div className={classes.paper}>
-              <Typography className={classes.title}>{t("Contact Us")}</Typography>
+              <Typography className={classes.title}>{t(thisPage.title)}</Typography>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <InputComponent
                     value={firstName}
-                    placeholder={t("First Name*")}
+                    placeholder={t(thisPage.placeHolder.fName)}
                     handleChange={(e) => {
                       handleChangeFirstName(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={fnErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -316,11 +314,10 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Grid item xs={12} sm={6}>
                   <InputComponent
                     value={lastName}
-                    placeholder={t("Last Name*")}
+                    placeholder={t(thisPage.placeHolder.lName)}
                     handleChange={(e) => {
                       handleChangeLastName(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={lnErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -328,21 +325,19 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Grid item xs={12}>
                   <InputComponent
                     value={companyName}
-                    placeholder={t("Company Name")}
+                    placeholder={t(thisPage.placeHolder.companyName)}
                     handleChange={(e) => {
                       handleChangeCompanyName(e.target.value)
                     }}
-                    subDomain={subDomain}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <InputComponent
                     value={email}
-                    placeholder={t("E-mail Address*")}
+                    placeholder={t(thisPage.placeHolder.email)}
                     handleChange={(e) => {
                       handleChangeEmail(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={emlErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -351,7 +346,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                   <PhoneInput
                     handleSetPhone={setPhone}
                     val={phone}
-                    placeholder={t("Phone Number")}
+                    placeholder={t(thisPage.placeHolder.phone)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -360,7 +355,6 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                     handleSetValue={(locVal) => {
                       handleChangeSelect(locVal)
                     }}
-                    subDomain={subDomain}
                     options={option}
                   />
                 </Grid>
@@ -376,7 +370,7 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                       }}
                       minLength={5}
                       maxLength={1000}
-                      placeholder={`${t("Message")}*`}
+                      placeholder={`${t(thisPage.placeHolder.message)}*`}
                       className={classes.textArea}
                     />
                   </div>
@@ -389,8 +383,8 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
               </Grid>
               <div style={{ display: "flex" }}>
                 <Button
-                  title={t("Submit")}
-                  bgcolor={mainData.colorPalle.repairButtonCol}
+                  title={t(thisPage.button.submit)}
+                  bgcolor={mainData.general.colorPalle.repairButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"
@@ -398,20 +392,18 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                   fontSize="17px"
                   onClick={handleSubmit}
                   disable={disableStatus}
-                  subDomain={subDomain}
                 >
                   {isSubmit && <Loading />}
                 </Button>
                 <Button
-                  title={t("Close")}
-                  bgcolor={mainData.colorPalle.repairButtonCol}
+                  title={t(thisPage.button.close)}
+                  bgcolor={mainData.general.colorPalle.repairButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"
                   margin="20px 10px 0"
                   fontSize="17px"
                   onClick={handleClose}
-                  subDomain={subDomain}
                 />
               </div>
             </div>
@@ -427,10 +419,10 @@ const ContactModal = ({ openModal, handleModal, subDomain, storesDetailsStore }:
                 <Close />
               </IconButton>
               <Typography className={classes.title}>
-                {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
+                {`${t(thisPage.tracing.titlePrefix)} ${storesDetailsStore.storesDetails.name}`}
               </Typography>
               <Typography className={classes.content} id="contact-tracking-modal">
-                {t("A representative will contact you shortly in regards to your request.")}
+                {t(thisPage.tracing.content)}
               </Typography>
             </div>
           )}

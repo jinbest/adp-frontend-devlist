@@ -1,69 +1,99 @@
 import React, { useState, useEffect } from "react"
+import { Provider } from "mobx-react"
+import { Helmet } from "react-helmet"
 import { BrowserRouter as Router } from "react-router-dom"
 import { Footer, Header, Preloader, Badge } from "./components"
-import { Provider } from "mobx-react"
 import { storesDetails, repairWidgetStore, repairWidData } from "./store/"
-import { appLoadAPI } from "./services/"
-import findLocationAPI from "./services/api/findLocationAPI"
-import { Helmet } from "react-helmet"
+import { appLoadAPI, findLocationAPI } from "./services/"
 import BaseRouter from "./BaseRouter"
 import { FeaturesParam } from "./model/feature-toggle"
-import "./assets/_common/style/index.scss"
+import { MetaParams } from "./model/meta-params"
+import { ScriptParams } from "./model/script-params"
+import { TagParams } from "./model/tag-params"
+import "./assets/style/index.scss"
+import "./assets/style/theme.css"
 
 const domainMatch = window.location.hostname.match(/[a-zA-Z0-9-]*\.[a-zA-Z0-9-]*$/g)
 const apexDomain = domainMatch ? domainMatch[0] : "dccmtx.com"
-const subDomain = apexDomain.split(".")[0]
+const subDomainID = -1
 
 // const devicelist = [
-//   { name: "bananaservices", domain: "https://bananaservices.ca/", storeID: 1 },
-//   { name: "geebodevicerepair", domain: "https://geebodevicerepair.ca/", storeID: 3 },
-//   { name: "mobiletechlab", domain: "https://mobiletechlab.ca/", storeID: 4 },
-//   { name: "nanotechmobile", domain: "https://nanotechmobile.ca/", storeID: 2 },
-//   { name: "northtechcellsolutions", domain: "https://northtechcellsolutions.ca/", storeID: 5 },
-//   { name: "phonephix", domain: "https://phonephix.ca/", storeID: 9 },
-//   { name: "pradowireless", domain: "https://pradowireless.com/", storeID: 10 },
-//   { name: "reparationcellulairebsl", domain: "https://reparationcellulairebsl.ca/", storeID: 7 },
-//   { name: "wirelessrevottawa", domain: "https://wirelessrevottawa.ca/", storeID: 8 },
+//   { name: "bananaservices", domain: "bananaservices.ca", storeID: 1 },
+//   { name: "geebodevicerepair", domain: "geebodevicerepair.ca", storeID: 3 },
+//   { name: "mobiletechlab", domain: "mobiletechlab.ca", storeID: 4 },
+//   { name: "nanotechmobile", domain: "nanotechmobile.ca", storeID: 2 },
+//   { name: "northtechcellsolutions", domain: "northtechcellsolutions.ca", storeID: 5 },
+//   { name: "phonephix", domain: "phonephix.ca", storeID: 9 },
+//   { name: "pradowireless", domain: "pradowireless.com", storeID: 10 },
+//   { name: "reparationcellulairebsl", domain: "reparationcellulairebsl.ca", storeID: 7 },
+//   { name: "wirelessrevottawa", domain: "wirelessrevottawa.ca", storeID: 8 },
 //   { name: "dccmtx", domain: "https://dev.mtlcmtx.com/", storeID: 1 },
 //   { name: "mtlcmtx", domain: "https://dev.mtlcmtx.com/", storeID: 2 },
 // ]
 // const siteNum = 0,
-//   subDomain = devicelist[siteNum].name,
-//   apexDomain = "dccmtx.com"
+//   subDomainID = devicelist[siteNum].storeID
 
 function App(): JSX.Element {
-  require(`./assets/${subDomain}/styles/index.scss`)
-  const mainData = require(`./assets/${subDomain}/Database`)
-
   const [footerStatus, setFooterStatus] = useState(true)
   const [features, setFeatures] = useState<FeaturesParam[]>([])
   const [storeId, setStoreID] = useState(0)
   const [loadStatus, setLoadStatus] = useState(false)
   const [loadLocationStatus, setLoadLocationStatus] = useState(false)
+  const [loadStoreConfig, setLoadStoreConfig] = useState(false)
   const [pageTitle, setPageTitle] = useState("Store")
-  const [metaDescription, setMetaDescription] = useState("")
-  const [tagScript, setTagScript] = useState(undefined)
+  const [favIcon, setFavIcon] = useState("")
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
+  const [scriptList, setScriptList] = useState<ScriptParams[]>([])
+  const [theme, setTheme] = useState("")
   const parser = new DOMParser()
 
   const handleFooterStatus = (status: boolean) => {
     setFooterStatus(status)
   }
 
-  useEffect(() => {
-    const storeTabData = mainData.getTabData(storesDetails.storesDetails.name)
-
-    setPageTitle(storeTabData.title)
-    setMetaDescription(storeTabData.metaDescription)
-    setTagScript(storeTabData.headTag)
-    loadScript(storeTabData.bodyTag)
-
-    if (storeTabData.scriptTag) {
-      const script = document.createElement("script")
-      script.type = "text/javascript"
-      script.prepend(storeTabData.scriptTag)
-      document.body.prepend(script)
+  const loadBodyTag = (tag: string) => {
+    if (tag != null) {
+      const noScript = document.createElement("noscript")
+      const htmlDoc = parser.parseFromString(tag, "text/html")
+      const iframeNode = htmlDoc.getElementsByTagName("iframe")[0]
+      if (iframeNode != null) {
+        noScript.prepend(iframeNode)
+        document.body.prepend(noScript)
+      }
     }
+  }
 
+  const handleTabData = (mainData: any) => {
+    const homepage = mainData.homepage,
+      scripts: ScriptParams[] = []
+
+    setPageTitle(homepage.headData.title)
+    setMetaList(homepage.headData.metaList)
+    setFavIcon(homepage.headData.fav.img)
+    setTheme(mainData.general.themes.minified)
+
+    homepage.bodyData.tags.forEach((item: TagParams) => {
+      loadBodyTag(item.content)
+    })
+    homepage.headData.scripts.forEach((item: ScriptParams) => {
+      if (item.type === "reamaze" && item.content) {
+        const script = document.createElement("script")
+        script.type = "text/javascript"
+        script.append(item.content)
+        document.body.appendChild(script)
+        const scriptReamaze = document.createElement("script")
+        scriptReamaze.type = "text/javascript"
+        scriptReamaze.src = "https://cdn.reamaze.com/assets/reamaze.js"
+        scriptReamaze.async = true
+        document.body.appendChild(scriptReamaze)
+      } else if (item.type !== "reamaze") {
+        scripts.push(item)
+      }
+    })
+    setScriptList(scripts)
+  }
+
+  useEffect(() => {
     appLoadAPI
       .getStoresDetail(apexDomain, false)
       .then((res: any) => {
@@ -86,17 +116,6 @@ function App(): JSX.Element {
             { flag: "ALWAYS_TRUE", isActive: true },
             { flag: "FRONTEND_INSURE", isActive: false },
           ]
-          if (
-            subDomain === "mobiletechlab" ||
-            subDomain === "wirelessrevottawa" ||
-            subDomain === "northtechsolutions" ||
-            subDomain === "phonephix" ||
-            subDomain === "pradowireless" ||
-            subDomain === "dccmtx"
-          ) {
-            feats.push({ flag: "FRONTEND_BUY", isActive: true })
-          }
-
           for (let i = 0; i < res.data.length; i++) {
             feats.push({
               flag: res.data[i].feature_id,
@@ -108,6 +127,18 @@ function App(): JSX.Element {
         })
         .catch((error) => {
           console.log("Error in get Features", error)
+        })
+
+      appLoadAPI
+        .getStoreConfig(storeId, subDomainID)
+        .then((res: any) => {
+          storesDetails.changeStoreCnts(res[0].data)
+          storesDetails.changeCommonCnts(res[1].data)
+          handleTabData(res[0].data)
+          setLoadStoreConfig(true)
+        })
+        .catch((err) => {
+          console.log("Error in get Store Config", err)
         })
 
       findLocationAPI
@@ -123,62 +154,53 @@ function App(): JSX.Element {
     }
   }, [storeId])
 
-  const loadScript = (tag: string) => {
-    if (tag != null) {
-      const noScript = document.createElement("noscript")
-      const htmlDoc = parser.parseFromString(tag, "text/html")
-      const iframeNode = htmlDoc.getElementsByTagName("iframe")[0]
-
-      if (iframeNode != null) {
-        noScript.prepend(iframeNode)
-        document.body.prepend(noScript)
+  useEffect(() => {
+    if (loadStatus && loadStoreConfig) {
+      if (storesDetails.storeCnts.general.condition.hasShopLink) {
+        setFeatures([...features, { flag: "FRONTEND_BUY", isActive: true }])
       }
     }
-  }
+  }, [loadStatus, loadStoreConfig])
 
   return (
-    <>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <link rel="icon" id="favicon" href={mainData.fav.img} />
-        <link rel="apple-touch-icon" href={mainData.fav.img} />
-        <meta name="description" content={metaDescription} />
-        {subDomain === "mobiletechlab" && (
-          <meta
-            name="google-site-verification"
-            content="-7lYFKjpeZOXhFE35pTA-GfcaY9PRNOlrNm-SdgQMlI"
-          />
-        )}
-        <script>{tagScript}</script>
-      </Helmet>
-
-      <Provider
-        storesDetailsStore={storesDetails}
-        repairWidgetStore={repairWidgetStore}
-        repairWidDataStore={repairWidData}
-      >
-        {loadStatus && loadLocationStatus ? (
-          <Router>
-            <Header subDomain={subDomain} handleStatus={handleFooterStatus} features={features} />
-            <BaseRouter
-              subDomain={subDomain}
-              handleStatus={handleFooterStatus}
-              features={features}
-            />
-            <Badge />
-            {footerStatus && (
-              <Footer
-                subDomain={subDomain}
-                features={features}
-                storesDetailsStore={storesDetails}
+    <Provider
+      storesDetailsStore={storesDetails}
+      repairWidgetStore={repairWidgetStore}
+      repairWidDataStore={repairWidData}
+    >
+      {loadStatus && loadLocationStatus && loadStoreConfig ? (
+        <>
+          <Helmet>
+            <title>{pageTitle}</title>
+            <link rel="icon" id="favicon" href={favIcon} />
+            <link rel="apple-touch-icon" href={favIcon} />
+            <link rel="stylesheet" href={theme} />
+            {metaList.map((item: MetaParams, index: number) => {
+              return <meta name={item.name} content={item.content} key={index} />
+            })}
+            {storesDetails.storeCnts.general.condition.googleVerification.status && (
+              <meta
+                name={storesDetails.storeCnts.general.condition.googleVerification.metaData.name}
+                content={
+                  storesDetails.storeCnts.general.condition.googleVerification.metaData.content
+                }
               />
             )}
+            {scriptList.map((item: ScriptParams, index: number) => {
+              return <script key={index}>{item.content}</script>
+            })}
+          </Helmet>
+          <Router>
+            <Header handleStatus={handleFooterStatus} features={features} />
+            <BaseRouter handleStatus={handleFooterStatus} features={features} />
+            <Badge />
+            {footerStatus && <Footer features={features} storesDetailsStore={storesDetails} />}
           </Router>
-        ) : (
-          <Preloader />
-        )}
-      </Provider>
-    </>
+        </>
+      ) : (
+        <Preloader />
+      )}
+    </Provider>
   )
 }
 

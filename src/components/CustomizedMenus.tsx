@@ -12,7 +12,7 @@ import { ToastMsgParams } from "./toast/toast-msg-params"
 import Toast from "./toast/toast"
 import Loading from "./Loading"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
-import { makeLocations, getAddress } from "../services/helper"
+import { makeLocations, getAddress, AddFormat12 } from "../services/helper"
 
 const StyledMenu = withStyles({
   paper: {
@@ -52,7 +52,6 @@ type StoreProps = {
   storesDetailsStore: StoresDetails
 }
 interface Props extends StoreProps {
-  subDomain?: string
   btnTitle: string
   width: string
   features: any[]
@@ -60,11 +59,11 @@ interface Props extends StoreProps {
 
 const CustomizedMenus = inject("storesDetailsStore")(
   observer((props: Props) => {
-    const { subDomain, btnTitle, width, storesDetailsStore, features } = props
+    const { btnTitle, width, storesDetailsStore, features } = props
 
-    const data = require(`../assets/${subDomain}/Database`)
-    const themeColor = data.colorPalle.themeColor
-    const underLineCol = data.colorPalle.underLineCol
+    const data = storesDetailsStore.storeCnts
+    const themeColor = data.general.colorPalle.themeColor
+    const underLineCol = data.general.colorPalle.underLineCol
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const [t] = useTranslation()
     const [pos, setPos] = useState({ latitude: "", longitude: "" })
@@ -114,6 +113,9 @@ const CustomizedMenus = inject("storesDetailsStore")(
 
     useEffect(() => {
       if (Boolean(anchorEl)) {
+        if (storesDetailsStore.cntUserLocation.length) {
+          return
+        }
         if (navigator.platform.includes("Mac")) {
           setRequireUserInfo(true)
           return
@@ -221,7 +223,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
 
     const handleGetLocation = (poscode: string) => {
       if (!poscode) return
-      const data: any = {
+      const infoData: any = {
         city: "",
         state: "",
         postcode: poscode,
@@ -229,7 +231,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
       }
       setIsRequest(true)
       findLocationAPI
-        .findAddLocation(storesDetailsStore.store_id, data)
+        .findAddLocation(storesDetailsStore.store_id, infoData)
         .then((res: any) => {
           if (res.data.length) {
             storesDetailsStore.changeFindAddLocation(res.data)
@@ -260,7 +262,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
             !locSelStatus
               ? t(btnTitle)
               : storesDetailsStore.cntUserLocation[0] &&
-                storesDetailsStore.cntUserLocation[0].address_1
+                AddFormat12(storesDetailsStore.cntUserLocation[0])
           }
           bgcolor={!locSelStatus ? themeColor : "transparent"}
           txcolor={!locSelStatus ? "white" : "black"}
@@ -273,7 +275,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
           icon={true}
           fontSize="17px"
           width={!locSelStatus ? width : "auto"}
-          subDomain={subDomain}
           hover={!locSelStatus ? true : false}
         />
         <StyledMenu
@@ -284,16 +285,16 @@ const CustomizedMenus = inject("storesDetailsStore")(
           onClose={handleClose}
         >
           <div className="triangle" style={{ right: "65px" }}></div>
-          <div className={subDomain + "-menu-content-div"}>
+          <div className={"menu-content-div"}>
             <div
-              className={subDomain + "-left-content"}
+              className={"left-content"}
               style={{
                 width: locSelStatus || !locations.length ? "215px" : "500px",
               }}
             >
-              <div className={subDomain + "-content-block"}>
+              <div className={"content-block"}>
                 {storesDetailsStore.cntUserLocation.length || !requireUserInfo ? (
-                  <p className={subDomain + "-block-title"}>{myStore}</p>
+                  <p className={"block-title"}>{myStore}</p>
                 ) : (
                   <div style={{ textAlign: "center" }}>
                     <InputComponent
@@ -302,7 +303,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
-                      subDomain={subDomain}
                     />
                     <Button
                       title={t("Get Location")}
@@ -312,7 +312,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
                       height="30px"
                       margin="10px auto"
                       fontSize="15px"
-                      subDomain={subDomain}
                       disable={isRequest}
                       onClick={() => handleGetLocation(postCode)}
                     >
@@ -327,29 +326,27 @@ const CustomizedMenus = inject("storesDetailsStore")(
                         <p
                           onClick={() => handleLocSelect(index)}
                           className={
-                            subDomain +
-                            "-block-content" +
-                            (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
+                            "block-content" + (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
                           }
                         >
                           {item.distance
                             ? item.location_name +
                               ", " +
-                              item.address_1 +
+                              AddFormat12(item) +
                               " (" +
                               item.distance +
                               ")"
-                            : item.location_name + ", " + item.address_1}
+                            : item.location_name + ", " + AddFormat12(item)}
                         </p>
                       </React.Fragment>
                     )
                   })}
                 </div>
               </div>
-              <div className={subDomain + "-content-block"}>
+              <div className={"content-block"}>
                 {locSelStatus && (
                   <a
-                    className={subDomain + "-link"}
+                    className={"link"}
                     style={{ color: underLineCol }}
                     href={
                       storesDetailsStore.cntUserLocation[0] &&
@@ -365,17 +362,13 @@ const CustomizedMenus = inject("storesDetailsStore")(
                 )}
                 {storesDetailsStore.findAddLocation.length > 1 &&
                   locations.length < storesDetailsStore.findAddLocation.length && (
-                    <a
-                      className={subDomain + "-link"}
-                      style={{ color: underLineCol }}
-                      onClick={viewMoreStores}
-                    >
+                    <a className={"link"} style={{ color: underLineCol }} onClick={viewMoreStores}>
                       {t("View More Stores")}
                     </a>
                   )}
                 {locSelStatus && (
                   <a
-                    className={subDomain + "-link"}
+                    className={"link"}
                     style={{ color: underLineCol }}
                     href={`${
                       storesDetailsStore.cntUserLocation[0] &&
@@ -401,7 +394,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                     inactiveComponent={() => <></>}
                     activeComponent={() => (
                       <Link
-                        to="/get-quote"
+                        to={data.general.routes.repairWidgetPage}
                         style={{ textDecoration: "none" }}
                         onClick={handleBookRepair}
                       >
@@ -413,7 +406,6 @@ const CustomizedMenus = inject("storesDetailsStore")(
                           height="30px"
                           margin="0"
                           fontSize="15px"
-                          subDomain={subDomain}
                         />
                       </Link>
                     )}
@@ -436,13 +428,13 @@ const CustomizedMenus = inject("storesDetailsStore")(
                         {item.days.map((it: any, index: number) => {
                           return (
                             <div key={index}>
-                              <p className={subDomain + "-block-title"}>{t("Hours")}</p>
-                              <div className={subDomain + "-hours-div"}>
+                              <p className={"block-title"}>{t("Hours")}</p>
+                              <div className={"hours-div"}>
                                 <div>
                                   {it.wkDys.map((itm: any, idx: number) => {
                                     return (
                                       <p
-                                        className={subDomain + "-block-content"}
+                                        className={"block-content"}
                                         style={{
                                           textDecoration: "none",
                                           opacity: 1,
@@ -459,7 +451,7 @@ const CustomizedMenus = inject("storesDetailsStore")(
                                   {item.hours[index].hrs.map((itm: any, idx: number) => {
                                     return (
                                       <p
-                                        className={subDomain + "-block-content"}
+                                        className={"block-content"}
                                         style={{
                                           textDecoration: "none",
                                           opacity: 1,

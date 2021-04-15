@@ -1,28 +1,25 @@
-import React from 'react'
+import React from "react"
 
 type Props = {
-  img: string;
-  subtitle: string;
-  content: string;
-  subDomain?: string;
+  img: string
+  subtitle: string
+  content: string
 }
 
-const CardRepairSec3 = ({subtitle, img, content, subDomain}: Props) => {
-  
+const CardRepairSec3 = ({ subtitle, img, content }: Props) => {
   return (
-    <div className={subDomain + '-card-repair-sec3-container'}>
-      <p className={subDomain + '-subtitle'}>{subtitle}</p>
-      <img src={img} />        
-      <p className={subDomain + '-content'}>{content}</p>
+    <div className={"card-repair-sec3-container"}>
+      <p className={"subtitle"}>{subtitle}</p>
+      <img src={img} width="1" height="auto" alt={`repair-sec3-${subtitle}-img`} />
+      <p className={"content"}>{content}</p>
     </div>
   )
 }
 
 CardRepairSec3.defaultProps = {
-  subtitle: 'NEW',
-  content: 'A brand new device with no signs of wear',
-  img: '',
-  subDomain: 'geebo'
+  subtitle: "NEW",
+  content: "A brand new device with no signs of wear",
+  img: "",
 }
 
-export default CardRepairSec3;
+export default CardRepairSec3

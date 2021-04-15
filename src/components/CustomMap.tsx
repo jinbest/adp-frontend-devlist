@@ -4,30 +4,6 @@ import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet"
 import { Map } from "leaflet"
 import { getAddress } from "../services/helper"
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    mapWrapper: {
-      padding: "10px",
-    },
-    mapContainer: {
-      height: "700px",
-      overflow: "hidden !important",
-      [theme.breakpoints.down("md")]: {
-        height: "1000px",
-      },
-      [theme.breakpoints.down("sm")]: {
-        height: "800px",
-      },
-      [theme.breakpoints.down("xs")]: {
-        height: "500px",
-      },
-    },
-    popupWrapper: {
-      fontSize: "12px !important",
-    },
-  })
-)
-
 type Props = {
   locations: any[]
   selectedLocation: any
@@ -40,6 +16,7 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
   let centerY = -97.211811
   let zoom = 6
   const [map, setMap] = useState<null | Map>(null)
+
   useEffect(() => {
     if (isDetail && selectedLocation) {
       centerX = selectedLocation.latitude
@@ -115,3 +92,27 @@ const CustomMap = ({ locations, selectedLocation, isDetail }: Props) => {
   )
 }
 export default CustomMap
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    mapWrapper: {
+      padding: "10px",
+    },
+    mapContainer: {
+      height: "700px",
+      overflow: "hidden !important",
+      [theme.breakpoints.down("md")]: {
+        height: "1000px",
+      },
+      [theme.breakpoints.down("sm")]: {
+        height: "800px",
+      },
+      [theme.breakpoints.down("xs")]: {
+        height: "500px",
+      },
+    },
+    popupWrapper: {
+      fontSize: "12px !important",
+    },
+  })
+)

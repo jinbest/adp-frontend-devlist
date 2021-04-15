@@ -17,7 +17,6 @@ import { ValidateEmail, ValidatePhoneNumber } from "../../../services/helper"
 
 type Props = {
   data: any
-  subDomain?: string
   step: number
   handleStep: (step: number) => void
   handleChangeChooseData: (step: number, chooseData: any) => void
@@ -28,15 +27,14 @@ type Props = {
 
 const ContactDetails = ({
   data,
-  subDomain,
   step,
   handleStep,
   handleChangeChooseData,
   features,
   code,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const themeCol = mainData.colorPalle.themeColor
+  const mainData = storesDetails.storeCnts
+  const themeCol = mainData.general.colorPalle.themeColor
 
   const [t] = useTranslation()
 
@@ -358,7 +356,6 @@ const ContactDetails = ({
                     handleChange={(e) => {
                       handleChangeFirstName(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={fnErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -370,7 +367,6 @@ const ContactDetails = ({
                     handleChange={(e) => {
                       handleChangeLastName(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={lnErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -382,7 +378,6 @@ const ContactDetails = ({
                     handleChange={(e) => {
                       handleChangeEmail(e.target.value)
                     }}
-                    subDomain={subDomain}
                     errorText={emlErrTxt}
                     border="rgba(0,0,0,0.1)"
                   />
@@ -416,7 +411,6 @@ const ContactDetails = ({
                         handleChange={(e) => {
                           handleChangePostalCode(e.target.value)
                         }}
-                        subDomain={subDomain}
                         errorText={psErrTxt}
                         border="rgba(0,0,0,0.1)"
                       />
@@ -434,7 +428,6 @@ const ContactDetails = ({
                       handleChange={(e) => {
                         handleChangeAddress1(e.target.value)
                       }}
-                      subDomain={subDomain}
                       errorText={ad1ErrTxt}
                       border="rgba(0,0,0,0.1)"
                     />
@@ -446,14 +439,12 @@ const ContactDetails = ({
                       handleChange={(e) => {
                         handleChangeAddress2(e.target.value)
                       }}
-                      subDomain={subDomain}
                     />
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <CustomSelect
                       value={country}
                       handleSetValue={setCountry}
-                      subDomain={subDomain}
                       options={countriesData}
                     />
                   </Grid>
@@ -464,7 +455,6 @@ const ContactDetails = ({
                       handleChange={(e) => {
                         handleChangeCity(e.target.value)
                       }}
-                      subDomain={subDomain}
                       errorText={ctErrTxt}
                       border="rgba(0,0,0,0.1)"
                     />
@@ -476,7 +466,6 @@ const ContactDetails = ({
                       handleChange={(e) => {
                         handleChangePostalCode(e.target.value)
                       }}
-                      subDomain={subDomain}
                       errorText={psErrTxt}
                       border="rgba(0,0,0,0.1)"
                     />
@@ -493,14 +482,13 @@ const ContactDetails = ({
                     activeComponent={() => (
                       <Button
                         title={t("Book Appointment")}
-                        bgcolor={mainData.colorPalle.nextButtonCol}
+                        bgcolor={mainData.general.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"
                         height="30px"
                         fontSize="17px"
                         margin="0 auto 10px"
                         onClick={() => handleButton("appointment")}
-                        subDomain={subDomain}
                         disable={disableStatus}
                       >
                         {isSubmiting[0] && <Loading />}
@@ -515,14 +503,13 @@ const ContactDetails = ({
                     activeComponent={() => (
                       <Button
                         title={t("Request a Quote")}
-                        bgcolor={mainData.colorPalle.nextButtonCol}
+                        bgcolor={mainData.general.colorPalle.nextButtonCol}
                         borderR="20px"
                         maxWidth="300px"
                         height="30px"
                         fontSize="17px"
                         margin="0 auto"
                         onClick={() => handleButton("quote")}
-                        subDomain={subDomain}
                         disable={disableStatus}
                       >
                         {isSubmiting[1] && <Loading />}
@@ -536,13 +523,12 @@ const ContactDetails = ({
               <div className="service-card-button">
                 <Button
                   title={t("Next")}
-                  bgcolor={mainData.colorPalle.nextButtonCol}
+                  bgcolor={mainData.general.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"
                   fontSize="17px"
                   onClick={() => handleButton("appointment")}
-                  subDomain={subDomain}
                   disable={disableStatus}
                 />
                 <p>{t("or press ENTER")}</p>
@@ -552,12 +538,7 @@ const ContactDetails = ({
         </Grid>
         <Grid item xs={12} md={5}>
           <Card className="service-summary-card">
-            <RepairSummary
-              step={step}
-              subDomain={subDomain}
-              themeCol={themeCol}
-              repairWidgetStore={repairWidgetStore}
-            />
+            <RepairSummary step={step} themeCol={themeCol} repairWidgetStore={repairWidgetStore} />
           </Card>
         </Grid>
       </Grid>

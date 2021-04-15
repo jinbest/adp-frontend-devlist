@@ -3,16 +3,17 @@ import { Typography, Grid, Box } from "@material-ui/core"
 import { CardPopular } from "../../components"
 import { useTranslation } from "react-i18next"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
+import { storesDetails } from "../../store"
 
 type Props = {
-  subDomain?: string
   features: any[]
 }
 
-const Section3 = ({ subDomain, features }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const commonData = require("../../assets/_common/mockData")
-  const deviceCard = data.deviceCard
+const Section3 = ({ features }: Props) => {
+  const data = storesDetails.storeCnts
+  const thisPage = data.homepage.section3
+  const commonData = storesDetails.commonCnts
+  const deviceCard = thisPage.deviceCard
   const [t] = useTranslation()
 
   const [feats, setFeatures] = useState<any[]>([])
@@ -33,17 +34,17 @@ const Section3 = ({ subDomain, features }: Props) => {
         name={"FRONTEND_ONLINE_PURCHASE"}
         inactiveComponent={() => <></>}
         activeComponent={() => (
-          <section className={subDomain + "-sec3-container-parent"}>
-            <div className={subDomain + "-Container"}>
-              <Typography
-                className={subDomain + "-section-title"}
-                // style={{ color: "black", textShadow: "1px 0 black" }}
-              >
-                {t(data.homeTextData.section3.title)}
-              </Typography>
+          <section className={"sec3-container-parent"}>
+            <div className={"Container"}>
+              <Typography className={"section-title"}>{t(thisPage.title)}</Typography>
             </div>
-            <div className={subDomain + "-section3-back"}>
-              <div className={subDomain + "-Container"}>
+            <div
+              className={"section3-back"}
+              style={{
+                backgroundImage: "url(" + thisPage.bgImg + ")",
+              }}
+            >
+              <div className={"Container"}>
                 <Grid container item xs={12} spacing={2}>
                   {commonData.popularCardData.map((item: any, index: number) => {
                     return (
@@ -55,7 +56,6 @@ const Section3 = ({ subDomain, features }: Props) => {
                           priceCol={data.colorPalle.priceCol}
                           img={item.img}
                           key={index}
-                          subDomain={subDomain}
                         />
                       </Grid>
                     )
@@ -65,10 +65,10 @@ const Section3 = ({ subDomain, features }: Props) => {
                   <Grid container item xs={12} spacing={2}>
                     <Grid item sm={12} md={7}>
                       <Typography
-                        className={subDomain + "-section-title white"}
-                        style={{ color: data.homeTextData.section3.color }}
+                        className={"section-title white"}
+                        style={{ color: thisPage.color }}
                       >
-                        {data.homeTextData.section3.subtitle.map((item: string, index: number) => {
+                        {thisPage.subtitle.map((item: string, index: number) => {
                           return (
                             <React.Fragment key={index}>
                               {t(item)} <br />
@@ -76,18 +76,17 @@ const Section3 = ({ subDomain, features }: Props) => {
                           )
                         })}
                       </Typography>
-                      <Typography
-                        className="white f24"
-                        style={{ color: data.homeTextData.section3.color }}
-                      >
-                        {t(data.homeTextData.section3.content)}
+                      <Typography className="white f24" style={{ color: thisPage.color }}>
+                        {t(thisPage.content)}
                       </Typography>
                     </Grid>
                     <Grid item sm={12} md={5}>
                       <img
                         src={deviceCard.img}
                         alt="device-list"
-                        className={subDomain + "-card-img"}
+                        className={"card-img"}
+                        width="1"
+                        height="auto"
                       />
                     </Grid>
                   </Grid>

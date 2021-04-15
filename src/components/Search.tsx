@@ -9,7 +9,6 @@ type Props = {
   border?: string
   height?: string
   placeholder: string
-  subDomain?: string
   value?: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleIconClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
@@ -34,7 +33,6 @@ const Search = ({
   border,
   height,
   placeholder,
-  subDomain,
   value,
   handleChange,
   handleIconClick,
@@ -44,18 +42,18 @@ const Search = ({
 
   return (
     <Box
-      className={subDomain + "-search-container"}
+      className={"search-container"}
       style={{ background: bgcolor, border: `1px solid ${border}`, height: height }}
     >
       <InputBase
-        className={subDomain + "-search-input"}
+        className={"search-input"}
         style={{ color: color }}
         placeholder={tPlaceholder}
         value={value ?? ""}
         onChange={handleChange}
       />
       <div onClick={handleIconClick} className={classes.searchIconDiv}>
-        <SearchIcon className={subDomain + "-search-icon"} style={{ color: color }} />
+        <SearchIcon className={"search-icon"} style={{ color: color }} />
       </div>
     </Box>
   )

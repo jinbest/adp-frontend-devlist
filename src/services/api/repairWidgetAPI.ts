@@ -10,7 +10,7 @@ class RepairWidgetAPI {
     is_enabled: boolean,
     searchText: string
   ) => {
-    let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/brands?per_page=${per_page}&page=${page}&is_enabled=${is_enabled}&has_products=true&include_voided=false&name_sort_order=asc`
+    let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/brands?per_page=${per_page}&page=${page}&is_enabled=${is_enabled}&has_products=true&include_voided=false&display_sort_order=asc`
     if (searchText) {
       apiURL += `&name=${searchText}`
     }
@@ -40,7 +40,7 @@ class RepairWidgetAPI {
     brand_id: number,
     searchText: string
   ) => {
-    let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?per_page=${per_page}&page=${page}&include_voided=${included_voided}&brand_id=${brand_id}&status=PUBLISHED`
+    let apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?per_page=${per_page}&page=${page}&include_voided=${included_voided}&brand_id=${brand_id}&status=PUBLISHED&display_sort_order=asc`
     if (searchText) {
       apiURL += `&name=${searchText}`
     }
@@ -202,12 +202,12 @@ class RepairWidgetAPI {
   }
 
   getBrandsProducts = (store_id: number, prod_ids: number[]) => {
-    let prodsID = "";
-    for (let i = 0; i < prod_ids.length-1; i++) {
+    let prodsID = ""
+    for (let i = 0; i < prod_ids.length - 1; i++) {
       prodsID += prod_ids[i] + ","
     }
-    prodsID += prod_ids[prod_ids.length-1]
-    const apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?product_ids=${prodsID}&include_voided=true&include_children=true`
+    prodsID += prod_ids[prod_ids.length - 1]
+    const apiURL = `${Config.PRODUCT_SERVICE_API_URL}dc/store/${store_id}/products?product_ids=${prodsID}&include_voided=false&include_children=true&status=PUBLISHED&display_sort_order=asc`
     return new Promise((resolve, reject) => {
       axios
         .get(`${apiURL}`)
@@ -225,7 +225,6 @@ class RepairWidgetAPI {
         })
     })
   }
-  
 }
 
 const instance = new RepairWidgetAPI()

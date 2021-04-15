@@ -1,5 +1,35 @@
 import React from "react"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
+import { storesDetails } from "../../store"
+
+const Shape = () => {
+  const data = storesDetails.storeCnts
+  const shapeData = data.businessPage.shapeData
+  const classes = useStyles()
+
+  return (
+    <div>
+      <div className={classes.corner}>
+        <img
+          src={shapeData.businessCornerShape}
+          width="1"
+          height="auto"
+          alt="location-corner-shape"
+        />
+      </div>
+      <div className={classes.skitImg}>
+        <img
+          src={storesDetails.commonCnts.locationsData.skitterMobile}
+          width="1"
+          height="auto"
+          alt="skitter-mobile"
+        />
+      </div>
+    </div>
+  )
+}
+
+export default Shape
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -44,25 +74,3 @@ const useStyles = makeStyles(() =>
     },
   })
 )
-
-type Props = {
-  subDomain?: string
-}
-
-const Shape = ({ subDomain }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const classes = useStyles()
-
-  return (
-    <div>
-      <div className={classes.corner}>
-        <img src={data.businessData.businessCornerShape} />
-      </div>
-      <div className={classes.skitImg}>
-        <img src={require("../../assets/_common/mockData").locationsData.skitterMobile} />
-      </div>
-    </div>
-  )
-}
-
-export default Shape

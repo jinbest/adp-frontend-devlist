@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react"
 // import { CardMobile } from "../../components"
-import { Grid, Box, Typography } from "@material-ui/core"
+import { Grid, Box } from "@material-ui/core"
 import { Search, Button } from "../../components"
 import { FeatureToggles, Feature } from "@paralleldrive/react-feature-toggles"
 import { Link } from "react-router-dom"
-import { repairWidgetStore } from "../../store"
+import { repairWidgetStore, storesDetails } from "../../store"
 import { useTranslation } from "react-i18next"
+import { isExternal } from "../../services/helper"
+import { observer } from "mobx-react"
 
 type Props = {
-  subDomain?: string
   features: any[]
   handleStatus: (status: boolean) => void
 }
 
-const Section1 = ({ subDomain, features, handleStatus }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
+const Section1 = ({ features, handleStatus }: Props) => {
+  const data = storesDetails.storeCnts
+  const thisPage = data.homepage.section1
   const [t] = useTranslation()
 
-  const [feats, setFeatures] = useState<any[]>([])
+  // const [feats, setFeatures] = useState<any[]>([])
   const [featSearch, setFeatSearch] = useState<any[]>([])
   // const [gridMD, setGridMD] = useState(data.cardMobileData.gridMD)
 
@@ -34,38 +36,13 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
       }
     }
     // const cntGridMD = Math.round(12 / cntFeature.length)
-    setFeatures(cntFeature)
+    // setFeatures(cntFeature)
     setFeatSearch(cntFeatSearch)
     // setGridMD(cntGridMD)
   }, [data, features, t])
 
-  /* -------------------  handleScroll for show/hide Search-bar regarding on pageYOffset ---------------------------
-  |   const [scrollPosition, setScrollPosition] = useState(0);                                                      |
-  |   const [searchBarVisible, setSearchBarVisible] = useState(true);                                               |
-  |   const handleScroll = () => {                                                                                  |
-  |     const position = window.pageYOffset;                                                                        |
-  |     setScrollPosition(position);                                                                                |
-  |   };                                                                                                            |
-  |   useEffect(() => {                                                                                             |
-  |     window.addEventListener('scroll', handleScroll, { passive: true });                                         |
-  |     return () => {                                                                                              |
-  |       window.removeEventListener('scroll', handleScroll);                                                       |
-  |     };                                                                                                          |
-  |   }, []);                                                                                                       |
-  |   useEffect(() => {                                                                                             |
-  |     if (scrollPosition > 460) {                                                                                 |
-  |       setSearchBarVisible(false);                                                                               |
-  |     } else {                                                                                                    |
-  |       setSearchBarVisible(true);                                                                                |
-  |     }                                                                                                           |
-  |   }, [scrollPosition]);                                                                                         |
-  |   useEffect(() => {                                                                                             |
-  |     const headerSearch = document.getElementById('header-search') as HTMLElement;                               |
-  |     searchBarVisible ? headerSearch.style.visibility = 'hidden' : headerSearch.style.visibility = 'visible';    |
-  |   }, [searchBarVisible])                                                                                        |
-  ---------------------------------------------------------------------------------------------------------------- */
-
-  const handleGetQuote = () => {
+  const handleGetQuote = (link: string) => {
+    if (link !== data.general.routes.repairWidgetPage) return
     const cntAppointment: any = repairWidgetStore.appointResponse
     repairWidgetStore.init()
     repairWidgetStore.changeAppointResponse(cntAppointment)
@@ -73,57 +50,51 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   }
 
   return (
-    <section className={subDomain + "-Container"}>
-      <Grid item xs={12} sm={12} className={subDomain + "-section1-top"}>
-        <h1
-          className={subDomain + "-section1-title"}
-          // style={{ color: "black", textShadow: "1px 0 black" }}
-        >
-          {t("Repair") + ", " + t("Buy") + " & " + t("Protect") + " " + t("your")}
-        </h1>
-        <h1
-          className={subDomain + "-section1-title"}
-          // style={{ color: "black", textShadow: "1px 0 black" }}
-        >
-          {t("essential mobile devices.")}
-        </h1>
-        <Typography className={subDomain + "-section1-subtitle"}>
-          {`${data.homeTextData.section1.city}${t("’s mobile device specialists.")}`}
-        </Typography>
-        <div style={{ display: "flex" }}>
-          <Box className={subDomain + "-service-section-button"} style={{ margin: "initial" }}>
-            <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
-              <Button
-                title={t("Get Quote")}
-                bgcolor={data.colorPalle.repairButtonCol}
-                borderR="20px"
-                subDomain={subDomain}
-                width="90%"
-              />
-            </Link>
-          </Box>
-          <FeatureToggles features={feats}>
-            <Feature
-              name={"FRONTEND_REPAIR_APPOINTMENT"}
-              inactiveComponent={() => <></>}
-              activeComponent={() => (
-                <Box
-                  className={subDomain + "-service-section-button"}
-                  style={{ margin: "initial" }}
-                >
-                  <Link to="/get-quote" style={{ textDecoration: "none" }} onClick={handleGetQuote}>
-                    <Button
-                      title={t("Book Appointment")}
-                      bgcolor={data.colorPalle.repairButtonCol}
-                      borderR="20px"
-                      subDomain={subDomain}
-                      width="90%"
-                    />
-                  </Link>
-                </Box>
-              )}
-            />
-          </FeatureToggles>
+    <section className="Container">
+      <Grid item xs={12} sm={12} className="section1-top">
+        <h1 className={"section1-title align-center"}>{t(thisPage.title)}</h1>
+        <p className="section1-subtitle align-center">{t(thisPage.subtitle)}</p>
+        <div className="align-center d-flex">
+          {thisPage.buttons.map((item: any, index: number) => {
+            return (
+              <React.Fragment key={index}>
+                {item.visible ? (
+                  <Box className={"service-section-button"} style={{ margin: "initial" }}>
+                    {isExternal(item.link) ? (
+                      <a
+                        href={item.link}
+                        style={{ textDecoration: "none" }}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Button
+                          title={t(item.title)}
+                          bgcolor={data.general.colorPalle.repairButtonCol}
+                          borderR="20px"
+                          width="95%"
+                        />
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.link}
+                        style={{ textDecoration: "none" }}
+                        onClick={() => handleGetQuote(item.link)}
+                      >
+                        <Button
+                          title={t(item.title)}
+                          bgcolor={data.general.colorPalle.repairButtonCol}
+                          borderR="20px"
+                          width="95%"
+                        />
+                      </Link>
+                    )}
+                  </Box>
+                ) : (
+                  <></>
+                )}
+              </React.Fragment>
+            )
+          })}
         </div>
 
         <FeatureToggles features={featSearch}>
@@ -131,13 +102,12 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
             name={"FRONTEND_GLOBAL_SEARCH"}
             inactiveComponent={() => <></>}
             activeComponent={() => (
-              <Box className={subDomain + "-sec1-search_input"}>
+              <Box className={"sec1-search_input"}>
                 <Search
-                  placeholder={data.homeTextData.section1.searchPlaceholder}
+                  placeholder={thisPage.searchPlaceholder}
                   color="white"
-                  bgcolor={data.colorPalle.themeColor}
+                  bgcolor={storesDetails.storeCnts.general.colorPalle.themeColor}
                   height="60px"
-                  subDomain={subDomain}
                   handleChange={() => {}}
                   handleIconClick={() => {}}
                 />
@@ -147,8 +117,8 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
         </FeatureToggles>
       </Grid>
 
-      {/* <Grid container item xs={12} spacing={3} className={subDomain + "-sec1-card-mobile-data"}>
-        {data.cardMobileData.data.map((item: any, index: number) => {
+      {/* <Grid container item xs={12} spacing={3} className={"sec1-card-mobile-data"}>
+        {thisPage.cards.data.map((item: any, index: number) => {
           return (
             <FeatureToggles features={feats} key={index}>
               <Feature
@@ -174,7 +144,6 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
                       key={index}
                       heart={index === 0 ? require('../../assets/_common/img/heart.png').default : ""}
                       heartCol={data.colorPalle.heartCol}
-                      subDomain={subDomain}
                       href={item.href}
                     />
                   </Grid>
@@ -188,4 +157,4 @@ const Section1 = ({ subDomain, features, handleStatus }: Props) => {
   )
 }
 
-export default Section1
+export default observer(Section1)

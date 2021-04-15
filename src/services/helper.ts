@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom"
 import { GetQuotesParams } from "../model/get-quote-params"
 import { repairWidgetStore, storesDetails, repairWidData } from "../store"
 import { repairWidgetAPI } from "./"
+import { GetAddressFormat } from "../model/get-address-format"
+import _ from "lodash"
 
 interface LocationHour {
   close: string
@@ -117,26 +119,27 @@ export function makeLocations(data: any[]) {
     const hours: any[] = [],
       weekDays: any[] = [],
       storeGroup: any[] = []
-    for (let j = 0; j < data[i].location_hours.length; j++) {
-      if (data[i].location_hours[j].type === "REGULAR") {
-        const cntStoreID = data[i].location_hours[j].store_id
+    const cntLocationHours = _.sortBy(data[i].location_hours, o => o.day)
+    for (let j = 0; j < cntLocationHours.length; j++) {
+      if (cntLocationHours[j].type === "REGULAR") {
+        const cntStoreID = cntLocationHours[j].store_id
         if (!storeGroup.includes(cntStoreID)) {
           storeGroup.push(cntStoreID)
           hours.push({ store_id: cntStoreID, hrs: [] })
           weekDays.push({ store_id: cntStoreID, wkDys: [] })
         }
         let hour = ""
-        if (!data[i].location_hours[j].open || !data[i].location_hours[j].close) {
+        if (!cntLocationHours[j].open || !cntLocationHours[j].close) {
           hour = "Closed"
         } else {
-          const open = getHourType(data[i].location_hours[j].open), 
-            close = getHourType(data[i].location_hours[j].close)
+          const open = getHourType(cntLocationHours[j].open), 
+            close = getHourType(cntLocationHours[j].close)
           hour = open + " - " + close
         }
         for (let k = 0; k < hours.length; k++) {
           if (cntStoreID === hours[k].store_id) {
             hours[k].hrs.push(hour)
-            weekDays[k].wkDys.push(days[data[i].location_hours[j].day])
+            weekDays[k].wkDys.push(days[cntLocationHours[j].day])
             break
           }
         }
@@ -146,6 +149,7 @@ export function makeLocations(data: any[]) {
       location_name: data[i].location_name,
       address_1: data[i].address_1,
       address_2: data[i].address_2,
+      address_3: data[i].address_3,
       distance: data[i].distance ? (data[i].distance / 1000).toFixed(1) + "km" : "",
       location_id: data[i].id,
       hours: hours,
@@ -401,4 +405,43 @@ export function ValidatePhoneNumber(p: string) {
   } else {
     return false
   }
+}
+
+export function AddressFormatViewer(address: GetAddressFormat) {
+  return (
+    `${address.address_1 ? address.address_1 : ""} ` + 
+    `${address.address_2 ? address.address_2 : ""} ` + 
+    `${address.city ? address.city + "," : ""} ${address.state ? address.state : ""} ${
+      address.postcode ? address.postcode : ""
+    }`
+  )
+}
+
+export function AddFormat12(address: GetCurrentLocParams) {
+  return (
+    `${address.address_1 ? address.address_1 : ""}` + 
+    `${address.address_2 ? " " + address.address_2 : ""} `
+  )
+}
+
+export function DuplicatedNavItem(navItems: any[], brandItem:any) {
+  let ans = false
+  for (let i = 0; i < navItems.length; i++) {
+    if (navItems[i].text === brandItem.text) {
+      ans = true
+      break
+    }
+  }
+  return ans
+}
+
+export function getBusinessLink(locs: any[]) {
+  let businessLink = null
+  for (let i = 0; i < locs.length; i++) {
+    if (locs[i].is_main) {
+      businessLink = locs[i].business_page_link
+      break
+    }
+  }
+  return businessLink
 }

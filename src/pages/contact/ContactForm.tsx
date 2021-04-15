@@ -13,106 +13,21 @@ import { StoresDetails } from "../../store/StoresDetails"
 import { makeLocations, ValidateEmail } from "../../services/helper"
 import { Close } from "@material-ui/icons"
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      margin: "auto",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      ["@media (max-width:425px)"]: {
-        marginBottom: "100px",
-      },
-    },
-    card: {
-      padding: "50px 30px",
-      height: "auto",
-      minHeight: "300px",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      position: "relative",
-      ["@media (max-width:600px)"]: {
-        padding: "40px 20px",
-      },
-    },
-    closeButtonDiv: {
-      position: "absolute",
-      right: "15px",
-      top: "15px",
-    },
-    title: {
-      fontSize: "25px",
-      fontWeight: "bold",
-      textAlign: "center",
-      paddingBottom: "20px",
-      ["@media (max-width:400px)"]: {
-        fontSize: "20px",
-      },
-    },
-    content: {
-      fontSize: "18px",
-      textAlign: "center",
-      marginTop: "20px",
-      ["@media (max-width:400px)"]: {
-        fontSize: "15px",
-      },
-    },
-    messageDiv: {
-      border: "1px solid rgba(0, 0, 0, 0.1)",
-      borderRadius: "20px",
-      width: "100%",
-      height: "300px",
-      overflow: "hidden",
-    },
-    textArea: {
-      border: "none",
-      margin: "20px",
-      fontSize: "15px",
-      fontFamily: "POPPINS",
-      width: "87%",
-      outline: "none",
-      height: "250px",
-      ["@media (max-width:600px)"]: {
-        fontSize: "3vw",
-      },
-    },
-    getQuote: {
-      width: "170px",
-      fontSize: "13px!important" as any,
-      [theme.breakpoints.down("sm")]: {
-        width: "120px",
-        fontSize: "12px!important" as any,
-      },
-      [theme.breakpoints.down("xs")]: {
-        width: "80px",
-        fontSize: "10px!important" as any,
-      },
-    },
-  })
-)
-
 type OptionProps = {
   name: string
   code: number
 }
 
 type Props = {
-  subDomain?: string
   locations: any[]
   locationID: number
   handleLocationID: (id: number) => void
   storesDetailsStore: StoresDetails
 }
 
-const ContactForm = ({
-  subDomain,
-  locations,
-  locationID,
-  handleLocationID,
-  storesDetailsStore,
-}: Props) => {
-  const mainData = require(`../../assets/${subDomain}/Database`)
+const ContactForm = ({ locations, locationID, handleLocationID, storesDetailsStore }: Props) => {
+  const mainData = storesDetailsStore.storeCnts
+  const thisPage = mainData.contactPage.contactForm
   const [t] = useTranslation()
   const classes = useStyles()
 
@@ -124,7 +39,7 @@ const ContactForm = ({
   const [emlErrTxt, setEmlErrTxt] = useState("")
   const [companyName, setCompanyName] = useState("")
   const [phone, setPhone] = useState("")
-  const [option, setOption] = useState<OptionProps[]>([])
+  const [option, setOption] = useState<OptionProps[]>([{ name: "", code: 0 }])
   const [loc, setLoc] = useState<OptionProps>({ name: "", code: 0 })
   const [message, setMessage] = useState("")
   const [msgErrTxt, setMsgErrTxt] = useState("")
@@ -288,20 +203,19 @@ const ContactForm = ({
   }
 
   return (
-    <section className={subDomain + "-Container"}>
+    <section className={"Container contact-form"}>
       <div className={classes.root}>
         {!contacted ? (
           <Card className={classes.card}>
-            <Typography className={classes.title}>{t("Contact Us")}</Typography>
+            <Typography className={classes.title}>{t(thisPage.title)}</Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <InputComponent
                   value={firstName}
-                  placeholder={t("First Name*")}
+                  placeholder={t(thisPage.placeHolder.fName)}
                   handleChange={(e) => {
                     handleChangeFirstName(e.target.value)
                   }}
-                  subDomain={subDomain}
                   errorText={fnErrTxt}
                   border="rgba(0,0,0,0.1)"
                 />
@@ -309,11 +223,10 @@ const ContactForm = ({
               <Grid item xs={12} sm={6}>
                 <InputComponent
                   value={lastName}
-                  placeholder={t("Last Name*")}
+                  placeholder={t(thisPage.placeHolder.lName)}
                   handleChange={(e) => {
                     handleChangeLastName(e.target.value)
                   }}
-                  subDomain={subDomain}
                   errorText={lnErrTxt}
                   border="rgba(0,0,0,0.1)"
                 />
@@ -321,27 +234,29 @@ const ContactForm = ({
               <Grid item xs={12}>
                 <InputComponent
                   value={companyName}
-                  placeholder={t("Company Name")}
+                  placeholder={t(thisPage.placeHolder.companyName)}
                   handleChange={(e) => {
                     handleChangeCompanyName(e.target.value)
                   }}
-                  subDomain={subDomain}
                 />
               </Grid>
               <Grid item xs={12}>
                 <InputComponent
                   value={email}
-                  placeholder={t("E-mail Address*")}
+                  placeholder={t(thisPage.placeHolder.email)}
                   handleChange={(e) => {
                     handleChangeEmail(e.target.value)
                   }}
-                  subDomain={subDomain}
                   errorText={emlErrTxt}
                   border="rgba(0,0,0,0.1)"
                 />
               </Grid>
               <Grid item xs={12}>
-                <PhoneInput handleSetPhone={setPhone} val={phone} placeholder={t("Phone Number")} />
+                <PhoneInput
+                  handleSetPhone={setPhone}
+                  val={phone}
+                  placeholder={t(thisPage.placeHolder.phone)}
+                />
               </Grid>
               <Grid item xs={12}>
                 <CustomSelect
@@ -349,7 +264,6 @@ const ContactForm = ({
                   handleSetValue={(loc) => {
                     handleChangeSelect(loc)
                   }}
-                  subDomain={subDomain}
                   options={option}
                 />
               </Grid>
@@ -365,7 +279,7 @@ const ContactForm = ({
                     }}
                     minLength={5}
                     maxLength={1000}
-                    placeholder={`${t("Message")}*`}
+                    placeholder={`${t(thisPage.placeHolder.message)}*`}
                     className={classes.textArea}
                   />
                 </div>
@@ -377,15 +291,14 @@ const ContactForm = ({
               </Grid>
             </Grid>
             <Button
-              title={t("Submit")}
-              bgcolor={mainData.colorPalle.nextButtonCol}
+              title={t(thisPage.button.submit)}
+              bgcolor={mainData.general.colorPalle.nextButtonCol}
               borderR="20px"
               width="120px"
               height="30px"
               margin="20px 0 0"
               fontSize="17px"
               onClick={handleSubmit}
-              subDomain={subDomain}
               disable={disableStatus}
             >
               {isSubmit && <Loading />}
@@ -403,10 +316,10 @@ const ContactForm = ({
               <Close />
             </IconButton>
             <Typography className={classes.title}>
-              {`${t("Thank you for choosing")} ${storesDetailsStore.storesDetails.name}`}
+              {`${t(thisPage.tracing.titlePrefix)} ${storesDetailsStore.storesDetails.name}`}
             </Typography>
             <Typography className={classes.content} id="contact-tracking-form">
-              {t("A representative will contact you shortly in regards to your request.")}
+              {t(thisPage.tracing.content)}
             </Typography>
           </Card>
         )}
@@ -417,3 +330,81 @@ const ContactForm = ({
 }
 
 export default ContactForm
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: "auto",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      ["@media (max-width:425px)"]: {
+        marginBottom: "100px",
+      },
+    },
+    card: {
+      padding: "50px 30px",
+      height: "auto",
+      minHeight: "300px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      position: "relative",
+      ["@media (max-width:600px)"]: {
+        padding: "40px 20px",
+      },
+    },
+    closeButtonDiv: {
+      position: "absolute",
+      right: "15px",
+      top: "15px",
+    },
+    title: {
+      fontSize: "25px",
+      fontWeight: "bold",
+      textAlign: "center",
+      paddingBottom: "20px",
+      ["@media (max-width:400px)"]: {
+        fontSize: "20px",
+      },
+    },
+    content: {
+      fontSize: "18px",
+      textAlign: "center",
+      marginTop: "20px",
+      ["@media (max-width:400px)"]: {
+        fontSize: "15px",
+      },
+    },
+    messageDiv: {
+      border: "1px solid rgba(0, 0, 0, 0.1)",
+      borderRadius: "20px",
+      width: "100%",
+      height: "300px",
+      overflow: "hidden",
+    },
+    textArea: {
+      border: "none",
+      margin: "20px",
+      fontSize: "15px",
+      width: "87%",
+      outline: "none",
+      height: "250px",
+      ["@media (max-width:600px)"]: {
+        fontSize: "3vw",
+      },
+    },
+    getQuote: {
+      width: "170px",
+      fontSize: "13px!important" as any,
+      [theme.breakpoints.down("sm")]: {
+        width: "120px",
+        fontSize: "12px!important" as any,
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "80px",
+        fontSize: "10px!important" as any,
+      },
+    },
+  })
+)

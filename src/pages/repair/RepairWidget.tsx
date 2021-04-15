@@ -40,17 +40,16 @@ type StoreProps = {
   repairWidgetStore: RepairWidgetStore
 }
 interface Props extends StoreProps {
-  subDomain: string
   handleStatus: (status: boolean) => void
   features: any[]
 }
 
 const RepairWidget = inject("repairWidgetStore")(
   observer((props: Props) => {
-    const { subDomain, handleStatus, features, repairWidgetStore } = props
-    const mockData = require("../../assets/_common/mockData")
-    const mainData = require(`../../assets/${subDomain}/Database`)
-    const themeCol = mainData.colorPalle.themeColor
+    const { handleStatus, features, repairWidgetStore } = props
+    const mainData = storesDetails.storeCnts
+    const mockData = storesDetails.commonCnts
+    const themeCol = mainData.general.colorPalle.themeColor
 
     const [step, setStep] = useState(0)
     const [feats, setFeats] = useState<any[]>([])
@@ -242,7 +241,6 @@ const RepairWidget = inject("repairWidgetStore")(
                       handleChangeChooseData={handleChangeChooseData}
                       stepName={stepList[step]}
                       step={step}
-                      subDomain={subDomain}
                       repairWidgetData={repairWidgetStore}
                       features={feats}
                     />
@@ -250,7 +248,6 @@ const RepairWidget = inject("repairWidgetStore")(
                   {step === 6 && (
                     <ContactDetails
                       data={mockData.repairWidget[stepList[step]]}
-                      subDomain={subDomain}
                       step={step}
                       handleStep={handleStep}
                       handleChangeChooseData={handleChangeChooseData}
@@ -262,7 +259,6 @@ const RepairWidget = inject("repairWidgetStore")(
                   {step === 7 && (
                     <BookTime
                       data={mockData.repairWidget[stepList[step]]}
-                      subDomain={subDomain}
                       step={step}
                       code={repairWidgetStore.deliveryMethod.code}
                       handleStep={handleStep}
@@ -274,7 +270,6 @@ const RepairWidget = inject("repairWidgetStore")(
                   {step === 8 && (
                     <UsefulInfo
                       data={mockData.repairWidget[stepList[step]]}
-                      subDomain={subDomain}
                       step={step}
                       handleStep={handleStep}
                       handleChangeChooseData={handleChangeChooseData}
@@ -288,7 +283,6 @@ const RepairWidget = inject("repairWidgetStore")(
                       code={repairWidgetStore.deliveryMethod.code}
                       step={step}
                       handleStep={handleStep}
-                      subDomain={subDomain}
                       features={feats}
                     />
                   )}
@@ -297,7 +291,6 @@ const RepairWidget = inject("repairWidgetStore")(
                       data={mockData.repairWidget[stepList[step]]}
                       repairWidgetData={repairWidgetStore}
                       quoteKey={1}
-                      subDomain={subDomain}
                     />
                   )}
                   {step === 11 && (
@@ -305,7 +298,6 @@ const RepairWidget = inject("repairWidgetStore")(
                       data={mockData.repairWidget[stepList[10]]}
                       repairWidgetData={repairWidgetStore}
                       quoteKey={0}
-                      subDomain={subDomain}
                     />
                   )}
                 </div>

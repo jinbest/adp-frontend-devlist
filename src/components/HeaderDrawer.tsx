@@ -15,75 +15,24 @@ import { StoresDetails } from "../store/StoresDetails"
 import { makeLocations } from "../services/helper"
 import { findLocationAPI } from "../services/"
 import { repairWidgetStore } from "../store/"
-import { getAddress, isExternal } from "../services/helper"
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 200,
-      padding: "30px 20px",
-    },
-    itemDiv: {
-      padding: "10px 0",
-      borderBottom: "1px solid rgba(0,0,0,0.1)",
-      "& > a": {
-        textDecoration: "none",
-        color: "black",
-        fontSize: "14px",
-      },
-      "&:hover": {
-        opacity: 0.5,
-      },
-    },
-    findStoreDiv: {
-      position: "absolute",
-      bottom: "100px",
-      width: 200,
-      ["@media (max-width:425px)"]: {
-        "& button": {
-          height: "40px !important",
-          fontSize: "15px !important",
-        },
-      },
-    },
-    drawerLogo: {
-      width: 150,
-      margin: "0 auto 10px",
-      "& img": {
-        width: "100%",
-      },
-    },
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      outline: "none",
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: "2px solid rgba(0,0,0,0.1)",
-      borderRadius: "10px",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 1),
-      outline: "none",
-      maxWidth: 300,
-    },
-    nonHoverEffect: {
-      textDecoration: "none !important",
-      opacity: "1 !important",
-      cursor: "default !important",
-    },
-  })
-)
+import { getAddress, isExternal, DuplicatedNavItem } from "../services/helper"
+import _ from "lodash"
 
 type Anchor = "top" | "left" | "bottom" | "right"
+
+type NavItemProps = {
+  href: string
+  text: string
+  flag: string
+  order: number
+  visible: boolean
+}
 
 type StoreProps = {
   storesDetailsStore: StoresDetails
 }
 interface Props extends StoreProps {
   children?: any
-  subDomain?: string
   toggleMenuStatus: (val: boolean) => void
   handleStatus: (status: boolean) => void
   features: any[]
@@ -94,14 +43,16 @@ const HeaderDrawer = inject("storesDetailsStore")(
   observer((props: Props) => {
     const {
       children,
-      subDomain,
       toggleMenuStatus,
       handleStatus,
       features,
       themeCol,
       storesDetailsStore,
     } = props
-    const data = require(`../assets/${subDomain}/Database`)
+    const data = storesDetailsStore.storeCnts
+    const thisPage = data.homepage.header
+    const navItemLinks: NavItemProps[] = _.sortBy(data.homepage.header.navItems, (o) => o.order)
+    const brandItemLinks = _.sortBy(data.homepage.header.brandItems, (o) => o.order)
     const [t] = useTranslation()
 
     const classes = useStyles()
@@ -315,48 +266,108 @@ const HeaderDrawer = inject("storesDetailsStore")(
         <Drawer anchor={"left"} open={state["left"]} onClose={toggleDrawer("left", false)}>
           <div className={classes.root}>
             <div className={classes.drawerLogo}>
-              <img src={data.logoData.logoHeaderImg} alt="drawer-logo" />
+              <img src={data.logoData.logoHeaderImg} alt="drawer-logo" width="1" height="auto" />
             </div>
-            <FeatureToggles features={features}>
-              {data.mobileNavItemData.left.map((item: any, index: number) => {
-                return (
-                  <Feature
-                    key={index}
-                    name={item.flag}
-                    inactiveComponent={() => <></>}
-                    activeComponent={() => (
-                      <React.Fragment>
-                        {item.href && item.href !== "#" && (
-                          <div
-                            className={classes.itemDiv}
-                            onClick={() => {
-                              setState({ ...state, ["left"]: false })
-                              toggleMenuStatus(false)
-                              handleStatus(true)
-                            }}
-                          >
-                            {isExternal(item.href) ? (
-                              <a
-                                href={item.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                style={{ display: "flex" }}
+            {navItemLinks.map((item: NavItemProps, index: number) => {
+              return (
+                <React.Fragment key={index}>
+                  {item.visible ? (
+                    <FeatureToggles features={features}>
+                      <Feature
+                        key={index}
+                        name={item.flag}
+                        inactiveComponent={() => <></>}
+                        activeComponent={() => (
+                          <React.Fragment>
+                            {item.href && item.href !== "#" && (
+                              <div
+                                className={classes.itemDiv}
+                                onClick={() => {
+                                  setState({ ...state, ["left"]: false })
+                                  toggleMenuStatus(false)
+                                  handleStatus(true)
+                                }}
                               >
-                                {t(item.text)}
-                              </a>
-                            ) : (
-                              <Link to={item.href} style={{ display: "flex" }}>
-                                {t(item.text)}
-                              </Link>
+                                {isExternal(item.href) ? (
+                                  <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ display: "flex" }}
+                                  >
+                                    {t(item.text)}
+                                  </a>
+                                ) : (
+                                  <Link to={item.href} style={{ display: "flex" }}>
+                                    {t(item.text)}
+                                  </Link>
+                                )}
+                              </div>
                             )}
-                          </div>
+                          </React.Fragment>
                         )}
-                      </React.Fragment>
-                    )}
-                  />
-                )
-              })}
-            </FeatureToggles>
+                      />
+                    </FeatureToggles>
+                  ) : (
+                    <></>
+                  )}
+                </React.Fragment>
+              )
+            })}
+            {brandItemLinks.map((item: any, index: number) => {
+              return (
+                <React.Fragment key={index}>
+                  {item.visible && !DuplicatedNavItem(navItemLinks, item) ? (
+                    <React.Fragment>
+                      {item.href && item.href !== "#" && (
+                        <div
+                          className={classes.itemDiv}
+                          onClick={() => {
+                            setState({ ...state, ["left"]: false })
+                            toggleMenuStatus(false)
+                            handleStatus(true)
+                          }}
+                        >
+                          {isExternal(item.href) ? (
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              style={{ display: "flex" }}
+                            >
+                              {t(item.text)}
+                            </a>
+                          ) : (
+                            <Link to={item.href} style={{ display: "flex" }}>
+                              {t(item.text)}
+                            </Link>
+                          )}
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ) : (
+                    <></>
+                  )}
+                </React.Fragment>
+              )
+            })}
+            {data.homepage.header.visibility.covidPage && (
+              <div
+                className={classes.itemDiv}
+                onClick={() => {
+                  setState({ ...state, ["left"]: false })
+                  toggleMenuStatus(false)
+                  handleStatus(true)
+                }}
+              >
+                <Link
+                  to={data.homepage.footer.bottomLinks.covidPage.link}
+                  style={{ display: "flex" }}
+                >
+                  {t(data.homepage.footer.bottomLinks.covidPage.text)}
+                </Link>
+              </div>
+            )}
             <div className={classes.findStoreDiv}>
               <Button
                 title={t("Find a Store")}
@@ -366,14 +377,13 @@ const HeaderDrawer = inject("storesDetailsStore")(
                 height="40px"
                 margin="10px auto"
                 fontSize="17px"
-                subDomain={subDomain}
                 disable={loadingStatus}
                 onClick={handleFindStore}
               >
                 {loadingStatus && <Loading />}
               </Button>
             </div>
-            <LangDropdown subDomain={subDomain} />
+            {thisPage.visibility.lang && <LangDropdown />}
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
@@ -395,7 +405,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       handleChange={(e) => {
                         setPostCode(e.target.value)
                       }}
-                      subDomain={subDomain}
                     />
                     <Button
                       title={t("Get Location")}
@@ -405,7 +414,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       height="30px"
                       margin="10px auto"
                       fontSize="15px"
-                      subDomain={subDomain}
                       disable={loadingStatus}
                       onClick={() => handleGetLocation(postCode)}
                     >
@@ -422,9 +430,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                             <p
                               onClick={() => handleLocSelect(index)}
                               className={
-                                subDomain +
-                                "-block-content" +
-                                (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
+                                "block-content" + (locSelStatus ? ` ${classes.nonHoverEffect}` : "")
                               }
                               style={{
                                 fontSize: locSelStatus ? "15px" : "12px",
@@ -450,18 +456,15 @@ const HeaderDrawer = inject("storesDetailsStore")(
                               {item.days.map((it: any, index: number) => {
                                 return (
                                   <div key={index}>
-                                    <p
-                                      className={subDomain + "-block-title"}
-                                      style={{ fontSize: "14px" }}
-                                    >
+                                    <p className={"block-title"} style={{ fontSize: "14px" }}>
                                       {t("Hours")}
                                     </p>
-                                    <div className={subDomain + "-hours-div"}>
+                                    <div className={"hours-div"}>
                                       <div>
                                         {it.wkDys.map((itm: any, idx: number) => {
                                           return (
                                             <p
-                                              className={subDomain + "-block-content"}
+                                              className={"block-content"}
                                               style={{
                                                 textDecoration: "none",
                                                 opacity: 1,
@@ -479,7 +482,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                                         {item.hours[index].hrs.map((itm: any, idx: number) => {
                                           return (
                                             <p
-                                              className={subDomain + "-block-content"}
+                                              className={"block-content"}
                                               style={{
                                                 textDecoration: "none",
                                                 opacity: 1,
@@ -502,10 +505,10 @@ const HeaderDrawer = inject("storesDetailsStore")(
                         })}
                       </React.Fragment>
                     )}
-                    <div className={subDomain + "-content-block"}>
+                    <div className={"content-block"}>
                       {locSelStatus && (
                         <a
-                          className={subDomain + "-link"}
+                          className={"link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={
                             storesDetailsStore.cntUserLocation[0] &&
@@ -521,7 +524,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       )}
                       {storesDetailsStore.findAddLocation.length > 1 && (
                         <a
-                          className={subDomain + "-link"}
+                          className={"link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           onClick={viewMoreStores}
                         >
@@ -530,7 +533,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                       )}
                       {locSelStatus && (
                         <a
-                          className={subDomain + "-link"}
+                          className={"link"}
                           style={{ color: themeCol, fontSize: "12px" }}
                           href={`${
                             storesDetailsStore.cntUserLocation[0] &&
@@ -555,7 +558,7 @@ const HeaderDrawer = inject("storesDetailsStore")(
                         inactiveComponent={() => <></>}
                         activeComponent={() => (
                           <Link
-                            to="/get-quote"
+                            to={data.general.routes.repairWidgetPage}
                             style={{ textDecoration: "none" }}
                             onClick={handleBookRepair}
                           >
@@ -567,7 +570,6 @@ const HeaderDrawer = inject("storesDetailsStore")(
                               height="30px"
                               margin="0px 0 10px"
                               fontSize="15px"
-                              subDomain={subDomain}
                             />
                           </Link>
                         )}
@@ -586,3 +588,62 @@ const HeaderDrawer = inject("storesDetailsStore")(
 )
 
 export default HeaderDrawer
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: 200,
+      padding: "30px 20px",
+    },
+    itemDiv: {
+      padding: "10px 0",
+      borderBottom: "1px solid rgba(0,0,0,0.1)",
+      "& > a": {
+        textDecoration: "none",
+        color: "black",
+        fontSize: "14px",
+      },
+      "&:hover": {
+        opacity: 0.5,
+      },
+    },
+    findStoreDiv: {
+      position: "absolute",
+      bottom: "100px",
+      width: 200,
+      ["@media (max-width:425px)"]: {
+        "& button": {
+          height: "40px !important",
+          fontSize: "15px !important",
+        },
+      },
+    },
+    drawerLogo: {
+      width: 150,
+      margin: "0 auto 10px",
+      "& img": {
+        width: "100%",
+      },
+    },
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      outline: "none",
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: "2px solid rgba(0,0,0,0.1)",
+      borderRadius: "10px",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 1),
+      outline: "none",
+      maxWidth: 300,
+    },
+    nonHoverEffect: {
+      textDecoration: "none !important",
+      opacity: "1 !important",
+      cursor: "default !important",
+    },
+  })
+)

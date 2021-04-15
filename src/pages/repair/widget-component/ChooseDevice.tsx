@@ -20,7 +20,6 @@ type Props = {
   data: any
   stepName: string
   step: number
-  subDomain?: string
   handleStep: (step: number) => void
   handleChangeChooseData: (step: number, chooseData: any) => void
   repairWidgetData: any
@@ -35,15 +34,14 @@ const ChooseDevice = ({
   data,
   stepName,
   step,
-  subDomain,
   handleStep,
   handleChangeChooseData,
   repairWidgetData,
   features,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database`)
-  const themeCol = mainData.colorPalle.themeColor
-  const repairChooseItemCol = mainData.colorPalle.repairChooseItemCol
+  const mainData = storesDetails.storeCnts
+  const themeCol = mainData.general.colorPalle.themeColor
+  const repairChooseItemCol = mainData.general.colorPalle.repairChooseItemCol
 
   const [sliceNum, setSliceNum] = useState(10)
   const [plusVisible, setPlusVisible] = useState(false)
@@ -56,6 +54,7 @@ const ChooseDevice = ({
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
   const [openContactModal, setOpenContactModal] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const [t] = useTranslation()
 
@@ -194,6 +193,7 @@ const ChooseDevice = ({
   }
 
   const loadStepData = async (name: string, text: string, pg: number, perpg: number) => {
+    setLoading(true)
     const cntImgData: any[] = [],
       cntTypes: any[] = []
     let cntOfferedRepairs: any[] = []
@@ -269,9 +269,16 @@ const ChooseDevice = ({
           }
           setItemTypes([...cntTypes])
         }
-        if (repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg) {
+        if (
+          repairWidData.repairsOfferedDevices != null &&
+          repairWidData.repairsOfferedDevices.metadata != null &&
+          repairWidData.repairsOfferedDevices.metadata.total <= pg * perpg
+        ) {
           setPlusVisible(false)
-        } else {
+        } else if (
+          repairWidData.repairsOfferedDevices != null &&
+          repairWidData.repairsOfferedDevices.metadata != null
+        ) {
           setPlusVisible(true)
         }
         break
@@ -279,6 +286,7 @@ const ChooseDevice = ({
         break
     }
     setImageData(cntImgData)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -454,16 +462,16 @@ const ChooseDevice = ({
   const NoDataComponent = () => {
     return (
       <p className="non-products-text">
-        {t("Didn't find what you are looking for, ")}
+        {t("Didn't find what you are looking for? ")}
         <span
           style={{
-            color: mainData.colorPalle.textThemeCol,
+            color: mainData.general.colorPalle.textThemeCol,
           }}
           onClick={() => setOpenContactModal(true)}
         >
-          {t("contact us ")}
+          {t("Contact us ")}
         </span>
-        {t("with details of the issue affecting your device please.")}
+        {t("with the details of the issue(s) affecting your device.")}
       </p>
     )
   }
@@ -487,7 +495,6 @@ const ChooseDevice = ({
                       bgcolor="white"
                       border="rgba(0,0,0,0.2)"
                       placeholder={t(data.placeholder)}
-                      subDomain={subDomain}
                       value={searchText}
                       handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         handleChangeSearch(e)
@@ -522,7 +529,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!imageData.length && <NoDataComponent />}
+                    {!imageData.length && !loading && <NoDataComponent />}
                   </>
                 )}
 
@@ -551,7 +558,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!imageData.length && <NoDataComponent />}
+                    {!imageData.length && !loading && <NoDataComponent />}
                   </>
                 )}
 
@@ -566,7 +573,6 @@ const ChooseDevice = ({
                       fontSize="17px"
                       txcolor="black"
                       onClick={GobackFirst}
-                      subDomain={subDomain}
                     />
                     <Button
                       title={t("No")}
@@ -577,7 +583,6 @@ const ChooseDevice = ({
                       fontSize="17px"
                       txcolor="black"
                       onClick={GotoNextStep}
-                      subDomain={subDomain}
                     />
                   </div>
                 )}
@@ -604,7 +609,7 @@ const ChooseDevice = ({
                         <PlusSVG color="#BDBFC3" />
                       </div>
                     )}
-                    {!itemTypes.length && <NoDataComponent />}
+                    {!itemTypes.length && !loading && <NoDataComponent />}
                   </>
                 )}
 
@@ -634,14 +639,13 @@ const ChooseDevice = ({
               <div className="service-card-button">
                 <Button
                   title={t("Next")}
-                  bgcolor={mainData.colorPalle.nextButtonCol}
+                  bgcolor={mainData.general.colorPalle.nextButtonCol}
                   borderR="20px"
                   width="120px"
                   height="30px"
                   fontSize="17px"
                   onClick={() => ChooseNextStep(999)}
                   disable={disableStatus}
-                  subDomain={subDomain}
                 />
                 <p>{t("or press ENTER")}</p>
               </div>
@@ -723,7 +727,6 @@ const ChooseDevice = ({
             {(stepName === "dropOffDevicce" || stepName === "receiveQuote") && (
               <RepairSummary
                 step={step}
-                subDomain={subDomain}
                 themeCol={themeCol}
                 repairWidgetStore={repairWidgetStore}
               />
@@ -734,7 +737,6 @@ const ChooseDevice = ({
       <ContactModal
         openModal={openContactModal}
         handleModal={setOpenContactModal}
-        subDomain={subDomain}
         storesDetailsStore={storesDetails}
       />
     </div>

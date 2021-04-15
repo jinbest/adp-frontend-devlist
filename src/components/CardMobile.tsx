@@ -11,22 +11,21 @@ type Props = {
   color?: string
   heart?: string
   heartCol?: string
-  subDomain?: string
   href: string
 }
 
-const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, subDomain, href }: Props) => {
+const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, href }: Props) => {
   const [t] = useTranslation()
 
   return (
-    <div className={subDomain + "-card-mobile"}>
+    <div className={"card-mobile"}>
       <p style={{ color: color }}>{title.toLocaleUpperCase()}</p>
       {heart && (
-        <div className={subDomain + "-card-mobile-heart"} style={{ background: heartCol }}>
-          <img src={heart} alt="heart" />
+        <div className={"card-mobile-heart"} style={{ background: heartCol }}>
+          <img src={heart} alt="heart" width="1" height="auto" />
         </div>
       )}
-      <img src={img} alt="mobile-img" />
+      <img src={img} alt="card-mobile-img" width="1" height="auto" />
       {isExternal(href) ? (
         <a href={href} style={{ textDecoration: "none" }} target="_blank" rel="noreferrer">
           <Button
@@ -35,7 +34,6 @@ const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, subDomain, h
             borderR="10px"
             margin="auto"
             fontSize="16px"
-            subDomain={subDomain}
           />
         </a>
       ) : (
@@ -46,7 +44,6 @@ const CardMobile = ({ title, img, btnTitle, color, heart, heartCol, subDomain, h
             borderR="10px"
             margin="auto"
             fontSize="16px"
-            subDomain={subDomain}
           />
         </Link>
       )}

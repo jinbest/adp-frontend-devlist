@@ -9,7 +9,6 @@ type Props = {
   placeholder?: string
   value?: string
   handleChange: (event: React.ChangeEvent<{ value: string }>) => void
-  subDomain?: string
   errorText?: string
 }
 
@@ -21,13 +20,12 @@ const InputComponent = ({
   placeholder,
   value,
   handleChange,
-  subDomain,
   errorText,
 }: Props) => {
   return (
     <React.Fragment>
       <InputBase
-        className={subDomain + "-input-component"}
+        className={"input-component"}
         style={{
           color: color,
           background: bgcolor,

@@ -15,6 +15,8 @@ export class StoresDetails {
   @observable customer_id = -1
   @observable type = "QUOTE" /* type is 'QUOTE' or 'APPOINTMENT' */
   @observable allLocations: any[] = []
+  @observable storeCnts: any = {}
+  @observable commonCnts: any = {}
 
   constructor() {
     this.load()
@@ -35,7 +37,9 @@ export class StoresDetails {
         is_voided: this.is_voided,
         customer_id: this.customer_id,
         type: this.type,
-        allLocations: this.allLocations
+        allLocations: this.allLocations,
+        storeCnts: this.storeCnts,
+        commonCnts: this.commonCnts
       })
     )
 
@@ -46,6 +50,18 @@ export class StoresDetails {
   @action
   changestoresDetails = (storesDetails: any) => {
     this.storesDetails = storesDetails
+    this.save()
+  }
+
+  @action
+  changeStoreCnts = (storeCnts: any) => {
+    this.storeCnts = storeCnts
+    this.save()
+  }
+
+  @action
+  changeCommonCnts = (commonCnts: any) => {
+    this.commonCnts = commonCnts
     this.save()
   }
 

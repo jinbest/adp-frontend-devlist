@@ -5,39 +5,77 @@ import { Button } from "../../components"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { isExternal } from "../../services/helper"
+import { storesDetails } from "../../store"
 
 type Props = {
-  subDomain?: string
   handleStatus: (status: boolean) => void
 }
 
+const Section4 = ({ handleStatus }: Props) => {
+  const data = storesDetails.storeCnts
+  const repair = data.repairPage.section4
+  const [t] = useTranslation()
+  const classes = useStyles()
+
+  return (
+    <section className={"Container"}>
+      <Grid container className={"repair-sec4-grid-root"} spacing={2}>
+        <Grid item xs={12} md={6} className={classes.item1}>
+          <Typography className={"service-section-title-1"} style={{ color: repair.themeCol }}>
+            {t(repair.title)}
+          </Typography>
+          <Typography className={"service-section-content"} style={{ color: repair.themeCol }}>
+            {t(repair.subtitle)}
+          </Typography>
+          <Box className={"service-section-button"}>
+            {isExternal(repair.link) ? (
+              <a
+                href={repair.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  title={t(repair.btnTitle)}
+                  bgcolor={data.general.colorPalle.repairButtonCol}
+                  borderR="20px"
+                />
+              </a>
+            ) : (
+              <Link
+                to={repair.link}
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  handleStatus(true)
+                }}
+              >
+                <Button
+                  title={t(repair.btnTitle)}
+                  bgcolor={data.general.colorPalle.repairButtonCol}
+                  borderR="20px"
+                />
+              </Link>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6} className={`${classes.item2} repair-sec4-img`}>
+          <img
+            src={storesDetails.commonCnts.repairSec4Img}
+            alt="repair-sec4-img"
+            style={{ width: "100%", maxWidth: "700px" }}
+            width="1"
+            height="auto"
+          />
+        </Grid>
+      </Grid>
+    </section>
+  )
+}
+
+export default Section4
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      textAlign: "center",
-      marginTop: "70px !important",
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        margin: "150px 0 !important",
-        alignItems: "center",
-        display: "flex",
-        textAlign: "left",
-      },
-    },
-    mobileTechRoot: {
-      textAlign: "center",
-      marginTop: "0px !important",
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        margin: "0 0 200px !important",
-        alignItems: "center",
-        display: "flex",
-        textAlign: "left",
-      },
-      ["@media (max-width:425px)"]: {
-        margin: "-250px 0 100px !important",
-      },
-    },
     item1: {
       order: 2,
       "& > div": {
@@ -60,75 +98,3 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
-
-const Section4 = ({ subDomain, handleStatus }: Props) => {
-  const data = require(`../../assets/${subDomain}/Database`)
-  const repair = data.repairData.section4
-  const [t] = useTranslation()
-  const classes = useStyles()
-
-  return (
-    <section className={subDomain + "-Container"}>
-      <Grid
-        container
-        className={subDomain === "mobiletechlab" ? classes.mobileTechRoot : classes.root}
-        spacing={2}
-      >
-        <Grid item xs={12} md={6} className={classes.item1}>
-          <Typography
-            className={subDomain + "-service-section-title-1"}
-            style={{ color: repair.themeCol }}
-          >
-            {t(repair.title)}
-          </Typography>
-          <Typography
-            className={subDomain + "-service-section-content"}
-            style={{ color: repair.themeCol }}
-          >
-            {t(repair.content)}
-          </Typography>
-          <Box className={subDomain + "-service-section-button"}>
-            {isExternal(repair.link) ? (
-              <a
-                href={repair.link}
-                target="_blank"
-                rel="noreferrer"
-                style={{ textDecoration: "none" }}
-              >
-                <Button
-                  title={t(repair.btnTitle)}
-                  bgcolor={data.colorPalle.repairButtonCol}
-                  borderR="20px"
-                  subDomain={subDomain}
-                />
-              </a>
-            ) : (
-              <Link
-                to={repair.link}
-                style={{ textDecoration: "none" }}
-                onClick={() => {
-                  handleStatus(true)
-                }}
-              >
-                <Button
-                  title={t(repair.btnTitle)}
-                  bgcolor={data.colorPalle.repairButtonCol}
-                  borderR="20px"
-                  subDomain={subDomain}
-                />
-              </Link>
-            )}
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={6} className={classes.item2}>
-          <img
-            src={require("../../assets/_common/img/repair/repair-sec4.png").default}
-            style={{ width: "100%", maxWidth: "700px" }}
-          />
-        </Grid>
-      </Grid>
-    </section>
-  )
-}
-
-export default Section4

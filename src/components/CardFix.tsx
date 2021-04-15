@@ -1,25 +1,22 @@
-import React from 'react'
+import React from "react"
 
 type Props = {
-  img: string;
-  title: string;
-  subDomain?: string;
+  img: string
+  title: string
 }
 
-const CardFix = ({title, img, subDomain}: Props) => {
-  
+const CardFix = ({ title, img }: Props) => {
   return (
-    <div className={subDomain + '-card-fix'}>
-      <img src={img} />
+    <div className={"card-fix"}>
+      <img src={img} alt={`{title}-img`} width="1" height="auto" />
       <p>{title}</p>
     </div>
   )
 }
 
 CardFix.defaultProps = {
-  title: 'Cellphone',
-  img: '',
-  subDomain: 'geebo'
+  title: "Cellphone",
+  img: "",
 }
 
-export default CardFix;
+export default CardFix

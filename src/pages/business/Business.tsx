@@ -15,6 +15,132 @@ import {
   QuickTurnaround,
   Soldering,
 } from "./SVGs"
+import { MetaParams } from "../../model/meta-params"
+
+type Props = {
+  handleStatus: (status: boolean) => void
+}
+
+const Business = ({ handleStatus }: Props) => {
+  const classes = useStyles()
+  const data = storesDetails.storeCnts
+  const thisPage = data.businessPage
+  const [t] = useTranslation()
+
+  const [pageTitle, setPageTitle] = useState("Business Solutions | ")
+  const [metaList, setMetaList] = useState<MetaParams[]>([])
+  const [openModal, setOpenModal] = useState(false)
+
+  useEffect(() => {
+    setPageTitle(thisPage.headData.title)
+    setMetaList(thisPage.headData.metaList)
+    handleStatus(true)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }, [])
+
+  return (
+    <div>
+      <Helmet>
+        <title>{pageTitle}</title>
+        {metaList.map((item: MetaParams, index: number) => {
+          return <meta name={item.name} content={item.content} key={index} />
+        })}
+        <link rel="icon" id="favicon" href={data.homepage.headData.fav.img} />
+        <link rel="apple-touch-icon" href={data.homepage.headData.fav.img} />
+      </Helmet>
+
+      <Shape />
+      <div className={classes.root}>
+        <h1 className={classes.mainTitle}>{t(thisPage.section1.title)}</h1>
+        <Typography className={classes.mainContent}>{t(thisPage.section1.subtitle)}</Typography>
+        <Button
+          title={t(thisPage.section1.btnTitle)}
+          bgcolor={data.general.colorPalle.repairButtonCol}
+          borderR="20px"
+          width="200px"
+          margin="auto"
+          onClick={() => setOpenModal(true)}
+        />
+        <div className={classes.cardContainer}>
+          <Card className={classes.card}>
+            <Typography className={classes.subTitle}>{t(thisPage.section2.title)}</Typography>
+            <Grid container spacing={5}>
+              {thisPage.section2.services.map((item: any, index: number) => {
+                return (
+                  <React.Fragment key={index}>
+                    {item.visible ? (
+                      <Grid item xs={12} md={6} className={classes.item}>
+                        <div className={classes.SVGContainer}>
+                          {item.type === "freeShipping" ? (
+                            <div style={{ padding: "0 20px" }}>
+                              <FreeShipping color={data.general.colorPalle.repairButtonCol} />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {item.type === "pay" ? (
+                            <div style={{ padding: "0 24px" }}>
+                              <Pay color={data.general.colorPalle.repairButtonCol} />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {item.type === "shippingLabel" ? (
+                            <div style={{ padding: "0 25px" }}>
+                              <ShippingLabel color={data.general.colorPalle.repairButtonCol} />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {item.type === "soldering" ? (
+                            <div style={{ padding: "0 22px" }}>
+                              <Soldering color={data.general.colorPalle.repairButtonCol} />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {item.type === "customerService" ? (
+                            <div style={{ padding: "0 22px" }}>
+                              <CustomerService color={data.general.colorPalle.repairButtonCol} />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {item.type === "quickTurnaround" ? (
+                            <div style={{ padding: "0 20px" }}>
+                              <QuickTurnaround color={data.general.colorPalle.repairButtonCol} />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                        <div className={classes.textContainer}>
+                          <Typography className={classes.itemText}>{t(item.content)}</Typography>
+                        </div>
+                      </Grid>
+                    ) : (
+                      <></>
+                    )}
+                  </React.Fragment>
+                )
+              })}
+            </Grid>
+          </Card>
+          <ContactModal
+            openModal={openModal}
+            handleModal={setOpenModal}
+            storesDetailsStore={storesDetails}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Business
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -56,6 +182,7 @@ const useStyles = makeStyles(() =>
       fontSize: "60px !important",
       marginBottom: "40px !important",
       // textShadow: "1px 0 black",
+      fontFamily: "Poppins Bold",
       fontWeight: "bold",
       justifyContent: "center",
       letterSpacing: "2px",
@@ -94,6 +221,7 @@ const useStyles = makeStyles(() =>
       textAlign: "center",
       color: "black",
       // textShadow: "1px 0 black",
+      fontFamily: "Poppins Bold !important",
       fontWeight: "bold",
       letterSpacing: "1px",
       marginBottom: "50px",
@@ -154,142 +282,3 @@ const useStyles = makeStyles(() =>
     },
   })
 )
-
-type Props = {
-  subDomain: string
-  handleStatus: (status: boolean) => void
-}
-
-const Business = ({ subDomain, handleStatus }: Props) => {
-  const classes = useStyles()
-  const data = require(`../../assets/${subDomain}/Database`)
-  const [t] = useTranslation()
-
-  const [pageTitle, setPageTitle] = useState("Business Solutions | ")
-  const [metaDescription, setMetaDescription] = useState("")
-  const [openModal, setOpenModal] = useState(false)
-
-  useEffect(() => {
-    const storeTabData = data.getTabData(storesDetails.storesDetails.name)
-
-    setPageTitle(storeTabData.businessTitle)
-    setMetaDescription(storeTabData.businessMetaDes)
-
-    handleStatus(true)
-  }, [])
-
-  return (
-    <div>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <link rel="icon" id="favicon" href={data.fav.img} />
-        <link rel="apple-touch-icon" href={data.fav.img} />
-      </Helmet>
-
-      <Shape subDomain={subDomain} />
-      <div className={classes.root}>
-        <h1 className={classes.mainTitle}>{t("Business Solutions")}</h1>
-        <Typography className={classes.mainContent}>
-          {t(
-            "We provide reliable device management and repair services so you can focus on running your business."
-          )}
-        </Typography>
-        <Button
-          title={t("Get Started")}
-          bgcolor={data.colorPalle.repairButtonCol}
-          borderR="20px"
-          subDomain={subDomain}
-          width="200px"
-          margin="auto"
-          onClick={() => setOpenModal(true)}
-        />
-        <div className={classes.cardContainer}>
-          <Card className={classes.card}>
-            <Typography className={classes.subTitle}>{t("Why Businesses Choose Us?")}</Typography>
-            <Grid container spacing={5}>
-              <Grid item xs={12} md={6} className={classes.item}>
-                <div className={classes.SVGContainer}>
-                  <div style={{ padding: "0 20px" }}>
-                    <FreeShipping color={data.colorPalle.repairButtonCol} />
-                  </div>
-                </div>
-                <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Free shipping and bulk discounts for 5+ devices.")}
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={6} className={classes.item}>
-                <div className={classes.SVGContainer}>
-                  <div style={{ padding: "0 24px" }}>
-                    <Pay color={data.colorPalle.repairButtonCol} />
-                  </div>
-                </div>
-                <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Flexible payement options. You choose how and when you pay.")}
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={6} className={classes.item}>
-                <div className={classes.SVGContainer}>
-                  <div style={{ padding: "0 25px" }}>
-                    <ShippingLabel color={data.colorPalle.repairButtonCol} />
-                  </div>
-                </div>
-                <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Instant shipping label upon request.")}
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={6} className={classes.item}>
-                <div className={classes.SVGContainer}>
-                  <div style={{ padding: "0 22px" }}>
-                    <Soldering color={data.colorPalle.repairButtonCol} />
-                  </div>
-                </div>
-                <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Dedicated B2B microsoldering Techs.")}
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={6} className={classes.item}>
-                <div className={classes.SVGContainer}>
-                  <div style={{ padding: "0 22px" }}>
-                    <CustomerService color={data.colorPalle.repairButtonCol} />
-                  </div>
-                </div>
-                <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>
-                    {t("Responsive customer support.")}
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={12} md={6} className={classes.item}>
-                <div className={classes.SVGContainer}>
-                  <div style={{ padding: "0 20px" }}>
-                    <QuickTurnaround color={data.colorPalle.repairButtonCol} />
-                  </div>
-                </div>
-                <div className={classes.textContainer}>
-                  <Typography className={classes.itemText}>{t("Quick turnaround.")}</Typography>
-                </div>
-              </Grid>
-            </Grid>
-          </Card>
-          <ContactModal
-            openModal={openModal}
-            handleModal={setOpenModal}
-            subDomain={subDomain}
-            storesDetailsStore={storesDetails}
-          />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default Business

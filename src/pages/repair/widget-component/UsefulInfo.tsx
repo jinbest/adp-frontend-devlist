@@ -4,11 +4,10 @@ import { Card } from "./"
 import { Button } from "../../../components"
 import RepairSummary from "./RepairSummary"
 import { useTranslation } from "react-i18next"
-import { repairWidgetStore } from "../../../store"
+import { repairWidgetStore, storesDetails } from "../../../store"
 
 type Props = {
   data: any
-  subDomain?: string
   step: number
   handleStep: (step: number) => void
   handleChangeChooseData: (step: number, chooseData: any) => void
@@ -17,14 +16,13 @@ type Props = {
 
 const UsefulInfo = ({
   data,
-  subDomain,
   step,
   handleStep,
   handleChangeChooseData,
   repairWidgetData,
 }: Props) => {
-  const mainData = require(`../../../assets/${subDomain}/Database.js`)
-  const themeCol = mainData.colorPalle.themeColor
+  const mainData = storesDetails.storeCnts
+  const themeCol = mainData.general.colorPalle.themeColor
 
   const [message, setMessage] = useState("")
   const [t] = useTranslation()
@@ -83,13 +81,12 @@ const UsefulInfo = ({
             <div className="service-card-button">
               <Button
                 title={t("Next")}
-                bgcolor={mainData.colorPalle.nextButtonCol}
+                bgcolor={mainData.general.colorPalle.nextButtonCol}
                 borderR="20px"
                 width="120px"
                 height="30px"
                 fontSize="17px"
                 onClick={ChooseNextStep}
-                subDomain={subDomain}
               />
               <p>{t("or press ENTER")}</p>
             </div>
@@ -99,7 +96,6 @@ const UsefulInfo = ({
           <Card className="service-summary-card">
             <RepairSummary
               step={step}
-              subDomain={subDomain}
               themeCol={themeCol}
               showInfo={true}
               repairWidgetStore={repairWidgetStore}

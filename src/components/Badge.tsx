@@ -1,5 +1,26 @@
 import React from "react"
 import { createStyles, makeStyles } from "@material-ui/core/styles"
+import { storesDetails } from "../store"
+
+const Badge = () => {
+  const classes = useStyles()
+
+  return (
+    <div className={classes.root}>
+      <a href="https://www.devicelist.ca/" target="_blank" rel="noreferrer">
+        <img
+          src={storesDetails.commonCnts.badgeImg}
+          alt="badge-img"
+          className={classes.badgeImg}
+          width="1"
+          height="auto"
+        />
+      </a>
+    </div>
+  )
+}
+
+export default Badge
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -38,21 +59,3 @@ const useStyles = makeStyles(() =>
     },
   })
 )
-
-const Badge = () => {
-  const classes = useStyles()
-
-  return (
-    <div className={classes.root}>
-      <a href="https://www.devicelist.ca/" target="_blank" rel="noreferrer">
-        <img
-          src={require(`../assets/_common/img/Badge.svg`).default}
-          alt="badge-img"
-          className={classes.badgeImg}
-        />
-      </a>
-    </div>
-  )
-}
-
-export default Badge
